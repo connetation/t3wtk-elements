@@ -1,0 +1,14 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{tags}">
+    <div class="conn-filter__tags-row" role="group" aria-label="Tag filter">
+        <f:for each="{tags}" as="tag">
+            <button type="button" class="conn-filter__tag-badge" data-tag="{tag}">
+                {tag}
+            </button>
+        </f:for>
+    </div>
+</f:if>
+
+</html>

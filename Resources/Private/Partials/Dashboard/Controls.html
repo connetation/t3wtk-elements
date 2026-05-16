@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="dashboard__controls">
+
+    <f:render partial="Shared/Filter/ResetButton" />
+
+    <div class="dropdown">
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <span class="dashboard__filter-label"
+                  data-default="{f:translate(key:'dashboard.status.label', extensionName:'conn_elements')}">
+                <f:translate key="dashboard.status.label" extensionName="conn_elements" />
+            </span>
+        </button>
+        <ul class="dropdown-menu shadow-lg">
+            <li><a class="dropdown-item dashboard__filter-item active" data-status="all" href="#"><f:translate key="dashboard.status.all" extensionName="conn_elements" /></a></li>
+            <li><a class="dropdown-item dashboard__filter-item" data-status="active" href="#"><f:translate key="dashboard.status.active" extensionName="conn_elements" /></a></li>
+            <li><a class="dropdown-item dashboard__filter-item" data-status="in_progress" href="#"><f:translate key="dashboard.status.in_progress" extensionName="conn_elements" /></a></li>
+            <li><a class="dropdown-item dashboard__filter-item" data-status="coming_soon" href="#"><f:translate key="dashboard.status.coming_soon" extensionName="conn_elements" /></a></li>
+            <li><a class="dropdown-item dashboard__filter-item" data-status="inactive" href="#"><f:translate key="dashboard.status.inactive" extensionName="conn_elements" /></a></li>
+        </ul>
+    </div>
+
+    <f:render partial="Shared/Filter/CategoryDropdown" arguments="{categories: categories}" />
+
+    <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-outline-secondary active dashboard__view-btn" data-view="grid" title="Grid view">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
+            </svg>
+        </button>
+        <button type="button" class="btn btn-outline-secondary dashboard__view-btn" data-view="list" title="List view">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </button>
+    </div>
+
+    <f:render partial="Shared/Filter/Search" />
+
+</div>
+
+</html>

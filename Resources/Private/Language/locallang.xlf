@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:conn_elements/Resources/Private/Language/locallang.xlf">
+        <header/>
+        <body>
+            <trans-unit id="dashboard.status.label">
+                <source>Status</source>
+            </trans-unit>
+            <trans-unit id="dashboard.status.all">
+                <source>All</source>
+            </trans-unit>
+            <trans-unit id="dashboard.status.active">
+                <source>Active</source>
+            </trans-unit>
+            <trans-unit id="dashboard.status.in_progress">
+                <source>In Progress</source>
+            </trans-unit>
+            <trans-unit id="dashboard.status.coming_soon">
+                <source>Coming Soon</source>
+            </trans-unit>
+            <trans-unit id="dashboard.status.inactive">
+                <source>Inactive</source>
+            </trans-unit>
+            <trans-unit id="dashboard.category.all">
+                <source>All Categories</source>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.total">
+                <source>Total</source>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.active">
+                <source>Active</source>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.in_progress">
+                <source>In Progress</source>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.coming_soon">
+                <source>Coming Soon</source>
+            </trans-unit>
+            <trans-unit id="dashboard.search.placeholder">
+                <source>Search…</source>
+            </trans-unit>
+            <trans-unit id="dashboard.view.grid">
+                <source>Grid view</source>
+            </trans-unit>
+            <trans-unit id="dashboard.view.list">
+                <source>List view</source>
+            </trans-unit>
+            <trans-unit id="dashboard.empty">
+                <source>No entries match your filter.</source>
+            </trans-unit>
+            <trans-unit id="dashboard.visit">
+                <source>Visit ↗</source>
+            </trans-unit>
+            <trans-unit id="dashboard.table.project">
+                <source>Service</source>
+            </trans-unit>
+            <trans-unit id="dashboard.table.category">
+                <source>Category</source>
+            </trans-unit>
+            <trans-unit id="dashboard.table.status">
+                <source>Status</source>
+            </trans-unit>
+            <trans-unit id="dashboard.table.tags">
+                <source>Tags</source>
+            </trans-unit>
+            <trans-unit id="dashboard.modal.close">
+                <source>Close</source>
+            </trans-unit>
+            <trans-unit id="dashboard.modal.visit">
+                <source>Visit ↗</source>
+            </trans-unit>
+            <trans-unit id="dashboard.modal.category">
+                <source>Category</source>
+            </trans-unit>
+            <!-- Wiki frontend -->
+            <trans-unit id="wiki.search.placeholder">
+                <source>Search pages…</source>
+            </trans-unit>
+            <trans-unit id="wiki.category.label">
+                <source>Category</source>
+            </trans-unit>
+            <trans-unit id="wiki.category.all">
+                <source>All</source>
+            </trans-unit>
+            <trans-unit id="wiki.tag.label">
+                <source>Tags</source>
+            </trans-unit>
+            <trans-unit id="wiki.filter.reset">
+                <source>Reset filters</source>
+            </trans-unit>
+            <trans-unit id="wiki.empty">
+                <source>No pages found.</source>
+            </trans-unit>
+            <trans-unit id="wiki.nav.empty">
+                <source>No pages match the current filter.</source>
+            </trans-unit>
+            <!-- Shared filter bar -->
+            <trans-unit id="filter.search.placeholder">
+                <source>Search…</source>
+            </trans-unit>
+            <trans-unit id="filter.category.label">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="filter.category.all">
+                <source>All</source>
+            </trans-unit>
+            <trans-unit id="filter.reset">
+                <source>Reset filters</source>
+            </trans-unit>
+            <trans-unit id="filter.tag.label">
+                <source>Tags</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,22 @@
+{
+  "name": "conn-elements",
+  "version": "1.0.0",
+  "description": "Connetation Elements – TYPO3 LTS 14 build tooling",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:scss && npm run build:js",
+    "build:swiper-css": "cp node_modules/swiper/swiper-bundle.min.css Resources/Public/Css/swiper.css",
+    "build:scss": "sass Resources/Private/Scss/dashboard.scss Resources/Public/Css/dashboard.css --style=compressed && sass Resources/Private/Scss/wiki.scss Resources/Public/Css/wiki.css --style=compressed",
+    "build:js": "node build.mjs",
+    "dev": "npm run dev:scss & npm run dev:js",
+    "dev:scss": "sass Resources/Private/Scss/dashboard.scss Resources/Public/Css/dashboard.css --watch",
+    "dev:js": "node build.mjs --watch",
+    "postinstall": "npm rebuild esbuild"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.0",
+    "gsap": "^3.15.0",
+    "sass": "^1.77.0",
+    "swiper": "^12.1.4"
+  }
+}

@@ -1,0 +1,272 @@
+// ─────────────────────────────────────────────
+// Dashboard Content Element
+// ─────────────────────────────────────────────
+
+.dashboard {
+    background: var(--conn-bg);
+
+    // ─── Header ────────────────────────────
+    &__title {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        letter-spacing: -0.025em;
+        color: var(--conn-text);
+    }
+
+    // ─── Stats ─────────────────────────────
+    &__stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__stat {
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+        border-radius: var(--conn-radius);
+        padding: 0.875rem 1.25rem;
+        box-shadow: var(--conn-shadow-card);
+        min-width: 100px;
+        cursor: pointer;
+        user-select: none;
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background-color var(--conn-transition),
+            border-color var(--conn-transition),
+            color var(--conn-transition);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--conn-shadow);
+            border-color: var(--conn-border-strong);
+        }
+
+        &.is-active {
+            background: var(--conn-accent-soft);
+            border-color: var(--conn-accent);
+            box-shadow: var(--conn-shadow);
+            transform: translateY(-2px);
+        }
+
+        &__icon {
+            width: 28px;
+            height: 28px;
+            border-radius: calc(var(--conn-radius) / 2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        &__number {
+            font-size: 1.625rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--conn-text);
+        }
+
+        &__label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--conn-text-muted);
+            margin-top: 0.2rem;
+        }
+
+        // Accent left border per type
+        &--total       { border-left: 3px solid var(--conn-accent); }
+        &--active      { border-left: 3px solid #22c55e; }
+        &--in-progress { border-left: 3px solid var(--conn-accent); }
+        &--coming-soon { border-left: 3px solid #06b6d4; }
+
+        // Coloured number
+        &--active      .dashboard__stat__number { color: #22c55e; }
+        &--in-progress .dashboard__stat__number { color: var(--conn-accent); }
+        &--coming-soon .dashboard__stat__number { color: #06b6d4; }
+    }
+
+    // ─── Controls ──────────────────────────
+    &__controls {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        // View toggle: filled indigo active (distinct from filter dropdowns)
+        .dashboard__view-btn {
+            --bs-btn-active-color:        #fff;
+            --bs-btn-active-bg:           var(--conn-accent);
+            --bs-btn-active-border-color: var(--conn-accent);
+
+            &:first-child {
+                border-top-left-radius:    var(--conn-radius);
+                border-bottom-left-radius: var(--conn-radius);
+            }
+
+            &:last-child {
+                border-top-right-radius:    var(--conn-radius);
+                border-bottom-right-radius: var(--conn-radius);
+            }
+        }
+
+        .btn-group .btn-outline-secondary + .btn-outline-secondary {
+            border-left-color: var(--conn-border-strong);
+        }
+
+    }
+
+    // ─── Project card ───────────────────────
+    &__card {
+        cursor: pointer;
+        border-radius: var(--conn-radius) !important;
+        border: 1px solid var(--conn-border) !important;
+        background: var(--conn-surface) !important;
+        box-shadow: var(--conn-shadow-card);
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background-color var(--conn-transition),
+            border-color var(--conn-transition),
+            color var(--conn-transition);
+        overflow: hidden;
+        position: relative;
+
+        // Accent top bar on hover
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--conn-accent), #06b6d4);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        &:hover,
+        &:focus {
+            transform: translateY(-5px);
+            box-shadow: var(--conn-shadow-hover) !important;
+            border-color: var(--conn-border-strong) !important;
+            outline: none;
+
+            &::after { opacity: 1; }
+        }
+    }
+
+    &__card-placeholder {
+        background: var(--conn-surface-alt) !important;
+    }
+
+    // ─── Empty state ────────────────────────
+    &__empty {
+        color: var(--conn-text-muted);
+    }
+
+    // ─── Visit link ─────────────────────────
+    &__visit-link {
+        font-size: 0.8125rem;
+        font-weight: 600;
+    }
+}
+
+// ─── Dropdown theming ────────────────────────
+.dashboard .dropdown-menu,
+.dashboard__controls .dropdown-menu {
+    background: var(--conn-surface-raised);
+    border-color: var(--conn-border-strong) !important;
+    color: var(--conn-text);
+
+    .dropdown-item {
+        color: var(--conn-text);
+
+        &:hover, &:focus {
+            background: var(--conn-surface-hover) !important;
+            color: var(--conn-accent) !important;
+        }
+
+        &.active {
+            background: var(--conn-accent-soft);
+            color: var(--conn-accent);
+            font-weight: 600;
+        }
+    }
+
+    .dropdown-divider {
+        border-color: var(--conn-border);
+    }
+}
+
+// ─── Table / List view ───────────────────────
+.dashboard-table {
+    thead th {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--conn-text-muted);
+        border-bottom: 1px solid var(--conn-border);
+        padding-block: 0.75rem;
+        background: transparent;
+    }
+
+    tbody tr {
+        cursor: pointer;
+        transition: background var(--conn-transition);
+        border-bottom: 1px solid var(--conn-border);
+
+        &:last-child { border-bottom: none; }
+        &:hover { background: var(--conn-surface-alt) !important; }
+    }
+}
+
+// ─── Status badges ───────────────────────────
+.badge--status {
+    font-size: 0.675rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.28em 0.65em;
+    border-radius: 50rem;
+    border: 1px solid;
+}
+
+.badge--active {
+    background: var(--conn-badge-active-bg);
+    color: var(--conn-badge-active-color);
+    border-color: var(--conn-badge-active-border);
+}
+
+.badge--in_progress {
+    background: var(--conn-badge-in_progress-bg);
+    color: var(--conn-badge-in_progress-color);
+    border-color: var(--conn-badge-in_progress-border);
+}
+
+.badge--coming_soon {
+    background: var(--conn-badge-coming_soon-bg);
+    color: var(--conn-badge-coming_soon-color);
+    border-color: var(--conn-badge-coming_soon-border);
+}
+
+.badge--inactive {
+    background: var(--conn-badge-inactive-bg);
+    color: var(--conn-badge-inactive-color);
+    border-color: var(--conn-badge-inactive-border);
+}
+
+// ─── Modal ───────────────────────────────────
+.modal-content {
+    background: var(--conn-surface);
+    border: 1px solid var(--conn-border);
+    border-radius: calc(var(--conn-radius) + 0.25rem);
+    box-shadow: 0 24px 64px rgb(0 0 0 / 25%);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--conn-border) !important;
+}
+

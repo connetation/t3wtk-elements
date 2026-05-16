@@ -1,0 +1,376 @@
+// ─────────────────────────────────────────────
+// Wiki Content Element
+// ─────────────────────────────────────────────
+
+.wiki {
+    background: var(--conn-bg);
+
+    // ─── Title ─────────────────────────────
+    &__title {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        letter-spacing: -0.025em;
+        color: var(--conn-text);
+    }
+
+    // ─── Layout ────────────────────────────
+    &__layout {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 1.5rem;
+        align-items: start;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // ─── Sidebar ───────────────────────────
+    &__sidebar {
+        position: sticky;
+        top: 1.5rem;
+        max-height: calc(100vh - 3rem);
+        overflow-y: auto;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+        border-radius: var(--conn-radius);
+        padding: 0.5rem;
+
+        // Thin scrollbar
+        scrollbar-width: thin;
+        scrollbar-color: var(--conn-border-strong) transparent;
+
+        &::-webkit-scrollbar { width: 4px; }
+        &::-webkit-scrollbar-thumb { background: var(--conn-border-strong); border-radius: 2px; }
+
+        @media (max-width: 768px) {
+            position: static;
+            max-height: none;
+        }
+    }
+
+    // ─── Nav list ──────────────────────────
+    &__nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__nav-item {
+        &.d-none { display: none !important; }
+    }
+
+    &__nav-empty {
+        &.d-none { display: none !important; }
+    }
+
+    &__nav-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 0.75rem;
+        border: none;
+        background: transparent;
+        color: var(--conn-text);
+        font-size: 0.875rem;
+        border-radius: calc(var(--conn-radius) / 2);
+        cursor: pointer;
+        transition: background var(--conn-transition), color var(--conn-transition);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover {
+            background: var(--conn-surface-hover);
+            color: var(--conn-accent);
+        }
+    }
+
+    &__nav-item.is-active &__nav-btn {
+        background: var(--conn-accent-soft);
+        color: var(--conn-accent);
+        font-weight: 600;
+        border-left: 3px solid var(--conn-accent);
+        padding-left: calc(0.75rem - 3px);
+    }
+
+    // ─── Content area ──────────────────────
+    &__content {
+        min-width: 0;
+    }
+
+    &__empty {
+        color: var(--conn-text-muted);
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+
+    // ─── Page panel ────────────────────────
+    &__page-panel {
+        display: none;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+        border-radius: var(--conn-radius);
+        padding: 2rem;
+
+        &.is-active {
+            display: block;
+        }
+    }
+
+    // ─── Page header ───────────────────────
+    &__page-header {
+        border-bottom: 1px solid var(--conn-border);
+        padding-bottom: 1rem;
+    }
+
+    &__page-title {
+        font-size: clamp(1.25rem, 3vw, 1.625rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--conn-text);
+        margin-bottom: 0.5rem;
+    }
+
+    // ─── Page meta & tags ──────────────────
+    &__page-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.375rem;
+        align-items: center;
+    }
+
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.2em 0.65em;
+        border-radius: 50rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background: var(--conn-surface-alt);
+        border: 1px solid var(--conn-border);
+        color: var(--conn-text-muted);
+
+        &--category {
+            background: var(--conn-accent-soft);
+            border-color: var(--conn-border-strong);
+            color: var(--conn-accent);
+            font-weight: 600;
+        }
+    }
+
+    // ─── Page image ────────────────────────
+    &__page-image {
+        margin: 0;
+
+        img {
+            max-height: 320px;
+            width: auto;
+            object-fit: cover;
+        }
+    }
+
+    // ─── Page intro ────────────────────────
+    &__page-intro {
+        color: var(--conn-text-muted);
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        border-left: 3px solid var(--conn-accent);
+        padding-left: 0.875rem;
+        margin-bottom: 1.5rem;
+    }
+
+    // ─── Content blocks ────────────────────
+    &__block {
+        margin-bottom: 1.75rem;
+
+        &:last-child { margin-bottom: 0; }
+    }
+
+    &__block-heading {
+        font-size: 1.0625rem;
+        font-weight: 700;
+        color: var(--conn-text);
+        margin-bottom: 0.625rem;
+        letter-spacing: -0.01em;
+    }
+
+    // ─── Code block ────────────────────────
+    &__code-wrap {
+        border-radius: var(--conn-radius);
+        border: 1px solid var(--conn-border-strong);
+        border-left: 3px solid var(--conn-accent);
+        overflow: hidden;
+        box-shadow: var(--conn-shadow-card);
+    }
+
+    &__code-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        background: var(--conn-surface-alt);
+        border-bottom: 1px solid var(--conn-border-strong);
+    }
+
+    &__code-lang {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--conn-accent);
+        font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    }
+
+    &__copy-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.25em 0.7em;
+        border: 1px solid var(--conn-border-strong);
+        border-radius: 50rem;
+        background: var(--conn-surface);
+        color: var(--conn-text-muted);
+        font-size: 0.6875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition:
+            color var(--conn-transition),
+            background-color var(--conn-transition),
+            border-color var(--conn-transition);
+
+        &:hover {
+            background: var(--conn-accent);
+            border-color: var(--conn-accent);
+            color: #fff;
+        }
+
+        &.is-copied {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: #fff;
+        }
+    }
+
+    // CKEditor code block outputs <pre><code class="language-*">
+    &__code-wrap {
+        pre {
+            margin: 0;
+            padding: 1.125rem 1.25rem;
+            background: var(--conn-surface);
+            overflow-x: auto;
+            font-size: 0.875rem;
+            line-height: 1.65;
+
+            code {
+                background: none;
+                border: none;
+                padding: 0;
+                font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+                white-space: pre;
+                color: var(--conn-text);
+            }
+        }
+    }
+
+    // ─── Page content (prose) ──────────────
+    &__page-content {
+        color: var(--conn-text);
+        line-height: 1.7;
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--conn-text);
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+
+            &:first-child { margin-top: 0; }
+        }
+
+        h1 { font-size: 1.5rem; }
+        h2 { font-size: 1.25rem; }
+        h3 { font-size: 1.125rem; }
+        h4, h5, h6 { font-size: 1rem; }
+
+        p { margin-bottom: 1rem; }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+
+            li { margin-bottom: 0.25rem; }
+        }
+
+        a {
+            color: var(--conn-accent);
+            text-decoration: underline;
+            text-decoration-color: var(--conn-accent-soft);
+
+            &:hover { text-decoration-color: var(--conn-accent); }
+        }
+
+        blockquote {
+            border-left: 3px solid var(--conn-accent);
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            background: var(--conn-surface-alt);
+            border-radius: 0 var(--conn-radius) var(--conn-radius) 0;
+            color: var(--conn-text-muted);
+        }
+
+        code {
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+            font-size: 0.875em;
+            background: var(--conn-surface-alt);
+            border: 1px solid var(--conn-border);
+            border-radius: 0.25rem;
+            padding: 0.1em 0.35em;
+        }
+
+        pre {
+            background: var(--conn-surface-alt);
+            border-radius: var(--conn-radius);
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            padding: 1rem 1.25rem;
+            overflow-x: auto;
+
+            code {
+                background: none;
+                border: none;
+                padding: 0;
+                font-size: 0.875rem;
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+
+            th, td {
+                padding: 0.5rem 0.75rem;
+                border: 1px solid var(--conn-border);
+                text-align: left;
+            }
+
+            th {
+                background: var(--conn-surface-alt);
+                font-weight: 600;
+                color: var(--conn-text-muted);
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            tbody tr:hover { background: var(--conn-surface-hover); }
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--conn-border);
+            margin: 1.5rem 0;
+        }
+    }
+}

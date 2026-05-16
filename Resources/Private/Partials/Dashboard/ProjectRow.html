@@ -1,0 +1,58 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<tr class="dashboard__project-item"
+    data-status="{project.status}"
+    data-search="{project.title} {project.categoryTitle} {project.tags}"
+    data-category="{project.category}"
+    data-tags="{project.tagsList}"
+    role="button"
+    data-bs-toggle="modal"
+    data-bs-target="#projectModal-{uid}"
+    data-project-detail="dashboard-{uid}-detail-{project.uid}"
+    data-project-title="{project.title}">
+    <td class="ps-3">
+        <f:if condition="{project.imageFiles}">
+            <f:then>
+                <div class="rounded overflow-hidden" style="width:40px;height:40px;flex-shrink:0">
+                    <f:image image="{project.imageFiles.0}"
+                             class="object-fit-contain w-100 h-100"
+                             alt="{project.title}"
+                             width="80" />
+                </div>
+            </f:then>
+            <f:else>
+                <div class="rounded d-flex align-items-center justify-content-center"
+                     style="width:40px;height:40px;flex-shrink:0;background:var(--bs-secondary-bg)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="opacity-25" viewBox="0 0 16 16">
+                        <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
+                    </svg>
+                </div>
+            </f:else>
+        </f:if>
+    </td>
+    <td class="fw-semibold">{project.title}</td>
+    <td class="text-body-secondary small">{project.categoryTitle}</td>
+    <td>
+        <span class="badge badge--status badge--{project.status}">
+            {project.statusLabel}
+        </span>
+    </td>
+    <td>
+        <f:if condition="{project.tagsArray}">
+            <div class="d-flex flex-wrap gap-1">
+                <f:for each="{project.tagsArray}" as="tag">
+                    <span class="badge bg-body-tertiary text-body-secondary border small">{tag}</span>
+                </f:for>
+            </div>
+        </f:if>
+    </td>
+    <td>
+        <f:if condition="{project.url}">
+            <a href="{project.url}" target="_blank" rel="noopener"
+               class="btn btn-sm btn-outline-primary dashboard__visit-link">↗</a>
+        </f:if>
+    </td>
+</tr>
+
+</html>

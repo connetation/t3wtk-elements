@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<nav class="wiki__nav" aria-label="Wiki pages">
+    <ul class="wiki__nav-list">
+        <f:for each="{wikiPages}" as="page">
+            <li class="wiki__nav-item"
+                data-page-uid="{page.uid}"
+                data-search="{page.title} {page.intro}"
+                data-category="{page.category}"
+                data-tags="{page.tagsList}">
+                <button type="button" class="wiki__nav-btn">
+                    {page.title}
+                </button>
+            </li>
+        </f:for>
+        <li class="wiki__nav-empty d-none" aria-live="polite">
+            <div class="text-center py-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mb-2 opacity-25" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                <p class="mb-0 small" style="color:var(--conn-text-muted)">
+                    <f:translate key="wiki.nav.empty" extensionName="conn_elements" />
+                </p>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+</html>

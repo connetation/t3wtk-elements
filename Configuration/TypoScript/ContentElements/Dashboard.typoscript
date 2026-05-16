@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────
+# Dashboard Content Element – conn_elements
+# ─────────────────────────────────────────────
+
+# Assets are registered per-template via f:asset.script / f:asset.css
+# (loaded only on pages where the component renders)
+
+# Extend lib.contentElement with elements template paths
+lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
+lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
+
+# Dashboard CE
+tt_content.dashboard =< lib.contentElement
+tt_content.dashboard {
+    templateName = Dashboard
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\DashboardProjectsProcessor
+        10 {
+            fieldName = tx_conn_elements_dashboard_projects
+            as = projects
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.show_search>
+                        <label>Show Search</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <items>
+                                <numIndex index="0"><label></label></numIndex>
+                            </items>
+                        </config>
+                    </settings.show_search>
+                    <settings.show_category_filter>
+                        <label>Show Category Filter</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <items>
+                                <numIndex index="0"><label></label></numIndex>
+                            </items>
+                        </config>
+                    </settings.show_category_filter>
+                    <settings.show_tag_filter>
+                        <label>Show Tag Filter</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <items>
+                                <numIndex index="0"><label></label></numIndex>
+                            </items>
+                        </config>
+                    </settings.show_tag_filter>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
