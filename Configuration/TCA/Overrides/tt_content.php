@@ -25,7 +25,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'Projects',
         'config' => [
             'type'          => 'inline',
-            'foreign_table' => 'tx_conn_elements_domain_model_project',
+            'foreign_table' => 'tx_conn_elements_domain_model_dashboard_project',
             'foreign_field' => 'content_element',
             'maxitems'      => 100,
             'appearance'    => [
@@ -42,7 +42,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:dashboard.categories',
         'config' => [
             'type'          => 'inline',
-            'foreign_table' => 'tx_conn_elements_domain_model_projectcategory',
+            'foreign_table' => 'tx_conn_elements_domain_model_dashboard_projectcategory',
             'foreign_field' => 'content_element',
             'maxitems'      => 50,
             'appearance'    => [

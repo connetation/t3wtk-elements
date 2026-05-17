@@ -13,7 +13,7 @@ CREATE TABLE tt_content (
 
 -- ─── Dashboard ────────────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_project (
+CREATE TABLE tx_conn_elements_domain_model_dashboard_project (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE tx_conn_elements_domain_model_project (
     KEY parent (pid)
 );
 
-CREATE TABLE tx_conn_elements_domain_model_projectcategory (
+CREATE TABLE tx_conn_elements_domain_model_dashboard_projectcategory (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,

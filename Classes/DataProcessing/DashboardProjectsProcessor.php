@@ -40,11 +40,11 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
 
         // ─── Projects ─────────────────────────────────────────────
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_project');
+            ->getQueryBuilderForTable('tx_conn_elements_domain_model_dashboard_project');
 
         $rows = $queryBuilder
             ->select('*')
-            ->from('tx_conn_elements_domain_model_project')
+            ->from('tx_conn_elements_domain_model_dashboard_project')
             ->where(
                 $queryBuilder->expr()->eq('content_element', $queryBuilder->createNamedParameter($contentElementUid, ParameterType::INTEGER)),
                 $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
@@ -56,11 +56,11 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
 
         // ─── Categories ───────────────────────────────────────────
         $catQb = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_projectcategory');
+            ->getQueryBuilderForTable('tx_conn_elements_domain_model_dashboard_projectcategory');
 
         $catRows = $catQb
             ->select('uid', 'title')
-            ->from('tx_conn_elements_domain_model_projectcategory')
+            ->from('tx_conn_elements_domain_model_dashboard_projectcategory')
             ->where(
                 $catQb->expr()->eq('content_element', $catQb->createNamedParameter($contentElementUid, ParameterType::INTEGER)),
                 $catQb->expr()->eq('deleted', $catQb->createNamedParameter(0, ParameterType::INTEGER)),
@@ -97,7 +97,7 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
                 ) ?: ucwords(str_replace('_', ' ', $row['status']));
                 $row['categoryTitle'] = $categoryMap[(int)$row['category']] ?? '';
                 $row['imageFiles']   = (int)$row['image'] > 0
-                    ? $fileRepository->findByRelation('tx_conn_elements_domain_model_project', 'image', $row['uid'])
+                    ? $fileRepository->findByRelation('tx_conn_elements_domain_model_dashboard_project', 'image', $row['uid'])
                     : [];
                 return $row;
             },
