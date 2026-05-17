@@ -15,6 +15,7 @@ return [
         'crdate'          => 'crdate',
         'delete'          => 'deleted',
         'enablecolumns'   => ['disabled' => 'hidden'],
+        'type'            => 'type',
         'typeicon_column' => 'type',
         'typeicon_classes' => [
             'text' => 'content-text',
@@ -61,6 +62,15 @@ return [
                 'rows'                  => 10,
             ],
         ],
+        'code_text' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:block.code_text',
+            'config' => [
+                'type'                  => 'text',
+                'enableRichtext'        => true,
+                'richtextConfiguration' => 'WikiCode',
+                'rows'                  => 5,
+            ],
+        ],
         'code_language' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:block.code_language',
             'config' => [
@@ -89,7 +99,7 @@ return [
         '0'    => ['showitem' => 'type, heading, content, --div--;Access, hidden'],
         'text' => ['showitem' => 'type, heading, content, --div--;Access, hidden'],
         'code' => [
-            'showitem' => 'type, heading, code_language, content, --div--;Access, hidden',
+            'showitem' => 'type, heading, code_text, code_language, content, --div--;Access, hidden',
             'columnsOverrides' => [
                 'content' => [
                     'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:block.code_content',

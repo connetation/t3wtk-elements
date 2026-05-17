@@ -102,6 +102,7 @@ CREATE TABLE tx_conn_elements_domain_model_wikipage_block (
 
     type            varchar(20) DEFAULT 'text' NOT NULL,
     heading         varchar(255) DEFAULT '' NOT NULL,
+    code_text       mediumtext,
     content         mediumtext,
     code_content    mediumtext,
     code_language   varchar(30) DEFAULT 'plaintext' NOT NULL,

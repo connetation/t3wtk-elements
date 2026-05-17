@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 return [
+    'conn-module-group' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_elements/Resources/Public/Icons/conn_logo_small.svg',
+    ],
     'conn-ce-dashboard' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/dashboard-ce.svg',

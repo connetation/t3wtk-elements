@@ -36,6 +36,9 @@
                         <f:if condition="{block.heading}">
                             <h3 class="wiki__block-heading">{block.heading}</h3>
                         </f:if>
+                        <f:if condition="{block.code_text}">
+                            <div class="wiki__block-text">{block.code_text -> f:format.raw()}</div>
+                        </f:if>
                         <div class="wiki__code-wrap">
                             <pre><code class="language-{block.code_language}">{block.content}</code></pre>
                         </div>

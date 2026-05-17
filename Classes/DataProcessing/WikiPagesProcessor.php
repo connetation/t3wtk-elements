@@ -103,7 +103,10 @@ final class WikiPagesProcessor implements DataProcessorInterface
                         ? html_entity_decode(strip_tags($raw), ENT_QUOTES | ENT_HTML5)
                         : $raw;
                 } elseif (str_contains($content, '<p') || str_contains($content, '<h')) {
-                    // Strip RTE paragraph/heading wrappers left over from old CKEditor usage.
+                    // Convert paragraph/line breaks to newlines before stripping tags so
+                    // multi-line code blocks keep their structure.
+                    $content = preg_replace('#</p>\s*<p[^>]*>#i', "\n", $content);
+                    $content = preg_replace('#<br\s*/?>#i', "\n", $content);
                     $content = trim(html_entity_decode(strip_tags($content), ENT_QUOTES | ENT_HTML5));
                 }
                 $block['content'] = $content;

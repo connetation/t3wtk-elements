@@ -3,8 +3,14 @@
 declare(strict_types=1);
 
 return [
+    'conn' => [
+        'labels'         => [
+            'title' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:module.conn.title',
+        ],
+        'iconIdentifier' => 'conn-module-group',
+    ],
     'conn_elements_wiki' => [
-        'parent'   => 'content',
+        'parent'   => 'conn',
         'position' => ['after' => 'records'],
         'access'   => 'user',
         'path'     => '/module/conn-elements/wiki',

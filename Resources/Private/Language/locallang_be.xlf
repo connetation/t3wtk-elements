@@ -54,6 +54,10 @@
             <trans-unit id="project.image">
                 <source>Preview Image</source>
             </trans-unit>
+            <!-- Backend module group -->
+            <trans-unit id="module.conn.title">
+                <source>Conn</source>
+            </trans-unit>
             <!-- Wiki backend module -->
             <trans-unit id="module.wiki.title">
                 <source>Wiki</source>
@@ -127,6 +131,9 @@
             </trans-unit>
             <trans-unit id="block.code_content">
                 <source>Code</source>
+            </trans-unit>
+            <trans-unit id="block.code_text">
+                <source>Description Text</source>
             </trans-unit>
             <trans-unit id="block.code_language">
                 <source>Language</source>
