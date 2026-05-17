@@ -107,7 +107,7 @@ const initDashboard = (container) => {
     // ─── Stats counter ──────────────────────────────────────────────────────
     const updateStats = () => {
         if (!grid) return;
-        let total = 0, active = 0, inProgress = 0, comingSoon = 0;
+        let total = 0, active = 0, inProgress = 0, comingSoon = 0, inactive = 0, deprecated = 0, archived = 0;
         grid.querySelectorAll('.dashboard__project-item').forEach(item => {
             if (item.classList.contains('dashboard__empty')) return;
             total++;
@@ -115,17 +115,40 @@ const initDashboard = (container) => {
             if (s === 'active')      active++;
             if (s === 'in_progress') inProgress++;
             if (s === 'coming_soon') comingSoon++;
+            if (s === 'inactive')    inactive++;
+            if (s === 'deprecated')  deprecated++;
+            if (s === 'archived')    archived++;
         });
         const statEls = {
             total:       container.querySelector('[data-stat="total"]'),
             active:      container.querySelector('[data-stat="active"]'),
             in_progress: container.querySelector('[data-stat="in_progress"]'),
             coming_soon: container.querySelector('[data-stat="coming_soon"]'),
+            inactive:    container.querySelector('[data-stat="inactive"]'),
+            deprecated:  container.querySelector('[data-stat="deprecated"]'),
+            archived:    container.querySelector('[data-stat="archived"]'),
         };
         if (statEls.total)       statEls.total.textContent       = total;
         if (statEls.active)      statEls.active.textContent      = active;
         if (statEls.in_progress) statEls.in_progress.textContent = inProgress;
         if (statEls.coming_soon) statEls.coming_soon.textContent = comingSoon;
+        if (statEls.inactive)    statEls.inactive.textContent    = inactive;
+        if (statEls.deprecated)  statEls.deprecated.textContent  = deprecated;
+        if (statEls.archived)    statEls.archived.textContent    = archived;
+
+        // Show stat cards and filter items only when projects with that status exist
+        const toggle = (status, count) => {
+            const card = container.querySelector(`.dashboard__stat[data-status="${status}"]`);
+            if (card) card.classList.toggle('d-none', count === 0);
+            const filterItem = container.querySelector(`.dashboard__filter-item[data-status="${status}"]`);
+            if (filterItem) filterItem.classList.toggle('d-none', count === 0);
+        };
+        toggle('active',      active);
+        toggle('in_progress', inProgress);
+        toggle('coming_soon', comingSoon);
+        toggle('inactive',    inactive);
+        toggle('deprecated',  deprecated);
+        toggle('archived',    archived);
     };
 
     // ─── Filter / search application ────────────────────────────────────────

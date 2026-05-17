@@ -38,6 +38,8 @@ return [
                     ['label' => 'Active',      'value' => 'active'],
                     ['label' => 'In Progress', 'value' => 'in_progress'],
                     ['label' => 'Coming Soon', 'value' => 'coming_soon'],
+                    ['label' => 'Deprecated',  'value' => 'deprecated'],
+                    ['label' => 'Archived',    'value' => 'archived'],
                     ['label' => 'Inactive',    'value' => 'inactive'],
                 ],
                 'default' => 'active',

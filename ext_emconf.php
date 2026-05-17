@@ -1,8 +1,8 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title'       => 'Connetation Elements',
-    'description' => 'Content elements for TYPO3 LTS 14 – Service Dashboard CE with projects, categories and modal detail view',
+    'title'       => 'Conn: Elements',
+    'description' => 'Content elements for TYPO3 LTS 14',
     'category'    => 'plugin',
     'author'      => 'Connetation',
     'author_email' => 'i.sapina@connetation.at',

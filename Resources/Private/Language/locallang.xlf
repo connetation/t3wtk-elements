@@ -21,6 +21,12 @@
             <trans-unit id="dashboard.status.inactive">
                 <source>Inactive</source>
             </trans-unit>
+            <trans-unit id="dashboard.status.deprecated">
+                <source>Deprecated</source>
+            </trans-unit>
+            <trans-unit id="dashboard.status.archived">
+                <source>Archived</source>
+            </trans-unit>
             <trans-unit id="dashboard.category.all">
                 <source>All Categories</source>
             </trans-unit>
@@ -35,6 +41,15 @@
             </trans-unit>
             <trans-unit id="dashboard.stats.coming_soon">
                 <source>Coming Soon</source>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.inactive">
+                <source>Inactive</source>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.deprecated">
+                <source>Deprecated</source>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.archived">
+                <source>Archived</source>
             </trans-unit>
             <trans-unit id="dashboard.search.placeholder">
                 <source>Search…</source>

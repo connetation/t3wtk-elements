@@ -257,6 +257,18 @@
     border-color: var(--conn-badge-inactive-border);
 }
 
+.badge--deprecated {
+    background: var(--conn-badge-deprecated-bg);
+    color: var(--conn-badge-deprecated-color);
+    border-color: var(--conn-badge-deprecated-border);
+}
+
+.badge--archived {
+    background: var(--conn-badge-archived-bg);
+    color: var(--conn-badge-archived-color);
+    border-color: var(--conn-badge-archived-border);
+}
+
 // ─── Modal ───────────────────────────────────
 .modal-content {
     background: var(--conn-surface);

@@ -41,6 +41,12 @@
     --conn-badge-inactive-bg:         #f3f4f6;
     --conn-badge-inactive-color:      #6b7280;
     --conn-badge-inactive-border:     #d1d5db;
+    --conn-badge-deprecated-bg:       #ffedd5;
+    --conn-badge-deprecated-color:    #c2410c;
+    --conn-badge-deprecated-border:   #fed7aa;
+    --conn-badge-archived-bg:         #fef3c7;
+    --conn-badge-archived-color:      #92400e;
+    --conn-badge-archived-border:     #fcd34d;
 }
 
 // ── Dark theme ──────────────────────────────
@@ -72,4 +78,10 @@
     --conn-badge-inactive-bg:         rgb(107 114 128 / 20%);
     --conn-badge-inactive-color:      #9ca3af;
     --conn-badge-inactive-border:     rgb(107 114 128 / 30%);
+    --conn-badge-deprecated-bg:       rgb(194 65 12 / 20%);
+    --conn-badge-deprecated-color:    #fb923c;
+    --conn-badge-deprecated-border:   rgb(194 65 12 / 40%);
+    --conn-badge-archived-bg:         rgb(146 64 14 / 20%);
+    --conn-badge-archived-color:      #fbbf24;
+    --conn-badge-archived-border:     rgb(146 64 14 / 40%);
 }

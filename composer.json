@@ -1,7 +1,7 @@
 {
     "name": "conn/elements",
     "version": "1.0.0",
-    "description": "Connetation Content Elements for TYPO3 LTS 14 – Service Dashboard and more",
+    "description": "Connetation Content Elements for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
     "require": {
