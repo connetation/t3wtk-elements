@@ -22,10 +22,16 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         tt_content_defValues.CType = conn_wiki
     }
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.header = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_bootstrap
-     mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion
+     mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion,conn_bs_card_group
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_accordion {
         iconIdentifier = conn-ce-accordion
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_accordion
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_accordion.description
         tt_content_defValues.CType = conn_bs_accordion
+    }
+     mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_card_group {
+        iconIdentifier = conn-ce-card-group
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_card_group
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_card_group.description
+        tt_content_defValues.CType = conn_bs_card_group
     }';

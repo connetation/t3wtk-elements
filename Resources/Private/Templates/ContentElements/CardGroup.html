@@ -1,0 +1,40 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-card-group-css"
+    href="EXT:conn_elements/Resources/Public/Css/card-group.css" />
+<f:asset.script identifier="conn-elements-card-group-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/card-group.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-card-group conn-card-group--{settings.style}" id="conn-card-group-{data.uid}">
+    <div class="container-fluid px-4">
+
+        <f:if condition="{cards}">
+            <f:then>
+                <div class="row g-4">
+                    <f:for each="{cards}" as="card">
+                        <f:render partial="CardGroup/Card" arguments="{
+                            card:     card,
+                            colClass: settings.colClass,
+                            style:    settings.style
+                        }" />
+                    </f:for>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No cards added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

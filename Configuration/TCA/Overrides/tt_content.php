@@ -80,6 +80,59 @@ $GLOBALS['TCA']['tt_content']['types']['conn_dashboard'] = [
     ',
 ];
 
+// ─── Bootstrap Card Group ─────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_card_group'] = 'conn-ce-card-group';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_card_group',
+    'value' => 'conn_bs_card_group',
+    'icon'  => 'conn-ce-card-group',
+    'group' => 'conn_bootstrap',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_card_group_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_group.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_card_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 100,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_card_group_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_group.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/CardGroup.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_card_group'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_card_group_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_group.tab.config,
+            tx_conn_elements_card_group_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
 // ─── Bootstrap Accordion ──────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_accordion'] = 'conn-ce-accordion';
 

@@ -10,6 +10,50 @@
             <trans-unit id="ce_group.conn_bootstrap">
                 <source>Bootstrap</source>
             </trans-unit>
+            <!-- Bootstrap Card Group content element -->
+            <trans-unit id="ce.bs_card_group">
+                <source>Bootstrap Card Group</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_card_group.description">
+                <source>Responsive grid of Bootstrap cards with optional images and links</source>
+            </trans-unit>
+            <trans-unit id="card_group.tab.config">
+                <source>Card Group Config</source>
+            </trans-unit>
+            <trans-unit id="card_group.items">
+                <source>Cards</source>
+            </trans-unit>
+            <trans-unit id="card_group.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Card item model -->
+            <trans-unit id="model.card_item">
+                <source>Card</source>
+            </trans-unit>
+            <trans-unit id="card_item.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="card_item.subtitle">
+                <source>Subtitle / Tagline</source>
+            </trans-unit>
+            <trans-unit id="card_item.badge">
+                <source>Badge (e.g. New, Featured)</source>
+            </trans-unit>
+            <trans-unit id="card_item.body">
+                <source>Body Text</source>
+            </trans-unit>
+            <trans-unit id="card_item.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="card_item.link">
+                <source>Link</source>
+            </trans-unit>
+            <trans-unit id="card_item.link_label">
+                <source>Link Label</source>
+            </trans-unit>
+            <trans-unit id="card_item.tab.link">
+                <source>Link</source>
+            </trans-unit>
             <!-- Bootstrap Accordion content element -->
             <trans-unit id="ce.bs_accordion">
                 <source>Bootstrap Accordion</source>

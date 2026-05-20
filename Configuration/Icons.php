@@ -23,6 +23,10 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/accordion-ce.svg',
     ],
+    'conn-ce-card-group' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_elements/Resources/Public/Icons/card-group-ce.svg',
+    ],
     'conn-ce-wiki' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/wiki-ce.svg',

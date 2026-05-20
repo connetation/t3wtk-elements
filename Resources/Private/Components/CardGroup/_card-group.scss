@@ -1,0 +1,87 @@
+// ─────────────────────────────────────────────
+// Bootstrap Card Group Content Element
+// ─────────────────────────────────────────────
+
+// ─── TYPO3 standard header within card group frame ──
+.frame-type-conn_bs_card_group header {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        letter-spacing: -0.025em;
+        color: var(--conn-text);
+    }
+}
+
+.conn-card-group {
+    background: var(--conn-bg);
+
+    // ── Card ────────────────────────────────────────
+    &__card {
+        cursor: pointer;
+        background: var(--conn-surface) !important;
+        border: 1px solid var(--conn-border) !important;
+        border-radius: var(--conn-radius) !important;
+        box-shadow: var(--conn-shadow-card);
+        color: var(--conn-text);
+        overflow: hidden;
+        position: relative;
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background-color var(--conn-transition),
+            border-color var(--conn-transition),
+            color var(--conn-transition);
+
+        // Accent top bar on hover (same pattern as dashboard cards)
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--conn-accent), #06b6d4);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        &:hover,
+        &:focus {
+            transform: translateY(-5px);
+            box-shadow: var(--conn-shadow-hover) !important;
+            border-color: var(--conn-border-strong) !important;
+            outline: none;
+
+            &::after { opacity: 1; }
+        }
+    }
+
+    // ── Image placeholder (no image uploaded) ───────
+    &__placeholder {
+        background: var(--conn-surface-alt) !important;
+    }
+
+    // ── Badge ───────────────────────────────────────
+    &__badge {
+        background: var(--conn-accent-soft);
+        color: var(--conn-accent);
+        border: 1px solid var(--conn-border-strong);
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        padding: 0.25em 0.65em;
+        border-radius: 50rem;
+    }
+
+    // ── Body text ───────────────────────────────────
+    &__body {
+        font-size: 0.875rem;
+        color: var(--conn-text-muted);
+        line-height: 1.6;
+
+        p:last-child { margin-bottom: 0; }
+    }
+
+    // ── Visit link ──────────────────────────────────
+    &__visit-link {
+        font-size: 0.8125rem;
+        font-weight: 600;
+    }
+}

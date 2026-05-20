@@ -6,10 +6,10 @@
   "scripts": {
     "build": "npm run build:scss && npm run build:js",
     "build:swiper-css": "cp node_modules/swiper/swiper-bundle.min.css Resources/Public/Css/swiper.css",
-    "build:scss": "sass Resources/Private/Components/Dashboard/index.scss Resources/Public/Css/dashboard.css --style=compressed && sass Resources/Private/Components/Wiki/index.scss Resources/Public/Css/wiki.css --style=compressed && sass Resources/Private/Components/Accordion/index.scss Resources/Public/Css/accordion.css --style=compressed",
+    "build:scss": "sass Resources/Private/Components/Dashboard/index.scss Resources/Public/Css/dashboard.css --style=compressed && sass Resources/Private/Components/Wiki/index.scss Resources/Public/Css/wiki.css --style=compressed && sass Resources/Private/Components/Accordion/index.scss Resources/Public/Css/accordion.css --style=compressed && sass Resources/Private/Components/CardGroup/index.scss Resources/Public/Css/card-group.css --style=compressed",
     "build:js": "node build.mjs",
     "dev": "npm run dev:scss & npm run dev:js",
-    "dev:scss": "sass --watch Resources/Private/Components/Dashboard/index.scss:Resources/Public/Css/dashboard.css Resources/Private/Components/Wiki/index.scss:Resources/Public/Css/wiki.css Resources/Private/Components/Accordion/index.scss:Resources/Public/Css/accordion.css",
+    "dev:scss": "sass --watch Resources/Private/Components/Dashboard/index.scss:Resources/Public/Css/dashboard.css Resources/Private/Components/Wiki/index.scss:Resources/Public/Css/wiki.css Resources/Private/Components/Accordion/index.scss:Resources/Public/Css/accordion.css Resources/Private/Components/CardGroup/index.scss:Resources/Public/Css/card-group.css",
     "dev:js": "node build.mjs --watch",
     "postinstall": "npm rebuild esbuild"
   },
