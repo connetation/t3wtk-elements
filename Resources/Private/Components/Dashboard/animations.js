@@ -35,5 +35,5 @@ function onReady(fn) {
 }
 
 onReady(() => {
-    document.querySelectorAll('.dashboard.section').forEach(animateDashboard);
+    document.querySelectorAll('.dashboard').forEach(animateDashboard);
 });

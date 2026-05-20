@@ -6,9 +6,9 @@ const dev   = watch || process.argv.includes('--dev');
 /** @type {import('esbuild').BuildOptions} */
 const config = {
     entryPoints: {
-        dashboard: 'Resources/Private/JavaScript/dashboard.js',
-        wiki:      'Resources/Private/JavaScript/wiki.js',
-        accordion: 'Resources/Private/JavaScript/accordion.js',
+        dashboard: 'Resources/Private/Components/Dashboard/dashboard.js',
+        wiki:      'Resources/Private/Components/Wiki/wiki.js',
+        accordion: 'Resources/Private/Components/Accordion/accordion.js',
     },
     bundle:    true,
     splitting: true,

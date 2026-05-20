@@ -1,6 +1,8 @@
 // ─────────────────────────────────────────────
-// Bootstrap Accordion – SCSS entry point
-// conn_elements | TYPO3 LTS 14
+// Connetation Elements – Dashboard SCSS Entry
 // ─────────────────────────────────────────────
-@use 'tokens';
-@use 'components/accordion';
+
+@use '../Shared/tokens';
+@use '../Shared/forms';
+@use '../Shared/filterbar';
+@use 'dashboard';

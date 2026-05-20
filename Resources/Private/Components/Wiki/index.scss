@@ -1,8 +1,8 @@
 // ─────────────────────────────────────────────
-// Connetation Elements – Dashboard SCSS Entry
+// Connetation Elements – Wiki SCSS Entry
 // ─────────────────────────────────────────────
 
-@use 'tokens';
-@use 'components/forms';
-@use 'components/filterbar';
-@use 'components/dashboard';
+@use '../Shared/tokens';
+@use '../Shared/forms';
+@use '../Shared/filterbar';
+@use 'wiki';
