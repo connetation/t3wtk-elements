@@ -87,6 +87,10 @@
             <trans-unit id="dashboard.modal.category">
                 <source>Category</source>
             </trans-unit>
+            <!-- Accordion frontend -->
+            <trans-unit id="accordion.empty">
+                <source>No accordion items have been added yet.</source>
+            </trans-unit>
             <!-- Wiki frontend -->
             <trans-unit id="wiki.search.placeholder">
                 <source>Search pages…</source>

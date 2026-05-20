@@ -1,0 +1,94 @@
+// ─────────────────────────────────────────────
+// Bootstrap Accordion – conn theme layer
+// Structural styles come from Bootstrap 5.
+// Only conn-specific colour / surface overrides here.
+// ─────────────────────────────────────────────
+
+// ─── TYPO3 standard header within accordion frame ──
+.frame-type-conn_bs_accordion header {
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        color: var(--conn-text);
+    }
+}
+
+.conn-accordion {
+    &__footer {
+        color: var(--conn-text-muted);
+        font-size: 0.9rem;
+    }
+
+    // ── Accordion items ────────────────────────
+    .accordion-item {
+        background-color: var(--conn-surface);
+        border-color: var(--conn-border);
+
+        &:first-of-type {
+            border-top-left-radius:  var(--conn-radius);
+            border-top-right-radius: var(--conn-radius);
+
+            .accordion-button {
+                border-top-left-radius:  var(--conn-radius);
+                border-top-right-radius: var(--conn-radius);
+            }
+        }
+
+        &:last-of-type {
+            border-bottom-left-radius:  var(--conn-radius);
+            border-bottom-right-radius: var(--conn-radius);
+        }
+    }
+
+    // ── Accordion button (header) ──────────────
+    .accordion-button {
+        background-color: var(--conn-surface);
+        color: var(--conn-text);
+        font-weight: 600;
+        transition: background-color var(--conn-transition), color var(--conn-transition), box-shadow var(--conn-transition);
+
+        &:not(.collapsed) {
+            color: var(--conn-accent);
+            background-color: var(--conn-surface-alt);
+            box-shadow: inset 0 -1px 0 var(--conn-border);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.2rem var(--conn-accent-glow);
+            border-color: var(--conn-border-strong);
+        }
+
+        &:hover:not(:focus) {
+            background-color: var(--conn-surface-hover);
+        }
+
+        // Chevron colour for dark theme (Bootstrap uses brightness filter)
+        [data-bs-theme="dark"] & {
+            &::after {
+                filter: invert(1) grayscale(1);
+            }
+        }
+    }
+
+    // ── Accordion body (panel) ─────────────────
+    .accordion-body {
+        background-color: var(--conn-surface);
+        color: var(--conn-text);
+        border-top: 1px solid var(--conn-border);
+
+        // Respect RTE output
+        p:last-child { margin-bottom: 0; }
+    }
+
+    // ── Flush variant ──────────────────────────
+    &.accordion-flush {
+        .accordion-item {
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+        }
+
+        .accordion-button {
+            border-radius: 0 !important;
+        }
+    }
+}

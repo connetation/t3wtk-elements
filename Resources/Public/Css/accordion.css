@@ -1,0 +1,20 @@
+/* conn Bootstrap Accordion — compiled from accordion.scss
+   Run: npm run build:scss (inside DDEV) to regenerate */
+:root{--conn-accent:#6366f1;--conn-accent-hover:#4f52d4;--conn-radius:.75rem;--conn-transition:.2s ease-in-out}
+[data-bs-theme=light],:root:not([data-bs-theme=dark]){--conn-bg:#f4f5ff;--conn-surface:#fff;--conn-surface-alt:#f1f2ff;--conn-surface-raised:#fff;--conn-surface-hover:rgba(99,102,241,.1);--conn-border:rgba(99,102,241,.12);--conn-border-strong:rgba(99,102,241,.28);--conn-text:#1e1e3f;--conn-text-muted:#6b7280;--conn-accent-soft:rgba(99,102,241,.1);--conn-accent-glow:rgba(99,102,241,.2);--conn-shadow:0 4px 24px rgb(99 102 241/15%);--conn-shadow-card:0 1px 4px rgb(0 0 0/6%);--conn-shadow-hover:0 8px 32px rgb(99 102 241/22%)}
+[data-bs-theme=dark]{--conn-bg:#0b0b1a;--conn-surface:#12122a;--conn-surface-alt:#1a1a38;--conn-surface-raised:#1e1e42;--conn-surface-hover:rgba(255,255,255,.07);--conn-border:rgba(255,255,255,.08);--conn-border-strong:rgba(255,255,255,.15);--conn-text:#e2e2ff;--conn-text-muted:#8b8bcd;--conn-accent-soft:rgba(99,102,241,.15);--conn-accent-glow:rgba(99,102,241,.3);--conn-shadow:0 4px 24px rgb(0 0 0/40%);--conn-shadow-card:0 1px 4px rgb(0 0 0/25%);--conn-shadow-hover:0 8px 32px rgb(99 102 241/28%)}
+.frame-type-conn_bs_accordion header h1,.frame-type-conn_bs_accordion header h2,.frame-type-conn_bs_accordion header h3,.frame-type-conn_bs_accordion header h4,.frame-type-conn_bs_accordion header h5,.frame-type-conn_bs_accordion header h6{font-weight:700;color:var(--conn-text)}
+.conn-accordion__footer{color:var(--conn-text-muted);font-size:.9rem}
+.conn-accordion .accordion-item{background-color:var(--conn-surface);border-color:var(--conn-border)}
+.conn-accordion .accordion-item:first-of-type{border-top-left-radius:var(--conn-radius);border-top-right-radius:var(--conn-radius)}
+.conn-accordion .accordion-item:first-of-type .accordion-button{border-top-left-radius:var(--conn-radius);border-top-right-radius:var(--conn-radius)}
+.conn-accordion .accordion-item:last-of-type{border-bottom-left-radius:var(--conn-radius);border-bottom-right-radius:var(--conn-radius)}
+.conn-accordion .accordion-button{background-color:var(--conn-surface);color:var(--conn-text);font-weight:600;transition:background-color var(--conn-transition),color var(--conn-transition),box-shadow var(--conn-transition)}
+.conn-accordion .accordion-button:not(.collapsed){color:var(--conn-accent);background-color:var(--conn-surface-alt);box-shadow:inset 0 -1px 0 var(--conn-border)}
+.conn-accordion .accordion-button:focus{box-shadow:0 0 0 .2rem var(--conn-accent-glow);border-color:var(--conn-border-strong)}
+.conn-accordion .accordion-button:hover:not(:focus){background-color:var(--conn-surface-hover)}
+[data-bs-theme=dark] .conn-accordion .accordion-button::after{filter:invert(1) grayscale(1)}
+.conn-accordion .accordion-body{background-color:var(--conn-surface);color:var(--conn-text);border-top:1px solid var(--conn-border)}
+.conn-accordion .accordion-body p:last-child{margin-bottom:0}
+.conn-accordion.accordion-flush .accordion-item{border-radius:0;border-left:none;border-right:none}
+.conn-accordion.accordion-flush .accordion-button{border-radius:0!important}

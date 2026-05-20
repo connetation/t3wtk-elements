@@ -2,15 +2,17 @@
 // Dashboard Content Element
 // ─────────────────────────────────────────────
 
-.dashboard {
-    background: var(--conn-bg);
-
-    // ─── Header ────────────────────────────
-    &__title {
+// ─── TYPO3 standard header within dashboard frame ──
+.frame-type-conn_dashboard header {
+    h1, h2, h3, h4, h5, h6 {
         font-size: clamp(1.375rem, 3vw, 1.75rem);
         letter-spacing: -0.025em;
         color: var(--conn-text);
     }
+}
+
+.dashboard {
+    background: var(--conn-bg);
 
     // ─── Stats ─────────────────────────────
     &__stats {

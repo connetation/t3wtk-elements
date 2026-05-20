@@ -8,6 +8,7 @@ const config = {
     entryPoints: {
         dashboard: 'Resources/Private/JavaScript/dashboard.js',
         wiki:      'Resources/Private/JavaScript/wiki.js',
+        accordion: 'Resources/Private/JavaScript/accordion.js',
     },
     bundle:    true,
     splitting: true,

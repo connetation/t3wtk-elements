@@ -8,7 +8,9 @@ CREATE TABLE tt_content (
     tx_conn_elements_dashboard_categories int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_dashboard_settings   mediumtext,
     tx_conn_elements_wiki_id              int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_wiki_settings        mediumtext
+    tx_conn_elements_wiki_settings        mediumtext,
+    tx_conn_elements_accordion_items      int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_accordion_settings   mediumtext
 );
 
 -- ─── Dashboard ────────────────────────────────────────────────────────────────
@@ -126,6 +128,26 @@ CREATE TABLE tx_conn_elements_domain_model_wikicategory (
 
     PRIMARY KEY (uid),
     KEY parent (pid)
+);
+
+-- ─── Bootstrap Accordion ──────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_accordion_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    title           varchar(255) DEFAULT '' NOT NULL,
+    body            mediumtext,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
 );
 
 CREATE TABLE tx_conn_elements_domain_model_wikitag (

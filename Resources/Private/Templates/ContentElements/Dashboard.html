@@ -1,6 +1,10 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
+<f:layout name="Default" />
+
+<f:section name="Main">
+
 <f:asset.css identifier="conn-elements-dashboard-css"
     href="EXT:conn_elements/Resources/Public/Css/dashboard.css" />
 <f:asset.script identifier="conn-elements-dashboard-js"
@@ -8,14 +12,11 @@
     type="module"
     priority="false" />
 
-<section class="dashboard section section--sm" id="dashboard-{data.uid}-container" data-default-view="{settings.defaultView}">
-    <div class="container-fluid px-4">
+<section class="dashboard" id="dashboard-{data.uid}-container" data-default-view="{settings.defaultView}">
+    <div class="">
 
         <div class="d-flex flex-column gap-2 mb-4">
-            <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
-                <f:if condition="{data.header}">
-                    <h2 class="dashboard__title mb-0">{data.header}</h2>
-                </f:if>
+            <div class="d-flex align-items-start justify-content-end gap-3 flex-wrap">
                 <f:render partial="Dashboard/Controls" arguments="{categories: categories}" />
             </div>
             <f:render partial="Shared/Filter/TagRow" arguments="{tags: tags}" />
@@ -69,5 +70,7 @@
 </f:for>
 
 <f:render partial="Dashboard/Modal" arguments="{uid: data.uid}" />
+
+</f:section>
 
 </html>

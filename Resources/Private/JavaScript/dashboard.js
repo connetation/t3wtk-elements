@@ -292,7 +292,7 @@ function onReady(fn) {
 }
 
 onReady(() => {
-    document.querySelectorAll('.dashboard.section').forEach(initDashboard);
+    document.querySelectorAll('.dashboard').forEach(initDashboard);
 });
 
 export { initDashboard };

@@ -10,9 +10,10 @@ lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Te
 lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
 
 # Dashboard CE
-tt_content.dashboard =< lib.contentElement
-tt_content.dashboard {
+tt_content.conn_dashboard =< lib.contentElement
+tt_content.conn_dashboard {
     templateName = Dashboard
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\DashboardProjectsProcessor
         10 {

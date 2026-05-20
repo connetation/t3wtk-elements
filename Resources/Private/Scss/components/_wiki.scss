@@ -2,15 +2,17 @@
 // Wiki Content Element
 // ─────────────────────────────────────────────
 
-.wiki {
-    background: var(--conn-bg);
-
-    // ─── Title ─────────────────────────────
-    &__title {
+// ─── TYPO3 standard header within wiki frame ───────
+.frame-type-conn_wiki header {
+    h1, h2, h3, h4, h5, h6 {
         font-size: clamp(1.375rem, 3vw, 1.75rem);
         letter-spacing: -0.025em;
         color: var(--conn-text);
     }
+}
+
+.wiki {
+    background: var(--conn-bg);
 
     // ─── Layout ────────────────────────────
     &__layout {

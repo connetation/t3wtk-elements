@@ -182,5 +182,5 @@ function onReady(fn) {
 }
 
 onReady(() => {
-    document.querySelectorAll('.wiki.section').forEach(initWiki);
+    document.querySelectorAll('.wiki').forEach(initWiki);
 });

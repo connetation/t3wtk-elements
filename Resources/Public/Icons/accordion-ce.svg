@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Panel 1 (open) -->
+    <rect x="2" y="2" width="20" height="6" rx="1.5"/>
+    <line x1="15" y1="5" x2="17" y2="5"/>
+    <polyline points="15 3.5 17 5 15 6.5"/>
+    <!-- Panel 2 (closed) -->
+    <rect x="2" y="10" width="20" height="5" rx="1.5"/>
+    <line x1="15" y1="12.5" x2="17" y2="12.5"/>
+    <!-- Panel 3 (closed) -->
+    <rect x="2" y="17" width="20" height="5" rx="1.5"/>
+    <line x1="15" y1="19.5" x2="17" y2="19.5"/>
+</svg>

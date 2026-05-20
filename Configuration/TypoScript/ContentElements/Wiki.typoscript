@@ -6,9 +6,10 @@
 # (loaded only on pages where the component renders)
 
 # Wiki CE
-tt_content.wiki =< lib.contentElement
-tt_content.wiki {
+tt_content.conn_wiki =< lib.contentElement
+tt_content.conn_wiki {
     templateName = Wiki
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\WikiPagesProcessor
         10 {

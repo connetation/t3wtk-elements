@@ -1,6 +1,10 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
+<f:layout name="Default" />
+
+<f:section name="Main">
+
 <f:asset.css identifier="conn-elements-wiki-css"
     href="EXT:conn_elements/Resources/Public/Css/wiki.css" />
 <f:asset.script identifier="conn-elements-wiki-js"
@@ -8,14 +12,11 @@
     type="module"
     priority="false" />
 
-<section class="wiki section section--sm" id="wiki-{data.uid}-container">
-    <div class="container-fluid px-4">
+<section class="wiki" id="wiki-{data.uid}-container">
+    <div class="">
 
         <div class="d-flex flex-column gap-2 mb-4">
-            <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
-                <f:if condition="{data.header}">
-                    <h2 class="wiki__title mb-0">{data.header}</h2>
-                </f:if>
+            <div class="d-flex align-items-start justify-content-end gap-3 flex-wrap">
                 <f:render partial="Wiki/Topbar" arguments="{
                     categories: categories,
                     settings: settings,
@@ -51,5 +52,7 @@
 
     </div>
 </section>
+
+</f:section>
 
 </html>
