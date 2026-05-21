@@ -14,6 +14,7 @@ const config = {
         slider:            'Resources/Private/Components/Slider/slider.js',
         'thumbs-slider':   'Resources/Private/Components/ThumbsSlider/thumbs-slider.js',
         'parallax-slider': 'Resources/Private/Components/ParallaxSlider/parallax-slider.js',
+        'text-animation':  'Resources/Private/Components/TextAnimation/text-animation.js',
     },
     bundle:    true,
     splitting: true,

@@ -1,0 +1,9 @@
+# ─────────────────────────────────────────────
+# Global assets loaded on every page when
+# conn_elements is active in the project.
+# ─────────────────────────────────────────────
+
+page.includeJSFooter {
+    conn_elements_text_animation = EXT:conn_elements/Resources/Public/Js/components/text-animation.js
+    conn_elements_text_animation.type = module
+}

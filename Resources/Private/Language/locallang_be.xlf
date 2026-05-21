@@ -3,6 +3,25 @@
     <file source-language="en" datatype="plaintext" original="EXT:conn_elements/Resources/Private/Language/locallang_be.xlf">
         <header/>
         <body>
+            <!-- Text animation field (global, all CE types) -->
+            <trans-unit id="text_animation">
+                <source>Text Animation</source>
+            </trans-unit>
+            <trans-unit id="text_animation.none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="text_animation.words">
+                <source>Words Fade In</source>
+            </trans-unit>
+            <trans-unit id="text_animation.lines">
+                <source>Lines Rise Up</source>
+            </trans-unit>
+            <trans-unit id="text_animation.chars">
+                <source>Characters Cascade</source>
+            </trans-unit>
+            <trans-unit id="text_animation.fadeup">
+                <source>Fade Up</source>
+            </trans-unit>
             <!-- CE Groups -->
             <trans-unit id="ce_group.conn_swiper">
                 <source>Swiper</source>
