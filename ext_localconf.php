@@ -22,6 +22,20 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         tt_content_defValues.CType = conn_wiki
     }
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.header = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_bootstrap
+     mod.wizards.newContentElement.wizardItems.conn_swiper.header = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_swiper
+     mod.wizards.newContentElement.wizardItems.conn_swiper.show = conn_swiper_hero_slider,conn_swiper_slider
+     mod.wizards.newContentElement.wizardItems.conn_swiper.elements.conn_swiper_hero_slider {
+        iconIdentifier = conn-ce-hero-slider
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_hero_slider
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_hero_slider.description
+        tt_content_defValues.CType = conn_swiper_hero_slider
+    }
+     mod.wizards.newContentElement.wizardItems.conn_swiper.elements.conn_swiper_slider {
+        iconIdentifier = conn-ce-slider
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_slider
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_slider.description
+        tt_content_defValues.CType = conn_swiper_slider
+    }
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion,conn_bs_card_group
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_accordion {
         iconIdentifier = conn-ce-accordion

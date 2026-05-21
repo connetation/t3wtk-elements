@@ -4,11 +4,71 @@
         <header/>
         <body>
             <!-- CE Groups -->
+            <trans-unit id="ce_group.conn_swiper">
+                <source>Swiper</source>
+            </trans-unit>
             <trans-unit id="ce_group.conn">
                 <source>Connetation Elements</source>
             </trans-unit>
             <trans-unit id="ce_group.conn_bootstrap">
                 <source>Bootstrap</source>
+            </trans-unit>
+            <!-- Swiper Hero Slider content element -->
+            <trans-unit id="ce.swiper_hero_slider">
+                <source>Hero Slider</source>
+            </trans-unit>
+            <trans-unit id="ce.swiper_hero_slider.description">
+                <source>Full-width image slider with text overlay and CTA button</source>
+            </trans-unit>
+            <trans-unit id="hero_slider.tab.config">
+                <source>Hero Slider Config</source>
+            </trans-unit>
+            <trans-unit id="hero_slider.items">
+                <source>Slides</source>
+            </trans-unit>
+            <trans-unit id="hero_slider.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Swiper Slider content element -->
+            <trans-unit id="ce.swiper_slider">
+                <source>Card Slider</source>
+            </trans-unit>
+            <trans-unit id="ce.swiper_slider.description">
+                <source>Responsive card slider with configurable slides per view</source>
+            </trans-unit>
+            <trans-unit id="slider.tab.config">
+                <source>Slider Config</source>
+            </trans-unit>
+            <trans-unit id="slider.items">
+                <source>Slides</source>
+            </trans-unit>
+            <trans-unit id="slider.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Slide item model -->
+            <trans-unit id="model.slide_item">
+                <source>Slide</source>
+            </trans-unit>
+            <trans-unit id="slide_item.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="slide_item.subtitle">
+                <source>Subtitle / Eyebrow</source>
+            </trans-unit>
+            <trans-unit id="slide_item.body">
+                <source>Body Text</source>
+            </trans-unit>
+            <trans-unit id="slide_item.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="slide_item.link">
+                <source>Link / CTA URL</source>
+            </trans-unit>
+            <trans-unit id="slide_item.link_label">
+                <source>Link Label</source>
+            </trans-unit>
+            <trans-unit id="slide_item.tab.link">
+                <source>Link</source>
             </trans-unit>
             <!-- Bootstrap Card Group content element -->
             <trans-unit id="ce.bs_card_group">

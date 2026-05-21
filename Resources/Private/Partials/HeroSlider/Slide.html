@@ -1,0 +1,52 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="swiper-slide conn-hero-slider__slide">
+
+    <f:if condition="{slide.imageFile}">
+        <f:then>
+            <div class="conn-hero-slider__bg">
+                <f:image image="{slide.imageFile}"
+                         class="conn-hero-slider__bg-img"
+                         alt="{slide.title}"
+                         width="1920"
+                         height="1080" />
+            </div>
+        </f:then>
+        <f:else>
+            <div class="conn-hero-slider__bg conn-hero-slider__bg--placeholder"></div>
+        </f:else>
+    </f:if>
+
+    <div class="conn-hero-slider__overlay"></div>
+
+    <div class="conn-hero-slider__content container-fluid px-4 px-lg-5">
+        <div class="conn-hero-slider__inner">
+
+            <f:if condition="{slide.subtitle}">
+                <p class="conn-hero-slider__eyebrow">{slide.subtitle}</p>
+            </f:if>
+
+            <f:if condition="{slide.title}">
+                <h2 class="conn-hero-slider__title">{slide.title}</h2>
+            </f:if>
+
+            <f:if condition="{slide.body}">
+                <p class="conn-hero-slider__body">{slide.body}</p>
+            </f:if>
+
+            <f:if condition="{slide.link}">
+                <f:link.typolink parameter="{slide.link}" class="conn-hero-slider__cta btn btn-primary">
+                    <f:if condition="{slide.link_label}">
+                        <f:then>{slide.link_label}</f:then>
+                        <f:else>Learn more</f:else>
+                    </f:if>
+                </f:link.typolink>
+            </f:if>
+
+        </div>
+    </div>
+
+</div>
+
+</html>

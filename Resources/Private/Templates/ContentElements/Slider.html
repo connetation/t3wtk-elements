@@ -1,0 +1,58 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-swiper-css"
+    href="EXT:conn_elements/Resources/Public/Css/swiper.css" />
+<f:asset.css identifier="conn-elements-slider-css"
+    href="EXT:conn_elements/Resources/Public/Css/slider.css" />
+<f:asset.script identifier="conn-elements-slider-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/slider.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-slider"
+         id="conn-slider-{data.uid}"
+         data-slides-per-view="{settings.slides_per_view}"
+         data-loop="{f:if(condition: settings.loop, then: '1', else: '0')}"
+         data-autoplay="{f:if(condition: settings.autoplay, then: '1', else: '0')}"
+         data-autoplay-delay="{settings.autoplay_delay}"
+         data-navigation="{f:if(condition: settings.show_navigation, then: '1', else: '0')}"
+         data-pagination="{f:if(condition: settings.show_pagination, then: '1', else: '0')}">
+
+    <div class="container-fluid px-4">
+
+        <f:if condition="{slides}">
+            <f:then>
+                <div class="swiper conn-slider__swiper">
+                    <div class="swiper-wrapper">
+                        <f:for each="{slides}" as="slide">
+                            <f:render partial="Slider/Slide" arguments="{slide: slide}" />
+                        </f:for>
+                    </div>
+
+                    <f:if condition="{settings.show_pagination}">
+                        <div class="swiper-pagination conn-slider__pagination"></div>
+                    </f:if>
+
+                    <f:if condition="{settings.show_navigation}">
+                        <div class="swiper-button-prev conn-slider__btn-prev"></div>
+                        <div class="swiper-button-next conn-slider__btn-next"></div>
+                    </f:if>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No slides added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+
+</section>
+
+</f:section>
+
+</html>

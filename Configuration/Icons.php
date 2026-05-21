@@ -43,6 +43,14 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/wiki-category.svg',
     ],
+    'conn-ce-hero-slider' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_elements/Resources/Public/Icons/hero-slider-ce.svg',
+    ],
+    'conn-ce-slider' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_elements/Resources/Public/Icons/slider-ce.svg',
+    ],
     'conn-record-wikitag' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/wiki-tag.svg',
