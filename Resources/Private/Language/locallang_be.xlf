@@ -29,6 +29,41 @@
             <trans-unit id="hero_slider.settings">
                 <source>Display Settings</source>
             </trans-unit>
+            <!-- Swiper Thumbnails Slider content element -->
+            <trans-unit id="ce.swiper_thumbs_slider">
+                <source>Thumbnails Slider</source>
+            </trans-unit>
+            <trans-unit id="ce.swiper_thumbs_slider.description">
+                <source>Full-height image slider with interactive thumbnail strip</source>
+            </trans-unit>
+            <trans-unit id="thumbs_slider.tab.config">
+                <source>Thumbnails Slider Config</source>
+            </trans-unit>
+            <trans-unit id="thumbs_slider.items">
+                <source>Slides</source>
+            </trans-unit>
+            <trans-unit id="thumbs_slider.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Swiper Parallax Slider content element -->
+            <trans-unit id="ce.swiper_parallax_slider">
+                <source>Parallax Slider</source>
+            </trans-unit>
+            <trans-unit id="ce.swiper_parallax_slider.description">
+                <source>Full-height slider with depth parallax effect on images and text</source>
+            </trans-unit>
+            <trans-unit id="parallax_slider.tab.config">
+                <source>Parallax Slider Config</source>
+            </trans-unit>
+            <trans-unit id="parallax_slider.bg_image">
+                <source>Background Image</source>
+            </trans-unit>
+            <trans-unit id="parallax_slider.items">
+                <source>Slides</source>
+            </trans-unit>
+            <trans-unit id="parallax_slider.settings">
+                <source>Display Settings</source>
+            </trans-unit>
             <!-- Swiper Slider content element -->
             <trans-unit id="ce.swiper_slider">
                 <source>Card Slider</source>

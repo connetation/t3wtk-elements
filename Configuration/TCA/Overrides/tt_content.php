@@ -296,6 +296,133 @@ $GLOBALS['TCA']['tt_content']['types']['conn_swiper_slider'] = [
     ',
 ];
 
+// ─── Swiper Thumbnails Slider ─────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_thumbs_slider'] = 'conn-ce-thumbs-slider';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_thumbs_slider',
+    'value' => 'conn_swiper_thumbs_slider',
+    'icon'  => 'conn-ce-thumbs-slider',
+    'group' => 'conn_swiper',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_thumbs_slider_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:thumbs_slider.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_slide_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 50,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_thumbs_slider_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:thumbs_slider.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/ThumbsSlider.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_swiper_thumbs_slider'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_thumbs_slider_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:thumbs_slider.tab.config,
+            tx_conn_elements_thumbs_slider_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── Swiper Parallax Slider ───────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_parallax_slider'] = 'conn-ce-parallax-slider';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_parallax_slider',
+    'value' => 'conn_swiper_parallax_slider',
+    'icon'  => 'conn-ce-parallax-slider',
+    'group' => 'conn_swiper',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_parallax_slider_bg_image' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:parallax_slider.bg_image',
+        'config' => [
+            'type'     => 'file',
+            'allowed'  => 'jpg,jpeg,png,gif,webp',
+            'maxitems' => 1,
+        ],
+    ],
+    'tx_conn_elements_parallax_slider_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:parallax_slider.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_slide_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 50,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+            'overrideChildTca' => [
+                'types' => [
+                    '1' => [
+                        'showitem' => '
+                            title, subtitle, body,
+                            --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.tab.link,
+                                link, link_label,
+                        ',
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'tx_conn_elements_parallax_slider_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:parallax_slider.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/ParallaxSlider.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_swiper_parallax_slider'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,
+            tx_conn_elements_parallax_slider_bg_image,
+            tx_conn_elements_parallax_slider_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:parallax_slider.tab.config,
+            tx_conn_elements_parallax_slider_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
 // ─── Wiki ─────────────────────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_wiki'] = 'conn-ce-wiki';
 

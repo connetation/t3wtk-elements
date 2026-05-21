@@ -1,0 +1,15 @@
+tt_content.conn_swiper_parallax_slider =< lib.contentElement
+tt_content.conn_swiper_parallax_slider {
+    templateName = ParallaxSlider
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
+    partialRootPaths.20 = EXT:conn_elements/Resources/Private/Partials/
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\SlideItemsProcessor
+        10 {
+            fieldName = tx_conn_elements_parallax_slider_items
+            settingsField = tx_conn_elements_parallax_slider_settings
+            as = slides
+        }
+    }
+}

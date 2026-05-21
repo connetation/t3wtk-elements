@@ -15,8 +15,13 @@ CREATE TABLE tt_content (
     tx_conn_elements_card_group_settings  mediumtext,
     tx_conn_elements_hero_slider_items    int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_hero_slider_settings mediumtext,
-    tx_conn_elements_slider_items         int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_slider_settings      mediumtext
+    tx_conn_elements_slider_items              int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_slider_settings           mediumtext,
+    tx_conn_elements_thumbs_slider_items       int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_thumbs_slider_settings    mediumtext,
+    tx_conn_elements_parallax_slider_items     int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_parallax_slider_settings  mediumtext,
+    tx_conn_elements_parallax_slider_bg_image  int(11) DEFAULT '0' NOT NULL
 );
 
 -- ─── Dashboard ────────────────────────────────────────────────────────────────

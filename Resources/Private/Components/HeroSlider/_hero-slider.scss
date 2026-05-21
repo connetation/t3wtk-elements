@@ -211,13 +211,9 @@
             font-weight: 900;
         }
 
-        &:hover {
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        &.swiper-button-disabled {
-            opacity: 0.3;
-        }
+        &:hover { background: rgba(0, 0, 0, 0.6); }
+        &.swiper-button-disabled { opacity: 0.3; }
+        & > svg { width: 11px; }
     }
 
     &__btn-prev { left: 1rem !important; }

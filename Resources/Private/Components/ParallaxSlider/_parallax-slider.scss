@@ -1,0 +1,198 @@
+// ─────────────────────────────────────────────
+// Connetation Elements – Parallax Slider
+// Full-height slides with Swiper parallax depth
+// ─────────────────────────────────────────────
+
+.frame-type-conn_swiper_parallax_slider header {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        letter-spacing: -0.025em;
+        color: var(--conn-text);
+    }
+}
+
+.conn-parallax-slider {
+    --parallax-height: 70vh;
+
+    &--medium     { --parallax-height: 55vh; }
+    &--large      { --parallax-height: 70vh; }
+    &--fullscreen { --parallax-height: 100vh; }
+
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--conn-bg);
+
+    // ── Swiper container (positioning context for bg + overlay) ──
+    &__swiper {
+        position: relative;
+        width: 100%;
+        height: var(--parallax-height);
+        overflow: hidden;
+    }
+
+    // ── Shared background — lives outside swiper-wrapper ─────────
+    // width: 130% + left: 0 mirrors the standard Swiper parallax demo.
+    // Parallax translates it left (up to -23%), right edge stays at 107% → no gap.
+    // Loop must be off; with loop, progress exceeds [0,1] and the edge shows.
+    &__bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 130%;
+        height: 100%;
+        z-index: 0;
+        background-size: cover;
+        background-position: center;
+        will-change: transform;
+        transition-property: transform;
+        transition-timing-function: ease;
+        transition-duration: 0ms;
+    }
+
+    // ── Dark gradient overlay ─────────────────
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+            to top,
+            rgb(0 0 0 / 72%) 0%,
+            rgb(0 0 0 / 28%) 55%,
+            rgb(0 0 0 / 0%)  100%
+        );
+        pointer-events: none;
+    }
+
+    // ── Individual slide ─────────────────────
+    &__slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        z-index: 2;
+    }
+
+    // ── Text content ─────────────────────────
+    &__content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding-bottom: clamp(3rem, 6vh, 5rem);
+    }
+
+    &__inner {
+        max-width: 680px;
+    }
+
+    &__eyebrow {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--conn-accent);
+        margin-bottom: 0.5rem;
+        opacity: 0;
+        translate: 0 10px;
+        transition: opacity 0.45s ease 0.2s, translate 0.45s ease 0.2s;
+
+        .swiper-slide-active & { opacity: 1; translate: 0 0; }
+    }
+
+    &__title {
+        font-size: clamp(1.75rem, 4vw, 3rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        margin-bottom: 0.75rem;
+        opacity: 0;
+        translate: 0 14px;
+        transition: opacity 0.45s ease 0.3s, translate 0.45s ease 0.3s;
+
+        .swiper-slide-active & { opacity: 1; translate: 0 0; }
+    }
+
+    &__body {
+        font-size: 1rem;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.82);
+        margin-bottom: 1.5rem;
+        max-width: 540px;
+        opacity: 0;
+        translate: 0 10px;
+        transition: opacity 0.45s ease 0.45s, translate 0.45s ease 0.45s;
+
+        .swiper-slide-active & { opacity: 1; translate: 0 0; }
+    }
+
+    &__cta {
+        font-weight: 600;
+        padding: 0.625rem 1.5rem;
+        border-radius: 50rem;
+        background: var(--conn-accent);
+        border-color: var(--conn-accent);
+        color: #fff;
+        opacity: 0;
+        translate: 0 8px;
+        transition: opacity 0.4s ease 0.6s, translate 0.4s ease 0.6s;
+
+        .swiper-slide-active & { opacity: 1; translate: 0 0; }
+
+        &:hover {
+            background: var(--conn-accent-hover);
+            border-color: var(--conn-accent-hover);
+            color: #fff;
+        }
+    }
+
+    // ── Pagination bullets ────────────────────
+    &__pagination {
+        position: absolute;
+        bottom: 1.25rem !important;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        gap: 0.375rem;
+
+        .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 50rem;
+            opacity: 1;
+            transition: width 0.3s ease, background 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            width: 24px;
+            background: #fff;
+        }
+    }
+
+    // ── Navigation arrows ─────────────────────
+    &__btn-prev,
+    &__btn-next {
+        color: #fff !important;
+        background: rgba(0, 0, 0, 0.35);
+        border-radius: 50%;
+        width: 44px !important;
+        height: 44px !important;
+        transition: background 0.2s ease;
+
+        &::after {
+            font-size: 1rem !important;
+            font-weight: 900;
+        }
+
+        &:hover { background: rgba(0, 0, 0, 0.6); }
+        &.swiper-button-disabled { opacity: 0.3; }
+        & > svg { width: 11px; }
+    }
+
+    &__btn-prev { left: 1rem !important; }
+    &__btn-next { right: 1rem !important; }
+}

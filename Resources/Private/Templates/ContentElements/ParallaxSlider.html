@@ -1,0 +1,59 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-swiper-css"
+    href="EXT:conn_elements/Resources/Public/Css/swiper.css" />
+<f:asset.css identifier="conn-elements-parallax-slider-css"
+    href="EXT:conn_elements/Resources/Public/Css/parallax-slider.css" />
+<f:asset.script identifier="conn-elements-parallax-slider-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/parallax-slider.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-parallax-slider conn-parallax-slider--{settings.height}"
+         id="conn-parallax-slider-{data.uid}"
+         data-autoplay="{f:if(condition: settings.autoplay, then: '1', else: '0')}"
+         data-autoplay-delay="{settings.autoplay_delay}"
+         data-navigation="{f:if(condition: settings.show_navigation, then: '1', else: '0')}"
+         data-pagination="{f:if(condition: settings.show_pagination, then: '1', else: '0')}">
+
+    <f:if condition="{slides}">
+        <f:then>
+            <div class="swiper conn-parallax-slider__swiper">
+                <f:if condition="{parallaxBgImage}">
+                    <div class="conn-parallax-slider__bg"
+                         style="background-image: url('{f:uri.image(image: parallaxBgImage, width: 1920, height: 1080)}')">
+                    </div>
+                </f:if>
+                <div class="conn-parallax-slider__overlay"></div>
+
+                <div class="swiper-wrapper">
+                    <f:for each="{slides}" as="slide">
+                        <f:render partial="ParallaxSlider/Slide" arguments="{slide: slide}" />
+                    </f:for>
+                </div>
+
+                <f:if condition="{settings.show_pagination}">
+                    <div class="swiper-pagination conn-parallax-slider__pagination"></div>
+                </f:if>
+
+                <f:if condition="{settings.show_navigation}">
+                    <div class="swiper-button-prev conn-parallax-slider__btn-prev"></div>
+                    <div class="swiper-button-next conn-parallax-slider__btn-next"></div>
+                </f:if>
+            </div>
+        </f:then>
+        <f:else>
+            <p class="text-muted fst-italic">No slides added yet.</p>
+        </f:else>
+    </f:if>
+
+</section>
+
+</f:section>
+
+</html>

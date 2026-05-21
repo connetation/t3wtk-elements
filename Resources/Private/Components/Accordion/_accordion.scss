@@ -53,7 +53,7 @@
         }
 
         &:focus {
-            box-shadow: 0 0 0 0.2rem var(--conn-accent-glow);
+            box-shadow: none;
             border-color: var(--conn-border-strong);
         }
 
