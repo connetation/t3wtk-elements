@@ -10,32 +10,39 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const HEADING_SEL = 'h1, h2, h3, h4';
-const BODY_SEL    = '.ce-bodytext p, .ce-bodytext li';
+const HEADING_SEL = 'h1, h2, h3, h4, .ce-subheader';
 
-const trigger = (el) => ({
+// All <p> and <li> in the frame that aren't part of the heading block and don't
+// belong to a nested child frame (e.g. grid column CEs have their own frames).
+function getBodyElements(frame) {
+    return [...frame.querySelectorAll('p:not(.ce-subheader), li')]
+        .filter(el => !el.closest('header') && el.closest('.frame') === frame);
+}
+
+const scrollTriggerConfig = (el) => ({
     trigger: el,
     start: 'top 88%',
     once: true,
 });
+
+function whenVisible(el, fn) {
+    ScrollTrigger.create({ ...scrollTriggerConfig(el), onEnter: fn });
+}
 
 // ── Words Fade In ─────────────────────────────────────────────────
 // Each word slides up and fades in, staggered left-to-right.
 function animateWords(headings) {
     headings.forEach((el) => {
         const split = SplitText.create(el, { type: 'words' });
-        ScrollTrigger.create({
-            ...trigger(el),
-            onEnter() {
-                gsap.from(split.words, {
-                    opacity: 0,
-                    y: 24,
-                    duration: 0.65,
-                    stagger: 0.055,
-                    ease: 'power3.out',
-                    onComplete: () => split.revert(),
-                });
-            },
+        whenVisible(el, () => {
+            gsap.from(split.words, {
+                opacity: 0,
+                y: 24,
+                duration: 0.65,
+                stagger: 0.055,
+                ease: 'power3.out',
+                onComplete: () => split.revert(),
+            });
         });
     });
 }
@@ -45,18 +52,15 @@ function animateWords(headings) {
 function animateLines(headings) {
     headings.forEach((el) => {
         const split = SplitText.create(el, { type: 'lines' });
-        ScrollTrigger.create({
-            ...trigger(el),
-            onEnter() {
-                gsap.from(split.lines, {
-                    opacity: 0,
-                    y: 40,
-                    duration: 0.7,
-                    stagger: 0.12,
-                    ease: 'power3.out',
-                    onComplete: () => split.revert(),
-                });
-            },
+        whenVisible(el, () => {
+            gsap.from(split.lines, {
+                opacity: 0,
+                y: 40,
+                duration: 0.7,
+                stagger: 0.12,
+                ease: 'power3.out',
+                onComplete: () => split.revert(),
+            });
         });
     });
 }
@@ -66,35 +70,17 @@ function animateLines(headings) {
 function animateChars(headings) {
     headings.forEach((el) => {
         const split = SplitText.create(el, { type: 'chars,words' });
-        ScrollTrigger.create({
-            ...trigger(el),
-            onEnter() {
-                gsap.from(split.chars, {
-                    opacity: 0,
-                    y: 16,
-                    rotationX: -45,
-                    transformOrigin: 'top center',
-                    duration: 0.4,
-                    stagger: 0.028,
-                    ease: 'back.out(1.4)',
-                    onComplete: () => split.revert(),
-                });
-            },
-        });
-    });
-}
-
-// ── Fade Up ───────────────────────────────────────────────────────
-// Whole elements (headings + body) fade and slide up as blocks.
-// No text splitting — best for longer paragraphs.
-function animateFadeUp(els) {
-    els.forEach((el) => {
-        gsap.from(el, {
-            opacity: 0,
-            y: 30,
-            duration: 0.6,
-            ease: 'power2.out',
-            scrollTrigger: trigger(el),
+        whenVisible(el, () => {
+            gsap.from(split.chars, {
+                opacity: 0,
+                y: 16,
+                rotationX: -45,
+                transformOrigin: 'top center',
+                duration: 0.4,
+                stagger: 0.028,
+                ease: 'back.out(1.4)',
+                onComplete: () => split.revert(),
+            });
         });
     });
 }
@@ -106,13 +92,16 @@ function init() {
         if (!type) return;
 
         const headings = [...frame.querySelectorAll(HEADING_SEL)];
-        const body     = [...frame.querySelectorAll(BODY_SEL)];
+        const body     = getBodyElements(frame);
+
+        // Swiper slides have their own CSS entrance animations — skip them.
+        const all = [...headings, ...body].filter(el => !el.closest('.swiper-slide'));
+        if (!all.length) return;
 
         switch (type) {
-            case 'words':   animateWords(headings); break;
-            case 'lines':   animateLines(headings); break;
-            case 'chars':   animateChars(headings); break;
-            case 'fade-up': animateFadeUp([...headings, ...body]); break;
+            case 'words': animateWords(all); break;
+            case 'lines': animateLines(all); break;
+            case 'chars': animateChars(all); break;
         }
     });
 }

@@ -12,17 +12,24 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 // ─── Text animation – global field for ALL content element types ──
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
     'tx_conn_elements_text_animation' => [
-        'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation',
+        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation',
+        'displayCond' => [
+            'AND' => [
+                'FIELD:CType:!=:conn_swiper_hero_slider',
+                'FIELD:CType:!=:conn_swiper_slider',
+                'FIELD:CType:!=:conn_swiper_thumbs_slider',
+                'FIELD:CType:!=:conn_swiper_parallax_slider',
+            ],
+        ],
         'config' => [
             'type'       => 'select',
             'renderType' => 'selectSingle',
             'default'    => '',
             'items'      => [
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.none',   'value' => ''],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.words',  'value' => 'words'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.lines',  'value' => 'lines'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.chars',  'value' => 'chars'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.fadeup', 'value' => 'fade-up'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.none',  'value' => ''],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.words', 'value' => 'words'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.lines', 'value' => 'lines'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.chars', 'value' => 'chars'],
             ],
         ],
     ],

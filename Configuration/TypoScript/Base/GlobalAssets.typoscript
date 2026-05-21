@@ -7,3 +7,11 @@ page.includeJSFooter {
     conn_elements_text_animation = EXT:conn_elements/Resources/Public/Js/components/text-animation.js
     conn_elements_text_animation.type = module
 }
+
+# Make the conn_elements Default layout (which outputs data-text-animation)
+# available to ALL content elements, not just the custom conn CE types.
+lib.contentElement {
+    layoutRootPaths {
+        20 = EXT:conn_elements/Resources/Private/Layouts/
+    }
+}

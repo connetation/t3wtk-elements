@@ -19,9 +19,6 @@
             <trans-unit id="text_animation.chars">
                 <source>Characters Cascade</source>
             </trans-unit>
-            <trans-unit id="text_animation.fadeup">
-                <source>Fade Up</source>
-            </trans-unit>
             <!-- CE Groups -->
             <trans-unit id="ce_group.conn_swiper">
                 <source>Swiper</source>
