@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 defined('TYPO3') or die();
 
+use B13\Container\Tca\ContainerConfiguration;
+use B13\Container\Tca\Registry;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 // ─── Register CE groups ───────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn'] =
@@ -12,6 +15,9 @@ $GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn'
 
 $GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_bootstrap'] =
     'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_bootstrap';
+
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_grid'] =
+    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_grid';
 
 // ─── Dashboard ────────────────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_dashboard'] = 'conn-ce-dashboard';
@@ -469,3 +475,89 @@ $GLOBALS['TCA']['tt_content']['types']['conn_wiki'] = [
             --palette--;;hidden,--palette--;;access,
     ',
 ];
+
+// ─── Bootstrap Grid containers (b13/container) ───────────────────
+$registry = GeneralUtility::makeInstance(Registry::class);
+
+$registry->configureContainer(
+    (new ContainerConfiguration(
+        'conn_grid_2col',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_2col',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_2col.description',
+        [
+            [
+                ['name' => 'Column 1', 'colPos' => 200, 'colspan' => 6],
+                ['name' => 'Column 2', 'colPos' => 201, 'colspan' => 6],
+            ],
+        ]
+    ))
+    ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-2col-ce.svg')
+    ->setGroup('conn_grid')
+);
+
+$registry->configureContainer(
+    (new ContainerConfiguration(
+        'conn_grid_3col',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_3col',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_3col.description',
+        [
+            [
+                ['name' => 'Column 1', 'colPos' => 210, 'colspan' => 4],
+                ['name' => 'Column 2', 'colPos' => 211, 'colspan' => 4],
+                ['name' => 'Column 3', 'colPos' => 212, 'colspan' => 4],
+            ],
+        ]
+    ))
+    ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-3col-ce.svg')
+    ->setGroup('conn_grid')
+);
+
+$registry->configureContainer(
+    (new ContainerConfiguration(
+        'conn_grid_4col',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4col',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4col.description',
+        [
+            [
+                ['name' => 'Column 1', 'colPos' => 220, 'colspan' => 3],
+                ['name' => 'Column 2', 'colPos' => 221, 'colspan' => 3],
+                ['name' => 'Column 3', 'colPos' => 222, 'colspan' => 3],
+                ['name' => 'Column 4', 'colPos' => 223, 'colspan' => 3],
+            ],
+        ]
+    ))
+    ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-4col-ce.svg')
+    ->setGroup('conn_grid')
+);
+
+$registry->configureContainer(
+    (new ContainerConfiguration(
+        'conn_grid_4_8',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4_8',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4_8.description',
+        [
+            [
+                ['name' => 'Narrow (4)', 'colPos' => 230, 'colspan' => 4],
+                ['name' => 'Wide (8)',   'colPos' => 231, 'colspan' => 8],
+            ],
+        ]
+    ))
+    ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-4-8-ce.svg')
+    ->setGroup('conn_grid')
+);
+
+$registry->configureContainer(
+    (new ContainerConfiguration(
+        'conn_grid_8_4',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_8_4',
+        'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_8_4.description',
+        [
+            [
+                ['name' => 'Wide (8)',   'colPos' => 240, 'colspan' => 8],
+                ['name' => 'Narrow (4)', 'colPos' => 241, 'colspan' => 4],
+            ],
+        ]
+    ))
+    ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-8-4-ce.svg')
+    ->setGroup('conn_grid')
+);

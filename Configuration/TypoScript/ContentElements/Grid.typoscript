@@ -1,0 +1,169 @@
+# ─────────────────────────────────────────────
+# Bootstrap Grid Container Content Elements
+# Powered by b13/container
+# ─────────────────────────────────────────────
+
+lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
+lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
+
+# ── 2 equal columns (col-md-6 / col-md-6) ────
+tt_content.conn_grid_2col =< lib.contentElement
+tt_content.conn_grid_2col {
+    templateName = Grid2Col
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    variables {
+        column1 = CONTENT
+        column1 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=200
+                where.insertData = 1
+            }
+        }
+        column2 = CONTENT
+        column2 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=201
+                where.insertData = 1
+            }
+        }
+    }
+}
+
+# ── 3 equal columns (col-md-4 / col-md-4 / col-md-4) ─
+tt_content.conn_grid_3col =< lib.contentElement
+tt_content.conn_grid_3col {
+    templateName = Grid3Col
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    variables {
+        column1 = CONTENT
+        column1 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=210
+                where.insertData = 1
+            }
+        }
+        column2 = CONTENT
+        column2 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=211
+                where.insertData = 1
+            }
+        }
+        column3 = CONTENT
+        column3 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=212
+                where.insertData = 1
+            }
+        }
+    }
+}
+
+# ── 4 equal columns (col-md-3 each) ──────────
+tt_content.conn_grid_4col =< lib.contentElement
+tt_content.conn_grid_4col {
+    templateName = Grid4Col
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    variables {
+        column1 = CONTENT
+        column1 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=220
+                where.insertData = 1
+            }
+        }
+        column2 = CONTENT
+        column2 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=221
+                where.insertData = 1
+            }
+        }
+        column3 = CONTENT
+        column3 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=222
+                where.insertData = 1
+            }
+        }
+        column4 = CONTENT
+        column4 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=223
+                where.insertData = 1
+            }
+        }
+    }
+}
+
+# ── Narrow / Wide (col-md-4 / col-md-8) ──────
+tt_content.conn_grid_4_8 =< lib.contentElement
+tt_content.conn_grid_4_8 {
+    templateName = Grid4_8
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    variables {
+        column1 = CONTENT
+        column1 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=230
+                where.insertData = 1
+            }
+        }
+        column2 = CONTENT
+        column2 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=231
+                where.insertData = 1
+            }
+        }
+    }
+}
+
+# ── Wide / Narrow (col-md-8 / col-md-4) ──────
+tt_content.conn_grid_8_4 =< lib.contentElement
+tt_content.conn_grid_8_4 {
+    templateName = Grid8_4
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    variables {
+        column1 = CONTENT
+        column1 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=240
+                where.insertData = 1
+            }
+        }
+        column2 = CONTENT
+        column2 {
+            table = tt_content
+            select {
+                orderBy = sorting
+                where = tx_container_parent={field:uid} AND colPos=241
+                where.insertData = 1
+            }
+        }
+    }
+}

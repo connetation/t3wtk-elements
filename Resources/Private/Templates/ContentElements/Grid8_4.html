@@ -1,0 +1,17 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <div class="row g-4">
+        <div class="col-12 col-md-8">
+            {column1 -> f:format.raw()}
+        </div>
+        <div class="col-12 col-md-4">
+            {column2 -> f:format.raw()}
+        </div>
+    </div>
+</f:section>
+
+</html>

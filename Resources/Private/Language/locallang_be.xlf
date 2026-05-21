@@ -13,6 +13,40 @@
             <trans-unit id="ce_group.conn_bootstrap">
                 <source>Bootstrap</source>
             </trans-unit>
+            <trans-unit id="ce_group.conn_grid">
+                <source>Bootstrap Grid</source>
+            </trans-unit>
+            <!-- Bootstrap Grid container content elements -->
+            <trans-unit id="ce.grid_2col">
+                <source>2 Columns</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_2col.description">
+                <source>Two equal columns (6/6)</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_3col">
+                <source>3 Columns</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_3col.description">
+                <source>Three equal columns (4/4/4)</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_4col">
+                <source>4 Columns</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_4col.description">
+                <source>Four equal columns (3/3/3/3)</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_4_8">
+                <source>Narrow + Wide</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_4_8.description">
+                <source>Sidebar left, content right (4/8)</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_8_4">
+                <source>Wide + Narrow</source>
+            </trans-unit>
+            <trans-unit id="ce.grid_8_4.description">
+                <source>Content left, sidebar right (8/4)</source>
+            </trans-unit>
             <!-- Swiper Hero Slider content element -->
             <trans-unit id="ce.swiper_hero_slider">
                 <source>Hero Slider</source>

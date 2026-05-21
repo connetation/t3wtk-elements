@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 defined('TYPO3') or die();
 
+
 $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['WikiCode'] = 'EXT:conn_elements/Configuration/RTE/WikiCode.yaml';
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
@@ -47,6 +48,38 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_parallax_slider
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_parallax_slider.description
         tt_content_defValues.CType = conn_swiper_parallax_slider
+    }
+     mod.wizards.newContentElement.wizardItems.conn_grid.header = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_grid
+     mod.wizards.newContentElement.wizardItems.conn_grid.show = conn_grid_2col,conn_grid_3col,conn_grid_4col,conn_grid_4_8,conn_grid_8_4
+     mod.wizards.newContentElement.wizardItems.conn_grid.elements.conn_grid_2col {
+        iconIdentifier = conn_grid_2col
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_2col
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_2col.description
+        tt_content_defValues.CType = conn_grid_2col
+    }
+     mod.wizards.newContentElement.wizardItems.conn_grid.elements.conn_grid_3col {
+        iconIdentifier = conn_grid_3col
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_3col
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_3col.description
+        tt_content_defValues.CType = conn_grid_3col
+    }
+     mod.wizards.newContentElement.wizardItems.conn_grid.elements.conn_grid_4col {
+        iconIdentifier = conn_grid_4col
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4col
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4col.description
+        tt_content_defValues.CType = conn_grid_4col
+    }
+     mod.wizards.newContentElement.wizardItems.conn_grid.elements.conn_grid_4_8 {
+        iconIdentifier = conn_grid_4_8
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4_8
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_4_8.description
+        tt_content_defValues.CType = conn_grid_4_8
+    }
+     mod.wizards.newContentElement.wizardItems.conn_grid.elements.conn_grid_8_4 {
+        iconIdentifier = conn_grid_8_4
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_8_4
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_8_4.description
+        tt_content_defValues.CType = conn_grid_8_4
     }
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion,conn_bs_card_group
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_accordion {
