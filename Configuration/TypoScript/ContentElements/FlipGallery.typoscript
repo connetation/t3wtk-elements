@@ -1,0 +1,12 @@
+tt_content.conn_flip_gallery =< lib.contentElement
+tt_content.conn_flip_gallery {
+    templateName = FlipGallery
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\FlipGalleryProcessor
+        10 {
+            fieldName = tx_conn_elements_flip_gallery_items
+            as = items
+        }
+    }
+}

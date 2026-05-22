@@ -199,6 +199,105 @@
             <trans-unit id="card_item.tab.link">
                 <source>Link</source>
             </trans-unit>
+            <!-- GSAP Card Stack content element -->
+            <trans-unit id="ce.card_stack">
+                <source>Card Stack</source>
+            </trans-unit>
+            <trans-unit id="ce.card_stack.description">
+                <source>GSAP-animated stacked deck of cards with prev/next navigation</source>
+            </trans-unit>
+            <trans-unit id="card_stack.items">
+                <source>Stack Cards</source>
+            </trans-unit>
+            <!-- Stack card model -->
+            <trans-unit id="model.stack_card">
+                <source>Stack Card</source>
+            </trans-unit>
+            <trans-unit id="stack_card.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="stack_card.subtitle">
+                <source>Subtitle / Eyebrow</source>
+            </trans-unit>
+            <trans-unit id="stack_card.body">
+                <source>Body Text</source>
+            </trans-unit>
+            <trans-unit id="stack_card.image">
+                <source>Image</source>
+            </trans-unit>
+            <!-- GSAP Flip Carousel content element -->
+            <trans-unit id="ce.flip_carousel">
+                <source>Flip Carousel</source>
+            </trans-unit>
+            <trans-unit id="ce.flip_carousel.description">
+                <source>Filterable grid of cards with GSAP Flip animation on category filter</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel.tab.config">
+                <source>Flip Carousel Config</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel.items">
+                <source>Carousel Items</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Flip carousel item model -->
+            <trans-unit id="model.flip_carousel_item">
+                <source>Carousel Item</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.subtitle">
+                <source>Subtitle</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.category">
+                <source>Category (for filter)</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.body">
+                <source>Body Text</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.link">
+                <source>Link</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.link_label">
+                <source>Link Label</source>
+            </trans-unit>
+            <trans-unit id="flip_carousel_item.tab.link">
+                <source>Link</source>
+            </trans-unit>
+            <!-- GSAP Flip Gallery content element -->
+            <trans-unit id="ce.flip_gallery">
+                <source>Flip Gallery</source>
+            </trans-unit>
+            <trans-unit id="ce.flip_gallery.description">
+                <source>Image grid with GSAP Flip lightbox expansion on click</source>
+            </trans-unit>
+            <trans-unit id="flip_gallery.tab.config">
+                <source>Flip Gallery Config</source>
+            </trans-unit>
+            <trans-unit id="flip_gallery.items">
+                <source>Gallery Images</source>
+            </trans-unit>
+            <trans-unit id="flip_gallery.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Gallery item model -->
+            <trans-unit id="model.gallery_item">
+                <source>Gallery Image</source>
+            </trans-unit>
+            <trans-unit id="gallery_item.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="gallery_item.caption">
+                <source>Caption</source>
+            </trans-unit>
+            <trans-unit id="gallery_item.image">
+                <source>Image</source>
+            </trans-unit>
             <!-- Bootstrap Accordion content element -->
             <trans-unit id="ce.bs_accordion">
                 <source>Bootstrap Accordion</source>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 2x2 image grid -->
+    <rect x="1" y="1" width="10" height="10" rx="1.5"/>
+    <rect x="13" y="1" width="10" height="10" rx="1.5"/>
+    <rect x="1" y="13" width="10" height="10" rx="1.5"/>
+    <rect x="13" y="13" width="10" height="10" rx="1.5"/>
+    <!-- Mountain/image icon on top-left -->
+    <polyline points="1 8 4 5 7 8 9 6.5 11 8"/>
+    <circle cx="3.5" cy="4" r="1" fill="currentColor" stroke="none"/>
+    <!-- Mountain icon on bottom-right -->
+    <polyline points="13 20 16 17 19 20 21 18.5 23 20"/>
+    <circle cx="15.5" cy="16" r="1" fill="currentColor" stroke="none"/>
+</svg>

@@ -510,6 +510,165 @@ $GLOBALS['TCA']['tt_content']['types']['conn_wiki'] = [
     ',
 ];
 
+// ─── GSAP Card Stack ──────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_card_stack'] = 'conn-ce-card-stack';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack',
+    'value' => 'conn_card_stack',
+    'icon'  => 'conn-ce-card-stack',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_card_stack_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_stack.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_stack_card',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 50,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_card_stack_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_stack.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/CardStack.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_card_stack'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_card_stack_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_stack.tab.config,
+            tx_conn_elements_card_stack_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── GSAP Flip Carousel ───────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_flip_carousel'] = 'conn-ce-flip-carousel';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel',
+    'value' => 'conn_flip_carousel',
+    'icon'  => 'conn-ce-flip-carousel',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_flip_carousel_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_flip_carousel_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 100,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_flip_carousel_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/FlipCarousel.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_flip_carousel'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_flip_carousel_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.tab.config,
+            tx_conn_elements_flip_carousel_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── GSAP Flip Gallery ────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_flip_gallery'] = 'conn-ce-flip-gallery';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery',
+    'value' => 'conn_flip_gallery',
+    'icon'  => 'conn-ce-flip-gallery',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_flip_gallery_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_gallery_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 200,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_flip_gallery_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/FlipGallery.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_flip_gallery'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_flip_gallery_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.tab.config,
+            tx_conn_elements_flip_gallery_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
 // ─── Bootstrap Grid containers (b13/container) ───────────────────
 $registry = GeneralUtility::makeInstance(Registry::class);
 

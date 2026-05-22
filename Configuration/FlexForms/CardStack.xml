@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.textPosition>
+                        <label>Text Position</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>bottom</default>
+                            <items>
+                                <numIndex index="0"><label>Bottom (default)</label><value>bottom</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Top</label><value>top</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.textPosition>
+                    <settings.textAlign>
+                        <label>Text Alignment</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>left</default>
+                            <items>
+                                <numIndex index="0"><label>Left (default)</label><value>left</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Right</label><value>right</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.textAlign>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-flip-gallery-css"
+    href="EXT:conn_elements/Resources/Public/Css/flip-gallery.css" />
+<f:asset.script identifier="conn-elements-flip-gallery-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/flip-gallery.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-flip-gallery conn-flip-gallery--pos-{settings.textPosition} conn-flip-gallery--align-{settings.textAlign}" id="conn-flip-gallery-{data.uid}">
+    <div class="container-fluid">
+
+        <f:if condition="{items}">
+            <f:then>
+                <div class="conn-flip-gallery__boxes-container row g-3">
+                    <f:for each="{items}" as="item">
+                        <f:render partial="FlipGallery/Item" arguments="{item: item, colClass: settings.colClass}" />
+                    </f:for>
+                </div>
+                <div class="conn-flip-gallery__modal" role="dialog" aria-modal="true">
+                    <div class="conn-flip-gallery__overlay"></div>
+                    <button class="conn-flip-gallery__modal-prev" type="button" aria-label="Previous image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                    </button>
+                    <div class="conn-flip-gallery__content"></div>
+                    <button class="conn-flip-gallery__modal-next" type="button" aria-label="Next image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No images added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

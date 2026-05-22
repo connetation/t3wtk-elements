@@ -1,0 +1,135 @@
+// ─────────────────────────────────────────────
+// GSAP Flip Carousel (Caterpillar) Content Element
+// ─────────────────────────────────────────────
+
+.frame-type-conn_flip_carousel header {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        letter-spacing: -0.025em;
+        color: var(--conn-text);
+    }
+}
+
+.conn-flip-carousel {
+    background: var(--conn-bg);
+
+    // ── Flex track ───────────────────────────────
+    &__track {
+        --conn-items: 4;
+        display: flex;
+        gap: 8px;
+        overflow: hidden;
+        touch-action: pan-y; // allow vertical scroll, handle horizontal in JS
+    }
+
+    // ── Individual item ──────────────────────────
+    &__item {
+        flex: 0 0 calc((100% - (var(--conn-items) - 1) * 8px) / var(--conn-items));
+        min-width: 0;
+        position: relative;
+
+        &.hide { display: none; }
+    }
+
+    // ── Image aspect-ratio wrapper ───────────────
+    &__img-wrap {
+        position: relative;
+        width: 100%;
+        padding-top: 150%;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+    }
+
+    &__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    // ── Text overlay (default: bottom) ──────────
+    &__item-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.875rem 1rem 0.75rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, transparent 100%);
+        color: #fff;
+        pointer-events: none;
+    }
+
+    &__item-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    &__item-subtitle {
+        font-size: 0.75rem;
+        opacity: 0.8;
+        margin: 0 0 0.2rem;
+        line-height: 1.3;
+    }
+
+    // ── Position modifiers ───────────────────────
+    &--pos-top &__item-body {
+        top: 0;
+        bottom: auto;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, transparent 100%);
+    }
+
+    &--pos-center &__item-body {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.55);
+        padding: 1rem;
+    }
+
+    // ── Alignment modifiers ──────────────────────
+    &--align-center &__item-body { text-align: center; }
+    &--align-right  &__item-body { text-align: right; }
+
+    // ── Navigation row ───────────────────────────
+    &__nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50rem;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+        color: var(--conn-text-muted);
+        cursor: pointer;
+        transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease,
+            box-shadow 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--conn-surface-hover);
+            border-color: var(--conn-border-strong);
+            color: var(--conn-accent);
+            box-shadow: var(--conn-shadow-card);
+            outline: none;
+        }
+
+        svg { display: block; }
+    }
+}

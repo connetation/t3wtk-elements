@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-card-stack__card" data-index="{index}">
+    <div class="conn-card-stack__img-wrap">
+        <f:if condition="{item.imageFile}">
+            <f:image image="{item.imageFile}"
+                     class="conn-card-stack__img"
+                     alt="{item.title}"
+                     width="600" />
+        </f:if>
+        <div class="conn-card-stack__card-body">
+            <f:if condition="{item.subtitle}">
+                <p class="conn-card-stack__item-subtitle">{item.subtitle}</p>
+            </f:if>
+            <p class="conn-card-stack__item-title">{item.title}</p>
+        </div>
+    </div>
+</div>
+
+</html>

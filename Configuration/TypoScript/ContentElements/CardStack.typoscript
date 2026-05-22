@@ -1,0 +1,12 @@
+tt_content.conn_card_stack =< lib.contentElement
+tt_content.conn_card_stack {
+    templateName = CardStack
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\CardStackProcessor
+        10 {
+            fieldName = tx_conn_elements_card_stack_items
+            as = items
+        }
+    }
+}

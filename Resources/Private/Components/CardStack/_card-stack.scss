@@ -1,0 +1,141 @@
+// ─────────────────────────────────────────────
+// GSAP Card Stack Content Element
+// ─────────────────────────────────────────────
+
+.frame-type-conn_card_stack header {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        letter-spacing: -0.025em;
+        color: var(--conn-text);
+    }
+}
+
+.conn-card-stack {
+    background: var(--conn-bg);
+
+    // ── Deck container ───────────────────────────
+    &__deck {
+        position: relative;
+        width: min(360px, calc(100% - 80px));
+        margin: 80px auto 0;
+        min-height: 200px;
+        touch-action: pan-y; // allow vertical scroll, handle horizontal in JS
+    }
+
+    // ── Card wrapper (JS sets left/top/zIndex) ──
+    &__card {
+        position: absolute;
+        width: 100%;
+    }
+
+    // ── Image aspect-ratio container (2:3 portrait) ──
+    &__img-wrap {
+        position: relative;
+        width: 100%;
+        padding-top: 150%;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+    }
+
+    &__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    // ── Text overlay (default: bottom) ──────────
+    &__card-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.875rem 1rem 0.75rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, transparent 100%);
+        color: #fff;
+        pointer-events: none;
+    }
+
+    &__item-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    &__item-subtitle {
+        font-size: 0.75rem;
+        opacity: 0.8;
+        margin: 0 0 0.2rem;
+        line-height: 1.3;
+    }
+
+    // ── Position modifiers ───────────────────────
+    &--pos-top &__card-body {
+        top: 0;
+        bottom: auto;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, transparent 100%);
+    }
+
+    &--pos-center &__card-body {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.55);
+        padding: 1rem;
+    }
+
+    // ── Alignment modifiers ──────────────────────
+    &--align-center &__card-body { text-align: center; }
+    &--align-right  &__card-body { text-align: right; }
+
+    // ── Navigation row ───────────────────────────
+    &__nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50rem;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+        color: var(--conn-text-muted);
+        cursor: pointer;
+        transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease,
+            box-shadow 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--conn-surface-hover);
+            border-color: var(--conn-border-strong);
+            color: var(--conn-accent);
+            box-shadow: var(--conn-shadow-card);
+            outline: none;
+        }
+
+        svg { display: block; }
+    }
+
+    &__counter {
+        font-size: 0.875rem;
+        color: var(--conn-text-muted);
+        min-width: 3rem;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+    }
+}
