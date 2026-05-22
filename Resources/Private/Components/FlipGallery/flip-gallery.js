@@ -23,7 +23,8 @@ const initFlipGallery = (container) => {
 
     if (!boxes.length || !modal || !modalContent) return;
 
-    let boxIndex = undefined;
+    let boxIndex     = undefined;
+    let isNavigating = false;
 
     // swipeConsumed must be declared before the click handlers that reference it
     let swipeConsumed = false;
@@ -59,8 +60,9 @@ const initFlipGallery = (container) => {
     });
 
     // ─── Navigate prev / next ─────────────────────────────────────────
+    // Simple slide+fade — Flip is only used for open/close, not navigation.
     const navigateTo = (direction) => {
-        if (boxIndex === undefined) return;
+        if (boxIndex === undefined || isNavigating) return;
         const current = modalContent.querySelector('.conn-flip-gallery__box-content');
         if (!current) return;
 
@@ -68,15 +70,25 @@ const initFlipGallery = (container) => {
         const nextContent = boxes[nextIndex].querySelector('.conn-flip-gallery__box-content');
         if (!nextContent) return;
 
-        const stateOut = Flip.getState(current);
-        const stateIn  = Flip.getState(nextContent);
+        isNavigating = true;
 
-        boxes[boxIndex].appendChild(current);
-        boxIndex = nextIndex;
-        modalContent.appendChild(nextContent);
-
-        Flip.from(stateOut, { duration: 0.5, ease: 'power1.inOut', absolute: true });
-        Flip.from(stateIn,  { duration: 0.5, ease: 'power1.inOut' });
+        gsap.to(current, {
+            x: direction > 0 ? -50 : 50,
+            opacity: 0,
+            duration: 0.2,
+            ease: 'power2.in',
+            onComplete: () => {
+                gsap.set(current, { x: 0, opacity: 1 });
+                boxes[boxIndex].appendChild(current);
+                boxIndex = nextIndex;
+                modalContent.appendChild(nextContent);
+                gsap.fromTo(nextContent,
+                    { x: direction > 0 ? 50 : -50, opacity: 0 },
+                    { x: 0, opacity: 1, duration: 0.25, ease: 'power2.out',
+                      onComplete: () => { isNavigating = false; } }
+                );
+            },
+        });
     };
 
     if (btnPrev) btnPrev.addEventListener('click', () => navigateTo(-1));
