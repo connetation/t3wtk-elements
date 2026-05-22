@@ -18,6 +18,8 @@ const config = {
         'card-stack':      'Resources/Private/Components/CardStack/card-stack.js',
         'flip-carousel':   'Resources/Private/Components/FlipCarousel/flip-carousel.js',
         'flip-gallery':    'Resources/Private/Components/FlipGallery/flip-gallery.js',
+        'navbar-megamenu': 'Resources/Private/Components/Navbar/navbar-megamenu.js',
+        'navbar-sidebar':  'Resources/Private/Components/Navbar/navbar-sidebar.js',
     },
     bundle:    true,
     splitting: true,
