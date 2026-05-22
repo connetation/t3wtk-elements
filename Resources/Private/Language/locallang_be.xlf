@@ -71,7 +71,7 @@
                 <source>Full-width image slider with text overlay and CTA button</source>
             </trans-unit>
             <trans-unit id="hero_slider.tab.config">
-                <source>Hero Slider Config</source>
+                <source>Hero Slider Settings</source>
             </trans-unit>
             <trans-unit id="hero_slider.items">
                 <source>Slides</source>
@@ -87,7 +87,7 @@
                 <source>Full-height image slider with interactive thumbnail strip</source>
             </trans-unit>
             <trans-unit id="thumbs_slider.tab.config">
-                <source>Thumbnails Slider Config</source>
+                <source>Thumbnails Slider Settings</source>
             </trans-unit>
             <trans-unit id="thumbs_slider.items">
                 <source>Slides</source>
@@ -103,7 +103,7 @@
                 <source>Full-height slider with depth parallax effect on images and text</source>
             </trans-unit>
             <trans-unit id="parallax_slider.tab.config">
-                <source>Parallax Slider Config</source>
+                <source>Parallax Slider Settings</source>
             </trans-unit>
             <trans-unit id="parallax_slider.bg_image">
                 <source>Background Image</source>
@@ -122,7 +122,7 @@
                 <source>Responsive card slider with configurable slides per view</source>
             </trans-unit>
             <trans-unit id="slider.tab.config">
-                <source>Slider Config</source>
+                <source>Slider Settings</source>
             </trans-unit>
             <trans-unit id="slider.items">
                 <source>Slides</source>
@@ -163,7 +163,7 @@
                 <source>Responsive grid of Bootstrap cards with optional images and links</source>
             </trans-unit>
             <trans-unit id="card_group.tab.config">
-                <source>Card Group Config</source>
+                <source>Card Group Settings</source>
             </trans-unit>
             <trans-unit id="card_group.items">
                 <source>Cards</source>
@@ -210,7 +210,7 @@
                 <source>Stack Cards</source>
             </trans-unit>
             <trans-unit id="card_stack.tab.config">
-                <source>Display Settings</source>
+                <source>Card Stack Settings</source>
             </trans-unit>
             <trans-unit id="card_stack.settings">
                 <source>Display Settings</source>
@@ -239,7 +239,7 @@
                 <source>Filterable grid of cards with GSAP Flip animation on category filter</source>
             </trans-unit>
             <trans-unit id="flip_carousel.tab.config">
-                <source>Flip Carousel Config</source>
+                <source>Flip Carousel Settings</source>
             </trans-unit>
             <trans-unit id="flip_carousel.items">
                 <source>Carousel Items</source>
@@ -283,7 +283,7 @@
                 <source>Image grid with GSAP Flip lightbox expansion on click</source>
             </trans-unit>
             <trans-unit id="flip_gallery.tab.config">
-                <source>Flip Gallery Config</source>
+                <source>Flip Gallery Settings</source>
             </trans-unit>
             <trans-unit id="flip_gallery.items">
                 <source>Gallery Images</source>
@@ -312,7 +312,7 @@
                 <source>Collapsible content panels using Bootstrap 5 accordion</source>
             </trans-unit>
             <trans-unit id="accordion.tab.config">
-                <source>Accordion Config</source>
+                <source>Accordion Settings</source>
             </trans-unit>
             <trans-unit id="accordion.items">
                 <source>Accordion Items</source>
@@ -338,7 +338,7 @@
                 <source>Interactive service overview with filter and navigation</source>
             </trans-unit>
             <trans-unit id="dashboard.tab.config">
-                <source>Dashboard Config</source>
+                <source>Dashboard Settings</source>
             </trans-unit>
             <trans-unit id="dashboard.categories">
                 <source>Categories</source>
@@ -393,7 +393,7 @@
                 <source>Knowledge base with pages, search and navigation</source>
             </trans-unit>
             <trans-unit id="wiki.tab.config">
-                <source>Wiki Config</source>
+                <source>Wiki Settings</source>
             </trans-unit>
             <trans-unit id="wiki.wiki_id">
                 <source>Wiki Directory</source>
