@@ -11,12 +11,14 @@
     "dev": "npm run dev:scss & npm run dev:js",
     "dev:scss": "sass --watch Resources/Private/Components/Dashboard/index.scss:Resources/Public/Css/dashboard.css Resources/Private/Components/Wiki/index.scss:Resources/Public/Css/wiki.css Resources/Private/Components/Accordion/index.scss:Resources/Public/Css/accordion.css Resources/Private/Components/CardGroup/index.scss:Resources/Public/Css/card-group.css Resources/Private/Components/HeroSlider/index.scss:Resources/Public/Css/hero-slider.css Resources/Private/Components/Slider/index.scss:Resources/Public/Css/slider.css Resources/Private/Components/ThumbsSlider/index.scss:Resources/Public/Css/thumbs-slider.css Resources/Private/Components/ParallaxSlider/index.scss:Resources/Public/Css/parallax-slider.css Resources/Private/Components/CardStack/index.scss:Resources/Public/Css/card-stack.css Resources/Private/Components/FlipCarousel/index.scss:Resources/Public/Css/flip-carousel.css Resources/Private/Components/FlipGallery/index.scss:Resources/Public/Css/flip-gallery.css Resources/Private/Components/Carousel/index.scss:Resources/Public/Css/carousel.css",
     "dev:js": "node build.mjs --watch",
+    "typecheck": "tsc --noEmit",
     "postinstall": "npm rebuild esbuild"
   },
   "devDependencies": {
     "esbuild": "^0.21.0",
     "gsap": "^3.15.0",
     "sass": "^1.77.0",
-    "swiper": "^12.1.4"
+    "swiper": "^12.1.4",
+    "typescript": "^6.0.3"
   }
 }

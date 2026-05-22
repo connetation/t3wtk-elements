@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 
-const animateDashboard = (container) => {
+const animateDashboard = (container: HTMLElement): void => {
     const stats = container.querySelectorAll('.dashboard__stat');
     const items = container.querySelectorAll('.dashboard__project-item:not(.dashboard__empty)');
 
@@ -29,11 +29,11 @@ const animateDashboard = (container) => {
 };
 
 // ─── Self-init ───────────────────────────────────────────────────────────────
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.dashboard').forEach(animateDashboard);
+    document.querySelectorAll('.dashboard').forEach(el => animateDashboard(el as HTMLElement));
 });

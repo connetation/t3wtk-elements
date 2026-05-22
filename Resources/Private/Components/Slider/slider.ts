@@ -5,8 +5,8 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-const initSlider = (container) => {
-    const el = container.querySelector('.conn-slider__swiper');
+const initSlider = (container: HTMLElement): void => {
+    const el = container.querySelector('.conn-slider__swiper') as HTMLElement | null;
     if (!el) return;
 
     const slidesPerView  = parseInt(container.dataset.slidesPerView || '3', 10);
@@ -68,11 +68,11 @@ const initSlider = (container) => {
     });
 };
 
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-slider').forEach(initSlider);
+    document.querySelectorAll('.conn-slider').forEach(el => initSlider(el as HTMLElement));
 });

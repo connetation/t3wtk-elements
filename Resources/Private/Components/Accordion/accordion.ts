@@ -10,10 +10,10 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[id^="conn-accordion-"]').forEach(initAccordion);
+    document.querySelectorAll('[id^="conn-accordion-"]').forEach(el => initAccordion(el as HTMLElement));
 });
 
-function initAccordion(accordion) {
+function initAccordion(accordion: HTMLElement): void {
     // Mutual-exclusion accordions (data-bs-parent present) are self-managing.
     const hasMutualExclusion = accordion.querySelector('[data-bs-parent]') !== null;
     if (hasMutualExclusion) return;
@@ -22,7 +22,7 @@ function initAccordion(accordion) {
 
     // Restore previously open panels
     try {
-        const saved = JSON.parse(sessionStorage.getItem(storageKey) ?? '[]');
+        const saved = JSON.parse(sessionStorage.getItem(storageKey) ?? '[]') as string[];
         saved.forEach(panelId => {
             const panel = accordion.querySelector(`#${panelId}`);
             const btn   = accordion.querySelector(`[data-bs-target="#${panelId}"]`);
@@ -39,7 +39,7 @@ function initAccordion(accordion) {
     accordion.addEventListener('hidden.bs.collapse', () => persistState(accordion, storageKey));
 }
 
-function persistState(accordion, storageKey) {
+function persistState(accordion: HTMLElement, storageKey: string): void {
     const openIds = [...accordion.querySelectorAll('.accordion-collapse.show')]
         .map(el => el.id);
     sessionStorage.setItem(storageKey, JSON.stringify(openIds));

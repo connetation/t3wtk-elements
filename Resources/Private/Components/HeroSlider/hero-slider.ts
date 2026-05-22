@@ -5,8 +5,8 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 
-const initHeroSlider = (container) => {
-    const el = container.querySelector('.conn-hero-slider__swiper');
+const initHeroSlider = (container: HTMLElement): void => {
+    const el = container.querySelector('.conn-hero-slider__swiper') as HTMLElement | null;
     if (!el) return;
 
     const effect         = container.dataset.effect || 'fade';
@@ -25,7 +25,7 @@ const initHeroSlider = (container) => {
         effect,
         loop: true,
         speed: 800,
-        crossFade: effect === 'fade',
+        fadeEffect: { crossFade: effect === 'fade' },
 
         navigation: withNav ? {
             prevEl: container.querySelector('.conn-hero-slider__btn-prev'),
@@ -50,11 +50,11 @@ const initHeroSlider = (container) => {
     });
 };
 
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-hero-slider').forEach(initHeroSlider);
+    document.querySelectorAll('.conn-hero-slider').forEach(el => initHeroSlider(el as HTMLElement));
 });

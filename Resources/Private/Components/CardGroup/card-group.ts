@@ -5,7 +5,7 @@
 
 import { gsap } from 'gsap';
 
-const initCardGroup = (container) => {
+const initCardGroup = (container: HTMLElement): void => {
     const cards = container.querySelectorAll('.conn-card-group__card');
     if (!cards.length) return;
 
@@ -20,11 +20,11 @@ const initCardGroup = (container) => {
 };
 
 // ─── Self-init ───────────────────────────────────────────────────────────────
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-card-group').forEach(initCardGroup);
+    document.querySelectorAll('.conn-card-group').forEach(el => initCardGroup(el as HTMLElement));
 });

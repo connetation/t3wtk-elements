@@ -2,36 +2,37 @@
  * Connetation Elements – Wiki content element
  */
 
-const initWiki = (container) => {
+const initWiki = (container: HTMLElement): void => {
     const uid            = container.id.replace('wiki-', '').replace('-container', '');
-    const navItems       = container.querySelectorAll('.wiki__nav-item');
-    const panels         = container.querySelectorAll('.wiki__page-panel');
-    const searchInput    = container.querySelector('.conn-filter__search');
-    const categoryItems  = container.querySelectorAll('.conn-filter__category-item');
+    const navItems       = container.querySelectorAll<HTMLElement>('.wiki__nav-item');
+    const panels         = container.querySelectorAll<HTMLElement>('.wiki__page-panel');
+    const searchInput    = container.querySelector('.conn-filter__search') as HTMLInputElement | null;
+    const categoryItems  = container.querySelectorAll<HTMLElement>('.conn-filter__category-item');
     const categoryLabel  = container.querySelector('.conn-filter__category-label');
-    const tagBadges      = container.querySelectorAll('.conn-filter__tag-badge');
+    const tagBadges      = container.querySelectorAll<HTMLElement>('.conn-filter__tag-badge');
     const resetBtn       = container.querySelector('.conn-filter__reset');
     const navEmpty       = container.querySelector('.wiki__nav-empty');
 
     let currentCategory = 'all';
     let currentSearch   = '';
-    let selectedTags    = new Set();
+    let selectedTags    = new Set<string>();
 
-    const setCategoryLabel = (item) => {
+    const setCategoryLabel = (item: HTMLElement): void => {
         if (!categoryLabel) return;
-        categoryLabel.textContent = item.dataset.category === 'all'
-            ? (categoryLabel.dataset.default || item.textContent.trim())
+        const label = categoryLabel as HTMLElement;
+        label.textContent = item.dataset.category === 'all'
+            ? (label.dataset.default || item.textContent.trim())
             : item.textContent.trim();
     };
 
     // ─── Precompute full text of each page panel for search ─────────────────
-    const panelText = new Map();
+    const panelText = new Map<string | undefined, string>();
     panels.forEach(panel => {
-        panelText.set(panel.dataset.pageUid, panel.textContent.toLowerCase());
+        panelText.set(panel.dataset.pageUid, panel.textContent?.toLowerCase() ?? '');
     });
 
     // ─── Show a specific page panel ─────────────────────────────────────────
-    const showPage = (pageUid) => {
+    const showPage = (pageUid: string | undefined): void => {
         panels.forEach(p => {
             const active = p.dataset.pageUid === pageUid;
             p.classList.toggle('is-active', active);
@@ -42,16 +43,16 @@ const initWiki = (container) => {
     };
 
     // ─── Show/hide reset button ──────────────────────────────────────────────
-    const updateResetBtn = () => {
+    const updateResetBtn = (): void => {
         if (!resetBtn) return;
         const dirty = currentCategory !== 'all' || selectedTags.size > 0 || currentSearch.trim() !== '';
-        resetBtn.hidden = !dirty;
+        (resetBtn as HTMLElement).hidden = !dirty;
     };
 
     // ─── Apply all filters ───────────────────────────────────────────────────
-    const applyFilter = () => {
+    const applyFilter = (): void => {
         const q = currentSearch.toLowerCase().trim();
-        let firstVisible = null;
+        let firstVisible: string | undefined = undefined;
 
         navItems.forEach(item => {
             const catOk    = currentCategory === 'all' || item.dataset.category === currentCategory;
@@ -68,13 +69,13 @@ const initWiki = (container) => {
             if (visible && !firstVisible) firstVisible = item.dataset.pageUid;
         });
 
-        if (navEmpty) navEmpty.classList.toggle('d-none', firstVisible !== null);
+        if (navEmpty) navEmpty.classList.toggle('d-none', firstVisible !== undefined);
         if (firstVisible) showPage(firstVisible);
         updateResetBtn();
     };
 
     // ─── Reset all filters ───────────────────────────────────────────────────
-    const resetFilters = () => {
+    const resetFilters = (): void => {
         currentCategory = 'all';
         currentSearch   = '';
         selectedTags.clear();
@@ -102,11 +103,11 @@ const initWiki = (container) => {
 
     // ─── Category dropdown click ─────────────────────────────────────────────
     categoryItems.forEach(item => {
-        item.addEventListener('click', e => {
+        item.addEventListener('click', (e: MouseEvent) => {
             e.preventDefault();
             categoryItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
-            currentCategory = item.dataset.category;
+            currentCategory = item.dataset.category ?? 'all';
             setCategoryLabel(item);
             updateResetBtn();
             applyFilter();
@@ -116,7 +117,7 @@ const initWiki = (container) => {
     // ─── Tag badge click (toggle, multi-select) ──────────────────────────────
     tagBadges.forEach(badge => {
         badge.addEventListener('click', () => {
-            const tagName = badge.dataset.tag.toLowerCase();
+            const tagName = (badge.dataset.tag ?? '').toLowerCase();
             if (selectedTags.has(tagName)) {
                 selectedTags.delete(tagName);
                 badge.classList.remove('is-active');
@@ -157,10 +158,11 @@ const initWiki = (container) => {
             <button type="button" class="wiki__copy-btn" aria-label="Copy code">${ICON_COPY} Copy</button>`;
         wrap.insertBefore(header, pre);
 
-        header.querySelector('.wiki__copy-btn').addEventListener('click', () => {
+        header.querySelector('.wiki__copy-btn')?.addEventListener('click', () => {
             const text = pre.querySelector('code')?.textContent ?? '';
             navigator.clipboard?.writeText(text).then(() => {
-                const btn = header.querySelector('.wiki__copy-btn');
+                const btn = header.querySelector<HTMLButtonElement>('.wiki__copy-btn');
+                if (!btn) return;
                 btn.innerHTML = `${ICON_CHECK} Copied!`;
                 btn.classList.add('is-copied');
                 setTimeout(() => {
@@ -176,11 +178,11 @@ const initWiki = (container) => {
 };
 
 // ─── Self-init ───────────────────────────────────────────────────────────────
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.wiki').forEach(initWiki);
+    document.querySelectorAll('.wiki').forEach(el => initWiki(el as HTMLElement));
 });

@@ -5,9 +5,9 @@
 import Swiper from 'swiper';
 import { Navigation, Autoplay, Thumbs, FreeMode } from 'swiper/modules';
 
-const initThumbsSlider = (container) => {
-    const mainEl   = container.querySelector('.conn-thumbs-slider__main');
-    const thumbsEl = container.querySelector('.conn-thumbs-slider__thumbs');
+const initThumbsSlider = (container: HTMLElement): void => {
+    const mainEl   = container.querySelector('.conn-thumbs-slider__main') as HTMLElement | null;
+    const thumbsEl = container.querySelector('.conn-thumbs-slider__thumbs') as HTMLElement | null;
     if (!mainEl || !thumbsEl) return;
 
     const thumbsPerView = parseInt(container.dataset.thumbsPerView || '4', 10);
@@ -54,11 +54,11 @@ const initThumbsSlider = (container) => {
     });
 };
 
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-thumbs-slider').forEach(initThumbsSlider);
+    document.querySelectorAll('.conn-thumbs-slider').forEach(el => initThumbsSlider(el as HTMLElement));
 });

@@ -14,24 +14,24 @@ const HEADING_SEL = 'h1, h2, h3, h4, .ce-subheader';
 
 // All <p> and <li> in the frame that aren't part of the heading block and don't
 // belong to a nested child frame (e.g. grid column CEs have their own frames).
-function getBodyElements(frame) {
-    return [...frame.querySelectorAll('p:not(.ce-subheader), li')]
+function getBodyElements(frame: HTMLElement): HTMLElement[] {
+    return [...frame.querySelectorAll<HTMLElement>('p:not(.ce-subheader), li')]
         .filter(el => !el.closest('header') && el.closest('.frame') === frame);
 }
 
-const scrollTriggerConfig = (el) => ({
+const scrollTriggerConfig = (el: HTMLElement) => ({
     trigger: el,
     start: 'top 88%',
     once: true,
 });
 
-function whenVisible(el, fn) {
+function whenVisible(el: HTMLElement, fn: () => void): void {
     ScrollTrigger.create({ ...scrollTriggerConfig(el), onEnter: fn });
 }
 
 // ── Words Fade In ─────────────────────────────────────────────────
 // Each word slides up and fades in, staggered left-to-right.
-function animateWords(headings) {
+function animateWords(headings: HTMLElement[]): void {
     headings.forEach((el) => {
         const split = SplitText.create(el, { type: 'words' });
         whenVisible(el, () => {
@@ -49,7 +49,7 @@ function animateWords(headings) {
 
 // ── Lines Rise Up ─────────────────────────────────────────────────
 // Each full line of text rises and fades in sequentially.
-function animateLines(headings) {
+function animateLines(headings: HTMLElement[]): void {
     headings.forEach((el) => {
         const split = SplitText.create(el, { type: 'lines' });
         whenVisible(el, () => {
@@ -67,7 +67,7 @@ function animateLines(headings) {
 
 // ── Characters Cascade ────────────────────────────────────────────
 // Characters drop in one-by-one with a subtle 3-D flip.
-function animateChars(headings) {
+function animateChars(headings: HTMLElement[]): void {
     headings.forEach((el) => {
         const split = SplitText.create(el, { type: 'chars,words' });
         whenVisible(el, () => {
@@ -86,12 +86,12 @@ function animateChars(headings) {
 }
 
 // ── Init ──────────────────────────────────────────────────────────
-function init() {
-    document.querySelectorAll('.frame[data-text-animation]').forEach((frame) => {
+function init(): void {
+    document.querySelectorAll<HTMLElement>('.frame[data-text-animation]').forEach((frame) => {
         const type = frame.dataset.textAnimation;
         if (!type) return;
 
-        const headings = [...frame.querySelectorAll(HEADING_SEL)];
+        const headings = [...frame.querySelectorAll<HTMLElement>(HEADING_SEL)];
         const body     = getBodyElements(frame);
 
         // Swiper slides have their own CSS entrance animations — skip them.

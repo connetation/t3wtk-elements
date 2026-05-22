@@ -1,13 +1,13 @@
 import { gsap } from 'gsap';
 
-(function init() {
-    const nav = document.getElementById('mainNav');
+(function init(): void {
+    const nav = document.getElementById('mainNav') as HTMLElement | null;
     if (!nav || !nav.classList.contains('conn-navbar-sidebar')) return;
 
     const direction = nav.dataset.sidebarDirection || 'left';
-    const sidebar   = document.getElementById('mainNavSidebar');
-    const overlay   = document.getElementById('mainNavOverlay');
-    const toggler   = nav.querySelector('.conn-sidebar-toggler');
+    const sidebar   = document.getElementById('mainNavSidebar') as HTMLElement | null;
+    const overlay   = document.getElementById('mainNavOverlay') as HTMLElement | null;
+    const toggler   = nav.querySelector<HTMLElement>('.conn-sidebar-toggler');
 
     if (!sidebar || !overlay || !toggler) return;
 
@@ -24,7 +24,7 @@ import { gsap } from 'gsap';
     const xOff      = direction === 'left' ? '-100%' : '100%';
     let isOpen = false;
 
-    const open = () => {
+    const open = (): void => {
         if (isOpen) return;
         isOpen = true;
         if (!allowScroll) document.body.style.overflow = 'hidden';
@@ -44,7 +44,7 @@ import { gsap } from 'gsap';
           );
     };
 
-    const close = () => {
+    const close = (): void => {
         if (!isOpen) return;
         isOpen = false;
         document.body.style.overflow = '';
@@ -72,5 +72,5 @@ import { gsap } from 'gsap';
         overlay.addEventListener('click', close);
     }
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) close(); });
+    document.addEventListener('keydown', (e: KeyboardEvent) => { if (e.key === 'Escape' && isOpen) close(); });
 })();

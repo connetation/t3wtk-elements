@@ -1,22 +1,22 @@
 import { gsap } from 'gsap';
 
-(function init() {
-    const nav = document.getElementById('mainNav');
+(function init(): void {
+    const nav = document.getElementById('mainNav') as HTMLElement | null;
     if (!nav || !nav.classList.contains('conn-navbar-megamenu')) return;
 
-    const triggers = nav.querySelectorAll('.conn-megamenu-trigger');
+    const triggers = nav.querySelectorAll<HTMLElement>('.conn-megamenu-trigger');
     if (!triggers.length) return; // no items with sub-menus
 
-    let activePanel = null;
-    let closeTimer  = null;
+    let activePanel: HTMLElement | null = null;
+    let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const getPanel = (trigger) =>
-        nav.querySelector(`[data-megamenu-panel="${trigger.dataset.megamenu}"]`);
+    const getPanel = (trigger: HTMLElement): HTMLElement | null =>
+        nav.querySelector<HTMLElement>(`[data-megamenu-panel="${trigger.dataset.megamenu}"]`);
 
-    const openPanel = (panel, trigger) => {
+    const openPanel = (panel: HTMLElement, trigger: HTMLElement): void => {
         if (activePanel === panel) return;
         if (activePanel) closePanel(activePanel, true);
-        clearTimeout(closeTimer);
+        if (closeTimer) clearTimeout(closeTimer);
         activePanel = panel;
         trigger.classList.add('is-open');
         gsap.killTweensOf(panel);
@@ -27,8 +27,8 @@ import { gsap } from 'gsap';
         );
     };
 
-    const closePanel = (panel, instant = false) => {
-        const trigger = nav.querySelector(`[data-megamenu="${panel.dataset.megamenuPanel}"]`);
+    const closePanel = (panel: HTMLElement, instant = false): void => {
+        const trigger = nav.querySelector<HTMLElement>(`[data-megamenu="${panel.dataset.megamenuPanel}"]`);
         if (trigger) trigger.classList.remove('is-open');
         if (activePanel === panel) activePanel = null;
         gsap.killTweensOf(panel);
@@ -52,19 +52,19 @@ import { gsap } from 'gsap';
         if (!panel) return;
 
         trigger.addEventListener('mouseenter', () => {
-            clearTimeout(closeTimer);
+            if (closeTimer) clearTimeout(closeTimer);
             openPanel(panel, trigger);
         });
         trigger.addEventListener('mouseleave', () => {
             closeTimer = setTimeout(() => closePanel(panel), 180);
         });
-        panel.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+        panel.addEventListener('mouseenter', () => { if (closeTimer) clearTimeout(closeTimer); });
         panel.addEventListener('mouseleave', () => {
             closeTimer = setTimeout(() => closePanel(panel), 180);
         });
 
         // Touch / keyboard: click trigger link toggles panel
-        trigger.querySelector('.conn-megamenu-toggle')?.addEventListener('click', e => {
+        trigger.querySelector('.conn-megamenu-toggle')?.addEventListener('click', (e: Event) => {
             if (window.innerWidth >= 992) {
                 e.preventDefault();
                 activePanel === panel ? closePanel(panel) : openPanel(panel, trigger);
@@ -73,12 +73,12 @@ import { gsap } from 'gsap';
     });
 
     // Close when clicking outside the nav
-    document.addEventListener('click', e => {
-        if (activePanel && !nav.contains(e.target)) closePanel(activePanel);
+    document.addEventListener('click', (e: MouseEvent) => {
+        if (activePanel && !nav.contains(e.target as Node)) closePanel(activePanel);
     });
 
     // Close on Escape
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Escape' && activePanel) closePanel(activePanel);
     });
 })();

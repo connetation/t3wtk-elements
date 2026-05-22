@@ -9,18 +9,15 @@ import { Flip } from 'gsap/Flip';
 
 gsap.registerPlugin(Flip);
 
-/**
- * @param {HTMLElement} container  .conn-flip-carousel element
- */
-const initFlipCarousel = (container) => {
-    const track   = container.querySelector('.conn-flip-carousel__track');
+const initFlipCarousel = (container: HTMLElement): void => {
+    const track   = container.querySelector('.conn-flip-carousel__track') as HTMLElement | null;
     const btnNext = container.querySelector('.conn-flip-carousel__btn--next');
     const btnPrev = container.querySelector('.conn-flip-carousel__btn--prev');
 
     if (!track) return;
 
-    const cols = parseInt(track.dataset.items, 10) || 4;
-    track.style.setProperty('--conn-items', cols);
+    const cols = parseInt(track.dataset.items ?? '4', 10) || 4;
+    track.style.setProperty('--conn-items', String(cols));
 
     // Snapshot all item HTML upfront; DOM is rebuilt from this for circular reuse
     const allItems = Array.from(track.querySelectorAll('.conn-flip-carousel__item'))
@@ -42,7 +39,7 @@ const initFlipCarousel = (container) => {
     let startIndex = 0;
     let isAnimating = false;
 
-    const makeItem = (index) => {
+    const makeItem = (index: number): HTMLElement => {
         const el = document.createElement('div');
         el.className = 'conn-flip-carousel__item';
         el.innerHTML = allItems[((index % total) + total) % total];
@@ -50,14 +47,14 @@ const initFlipCarousel = (container) => {
     };
 
     // ─── Advance ──────────────────────────────────────────────────────
-    const advance = (forward) => {
+    const advance = (forward: boolean): void => {
         if (isAnimating) return;
         const items = Array.from(track.querySelectorAll('.conn-flip-carousel__item'));
         isAnimating = true;
 
         const state = Flip.getState(items);
 
-        let leaveEl;
+        let leaveEl: Element;
         if (forward) {
             track.append(makeItem(startIndex + visibleCount));
             leaveEl = items[0];
@@ -107,7 +104,7 @@ const initFlipCarousel = (container) => {
     // Cursor is set on document.body so it persists outside the track element.
     let swipeStartX = 0, isSwiping = false;
 
-    const dragStart = (e) => {
+    const dragStart = (e: PointerEvent): void => {
         if (isAnimating) return;
         if (e.pointerType === 'mouse' && e.button !== 0) return; // left button only
         swipeStartX = e.clientX;
@@ -117,7 +114,7 @@ const initFlipCarousel = (container) => {
         e.preventDefault(); // prevent text-selection during drag
     };
 
-    const dragEnd = (e) => {
+    const dragEnd = (e: PointerEvent): void => {
         if (!isSwiping) return;
         isSwiping = false;
         document.body.style.cursor = '';
@@ -126,7 +123,7 @@ const initFlipCarousel = (container) => {
         advance(dx < 0);
     };
 
-    const dragCancel = () => {
+    const dragCancel = (): void => {
         isSwiping = false;
         document.body.style.cursor = '';
     };
@@ -137,11 +134,11 @@ const initFlipCarousel = (container) => {
 };
 
 // ─── Self-init ────────────────────────────────────────────────────────────────
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-flip-carousel').forEach(initFlipCarousel);
+    document.querySelectorAll('.conn-flip-carousel').forEach(el => initFlipCarousel(el as HTMLElement));
 });

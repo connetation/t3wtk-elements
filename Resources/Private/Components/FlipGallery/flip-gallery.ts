@@ -9,21 +9,18 @@ import { Flip } from 'gsap/Flip';
 
 gsap.registerPlugin(Flip);
 
-/**
- * @param {HTMLElement} container  .conn-flip-gallery element
- */
-const initFlipGallery = (container) => {
-    const modal        = container.querySelector('.conn-flip-gallery__modal');
-    const modalContent = modal?.querySelector('.conn-flip-gallery__content');
-    const modalOverlay = modal?.querySelector('.conn-flip-gallery__overlay');
+const initFlipGallery = (container: HTMLElement): void => {
+    const modal        = container.querySelector('.conn-flip-gallery__modal') as HTMLElement | null;
+    const modalContent = modal?.querySelector('.conn-flip-gallery__content') as HTMLElement | null;
+    const modalOverlay = modal?.querySelector('.conn-flip-gallery__overlay') as HTMLElement | null;
     const btnPrev      = modal?.querySelector('.conn-flip-gallery__modal-prev');
     const btnNext      = modal?.querySelector('.conn-flip-gallery__modal-next');
-    const boxes        = Array.from(container.querySelectorAll('.conn-flip-gallery__box'));
-    const boxesContent = Array.from(container.querySelectorAll('.conn-flip-gallery__box-content'));
+    const boxes        = Array.from(container.querySelectorAll<HTMLElement>('.conn-flip-gallery__box'));
+    const boxesContent = Array.from(container.querySelectorAll<HTMLElement>('.conn-flip-gallery__box-content'));
 
     if (!boxes.length || !modal || !modalContent) return;
 
-    let boxIndex     = undefined;
+    let boxIndex: number | undefined = undefined;
     let isNavigating = false;
 
     // swipeConsumed must be declared before the click handlers that reference it
@@ -61,13 +58,13 @@ const initFlipGallery = (container) => {
 
     // ─── Navigate prev / next ─────────────────────────────────────────
     // Simple slide+fade — Flip is only used for open/close, not navigation.
-    const navigateTo = (direction) => {
+    const navigateTo = (direction: number): void => {
         if (boxIndex === undefined || isNavigating) return;
-        const current = modalContent.querySelector('.conn-flip-gallery__box-content');
+        const current = modalContent.querySelector<HTMLElement>('.conn-flip-gallery__box-content');
         if (!current) return;
 
         const nextIndex   = ((boxIndex + direction) + boxes.length) % boxes.length;
-        const nextContent = boxes[nextIndex].querySelector('.conn-flip-gallery__box-content');
+        const nextContent = boxes[nextIndex].querySelector<HTMLElement>('.conn-flip-gallery__box-content');
         if (!nextContent) return;
 
         isNavigating = true;
@@ -79,7 +76,7 @@ const initFlipGallery = (container) => {
             ease: 'power2.in',
             onComplete: () => {
                 gsap.set(current, { x: 0, opacity: 1 });
-                boxes[boxIndex].appendChild(current);
+                boxes[boxIndex as number].appendChild(current);
                 boxIndex = nextIndex;
                 modalContent.appendChild(nextContent);
                 gsap.fromTo(nextContent,
@@ -98,16 +95,16 @@ const initFlipGallery = (container) => {
     if (modalOverlay) {
         modalOverlay.addEventListener('click', () => {
             if (boxIndex === undefined) return;
-            const box = modalContent.querySelector('.conn-flip-gallery__box-content');
+            const box = modalContent.querySelector<HTMLElement>('.conn-flip-gallery__box-content');
             if (box) box.click();
         });
     }
 
     // ─── Keyboard ────────────────────────────────────────────────────
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
         if (boxIndex === undefined) return;
         if (e.key === 'Escape') {
-            const box = modalContent.querySelector('.conn-flip-gallery__box-content');
+            const box = modalContent.querySelector<HTMLElement>('.conn-flip-gallery__box-content');
             if (box) box.click();
         }
         if (e.key === 'ArrowRight') navigateTo(1);
@@ -119,12 +116,12 @@ const initFlipGallery = (container) => {
     // are still detected. isSwiping guards against unrelated pointer events.
     let swipeStartX = 0, isSwiping = false;
 
-    modal.addEventListener('pointerdown', (e) => {
+    modal.addEventListener('pointerdown', (e: PointerEvent) => {
         swipeStartX = e.clientX;
         isSwiping   = true;
     }, { passive: true });
 
-    window.addEventListener('pointerup', (e) => {
+    window.addEventListener('pointerup', (e: PointerEvent) => {
         if (!isSwiping) return;
         isSwiping = false;
         if (boxIndex === undefined) return;
@@ -139,11 +136,11 @@ const initFlipGallery = (container) => {
 };
 
 // ─── Self-init ────────────────────────────────────────────────────────────────
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-flip-gallery').forEach(initFlipGallery);
+    document.querySelectorAll('.conn-flip-gallery').forEach(el => initFlipGallery(el as HTMLElement));
 });

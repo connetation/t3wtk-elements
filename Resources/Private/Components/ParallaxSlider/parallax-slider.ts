@@ -4,14 +4,15 @@
 
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, Parallax } from 'swiper/modules';
+import type { SwiperOptions } from 'swiper/types';
 
 const BG_TRAVEL = 0.23; // fraction of slider width the bg travels across full progress (0→1)
 
-const initParallaxSlider = (container) => {
-    const el = container.querySelector('.conn-parallax-slider__swiper');
+const initParallaxSlider = (container: HTMLElement): void => {
+    const el = container.querySelector('.conn-parallax-slider__swiper') as HTMLElement | null;
     if (!el) return;
 
-    const bgEl = el.querySelector('.conn-parallax-slider__bg');
+    const bgEl = el.querySelector<HTMLElement>('.conn-parallax-slider__bg');
 
     const autoplay       = container.dataset.autoplay === '1';
     const autoplayDelay  = parseInt(container.dataset.autoplayDelay || '5000', 10);
@@ -23,7 +24,7 @@ const initParallaxSlider = (container) => {
     if (withPagination) modules.push(Pagination);
     if (autoplay)       modules.push(Autoplay);
 
-    const updateBg = (swiper, duration) => {
+    const updateBg = (swiper: Swiper, duration: number): void => {
         if (!bgEl) return;
         const offsetPx = -swiper.progress * BG_TRAVEL * swiper.width;
         bgEl.style.transitionDuration = `${duration}ms`;
@@ -65,14 +66,14 @@ const initParallaxSlider = (container) => {
                 updateBg(swiper, duration);
             },
         },
-    });
+    } as SwiperOptions);
 };
 
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-parallax-slider').forEach(initParallaxSlider);
+    document.querySelectorAll('.conn-parallax-slider').forEach(el => initParallaxSlider(el as HTMLElement));
 });

@@ -11,19 +11,16 @@ gsap.registerPlugin(Flip);
 
 const OFFSET = 20; // px offset per stack level
 
-/**
- * @param {HTMLElement} container  .conn-card-stack element
- */
-const initCardStack = (container) => {
-    const deck    = container.querySelector('.conn-card-stack__deck');
+const initCardStack = (container: HTMLElement): void => {
+    const deck    = container.querySelector('.conn-card-stack__deck') as HTMLElement | null;
     const btnPrev = container.querySelector('.conn-card-stack__btn--prev');
     const btnNext = container.querySelector('.conn-card-stack__btn--next');
     const counter = container.querySelector('.conn-card-stack__counter');
 
     if (!deck) return;
 
-    const getVisible = () =>
-        Array.from(deck.querySelectorAll(':scope > .conn-card-stack__card'))
+    const getVisible = (): HTMLElement[] =>
+        Array.from(deck.querySelectorAll<HTMLElement>(':scope > .conn-card-stack__card'))
              .filter(c => c.style.display !== 'none');
 
     if (!getVisible().length) return;
@@ -32,12 +29,12 @@ const initCardStack = (container) => {
     let currentCard  = 1;
     let isAnimating  = false;
 
-    const updateCounter = () => {
+    const updateCounter = (): void => {
         if (counter) counter.textContent = `${currentCard} / ${totalCards}`;
     };
 
     // ─── Explicit positioning (last in array = front card) ───────────
-    const positionCards = (cards) => {
+    const positionCards = (cards: HTMLElement[]): void => {
         cards.forEach((card, i) => {
             const fromFront = cards.length - 1 - i;
             gsap.set(card, {
@@ -48,7 +45,7 @@ const initCardStack = (container) => {
         });
     };
 
-    const setHeight = () => {
+    const setHeight = (): void => {
         const visible = getVisible();
         const front = visible[visible.length - 1];
         if (front) deck.style.height = front.offsetHeight + 'px';
@@ -60,7 +57,7 @@ const initCardStack = (container) => {
     window.addEventListener('resize', () => { positionCards(getVisible()); setHeight(); });
 
     // ─── Advance ──────────────────────────────────────────────────────
-    const advance = (forward) => {
+    const advance = (forward: boolean): void => {
         if (isAnimating) return;
         const cards = getVisible();
         if (cards.length <= 1) return;
@@ -72,7 +69,7 @@ const initCardStack = (container) => {
         updateCounter();
 
         const state = Flip.getState(cards);
-        let leavingCard;
+        let leavingCard: HTMLElement;
 
         if (forward) {
             leavingCard = cards[cards.length - 1];
@@ -119,7 +116,7 @@ const initCardStack = (container) => {
     // ─── Buttons + keyboard ───────────────────────────────────────────
     if (btnNext) btnNext.addEventListener('click', () => advance(true));
     if (btnPrev) btnPrev.addEventListener('click', () => advance(false));
-    container.addEventListener('keydown', (e) => {
+    container.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'ArrowRight') advance(true);
         if (e.key === 'ArrowLeft')  advance(false);
     });
@@ -129,7 +126,7 @@ const initCardStack = (container) => {
     // cursor leaves it mid-drag, giving reliable mouse drag on desktop.
     let swipeStartX = 0, isSwiping = false;
 
-    const dragStart = (e) => {
+    const dragStart = (e: PointerEvent): void => {
         if (isAnimating) return;
         if (e.pointerType === 'mouse' && e.button !== 0) return;
         swipeStartX = e.clientX;
@@ -139,7 +136,7 @@ const initCardStack = (container) => {
         e.preventDefault();
     };
 
-    const dragEnd = (e) => {
+    const dragEnd = (e: PointerEvent): void => {
         if (!isSwiping) return;
         isSwiping = false;
         document.body.style.cursor = '';
@@ -148,7 +145,7 @@ const initCardStack = (container) => {
         advance(dx < 0);
     };
 
-    const dragCancel = () => {
+    const dragCancel = (): void => {
         isSwiping = false;
         document.body.style.cursor = '';
     };
@@ -159,11 +156,11 @@ const initCardStack = (container) => {
 };
 
 // ─── Self-init ────────────────────────────────────────────────────────────────
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.conn-card-stack').forEach(initCardStack);
+    document.querySelectorAll('.conn-card-stack').forEach(el => initCardStack(el as HTMLElement));
 });

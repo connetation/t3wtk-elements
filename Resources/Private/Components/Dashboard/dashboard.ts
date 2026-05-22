@@ -2,7 +2,7 @@
  * Connetation Elements – Dashboard content element
  */
 
-const initDashboard = (container) => {
+const initDashboard = (container: HTMLElement): void => {
     const uid = container.id.replace('dashboard-', '').replace('-container', '');
 
     const grid          = document.getElementById('dashboard-' + uid + '-grid');
@@ -10,45 +10,47 @@ const initDashboard = (container) => {
     const modal         = document.getElementById('projectModal-' + uid);
     const modalTitle    = document.getElementById('projectModalLabel-' + uid);
     const modalBody     = document.getElementById('projectModalBody-' + uid);
-    const searchInput   = container.querySelector('.conn-filter__search');
-    const filterItems   = container.querySelectorAll('.dashboard__filter-item');
+    const searchInput   = container.querySelector('.conn-filter__search') as HTMLInputElement | null;
+    const filterItems   = container.querySelectorAll<HTMLElement>('.dashboard__filter-item');
     const filterLabel   = container.querySelector('.dashboard__filter-label');
-    const categoryItems = container.querySelectorAll('.conn-filter__category-item');
+    const categoryItems = container.querySelectorAll<HTMLElement>('.conn-filter__category-item');
     const categoryLabel = container.querySelector('.conn-filter__category-label');
-    const viewBtns      = container.querySelectorAll('.dashboard__view-btn');
-    const statCards     = container.querySelectorAll('.dashboard__stat[data-status]');
+    const viewBtns      = container.querySelectorAll<HTMLElement>('.dashboard__view-btn');
+    const statCards     = container.querySelectorAll<HTMLElement>('.dashboard__stat[data-status]');
     const resetBtn      = container.querySelector('.conn-filter__reset');
-    const tagBadges     = container.querySelectorAll('.conn-filter__tag-badge');
+    const tagBadges     = container.querySelectorAll<HTMLElement>('.conn-filter__tag-badge');
     const emptyEl       = grid ? grid.querySelector('.dashboard__empty') : null;
 
     let currentFilter   = 'all';
     let currentCategory = 'all';
     let currentSearch   = '';
-    let selectedTags    = new Set();
+    let selectedTags    = new Set<string>();
 
-    const setCategoryLabel = (item) => {
+    const setCategoryLabel = (item: HTMLElement): void => {
         if (!categoryLabel) return;
-        categoryLabel.textContent = item.dataset.category === 'all'
-            ? (categoryLabel.dataset.default || item.textContent.trim())
+        const label = categoryLabel as HTMLElement;
+        label.textContent = item.dataset.category === 'all'
+            ? (label.dataset.default || item.textContent.trim())
             : item.textContent.trim();
     };
 
-    const setStatusLabel = (item) => {
+    const setStatusLabel = (item: HTMLElement): void => {
         if (!filterLabel) return;
-        filterLabel.textContent = item.dataset.status === 'all'
-            ? (filterLabel.dataset.default || item.textContent.trim())
+        const label = filterLabel as HTMLElement;
+        label.textContent = item.dataset.status === 'all'
+            ? (label.dataset.default || item.textContent.trim())
             : item.textContent.trim();
     };
 
     // ─── Reset button visibility ────────────────────────────────────────────
-    const syncResetBtn = () => {
+    const syncResetBtn = (): void => {
         if (!resetBtn) return;
         const dirty = currentFilter !== 'all' || currentCategory !== 'all' || currentSearch !== '' || selectedTags.size > 0;
-        resetBtn.hidden = !dirty;
+        (resetBtn as HTMLElement).hidden = !dirty;
     };
 
     // ─── Central filter setter ──────────────────────────────────────────────
-    const setFilter = (status) => {
+    const setFilter = (status: string): void => {
         currentFilter = status;
 
         // Sync dropdown items + label
@@ -69,7 +71,7 @@ const initDashboard = (container) => {
     };
 
     // ─── Reset all filters ──────────────────────────────────────────────────
-    const resetAll = () => {
+    const resetAll = (): void => {
         currentFilter   = 'all';
         currentCategory = 'all';
         currentSearch   = '';
@@ -105,10 +107,10 @@ const initDashboard = (container) => {
     };
 
     // ─── Stats counter ──────────────────────────────────────────────────────
-    const updateStats = () => {
+    const updateStats = (): void => {
         if (!grid) return;
         let total = 0, active = 0, inProgress = 0, comingSoon = 0, inactive = 0, deprecated = 0, archived = 0;
-        grid.querySelectorAll('.dashboard__project-item').forEach(item => {
+        grid.querySelectorAll<HTMLElement>('.dashboard__project-item').forEach(item => {
             if (item.classList.contains('dashboard__empty')) return;
             total++;
             const s = item.dataset.status;
@@ -128,16 +130,16 @@ const initDashboard = (container) => {
             deprecated:  container.querySelector('[data-stat="deprecated"]'),
             archived:    container.querySelector('[data-stat="archived"]'),
         };
-        if (statEls.total)       statEls.total.textContent       = total;
-        if (statEls.active)      statEls.active.textContent      = active;
-        if (statEls.in_progress) statEls.in_progress.textContent = inProgress;
-        if (statEls.coming_soon) statEls.coming_soon.textContent = comingSoon;
-        if (statEls.inactive)    statEls.inactive.textContent    = inactive;
-        if (statEls.deprecated)  statEls.deprecated.textContent  = deprecated;
-        if (statEls.archived)    statEls.archived.textContent    = archived;
+        if (statEls.total)       statEls.total.textContent       = String(total);
+        if (statEls.active)      statEls.active.textContent      = String(active);
+        if (statEls.in_progress) statEls.in_progress.textContent = String(inProgress);
+        if (statEls.coming_soon) statEls.coming_soon.textContent = String(comingSoon);
+        if (statEls.inactive)    statEls.inactive.textContent    = String(inactive);
+        if (statEls.deprecated)  statEls.deprecated.textContent  = String(deprecated);
+        if (statEls.archived)    statEls.archived.textContent    = String(archived);
 
         // Show stat cards and filter items only when projects with that status exist
-        const toggle = (status, count) => {
+        const toggle = (status: string, count: number): void => {
             const card = container.querySelector(`.dashboard__stat[data-status="${status}"]`);
             if (card) card.classList.toggle('d-none', count === 0);
             const filterItem = container.querySelector(`.dashboard__filter-item[data-status="${status}"]`);
@@ -152,18 +154,18 @@ const initDashboard = (container) => {
     };
 
     // ─── Filter / search application ────────────────────────────────────────
-    const applyFilters = () => {
+    const applyFilters = (): void => {
         const q = currentSearch.toLowerCase().trim();
         let visibleGrid = 0;
 
-        const matchesTags = (item) => {
+        const matchesTags = (item: HTMLElement): boolean => {
             if (selectedTags.size === 0) return true;
             const itemTags = (item.dataset.tags || '').split(',').filter(Boolean);
             return [...selectedTags].every(t => itemTags.includes(t));
         };
 
         if (grid) {
-            grid.querySelectorAll('.dashboard__project-item').forEach(item => {
+            grid.querySelectorAll<HTMLElement>('.dashboard__project-item').forEach(item => {
                 if (item.classList.contains('dashboard__empty')) return;
                 const statusOk   = currentFilter === 'all' || item.dataset.status === currentFilter;
                 const categoryOk = currentCategory === 'all' || item.dataset.category === currentCategory;
@@ -176,7 +178,7 @@ const initDashboard = (container) => {
         }
 
         if (list) {
-            list.querySelectorAll('.dashboard__project-item').forEach(item => {
+            list.querySelectorAll<HTMLElement>('.dashboard__project-item').forEach(item => {
                 const statusOk   = currentFilter === 'all' || item.dataset.status === currentFilter;
                 const categoryOk = currentCategory === 'all' || item.dataset.category === currentCategory;
                 const searchOk   = !q || (item.dataset.search || '').toLowerCase().includes(q);
@@ -190,20 +192,20 @@ const initDashboard = (container) => {
 
     // ─── Event listeners ─────────────────────────────────────────────────────
     filterItems.forEach(item => {
-        item.addEventListener('click', e => {
+        item.addEventListener('click', (e: MouseEvent) => {
             e.preventDefault();
-            setFilter(item.dataset.status);
+            setFilter(item.dataset.status ?? 'all');
         });
     });
 
     statCards.forEach(card => {
-        const activate = () => {
-            const status = card.dataset.status;
+        const activate = (): void => {
+            const status = card.dataset.status ?? 'all';
             // Toggle: clicking the active card resets to all
             setFilter(card.classList.contains('is-active') ? 'all' : status);
         };
         card.addEventListener('click', activate);
-        card.addEventListener('keydown', e => {
+        card.addEventListener('keydown', (e: KeyboardEvent) => {
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
         });
     });
@@ -213,11 +215,11 @@ const initDashboard = (container) => {
     }
 
     categoryItems.forEach(item => {
-        item.addEventListener('click', e => {
+        item.addEventListener('click', (e: MouseEvent) => {
             e.preventDefault();
             categoryItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
-            currentCategory = item.dataset.category;
+            currentCategory = item.dataset.category ?? 'all';
             setCategoryLabel(item);
             syncResetBtn();
             applyFilters();
@@ -234,7 +236,7 @@ const initDashboard = (container) => {
 
     tagBadges.forEach(badge => {
         badge.addEventListener('click', () => {
-            const tag = badge.dataset.tag.toLowerCase();
+            const tag = (badge.dataset.tag ?? '').toLowerCase();
             if (selectedTags.has(tag)) {
                 selectedTags.delete(tag);
                 badge.classList.remove('is-active');
@@ -258,12 +260,12 @@ const initDashboard = (container) => {
     });
 
     container.querySelectorAll('.dashboard__visit-link').forEach(link => {
-        link.addEventListener('click', e => e.stopPropagation());
+        link.addEventListener('click', (e: Event) => e.stopPropagation());
     });
 
     if (modal && modalBody) {
-        modal.addEventListener('show.bs.modal', e => {
-            const trigger = e.relatedTarget;
+        modal.addEventListener('show.bs.modal', (e: Event) => {
+            const trigger = (e as Event & { relatedTarget?: HTMLElement }).relatedTarget ?? null;
             if (!trigger) return;
             const detailId = trigger.getAttribute('data-project-detail');
             const title    = trigger.getAttribute('data-project-title') || '';
@@ -286,13 +288,13 @@ const initDashboard = (container) => {
 };
 
 // ─── Self-init ───────────────────────────────────────────────────────────────
-function onReady(fn) {
+function onReady(fn: () => void): void {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
 }
 
 onReady(() => {
-    document.querySelectorAll('.dashboard').forEach(initDashboard);
+    document.querySelectorAll('.dashboard').forEach(el => initDashboard(el as HTMLElement));
 });
 
 export { initDashboard };
