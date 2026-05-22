@@ -1,0 +1,63 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-carousel-css"
+    href="EXT:conn_elements/Resources/Public/Css/carousel.css" />
+
+<section class="conn-bs-carousel conn-bs-carousel--ratio-{settings.aspectRatio}" id="conn-bs-carousel-section-{data.uid}">
+    <div class="container-fluid px-0">
+
+        <f:if condition="{items}">
+            <f:then>
+                <div id="conn-bs-carousel-{data.uid}"
+                     class="carousel slide{f:if(condition: settings.fade, then: ' carousel-fade')}{f:if(condition: settings.dark, then: ' carousel-dark')}"
+                     data-bs-ride="{f:if(condition: settings.autoplay, then: 'carousel', else: 'false')}"
+                     data-bs-interval="{settings.interval}">
+
+                    <f:if condition="{settings.indicators}">
+                        <div class="carousel-indicators">
+                            <f:for each="{items}" as="item" iteration="iter">
+                                <button type="button"
+                                        data-bs-target="#conn-bs-carousel-{data.uid}"
+                                        data-bs-slide-to="{iter.index}"
+                                        aria-label="Slide {iter.cycle}"
+                                        class="{f:if(condition: iter.isFirst, then: 'active')}"
+                                        {f:if(condition: iter.isFirst, then: 'aria-current="true"')}></button>
+                            </f:for>
+                        </div>
+                    </f:if>
+
+                    <div class="carousel-inner">
+                        <f:for each="{items}" as="item" iteration="iter">
+                            <f:render partial="Carousel/Slide" arguments="{item: item, isFirst: iter.isFirst, carouselId: data.uid}" />
+                        </f:for>
+                    </div>
+
+                    <f:if condition="{settings.controls}">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#conn-bs-carousel-{data.uid}" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#conn-bs-carousel-{data.uid}" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </f:if>
+
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No slides added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

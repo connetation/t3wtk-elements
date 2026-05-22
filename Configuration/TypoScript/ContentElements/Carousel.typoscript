@@ -1,0 +1,12 @@
+tt_content.conn_bs_carousel =< lib.contentElement
+tt_content.conn_bs_carousel {
+    templateName = Carousel
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+    templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\CarouselProcessor
+        10 {
+            as = items
+        }
+    }
+}

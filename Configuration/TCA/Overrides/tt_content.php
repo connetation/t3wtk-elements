@@ -226,6 +226,59 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_accordion'] = [
     ',
 ];
 
+// ─── Bootstrap Carousel ───────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_carousel'] = 'conn-ce-bs-carousel';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel',
+    'value' => 'conn_bs_carousel',
+    'icon'  => 'conn-ce-bs-carousel',
+    'group' => 'conn_bootstrap',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_carousel_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:carousel.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_carousel_slide',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 100,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_carousel_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:carousel.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Carousel.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_carousel'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_carousel_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:carousel.tab.config,
+            tx_conn_elements_carousel_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
 // ─── Swiper group ────────────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_swiper'] =
     'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_swiper';

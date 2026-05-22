@@ -28,7 +28,9 @@ CREATE TABLE tt_content (
     tx_conn_elements_flip_carousel_items       int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_flip_carousel_settings    mediumtext,
     tx_conn_elements_flip_gallery_items        int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_flip_gallery_settings     mediumtext
+    tx_conn_elements_flip_gallery_settings     mediumtext,
+    tx_conn_elements_carousel_items    int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_carousel_settings mediumtext
 );
 
 -- ─── Dashboard ────────────────────────────────────────────────────────────────
@@ -280,6 +282,29 @@ CREATE TABLE tx_conn_elements_domain_model_flip_carousel_item (
     subtitle        varchar(100) DEFAULT '' NOT NULL,
     category        varchar(100) DEFAULT '' NOT NULL,
     body            mediumtext,
+    image           int(11) DEFAULT '0' NOT NULL,
+    link            varchar(1024) DEFAULT '' NOT NULL,
+    link_label      varchar(100) DEFAULT '' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── Bootstrap Carousel ───────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_carousel_slide (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    title           varchar(255) DEFAULT '' NOT NULL,
+    caption         mediumtext,
     image           int(11) DEFAULT '0' NOT NULL,
     link            varchar(1024) DEFAULT '' NOT NULL,
     link_label      varchar(100) DEFAULT '' NOT NULL,

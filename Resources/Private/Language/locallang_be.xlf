@@ -199,6 +199,44 @@
             <trans-unit id="card_item.tab.link">
                 <source>Link</source>
             </trans-unit>
+            <!-- Bootstrap Carousel content element -->
+            <trans-unit id="ce.bs_carousel">
+                <source>Bootstrap Carousel</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_carousel.description">
+                <source>Bootstrap 5 image carousel with optional captions, controls, and autoplay</source>
+            </trans-unit>
+            <trans-unit id="carousel.items">
+                <source>Slides</source>
+            </trans-unit>
+            <trans-unit id="carousel.tab.config">
+                <source>Carousel Settings</source>
+            </trans-unit>
+            <trans-unit id="carousel.settings">
+                <source>Carousel Settings</source>
+            </trans-unit>
+            <!-- Carousel slide model -->
+            <trans-unit id="model.carousel_slide">
+                <source>Carousel Slide</source>
+            </trans-unit>
+            <trans-unit id="carousel_slide.title">
+                <source>Caption Title</source>
+            </trans-unit>
+            <trans-unit id="carousel_slide.caption">
+                <source>Caption Text</source>
+            </trans-unit>
+            <trans-unit id="carousel_slide.image">
+                <source>Slide Image</source>
+            </trans-unit>
+            <trans-unit id="carousel_slide.link">
+                <source>Link</source>
+            </trans-unit>
+            <trans-unit id="carousel_slide.link_label">
+                <source>Link Label</source>
+            </trans-unit>
+            <trans-unit id="carousel_slide.tab.link">
+                <source>Link</source>
+            </trans-unit>
             <!-- GSAP Card Stack content element -->
             <trans-unit id="ce.card_stack">
                 <source>Card Stack</source>
