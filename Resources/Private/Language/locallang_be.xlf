@@ -209,6 +209,12 @@
             <trans-unit id="card_stack.items">
                 <source>Stack Cards</source>
             </trans-unit>
+            <trans-unit id="card_stack.tab.config">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="card_stack.settings">
+                <source>Display Settings</source>
+            </trans-unit>
             <!-- Stack card model -->
             <trans-unit id="model.stack_card">
                 <source>Stack Card</source>

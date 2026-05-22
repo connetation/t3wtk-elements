@@ -12,31 +12,33 @@
     type="module"
     priority="false" />
 
-<section class="conn-card-stack conn-card-stack--pos-{settings.textPosition} conn-card-stack--align-{settings.textAlign}" id="conn-card-stack-{data.uid}">
+<section class="conn-card-stack conn-card-stack--pos-{settings.textPosition} conn-card-stack--align-{settings.textAlign} conn-card-stack--nav-{settings.navPosition}" id="conn-card-stack-{data.uid}">
     <div class="container-fluid">
 
         <f:if condition="{items}">
             <f:then>
-                <div class="conn-card-stack__deck">
-                    <f:for each="{items}" as="item" iteration="iter">
-                        <f:render partial="CardStack/Card" arguments="{
-                            item:  item,
-                            index: iter.index
-                        }" />
-                    </f:for>
-                </div>
-                <div class="conn-card-stack__nav">
-                    <button class="conn-card-stack__btn conn-card-stack__btn--prev" aria-label="Previous card" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <polyline points="15 18 9 12 15 6"/>
-                        </svg>
-                    </button>
-                    <span class="conn-card-stack__counter"></span>
-                    <button class="conn-card-stack__btn conn-card-stack__btn--next" aria-label="Next card" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <polyline points="9 18 15 12 9 6"/>
-                        </svg>
-                    </button>
+                <div class="conn-card-stack__viewport">
+                    <div class="conn-card-stack__deck">
+                        <f:for each="{items}" as="item" iteration="iter">
+                            <f:render partial="CardStack/Card" arguments="{
+                                item:  item,
+                                index: iter.index
+                            }" />
+                        </f:for>
+                    </div>
+                    <div class="conn-card-stack__nav">
+                        <button class="conn-card-stack__btn conn-card-stack__btn--prev" aria-label="Previous card" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <span class="conn-card-stack__counter"></span>
+                        <button class="conn-card-stack__btn conn-card-stack__btn--next" aria-label="Next card" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </f:then>
             <f:else>

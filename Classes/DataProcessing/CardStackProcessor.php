@@ -88,8 +88,9 @@ final class CardStackProcessor implements DataProcessorInterface
 
     private function resolveSettings(array $raw): array
     {
-        $allowedPositions = ['bottom', 'center', 'top'];
-        $allowedAligns    = ['left', 'center', 'right'];
+        $allowedPositions    = ['bottom', 'center', 'top'];
+        $allowedAligns       = ['left', 'center', 'right'];
+        $allowedNavPositions = ['bottom', 'sides', 'none'];
 
         $textPosition = in_array($raw['textPosition'] ?? '', $allowedPositions, true)
             ? $raw['textPosition']
@@ -97,10 +98,14 @@ final class CardStackProcessor implements DataProcessorInterface
         $textAlign = in_array($raw['textAlign'] ?? '', $allowedAligns, true)
             ? $raw['textAlign']
             : 'left';
+        $navPosition = in_array($raw['navPosition'] ?? '', $allowedNavPositions, true)
+            ? $raw['navPosition']
+            : 'bottom';
 
         return [
             'textPosition' => $textPosition,
             'textAlign'    => $textAlign,
+            'navPosition'  => $navPosition,
         ];
     }
 
@@ -109,6 +114,7 @@ final class CardStackProcessor implements DataProcessorInterface
         return [
             'textPosition' => 'bottom',
             'textAlign'    => 'left',
+            'navPosition'  => 'bottom',
         ];
     }
 }

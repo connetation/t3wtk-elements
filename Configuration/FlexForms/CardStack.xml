@@ -32,6 +32,19 @@
                             </items>
                         </config>
                     </settings.textAlign>
+                    <settings.navPosition>
+                        <label>Navigation</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>bottom</default>
+                            <items>
+                                <numIndex index="0"><label>Bottom center (default)</label><value>bottom</value></numIndex>
+                                <numIndex index="1"><label>Sides (left / right)</label><value>sides</value></numIndex>
+                                <numIndex index="2"><label>None (drag / swipe only)</label><value>none</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.navPosition>
                 </el>
             </ROOT>
         </sDEF>

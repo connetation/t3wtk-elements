@@ -13,6 +13,11 @@
 .conn-card-stack {
     background: var(--conn-bg);
 
+    // ── Viewport (deck + nav wrapper; provides positioning context for sides mode)
+    &__viewport {
+        position: relative;
+    }
+
     // ── Deck container ───────────────────────────
     &__deck {
         position: relative;
@@ -20,6 +25,8 @@
         margin: 80px auto 0;
         min-height: 200px;
         touch-action: pan-y; // allow vertical scroll, handle horizontal in JS
+        cursor: grab;
+        user-select: none;
     }
 
     // ── Card wrapper (JS sets left/top/zIndex) ──
@@ -101,6 +108,41 @@
         gap: 1rem;
         margin-top: 2rem;
     }
+
+    // ── Nav position modifiers ───────────────────
+    // none: hide buttons entirely (drag/swipe only)
+    &--nav-none &__nav { display: none; }
+
+    // sides: grid-stack deck and nav in the same cell so the nav
+    // inherits the exact height of the deck without needing an explicit height.
+    &--nav-sides &__viewport {
+        display: grid;
+    }
+
+    &--nav-sides &__deck,
+    &--nav-sides &__nav {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    &--nav-sides &__nav {
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    &--nav-sides &__btn {
+        pointer-events: all;
+        background: var(--conn-surface);
+        box-shadow: var(--conn-shadow-card);
+    }
+
+    &--nav-sides &__counter { display: none; }
 
     &__btn {
         display: inline-flex;
