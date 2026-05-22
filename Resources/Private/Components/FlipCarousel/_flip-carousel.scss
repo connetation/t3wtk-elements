@@ -16,6 +16,7 @@
     // ── Flex track ───────────────────────────────
     &__track {
         --conn-items: 4;
+        position: relative; // required by GSAP Flip absoluteOnLeave
         display: flex;
         gap: 8px;
         overflow: hidden;

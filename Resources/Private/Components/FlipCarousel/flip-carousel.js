@@ -57,39 +57,42 @@ const initFlipCarousel = (container) => {
 
         const state = Flip.getState(items);
 
+        let leaveEl;
         if (forward) {
-            const newCard = makeItem(startIndex + visibleCount);
-            track.append(newCard);
-            items[0].classList.add('hide');
+            track.append(makeItem(startIndex + visibleCount));
+            leaveEl = items[0];
+            leaveEl.classList.add('hide');
             startIndex = (startIndex + 1) % total;
         } else {
-            const newCard = makeItem(startIndex - 1);
-            track.prepend(newCard);
-            items[items.length - 1].classList.add('hide');
+            track.prepend(makeItem(startIndex - 1));
+            leaveEl = items[items.length - 1];
+            leaveEl.classList.add('hide');
             startIndex = ((startIndex - 1) % total + total) % total;
         }
 
         Flip.from(state, {
             targets: track.querySelectorAll('.conn-flip-carousel__item'),
-            duration: 0.5,
+            duration: 0.45,
             ease: 'power2.inOut',
             absoluteOnLeave: true,
-            onComplete: () => { isAnimating = false; },
+            onComplete: () => {
+                // Remove after Flip finishes so GSAP doesn't reference a detached node
+                leaveEl.parentNode?.removeChild(leaveEl);
+                isAnimating = false;
+            },
             onEnter: (els) => gsap.from(els, {
-                duration: 0.4,
+                duration: 0.45,
                 opacity: 0,
                 scale: 0,
                 transformOrigin: forward ? 'bottom right' : 'bottom left',
-                ease: 'back.out(1.4)',
+                ease: 'power3.out',
             }),
             onLeave: (els) => gsap.to(els, {
-                duration: 0.3,
+                duration: 0.35,
                 opacity: 0,
                 scale: 0,
                 transformOrigin: forward ? 'bottom left' : 'bottom right',
-                onComplete: () => {
-                    els.forEach(el => { if (el.parentNode) el.parentNode.removeChild(el); });
-                },
+                ease: 'power2.in',
             }),
         });
     };
