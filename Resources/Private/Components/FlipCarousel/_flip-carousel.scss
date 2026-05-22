@@ -13,6 +13,11 @@
 .conn-flip-carousel {
     background: var(--conn-bg);
 
+    // ── Viewport (track + nav wrapper; provides positioning context for sides mode)
+    &__viewport {
+        position: relative;
+    }
+
     // ── Flex track ───────────────────────────────
     &__track {
         --conn-items: 4;
@@ -21,6 +26,8 @@
         gap: 8px;
         overflow: hidden;
         touch-action: pan-y; // allow vertical scroll, handle horizontal in JS
+        cursor: grab;
+        user-select: none;
     }
 
     // ── Individual item ──────────────────────────
@@ -103,6 +110,41 @@
         justify-content: center;
         gap: 1rem;
         margin-top: 1.5rem;
+    }
+
+    // ── Nav position modifiers ───────────────────
+    // none: hide buttons entirely (drag/swipe only)
+    &--nav-none &__nav { display: none; }
+
+    // sides: grid-stack track and nav in the same cell so the nav
+    // inherits the exact height of the track without needing an explicit
+    // height on the viewport (position:absolute + bottom:0 fails when
+    // the containing block has height:auto).
+    &--nav-sides &__viewport {
+        display: grid;
+    }
+
+    &--nav-sides &__track,
+    &--nav-sides &__nav {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    &--nav-sides &__nav {
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+        margin: 0;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    &--nav-sides &__btn {
+        pointer-events: all;
+        background: var(--conn-surface);
+        box-shadow: var(--conn-shadow-card);
     }
 
     &__btn {

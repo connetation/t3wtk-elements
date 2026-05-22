@@ -12,27 +12,29 @@
     type="module"
     priority="false" />
 
-<section class="conn-flip-carousel conn-flip-carousel--pos-{settings.textPosition} conn-flip-carousel--align-{settings.textAlign}" id="conn-flip-carousel-{data.uid}">
+<section class="conn-flip-carousel conn-flip-carousel--pos-{settings.textPosition} conn-flip-carousel--align-{settings.textAlign} conn-flip-carousel--nav-{settings.navPosition}" id="conn-flip-carousel-{data.uid}">
     <div class="container-fluid">
 
         <f:if condition="{items}">
             <f:then>
-                <div class="conn-flip-carousel__track" data-items="{settings.columns}">
-                    <f:for each="{items}" as="item">
-                        <f:render partial="FlipCarousel/Item" arguments="{item: item}" />
-                    </f:for>
-                </div>
-                <div class="conn-flip-carousel__nav">
-                    <button class="conn-flip-carousel__btn conn-flip-carousel__btn--prev" type="button" aria-label="Previous">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <polyline points="15 18 9 12 15 6"/>
-                        </svg>
-                    </button>
-                    <button class="conn-flip-carousel__btn conn-flip-carousel__btn--next" type="button" aria-label="Next">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <polyline points="9 18 15 12 9 6"/>
-                        </svg>
-                    </button>
+                <div class="conn-flip-carousel__viewport">
+                    <div class="conn-flip-carousel__track" data-items="{settings.columns}">
+                        <f:for each="{items}" as="item">
+                            <f:render partial="FlipCarousel/Item" arguments="{item: item}" />
+                        </f:for>
+                    </div>
+                    <div class="conn-flip-carousel__nav">
+                        <button class="conn-flip-carousel__btn conn-flip-carousel__btn--prev" type="button" aria-label="Previous">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <button class="conn-flip-carousel__btn conn-flip-carousel__btn--next" type="button" aria-label="Next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </f:then>
             <f:else>

@@ -97,8 +97,9 @@ final class FlipCarouselProcessor implements DataProcessorInterface
     {
         $columns = (int)($raw['columns'] ?? 4);
 
-        $allowedPositions = ['bottom', 'center', 'top'];
-        $allowedAligns    = ['left', 'center', 'right'];
+        $allowedPositions    = ['bottom', 'center', 'top'];
+        $allowedAligns       = ['left', 'center', 'right'];
+        $allowedNavPositions = ['bottom', 'sides', 'none'];
 
         $textPosition = in_array($raw['textPosition'] ?? '', $allowedPositions, true)
             ? $raw['textPosition']
@@ -106,11 +107,15 @@ final class FlipCarouselProcessor implements DataProcessorInterface
         $textAlign = in_array($raw['textAlign'] ?? '', $allowedAligns, true)
             ? $raw['textAlign']
             : 'left';
+        $navPosition = in_array($raw['navPosition'] ?? '', $allowedNavPositions, true)
+            ? $raw['navPosition']
+            : 'bottom';
 
         return [
             'columns'      => max(2, min(4, $columns)),
             'textPosition' => $textPosition,
             'textAlign'    => $textAlign,
+            'navPosition'  => $navPosition,
         ];
     }
 
@@ -120,6 +125,7 @@ final class FlipCarouselProcessor implements DataProcessorInterface
             'columns'      => 4,
             'textPosition' => 'bottom',
             'textAlign'    => 'left',
+            'navPosition'  => 'bottom',
         ];
     }
 }

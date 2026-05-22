@@ -102,23 +102,38 @@ const initFlipCarousel = (container) => {
     if (btnPrev) btnPrev.addEventListener('click', () => advance(false));
 
     // ─── Swipe / drag support ─────────────────────────────────────────
+    // setPointerCapture routes all pointer events to the track even when the
+    // cursor leaves it mid-drag, giving reliable mouse drag on desktop.
+    // Cursor is set on document.body so it persists outside the track element.
     let swipeStartX = 0, isSwiping = false;
 
-    track.addEventListener('pointerdown', (e) => {
+    const dragStart = (e) => {
+        if (isAnimating) return;
+        if (e.pointerType === 'mouse' && e.button !== 0) return; // left button only
         swipeStartX = e.clientX;
         isSwiping   = true;
-    }, { passive: true });
+        track.setPointerCapture(e.pointerId);
+        document.body.style.cursor = 'grabbing';
+        e.preventDefault(); // prevent text-selection during drag
+    };
 
-    window.addEventListener('pointerup', (e) => {
+    const dragEnd = (e) => {
         if (!isSwiping) return;
         isSwiping = false;
+        document.body.style.cursor = '';
         const dx = e.clientX - swipeStartX;
         if (Math.abs(dx) < 50) return;
-        if (dx < 0) advance(true);
-        else        advance(false);
-    }, { passive: true });
+        advance(dx < 0);
+    };
 
-    window.addEventListener('pointercancel', () => { isSwiping = false; }, { passive: true });
+    const dragCancel = () => {
+        isSwiping = false;
+        document.body.style.cursor = '';
+    };
+
+    track.addEventListener('pointerdown',  dragStart,  { passive: false });
+    track.addEventListener('pointerup',    dragEnd);
+    track.addEventListener('pointercancel', dragCancel);
 };
 
 // ─── Self-init ────────────────────────────────────────────────────────────────
