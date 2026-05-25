@@ -2,7 +2,8 @@
  * Connetation Elements – Dashboard content element
  */
 
-import { FilterableComponent } from '../Shared/filterable';
+import { FilterController } from '../Shared/filter-controller';
+import { registry } from '../Shared/registry';
 
 interface DashboardStatCounts {
     total:       Element | null;
@@ -14,8 +15,8 @@ interface DashboardStatCounts {
     archived:    Element | null;
 }
 
-export class Dashboard extends FilterableComponent {
-    private static readonly CONTAINER_SEL    = '.dashboard';
+export class Dashboard {
+
     private static readonly FILTER_ITEM_SEL  = '.dashboard__filter-item';
     private static readonly FILTER_LABEL_SEL = '.dashboard__filter-label';
     private static readonly VIEW_BTN_SEL     = '.dashboard__view-btn';
@@ -38,12 +39,11 @@ export class Dashboard extends FilterableComponent {
     private readonly viewBtns: NodeListOf<HTMLElement>;
     private readonly statCards: NodeListOf<HTMLElement>;
     private readonly emptyEl: Element | null;
+    private readonly filter: FilterController;
 
-    private currentFilter = FilterableComponent.FILTER_ALL;
+    private currentFilter = FilterController.FILTER_ALL;
 
-    constructor(container: HTMLElement) {
-        super(container);
-
+    constructor(private readonly container: HTMLElement) {
         this.uid        = container.id.replace('dashboard-', '').replace('-container', '');
         this.grid       = document.getElementById('dashboard-' + this.uid + '-grid');
         this.list       = document.getElementById('dashboard-' + this.uid + '-list');
@@ -56,55 +56,56 @@ export class Dashboard extends FilterableComponent {
         this.statCards   = container.querySelectorAll<HTMLElement>(Dashboard.STAT_CARD_SEL);
         this.emptyEl     = this.grid ? this.grid.querySelector(Dashboard.EMPTY_SEL) : null;
 
+        this.filter = new FilterController(container, {
+            onFilter:   () => this.applyFilters(),
+            extraDirty: () => this.currentFilter !== FilterController.FILTER_ALL,
+            onReset:    () => this.resetStatusFilter(),
+        });
+
         this.init();
     }
 
     private setStatusLabel(item: HTMLElement): void {
         if (!this.filterLabel) return;
         const label = this.filterLabel as HTMLElement;
-        label.textContent = item.dataset.status === FilterableComponent.FILTER_ALL
+        label.textContent = item.dataset.status === FilterController.FILTER_ALL
             ? (label.dataset.default || item.textContent?.trim() || '')
             : item.textContent?.trim() || '';
-    }
-
-    protected override isDirty(): boolean {
-        return this.currentFilter !== FilterableComponent.FILTER_ALL || super.isDirty();
     }
 
     // ─── Central filter setter ──────────────────────────────────────────────
     private setFilter(status: string): void {
         this.currentFilter = status;
 
-        this.filterItems.forEach(i => i.classList.remove(FilterableComponent.CLASS_ACTIVE));
+        this.filterItems.forEach(i => i.classList.remove(FilterController.CLASS_ACTIVE));
         const activeItem = [...this.filterItems].find(i => i.dataset.status === status);
         if (activeItem) {
-            activeItem.classList.add(FilterableComponent.CLASS_ACTIVE);
+            activeItem.classList.add(FilterController.CLASS_ACTIVE);
             this.setStatusLabel(activeItem);
         }
 
-        this.statCards.forEach(c => c.classList.remove(FilterableComponent.CLASS_IS_ACTIVE));
+        this.statCards.forEach(c => c.classList.remove(FilterController.CLASS_IS_ACTIVE));
         const activeCard = [...this.statCards].find(c => c.dataset.status === status);
-        if (activeCard) activeCard.classList.add(FilterableComponent.CLASS_IS_ACTIVE);
+        if (activeCard) activeCard.classList.add(FilterController.CLASS_IS_ACTIVE);
 
-        this.syncResetBtn();
+        this.filter.syncResetBtn();
         this.applyFilters();
     }
 
-    // ─── Reset: status UI + delegates shared state to base ─────────────────
-    protected override reset(): void {
-        this.currentFilter = FilterableComponent.FILTER_ALL;
+    // ─── Resets status-specific UI; called by FilterController's onReset hook ─
+    private resetStatusFilter(): void {
+        this.currentFilter = FilterController.FILTER_ALL;
 
-        this.filterItems.forEach(i => i.classList.remove(FilterableComponent.CLASS_ACTIVE));
-        const allStatusItem = [...this.filterItems].find(i => i.dataset.status === FilterableComponent.FILTER_ALL);
+        this.filterItems.forEach(i => i.classList.remove(FilterController.CLASS_ACTIVE));
+        const allStatusItem = [...this.filterItems].find(i => i.dataset.status === FilterController.FILTER_ALL);
         if (allStatusItem) {
-            allStatusItem.classList.add(FilterableComponent.CLASS_ACTIVE);
+            allStatusItem.classList.add(FilterController.CLASS_ACTIVE);
             this.setStatusLabel(allStatusItem);
         }
-        this.statCards.forEach(c => c.classList.remove(FilterableComponent.CLASS_IS_ACTIVE));
-        const totalCard = [...this.statCards].find(c => c.dataset.status === FilterableComponent.FILTER_ALL);
-        if (totalCard) totalCard.classList.add(FilterableComponent.CLASS_IS_ACTIVE);
 
-        super.reset(); // resets category / search / tags + calls applyFilters
+        this.statCards.forEach(c => c.classList.remove(FilterController.CLASS_IS_ACTIVE));
+        const totalCard = [...this.statCards].find(c => c.dataset.status === FilterController.FILTER_ALL);
+        if (totalCard) totalCard.classList.add(FilterController.CLASS_IS_ACTIVE);
     }
 
     // ─── Stats counter ──────────────────────────────────────────────────────
@@ -141,9 +142,9 @@ export class Dashboard extends FilterableComponent {
 
         const toggle = (status: string, count: number): void => {
             const card = this.container.querySelector(`.dashboard__stat[data-status="${status}"]`);
-            if (card) card.classList.toggle(FilterableComponent.CLASS_D_NONE, count === 0);
+            if (card) card.classList.toggle(FilterController.CLASS_D_NONE, count === 0);
             const filterItem = this.container.querySelector(`.dashboard__filter-item[data-status="${status}"]`);
-            if (filterItem) filterItem.classList.toggle(FilterableComponent.CLASS_D_NONE, count === 0);
+            if (filterItem) filterItem.classList.toggle(FilterController.CLASS_D_NONE, count === 0);
         };
         toggle('active',      active);
         toggle('in_progress', inProgress);
@@ -154,18 +155,18 @@ export class Dashboard extends FilterableComponent {
     }
 
     // ─── Filter / search application ────────────────────────────────────────
-    protected applyFilters(): void {
-        const q = this.currentSearch.toLowerCase().trim();
-        const F = FilterableComponent;
+    private applyFilters(): void {
+        const q = this.filter.currentSearch.toLowerCase().trim();
+        const F = FilterController;
         let visibleGrid = 0;
 
         if (this.grid) {
             this.grid.querySelectorAll<HTMLElement>(Dashboard.PROJECT_ITEM_SEL).forEach(item => {
                 if (item.classList.contains(Dashboard.CLASS_EMPTY)) return;
                 const statusOk   = this.currentFilter === F.FILTER_ALL || item.dataset.status === this.currentFilter;
-                const categoryOk = this.currentCategory === F.FILTER_ALL || item.dataset.category === this.currentCategory;
+                const categoryOk = this.filter.currentCategory === F.FILTER_ALL || item.dataset.category === this.filter.currentCategory;
                 const searchOk   = !q || (item.dataset.search || '').toLowerCase().includes(q);
-                const show = statusOk && categoryOk && searchOk && this.matchesTags(item);
+                const show = statusOk && categoryOk && searchOk && this.filter.matchesTags(item);
                 item.classList.toggle(F.CLASS_D_NONE, !show);
                 if (show) visibleGrid++;
             });
@@ -174,9 +175,9 @@ export class Dashboard extends FilterableComponent {
         if (this.list) {
             this.list.querySelectorAll<HTMLElement>(Dashboard.PROJECT_ITEM_SEL).forEach(item => {
                 const statusOk   = this.currentFilter === F.FILTER_ALL || item.dataset.status === this.currentFilter;
-                const categoryOk = this.currentCategory === F.FILTER_ALL || item.dataset.category === this.currentCategory;
+                const categoryOk = this.filter.currentCategory === F.FILTER_ALL || item.dataset.category === this.filter.currentCategory;
                 const searchOk   = !q || (item.dataset.search || '').toLowerCase().includes(q);
-                item.classList.toggle(F.CLASS_D_NONE, !(statusOk && categoryOk && searchOk && this.matchesTags(item)));
+                item.classList.toggle(F.CLASS_D_NONE, !(statusOk && categoryOk && searchOk && this.filter.matchesTags(item)));
             });
         }
 
@@ -184,7 +185,7 @@ export class Dashboard extends FilterableComponent {
     }
 
     private init(): void {
-        const F = FilterableComponent;
+        const F = FilterController;
 
         // ─── Status filter items ──────────────────────────────────────────────
         this.filterItems.forEach(item => {
@@ -205,9 +206,6 @@ export class Dashboard extends FilterableComponent {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
             });
         });
-
-        // ─── Category / tags / search / reset (shared) ───────────────────────
-        this.initFilterListeners();
 
         // ─── View toggle ──────────────────────────────────────────────────────
         this.viewBtns.forEach(btn => {
@@ -248,14 +246,10 @@ export class Dashboard extends FilterableComponent {
         if (this.list) this.list.classList.toggle(F.CLASS_D_NONE, defaultView !== Dashboard.VIEW_LIST);
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(Dashboard.CONTAINER_SEL)
-            .forEach(el => new Dashboard(el));
-    }
 }
 
 export function initDashboard(container: HTMLElement): void {
     new Dashboard(container);
 }
 
-document.addEventListener('DOMContentLoaded', () => Dashboard.initAll());
+registry.register('.dashboard', el => new Dashboard(el));

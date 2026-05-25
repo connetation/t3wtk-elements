@@ -4,6 +4,8 @@
 
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
+import { registry } from '../Shared/registry';
 
 interface SliderOptions {
     slidesPerView: number;
@@ -15,18 +17,15 @@ interface SliderOptions {
 }
 
 class Slider {
-    private static readonly CONTAINER_SEL          = '.conn-slider';
+
     private static readonly SWIPER_SEL             = '.conn-slider__swiper';
     private static readonly BTN_PREV_SEL           = '.conn-slider__btn-prev';
     private static readonly BTN_NEXT_SEL           = '.conn-slider__btn-next';
     private static readonly PAGINATION_SEL         = '.conn-slider__pagination';
     private static readonly DATASET_SLIDES_PER_VIEW  = 'slidesPerView';
     private static readonly DATASET_LOOP             = 'loop';
-    private static readonly DATASET_AUTOPLAY         = 'autoplay';
-    private static readonly DATASET_AUTOPLAY_DELAY   = 'autoplayDelay';
     private static readonly DATASET_NAVIGATION       = 'navigation';
     private static readonly DATASET_PAGINATION       = 'pagination';
-    private static readonly ENABLED_VALUE            = '1';
 
     constructor(private readonly el: HTMLElement) {
         this.init();
@@ -36,13 +35,14 @@ class Slider {
         const swiperEl = this.el.querySelector(Slider.SWIPER_SEL) as HTMLElement | null;
         if (!swiperEl) return;
 
+        const ap = readAutoplay(this.el);
         const options: SliderOptions = {
             slidesPerView:  parseInt(this.el.dataset[Slider.DATASET_SLIDES_PER_VIEW] || '3', 10),
-            loop:           this.el.dataset[Slider.DATASET_LOOP] === Slider.ENABLED_VALUE,
-            autoplay:       this.el.dataset[Slider.DATASET_AUTOPLAY] === Slider.ENABLED_VALUE,
-            autoplayDelay:  parseInt(this.el.dataset[Slider.DATASET_AUTOPLAY_DELAY] || '4000', 10),
-            withNav:        this.el.dataset[Slider.DATASET_NAVIGATION] === Slider.ENABLED_VALUE,
-            withPagination: this.el.dataset[Slider.DATASET_PAGINATION] === Slider.ENABLED_VALUE,
+            loop:           this.el.dataset[Slider.DATASET_LOOP] === ENABLED_VALUE,
+            autoplay:       ap.enabled,
+            autoplayDelay:  ap.delay,
+            withNav:        this.el.dataset[Slider.DATASET_NAVIGATION] === ENABLED_VALUE,
+            withPagination: this.el.dataset[Slider.DATASET_PAGINATION] === ENABLED_VALUE,
         };
 
         const modules = [];
@@ -84,11 +84,7 @@ class Slider {
                 clickable: true,
             } : false,
 
-            autoplay: options.autoplay ? {
-                delay: options.autoplayDelay,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            } : false,
+            autoplay: buildSwiperAutoplay(options.autoplay, options.autoplayDelay),
 
             a11y: {
                 prevSlideMessage: 'Previous slide',
@@ -97,10 +93,6 @@ class Slider {
         });
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(Slider.CONTAINER_SEL)
-            .forEach(el => new Slider(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => Slider.initAll());
+registry.register('.conn-slider', el => new Slider(el));

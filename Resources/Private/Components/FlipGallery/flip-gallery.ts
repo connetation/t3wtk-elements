@@ -10,7 +10,7 @@ import { Flip } from 'gsap/Flip';
 gsap.registerPlugin(Flip);
 
 class FlipGallery {
-    private static readonly CONTAINER_SEL       = '.conn-flip-gallery';
+
     private static readonly MODAL_SEL           = '.conn-flip-gallery__modal';
     private static readonly CONTENT_SEL         = '.conn-flip-gallery__content';
     private static readonly OVERLAY_SEL         = '.conn-flip-gallery__overlay';
@@ -161,10 +161,7 @@ class FlipGallery {
         window.addEventListener('pointercancel', () => { isSwiping = false; }, { passive: true });
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(FlipGallery.CONTAINER_SEL)
-            .forEach(el => new FlipGallery(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => FlipGallery.initAll());
+import { registry } from '../Shared/registry';
+registry.register('.conn-flip-gallery', el => new FlipGallery(el));

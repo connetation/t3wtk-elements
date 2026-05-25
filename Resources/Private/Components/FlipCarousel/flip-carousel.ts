@@ -6,39 +6,35 @@
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { attachSwipeHandler } from '../Shared/swipe';
+import { AutoplayController } from '../Shared/autoplay';
+import { registry } from '../Shared/registry';
 
 gsap.registerPlugin(Flip);
 
 class FlipCarousel {
-    private static readonly CONTAINER_SEL        = '.conn-flip-carousel';
-    private static readonly TRACK_SEL            = '.conn-flip-carousel__track';
-    private static readonly BTN_NEXT_SEL         = '.conn-flip-carousel__btn--next';
-    private static readonly BTN_PREV_SEL         = '.conn-flip-carousel__btn--prev';
-    private static readonly ITEM_SEL             = '.conn-flip-carousel__item';
-    private static readonly CLASS_ITEM           = 'conn-flip-carousel__item';
-    private static readonly CLASS_HIDE           = 'hide';
-    private static readonly DATASET_AUTOPLAY     = 'autoplay';
-    private static readonly DATASET_DELAY        = 'autoplayDelay';
-    private static readonly ENABLED_VALUE        = '1';
+
+    private static readonly TRACK_SEL     = '.conn-flip-carousel__track';
+    private static readonly BTN_NEXT_SEL  = '.conn-flip-carousel__btn--next';
+    private static readonly BTN_PREV_SEL  = '.conn-flip-carousel__btn--prev';
+    private static readonly ITEM_SEL      = '.conn-flip-carousel__item';
+    private static readonly CLASS_ITEM    = 'conn-flip-carousel__item';
+    private static readonly CLASS_HIDE    = 'hide';
 
     private readonly track: HTMLElement;
     private readonly btnNext: Element | null;
     private readonly btnPrev: Element | null;
-    private readonly hasAutoplay: boolean;
-    private readonly autoplayDelay: number;
+    private readonly autoplay: AutoplayController;
     private allItems: string[] = [];
     private total        = 0;
     private visibleCount = 0;
     private startIndex   = 0;
     private isAnimating  = false;
-    private autoplayTimer: ReturnType<typeof setInterval> | null = null;
 
     constructor(private readonly el: HTMLElement) {
-        this.track        = el.querySelector(FlipCarousel.TRACK_SEL) as HTMLElement;
-        this.btnNext      = el.querySelector(FlipCarousel.BTN_NEXT_SEL);
-        this.btnPrev      = el.querySelector(FlipCarousel.BTN_PREV_SEL);
-        this.hasAutoplay  = el.dataset[FlipCarousel.DATASET_AUTOPLAY] === FlipCarousel.ENABLED_VALUE;
-        this.autoplayDelay = parseInt(el.dataset[FlipCarousel.DATASET_DELAY] || '3000', 10);
+        this.track    = el.querySelector(FlipCarousel.TRACK_SEL) as HTMLElement;
+        this.btnNext  = el.querySelector(FlipCarousel.BTN_NEXT_SEL);
+        this.btnPrev  = el.querySelector(FlipCarousel.BTN_PREV_SEL);
+        this.autoplay = new AutoplayController(el, () => this.advance(true));
 
         if (!this.track) return;
 
@@ -70,19 +66,6 @@ class FlipCarousel {
         item.className = FlipCarousel.CLASS_ITEM;
         item.innerHTML = this.allItems[((index % this.total) + this.total) % this.total];
         return item;
-    }
-
-    // ─── Autoplay ─────────────────────────────────────────────────────
-    private startAutoplay(): void {
-        this.stopAutoplay();
-        this.autoplayTimer = setInterval(() => this.advance(true), this.autoplayDelay);
-    }
-
-    private stopAutoplay(): void {
-        if (this.autoplayTimer !== null) {
-            clearInterval(this.autoplayTimer);
-            this.autoplayTimer = null;
-        }
     }
 
     // ─── Advance ──────────────────────────────────────────────────────
@@ -135,32 +118,25 @@ class FlipCarousel {
     private init(): void {
         // ─── Buttons ──────────────────────────────────────────────────────
         if (this.btnNext) this.btnNext.addEventListener('click', () => {
-            if (this.hasAutoplay) this.startAutoplay(); // reset timer on manual advance
+            this.autoplay.start(); // reset countdown on manual advance
             this.advance(true);
         });
         if (this.btnPrev) this.btnPrev.addEventListener('click', () => {
-            if (this.hasAutoplay) this.startAutoplay();
+            this.autoplay.start();
             this.advance(false);
         });
 
         // ─── Swipe / drag ─────────────────────────────────────────────────
         attachSwipeHandler(this.track, (forward) => {
-            if (this.hasAutoplay) this.startAutoplay();
+            this.autoplay.start();
             this.advance(forward);
         }, { isLocked: () => this.isAnimating });
 
         // ─── Autoplay ─────────────────────────────────────────────────────
-        if (this.hasAutoplay) {
-            this.startAutoplay();
-            this.track.addEventListener('mouseenter', () => this.stopAutoplay());
-            this.track.addEventListener('mouseleave', () => this.startAutoplay());
-        }
+        this.autoplay.start();
+        if (this.autoplay.enabled) this.autoplay.attachHoverPause(this.track);
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(FlipCarousel.CONTAINER_SEL)
-            .forEach(el => new FlipCarousel(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => FlipCarousel.initAll());
+registry.register('.conn-flip-carousel', el => new FlipCarousel(el));

@@ -18,7 +18,6 @@ interface ScrollTriggerConfig {
 
 class TextAnimation {
     private static readonly HEADING_SEL = 'h1, h2, h3, h4, .ce-subheader';
-    private static readonly FRAME_SEL   = '.frame[data-text-animation]';
     private static readonly EXCLUDE_SEL = '.swiper-slide';
     private static readonly ANIM_WORDS  = 'words';
     private static readonly ANIM_LINES  = 'lines';
@@ -93,26 +92,25 @@ class TextAnimation {
         });
     }
 
-    // ── Init ──────────────────────────────────────────────────────────
-    static init(): void {
-        document.querySelectorAll<HTMLElement>(TextAnimation.FRAME_SEL).forEach((frame) => {
-            const type = frame.dataset.textAnimation;
-            if (!type) return;
+    // ── Per-frame init ────────────────────────────────────────────────
+    static initFrame(frame: HTMLElement): void {
+        const type = frame.dataset.textAnimation;
+        if (!type) return;
 
-            const headings = [...frame.querySelectorAll<HTMLElement>(TextAnimation.HEADING_SEL)];
-            const body     = TextAnimation.getBodyElements(frame);
+        const headings = [...frame.querySelectorAll<HTMLElement>(TextAnimation.HEADING_SEL)];
+        const body     = TextAnimation.getBodyElements(frame);
 
-            // Swiper slides have their own CSS entrance animations — skip them.
-            const all = [...headings, ...body].filter(el => !el.closest(TextAnimation.EXCLUDE_SEL));
-            if (!all.length) return;
+        // Swiper slides have their own CSS entrance animations — skip them.
+        const all = [...headings, ...body].filter(el => !el.closest(TextAnimation.EXCLUDE_SEL));
+        if (!all.length) return;
 
-            switch (type) {
-                case TextAnimation.ANIM_WORDS: TextAnimation.animateWords(all); break;
-                case TextAnimation.ANIM_LINES: TextAnimation.animateLines(all); break;
-                case TextAnimation.ANIM_CHARS: TextAnimation.animateChars(all); break;
-            }
-        });
+        switch (type) {
+            case TextAnimation.ANIM_WORDS: TextAnimation.animateWords(all); break;
+            case TextAnimation.ANIM_LINES: TextAnimation.animateLines(all); break;
+            case TextAnimation.ANIM_CHARS: TextAnimation.animateChars(all); break;
+        }
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => TextAnimation.init());
+import { registry } from '../Shared/registry';
+registry.register('.frame[data-text-animation]', el => TextAnimation.initFrame(el));

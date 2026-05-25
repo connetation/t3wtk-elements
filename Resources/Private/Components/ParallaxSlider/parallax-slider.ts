@@ -5,20 +5,19 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, Parallax } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types';
+import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
+import { registry } from '../Shared/registry';
 
 class ParallaxSlider {
-    private static readonly CONTAINER_SEL        = '.conn-parallax-slider';
+
     private static readonly SWIPER_SEL           = '.conn-parallax-slider__swiper';
     private static readonly BG_SEL               = '.conn-parallax-slider__bg';
     private static readonly BTN_PREV_SEL         = '.conn-parallax-slider__btn-prev';
     private static readonly BTN_NEXT_SEL         = '.conn-parallax-slider__btn-next';
     private static readonly PAGINATION_SEL       = '.conn-parallax-slider__pagination';
-    private static readonly DATASET_AUTOPLAY       = 'autoplay';
-    private static readonly DATASET_AUTOPLAY_DELAY = 'autoplayDelay';
-    private static readonly DATASET_NAVIGATION     = 'navigation';
-    private static readonly DATASET_PAGINATION     = 'pagination';
-    private static readonly ENABLED_VALUE          = '1';
-    private static readonly BG_TRAVEL             = 0.23; // fraction of slider width the bg travels across full progress (0→1)
+    private static readonly DATASET_NAVIGATION   = 'navigation';
+    private static readonly DATASET_PAGINATION   = 'pagination';
+    private static readonly BG_TRAVEL            = 0.23; // fraction of slider width the bg travels across full progress (0→1)
 
     constructor(private readonly el: HTMLElement) {
         this.init();
@@ -30,15 +29,14 @@ class ParallaxSlider {
 
         const bgEl = swiperEl.querySelector<HTMLElement>(ParallaxSlider.BG_SEL);
 
-        const autoplay       = this.el.dataset[ParallaxSlider.DATASET_AUTOPLAY] === ParallaxSlider.ENABLED_VALUE;
-        const autoplayDelay  = parseInt(this.el.dataset[ParallaxSlider.DATASET_AUTOPLAY_DELAY] || '5000', 10);
-        const withNav        = this.el.dataset[ParallaxSlider.DATASET_NAVIGATION] === ParallaxSlider.ENABLED_VALUE;
-        const withPagination = this.el.dataset[ParallaxSlider.DATASET_PAGINATION] === ParallaxSlider.ENABLED_VALUE;
+        const ap             = readAutoplay(this.el);
+        const withNav        = this.el.dataset[ParallaxSlider.DATASET_NAVIGATION] === ENABLED_VALUE;
+        const withPagination = this.el.dataset[ParallaxSlider.DATASET_PAGINATION] === ENABLED_VALUE;
 
         const modules = [Parallax];
         if (withNav)        modules.push(Navigation);
         if (withPagination) modules.push(Pagination);
-        if (autoplay)       modules.push(Autoplay);
+        if (ap.enabled)     modules.push(Autoplay);
 
         const updateBg = (swiper: Swiper, duration: number): void => {
             if (!bgEl) return;
@@ -63,11 +61,7 @@ class ParallaxSlider {
                 clickable: true,
             } : false,
 
-            autoplay: autoplay ? {
-                delay: autoplayDelay,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            } : false,
+            autoplay: buildSwiperAutoplay(ap.enabled, ap.delay),
 
             a11y: {
                 prevSlideMessage: 'Previous slide',
@@ -85,10 +79,6 @@ class ParallaxSlider {
         } as SwiperOptions);
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(ParallaxSlider.CONTAINER_SEL)
-            .forEach(el => new ParallaxSlider(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => ParallaxSlider.initAll());
+registry.register('.conn-parallax-slider', el => new ParallaxSlider(el));

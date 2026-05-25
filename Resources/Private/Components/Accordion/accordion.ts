@@ -10,7 +10,7 @@
  */
 
 class Accordion {
-    private static readonly ACCORDION_SEL       = '[id^="conn-accordion-"]';
+
     private static readonly MUTUAL_EXCL_SEL     = '[data-bs-parent]';
     private static readonly CLASS_SHOW          = 'show';
     private static readonly CLASS_COLLAPSED     = 'collapsed';
@@ -53,10 +53,7 @@ class Accordion {
         sessionStorage.setItem(this.storageKey, JSON.stringify(openIds));
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(Accordion.ACCORDION_SEL)
-            .forEach(el => new Accordion(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => Accordion.initAll());
+import { registry } from '../Shared/registry';
+registry.register('[id^="conn-accordion-"]', el => new Accordion(el));

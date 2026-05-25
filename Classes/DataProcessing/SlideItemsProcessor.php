@@ -99,14 +99,17 @@ final class SlideItemsProcessor implements DataProcessorInterface
 
     private function resolveSettings(array $raw, string $settingsField): array
     {
+        $allowedDelays = [3000, 4000, 5000, 7000];
+
         if (str_contains($settingsField, 'hero')) {
+            $delay = (int)($raw['autoplay_delay'] ?? 4000);
             return [
                 'height'          => in_array($raw['height'] ?? 'large', ['medium', 'large', 'fullscreen'], true)
                                         ? ($raw['height'] ?? 'large') : 'large',
                 'effect'          => in_array($raw['effect'] ?? 'fade', ['fade', 'slide'], true)
                                         ? ($raw['effect'] ?? 'fade') : 'fade',
                 'autoplay'        => (bool)($raw['autoplay'] ?? true),
-                'autoplay_delay'  => (int)($raw['autoplay_delay'] ?? 5000),
+                'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
                 'show_pagination' => (bool)($raw['show_pagination'] ?? true),
             ];
@@ -114,34 +117,37 @@ final class SlideItemsProcessor implements DataProcessorInterface
 
         if (str_contains($settingsField, 'thumbs')) {
             $thumbsPerView = (int)($raw['thumbs_per_view'] ?? 4);
+            $delay = (int)($raw['autoplay_delay'] ?? 4000);
             return [
                 'height'          => in_array($raw['height'] ?? 'large', ['medium', 'large'], true)
                                         ? ($raw['height'] ?? 'large') : 'large',
                 'thumbs_per_view' => in_array($thumbsPerView, [4, 5, 6], true) ? $thumbsPerView : 4,
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
                 'autoplay'        => (bool)($raw['autoplay'] ?? false),
-                'autoplay_delay'  => (int)($raw['autoplay_delay'] ?? 4000),
+                'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
             ];
         }
 
         if (str_contains($settingsField, 'parallax')) {
+            $delay = (int)($raw['autoplay_delay'] ?? 4000);
             return [
                 'height'          => in_array($raw['height'] ?? 'large', ['medium', 'large', 'fullscreen'], true)
                                         ? ($raw['height'] ?? 'large') : 'large',
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
                 'show_pagination' => (bool)($raw['show_pagination'] ?? true),
                 'autoplay'        => (bool)($raw['autoplay'] ?? false),
-                'autoplay_delay'  => (int)($raw['autoplay_delay'] ?? 5000),
+                'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
             ];
         }
 
         $slidesPerView = (int)($raw['slides_per_view'] ?? 3);
+        $delay = (int)($raw['autoplay_delay'] ?? 4000);
 
         return [
             'slides_per_view' => in_array($slidesPerView, [1, 2, 3, 4], true) ? $slidesPerView : 3,
             'loop'            => (bool)($raw['loop'] ?? true),
             'autoplay'        => (bool)($raw['autoplay'] ?? false),
-            'autoplay_delay'  => (int)($raw['autoplay_delay'] ?? 4000),
+            'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
             'show_navigation' => (bool)($raw['show_navigation'] ?? true),
             'show_pagination' => (bool)($raw['show_pagination'] ?? true),
         ];
@@ -154,7 +160,7 @@ final class SlideItemsProcessor implements DataProcessorInterface
                 'height'          => 'large',
                 'effect'          => 'fade',
                 'autoplay'        => true,
-                'autoplay_delay'  => 5000,
+                'autoplay_delay'  => 4000,
                 'show_navigation' => true,
                 'show_pagination' => true,
             ];
@@ -176,7 +182,7 @@ final class SlideItemsProcessor implements DataProcessorInterface
                 'show_navigation' => true,
                 'show_pagination' => true,
                 'autoplay'        => false,
-                'autoplay_delay'  => 5000,
+                'autoplay_delay'  => 4000,
             ];
         }
 

@@ -109,4 +109,5 @@ class NavbarSidebar {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => NavbarSidebar.initAll());
+import { registry } from '../Shared/registry';
+registry.registerPage(() => NavbarSidebar.initAll());

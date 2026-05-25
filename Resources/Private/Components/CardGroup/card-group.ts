@@ -6,7 +6,7 @@
 import { gsap } from 'gsap';
 
 class CardGroup {
-    private static readonly CONTAINER_SEL = '.conn-card-group';
+
     private static readonly CARD_SEL      = '.conn-card-group__card';
 
     constructor(private readonly el: HTMLElement) {
@@ -27,10 +27,7 @@ class CardGroup {
         });
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(CardGroup.CONTAINER_SEL)
-            .forEach(el => new CardGroup(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => CardGroup.initAll());
+import { registry } from '../Shared/registry';
+registry.register('.conn-card-group', el => new CardGroup(el));

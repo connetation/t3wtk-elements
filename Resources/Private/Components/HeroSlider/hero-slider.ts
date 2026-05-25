@@ -4,6 +4,8 @@
 
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
+import { registry } from '../Shared/registry';
 
 interface HeroSliderOptions {
     effect: string;
@@ -14,18 +16,15 @@ interface HeroSliderOptions {
 }
 
 class HeroSlider {
-    private static readonly CONTAINER_SEL    = '.conn-hero-slider';
+
     private static readonly SWIPER_SEL       = '.conn-hero-slider__swiper';
     private static readonly BTN_PREV_SEL     = '.conn-hero-slider__btn-prev';
     private static readonly BTN_NEXT_SEL     = '.conn-hero-slider__btn-next';
     private static readonly PAGINATION_SEL   = '.conn-hero-slider__pagination';
-    private static readonly DATASET_EFFECT         = 'effect';
-    private static readonly DATASET_AUTOPLAY       = 'autoplay';
-    private static readonly DATASET_AUTOPLAY_DELAY = 'autoplayDelay';
-    private static readonly DATASET_NAVIGATION     = 'navigation';
-    private static readonly DATASET_PAGINATION     = 'pagination';
-    private static readonly EFFECT_FADE            = 'fade';
-    private static readonly ENABLED_VALUE          = '1';
+    private static readonly DATASET_EFFECT      = 'effect';
+    private static readonly DATASET_NAVIGATION  = 'navigation';
+    private static readonly DATASET_PAGINATION  = 'pagination';
+    private static readonly EFFECT_FADE         = 'fade';
 
     constructor(private readonly el: HTMLElement) {
         this.init();
@@ -35,12 +34,13 @@ class HeroSlider {
         const swiperEl = this.el.querySelector(HeroSlider.SWIPER_SEL) as HTMLElement | null;
         if (!swiperEl) return;
 
+        const ap = readAutoplay(this.el);
         const options: HeroSliderOptions = {
             effect:         this.el.dataset[HeroSlider.DATASET_EFFECT] || HeroSlider.EFFECT_FADE,
-            autoplay:       this.el.dataset[HeroSlider.DATASET_AUTOPLAY] === HeroSlider.ENABLED_VALUE,
-            autoplayDelay:  parseInt(this.el.dataset[HeroSlider.DATASET_AUTOPLAY_DELAY] || '5000', 10),
-            withNav:        this.el.dataset[HeroSlider.DATASET_NAVIGATION] === HeroSlider.ENABLED_VALUE,
-            withPagination: this.el.dataset[HeroSlider.DATASET_PAGINATION] === HeroSlider.ENABLED_VALUE,
+            autoplay:       ap.enabled,
+            autoplayDelay:  ap.delay,
+            withNav:        this.el.dataset[HeroSlider.DATASET_NAVIGATION] === ENABLED_VALUE,
+            withPagination: this.el.dataset[HeroSlider.DATASET_PAGINATION] === ENABLED_VALUE,
         };
 
         const modules = [EffectFade];
@@ -65,11 +65,7 @@ class HeroSlider {
                 clickable: true,
             } : false,
 
-            autoplay: options.autoplay ? {
-                delay: options.autoplayDelay,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            } : false,
+            autoplay: buildSwiperAutoplay(options.autoplay, options.autoplayDelay),
 
             a11y: {
                 prevSlideMessage: 'Previous slide',
@@ -78,10 +74,6 @@ class HeroSlider {
         });
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(HeroSlider.CONTAINER_SEL)
-            .forEach(el => new HeroSlider(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => HeroSlider.initAll());
+registry.register('.conn-hero-slider', el => new HeroSlider(el));

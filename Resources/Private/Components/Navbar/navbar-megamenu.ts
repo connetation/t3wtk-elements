@@ -100,4 +100,5 @@ class NavbarMegamenu {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => NavbarMegamenu.initAll());
+import { registry } from '../Shared/registry';
+registry.registerPage(() => NavbarMegamenu.initAll());

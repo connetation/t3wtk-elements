@@ -2,10 +2,11 @@
  * Connetation Elements – Wiki content element
  */
 
-import { FilterableComponent } from '../Shared/filterable';
+import { FilterController } from '../Shared/filter-controller';
+import { registry } from '../Shared/registry';
 
-class Wiki extends FilterableComponent {
-    private static readonly CONTAINER_SEL      = '.wiki';
+class Wiki {
+
     private static readonly NAV_ITEM_SEL       = '.wiki__nav-item';
     private static readonly PANEL_SEL          = '.wiki__page-panel';
     private static readonly NAV_EMPTY_SEL      = '.wiki__nav-empty';
@@ -22,10 +23,9 @@ class Wiki extends FilterableComponent {
     private readonly panels: NodeListOf<HTMLElement>;
     private readonly navEmpty: Element | null;
     private readonly panelText: Map<string | undefined, string>;
+    private readonly filter: FilterController;
 
-    constructor(container: HTMLElement) {
-        super(container);
-
+    constructor(private readonly container: HTMLElement) {
         this.navItems  = container.querySelectorAll<HTMLElement>(Wiki.NAV_ITEM_SEL);
         this.panels    = container.querySelectorAll<HTMLElement>(Wiki.PANEL_SEL);
         this.navEmpty  = container.querySelector(Wiki.NAV_EMPTY_SEL);
@@ -36,12 +36,16 @@ class Wiki extends FilterableComponent {
             this.panelText.set(panel.dataset.pageUid, panel.textContent?.toLowerCase() ?? '');
         });
 
+        this.filter = new FilterController(container, {
+            onFilter: () => this.applyFilters(),
+        });
+
         this.init();
     }
 
     // ─── Show a specific page panel ─────────────────────────────────────────
     private showPage(pageUid: string | undefined): void {
-        const F = FilterableComponent;
+        const F = FilterController;
         this.panels.forEach(p => {
             const active = p.dataset.pageUid === pageUid;
             p.classList.toggle(F.CLASS_IS_ACTIVE, active);
@@ -52,15 +56,15 @@ class Wiki extends FilterableComponent {
     }
 
     // ─── Apply all filters ───────────────────────────────────────────────────
-    protected applyFilters(): void {
-        const q = this.currentSearch.toLowerCase().trim();
-        const F = FilterableComponent;
+    private applyFilters(): void {
+        const q = this.filter.currentSearch.toLowerCase().trim();
+        const F = FilterController;
         let firstVisible: string | undefined = undefined;
 
         this.navItems.forEach(item => {
-            const catOk    = this.currentCategory === F.FILTER_ALL || item.dataset.category === this.currentCategory;
+            const catOk    = this.filter.currentCategory === F.FILTER_ALL || item.dataset.category === this.filter.currentCategory;
             const searchOk = !q || (this.panelText.get(item.dataset.pageUid) || '').includes(q);
-            const visible  = catOk && searchOk && this.matchesTags(item);
+            const visible  = catOk && searchOk && this.filter.matchesTags(item);
             item.classList.toggle(F.CLASS_D_NONE, !visible);
             if (visible && !firstVisible) firstVisible = item.dataset.pageUid;
         });
@@ -76,9 +80,6 @@ class Wiki extends FilterableComponent {
                 this.showPage(item.dataset.pageUid);
             });
         });
-
-        // ─── Category / tags / search / reset (shared) ──────────────────────
-        this.initFilterListeners();
 
         // ─── Inject copy buttons into CKEditor code blocks ───────────────────
         const ICON_COPY  = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>`;
@@ -115,10 +116,6 @@ class Wiki extends FilterableComponent {
         if (this.navItems.length) this.showPage(this.navItems[0].dataset.pageUid);
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(Wiki.CONTAINER_SEL)
-            .forEach(el => new Wiki(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => Wiki.initAll());
+registry.register('.wiki', el => new Wiki(el));

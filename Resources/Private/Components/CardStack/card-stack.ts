@@ -7,42 +7,38 @@
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { attachSwipeHandler } from '../Shared/swipe';
+import { AutoplayController } from '../Shared/autoplay';
+import { registry } from '../Shared/registry';
 
 gsap.registerPlugin(Flip);
 
 class CardStack {
-    private static readonly CONTAINER_SEL        = '.conn-card-stack';
-    private static readonly DECK_SEL             = '.conn-card-stack__deck';
-    private static readonly BTN_PREV_SEL         = '.conn-card-stack__btn--prev';
-    private static readonly BTN_NEXT_SEL         = '.conn-card-stack__btn--next';
-    private static readonly COUNTER_SEL          = '.conn-card-stack__counter';
-    private static readonly CARD_SEL             = ':scope > .conn-card-stack__card';
-    private static readonly KEY_ARROW_RIGHT      = 'ArrowRight';
-    private static readonly KEY_ARROW_LEFT       = 'ArrowLeft';
-    private static readonly OFFSET               = 20;
-    private static readonly MAX_STACK_DEPTH      = 4;
-    private static readonly DATASET_AUTOPLAY     = 'autoplay';
-    private static readonly DATASET_DELAY        = 'autoplayDelay';
-    private static readonly ENABLED_VALUE        = '1';
+
+    private static readonly DECK_SEL        = '.conn-card-stack__deck';
+    private static readonly BTN_PREV_SEL    = '.conn-card-stack__btn--prev';
+    private static readonly BTN_NEXT_SEL    = '.conn-card-stack__btn--next';
+    private static readonly COUNTER_SEL     = '.conn-card-stack__counter';
+    private static readonly CARD_SEL        = ':scope > .conn-card-stack__card';
+    private static readonly KEY_ARROW_RIGHT = 'ArrowRight';
+    private static readonly KEY_ARROW_LEFT  = 'ArrowLeft';
+    private static readonly OFFSET          = 20;
+    private static readonly MAX_STACK_DEPTH = 4;
 
     private readonly deck: HTMLElement;
     private readonly btnPrev: Element | null;
     private readonly btnNext: Element | null;
     private readonly counter: Element | null;
-    private readonly hasAutoplay: boolean;
-    private readonly autoplayDelay: number;
+    private readonly autoplay: AutoplayController;
     private totalCards  = 0;
     private currentCard = 1;
     private isAnimating = false;
-    private autoplayTimer: ReturnType<typeof setInterval> | null = null;
 
     constructor(private readonly el: HTMLElement) {
-        this.deck         = el.querySelector(CardStack.DECK_SEL) as HTMLElement;
-        this.btnPrev      = el.querySelector(CardStack.BTN_PREV_SEL);
-        this.btnNext      = el.querySelector(CardStack.BTN_NEXT_SEL);
-        this.counter      = el.querySelector(CardStack.COUNTER_SEL);
-        this.hasAutoplay  = el.dataset[CardStack.DATASET_AUTOPLAY] === CardStack.ENABLED_VALUE;
-        this.autoplayDelay = parseInt(el.dataset[CardStack.DATASET_DELAY] || '3000', 10);
+        this.deck    = el.querySelector(CardStack.DECK_SEL) as HTMLElement;
+        this.btnPrev = el.querySelector(CardStack.BTN_PREV_SEL);
+        this.btnNext = el.querySelector(CardStack.BTN_NEXT_SEL);
+        this.counter = el.querySelector(CardStack.COUNTER_SEL);
+        this.autoplay = new AutoplayController(el, () => this.advance(true));
 
         if (!this.deck) return;
         if (!this.getVisible().length) return;
@@ -78,19 +74,6 @@ class CardStack {
         if (front) this.deck.style.height = front.offsetHeight + 'px';
     }
 
-    // ─── Autoplay ─────────────────────────────────────────────────────
-    private startAutoplay(): void {
-        this.stopAutoplay();
-        this.autoplayTimer = setInterval(() => this.advance(true), this.autoplayDelay);
-    }
-
-    private stopAutoplay(): void {
-        if (this.autoplayTimer !== null) {
-            clearInterval(this.autoplayTimer);
-            this.autoplayTimer = null;
-        }
-    }
-
     private init(): void {
         this.positionCards(this.getVisible());
         this.setHeight();
@@ -99,30 +82,27 @@ class CardStack {
 
         // ─── Buttons + keyboard ───────────────────────────────────────────
         if (this.btnNext) this.btnNext.addEventListener('click', () => {
-            if (this.hasAutoplay) this.startAutoplay(); // reset timer on manual advance
+            this.autoplay.start(); // reset countdown on manual advance
             this.advance(true);
         });
         if (this.btnPrev) this.btnPrev.addEventListener('click', () => {
-            if (this.hasAutoplay) this.startAutoplay();
+            this.autoplay.start();
             this.advance(false);
         });
         this.el.addEventListener('keydown', (e: KeyboardEvent) => {
-            if (e.key === CardStack.KEY_ARROW_RIGHT) { if (this.hasAutoplay) this.startAutoplay(); this.advance(true); }
-            if (e.key === CardStack.KEY_ARROW_LEFT)  { if (this.hasAutoplay) this.startAutoplay(); this.advance(false); }
+            if (e.key === CardStack.KEY_ARROW_RIGHT) { this.autoplay.start(); this.advance(true); }
+            if (e.key === CardStack.KEY_ARROW_LEFT)  { this.autoplay.start(); this.advance(false); }
         });
 
         // ─── Swipe / drag ─────────────────────────────────────────────────
         attachSwipeHandler(this.deck, (forward) => {
-            if (this.hasAutoplay) this.startAutoplay();
+            this.autoplay.start();
             this.advance(forward);
         }, { isLocked: () => this.isAnimating });
 
         // ─── Autoplay ─────────────────────────────────────────────────────
-        if (this.hasAutoplay) {
-            this.startAutoplay();
-            this.deck.addEventListener('mouseenter', () => this.stopAutoplay());
-            this.deck.addEventListener('mouseleave', () => this.startAutoplay());
-        }
+        this.autoplay.start();
+        if (this.autoplay.enabled) this.autoplay.attachHoverPause(this.deck);
     }
 
     // ─── Advance ──────────────────────────────────────────────────────
@@ -181,10 +161,6 @@ class CardStack {
         });
     }
 
-    static initAll(): void {
-        document.querySelectorAll<HTMLElement>(CardStack.CONTAINER_SEL)
-            .forEach(el => new CardStack(el));
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => CardStack.initAll());
+registry.register('.conn-card-stack', el => new CardStack(el));
