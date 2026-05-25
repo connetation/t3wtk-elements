@@ -5,74 +5,102 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-const initSlider = (container: HTMLElement): void => {
-    const el = container.querySelector('.conn-slider__swiper') as HTMLElement | null;
-    if (!el) return;
-
-    const slidesPerView  = parseInt(container.dataset.slidesPerView || '3', 10);
-    const loop           = container.dataset.loop === '1';
-    const autoplay       = container.dataset.autoplay === '1';
-    const autoplayDelay  = parseInt(container.dataset.autoplayDelay || '4000', 10);
-    const withNav        = container.dataset.navigation === '1';
-    const withPagination = container.dataset.pagination === '1';
-
-    const modules = [];
-    if (withNav)        modules.push(Navigation);
-    if (withPagination) modules.push(Pagination);
-    if (autoplay)       modules.push(Autoplay);
-
-    new Swiper(el, {
-        modules,
-        loop,
-        speed: 500,
-        grabCursor: true,
-
-        slidesPerView: 1,
-        spaceBetween: 16,
-
-        breakpoints: {
-            576: {
-                slidesPerView: Math.min(slidesPerView, 2),
-                spaceBetween: 20,
-            },
-            992: {
-                slidesPerView: Math.min(slidesPerView, 3),
-                spaceBetween: 24,
-            },
-            1200: {
-                slidesPerView,
-                spaceBetween: 24,
-            },
-        },
-
-        navigation: withNav ? {
-            prevEl: container.querySelector('.conn-slider__btn-prev'),
-            nextEl: container.querySelector('.conn-slider__btn-next'),
-        } : false,
-
-        pagination: withPagination ? {
-            el: container.querySelector('.conn-slider__pagination'),
-            clickable: true,
-        } : false,
-
-        autoplay: autoplay ? {
-            delay: autoplayDelay,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-        } : false,
-
-        a11y: {
-            prevSlideMessage: 'Previous slide',
-            nextSlideMessage: 'Next slide',
-        },
-    });
-};
-
-function onReady(fn: () => void): void {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
+interface SliderOptions {
+    slidesPerView: number;
+    loop: boolean;
+    autoplay: boolean;
+    autoplayDelay: number;
+    withNav: boolean;
+    withPagination: boolean;
 }
 
-onReady(() => {
-    document.querySelectorAll('.conn-slider').forEach(el => initSlider(el as HTMLElement));
-});
+class Slider {
+    private static readonly CONTAINER_SEL          = '.conn-slider';
+    private static readonly SWIPER_SEL             = '.conn-slider__swiper';
+    private static readonly BTN_PREV_SEL           = '.conn-slider__btn-prev';
+    private static readonly BTN_NEXT_SEL           = '.conn-slider__btn-next';
+    private static readonly PAGINATION_SEL         = '.conn-slider__pagination';
+    private static readonly DATASET_SLIDES_PER_VIEW  = 'slidesPerView';
+    private static readonly DATASET_LOOP             = 'loop';
+    private static readonly DATASET_AUTOPLAY         = 'autoplay';
+    private static readonly DATASET_AUTOPLAY_DELAY   = 'autoplayDelay';
+    private static readonly DATASET_NAVIGATION       = 'navigation';
+    private static readonly DATASET_PAGINATION       = 'pagination';
+    private static readonly ENABLED_VALUE            = '1';
+
+    constructor(private readonly el: HTMLElement) {
+        this.init();
+    }
+
+    private init(): void {
+        const swiperEl = this.el.querySelector(Slider.SWIPER_SEL) as HTMLElement | null;
+        if (!swiperEl) return;
+
+        const options: SliderOptions = {
+            slidesPerView:  parseInt(this.el.dataset[Slider.DATASET_SLIDES_PER_VIEW] || '3', 10),
+            loop:           this.el.dataset[Slider.DATASET_LOOP] === Slider.ENABLED_VALUE,
+            autoplay:       this.el.dataset[Slider.DATASET_AUTOPLAY] === Slider.ENABLED_VALUE,
+            autoplayDelay:  parseInt(this.el.dataset[Slider.DATASET_AUTOPLAY_DELAY] || '4000', 10),
+            withNav:        this.el.dataset[Slider.DATASET_NAVIGATION] === Slider.ENABLED_VALUE,
+            withPagination: this.el.dataset[Slider.DATASET_PAGINATION] === Slider.ENABLED_VALUE,
+        };
+
+        const modules = [];
+        if (options.withNav)        modules.push(Navigation);
+        if (options.withPagination) modules.push(Pagination);
+        if (options.autoplay)       modules.push(Autoplay);
+
+        new Swiper(swiperEl, {
+            modules,
+            loop: options.loop,
+            speed: 500,
+            grabCursor: true,
+
+            slidesPerView: 1,
+            spaceBetween: 16,
+
+            breakpoints: {
+                576: {
+                    slidesPerView: Math.min(options.slidesPerView, 2),
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: Math.min(options.slidesPerView, 3),
+                    spaceBetween: 24,
+                },
+                1200: {
+                    slidesPerView: options.slidesPerView,
+                    spaceBetween: 24,
+                },
+            },
+
+            navigation: options.withNav ? {
+                prevEl: this.el.querySelector(Slider.BTN_PREV_SEL),
+                nextEl: this.el.querySelector(Slider.BTN_NEXT_SEL),
+            } : false,
+
+            pagination: options.withPagination ? {
+                el: this.el.querySelector(Slider.PAGINATION_SEL),
+                clickable: true,
+            } : false,
+
+            autoplay: options.autoplay ? {
+                delay: options.autoplayDelay,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            } : false,
+
+            a11y: {
+                prevSlideMessage: 'Previous slide',
+                nextSlideMessage: 'Next slide',
+            },
+        });
+    }
+
+    static initAll(): void {
+        document.querySelectorAll<HTMLElement>(Slider.CONTAINER_SEL)
+            .forEach(el => new Slider(el));
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => Slider.initAll());

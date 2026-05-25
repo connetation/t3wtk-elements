@@ -6,74 +6,89 @@ import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, Parallax } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types';
 
-const BG_TRAVEL = 0.23; // fraction of slider width the bg travels across full progress (0→1)
+class ParallaxSlider {
+    private static readonly CONTAINER_SEL        = '.conn-parallax-slider';
+    private static readonly SWIPER_SEL           = '.conn-parallax-slider__swiper';
+    private static readonly BG_SEL               = '.conn-parallax-slider__bg';
+    private static readonly BTN_PREV_SEL         = '.conn-parallax-slider__btn-prev';
+    private static readonly BTN_NEXT_SEL         = '.conn-parallax-slider__btn-next';
+    private static readonly PAGINATION_SEL       = '.conn-parallax-slider__pagination';
+    private static readonly DATASET_AUTOPLAY       = 'autoplay';
+    private static readonly DATASET_AUTOPLAY_DELAY = 'autoplayDelay';
+    private static readonly DATASET_NAVIGATION     = 'navigation';
+    private static readonly DATASET_PAGINATION     = 'pagination';
+    private static readonly ENABLED_VALUE          = '1';
+    private static readonly BG_TRAVEL             = 0.23; // fraction of slider width the bg travels across full progress (0→1)
 
-const initParallaxSlider = (container: HTMLElement): void => {
-    const el = container.querySelector('.conn-parallax-slider__swiper') as HTMLElement | null;
-    if (!el) return;
+    constructor(private readonly el: HTMLElement) {
+        this.init();
+    }
 
-    const bgEl = el.querySelector<HTMLElement>('.conn-parallax-slider__bg');
+    private init(): void {
+        const swiperEl = this.el.querySelector(ParallaxSlider.SWIPER_SEL) as HTMLElement | null;
+        if (!swiperEl) return;
 
-    const autoplay       = container.dataset.autoplay === '1';
-    const autoplayDelay  = parseInt(container.dataset.autoplayDelay || '5000', 10);
-    const withNav        = container.dataset.navigation === '1';
-    const withPagination = container.dataset.pagination === '1';
+        const bgEl = swiperEl.querySelector<HTMLElement>(ParallaxSlider.BG_SEL);
 
-    const modules = [Parallax];
-    if (withNav)        modules.push(Navigation);
-    if (withPagination) modules.push(Pagination);
-    if (autoplay)       modules.push(Autoplay);
+        const autoplay       = this.el.dataset[ParallaxSlider.DATASET_AUTOPLAY] === ParallaxSlider.ENABLED_VALUE;
+        const autoplayDelay  = parseInt(this.el.dataset[ParallaxSlider.DATASET_AUTOPLAY_DELAY] || '5000', 10);
+        const withNav        = this.el.dataset[ParallaxSlider.DATASET_NAVIGATION] === ParallaxSlider.ENABLED_VALUE;
+        const withPagination = this.el.dataset[ParallaxSlider.DATASET_PAGINATION] === ParallaxSlider.ENABLED_VALUE;
 
-    const updateBg = (swiper: Swiper, duration: number): void => {
-        if (!bgEl) return;
-        const offsetPx = -swiper.progress * BG_TRAVEL * swiper.width;
-        bgEl.style.transitionDuration = `${duration}ms`;
-        bgEl.style.transform = `translate3d(${offsetPx}px, 0, 0)`;
-    };
+        const modules = [Parallax];
+        if (withNav)        modules.push(Navigation);
+        if (withPagination) modules.push(Pagination);
+        if (autoplay)       modules.push(Autoplay);
 
-    new Swiper(el, {
-        modules,
-        parallax: true,
-        speed: 900,
-        loop: false,
+        const updateBg = (swiper: Swiper, duration: number): void => {
+            if (!bgEl) return;
+            const offsetPx = -swiper.progress * ParallaxSlider.BG_TRAVEL * swiper.width;
+            bgEl.style.transitionDuration = `${duration}ms`;
+            bgEl.style.transform = `translate3d(${offsetPx}px, 0, 0)`;
+        };
 
-        navigation: withNav ? {
-            prevEl: container.querySelector('.conn-parallax-slider__btn-prev'),
-            nextEl: container.querySelector('.conn-parallax-slider__btn-next'),
-        } : false,
+        new Swiper(swiperEl, {
+            modules,
+            parallax: true,
+            speed: 900,
+            loop: false,
 
-        pagination: withPagination ? {
-            el: container.querySelector('.conn-parallax-slider__pagination'),
-            clickable: true,
-        } : false,
+            navigation: withNav ? {
+                prevEl: this.el.querySelector(ParallaxSlider.BTN_PREV_SEL),
+                nextEl: this.el.querySelector(ParallaxSlider.BTN_NEXT_SEL),
+            } : false,
 
-        autoplay: autoplay ? {
-            delay: autoplayDelay,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-        } : false,
+            pagination: withPagination ? {
+                el: this.el.querySelector(ParallaxSlider.PAGINATION_SEL),
+                clickable: true,
+            } : false,
 
-        a11y: {
-            prevSlideMessage: 'Previous slide',
-            nextSlideMessage: 'Next slide',
-        },
+            autoplay: autoplay ? {
+                delay: autoplayDelay,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            } : false,
 
-        on: {
-            progress(swiper) {
-                updateBg(swiper, 0);
+            a11y: {
+                prevSlideMessage: 'Previous slide',
+                nextSlideMessage: 'Next slide',
             },
-            setTransition(swiper, duration) {
-                updateBg(swiper, duration);
-            },
-        },
-    } as SwiperOptions);
-};
 
-function onReady(fn: () => void): void {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
+            on: {
+                progress(swiper) {
+                    updateBg(swiper, 0);
+                },
+                setTransition(swiper, duration) {
+                    updateBg(swiper, duration);
+                },
+            },
+        } as SwiperOptions);
+    }
+
+    static initAll(): void {
+        document.querySelectorAll<HTMLElement>(ParallaxSlider.CONTAINER_SEL)
+            .forEach(el => new ParallaxSlider(el));
+    }
 }
 
-onReady(() => {
-    document.querySelectorAll('.conn-parallax-slider').forEach(el => initParallaxSlider(el as HTMLElement));
-});
+document.addEventListener('DOMContentLoaded', () => ParallaxSlider.initAll());

@@ -91,6 +91,7 @@ final class CardStackProcessor implements DataProcessorInterface
         $allowedPositions    = ['bottom', 'center', 'top'];
         $allowedAligns       = ['left', 'center', 'right'];
         $allowedNavPositions = ['bottom', 'sides', 'none'];
+        $allowedDelays       = [3000, 4000, 5000, 7000];
 
         $textPosition = in_array($raw['textPosition'] ?? '', $allowedPositions, true)
             ? $raw['textPosition']
@@ -101,20 +102,29 @@ final class CardStackProcessor implements DataProcessorInterface
         $navPosition = in_array($raw['navPosition'] ?? '', $allowedNavPositions, true)
             ? $raw['navPosition']
             : 'bottom';
+        $autoplay = (bool)($raw['autoplay'] ?? false);
+        $autoplayDelay = (int)($raw['autoplay_delay'] ?? 4000);
+        if (!in_array($autoplayDelay, $allowedDelays, true)) {
+            $autoplayDelay = 4000;
+        }
 
         return [
-            'textPosition' => $textPosition,
-            'textAlign'    => $textAlign,
-            'navPosition'  => $navPosition,
+            'textPosition'  => $textPosition,
+            'textAlign'     => $textAlign,
+            'navPosition'   => $navPosition,
+            'autoplay'      => $autoplay,
+            'autoplay_delay' => $autoplayDelay,
         ];
     }
 
     private function defaultSettings(): array
     {
         return [
-            'textPosition' => 'bottom',
-            'textAlign'    => 'left',
-            'navPosition'  => 'bottom',
+            'textPosition'  => 'bottom',
+            'textAlign'     => 'left',
+            'navPosition'   => 'bottom',
+            'autoplay'      => false,
+            'autoplay_delay' => 4000,
         ];
     }
 }

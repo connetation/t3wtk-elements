@@ -6,67 +6,136 @@
 
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
+import { attachSwipeHandler } from '../Shared/swipe';
 
 gsap.registerPlugin(Flip);
 
-const OFFSET = 20; // px offset per stack level
+class CardStack {
+    private static readonly CONTAINER_SEL        = '.conn-card-stack';
+    private static readonly DECK_SEL             = '.conn-card-stack__deck';
+    private static readonly BTN_PREV_SEL         = '.conn-card-stack__btn--prev';
+    private static readonly BTN_NEXT_SEL         = '.conn-card-stack__btn--next';
+    private static readonly COUNTER_SEL          = '.conn-card-stack__counter';
+    private static readonly CARD_SEL             = ':scope > .conn-card-stack__card';
+    private static readonly KEY_ARROW_RIGHT      = 'ArrowRight';
+    private static readonly KEY_ARROW_LEFT       = 'ArrowLeft';
+    private static readonly OFFSET               = 20;
+    private static readonly MAX_STACK_DEPTH      = 4;
+    private static readonly DATASET_AUTOPLAY     = 'autoplay';
+    private static readonly DATASET_DELAY        = 'autoplayDelay';
+    private static readonly ENABLED_VALUE        = '1';
 
-const initCardStack = (container: HTMLElement): void => {
-    const deck    = container.querySelector('.conn-card-stack__deck') as HTMLElement | null;
-    const btnPrev = container.querySelector('.conn-card-stack__btn--prev');
-    const btnNext = container.querySelector('.conn-card-stack__btn--next');
-    const counter = container.querySelector('.conn-card-stack__counter');
+    private readonly deck: HTMLElement;
+    private readonly btnPrev: Element | null;
+    private readonly btnNext: Element | null;
+    private readonly counter: Element | null;
+    private readonly hasAutoplay: boolean;
+    private readonly autoplayDelay: number;
+    private totalCards  = 0;
+    private currentCard = 1;
+    private isAnimating = false;
+    private autoplayTimer: ReturnType<typeof setInterval> | null = null;
 
-    if (!deck) return;
+    constructor(private readonly el: HTMLElement) {
+        this.deck         = el.querySelector(CardStack.DECK_SEL) as HTMLElement;
+        this.btnPrev      = el.querySelector(CardStack.BTN_PREV_SEL);
+        this.btnNext      = el.querySelector(CardStack.BTN_NEXT_SEL);
+        this.counter      = el.querySelector(CardStack.COUNTER_SEL);
+        this.hasAutoplay  = el.dataset[CardStack.DATASET_AUTOPLAY] === CardStack.ENABLED_VALUE;
+        this.autoplayDelay = parseInt(el.dataset[CardStack.DATASET_DELAY] || '3000', 10);
 
-    const getVisible = (): HTMLElement[] =>
-        Array.from(deck.querySelectorAll<HTMLElement>(':scope > .conn-card-stack__card'))
-             .filter(c => c.style.display !== 'none');
+        if (!this.deck) return;
+        if (!this.getVisible().length) return;
 
-    if (!getVisible().length) return;
+        this.totalCards = this.getVisible().length;
+        this.init();
+    }
 
-    const totalCards = getVisible().length;
-    let currentCard  = 1;
-    let isAnimating  = false;
+    private getVisible(): HTMLElement[] {
+        return Array.from(this.deck.querySelectorAll<HTMLElement>(CardStack.CARD_SEL))
+                    .filter(c => c.style.display !== 'none');
+    }
 
-    const updateCounter = (): void => {
-        if (counter) counter.textContent = `${currentCard} / ${totalCards}`;
-    };
+    private updateCounter(): void {
+        if (this.counter) this.counter.textContent = `${this.currentCard} / ${this.totalCards}`;
+    }
 
-    // ─── Explicit positioning (last in array = front card) ───────────
-    const positionCards = (cards: HTMLElement[]): void => {
+    private positionCards(cards: HTMLElement[]): void {
         cards.forEach((card, i) => {
             const fromFront = cards.length - 1 - i;
+            const depth     = Math.min(fromFront, CardStack.MAX_STACK_DEPTH);
             gsap.set(card, {
-                left: fromFront * OFFSET,
-                top: -(fromFront * OFFSET),
+                left:   depth * CardStack.OFFSET,
+                top:  -(depth * CardStack.OFFSET),
                 zIndex: i + 1,
             });
         });
-    };
+    }
 
-    const setHeight = (): void => {
-        const visible = getVisible();
+    private setHeight(): void {
+        const visible = this.getVisible();
         const front = visible[visible.length - 1];
-        if (front) deck.style.height = front.offsetHeight + 'px';
-    };
+        if (front) this.deck.style.height = front.offsetHeight + 'px';
+    }
 
-    positionCards(getVisible());
-    setHeight();
-    updateCounter();
-    window.addEventListener('resize', () => { positionCards(getVisible()); setHeight(); });
+    // ─── Autoplay ─────────────────────────────────────────────────────
+    private startAutoplay(): void {
+        this.stopAutoplay();
+        this.autoplayTimer = setInterval(() => this.advance(true), this.autoplayDelay);
+    }
+
+    private stopAutoplay(): void {
+        if (this.autoplayTimer !== null) {
+            clearInterval(this.autoplayTimer);
+            this.autoplayTimer = null;
+        }
+    }
+
+    private init(): void {
+        this.positionCards(this.getVisible());
+        this.setHeight();
+        this.updateCounter();
+        window.addEventListener('resize', () => { this.positionCards(this.getVisible()); this.setHeight(); });
+
+        // ─── Buttons + keyboard ───────────────────────────────────────────
+        if (this.btnNext) this.btnNext.addEventListener('click', () => {
+            if (this.hasAutoplay) this.startAutoplay(); // reset timer on manual advance
+            this.advance(true);
+        });
+        if (this.btnPrev) this.btnPrev.addEventListener('click', () => {
+            if (this.hasAutoplay) this.startAutoplay();
+            this.advance(false);
+        });
+        this.el.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === CardStack.KEY_ARROW_RIGHT) { if (this.hasAutoplay) this.startAutoplay(); this.advance(true); }
+            if (e.key === CardStack.KEY_ARROW_LEFT)  { if (this.hasAutoplay) this.startAutoplay(); this.advance(false); }
+        });
+
+        // ─── Swipe / drag ─────────────────────────────────────────────────
+        attachSwipeHandler(this.deck, (forward) => {
+            if (this.hasAutoplay) this.startAutoplay();
+            this.advance(forward);
+        }, { isLocked: () => this.isAnimating });
+
+        // ─── Autoplay ─────────────────────────────────────────────────────
+        if (this.hasAutoplay) {
+            this.startAutoplay();
+            this.deck.addEventListener('mouseenter', () => this.stopAutoplay());
+            this.deck.addEventListener('mouseleave', () => this.startAutoplay());
+        }
+    }
 
     // ─── Advance ──────────────────────────────────────────────────────
-    const advance = (forward: boolean): void => {
-        if (isAnimating) return;
-        const cards = getVisible();
+    private advance(forward: boolean): void {
+        if (this.isAnimating) return;
+        const cards = this.getVisible();
         if (cards.length <= 1) return;
-        isAnimating = true;
+        this.isAnimating = true;
 
-        currentCard = forward
-            ? (currentCard % totalCards) + 1
-            : ((currentCard - 2 + totalCards) % totalCards) + 1;
-        updateCounter();
+        this.currentCard = forward
+            ? (this.currentCard % this.totalCards) + 1
+            : ((this.currentCard - 2 + this.totalCards) % this.totalCards) + 1;
+        this.updateCounter();
 
         const state = Flip.getState(cards);
         let leavingCard: HTMLElement;
@@ -74,19 +143,18 @@ const initCardStack = (container: HTMLElement): void => {
         if (forward) {
             leavingCard = cards[cards.length - 1];
             const clone = leavingCard.cloneNode(true);
-            deck.insertBefore(clone, deck.firstChild);
+            this.deck.insertBefore(clone, this.deck.firstChild);
             leavingCard.style.display = 'none';
         } else {
             leavingCard = cards[0];
             const clone = leavingCard.cloneNode(true);
-            deck.appendChild(clone);
+            this.deck.appendChild(clone);
             leavingCard.style.display = 'none';
         }
 
-        const newVisible = getVisible();
-        positionCards(newVisible);
+        const newVisible = this.getVisible();
+        this.positionCards(newVisible);
 
-        // Include leavingCard so Flip fires onLeave for it
         Flip.from(state, {
             targets: [...newVisible, leavingCard],
             duration: 0.5,
@@ -104,63 +172,19 @@ const initCardStack = (container: HTMLElement): void => {
                 transformOrigin: forward ? 'bottom left' : 'bottom right',
                 opacity: 0,
                 ease: 'expo.out',
-                onComplete() {
+                onComplete: () => {
                     if (elements[0]?.parentNode) elements[0].parentNode.removeChild(elements[0]);
-                    setHeight();
+                    this.setHeight();
                 },
             }),
-            onComplete: () => { isAnimating = false; },
+            onComplete: () => { this.isAnimating = false; },
         });
-    };
+    }
 
-    // ─── Buttons + keyboard ───────────────────────────────────────────
-    if (btnNext) btnNext.addEventListener('click', () => advance(true));
-    if (btnPrev) btnPrev.addEventListener('click', () => advance(false));
-    container.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'ArrowRight') advance(true);
-        if (e.key === 'ArrowLeft')  advance(false);
-    });
-
-    // ─── Swipe / drag support ─────────────────────────────────────────
-    // setPointerCapture routes all pointer events to the deck even when the
-    // cursor leaves it mid-drag, giving reliable mouse drag on desktop.
-    let swipeStartX = 0, isSwiping = false;
-
-    const dragStart = (e: PointerEvent): void => {
-        if (isAnimating) return;
-        if (e.pointerType === 'mouse' && e.button !== 0) return;
-        swipeStartX = e.clientX;
-        isSwiping   = true;
-        deck.setPointerCapture(e.pointerId);
-        document.body.style.cursor = 'grabbing';
-        e.preventDefault();
-    };
-
-    const dragEnd = (e: PointerEvent): void => {
-        if (!isSwiping) return;
-        isSwiping = false;
-        document.body.style.cursor = '';
-        const dx = e.clientX - swipeStartX;
-        if (Math.abs(dx) < 50) return;
-        advance(dx < 0);
-    };
-
-    const dragCancel = (): void => {
-        isSwiping = false;
-        document.body.style.cursor = '';
-    };
-
-    deck.addEventListener('pointerdown',   dragStart,  { passive: false });
-    deck.addEventListener('pointerup',     dragEnd);
-    deck.addEventListener('pointercancel', dragCancel);
-};
-
-// ─── Self-init ────────────────────────────────────────────────────────────────
-function onReady(fn: () => void): void {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
+    static initAll(): void {
+        document.querySelectorAll<HTMLElement>(CardStack.CONTAINER_SEL)
+            .forEach(el => new CardStack(el));
+    }
 }
 
-onReady(() => {
-    document.querySelectorAll('.conn-card-stack').forEach(el => initCardStack(el as HTMLElement));
-});
+document.addEventListener('DOMContentLoaded', () => CardStack.initAll());

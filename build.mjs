@@ -6,7 +6,8 @@ const dev   = watch || process.argv.includes('--dev');
 /** @type {import('esbuild').BuildOptions} */
 const config = {
     entryPoints: {
-        dashboard:     'Resources/Private/Components/Dashboard/dashboard.ts',
+        dashboard:            'Resources/Private/Components/Dashboard/dashboard.ts',
+        'dashboard-animations': 'Resources/Private/Components/Dashboard/animations.ts',
         wiki:          'Resources/Private/Components/Wiki/wiki.ts',
         accordion:     'Resources/Private/Components/Accordion/accordion.ts',
         'card-group':  'Resources/Private/Components/CardGroup/card-group.ts',

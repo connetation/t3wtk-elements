@@ -5,26 +5,32 @@
 
 import { gsap } from 'gsap';
 
-const initCardGroup = (container: HTMLElement): void => {
-    const cards = container.querySelectorAll('.conn-card-group__card');
-    if (!cards.length) return;
+class CardGroup {
+    private static readonly CONTAINER_SEL = '.conn-card-group';
+    private static readonly CARD_SEL      = '.conn-card-group__card';
 
-    gsap.from(cards, {
-        opacity: 0,
-        y: 20,
-        duration: 0.4,
-        stagger: 0.07,
-        ease: 'power2.out',
-        clearProps: 'all',
-    });
-};
+    constructor(private readonly el: HTMLElement) {
+        this.init();
+    }
 
-// ─── Self-init ───────────────────────────────────────────────────────────────
-function onReady(fn: () => void): void {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
+    private init(): void {
+        const cards = this.el.querySelectorAll(CardGroup.CARD_SEL);
+        if (!cards.length) return;
+
+        gsap.from(cards, {
+            opacity: 0,
+            y: 20,
+            duration: 0.4,
+            stagger: 0.07,
+            ease: 'power2.out',
+            clearProps: 'all',
+        });
+    }
+
+    static initAll(): void {
+        document.querySelectorAll<HTMLElement>(CardGroup.CONTAINER_SEL)
+            .forEach(el => new CardGroup(el));
+    }
 }
 
-onReady(() => {
-    document.querySelectorAll('.conn-card-group').forEach(el => initCardGroup(el as HTMLElement));
-});
+document.addEventListener('DOMContentLoaded', () => CardGroup.initAll());

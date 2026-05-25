@@ -1,81 +1,119 @@
 /**
  * Connetation Elements – GSAP Flip Carousel (Caterpillar)
  * Flex row of items; next/prev shifts the row with scale-in/out at the ends.
- * Based on FlipCaterpillar CodePen.
  */
 
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
+import { attachSwipeHandler } from '../Shared/swipe';
 
 gsap.registerPlugin(Flip);
 
-const initFlipCarousel = (container: HTMLElement): void => {
-    const track   = container.querySelector('.conn-flip-carousel__track') as HTMLElement | null;
-    const btnNext = container.querySelector('.conn-flip-carousel__btn--next');
-    const btnPrev = container.querySelector('.conn-flip-carousel__btn--prev');
+class FlipCarousel {
+    private static readonly CONTAINER_SEL        = '.conn-flip-carousel';
+    private static readonly TRACK_SEL            = '.conn-flip-carousel__track';
+    private static readonly BTN_NEXT_SEL         = '.conn-flip-carousel__btn--next';
+    private static readonly BTN_PREV_SEL         = '.conn-flip-carousel__btn--prev';
+    private static readonly ITEM_SEL             = '.conn-flip-carousel__item';
+    private static readonly CLASS_ITEM           = 'conn-flip-carousel__item';
+    private static readonly CLASS_HIDE           = 'hide';
+    private static readonly DATASET_AUTOPLAY     = 'autoplay';
+    private static readonly DATASET_DELAY        = 'autoplayDelay';
+    private static readonly ENABLED_VALUE        = '1';
 
-    if (!track) return;
+    private readonly track: HTMLElement;
+    private readonly btnNext: Element | null;
+    private readonly btnPrev: Element | null;
+    private readonly hasAutoplay: boolean;
+    private readonly autoplayDelay: number;
+    private allItems: string[] = [];
+    private total        = 0;
+    private visibleCount = 0;
+    private startIndex   = 0;
+    private isAnimating  = false;
+    private autoplayTimer: ReturnType<typeof setInterval> | null = null;
 
-    const cols = parseInt(track.dataset.items ?? '4', 10) || 4;
-    track.style.setProperty('--conn-items', String(cols));
+    constructor(private readonly el: HTMLElement) {
+        this.track        = el.querySelector(FlipCarousel.TRACK_SEL) as HTMLElement;
+        this.btnNext      = el.querySelector(FlipCarousel.BTN_NEXT_SEL);
+        this.btnPrev      = el.querySelector(FlipCarousel.BTN_PREV_SEL);
+        this.hasAutoplay  = el.dataset[FlipCarousel.DATASET_AUTOPLAY] === FlipCarousel.ENABLED_VALUE;
+        this.autoplayDelay = parseInt(el.dataset[FlipCarousel.DATASET_DELAY] || '3000', 10);
 
-    // Snapshot all item HTML upfront; DOM is rebuilt from this for circular reuse
-    const allItems = Array.from(track.querySelectorAll('.conn-flip-carousel__item'))
-        .map(el => el.innerHTML);
-    const total = allItems.length;
-    if (total < 2) return;
+        if (!this.track) return;
 
-    const visibleCount = Math.min(cols, total);
+        const cols = parseInt(this.track.dataset.items ?? '4', 10) || 4;
+        this.track.style.setProperty('--conn-items', String(cols));
 
-    // Rebuild track with only the initial visible window
-    track.innerHTML = '';
-    for (let i = 0; i < visibleCount; i++) {
-        const el = document.createElement('div');
-        el.className = 'conn-flip-carousel__item';
-        el.innerHTML = allItems[i];
-        track.appendChild(el);
+        // Snapshot all item HTML; DOM is rebuilt from this for circular reuse
+        this.allItems = Array.from(this.track.querySelectorAll(FlipCarousel.ITEM_SEL))
+            .map(item => item.innerHTML);
+        this.total        = this.allItems.length;
+        this.visibleCount = this.total < 2 ? 0 : Math.min(cols, this.total);
+
+        if (this.total < 2) return;
+
+        // Rebuild track with initial visible window
+        this.track.innerHTML = '';
+        for (let i = 0; i < this.visibleCount; i++) {
+            const item = document.createElement('div');
+            item.className = FlipCarousel.CLASS_ITEM;
+            item.innerHTML = this.allItems[i];
+            this.track.appendChild(item);
+        }
+
+        this.init();
     }
 
-    let startIndex = 0;
-    let isAnimating = false;
+    private makeItem(index: number): HTMLElement {
+        const item = document.createElement('div');
+        item.className = FlipCarousel.CLASS_ITEM;
+        item.innerHTML = this.allItems[((index % this.total) + this.total) % this.total];
+        return item;
+    }
 
-    const makeItem = (index: number): HTMLElement => {
-        const el = document.createElement('div');
-        el.className = 'conn-flip-carousel__item';
-        el.innerHTML = allItems[((index % total) + total) % total];
-        return el;
-    };
+    // ─── Autoplay ─────────────────────────────────────────────────────
+    private startAutoplay(): void {
+        this.stopAutoplay();
+        this.autoplayTimer = setInterval(() => this.advance(true), this.autoplayDelay);
+    }
+
+    private stopAutoplay(): void {
+        if (this.autoplayTimer !== null) {
+            clearInterval(this.autoplayTimer);
+            this.autoplayTimer = null;
+        }
+    }
 
     // ─── Advance ──────────────────────────────────────────────────────
-    const advance = (forward: boolean): void => {
-        if (isAnimating) return;
-        const items = Array.from(track.querySelectorAll('.conn-flip-carousel__item'));
-        isAnimating = true;
+    private advance(forward: boolean): void {
+        if (this.isAnimating) return;
+        const items = Array.from(this.track.querySelectorAll(FlipCarousel.ITEM_SEL));
+        this.isAnimating = true;
 
         const state = Flip.getState(items);
 
         let leaveEl: Element;
         if (forward) {
-            track.append(makeItem(startIndex + visibleCount));
+            this.track.append(this.makeItem(this.startIndex + this.visibleCount));
             leaveEl = items[0];
-            leaveEl.classList.add('hide');
-            startIndex = (startIndex + 1) % total;
+            leaveEl.classList.add(FlipCarousel.CLASS_HIDE);
+            this.startIndex = (this.startIndex + 1) % this.total;
         } else {
-            track.prepend(makeItem(startIndex - 1));
+            this.track.prepend(this.makeItem(this.startIndex - 1));
             leaveEl = items[items.length - 1];
-            leaveEl.classList.add('hide');
-            startIndex = ((startIndex - 1) % total + total) % total;
+            leaveEl.classList.add(FlipCarousel.CLASS_HIDE);
+            this.startIndex = ((this.startIndex - 1) % this.total + this.total) % this.total;
         }
 
         Flip.from(state, {
-            targets: track.querySelectorAll('.conn-flip-carousel__item'),
+            targets: this.track.querySelectorAll(FlipCarousel.ITEM_SEL),
             duration: 0.45,
             ease: 'power2.inOut',
             absoluteOnLeave: true,
             onComplete: () => {
-                // Remove after Flip finishes so GSAP doesn't reference a detached node
                 leaveEl.parentNode?.removeChild(leaveEl);
-                isAnimating = false;
+                this.isAnimating = false;
             },
             onEnter: (els) => gsap.from(els, {
                 duration: 0.45,
@@ -92,53 +130,37 @@ const initFlipCarousel = (container: HTMLElement): void => {
                 ease: 'power2.in',
             }),
         });
-    };
+    }
 
-    // ─── Buttons ──────────────────────────────────────────────────────
-    if (btnNext) btnNext.addEventListener('click', () => advance(true));
-    if (btnPrev) btnPrev.addEventListener('click', () => advance(false));
+    private init(): void {
+        // ─── Buttons ──────────────────────────────────────────────────────
+        if (this.btnNext) this.btnNext.addEventListener('click', () => {
+            if (this.hasAutoplay) this.startAutoplay(); // reset timer on manual advance
+            this.advance(true);
+        });
+        if (this.btnPrev) this.btnPrev.addEventListener('click', () => {
+            if (this.hasAutoplay) this.startAutoplay();
+            this.advance(false);
+        });
 
-    // ─── Swipe / drag support ─────────────────────────────────────────
-    // setPointerCapture routes all pointer events to the track even when the
-    // cursor leaves it mid-drag, giving reliable mouse drag on desktop.
-    // Cursor is set on document.body so it persists outside the track element.
-    let swipeStartX = 0, isSwiping = false;
+        // ─── Swipe / drag ─────────────────────────────────────────────────
+        attachSwipeHandler(this.track, (forward) => {
+            if (this.hasAutoplay) this.startAutoplay();
+            this.advance(forward);
+        }, { isLocked: () => this.isAnimating });
 
-    const dragStart = (e: PointerEvent): void => {
-        if (isAnimating) return;
-        if (e.pointerType === 'mouse' && e.button !== 0) return; // left button only
-        swipeStartX = e.clientX;
-        isSwiping   = true;
-        track.setPointerCapture(e.pointerId);
-        document.body.style.cursor = 'grabbing';
-        e.preventDefault(); // prevent text-selection during drag
-    };
+        // ─── Autoplay ─────────────────────────────────────────────────────
+        if (this.hasAutoplay) {
+            this.startAutoplay();
+            this.track.addEventListener('mouseenter', () => this.stopAutoplay());
+            this.track.addEventListener('mouseleave', () => this.startAutoplay());
+        }
+    }
 
-    const dragEnd = (e: PointerEvent): void => {
-        if (!isSwiping) return;
-        isSwiping = false;
-        document.body.style.cursor = '';
-        const dx = e.clientX - swipeStartX;
-        if (Math.abs(dx) < 50) return;
-        advance(dx < 0);
-    };
-
-    const dragCancel = (): void => {
-        isSwiping = false;
-        document.body.style.cursor = '';
-    };
-
-    track.addEventListener('pointerdown',  dragStart,  { passive: false });
-    track.addEventListener('pointerup',    dragEnd);
-    track.addEventListener('pointercancel', dragCancel);
-};
-
-// ─── Self-init ────────────────────────────────────────────────────────────────
-function onReady(fn: () => void): void {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
+    static initAll(): void {
+        document.querySelectorAll<HTMLElement>(FlipCarousel.CONTAINER_SEL)
+            .forEach(el => new FlipCarousel(el));
+    }
 }
 
-onReady(() => {
-    document.querySelectorAll('.conn-flip-carousel').forEach(el => initFlipCarousel(el as HTMLElement));
-});
+document.addEventListener('DOMContentLoaded', () => FlipCarousel.initAll());

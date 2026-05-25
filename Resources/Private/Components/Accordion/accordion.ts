@@ -9,38 +9,54 @@
  * (those using data-bs-parent), because only one panel is ever open.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[id^="conn-accordion-"]').forEach(el => initAccordion(el as HTMLElement));
-});
+class Accordion {
+    private static readonly ACCORDION_SEL       = '[id^="conn-accordion-"]';
+    private static readonly MUTUAL_EXCL_SEL     = '[data-bs-parent]';
+    private static readonly CLASS_SHOW          = 'show';
+    private static readonly CLASS_COLLAPSED     = 'collapsed';
+    private static readonly EVENT_SHOWN         = 'shown.bs.collapse';
+    private static readonly EVENT_HIDDEN        = 'hidden.bs.collapse';
+    private static readonly STORAGE_KEY_PREFIX  = 'conn-acc:';
+    private static readonly OPEN_PANELS_SEL     = '.accordion-collapse.show';
 
-function initAccordion(accordion: HTMLElement): void {
-    // Mutual-exclusion accordions (data-bs-parent present) are self-managing.
-    const hasMutualExclusion = accordion.querySelector('[data-bs-parent]') !== null;
-    if (hasMutualExclusion) return;
+    private storageKey = '';
 
-    const storageKey = `conn-acc:${accordion.id}`;
+    constructor(private readonly el: HTMLElement) {
+        const hasMutualExclusion = el.querySelector(Accordion.MUTUAL_EXCL_SEL) !== null;
+        if (hasMutualExclusion) return;
 
-    // Restore previously open panels
-    try {
-        const saved = JSON.parse(sessionStorage.getItem(storageKey) ?? '[]') as string[];
-        saved.forEach(panelId => {
-            const panel = accordion.querySelector(`#${panelId}`);
-            const btn   = accordion.querySelector(`[data-bs-target="#${panelId}"]`);
-            if (panel && !panel.classList.contains('show')) {
-                panel.classList.add('show');
-                btn?.classList.remove('collapsed');
-                btn?.setAttribute('aria-expanded', 'true');
-            }
-        });
-    } catch { /* ignore malformed sessionStorage data */ }
+        this.storageKey = `${Accordion.STORAGE_KEY_PREFIX}${el.id}`;
+        this.init();
+    }
 
-    // Persist state whenever a panel opens or closes
-    accordion.addEventListener('shown.bs.collapse',  () => persistState(accordion, storageKey));
-    accordion.addEventListener('hidden.bs.collapse', () => persistState(accordion, storageKey));
+    private init(): void {
+        try {
+            const saved = JSON.parse(sessionStorage.getItem(this.storageKey) ?? '[]') as string[];
+            saved.forEach(panelId => {
+                const panel = this.el.querySelector(`#${panelId}`);
+                const btn   = this.el.querySelector(`[data-bs-target="#${panelId}"]`);
+                if (panel && !panel.classList.contains(Accordion.CLASS_SHOW)) {
+                    panel.classList.add(Accordion.CLASS_SHOW);
+                    btn?.classList.remove(Accordion.CLASS_COLLAPSED);
+                    btn?.setAttribute('aria-expanded', 'true');
+                }
+            });
+        } catch { /* ignore malformed sessionStorage data */ }
+
+        this.el.addEventListener(Accordion.EVENT_SHOWN,  () => this.persistState());
+        this.el.addEventListener(Accordion.EVENT_HIDDEN, () => this.persistState());
+    }
+
+    private persistState(): void {
+        const openIds = [...this.el.querySelectorAll(Accordion.OPEN_PANELS_SEL)]
+            .map(el => el.id);
+        sessionStorage.setItem(this.storageKey, JSON.stringify(openIds));
+    }
+
+    static initAll(): void {
+        document.querySelectorAll<HTMLElement>(Accordion.ACCORDION_SEL)
+            .forEach(el => new Accordion(el));
+    }
 }
 
-function persistState(accordion: HTMLElement, storageKey: string): void {
-    const openIds = [...accordion.querySelectorAll('.accordion-collapse.show')]
-        .map(el => el.id);
-    sessionStorage.setItem(storageKey, JSON.stringify(openIds));
-}
+document.addEventListener('DOMContentLoaded', () => Accordion.initAll());

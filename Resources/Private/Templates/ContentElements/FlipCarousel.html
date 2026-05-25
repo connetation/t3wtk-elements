@@ -12,7 +12,10 @@
     type="module"
     priority="false" />
 
-<section class="conn-flip-carousel conn-flip-carousel--pos-{settings.textPosition} conn-flip-carousel--align-{settings.textAlign} conn-flip-carousel--nav-{settings.navPosition}" id="conn-flip-carousel-{data.uid}">
+<section class="conn-flip-carousel conn-flip-carousel--pos-{settings.textPosition} conn-flip-carousel--align-{settings.textAlign} conn-flip-carousel--nav-{settings.navPosition}"
+        id="conn-flip-carousel-{data.uid}"
+        data-autoplay="{f:if(condition: settings.autoplay, then: '1', else: '0')}"
+        data-autoplay-delay="{settings.autoplay_delay}">
     <div class="container-fluid">
 
         <f:if condition="{items}">
