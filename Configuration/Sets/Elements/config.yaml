@@ -1,2 +1,4 @@
 name: conn/elements
 label: 'Connetation Elements'
+dependencies:
+  - conn/base
