@@ -807,3 +807,4 @@ $registry->configureContainer(
     ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-8-4-ce.svg')
     ->setGroup('conn_grid')
 );
+

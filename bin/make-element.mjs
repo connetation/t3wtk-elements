@@ -540,13 +540,13 @@ function patchSql(pascal, snake, hasItems) {
     const abs = join(ROOT, 'ext_tables.sql');
     let src = readFileSync(abs, 'utf8');
 
-    // Add tt_content fields
-    const fieldsBlock = hasItems
-        ? `    tx_conn_elements_${snake}_items     int(11) DEFAULT '0' NOT NULL,\n    tx_conn_elements_${snake}_settings   mediumtext,\n`
-        : `    tx_conn_elements_${snake}_settings   mediumtext,\n`;
+    // Add tt_content fields — comma goes on the previous last line, NOT on the new last line
+    const newFields = hasItems
+        ? `    tx_conn_elements_${snake}_items     int(11) DEFAULT '0' NOT NULL,\n    tx_conn_elements_${snake}_settings   mediumtext`
+        : `    tx_conn_elements_${snake}_settings   mediumtext`;
     if (!src.includes(`tx_conn_elements_${snake}_`)) {
-        // Insert before the closing ); of CREATE TABLE tt_content
-        src = src.replace(/(\);)\n\n--/, `${fieldsBlock}$1\n\n--`);
+        // Replace `\n);` — adds comma to the previous last field and appends new field(s)
+        src = src.replace(/\n(\);)\n\n--/, `,\n${newFields}\n$1\n\n--`);
         ok(`patched: ext_tables.sql (tt_content fields)`);
     } else {
         warn(`ext_tables.sql tt_content already has ${snake} fields, skipping`);
@@ -577,7 +577,9 @@ function patchLocalconf(pascal, snake, ctype, kebab, group) {
     if (src.includes(`tt_content_defValues.CType = ${ctype}`)) {
         warn(`ext_localconf.php already has wizard entry for ${ctype}, skipping`);
     } else {
-        src = src.replace("';", `${wizardEntry}';`);
+        // Replace the LAST '; in the file (the closing quote of the PageTSconfig string)
+        const lastQuote = src.lastIndexOf("';");
+        src = src.slice(0, lastQuote) + wizardEntry + src.slice(lastQuote);
         ok(`patched: ext_localconf.php (wizard entry)`);
     }
 
@@ -810,11 +812,12 @@ async function main() {
 
     // ── Summary ────────────────────────────────────────────────────────────────
 
-    console.log(`\n${c.bold}${c.green}Done!${c.reset} Next steps:\n`);
-    info(`cd vendor/conn/elements && npm run build`);
-    info(`TYPO3 → Admin → Maintenance → Flush all caches`);
+    console.log(`\n${c.bold}${c.green}Done!${c.reset} Next steps ${c.dim}(in order)${c.reset}:\n`);
+    info(`1. npm run build  ${c.dim}(or: ddev exec "cd /var/www/html/vendor/conn/elements && npm run build")${c.reset}`);
+    info(`2. TYPO3 → Admin Tools → Maintenance → Flush all caches`);
     if (hasItems) {
-        info(`TYPO3 → Admin → Maintenance → Analyze Database Structure → apply changes`);
+        info(`3. TYPO3 → Admin Tools → Maintenance → Analyze Database Structure → apply`);
+        console.log(`\n  ${c.yellow}!${c.reset}  ${c.dim}Step 3 is required — skipping it causes "Unknown column" SQL errors when saving.${c.reset}`);
     }
     console.log(`\n  ${c.dim}Edit the generated files to customize your element.${c.reset}`);
     console.log(`  ${c.dim}Icon: replace Resources/Public/Icons/${kebab}-ce.svg with your SVG.${c.reset}\n`);

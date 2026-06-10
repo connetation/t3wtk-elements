@@ -71,19 +71,30 @@ All patches are idempotent — re-running the script on an existing element name
 
 ### After running the scaffold
 
-**Local:**
+These steps must be done **in order** — skipping or reordering them causes the "Unknown column" SQL error when saving the element in the backend.
+
+**1. Build assets**
+
+Local:
 ```bash
 cd vendor/conn/elements && npm run build
 ```
-
-**DDEV:**
+DDEV:
 ```bash
 ddev exec "cd /var/www/html/vendor/conn/elements && npm run build"
 ```
 
-In TYPO3 backend:
-- **Admin Tools → Maintenance → Flush all caches**
-- **Admin Tools → Maintenance → Analyze Database Structure → apply** *(only for with-items elements)*
+**2. Flush TYPO3 caches** — so TYPO3 picks up the new TCA and SQL definitions
+
+Admin Tools → Maintenance → Flush all caches
+
+**3. Apply database schema** *(with-items elements only)*
+
+Admin Tools → Maintenance → Analyze Database Structure → apply changes
+
+Skipping step 3 leaves the new column missing from the database, which causes `SQL error: Unknown column '...' in 'INSERT INTO'` when saving the element.
+
+**4. Verify** — the element should now appear in the "New Content Element" wizard under the chosen group.
 
 ### Customising the generated element
 
