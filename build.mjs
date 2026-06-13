@@ -19,6 +19,7 @@ const config = {
         'card-stack':      'Resources/Private/Components/CardStack/card-stack.ts',
         'flip-carousel':   'Resources/Private/Components/FlipCarousel/flip-carousel.ts',
         'flip-gallery':    'Resources/Private/Components/FlipGallery/flip-gallery.ts',
+        'mosaic-gallery':   'Resources/Private/Components/MosaicGallery/mosaic-gallery.ts',
         'navbar-megamenu': 'Resources/Private/Components/Navbar/navbar-megamenu.ts',
         'navbar-sidebar':  'Resources/Private/Components/Navbar/navbar-sidebar.ts',
     },

@@ -313,6 +313,35 @@
             <trans-unit id="flip_carousel_item.tab.link">
                 <source>Link</source>
             </trans-unit>
+            <!-- Mosaic Gallery content element -->
+            <trans-unit id="ce.mosaic_gallery">
+                <source>Mosaic Gallery</source>
+            </trans-unit>
+            <trans-unit id="ce.mosaic_gallery.description">
+                <source>Image gallery with masonry and grid layouts, lightbox, hover effects and configurable columns</source>
+            </trans-unit>
+            <trans-unit id="mosaic_gallery.tab.config">
+                <source>Gallery Settings</source>
+            </trans-unit>
+            <trans-unit id="mosaic_gallery.items">
+                <source>Gallery Images</source>
+            </trans-unit>
+            <trans-unit id="mosaic_gallery.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Gallery item model -->
+            <trans-unit id="model.mosaic_item">
+                <source>Gallery Image</source>
+            </trans-unit>
+            <trans-unit id="mosaic_item.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="mosaic_item.caption">
+                <source>Caption</source>
+            </trans-unit>
+            <trans-unit id="mosaic_item.image">
+                <source>Image</source>
+            </trans-unit>
             <!-- GSAP Flip Gallery content element -->
             <trans-unit id="ce.flip_gallery">
                 <source>Flip Gallery</source>

@@ -1,0 +1,72 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-mosaic-gallery-css"
+    href="EXT:conn_elements/Resources/Public/Css/mosaic-gallery.css" />
+<f:asset.script identifier="conn-elements-mosaic-gallery-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/mosaic-gallery.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-mosaic-gallery"
+         id="conn-mosaic-gallery-{data.uid}"
+         data-layout="{settings.layoutType}"
+         data-columns="{settings.columns}"
+         data-gallery-height="{settings.galleryHeight}"
+         data-gap="{settings.gap}"
+         data-radius="{settings.borderRadius}"
+         data-aspect="{settings.aspectRatio}"
+         data-hover="{settings.hoverEffect}"
+         data-caption-style="{settings.captionStyle}"
+         data-lightbox="{f:if(condition: settings.enableLightbox, then: '1', else: '0')}"
+         data-show-captions="{f:if(condition: settings.showCaptions, then: '1', else: '0')}"
+         style="--mg-cols: {settings.columns}; --mg-gallery-h: {settings.galleryHeight}px">
+
+    <f:if condition="{items}">
+        <f:then>
+            <div class="conn-mosaic-gallery__grid">
+                <f:for each="{items}" as="item" iteration="i">
+                    <f:render partial="MosaicGallery/Item"
+                              arguments="{item: item, settings: settings, index: i.index, total: i.total}" />
+                </f:for>
+            </div>
+
+            <f:if condition="{settings.enableLightbox}">
+                <div class="conn-mosaic-gallery__lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+                    <div class="conn-mosaic-gallery__lb-overlay"></div>
+                    <div class="conn-mosaic-gallery__lb-stage">
+                        <button class="conn-mosaic-gallery__lb-prev" type="button" aria-label="Previous image">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="conn-mosaic-gallery__lb-media">
+                            <img class="conn-mosaic-gallery__lb-img" src="" alt="" />
+                        </div>
+                        <button class="conn-mosaic-gallery__lb-next" type="button" aria-label="Next image">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                        <div class="conn-mosaic-gallery__lb-footer">
+                            <span class="conn-mosaic-gallery__lb-counter"></span>
+                            <p class="conn-mosaic-gallery__lb-caption"></p>
+                        </div>
+                    </div>
+                </div>
+            </f:if>
+        </f:then>
+        <f:else>
+            <p class="text-muted fst-italic">No images added yet.</p>
+        </f:else>
+    </f:if>
+
+</section>
+
+</f:section>
+
+</html>

@@ -722,6 +722,59 @@ $GLOBALS['TCA']['tt_content']['types']['conn_flip_gallery'] = [
     ',
 ];
 
+// ─── Mosaic Gallery ──────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_mosaic_gallery'] = 'conn-ce-mosaic-gallery';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.mosaic_gallery',
+    'value' => 'conn_mosaic_gallery',
+    'icon'  => 'conn-ce-mosaic-gallery',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_mosaic_gallery_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:mosaic_gallery.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_mosaic_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 500,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_mosaic_gallery_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:mosaic_gallery.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => [
+                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/MosaicGallery.xml',
+            ],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_mosaic_gallery'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_mosaic_gallery_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:mosaic_gallery.tab.config,
+            tx_conn_elements_mosaic_gallery_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
 // ─── Bootstrap Grid containers (b13/container) ───────────────────
 $registry = GeneralUtility::makeInstance(Registry::class);
 

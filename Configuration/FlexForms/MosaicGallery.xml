@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Layout</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.layoutType>
+                        <label>Gallery layout</label>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>masonry</default>
+                            <items>
+                                <numIndex index="0"><label>Mosaic (shortest-column masonry)</label><value>masonry</value></numIndex>
+                                <numIndex index="1"><label>Justified rows (Google Photos style)</label><value>justified</value></numIndex>
+                                <numIndex index="2"><label>Metro tiles (featured large tiles)</label><value>metro</value></numIndex>
+                                <numIndex index="3"><label>Uniform grid (fixed aspect ratio)</label><value>grid</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.layoutType>
+                    <settings.columns>
+                        <label>Columns (desktop)</label>
+                        <displayCond>FIELD:settings.layoutType:IN:masonry,grid</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>3</default>
+                            <items>
+                                <numIndex index="0"><label>2 columns</label><value>2</value></numIndex>
+                                <numIndex index="1"><label>3 columns (default)</label><value>3</value></numIndex>
+                                <numIndex index="2"><label>4 columns</label><value>4</value></numIndex>
+                                <numIndex index="3"><label>5 columns</label><value>5</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.columns>
+                    <settings.galleryHeight>
+                        <label>Gallery height</label>
+                        <description>Target row height for Justified; tile row height for Metro.</description>
+                        <displayCond>FIELD:settings.layoutType:IN:justified,metro</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>280</default>
+                            <items>
+                                <numIndex index="0"><label>Small (200 px)</label><value>200</value></numIndex>
+                                <numIndex index="1"><label>Medium (280 px, default)</label><value>280</value></numIndex>
+                                <numIndex index="2"><label>Large (360 px)</label><value>360</value></numIndex>
+                                <numIndex index="3"><label>Extra large (480 px)</label><value>480</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.galleryHeight>
+                    <settings.gap>
+                        <label>Gap between images</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (8 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (16 px, default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.gap>
+                    <settings.borderRadius>
+                        <label>Image border radius</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (12 px, default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                                <numIndex index="4"><label>Pill (fully rounded)</label><value>pill</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.borderRadius>
+                    <settings.aspectRatio>
+                        <label>Image aspect ratio</label>
+                        <description>Natural = true masonry (variable heights). Fixed = uniform grid.</description>
+                        <displayCond>FIELD:settings.layoutType:IN:masonry,grid</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>none</default>
+                            <items>
+                                <numIndex index="0"><label>Natural (true masonry)</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Square (1:1)</label><value>1/1</value></numIndex>
+                                <numIndex index="2"><label>Landscape (4:3)</label><value>4/3</value></numIndex>
+                                <numIndex index="3"><label>Widescreen (16:9)</label><value>16/9</value></numIndex>
+                                <numIndex index="4"><label>Portrait (3:4)</label><value>3/4</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.aspectRatio>
+                </el>
+            </ROOT>
+        </sDEF>
+        <sDisplay>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.hoverEffect>
+                        <label>Hover effect</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>zoom</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Zoom</label><value>zoom</value></numIndex>
+                                <numIndex index="2"><label>Dim</label><value>dim</value></numIndex>
+                                <numIndex index="3"><label>Overlay with caption</label><value>overlay</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.hoverEffect>
+                    <settings.captionStyle>
+                        <label>Caption style</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>overlay</default>
+                            <items>
+                                <numIndex index="0"><label>Overlay on image</label><value>overlay</value></numIndex>
+                                <numIndex index="1"><label>Below image</label><value>below</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.captionStyle>
+                    <settings.showCaptions>
+                        <label>Show captions</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <items>
+                                <numIndex index="0"><label></label><value>1</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.showCaptions>
+                    <settings.imageWidth>
+                        <label>Thumbnail width (px)</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>800</default>
+                            <items>
+                                <numIndex index="0"><label>Small (400 px)</label><value>400</value></numIndex>
+                                <numIndex index="1"><label>Medium (600 px)</label><value>600</value></numIndex>
+                                <numIndex index="2"><label>Large (800 px, default)</label><value>800</value></numIndex>
+                                <numIndex index="3"><label>Full (1200 px)</label><value>1200</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.imageWidth>
+                </el>
+            </ROOT>
+        </sDisplay>
+        <sLightbox>
+            <ROOT>
+                <sheetTitle>Lightbox</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.enableLightbox>
+                        <label>Enable lightbox</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <items>
+                                <numIndex index="0"><label></label><value>1</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.enableLightbox>
+                </el>
+            </ROOT>
+        </sLightbox>
+    </sheets>
+</T3DataStructure>

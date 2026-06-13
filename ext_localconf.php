@@ -9,7 +9,7 @@ $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['WikiCode'] = 'EXT:conn_elements/C
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
-    'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery
+    'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_dashboard {
         iconIdentifier = conn-ce-dashboard
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard
@@ -39,6 +39,12 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery.description
         tt_content_defValues.CType = conn_flip_gallery
+    }
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_mosaic_gallery {
+        iconIdentifier = conn-ce-mosaic-gallery
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.mosaic_gallery
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.mosaic_gallery.description
+        tt_content_defValues.CType = conn_mosaic_gallery
     }
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.header = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_bootstrap
      mod.wizards.newContentElement.wizardItems.conn_swiper.header = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_swiper
