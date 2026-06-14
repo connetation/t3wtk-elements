@@ -2,14 +2,9 @@
 # Wiki Content Element – conn_elements
 # ─────────────────────────────────────────────
 
-# Assets are registered per-template via f:asset.script / f:asset.style
-# (loaded only on pages where the component renders)
-
-# Wiki CE
-tt_content.conn_wiki =< lib.contentElement
+tt_content.conn_wiki =< lib.conn_elements_ce
 tt_content.conn_wiki {
     templateName = Wiki
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\WikiPagesProcessor
         10 {

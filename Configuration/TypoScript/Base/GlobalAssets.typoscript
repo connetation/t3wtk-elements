@@ -8,10 +8,36 @@ page.includeJSFooter {
     conn_elements_text_animation.type = module
 }
 
-# Make the conn_elements Default layout (which outputs data-text-animation)
-# available to ALL content elements, not just the custom conn CE types.
+# Extend lib.contentElement with conn_elements paths.
+# Note: fluid_styled_content CEs use =< lib.contentElement at parse-time (before this
+# Set loads), so layoutRootPaths.20 set here does NOT reach those copies.
+# We therefore also set layoutRootPaths.20 directly on each standard CType below.
 lib.contentElement {
-    layoutRootPaths {
-        20 = EXT:conn_elements/Resources/Private/Layouts/
-    }
+    templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
+    partialRootPaths.20 = EXT:conn_elements/Resources/Private/Partials/
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+}
+
+# Directly add conn_elements layout to standard fluid_styled_content CEs so they
+# render with data-text-animation on their frame div.
+tt_content.text.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.textpic.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.textmedia.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.image.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.header.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.html.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.bullets.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.table.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.uploads.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.shortcut.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+tt_content.div.layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+
+# Base object for every conn_elements CE.
+# Extends lib.contentElement and sets all three path indices (0, 10, 20) directly,
+# so any CE that copies this object gets the correct paths without repeating them.
+lib.conn_elements_ce =< lib.contentElement
+lib.conn_elements_ce {
+    templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
+    partialRootPaths.20 = EXT:conn_elements/Resources/Private/Partials/
+    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
 }

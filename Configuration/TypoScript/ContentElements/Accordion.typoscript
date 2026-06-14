@@ -2,18 +2,9 @@
 # Bootstrap Accordion Content Element – conn_elements
 # ─────────────────────────────────────────────
 
-# Assets are registered per-template via f:asset.script / f:asset.css
-# (loaded only on pages where the component renders)
-
-# Extend lib.contentElement with elements template paths (idempotent; same index as Dashboard/Wiki)
-lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
-lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
-
-# Accordion CE
-tt_content.conn_bs_accordion =< lib.contentElement
+tt_content.conn_bs_accordion =< lib.conn_elements_ce
 tt_content.conn_bs_accordion {
     templateName = Accordion
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\AccordionItemsProcessor
         10 {

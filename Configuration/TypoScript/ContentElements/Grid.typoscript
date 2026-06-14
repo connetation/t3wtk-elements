@@ -3,14 +3,10 @@
 # Powered by b13/container
 # ─────────────────────────────────────────────
 
-lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
-lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
-
 # ── 2 equal columns (col-md-6 / col-md-6) ────
-tt_content.conn_grid_2col =< lib.contentElement
+tt_content.conn_grid_2col =< lib.conn_elements_ce
 tt_content.conn_grid_2col {
     templateName = Grid2Col
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     variables {
         column1 = CONTENT
         column1 {
@@ -34,10 +30,9 @@ tt_content.conn_grid_2col {
 }
 
 # ── 3 equal columns (col-md-4 / col-md-4 / col-md-4) ─
-tt_content.conn_grid_3col =< lib.contentElement
+tt_content.conn_grid_3col =< lib.conn_elements_ce
 tt_content.conn_grid_3col {
     templateName = Grid3Col
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     variables {
         column1 = CONTENT
         column1 {
@@ -70,10 +65,9 @@ tt_content.conn_grid_3col {
 }
 
 # ── 4 equal columns (col-md-3 each) ──────────
-tt_content.conn_grid_4col =< lib.contentElement
+tt_content.conn_grid_4col =< lib.conn_elements_ce
 tt_content.conn_grid_4col {
     templateName = Grid4Col
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     variables {
         column1 = CONTENT
         column1 {
@@ -115,10 +109,9 @@ tt_content.conn_grid_4col {
 }
 
 # ── Narrow / Wide (col-md-4 / col-md-8) ──────
-tt_content.conn_grid_4_8 =< lib.contentElement
+tt_content.conn_grid_4_8 =< lib.conn_elements_ce
 tt_content.conn_grid_4_8 {
     templateName = Grid4_8
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     variables {
         column1 = CONTENT
         column1 {
@@ -142,10 +135,9 @@ tt_content.conn_grid_4_8 {
 }
 
 # ── Wide / Narrow (col-md-8 / col-md-4) ──────
-tt_content.conn_grid_8_4 =< lib.contentElement
+tt_content.conn_grid_8_4 =< lib.conn_elements_ce
 tt_content.conn_grid_8_4 {
     templateName = Grid8_4
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     variables {
         column1 = CONTENT
         column1 {

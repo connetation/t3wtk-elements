@@ -1,7 +1,6 @@
-tt_content.conn_mosaic_gallery =< lib.contentElement
+tt_content.conn_mosaic_gallery =< lib.conn_elements_ce
 tt_content.conn_mosaic_gallery {
     templateName = MosaicGallery
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\MosaicGalleryProcessor
         10 {

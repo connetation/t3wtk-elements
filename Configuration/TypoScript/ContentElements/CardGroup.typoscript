@@ -1,7 +1,6 @@
-tt_content.conn_bs_card_group =< lib.contentElement
+tt_content.conn_bs_card_group =< lib.conn_elements_ce
 tt_content.conn_bs_card_group {
     templateName = CardGroup
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\CardItemsProcessor
         10 {

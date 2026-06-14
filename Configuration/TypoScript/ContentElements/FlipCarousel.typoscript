@@ -1,7 +1,6 @@
-tt_content.conn_flip_carousel =< lib.contentElement
+tt_content.conn_flip_carousel =< lib.conn_elements_ce
 tt_content.conn_flip_carousel {
     templateName = FlipCarousel
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\FlipCarouselProcessor
         10 {
