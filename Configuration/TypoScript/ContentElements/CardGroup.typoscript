@@ -4,7 +4,6 @@ tt_content.conn_bs_card_group {
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\CardItemsProcessor
         10 {
-            fieldName = tx_conn_elements_card_group_items
             as = cards
         }
     }

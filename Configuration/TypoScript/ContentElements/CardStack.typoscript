@@ -4,7 +4,6 @@ tt_content.conn_card_stack {
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\CardStackProcessor
         10 {
-            fieldName = tx_conn_elements_card_stack_items
             as = items
         }
     }

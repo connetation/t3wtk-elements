@@ -8,7 +8,6 @@ tt_content.conn_bs_accordion {
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\AccordionItemsProcessor
         10 {
-            fieldName = tx_conn_elements_accordion_items
             as = items
         }
     }

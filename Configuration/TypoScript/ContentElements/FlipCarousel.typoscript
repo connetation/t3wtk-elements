@@ -4,7 +4,6 @@ tt_content.conn_flip_carousel {
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\FlipCarouselProcessor
         10 {
-            fieldName = tx_conn_elements_flip_carousel_items
             as = items
         }
     }

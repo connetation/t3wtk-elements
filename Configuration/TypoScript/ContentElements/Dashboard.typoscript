@@ -8,7 +8,6 @@ tt_content.conn_dashboard {
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\DashboardProjectsProcessor
         10 {
-            fieldName = tx_conn_elements_dashboard_projects
             as = projects
         }
     }

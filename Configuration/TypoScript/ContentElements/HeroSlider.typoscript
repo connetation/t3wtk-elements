@@ -4,7 +4,6 @@ tt_content.conn_swiper_hero_slider {
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\SlideItemsProcessor
         10 {
-            fieldName = tx_conn_elements_hero_slider_items
             settingsField = tx_conn_elements_hero_slider_settings
             as = slides
         }

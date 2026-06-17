@@ -4,7 +4,6 @@ tt_content.conn_mosaic_gallery {
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\MosaicGalleryProcessor
         10 {
-            fieldName = tx_conn_elements_mosaic_gallery_items
             as = items
         }
     }
