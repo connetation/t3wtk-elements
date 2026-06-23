@@ -3,6 +3,10 @@
 # conn_elements is active in the project.
 # ─────────────────────────────────────────────
 
+page.includeCSS {
+    conn_elements_text_animation = EXT:conn_elements/Resources/Public/Css/text-animation.css
+}
+
 page.includeJSFooter {
     conn_elements_text_animation = EXT:conn_elements/Resources/Public/Js/components/text-animation.js
     conn_elements_text_animation.type = module

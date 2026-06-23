@@ -1,0 +1,19 @@
+/* Connetation Elements – Text Animation
+ * Performance hints for GSAP scroll-triggered animations.
+ * GSAP controls all animation state; these rules add will-change
+ * hints and overflow containment for clip-based line animations. */
+
+.frame[data-text-animation] h1,
+.frame[data-text-animation] h2,
+.frame[data-text-animation] h3,
+.frame[data-text-animation] h4,
+.frame[data-text-animation] .ce-subheader,
+.frame[data-text-animation] p,
+.frame[data-text-animation] li {
+    will-change: opacity, transform;
+}
+
+/* Line animations clip content at element boundaries */
+.frame[data-text-animation="lines"] {
+    overflow: visible;
+}
