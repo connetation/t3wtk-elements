@@ -14,11 +14,13 @@
                             <default>changelog</default>
                             <items>
                                 <numIndex index="0"><label>Product Changelog</label><value>changelog</value></numIndex>
+                                <numIndex index="1"><label>Company Timeline</label><value>responsive</value></numIndex>
                             </items>
                         </config>
                     </settings.layout>
                     <settings.position>
                         <label>Line Position</label>
+                        <displayCond>FIELD:settings.layout:!=:responsive</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
@@ -32,6 +34,7 @@
                     </settings.position>
                     <settings.track_align>
                         <label>Track Alignment</label>
+                        <displayCond>FIELD:settings.layout:!=:responsive</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>

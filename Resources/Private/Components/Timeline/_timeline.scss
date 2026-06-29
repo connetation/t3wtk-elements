@@ -45,6 +45,12 @@
         img { display: block; width: 100%; height: auto; }
     }
 
+    // ── Track alignment (shared across all layouts) ───────────────────────────
+
+    &.conn-timeline--track-left   .conn-timeline__track { margin-left: 0; margin-right: auto; }
+    &.conn-timeline--track-center .conn-timeline__track { margin-left: auto; margin-right: auto; }
+    &.conn-timeline--track-right  .conn-timeline__track { margin-left: auto; margin-right: 0; }
+
     // ═══════════════════════════════════════════════════════════════════════════
     // CHANGELOG LAYOUT
     // ═══════════════════════════════════════════════════════════════════════════
@@ -73,7 +79,7 @@
         .conn-timeline__items {
             display: flex;
             flex-direction: column;
-            position: relative; // so items sit above the line (z-index stacking context)
+            position: relative;
         }
 
         .conn-timeline__item {
@@ -120,12 +126,6 @@
                 transform: translateY(-2px);
             }
         }
-
-        // ── Track alignment ──────────────────────────────────────────────────
-
-        &.conn-timeline--track-left   .conn-timeline__track { margin-left: 0; margin-right: auto; }
-        &.conn-timeline--track-center .conn-timeline__track { margin-left: auto; margin-right: auto; }
-        &.conn-timeline--track-right  .conn-timeline__track { margin-left: auto; margin-right: 0; }
 
         // ── Position: Left (default) ─────────────────────────────────────────
         // Grid: [date 7rem] | [dot 1.75rem] | [card 1fr]
@@ -174,7 +174,6 @@
                 grid-template-columns: 1fr 1.75rem 1fr;
             }
 
-            // Odd: meta left, connector center, card right
             .conn-timeline__item--odd {
                 .conn-timeline__meta {
                     grid-column: 1;
@@ -182,17 +181,10 @@
                     justify-content: flex-end;
                     .conn-timeline__date { text-align: right; }
                 }
-                .conn-timeline__connector {
-                    grid-column: 2;
-                    grid-row: 1;
-                }
-                .conn-timeline__card {
-                    grid-column: 3;
-                    grid-row: 1;
-                }
+                .conn-timeline__connector { grid-column: 2; grid-row: 1; }
+                .conn-timeline__card     { grid-column: 3; grid-row: 1; }
             }
 
-            // Even: card left, connector center, meta right
             .conn-timeline__item--even {
                 .conn-timeline__meta {
                     grid-column: 3;
@@ -200,20 +192,14 @@
                     justify-content: flex-start;
                     .conn-timeline__date { text-align: left; }
                 }
-                .conn-timeline__connector {
-                    grid-column: 2;
-                    grid-row: 1;
-                }
-                .conn-timeline__card {
-                    grid-column: 1;
-                    grid-row: 1;
-                }
+                .conn-timeline__connector { grid-column: 2; grid-row: 1; }
+                .conn-timeline__card     { grid-column: 1; grid-row: 1; }
             }
         }
 
         // ── Position: Right ──────────────────────────────────────────────────
         // Grid: [card 1fr] | [dot 1.75rem] | [date 7rem]
-        // Line at: 7rem + 1.25rem gap + (1.75rem / 2) = 9.125rem from right
+        // Line at: 9.125rem from right
 
         &.conn-timeline--pos-right {
             .conn-timeline__line {
@@ -225,15 +211,8 @@
                 grid-template-columns: 1fr 1.75rem 7rem;
             }
 
-            .conn-timeline__card {
-                grid-column: 1;
-                grid-row: 1;
-            }
-
-            .conn-timeline__connector {
-                grid-column: 2;
-                grid-row: 1;
-            }
+            .conn-timeline__card      { grid-column: 1; grid-row: 1; }
+            .conn-timeline__connector { grid-column: 2; grid-row: 1; }
 
             .conn-timeline__meta {
                 grid-column: 3;
@@ -244,14 +223,14 @@
             }
         }
 
-        // ── Mobile (all positions collapse to left-line layout) ──────────────
+        // ── Mobile: all positions collapse to left-line layout ───────────────
 
         @media (max-width: 575px) {
             &.conn-timeline--pos-left,
             &.conn-timeline--pos-center,
             &.conn-timeline--pos-right {
                 .conn-timeline__line {
-                    left: 0.875rem; // center of 1.75rem connector col
+                    left: 0.875rem;
                     right: auto;
                     transform: translateX(-50%);
                 }
@@ -283,6 +262,166 @@
                     grid-column: 2 !important;
                     grid-row: 2 !important;
                 }
+            }
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // RESPONSIVE (ALTERNATING) LAYOUT
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &--responsive {
+
+        // ── Track ────────────────────────────────────────────────────────────
+
+        .conn-timeline__track {
+            position: relative;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        // Center line – always centered regardless of --pos-* modifier
+        .conn-timeline__line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: var(--conn-border);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        // ── Items ────────────────────────────────────────────────────────────
+
+        .conn-timeline__items {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .conn-timeline__item {
+            display: grid;
+            grid-template-columns: 1fr 2rem 1fr;
+            padding-bottom: 2.5rem;
+
+            &:last-child { padding-bottom: 0; }
+        }
+
+        .conn-timeline__connector {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            justify-content: center;
+            padding-top: 1.15rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .conn-timeline__date {
+            display: inline-block;
+            background: var(--conn-accent-soft);
+            color: var(--conn-accent);
+            border: 1px solid var(--conn-border);
+            border-radius: 2rem;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.65rem;
+        }
+
+        .conn-timeline__card {
+            background: var(--conn-surface);
+            border: 1px solid var(--conn-border);
+            border-radius: var(--conn-radius);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--conn-shadow-card);
+            position: relative;
+            transition: box-shadow var(--conn-transition), transform var(--conn-transition);
+
+            &:hover {
+                box-shadow: var(--conn-shadow-hover);
+                transform: translateY(-2px);
+            }
+
+            // Arrow base styles (shared)
+            &::before {
+                content: '';
+                position: absolute;
+                top: 1.2rem;
+                width: 12px;
+                height: 12px;
+                background: var(--conn-surface);
+                border: 1px solid transparent;
+                transform: rotate(45deg);
+            }
+        }
+
+        // ── Odd: card left → arrow right ─────────────────────────────────────
+
+        .conn-timeline__item--odd {
+            .conn-timeline__card {
+                grid-column: 1;
+                grid-row: 1;
+                margin-right: 1rem;
+
+                &::before {
+                    right: -7px;
+                    border-top-color: var(--conn-border);
+                    border-right-color: var(--conn-border);
+                }
+            }
+
+            .conn-timeline__connector { grid-column: 2; grid-row: 1; }
+        }
+
+        // ── Even: card right ← arrow left ────────────────────────────────────
+
+        .conn-timeline__item--even {
+            .conn-timeline__card {
+                grid-column: 3;
+                grid-row: 1;
+                margin-left: 1rem;
+
+                &::before {
+                    left: -7px;
+                    border-bottom-color: var(--conn-border);
+                    border-left-color: var(--conn-border);
+                }
+            }
+
+            .conn-timeline__connector { grid-column: 2; grid-row: 1; }
+        }
+
+        // ── Mobile: single column, line left ─────────────────────────────────
+
+        @media (max-width: 767px) {
+            .conn-timeline__line {
+                left: 0.875rem;
+                transform: translateX(-50%);
+            }
+
+            .conn-timeline__item,
+            .conn-timeline__item--odd,
+            .conn-timeline__item--even {
+                grid-template-columns: 1.75rem 1fr;
+                padding-bottom: 1.75rem;
+            }
+
+            .conn-timeline__connector {
+                grid-column: 1 !important;
+                grid-row: 1 !important;
+            }
+
+            .conn-timeline__item--odd .conn-timeline__card,
+            .conn-timeline__item--even .conn-timeline__card {
+                grid-column: 2 !important;
+                grid-row: 1 !important;
+                margin-left: 0.75rem !important;
+                margin-right: 0 !important;
+
+                &::before { display: none; }
             }
         }
     }

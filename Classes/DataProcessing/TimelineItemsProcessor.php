@@ -83,7 +83,9 @@ final class TimelineItemsProcessor implements DataProcessorInterface
     private function resolveSettings(array $raw): array
     {
         return [
-            'layout'      => 'changelog',
+            'layout'      => in_array($raw['layout'] ?? '', ['changelog', 'responsive'], true)
+                                 ? $raw['layout']
+                                 : 'changelog',
             'position'    => in_array($raw['position'] ?? '', ['left', 'center', 'right'], true)
                                  ? $raw['position']
                                  : 'left',
@@ -96,9 +98,9 @@ final class TimelineItemsProcessor implements DataProcessorInterface
     private function defaultSettings(): array
     {
         return [
-            'layout'     => 'changelog',
-            'position'   => 'left',
-            'trackAlign' => 'center',
+            'layout'      => 'changelog',
+            'position'    => 'left',
+            'trackAlign'  => 'center',
         ];
     }
 }

@@ -12,13 +12,21 @@
     type="module"
     priority="false" />
 
-<section class="conn-timeline conn-timeline--changelog conn-timeline--pos-{settings.position} conn-timeline--track-{settings.trackAlign}"
+<section class="conn-timeline conn-timeline--{settings.layout} conn-timeline--pos-{settings.position} conn-timeline--track-{settings.trackAlign}"
          id="conn-timeline-{data.uid}"
-         data-layout="changelog">
+         data-layout="{settings.layout}"
+>
     <div class="container-fluid">
         <f:if condition="{items}">
             <f:then>
-                <f:render partial="Timeline/Changelog" arguments="{items: items, data: data, settings: settings}" />
+                <f:if condition="{settings.layout} == 'responsive'">
+                    <f:then>
+                        <f:render partial="Timeline/Responsive" arguments="{items: items, data: data, settings: settings}" />
+                    </f:then>
+                    <f:else>
+                        <f:render partial="Timeline/Changelog" arguments="{items: items, data: data, settings: settings}" />
+                    </f:else>
+                </f:if>
             </f:then>
             <f:else>
                 <p class="text-muted fst-italic">
