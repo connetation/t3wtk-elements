@@ -7,8 +7,8 @@
         <f:for each="{items}" as="item" iteration="iter">
             <div class="conn-timeline__item {f:if(condition: iter.isOdd, then: 'conn-timeline__item--odd', else: 'conn-timeline__item--even')}">
                 <div class="conn-timeline__card">
-                    <f:if condition="{item.date}">
-                        <span class="conn-timeline__date">{item.date}</span>
+                    <f:if condition="{item.dateFormatted}">
+                        <span class="conn-timeline__date">{item.dateFormatted}</span>
                     </f:if>
                     <f:if condition="{item.imageFile}">
                         <div class="conn-timeline__image">

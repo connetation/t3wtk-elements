@@ -15,12 +15,13 @@
                             <items>
                                 <numIndex index="0"><label>Product Changelog</label><value>changelog</value></numIndex>
                                 <numIndex index="1"><label>Company Timeline</label><value>responsive</value></numIndex>
+                                <numIndex index="2"><label>Timeline Scroll</label><value>scroll</value></numIndex>
                             </items>
                         </config>
                     </settings.layout>
                     <settings.position>
                         <label>Line Position</label>
-                        <displayCond>FIELD:settings.layout:!=:responsive</displayCond>
+                        <displayCond>FIELD:settings.layout:=:changelog</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
@@ -34,7 +35,7 @@
                     </settings.position>
                     <settings.track_align>
                         <label>Track Alignment</label>
-                        <displayCond>FIELD:settings.layout:!=:responsive</displayCond>
+                        <displayCond>FIELD:settings.layout:=:changelog</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
@@ -46,6 +47,41 @@
                             </items>
                         </config>
                     </settings.track_align>
+                    <settings.line_style>
+                        <label>Line Style</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>solid</default>
+                            <items>
+                                <numIndex index="0"><label>Solid</label><value>solid</value></numIndex>
+                                <numIndex index="1"><label>Dashed</label><value>dashed</value></numIndex>
+                                <numIndex index="2"><label>Dotted</label><value>dotted</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.line_style>
+                    <settings.show_item_date>
+                        <label>Show full date inside card</label>
+                        <displayCond>FIELD:settings.layout:=:scroll</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.show_item_date>
+                    <settings.sort_order>
+                        <label>Sort Order</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>custom</default>
+                            <items>
+                                <numIndex index="0"><label>Custom (manual order)</label><value>custom</value></numIndex>
+                                <numIndex index="1"><label>Date ascending</label><value>date_asc</value></numIndex>
+                                <numIndex index="2"><label>Date descending</label><value>date_desc</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.sort_order>
                 </el>
             </ROOT>
         </sDEF>

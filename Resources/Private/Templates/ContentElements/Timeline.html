@@ -12,21 +12,24 @@
     type="module"
     priority="false" />
 
-<section class="conn-timeline conn-timeline--{settings.layout} conn-timeline--pos-{settings.position} conn-timeline--track-{settings.trackAlign}"
+<section class="conn-timeline conn-timeline--{settings.layout} conn-timeline--pos-{settings.position} conn-timeline--track-{settings.trackAlign} conn-timeline--line-{settings.lineStyle}"
          id="conn-timeline-{data.uid}"
          data-layout="{settings.layout}"
 >
     <div class="container-fluid">
         <f:if condition="{items}">
             <f:then>
-                <f:if condition="{settings.layout} == 'responsive'">
-                    <f:then>
+                <f:switch expression="{settings.layout}">
+                    <f:case value="responsive">
                         <f:render partial="Timeline/Responsive" arguments="{items: items, data: data, settings: settings}" />
-                    </f:then>
-                    <f:else>
+                    </f:case>
+                    <f:case value="scroll">
+                        <f:render partial="Timeline/Scroll" arguments="{items: items, data: data, settings: settings}" />
+                    </f:case>
+                    <f:defaultCase>
                         <f:render partial="Timeline/Changelog" arguments="{items: items, data: data, settings: settings}" />
-                    </f:else>
-                </f:if>
+                    </f:defaultCase>
+                </f:switch>
             </f:then>
             <f:else>
                 <p class="text-muted fst-italic">

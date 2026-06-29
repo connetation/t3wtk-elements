@@ -372,7 +372,7 @@ CREATE TABLE tx_conn_elements_domain_model_timeline_item (
     sorting         int(11) DEFAULT '0' NOT NULL,
     content_element int(11) DEFAULT '0' NOT NULL,
 
-    date            varchar(255) DEFAULT '' NOT NULL,
+    date            int(11) DEFAULT NULL,
     title           varchar(255) DEFAULT '' NOT NULL,
     body            mediumtext,
     image           int(11) DEFAULT '0' NOT NULL,

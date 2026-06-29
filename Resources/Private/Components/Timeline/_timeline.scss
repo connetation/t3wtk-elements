@@ -1,7 +1,7 @@
 .frame-type-conn_bs_timeline header {
     h1, h2, h3, h4, h5, h6 {
         font-weight: 700;
-        color: var(--conn-text);
+        color: var(--conn-heading);
     }
 }
 
@@ -11,14 +11,14 @@
     padding: 3rem 0;
 
     &__title {
-        color: var(--conn-text);
+        color: var(--conn-heading);
         font-weight: 600;
         font-size: 1.05rem;
         margin: 0 0 0.55rem;
     }
 
     &__body {
-        color: var(--conn-text-muted);
+        color: var(--conn-text);
         font-size: 0.9rem;
         line-height: 1.65;
 
@@ -43,6 +43,28 @@
         overflow: hidden;
 
         img { display: block; width: 100%; height: auto; }
+    }
+
+    // ── Line style (shared across all layouts) ───────────────────────────────
+
+    &.conn-timeline--line-dashed .conn-timeline__line {
+        background: repeating-linear-gradient(
+            to bottom,
+            var(--conn-accent) 0,
+            var(--conn-accent) 12px,
+            transparent 12px,
+            transparent 22px
+        ) !important;
+    }
+
+    &.conn-timeline--line-dotted .conn-timeline__line {
+        background: repeating-linear-gradient(
+            to bottom,
+            var(--conn-accent) 0,
+            var(--conn-accent) 3px,
+            transparent 3px,
+            transparent 9px
+        ) !important;
     }
 
     // ── Track alignment (shared across all layouts) ───────────────────────────
@@ -422,6 +444,233 @@
                 margin-right: 0 !important;
 
                 &::before { display: none; }
+            }
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // SCROLL LAYOUT  (year-badge groups, alternating left/right panels)
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &--scroll {
+
+        // ── Track ────────────────────────────────────────────────────────────
+
+        .conn-timeline__track {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto !important;
+        }
+
+        .conn-timeline__line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: var(--conn-accent);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+
+        // ── Year badge rows ──────────────────────────────────────────────────
+
+        .conn-timeline__year-row {
+            position: relative;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .conn-timeline__year-badge {
+            position: relative;
+            z-index: 6;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px solid var(--conn-accent);
+            background: var(--conn-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            p {
+                margin: 0;
+                color: var(--conn-accent);
+                font-weight: 700;
+                font-size: 1.1rem;
+                line-height: 1;
+                text-align: center;
+            }
+        }
+
+        // ── Item rows ────────────────────────────────────────────────────────
+
+        .conn-timeline__item {
+            position: relative;
+            display: flex;
+            margin-bottom: 2.5rem;
+
+            &:last-child { margin-bottom: 0; }
+        }
+
+        // Dot centered on the line, per item
+        .conn-timeline__dot {
+            position: absolute;
+            top: 0.85rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--conn-surface);
+            border: 2px solid var(--conn-accent);
+            box-shadow: 0 0 0 2px var(--conn-accent);
+            z-index: 6;
+            transition: background-color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        // ── Card ─────────────────────────────────────────────────────────────
+
+        .conn-timeline__card {
+            width: calc(50% - 2rem);
+            background: var(--conn-surface);
+            border: 1px solid var(--conn-border);
+            border-radius: var(--conn-radius);
+            padding: 0.75rem;
+            box-shadow: var(--conn-shadow-card);
+            position: relative;
+            z-index: 2;
+            transition: box-shadow var(--conn-transition), transform var(--conn-transition);
+
+            &:hover {
+                box-shadow: var(--conn-shadow-hover);
+                transform: translateY(-2px);
+            }
+        }
+
+        .conn-timeline__card-inner {
+            display: flex;
+            gap: 0.75rem;
+            min-height: 110px;
+        }
+
+        .conn-timeline__card-image {
+            flex-shrink: 0;
+            width: 30%;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: calc(var(--conn-radius) - 2px);
+            }
+        }
+
+        .conn-timeline__card-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .conn-timeline__item-date {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--conn-text-muted);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
+        // ── Left item: card on left, image on right (closer to line) ─────────
+
+        .conn-timeline__item--left {
+            justify-content: flex-start;
+
+            .conn-timeline__card {
+                // Arrow pointing right toward center line
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0.85rem;
+                    right: -7px;
+                    width: 12px;
+                    height: 12px;
+                    background: var(--conn-surface);
+                    border-top: 1px solid var(--conn-border);
+                    border-right: 1px solid var(--conn-border);
+                    transform: rotate(45deg);
+                }
+            }
+
+            .conn-timeline__card-inner { flex-direction: row-reverse; }
+
+            &:hover .conn-timeline__dot { background: var(--conn-accent); }
+        }
+
+        // ── Right item: card on right, image on left (closer to line) ────────
+
+        .conn-timeline__item--right {
+            justify-content: flex-end;
+
+            .conn-timeline__card {
+                // Arrow pointing left toward center line
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0.85rem;
+                    left: -7px;
+                    width: 12px;
+                    height: 12px;
+                    background: var(--conn-surface);
+                    border-bottom: 1px solid var(--conn-border);
+                    border-left: 1px solid var(--conn-border);
+                    transform: rotate(45deg);
+                }
+            }
+
+            .conn-timeline__card-inner { flex-direction: row; }
+
+            &:hover .conn-timeline__dot { background: var(--conn-accent); }
+        }
+
+        // ── Mobile: single column, line left ─────────────────────────────────
+
+        @media (max-width: 767px) {
+            .conn-timeline__line {
+                left: 0.875rem;
+                transform: translateX(-50%);
+            }
+
+            .conn-timeline__year-row { justify-content: flex-start; padding-left: 2.5rem; }
+
+            .conn-timeline__year-badge { width: 60px; height: 60px; p { font-size: 0.85rem; } }
+
+            .conn-timeline__item--left,
+            .conn-timeline__item--right {
+                justify-content: flex-end;
+            }
+
+            .conn-timeline__dot {
+                left: 0.875rem;
+                top: 0.85rem;
+            }
+
+            .conn-timeline__card {
+                width: calc(100% - 2.5rem);
+
+                &::after { display: none; }
+            }
+
+            .conn-timeline__card-inner {
+                flex-direction: row !important;
+                min-height: 0;
             }
         }
     }

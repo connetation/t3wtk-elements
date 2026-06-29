@@ -1,0 +1,47 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-timeline__track">
+    <div class="conn-timeline__line"></div>
+    <f:for each="{items}" as="item">
+        <f:if condition="{item.isNewYear}">
+            <f:if condition="{item.dateYear}">
+                <div class="conn-timeline__year-row">
+                    <div class="conn-timeline__year-badge">
+                        <p>{item.dateYear}</p>
+                    </div>
+                </div>
+            </f:if>
+        </f:if>
+        <div class="conn-timeline__item conn-timeline__item--{item.scrollSide}"
+             data-scroll-side="{item.scrollSide}">
+            <div class="conn-timeline__dot"></div>
+            <div class="conn-timeline__card">
+                <div class="conn-timeline__card-inner">
+                    <f:if condition="{item.imageFile}">
+                        <div class="conn-timeline__card-image">
+                            <f:image image="{item.imageFile}"
+                                     alt="{item.title}"
+                                     width="300" />
+                        </div>
+                    </f:if>
+                    <div class="conn-timeline__card-content">
+                        <f:if condition="{settings.showItemDate}">
+                            <f:if condition="{item.dateFormatted}">
+                                <span class="conn-timeline__item-date">{item.dateFormatted}</span>
+                            </f:if>
+                        </f:if>
+                        <h3 class="conn-timeline__title">{item.title}</h3>
+                        <f:if condition="{item.body}">
+                            <div class="conn-timeline__body">
+                                {item.body -> f:format.html()}
+                            </div>
+                        </f:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </f:for>
+</div>
+
+</html>

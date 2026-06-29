@@ -176,64 +176,64 @@
 // ── Buttons — primary ─────────────────────────────────────────────────────────
 
 .btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: var(--conn-accent);
-  --bs-btn-border-color: var(--conn-accent);
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--conn-accent-hover);
-  --bs-btn-hover-border-color: var(--conn-accent-hover);
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--conn-accent-hover);
-  --bs-btn-active-border-color: var(--conn-accent-hover);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: var(--conn-accent);
-  --bs-btn-disabled-border-color: var(--conn-accent);
+  --bs-btn-color:              var(--conn-btn-color);
+  --bs-btn-bg:                 var(--conn-btn-bg);
+  --bs-btn-border-color:       var(--conn-btn-bg);
+  --bs-btn-hover-color:        var(--conn-btn-color);
+  --bs-btn-hover-bg:           var(--conn-btn-bg-hover);
+  --bs-btn-hover-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-active-color:       var(--conn-btn-color);
+  --bs-btn-active-bg:          var(--conn-btn-bg-hover);
+  --bs-btn-active-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-disabled-color:     var(--conn-btn-color);
+  --bs-btn-disabled-bg:        var(--conn-btn-bg);
+  --bs-btn-disabled-border-color: var(--conn-btn-bg);
 }
 
 // ── Buttons — secondary ───────────────────────────────────────────────────────
 
 .btn-secondary {
-  --bs-btn-color: var(--conn-text);
-  --bs-btn-bg: var(--conn-surface-alt);
-  --bs-btn-border-color: var(--conn-border-strong);
-  --bs-btn-hover-color: var(--conn-accent);
-  --bs-btn-hover-bg: var(--conn-surface-hover);
-  --bs-btn-hover-border-color: var(--conn-accent);
-  --bs-btn-active-color: var(--conn-accent);
-  --bs-btn-active-bg: var(--conn-surface-hover);
-  --bs-btn-active-border-color: var(--conn-accent);
-  --bs-btn-disabled-color: var(--conn-text);
-  --bs-btn-disabled-bg: var(--conn-surface-alt);
+  --bs-btn-color:              var(--conn-text);
+  --bs-btn-bg:                 var(--conn-surface-alt);
+  --bs-btn-border-color:       var(--conn-border-strong);
+  --bs-btn-hover-color:        var(--conn-btn-color);
+  --bs-btn-hover-bg:           var(--conn-btn-bg-hover);
+  --bs-btn-hover-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-active-color:       var(--conn-btn-color);
+  --bs-btn-active-bg:          var(--conn-btn-bg-hover);
+  --bs-btn-active-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-disabled-color:     var(--conn-text);
+  --bs-btn-disabled-bg:        var(--conn-surface-alt);
   --bs-btn-disabled-border-color: var(--conn-border-strong);
 }
 
 // ── Buttons — outline-primary ─────────────────────────────────────────────────
 
 .btn-outline-primary {
-  --bs-btn-color: var(--conn-accent);
-  --bs-btn-border-color: var(--conn-accent);
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--conn-accent);
-  --bs-btn-hover-border-color: var(--conn-accent);
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--conn-accent);
-  --bs-btn-active-border-color: var(--conn-accent);
-  --bs-btn-disabled-color: var(--conn-accent);
-  --bs-btn-disabled-border-color: var(--conn-accent);
+  --bs-btn-color:              var(--conn-btn-bg);
+  --bs-btn-border-color:       var(--conn-btn-bg);
+  --bs-btn-hover-color:        var(--conn-btn-color);
+  --bs-btn-hover-bg:           var(--conn-btn-bg-hover);
+  --bs-btn-hover-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-active-color:       var(--conn-btn-color);
+  --bs-btn-active-bg:          var(--conn-btn-bg-hover);
+  --bs-btn-active-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-disabled-color:     var(--conn-btn-bg);
+  --bs-btn-disabled-border-color: var(--conn-btn-bg);
 }
 
 // ── Buttons — outline-secondary ───────────────────────────────────────────────
 
 .btn-outline-secondary {
-  --bs-btn-color: var(--conn-text-muted);
-  --bs-btn-border-color: var(--conn-border-strong);
-  --bs-btn-hover-color: var(--conn-accent);
-  --bs-btn-hover-bg: var(--conn-surface-hover);
-  --bs-btn-hover-border-color: var(--conn-accent);
-  --bs-btn-active-color: var(--conn-accent);
-  --bs-btn-active-bg: var(--conn-surface-hover);
-  --bs-btn-active-border-color: var(--conn-accent);
-  --bs-btn-disabled-color: var(--conn-text-muted);
+  --bs-btn-color:              var(--conn-text);
+  --bs-btn-border-color:       var(--conn-border-strong);
+  --bs-btn-hover-color:        var(--conn-btn-color);
+  --bs-btn-hover-bg:           var(--conn-btn-bg-hover);
+  --bs-btn-hover-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-active-color:       var(--conn-btn-color);
+  --bs-btn-active-bg:          var(--conn-btn-bg-hover);
+  --bs-btn-active-border-color: var(--conn-btn-bg-hover);
+  --bs-btn-disabled-color:     var(--conn-text-muted);
   --bs-btn-disabled-border-color: var(--conn-border-strong);
 }
 
@@ -242,19 +242,19 @@
 .form-control {
   &.is-valid,
   .was-validated &:valid {
-    border-color: #22c55e !important;
+    border-color: var(--conn-success) !important;
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2) !important;
+      box-shadow: 0 0 0 3px var(--conn-success-glow) !important;
     }
   }
 
   &.is-invalid,
   .was-validated &:invalid {
-    border-color: #ef4444 !important;
+    border-color: var(--conn-danger) !important;
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+      box-shadow: 0 0 0 3px var(--conn-danger-glow) !important;
     }
   }
 }
@@ -262,19 +262,19 @@
 .form-select {
   &.is-valid,
   .was-validated &:valid {
-    border-color: #22c55e !important;
+    border-color: var(--conn-success) !important;
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2) !important;
+      box-shadow: 0 0 0 3px var(--conn-success-glow) !important;
     }
   }
 
   &.is-invalid,
   .was-validated &:invalid {
-    border-color: #ef4444 !important;
+    border-color: var(--conn-danger) !important;
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+      box-shadow: 0 0 0 3px var(--conn-danger-glow) !important;
     }
   }
 }
@@ -287,9 +287,9 @@
 }
 
 .valid-feedback {
-  color: #22c55e;
+  color: var(--conn-success);
 }
 
 .invalid-feedback {
-  color: #ef4444;
+  color: var(--conn-danger);
 }

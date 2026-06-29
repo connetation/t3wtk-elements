@@ -59,7 +59,15 @@ final class TimelineItemsProcessor implements DataProcessorInterface
             ->executeQuery()
             ->fetchAllAssociative();
 
+        if ($settings['sortOrder'] === 'date_asc') {
+            usort($rows, fn($a, $b) => ($a['date'] ?? 0) <=> ($b['date'] ?? 0));
+        } elseif ($settings['sortOrder'] === 'date_desc') {
+            usort($rows, fn($a, $b) => ($b['date'] ?? 0) <=> ($a['date'] ?? 0));
+        }
+
         $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
+        $lastYear  = null;
+        $sideIndex = 0;
         foreach ($rows as &$row) {
             try {
                 $files = $fileRepository->findByRelation(
@@ -71,6 +79,13 @@ final class TimelineItemsProcessor implements DataProcessorInterface
             } catch (\Exception $e) {
                 $row['imageFile'] = null;
             }
+            $ts = $row['date'] !== null ? (int)$row['date'] : null;
+            $row['dateFormatted'] = $ts ? date('d.m.Y', $ts) : '';
+            $row['dateYear']      = $ts ? date('Y', $ts) : '';
+            $row['isNewYear']     = ($row['dateYear'] !== $lastYear);
+            $row['scrollSide']    = ($sideIndex % 2 === 0) ? 'left' : 'right';
+            $lastYear  = $row['dateYear'];
+            $sideIndex++;
         }
         unset($row);
 
@@ -83,15 +98,22 @@ final class TimelineItemsProcessor implements DataProcessorInterface
     private function resolveSettings(array $raw): array
     {
         return [
-            'layout'      => in_array($raw['layout'] ?? '', ['changelog', 'responsive'], true)
-                                 ? $raw['layout']
-                                 : 'changelog',
-            'position'    => in_array($raw['position'] ?? '', ['left', 'center', 'right'], true)
-                                 ? $raw['position']
-                                 : 'left',
-            'trackAlign'  => in_array($raw['track_align'] ?? '', ['left', 'center', 'right'], true)
-                                 ? $raw['track_align']
-                                 : 'center',
+            'layout'       => in_array($raw['layout'] ?? '', ['changelog', 'responsive', 'scroll'], true)
+                                  ? $raw['layout']
+                                  : 'changelog',
+            'position'     => in_array($raw['position'] ?? '', ['left', 'center', 'right'], true)
+                                  ? $raw['position']
+                                  : 'left',
+            'trackAlign'   => in_array($raw['track_align'] ?? '', ['left', 'center', 'right'], true)
+                                  ? $raw['track_align']
+                                  : 'center',
+            'sortOrder'     => in_array($raw['sort_order'] ?? '', ['custom', 'date_asc', 'date_desc'], true)
+                                   ? $raw['sort_order']
+                                   : 'custom',
+            'showItemDate'  => (bool)($raw['show_item_date'] ?? false),
+            'lineStyle'     => in_array($raw['line_style'] ?? '', ['solid', 'dashed', 'dotted'], true)
+                                   ? $raw['line_style']
+                                   : 'solid',
         ];
     }
 
@@ -101,6 +123,9 @@ final class TimelineItemsProcessor implements DataProcessorInterface
             'layout'      => 'changelog',
             'position'    => 'left',
             'trackAlign'  => 'center',
+            'sortOrder'    => 'custom',
+            'showItemDate' => false,
+            'lineStyle'    => 'solid',
         ];
     }
 }

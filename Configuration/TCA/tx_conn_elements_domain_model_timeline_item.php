@@ -33,10 +33,9 @@ return [
         'date' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date',
             'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max'  => 255,
-                'placeholder' => 'e.g. 2024, Q1 2025, March 2024',
+                'type'     => 'datetime',
+                'format'   => 'date',
+                'nullable' => true,
             ],
         ],
         'title' => [

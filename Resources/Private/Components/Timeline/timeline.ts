@@ -12,12 +12,20 @@ class Timeline {
 
     private init(): void {
         const items = Array.from(this.el.querySelectorAll<HTMLElement>('.conn-timeline__item'));
+        const isScroll = this.el.dataset.layout === 'scroll';
+
         items.forEach((item) => {
+            const fromVars: gsap.TweenVars = { opacity: 0, duration: 0.6, ease: 'power2.out' };
+
+            if (isScroll) {
+                fromVars.x = item.dataset.scrollSide === 'left' ? -40 : 40;
+            } else {
+                fromVars.y = 20;
+                fromVars.duration = 0.5;
+            }
+
             gsap.from(item, {
-                opacity: 0,
-                y: 20,
-                duration: 0.5,
-                ease: 'power2.out',
+                ...fromVars,
                 scrollTrigger: {
                     trigger: item,
                     start: 'top 85%',
