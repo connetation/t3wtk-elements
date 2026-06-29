@@ -9,7 +9,7 @@ $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['WikiCode'] = 'EXT:conn_elements/C
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
-    'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery
+    'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_bs_timeline
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_dashboard {
         iconIdentifier = conn-ce-dashboard
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard
@@ -123,4 +123,10 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel.description
         tt_content_defValues.CType = conn_bs_carousel
+    }
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_timeline {
+        iconIdentifier = conn-ce-timeline
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline.description
+        tt_content_defValues.CType = conn_bs_timeline
     }';

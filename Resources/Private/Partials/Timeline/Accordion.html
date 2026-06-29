@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-timeline__track">
+    <div class="conn-timeline__line"></div>
+    <div class="accordion" id="conn-timeline-acc-{data.uid}">
+        <f:for each="{items}" as="item" iteration="iter">
+            <div class="accordion-item conn-timeline__item">
+                <div class="conn-timeline__dot"></div>
+                <f:if condition="{item.date}">
+                    <span class="conn-timeline__date">{item.date}</span>
+                </f:if>
+                <h2 class="accordion-header">
+                    <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#conn-tl-item-{item.uid}"
+                            aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                            aria-controls="conn-tl-item-{item.uid}">
+                        {item.title}
+                    </button>
+                </h2>
+                <div id="conn-tl-item-{item.uid}"
+                     class="accordion-collapse collapse {f:if(condition: iter.isFirst, then: 'show')}"
+                     data-bs-parent="#conn-timeline-acc-{data.uid}">
+                    <div class="accordion-body">
+                        <f:if condition="{item.body}">
+                            {item.body -> f:format.html()}
+                        </f:if>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+    </div>
+</div>
+
+</html>

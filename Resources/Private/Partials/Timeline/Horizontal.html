@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-timeline__swiper-wrap">
+    <div class="conn-timeline__swiper swiper">
+        <div class="swiper-wrapper">
+            <f:for each="{items}" as="item">
+                <div class="conn-timeline__slide swiper-slide">
+                    <div class="conn-timeline__slide-dot"></div>
+                    <div class="conn-timeline__slide-content">
+                        <f:if condition="{item.date}">
+                            <span class="conn-timeline__date">{item.date}</span>
+                        </f:if>
+                        <h3 class="conn-timeline__title">{item.title}</h3>
+                        <f:if condition="{item.body}">
+                            <div class="conn-timeline__body">
+                                {item.body -> f:format.html()}
+                            </div>
+                        </f:if>
+                    </div>
+                </div>
+            </f:for>
+        </div>
+    </div>
+    <button class="conn-timeline__btn-prev" aria-label="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="conn-timeline__btn-next" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="conn-timeline__pagination"></div>
+</div>
+
+</html>

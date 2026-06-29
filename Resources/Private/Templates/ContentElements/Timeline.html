@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-timeline-css"
+    href="EXT:conn_elements/Resources/Public/Css/timeline.css" />
+<f:asset.script identifier="conn-elements-timeline-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/timeline.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-timeline conn-timeline--changelog conn-timeline--pos-{settings.position} conn-timeline--track-{settings.trackAlign}"
+         id="conn-timeline-{data.uid}"
+         data-layout="changelog">
+    <div class="container-fluid">
+        <f:if condition="{items}">
+            <f:then>
+                <f:render partial="Timeline/Changelog" arguments="{items: items, data: data, settings: settings}" />
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">
+                    <f:translate key="timeline.empty" extensionName="conn_elements" />
+                </p>
+            </f:else>
+        </f:if>
+    </div>
+</section>
+
+</f:section>
+
+</html>

@@ -861,3 +861,54 @@ $registry->configureContainer(
     ->setGroup('conn_grid')
 );
 
+
+// ─── Timeline ─────────────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_timeline'] = 'conn-ce-timeline';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline',
+    'value' => 'conn_bs_timeline',
+    'icon'  => 'conn-ce-timeline',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_timeline_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_timeline_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 200,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_timeline_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Timeline.xml'],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_timeline'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_timeline_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline.tab.config,
+            tx_conn_elements_timeline_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];

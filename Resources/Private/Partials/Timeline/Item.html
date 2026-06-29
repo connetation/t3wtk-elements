@@ -1,0 +1,13 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-timeline__item">
+    <h3 class="conn-timeline__title">{item.title}</h3>
+    <f:if condition="{item.body}">
+        <div class="conn-timeline__body">
+            {item.body -> f:format.html()}
+        </div>
+    </f:if>
+</div>
+
+</html>

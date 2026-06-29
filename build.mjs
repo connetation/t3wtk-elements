@@ -22,6 +22,7 @@ const config = {
         'mosaic-gallery':   'Resources/Private/Components/MosaicGallery/mosaic-gallery.ts',
         'navbar-megamenu': 'Resources/Private/Components/Navbar/navbar-megamenu.ts',
         'navbar-sidebar':  'Resources/Private/Components/Navbar/navbar-sidebar.ts',
+        'timeline':  'Resources/Private/Components/Timeline/timeline.ts',
     },
     bundle:    true,
     splitting: true,

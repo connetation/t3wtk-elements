@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.layout>
+                        <label>Timeline Layout</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>changelog</default>
+                            <items>
+                                <numIndex index="0"><label>Product Changelog</label><value>changelog</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.layout>
+                    <settings.position>
+                        <label>Line Position</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>left</default>
+                            <items>
+                                <numIndex index="0"><label>Left</label><value>left</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Right</label><value>right</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.position>
+                    <settings.track_align>
+                        <label>Track Alignment</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>center</default>
+                            <items>
+                                <numIndex index="0"><label>Left</label><value>left</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Right</label><value>right</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.track_align>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

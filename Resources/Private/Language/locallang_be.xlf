@@ -542,6 +542,38 @@
             <trans-unit id="wikitag.title">
                 <source>Title</source>
             </trans-unit>
+
+            <!-- Timeline content element -->
+            <trans-unit id="ce.timeline">
+                <source>Timeline</source>
+            </trans-unit>
+            <trans-unit id="ce.timeline.description">
+                <source>Timeline content element</source>
+            </trans-unit>
+            <trans-unit id="timeline.tab.config">
+                <source>Timeline Settings</source>
+            </trans-unit>
+            <trans-unit id="timeline.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="timeline.items">
+                <source>Items</source>
+            </trans-unit>
+            <trans-unit id="timeline_item.date">
+                <source>Date / Period</source>
+            </trans-unit>
+            <trans-unit id="timeline_item.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="timeline_item.body">
+                <source>Content</source>
+            </trans-unit>
+            <trans-unit id="timeline_item.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="model.timeline_item">
+                <source>Timeline Item</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
