@@ -5,14 +5,12 @@
 
 // ── Theme-invariant ─────────────────────────
 :root {
-    --conn-accent:       #6366f1;
+    // Follows --bs-primary so a single --bs-primary override in the sitepackage
+    // re-themes all conn components. Override --conn-accent to decouple from BS primary.
+    --conn-accent:       var(--bs-primary, #6366f1);
     --conn-accent-hover: #4f52d4;
     --conn-radius:       0.75rem;
     --conn-transition:   0.2s ease-in-out;
-
-    // Bootstrap primary → accent (RGB is the default accent value; update if you change the accent)
-    --bs-primary:        var(--conn-accent);
-    --bs-primary-rgb:    99, 102, 241;
 
     // Shadow-hover component vars (overridable individually via site settings)
     --conn-sh-x:      0;
