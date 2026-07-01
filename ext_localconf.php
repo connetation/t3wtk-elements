@@ -9,7 +9,7 @@ $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['WikiCode'] = 'EXT:conn_elements/C
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
-    'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_bs_timeline
+    'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_bs_timeline,conn_bs_stats,conn_bs_logo_cloud,conn_bs_testimonials,conn_bs_pricing,conn_bs_feature_grid
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_dashboard {
         iconIdentifier = conn-ce-dashboard
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard
@@ -129,4 +129,34 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline.description
         tt_content_defValues.CType = conn_bs_timeline
+    }
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_stats {
+        iconIdentifier = conn-ce-stats
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats.description
+        tt_content_defValues.CType = conn_bs_stats
+    }
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_logo_cloud {
+        iconIdentifier = conn-ce-logo-cloud
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_cloud
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_cloud.description
+        tt_content_defValues.CType = conn_bs_logo_cloud
+    }
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_testimonials {
+        iconIdentifier = conn-ce-testimonials
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials.description
+        tt_content_defValues.CType = conn_bs_testimonials
+    }
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_pricing {
+        iconIdentifier = conn-ce-pricing
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_pricing
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_pricing.description
+        tt_content_defValues.CType = conn_bs_pricing
+    }
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_feature_grid {
+        iconIdentifier = conn-ce-feature-grid
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid.description
+        tt_content_defValues.CType = conn_bs_feature_grid
     }';

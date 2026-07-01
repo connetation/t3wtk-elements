@@ -1,0 +1,20 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-stats__item">
+    <div class="conn-stats__number">
+            <f:if condition="{stat.prefix}">
+                <span class="conn-stats__prefix">{stat.prefix}</span>
+            </f:if>
+            <span class="conn-stats__value" data-target="{stat.value}">{stat.value}</span>
+            <f:if condition="{stat.suffix}">
+                <span class="conn-stats__suffix">{stat.suffix}</span>
+            </f:if>
+    </div>
+    <div class="conn-stats__label">{stat.label}</div>
+    <f:if condition="{stat.description}">
+        <p class="conn-stats__description">{stat.description}</p>
+    </f:if>
+</div>
+
+</html>

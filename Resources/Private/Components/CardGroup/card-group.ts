@@ -19,7 +19,6 @@ class CardGroup {
 
         gsap.from(cards, {
             opacity: 0,
-            y: 20,
             duration: 0.4,
             stagger: 0.07,
             ease: 'power2.out',

@@ -574,6 +574,213 @@
             <trans-unit id="model.timeline_item">
                 <source>Timeline Item</source>
             </trans-unit>
+
+            <!-- Stats content element -->
+            <trans-unit id="ce.bs_stats">
+                <source>Stats / Counters</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_stats.description">
+                <source>Animated counter grid for showcasing key metrics and numbers</source>
+            </trans-unit>
+            <trans-unit id="stats.tab.config">
+                <source>Stats Settings</source>
+            </trans-unit>
+            <trans-unit id="stats.items">
+                <source>Stat Items</source>
+            </trans-unit>
+            <trans-unit id="stats.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Stat item model -->
+            <trans-unit id="model.stat_item">
+                <source>Stat Item</source>
+            </trans-unit>
+            <trans-unit id="stat_item.value">
+                <source>Value (e.g. 1500)</source>
+            </trans-unit>
+            <trans-unit id="stat_item.prefix">
+                <source>Prefix (e.g. +, ~, $)</source>
+            </trans-unit>
+            <trans-unit id="stat_item.suffix">
+                <source>Suffix (e.g. %, k, M)</source>
+            </trans-unit>
+            <trans-unit id="stat_item.label">
+                <source>Label</source>
+            </trans-unit>
+            <trans-unit id="stat_item.description">
+                <source>Description / Subtext</source>
+            </trans-unit>
+
+            <!-- Logo Wall content element -->
+            <trans-unit id="ce.bs_logo_cloud">
+                <source>Logo Wall</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_logo_cloud.description">
+                <source>Grid or marquee strip of partner / client logos</source>
+            </trans-unit>
+            <trans-unit id="logo_cloud.tab.config">
+                <source>Logo Wall Settings</source>
+            </trans-unit>
+            <trans-unit id="logo_cloud.items">
+                <source>Logos</source>
+            </trans-unit>
+            <trans-unit id="logo_cloud.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Logo item model -->
+            <trans-unit id="model.logo_item">
+                <source>Logo</source>
+            </trans-unit>
+            <trans-unit id="logo_item.image">
+                <source>Logo Image</source>
+            </trans-unit>
+            <trans-unit id="logo_item.alt">
+                <source>Alt Text / Company Name</source>
+            </trans-unit>
+            <trans-unit id="logo_item.link">
+                <source>Link (optional)</source>
+            </trans-unit>
+
+            <!-- Testimonials content element -->
+            <trans-unit id="ce.bs_testimonials">
+                <source>Testimonials</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_testimonials.description">
+                <source>Customer reviews in grid or carousel layout with star ratings</source>
+            </trans-unit>
+            <trans-unit id="testimonials.tab.config">
+                <source>Testimonials Settings</source>
+            </trans-unit>
+            <trans-unit id="testimonials.items">
+                <source>Testimonials</source>
+            </trans-unit>
+            <trans-unit id="testimonials.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Testimonial item model -->
+            <trans-unit id="model.testimonial_item">
+                <source>Testimonial</source>
+            </trans-unit>
+            <trans-unit id="testimonial_item.quote">
+                <source>Quote</source>
+            </trans-unit>
+            <trans-unit id="testimonial_item.author_name">
+                <source>Author Name</source>
+            </trans-unit>
+            <trans-unit id="testimonial_item.author_role">
+                <source>Author Role / Company</source>
+            </trans-unit>
+            <trans-unit id="testimonial_item.rating">
+                <source>Star Rating</source>
+            </trans-unit>
+            <trans-unit id="testimonial_item.image">
+                <source>Author Photo</source>
+            </trans-unit>
+            <trans-unit id="testimonial_item.tab.author">
+                <source>Author</source>
+            </trans-unit>
+
+            <!-- Pricing content element -->
+            <trans-unit id="ce.bs_pricing">
+                <source>Pricing Table</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_pricing.description">
+                <source>Pricing tiers with feature lists and CTA buttons, supports featured highlight</source>
+            </trans-unit>
+            <trans-unit id="pricing.tab.config">
+                <source>Pricing Settings</source>
+            </trans-unit>
+            <trans-unit id="pricing.tiers">
+                <source>Pricing Tiers</source>
+            </trans-unit>
+            <trans-unit id="pricing.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Pricing tier model -->
+            <trans-unit id="model.pricing_tier">
+                <source>Pricing Tier</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.name">
+                <source>Plan Name</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.tagline">
+                <source>Tagline / Subtitle</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.currency">
+                <source>Currency Symbol</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.amount">
+                <source>Price Amount</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.period">
+                <source>Billing Period (e.g. month, year)</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.price_note">
+                <source>Price Note (e.g. billed annually)</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.features">
+                <source>Features (one per line; prefix with - for unavailable)</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.cta_label">
+                <source>Button Label</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.cta_link">
+                <source>Button Link</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.featured">
+                <source>Highlighted / Featured</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.badge_text">
+                <source>Badge Text (e.g. Most Popular)</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.tab.cta">
+                <source>Call to Action</source>
+            </trans-unit>
+            <trans-unit id="pricing_tier.tab.highlight">
+                <source>Highlight</source>
+            </trans-unit>
+
+            <!-- Feature Grid content element -->
+            <trans-unit id="ce.bs_feature_grid">
+                <source>Feature Grid</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_feature_grid.description">
+                <source>Icon and text feature grid with steps and horizontal variants</source>
+            </trans-unit>
+            <trans-unit id="feature_grid.tab.config">
+                <source>Feature Grid Settings</source>
+            </trans-unit>
+            <trans-unit id="feature_grid.items">
+                <source>Features</source>
+            </trans-unit>
+            <trans-unit id="feature_grid.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Feature item model -->
+            <trans-unit id="model.feature_item">
+                <source>Feature</source>
+            </trans-unit>
+            <trans-unit id="feature_item.icon">
+                <source>Icon Class (e.g. bi bi-star)</source>
+            </trans-unit>
+            <trans-unit id="feature_item.image">
+                <source>Icon Image (overrides icon class)</source>
+            </trans-unit>
+            <trans-unit id="feature_item.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="feature_item.body">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="feature_item.link">
+                <source>Link</source>
+            </trans-unit>
+            <trans-unit id="feature_item.link_label">
+                <source>Link Label</source>
+            </trans-unit>
+            <trans-unit id="feature_item.tab.link">
+                <source>Link</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

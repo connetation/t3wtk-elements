@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-feature-grid__item">
+
+    <f:if condition="{feature.icon || feature.imageFile}">
+        <div class="conn-feature-grid__icon">
+            <f:if condition="{feature.imageFile}">
+                <f:then>
+                    <f:image image="{feature.imageFile}"
+                             class="conn-feature-grid__icon-img"
+                             alt="{feature.title}"
+                             width="48"
+                             height="48" />
+                </f:then>
+                <f:else>
+                    <f:if condition="{feature.icon}">
+                        <i class="{feature.icon}" aria-hidden="true"></i>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </div>
+    </f:if>
+
+    <div class="conn-feature-grid__content">
+        <h3 class="conn-feature-grid__title">{feature.title}</h3>
+        <f:if condition="{feature.body}">
+            <p class="conn-feature-grid__body">{feature.body}</p>
+        </f:if>
+        <f:if condition="{feature.link}">
+            <f:link.typolink parameter="{feature.link}" class="conn-feature-grid__link">
+                <f:if condition="{feature.link_label}">
+                    <f:then>{feature.link_label}</f:then>
+                    <f:else>Learn more</f:else>
+                </f:if>
+            </f:link.typolink>
+        </f:if>
+    </div>
+
+</div>
+
+</html>

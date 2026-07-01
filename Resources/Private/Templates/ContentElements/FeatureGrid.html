@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-bootstrap-icons-css"
+    href="EXT:conn_elements/Resources/Public/Css/bootstrap-icons.css" />
+<f:asset.css identifier="conn-elements-feature-grid-css"
+    href="EXT:conn_elements/Resources/Public/Css/feature-grid.css" />
+<f:asset.script identifier="conn-elements-feature-grid-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/feature-grid.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-feature-grid conn-feature-grid--{settings.variant} conn-feature-grid--icon-{settings.iconStyle}"
+         id="conn-feature-grid-{data.uid}"
+         data-columns="{settings.columns}">
+    <div class="container-fluid">
+
+        <f:if condition="{features}">
+            <f:then>
+                <div class="conn-feature-grid__grid">
+                    <f:for each="{features}" as="feature">
+                        <f:render partial="FeatureGrid/Item" arguments="{
+                            feature: feature,
+                            variant: settings.variant
+                        }" />
+                    </f:for>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No features added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

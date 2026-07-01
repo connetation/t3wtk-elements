@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left tier -->
+    <rect x="1" y="8" width="6.5" height="13" rx="1.5"/>
+    <!-- center tier — featured, taller -->
+    <rect x="8.75" y="3" width="6.5" height="18" rx="1.5"/>
+    <!-- right tier -->
+    <rect x="16.5" y="8" width="6.5" height="13" rx="1.5"/>
+    <!-- separator lines -->
+    <line x1="1" y1="13" x2="7.5" y2="13"/>
+    <line x1="8.75" y1="10" x2="15.25" y2="10"/>
+    <line x1="16.5" y1="13" x2="23" y2="13"/>
+</svg>

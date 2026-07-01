@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-stats-css"
+    href="EXT:conn_elements/Resources/Public/Css/stats.css" />
+<f:asset.script identifier="conn-elements-stats-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/stats.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-stats conn-stats--{settings.layout}"
+         id="conn-stats-{data.uid}"
+         data-columns="{settings.columns}"
+         data-countup="{f:if(condition: settings.countup, then: '1', else: '0')}"
+         data-duration="{settings.duration}"
+         style="--conn-stats-cols: {settings.columns}">
+    <div class="container-fluid">
+
+        <f:if condition="{stats}">
+            <f:then>
+                <div class="conn-stats__grid">
+                    <f:for each="{stats}" as="stat">
+                        <f:render partial="Stats/Item" arguments="{
+                            stat: stat
+                        }" />
+                    </f:for>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No stats added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

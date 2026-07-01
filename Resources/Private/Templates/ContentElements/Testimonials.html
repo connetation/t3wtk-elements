@@ -1,0 +1,66 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-swiper-css"
+    href="EXT:conn_elements/Resources/Public/Css/swiper.css" />
+<f:asset.css identifier="conn-elements-testimonials-css"
+    href="EXT:conn_elements/Resources/Public/Css/testimonials.css" />
+<f:asset.script identifier="conn-elements-testimonials-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/testimonials.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-testimonials conn-testimonials--{settings.layout}"
+         id="conn-testimonials-{data.uid}"
+         data-layout="{settings.layout}"
+         data-columns="{settings.columns}"
+         data-autoplay="{f:if(condition: settings.autoplay, then: '1', else: '0')}"
+         data-autoplay-delay="{settings.autoplayDelay}"
+         style="--conn-testimonials-cols: {settings.columns}">
+    <div class="container-fluid">
+
+        <f:if condition="{testimonials}">
+            <f:then>
+                <f:if condition="{settings.layout} == 'carousel'">
+                    <f:then>
+                        <div class="swiper conn-testimonials__swiper">
+                            <div class="swiper-wrapper">
+                                <f:for each="{testimonials}" as="testimonial">
+                                    <div class="swiper-slide">
+                                        <f:render partial="Testimonials/Item" arguments="{
+                                            testimonial: testimonial,
+                                            showRating:  settings.showRating
+                                        }" />
+                                    </div>
+                                </f:for>
+                            </div>
+                            <div class="swiper-pagination conn-testimonials__pagination"></div>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <div class="conn-testimonials__grid">
+                            <f:for each="{testimonials}" as="testimonial">
+                                <f:render partial="Testimonials/Item" arguments="{
+                                    testimonial: testimonial,
+                                    showRating:  settings.showRating
+                                }" />
+                            </f:for>
+                        </div>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No testimonials added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

@@ -33,8 +33,18 @@ CREATE TABLE tt_content (
     tx_conn_elements_mosaic_gallery_settings    mediumtext,
     tx_conn_elements_carousel_items    int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_carousel_settings mediumtext,
-    tx_conn_elements_timeline_items     int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_timeline_settings   mediumtext
+    tx_conn_elements_timeline_items          int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_timeline_settings       mediumtext,
+    tx_conn_elements_stats_items             int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_stats_settings          mediumtext,
+    tx_conn_elements_logo_cloud_items        int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_logo_cloud_settings     mediumtext,
+    tx_conn_elements_testimonials_items      int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_testimonials_settings   mediumtext,
+    tx_conn_elements_pricing_tiers           int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_pricing_settings        mediumtext,
+    tx_conn_elements_feature_grid_items      int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_feature_grid_settings   mediumtext
 );
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────
@@ -354,6 +364,126 @@ CREATE TABLE tx_conn_elements_domain_model_gallery_item (
     title           varchar(255) DEFAULT '' NOT NULL,
     caption         mediumtext,
     image           int(11) DEFAULT '0' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── Stats / Counter ─────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_stat_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    value           varchar(50) DEFAULT '' NOT NULL,
+    prefix          varchar(20) DEFAULT '' NOT NULL,
+    suffix          varchar(20) DEFAULT '' NOT NULL,
+    label           varchar(255) DEFAULT '' NOT NULL,
+    description     varchar(255) DEFAULT '' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── Logo Cloud ───────────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_logo_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    alt             varchar(255) DEFAULT '' NOT NULL,
+    link            varchar(1024) DEFAULT '' NOT NULL,
+    image           int(11) DEFAULT '0' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── Testimonials ─────────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_testimonial_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    quote           mediumtext,
+    author_name     varchar(255) DEFAULT '' NOT NULL,
+    author_role     varchar(255) DEFAULT '' NOT NULL,
+    rating          tinyint(4) DEFAULT '5' NOT NULL,
+    image           int(11) DEFAULT '0' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── Pricing ──────────────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_pricing_tier (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    name            varchar(255) DEFAULT '' NOT NULL,
+    tagline         varchar(255) DEFAULT '' NOT NULL,
+    currency        varchar(10) DEFAULT '' NOT NULL,
+    amount          varchar(30) DEFAULT '' NOT NULL,
+    period          varchar(50) DEFAULT '' NOT NULL,
+    price_note      varchar(255) DEFAULT '' NOT NULL,
+    features        mediumtext,
+    cta_label       varchar(100) DEFAULT '' NOT NULL,
+    cta_link        varchar(1024) DEFAULT '' NOT NULL,
+    featured        tinyint(4) DEFAULT '0' NOT NULL,
+    badge_text      varchar(60) DEFAULT '' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── Feature Grid ─────────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_feature_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    icon            varchar(50) DEFAULT '' NOT NULL,
+    image           int(11) DEFAULT '0' NOT NULL,
+    title           varchar(255) DEFAULT '' NOT NULL,
+    body            mediumtext,
+    link            varchar(1024) DEFAULT '' NOT NULL,
+    link_label      varchar(100) DEFAULT '' NOT NULL,
 
     PRIMARY KEY (uid),
     KEY parent (pid),

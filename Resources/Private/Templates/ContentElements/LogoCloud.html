@@ -1,0 +1,87 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-logo-cloud-css"
+    href="EXT:conn_elements/Resources/Public/Css/logo-cloud.css" />
+<f:asset.script identifier="conn-elements-logo-cloud-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/logo-cloud.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-logo-cloud conn-logo-cloud--{settings.layout} {f:if(condition: settings.grayscale, then: 'conn-logo-cloud--grayscale')}"
+         id="conn-logo-cloud-{data.uid}"
+         data-layout="{settings.layout}"
+         data-speed="{settings.speed}"
+         style="--conn-logo-cols: {settings.columns}">
+    <div class="container-fluid">
+
+        <f:if condition="{logos}">
+            <f:then>
+                <f:if condition="{settings.layout} == 'marquee'">
+                    <f:then>
+                        <div class="conn-logo-cloud__track">
+                            <f:for each="{logos}" as="logo">
+                                <div class="conn-logo-cloud__item">
+                                    <f:if condition="{logo.link}">
+                                        <f:then>
+                                            <f:link.typolink parameter="{logo.link}"
+                                                class="conn-logo-cloud__link"
+                                                target="_blank"
+                                                additionalAttributes="{rel: 'noopener'}">
+                                                <f:if condition="{logo.imageFile}">
+                                                    <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                                </f:if>
+                                            </f:link.typolink>
+                                        </f:then>
+                                        <f:else>
+                                            <f:if condition="{logo.imageFile}">
+                                                <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                            </f:if>
+                                        </f:else>
+                                    </f:if>
+                                </div>
+                            </f:for>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <div class="conn-logo-cloud__track">
+                            <f:for each="{logos}" as="logo">
+                                <div class="conn-logo-cloud__item">
+                                    <f:if condition="{logo.link}">
+                                        <f:then>
+                                            <f:link.typolink parameter="{logo.link}"
+                                                class="conn-logo-cloud__link"
+                                                target="_blank"
+                                                additionalAttributes="{rel: 'noopener'}">
+                                                <f:if condition="{logo.imageFile}">
+                                                    <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                                </f:if>
+                                            </f:link.typolink>
+                                        </f:then>
+                                        <f:else>
+                                            <f:if condition="{logo.imageFile}">
+                                                <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                            </f:if>
+                                        </f:else>
+                                    </f:if>
+                                </div>
+                            </f:for>
+                        </div>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No logos added yet.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

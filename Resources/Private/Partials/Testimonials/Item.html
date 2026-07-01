@@ -1,0 +1,44 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-testimonials__item">
+    <figure class="conn-testimonials__card">
+
+        <blockquote class="conn-testimonials__quote">
+            <p>{testimonial.quote}</p>
+        </blockquote>
+
+        <f:if condition="{showRating} && {testimonial.rating} > 0">
+            <div class="conn-testimonials__stars" data-rating="{testimonial.rating}" aria-label="{testimonial.rating} out of 5 stars"></div>
+        </f:if>
+
+        <figcaption class="conn-testimonials__author">
+            <f:if condition="{testimonial.imageFile}">
+                <f:then>
+                    <div class="conn-testimonials__avatar">
+                        <f:image image="{testimonial.imageFile}"
+                                 class="conn-testimonials__avatar-img"
+                                 alt="{testimonial.author_name}"
+                                 width="88"
+                                 height="88" />
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="conn-testimonials__avatar conn-testimonials__avatar--placeholder"
+                         aria-hidden="true">
+                        {testimonial.author_name -> f:format.crop(maxCharacters: 1, append: '', respectWordBoundaries: false, respectHtml: false)}
+                    </div>
+                </f:else>
+            </f:if>
+            <div class="conn-testimonials__author-info">
+                <span class="conn-testimonials__author-name">{testimonial.author_name}</span>
+                <f:if condition="{testimonial.author_role}">
+                    <span class="conn-testimonials__author-role">{testimonial.author_role}</span>
+                </f:if>
+            </div>
+        </figcaption>
+
+    </figure>
+</div>
+
+</html>

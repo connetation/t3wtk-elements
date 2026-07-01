@@ -1,0 +1,10 @@
+tt_content.conn_bs_pricing =< lib.conn_elements_ce
+tt_content.conn_bs_pricing {
+    templateName = Pricing
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\PricingTierProcessor
+        10 {
+            as = tiers
+        }
+    }
+}

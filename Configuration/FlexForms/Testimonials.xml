@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.layout>
+                        <label>Layout</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>grid</default>
+                            <items>
+                                <numIndex index="0"><label>Grid</label><value>grid</value></numIndex>
+                                <numIndex index="1"><label>Carousel (Swiper)</label><value>carousel</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.layout>
+                    <settings.columns>
+                        <label>Testimonials per row (Grid only)</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>3</default>
+                            <items>
+                                <numIndex index="0"><label>1 column</label><value>1</value></numIndex>
+                                <numIndex index="1"><label>2 columns</label><value>2</value></numIndex>
+                                <numIndex index="2"><label>3 columns (default)</label><value>3</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.columns>
+                    <settings.autoplay>
+                        <label>Autoplay (Carousel only)</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <items>
+                                <numIndex index="0"><label></label></numIndex>
+                            </items>
+                            <default>1</default>
+                        </config>
+                    </settings.autoplay>
+                    <settings.autoplayDelay>
+                        <label>Autoplay delay (ms)</label>
+                        <config>
+                            <type>input</type>
+                            <size>8</size>
+                            <default>4000</default>
+                            <placeholder>4000</placeholder>
+                        </config>
+                    </settings.autoplayDelay>
+                    <settings.showRating>
+                        <label>Show star rating</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <items>
+                                <numIndex index="0"><label></label></numIndex>
+                            </items>
+                            <default>1</default>
+                        </config>
+                    </settings.showRating>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

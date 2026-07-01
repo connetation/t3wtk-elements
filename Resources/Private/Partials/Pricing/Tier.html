@@ -1,0 +1,59 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-pricing__card {f:if(condition: tier.featured, then: 'conn-pricing__card--featured')}">
+
+        <f:if condition="{tier.featured} && {tier.badge_text}">
+            <div class="conn-pricing__badge">{tier.badge_text}</div>
+        </f:if>
+
+        <div class="conn-pricing__header">
+            <h3 class="conn-pricing__name">{tier.name}</h3>
+            <f:if condition="{tier.tagline}">
+                <p class="conn-pricing__tagline">{tier.tagline}</p>
+            </f:if>
+        </div>
+
+        <div class="conn-pricing__price">
+            <f:if condition="{tier.amount}">
+                <f:then>
+                    <span class="conn-pricing__currency">{tier.currency}</span>
+                    <span class="conn-pricing__amount">{tier.amount}</span>
+                    <f:if condition="{tier.period}">
+                        <span class="conn-pricing__period">/ {tier.period}</span>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <span class="conn-pricing__amount conn-pricing__amount--free">Free</span>
+                </f:else>
+            </f:if>
+            <f:if condition="{tier.price_note}">
+                <p class="conn-pricing__price-note">{tier.price_note}</p>
+            </f:if>
+        </div>
+
+        <f:if condition="{tier.featureList}">
+            <ul class="conn-pricing__features list-unstyled">
+                <f:for each="{tier.featureList}" as="feature">
+                    <li class="conn-pricing__feature {f:if(condition: feature.unavailable, then: 'conn-pricing__feature--unavailable')}">
+                        {feature.text}
+                    </li>
+                </f:for>
+            </ul>
+        </f:if>
+
+        <f:if condition="{tier.cta_link}">
+            <div class="conn-pricing__cta">
+                <f:link.typolink parameter="{tier.cta_link}"
+                    class="btn {f:if(condition: tier.featured, then: 'btn-primary', else: 'btn-outline-primary')} w-100 conn-pricing__cta-btn">
+                    <f:if condition="{tier.cta_label}">
+                        <f:then>{tier.cta_label}</f:then>
+                        <f:else>Get started</f:else>
+                    </f:if>
+                </f:link.typolink>
+            </div>
+        </f:if>
+
+</div>
+
+</html>

@@ -775,6 +775,261 @@ $GLOBALS['TCA']['tt_content']['types']['conn_mosaic_gallery'] = [
     ',
 ];
 
+// ─── Stats / Counter ─────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_stats'] = 'conn-ce-stats';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats',
+    'value' => 'conn_bs_stats',
+    'icon'  => 'conn-ce-stats',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_stats_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stats.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_stat_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 50,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_stats_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stats.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Stats.xml'],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_stats'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_stats_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stats.tab.config,
+            tx_conn_elements_stats_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── Logo Cloud ───────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_logo_cloud'] = 'conn-ce-logo-cloud';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_cloud',
+    'value' => 'conn_bs_logo_cloud',
+    'icon'  => 'conn-ce-logo-cloud',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_logo_cloud_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_cloud.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_logo_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 100,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_logo_cloud_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_cloud.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/LogoCloud.xml'],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_logo_cloud'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_logo_cloud_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_cloud.tab.config,
+            tx_conn_elements_logo_cloud_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── Testimonials ─────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_testimonials'] = 'conn-ce-testimonials';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials',
+    'value' => 'conn_bs_testimonials',
+    'icon'  => 'conn-ce-testimonials',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_testimonials_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonials.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_testimonial_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 100,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_testimonials_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonials.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Testimonials.xml'],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_testimonials'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_testimonials_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonials.tab.config,
+            tx_conn_elements_testimonials_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── Pricing Table ────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_pricing'] = 'conn-ce-pricing';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_pricing',
+    'value' => 'conn_bs_pricing',
+    'icon'  => 'conn-ce-pricing',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_pricing_tiers' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:pricing.tiers',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_pricing_tier',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 10,
+            'appearance'    => [
+                'collapseAll'                     => false,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_pricing_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:pricing.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Pricing.xml'],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_pricing'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_pricing_tiers,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:pricing.tab.config,
+            tx_conn_elements_pricing_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── Feature Grid ─────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_feature_grid'] = 'conn-ce-feature-grid';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid',
+    'value' => 'conn_bs_feature_grid',
+    'icon'  => 'conn-ce-feature-grid',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_feature_grid_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_grid.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_elements_domain_model_feature_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 50,
+            'appearance'    => [
+                'collapseAll'                     => true,
+                'levelLinksPosition'              => 'top',
+                'showSynchronizationLink'         => true,
+                'showAllLocalizationLink'         => true,
+                'showPossibleLocalizationRecords' => true,
+                'enabledControls'                 => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_elements_feature_grid_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_grid.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/FeatureGrid.xml'],
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_feature_grid'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,tx_conn_elements_feature_grid_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_grid.tab.config,
+            tx_conn_elements_feature_grid_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
 // ─── Bootstrap Grid containers (b13/container) ───────────────────
 $registry = GeneralUtility::makeInstance(Registry::class);
 
