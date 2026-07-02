@@ -17,7 +17,7 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Timeline.typoscript'
 
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Stats.typoscript'
-@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/LogoCloud.typoscript'
+@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/LogoWall.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Testimonials.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Pricing.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/FeatureGrid.typoscript'

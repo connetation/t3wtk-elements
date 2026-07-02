@@ -91,9 +91,9 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/stats-ce.svg',
     ],
-    'conn-ce-logo-cloud' => [
+    'conn-ce-logo-wall' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source'   => 'EXT:conn_elements/Resources/Public/Icons/logo-cloud-ce.svg',
+        'source'   => 'EXT:conn_elements/Resources/Public/Icons/logo-wall-ce.svg',
     ],
     'conn-ce-testimonials' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,

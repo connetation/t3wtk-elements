@@ -24,7 +24,7 @@ const config = {
         'navbar-sidebar':  'Resources/Private/Components/Navbar/navbar-sidebar.ts',
         'timeline':        'Resources/Private/Components/Timeline/timeline.ts',
         'stats':           'Resources/Private/Components/Stats/stats.ts',
-        'logo-cloud':      'Resources/Private/Components/LogoCloud/logo-cloud.ts',
+        'logo-wall':       'Resources/Private/Components/LogoWall/logo-wall.ts',
         'testimonials':    'Resources/Private/Components/Testimonials/testimonials.ts',
         'pricing':         'Resources/Private/Components/Pricing/pricing.ts',
         'feature-grid':    'Resources/Private/Components/FeatureGrid/feature-grid.ts',

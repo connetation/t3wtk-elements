@@ -11,7 +11,7 @@ return [
         'crdate'        => 'crdate',
         'delete'        => 'deleted',
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/logo-cloud-ce.svg',
+        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/logo-wall-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],

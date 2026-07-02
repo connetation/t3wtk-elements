@@ -5,17 +5,18 @@
 
 <f:section name="Main">
 
-<f:asset.css identifier="conn-elements-logo-cloud-css"
-    href="EXT:conn_elements/Resources/Public/Css/logo-cloud.css" />
-<f:asset.script identifier="conn-elements-logo-cloud-js"
-    src="EXT:conn_elements/Resources/Public/Js/components/logo-cloud.js"
+<f:asset.css identifier="conn-elements-logo-wall-css"
+    href="EXT:conn_elements/Resources/Public/Css/logo-wall.css" />
+<f:asset.script identifier="conn-elements-logo-wall-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/logo-wall.js"
     type="module"
     priority="false" />
 
-<section class="conn-logo-cloud conn-logo-cloud--{settings.layout} {f:if(condition: settings.grayscale, then: 'conn-logo-cloud--grayscale')}"
-         id="conn-logo-cloud-{data.uid}"
+<section class="conn-logo-wall conn-logo-wall--{settings.layout} {f:if(condition: settings.grayscale, then: 'conn-logo-wall--grayscale')}"
+         id="conn-logo-wall-{data.uid}"
          data-layout="{settings.layout}"
          data-speed="{settings.speed}"
+         data-direction="{settings.direction}"
          style="--conn-logo-cols: {settings.columns}">
     <div class="container-fluid">
 
@@ -23,23 +24,23 @@
             <f:then>
                 <f:if condition="{settings.layout} == 'marquee'">
                     <f:then>
-                        <div class="conn-logo-cloud__track">
+                        <div class="conn-logo-wall__track">
                             <f:for each="{logos}" as="logo">
-                                <div class="conn-logo-cloud__item">
+                                <div class="conn-logo-wall__item">
                                     <f:if condition="{logo.link}">
                                         <f:then>
                                             <f:link.typolink parameter="{logo.link}"
-                                                class="conn-logo-cloud__link"
+                                                class="conn-logo-wall__link"
                                                 target="_blank"
                                                 additionalAttributes="{rel: 'noopener'}">
                                                 <f:if condition="{logo.imageFile}">
-                                                    <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                                    <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
                                                 </f:if>
                                             </f:link.typolink>
                                         </f:then>
                                         <f:else>
                                             <f:if condition="{logo.imageFile}">
-                                                <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                                <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
                                             </f:if>
                                         </f:else>
                                     </f:if>
@@ -48,23 +49,23 @@
                         </div>
                     </f:then>
                     <f:else>
-                        <div class="conn-logo-cloud__track">
+                        <div class="conn-logo-wall__track">
                             <f:for each="{logos}" as="logo">
-                                <div class="conn-logo-cloud__item">
+                                <div class="conn-logo-wall__item">
                                     <f:if condition="{logo.link}">
                                         <f:then>
                                             <f:link.typolink parameter="{logo.link}"
-                                                class="conn-logo-cloud__link"
+                                                class="conn-logo-wall__link"
                                                 target="_blank"
                                                 additionalAttributes="{rel: 'noopener'}">
                                                 <f:if condition="{logo.imageFile}">
-                                                    <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                                    <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
                                                 </f:if>
                                             </f:link.typolink>
                                         </f:then>
                                         <f:else>
                                             <f:if condition="{logo.imageFile}">
-                                                <f:image image="{logo.imageFile}" class="conn-logo-cloud__logo" alt="{logo.alt}" />
+                                                <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
                                             </f:if>
                                         </f:else>
                                     </f:if>

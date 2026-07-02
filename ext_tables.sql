@@ -37,8 +37,8 @@ CREATE TABLE tt_content (
     tx_conn_elements_timeline_settings       mediumtext,
     tx_conn_elements_stats_items             int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_stats_settings          mediumtext,
-    tx_conn_elements_logo_cloud_items        int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_logo_cloud_settings     mediumtext,
+    tx_conn_elements_logo_wall_items         int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_logo_wall_settings      mediumtext,
     tx_conn_elements_testimonials_items      int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_testimonials_settings   mediumtext,
     tx_conn_elements_pricing_tiers           int(11) DEFAULT '0' NOT NULL,
@@ -393,7 +393,7 @@ CREATE TABLE tx_conn_elements_domain_model_stat_item (
     KEY content_element (content_element)
 );
 
--- ─── Logo Cloud ───────────────────────────────────────────────────────────────
+-- ─── Logo Wall ────────────────────────────────────────────────────────────────
 
 CREATE TABLE tx_conn_elements_domain_model_logo_item (
     uid             int(11) NOT NULL auto_increment,

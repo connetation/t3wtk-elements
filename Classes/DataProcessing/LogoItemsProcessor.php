@@ -31,7 +31,7 @@ final class LogoItemsProcessor implements DataProcessorInterface
 
         $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
         $flexData = $flexFormService->convertFlexFormContentToArray(
-            $processedData['data']['tx_conn_elements_logo_cloud_settings'] ?? ''
+            $processedData['data']['tx_conn_elements_logo_wall_settings'] ?? ''
         );
         $settings = $this->resolveSettings($flexData['settings'] ?? []);
 
@@ -92,12 +92,16 @@ final class LogoItemsProcessor implements DataProcessorInterface
         $layout = in_array($raw['layout'] ?? 'grid', ['grid', 'marquee'], true)
             ? ($raw['layout'] ?? 'grid')
             : 'grid';
+        $direction = in_array($raw['direction'] ?? 'left', ['left', 'right'], true)
+            ? ($raw['direction'] ?? 'left')
+            : 'left';
 
         return [
             'layout'     => $layout,
             'columns'    => $columns,
             'colClass'   => $colMap[$columns] ?? $colMap[5],
             'speed'      => max(10, (int)($raw['speed'] ?? 30)),
+            'direction'  => $direction,
             'grayscale'  => (bool)($raw['grayscale'] ?? true),
         ];
     }
@@ -109,6 +113,7 @@ final class LogoItemsProcessor implements DataProcessorInterface
             'columns'   => 5,
             'colClass'  => 'col-6 col-sm-4 col-lg-auto',
             'speed'     => 30,
+            'direction' => 'left',
             'grayscale' => true,
         ];
     }

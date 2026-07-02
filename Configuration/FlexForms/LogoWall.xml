@@ -41,6 +41,18 @@
                             <placeholder>30</placeholder>
                         </config>
                     </settings.speed>
+                    <settings.direction>
+                        <label>Marquee scroll direction (Marquee only)</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>left</default>
+                            <items>
+                                <numIndex index="0"><label>To the left (default)</label><value>left</value></numIndex>
+                                <numIndex index="1"><label>To the right</label><value>right</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.direction>
                     <settings.grayscale>
                         <label>Show logos in grayscale</label>
                         <config>

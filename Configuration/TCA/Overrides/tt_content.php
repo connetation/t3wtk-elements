@@ -826,19 +826,19 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_stats'] = [
     ',
 ];
 
-// ─── Logo Cloud ───────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_logo_cloud'] = 'conn-ce-logo-cloud';
+// ─── Logo Wall ───────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_logo_wall'] = 'conn-ce-logo-wall';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
-    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_cloud',
-    'value' => 'conn_bs_logo_cloud',
-    'icon'  => 'conn-ce-logo-cloud',
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall',
+    'value' => 'conn_bs_logo_wall',
+    'icon'  => 'conn-ce-logo-wall',
     'group' => 'conn',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
-    'tx_conn_elements_logo_cloud_items' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_cloud.items',
+    'tx_conn_elements_logo_wall_items' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_wall.items',
         'config' => [
             'type'          => 'inline',
             'foreign_table' => 'tx_conn_elements_domain_model_logo_item',
@@ -854,21 +854,21 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             ],
         ],
     ],
-    'tx_conn_elements_logo_cloud_settings' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_cloud.settings',
+    'tx_conn_elements_logo_wall_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_wall.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/LogoCloud.xml'],
+            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/LogoWall.xml'],
         ],
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_logo_cloud'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_bs_logo_wall'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_elements_logo_cloud_items,
-        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_cloud.tab.config,
-            tx_conn_elements_logo_cloud_settings,
+            --palette--;;general,--palette--;;header,tx_conn_elements_logo_wall_items,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_wall.tab.config,
+            tx_conn_elements_logo_wall_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,

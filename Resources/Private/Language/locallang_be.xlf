@@ -612,19 +612,19 @@
             </trans-unit>
 
             <!-- Logo Wall content element -->
-            <trans-unit id="ce.bs_logo_cloud">
+            <trans-unit id="ce.bs_logo_wall">
                 <source>Logo Wall</source>
             </trans-unit>
-            <trans-unit id="ce.bs_logo_cloud.description">
+            <trans-unit id="ce.bs_logo_wall.description">
                 <source>Grid or marquee strip of partner / client logos</source>
             </trans-unit>
-            <trans-unit id="logo_cloud.tab.config">
+            <trans-unit id="logo_wall.tab.config">
                 <source>Logo Wall Settings</source>
             </trans-unit>
-            <trans-unit id="logo_cloud.items">
+            <trans-unit id="logo_wall.items">
                 <source>Logos</source>
             </trans-unit>
-            <trans-unit id="logo_cloud.settings">
+            <trans-unit id="logo_wall.settings">
                 <source>Display Settings</source>
             </trans-unit>
             <!-- Logo item model -->

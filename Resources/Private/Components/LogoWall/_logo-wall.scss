@@ -1,8 +1,8 @@
 // ─────────────────────────────────────────────
-// Connetation Elements – Logo Cloud
+// Connetation Elements – Logo Wall
 // ─────────────────────────────────────────────
 
-.frame-type-conn_bs_logo_cloud header {
+.frame-type-conn_bs_logo_wall header {
     h1, h2, h3, h4, h5, h6 {
         font-size: clamp(1.375rem, 3vw, 1.75rem);
         letter-spacing: -0.025em;
@@ -10,7 +10,7 @@
     }
 }
 
-.conn-logo-cloud {
+.conn-logo-wall {
     background: var(--conn-bg);
 
     // ── Logo item (shared) ────────────────────
@@ -32,7 +32,7 @@
 
     // ── Grayscale modifier ───────────────────
     &--grayscale {
-        .conn-logo-cloud__logo {
+        .conn-logo-wall__logo {
             filter: grayscale(1) opacity(0.55);
 
             &:hover { filter: grayscale(0) opacity(1); }
@@ -44,7 +44,7 @@
     // ═════════════════════════════════════════
 
     &--grid {
-        .conn-logo-cloud__track {
+        .conn-logo-wall__track {
             display: grid;
             grid-template-columns: repeat(var(--conn-logo-cols, 5), 1fr);
             gap: 1rem;
@@ -55,7 +55,7 @@
             }
         }
 
-        .conn-logo-cloud__item {
+        .conn-logo-wall__item {
             background: var(--conn-surface);
             border: 1px solid var(--conn-border);
             border-radius: var(--conn-radius);
@@ -69,7 +69,6 @@
             &:hover {
                 box-shadow: var(--conn-shadow-hover);
                 border-color: var(--conn-border-strong);
-                transform: translateY(-2px);
             }
         }
     }
@@ -81,19 +80,23 @@
     &--marquee {
         overflow: hidden;
 
-        .conn-logo-cloud__track {
+        .conn-logo-wall__track {
             display: flex;
             width: max-content;
             animation: conn-logo-marquee var(--conn-marquee-duration, 30s) linear infinite;
         }
 
-        .conn-logo-cloud__item {
+        .conn-logo-wall__item {
             flex-shrink: 0;
             width: var(--conn-marquee-item-width, 180px);
         }
 
-        &.conn-logo-cloud--paused .conn-logo-cloud__track {
+        &.conn-logo-wall--paused .conn-logo-wall__track {
             animation-play-state: paused;
+        }
+
+        &[data-direction="right"] .conn-logo-wall__track {
+            animation-direction: reverse;
         }
     }
 }
