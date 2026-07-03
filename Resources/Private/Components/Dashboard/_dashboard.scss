@@ -249,7 +249,7 @@
     }
 
     &__card-placeholder {
-        background: var(--conn-surface-alt) !important;
+        background: var(--conn-surface) !important;
     }
 
     // ─── Empty state ────────────────────────
@@ -406,7 +406,7 @@ a.dashboard-compact__card {
     &__top-img {
         width: 100%;
         height: 100px;
-        background: var(--conn-surface-alt);
+        background: var(--conn-surface);
         border-radius: var(--conn-radius) var(--conn-radius) 0 0;
         display: flex;
         align-items: center;
@@ -432,7 +432,7 @@ a.dashboard-compact__card {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--conn-surface-alt);
+        background: var(--conn-surface);
     }
 
     &__logo {
