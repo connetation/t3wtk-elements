@@ -61,12 +61,16 @@
             border-radius: var(--conn-radius);
             box-shadow: var(--conn-shadow-card);
             height: 100%;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: transform;
             transition:
                 box-shadow var(--conn-transition),
                 border-color var(--conn-transition),
                 transform var(--conn-transition);
 
             &:hover {
+                transform: translateY(-4px) translateZ(0);
                 box-shadow: var(--conn-shadow-hover);
                 border-color: var(--conn-border-strong);
             }
