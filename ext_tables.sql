@@ -248,6 +248,10 @@ CREATE TABLE tx_conn_elements_domain_model_slide_item (
     image           int(11) DEFAULT '0' NOT NULL,
     link            varchar(1024) DEFAULT '' NOT NULL,
     link_label      varchar(100) DEFAULT '' NOT NULL,
+    text_animation      varchar(30) DEFAULT '' NOT NULL,
+    animation_duration  int(11) DEFAULT '0' NOT NULL,
+    text_pos_v          varchar(10) DEFAULT '' NOT NULL,
+    text_pos_h          varchar(10) DEFAULT '' NOT NULL,
 
     PRIMARY KEY (uid),
     KEY parent (pid),

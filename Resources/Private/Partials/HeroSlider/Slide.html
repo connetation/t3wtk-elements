@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<div class="swiper-slide conn-hero-slider__slide">
+<div class="swiper-slide conn-hero-slider__slide{f:if(condition: slide.text_pos_v, then: ' conn-hero-slider__slide--v-{slide.text_pos_v}')}{f:if(condition: slide.text_pos_h, then: ' conn-hero-slider__slide--h-{slide.text_pos_h}')}{f:if(condition: slide.text_animation, then: ' conn-hero-slider__slide--gsap')}">
 
     <f:if condition="{slide.imageFile}">
         <f:then>
@@ -21,7 +21,7 @@
     <div class="conn-hero-slider__overlay"></div>
 
     <div class="conn-hero-slider__content container-fluid px-lg-5">
-        <div class="conn-hero-slider__inner">
+        <div class="conn-hero-slider__inner" data-slide-animation="{slide.text_animation}" data-slide-duration="{slide.animation_duration}">
 
             <f:if condition="{slide.subtitle}">
                 <p class="conn-hero-slider__eyebrow">{slide.subtitle}</p>

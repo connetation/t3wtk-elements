@@ -3,6 +3,19 @@
 // Full-width image slider with text overlay
 // ─────────────────────────────────────────────
 
+// ── Swiper fade effect cross-browser fix ─────
+// swiper-bundle.min.css ships with CSS nesting syntax for the fade rules.
+// Firefox does not fully support CSS nesting yet, so transition-property:opacity
+// never applies → transitionend never fires → swiper.animating stays true → slider locks.
+// These flat overrides guarantee the rule is applied in all browsers.
+.swiper-fade .swiper-slide {
+    pointer-events: none;
+    transition-property: opacity;
+}
+.swiper-fade .swiper-slide-active {
+    pointer-events: auto;
+}
+
 // ── TYPO3 frame header ───────────────────────
 .frame-type-conn_swiper_hero_slider header {
     h1, h2, h3, h4, h5, h6 {
@@ -46,6 +59,89 @@
             align-items: center;
             justify-content: center;
             background: var(--conn-surface-alt);
+        }
+
+        // Vertical position
+        &--v-top {
+            align-items: flex-start;
+
+            .conn-hero-slider__content {
+                padding-bottom: 0;
+                padding-top: clamp(3rem, 6vh, 5rem);
+            }
+
+            .conn-hero-slider__overlay {
+                background: linear-gradient(
+                    to bottom,
+                    rgb(0 0 0 / 72%) 0%,
+                    rgb(0 0 0 / 30%) 50%,
+                    rgb(0 0 0 / 0%) 100%
+                );
+            }
+        }
+
+        &--v-center {
+            align-items: center;
+
+            .conn-hero-slider__content {
+                padding-bottom: 0;
+            }
+
+            .conn-hero-slider__overlay {
+                background: rgb(0 0 0 / 45%);
+            }
+        }
+
+        &--v-bottom {
+            align-items: flex-end;
+        }
+
+        // Horizontal position
+        &--h-center {
+            .conn-hero-slider__inner {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+        }
+
+        &--h-right {
+            .conn-hero-slider__inner {
+                margin-left: auto;
+                text-align: right;
+            }
+        }
+
+        &--h-left {
+            .conn-hero-slider__inner {
+                margin-right: auto;
+                text-align: left;
+            }
+        }
+
+        // GSAP text animation active:
+        // - always disable the CSS transition (so it can't fight GSAP)
+        // - keep text hidden even when the slide is active; JS sets inline
+        //   opacity:1 just before GSAP splits and hides the children,
+        //   so text is invisible during the slide fade-in and only appears
+        //   once GSAP starts the animation after slideChangeTransitionEnd
+        &--gsap {
+            .conn-hero-slider__eyebrow,
+            .conn-hero-slider__title,
+            .conn-hero-slider__body,
+            .conn-hero-slider__cta {
+                transform: none;
+                transition: none;
+            }
+        }
+
+        &--gsap.swiper-slide-active {
+            .conn-hero-slider__eyebrow,
+            .conn-hero-slider__title,
+            .conn-hero-slider__body,
+            .conn-hero-slider__cta {
+                opacity: 0;
+            }
         }
     }
 
@@ -136,7 +232,6 @@
         line-height: 1.65;
         color: rgba(255, 255, 255, 0.82);
         margin-bottom: 1.5rem;
-        max-width: 540px;
         opacity: 0;
         transform: translateY(12px);
         transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;

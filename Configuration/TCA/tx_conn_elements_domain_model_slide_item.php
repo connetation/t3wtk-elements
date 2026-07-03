@@ -80,6 +80,59 @@ return [
                 'eval' => 'trim',
             ],
         ],
+        'text_animation' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'default'    => '',
+                'items'      => [
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.none',   'value' => ''],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.words',  'value' => 'words'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.lines',  'value' => 'lines'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.chars',  'value' => 'chars'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.reveal', 'value' => 'reveal'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.fuzzy',  'value' => 'fuzzy'],
+                ],
+            ],
+        ],
+        'animation_duration' => [
+            'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:animation_duration',
+            'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:animation_duration.description',
+            'config'      => [
+                'type'    => 'number',
+                'default' => 0,
+                'range'   => ['lower' => 0, 'upper' => 5000],
+            ],
+        ],
+        'text_pos_v' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'default'    => '',
+                'items'      => [
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.bottom', 'value' => ''],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.top',    'value' => 'top'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.center', 'value' => 'center'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.bottom_explicit', 'value' => 'bottom'],
+                ],
+            ],
+        ],
+        'text_pos_h' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'default'    => '',
+                'items'      => [
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.left',   'value' => ''],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.center', 'value' => 'center'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.right',  'value' => 'right'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.left_explicit', 'value' => 'left'],
+                ],
+            ],
+        ],
     ],
     'types' => [
         '1' => [
@@ -88,6 +141,9 @@ return [
                     title, subtitle, body, image,
                 --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.tab.link,
                     link, link_label,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+                    text_animation, animation_duration,
+                    text_pos_v, text_pos_h,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

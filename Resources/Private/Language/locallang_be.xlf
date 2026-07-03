@@ -19,6 +19,49 @@
             <trans-unit id="text_animation.chars">
                 <source>Characters Cascade</source>
             </trans-unit>
+<trans-unit id="text_animation.reveal">
+                <source>Split Reveal</source>
+            </trans-unit>
+            <trans-unit id="text_animation.fuzzy">
+                <source>Fuzzy Decode</source>
+            </trans-unit>
+            <trans-unit id="animation_duration">
+                <source>Animation Duration (ms)</source>
+            </trans-unit>
+            <trans-unit id="animation_duration.description">
+                <source>Override animation duration in milliseconds. 0 = use default (e.g. 650 for Words, 1100 for Fuzzy).</source>
+            </trans-unit>
+            <!-- Slide text position (hero slider) -->
+            <trans-unit id="text_pos_v">
+                <source>Vertical Position</source>
+            </trans-unit>
+            <trans-unit id="text_pos_v.bottom">
+                <source>Bottom (default)</source>
+            </trans-unit>
+            <trans-unit id="text_pos_v.top">
+                <source>Top</source>
+            </trans-unit>
+            <trans-unit id="text_pos_v.center">
+                <source>Center</source>
+            </trans-unit>
+            <trans-unit id="text_pos_v.bottom_explicit">
+                <source>Bottom</source>
+            </trans-unit>
+            <trans-unit id="text_pos_h">
+                <source>Horizontal Position</source>
+            </trans-unit>
+            <trans-unit id="text_pos_h.left">
+                <source>Left (default)</source>
+            </trans-unit>
+            <trans-unit id="text_pos_h.center">
+                <source>Center</source>
+            </trans-unit>
+            <trans-unit id="text_pos_h.right">
+                <source>Right</source>
+            </trans-unit>
+            <trans-unit id="text_pos_h.left_explicit">
+                <source>Left</source>
+            </trans-unit>
             <!-- CE Groups -->
             <trans-unit id="ce_group.conn_swiper">
                 <source>Swiper</source>

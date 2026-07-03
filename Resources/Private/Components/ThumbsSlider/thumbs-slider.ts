@@ -5,6 +5,7 @@
 import Swiper from 'swiper';
 import { Navigation, Autoplay, Thumbs, FreeMode } from 'swiper/modules';
 import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
+import { animateSlide, resetSlide } from '../Shared/slide-text-animation';
 import { registry } from '../Shared/registry';
 
 class ThumbsSlider {
@@ -41,6 +42,7 @@ class ThumbsSlider {
         if (withNav)    mainModules.push(Navigation);
         if (ap.enabled) mainModules.push(Autoplay);
 
+        let lastRealIndex = -1;
         new Swiper(mainEl, {
             modules: mainModules,
             loop: true,
@@ -60,6 +62,18 @@ class ThumbsSlider {
             a11y: {
                 prevSlideMessage: 'Previous slide',
                 nextSlideMessage: 'Next slide',
+            },
+
+            on: {
+                afterInit(swiper) {
+                    lastRealIndex = swiper.realIndex;
+                    animateSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
+                },
+                slideChangeTransitionEnd(swiper) {
+                    if (swiper.realIndex === lastRealIndex) return;
+                    lastRealIndex = swiper.realIndex;
+                    animateSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
+                },
             },
         });
     }

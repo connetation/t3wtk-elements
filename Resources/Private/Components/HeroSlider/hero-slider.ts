@@ -5,6 +5,7 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
+import { animateSlide, resetSlide } from '../Shared/slide-text-animation';
 import { registry } from '../Shared/registry';
 
 interface HeroSliderOptions {
@@ -48,6 +49,7 @@ class HeroSlider {
         if (options.withPagination) modules.push(Pagination);
         if (options.autoplay)       modules.push(Autoplay);
 
+        let lastRealIndex = -1;
         new Swiper(swiperEl, {
             modules,
             effect: options.effect,
@@ -70,6 +72,18 @@ class HeroSlider {
             a11y: {
                 prevSlideMessage: 'Previous slide',
                 nextSlideMessage: 'Next slide',
+            },
+
+            on: {
+                afterInit(swiper) {
+                    lastRealIndex = swiper.realIndex;
+                    animateSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
+                },
+                slideChangeTransitionEnd(swiper) {
+                    if (swiper.realIndex === lastRealIndex) return;
+                    lastRealIndex = swiper.realIndex;
+                    animateSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
+                },
             },
         });
     }
