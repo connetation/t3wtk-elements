@@ -103,6 +103,7 @@ final class FeatureItemsProcessor implements DataProcessorInterface
             'colClass'  => $colMap[$columns] ?? $colMap[3],
             'variant'   => $variant,
             'iconStyle' => $iconStyle,
+            'accentBar' => (bool)($raw['accentBar'] ?? true),
         ];
     }
 
@@ -113,6 +114,7 @@ final class FeatureItemsProcessor implements DataProcessorInterface
             'colClass'  => 'col-sm-6 col-lg-4',
             'variant'   => 'default',
             'iconStyle' => 'soft',
+            'accentBar' => true,
         ];
     }
 }

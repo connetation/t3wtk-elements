@@ -58,9 +58,13 @@
             transform: translateY(-4px);
             box-shadow: var(--conn-shadow-hover);
             border-color: var(--conn-border-strong);
-
-            &::after { opacity: 1; }
         }
+    }
+
+    // ── Accent bar toggle ─────────────────────
+    &--accent-bar {
+        .conn-feature-grid__item:hover::after,
+        .conn-feature-grid__item:focus::after { opacity: 1; }
     }
 
     // ── Icon box ──────────────────────────────

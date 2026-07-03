@@ -46,9 +46,13 @@
             transform: translateY(-4px);
             box-shadow: var(--conn-shadow-hover);
             border-color: var(--conn-border-strong);
-
-            &::after { opacity: 1; }
         }
+    }
+
+    // ── Accent bar toggle ─────────────────────
+    &--accent-bar {
+        .conn-testimonials__card:hover::after,
+        .conn-testimonials__card:focus::after { opacity: 1; }
     }
 
     // ── Stars ─────────────────────────────────

@@ -61,6 +61,8 @@
             border-radius: var(--conn-radius);
             box-shadow: var(--conn-shadow-card);
             height: 100%;
+            position: relative;
+            overflow: hidden;
             backface-visibility: hidden;
             transform: translateZ(0);
             will-change: transform;
@@ -69,12 +71,28 @@
                 border-color var(--conn-transition),
                 transform var(--conn-transition);
 
+            &::after {
+                content: '';
+                position: absolute;
+                inset: 0 0 auto 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--conn-accent), var(--conn-accent-secondary));
+                opacity: 0;
+                transition: opacity 0.25s ease;
+            }
+
             &:hover {
                 transform: translateY(-4px) translateZ(0);
                 box-shadow: var(--conn-shadow-hover);
                 border-color: var(--conn-border-strong);
             }
         }
+    }
+
+    // ── Accent bar toggle (grid only) ─────────
+    &--accent-bar {
+        .conn-logo-wall__item:hover::after,
+        .conn-logo-wall__item:focus::after { opacity: 1; }
     }
 
     // ═════════════════════════════════════════

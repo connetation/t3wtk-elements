@@ -58,9 +58,13 @@
         &:hover {
             transform: translateY(-4px);
             box-shadow: var(--conn-shadow-hover);
-
-            &::after { opacity: 1; }
         }
+    }
+
+    // ── Accent bar toggle ─────────────────────
+    &--accent-bar {
+        .conn-stats__item:hover::after,
+        .conn-stats__item:focus::after { opacity: 1; }
     }
 
     // ── Number row ────────────────────────────

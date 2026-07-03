@@ -48,9 +48,13 @@
             box-shadow: var(--conn-shadow-hover) !important;
             border-color: var(--conn-border-strong) !important;
             outline: none;
-
-            &::after { opacity: 1; }
         }
+    }
+
+    // ── Accent bar toggle ───────────────────────
+    &--accent-bar {
+        .conn-card-group__card:hover::after,
+        .conn-card-group__card:focus::after { opacity: 1; }
     }
 
     // ── Image placeholder (no image uploaded) ───────

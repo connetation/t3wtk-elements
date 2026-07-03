@@ -12,7 +12,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-logo-wall conn-logo-wall--{settings.layout} {f:if(condition: settings.grayscale, then: 'conn-logo-wall--grayscale')}"
+<section class="conn-logo-wall conn-logo-wall--{settings.layout} {f:if(condition: settings.grayscale, then: 'conn-logo-wall--grayscale')}{f:if(condition: settings.accentBar, then: ' conn-logo-wall--accent-bar')}"
          id="conn-logo-wall-{data.uid}"
          data-layout="{settings.layout}"
          data-speed="{settings.speed}"

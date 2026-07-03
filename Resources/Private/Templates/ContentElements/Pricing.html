@@ -12,7 +12,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-pricing conn-pricing--{settings.style}"
+<section class="conn-pricing conn-pricing--{settings.style}{f:if(condition: settings.accentBar, then: ' conn-pricing--accent-bar')}"
          id="conn-pricing-{data.uid}"
          data-columns="{settings.columns}"
          style="--conn-pricing-cols: {settings.columns}">

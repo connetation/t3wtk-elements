@@ -32,6 +32,14 @@
                             </items>
                         </config>
                     </settings.variant>
+                    <settings.accentBar>
+                        <label>Accent bar on hover</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.accentBar>
                     <settings.iconStyle>
                         <label>Icon background style</label>
                         <config>

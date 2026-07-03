@@ -97,18 +97,20 @@ final class PricingTierProcessor implements DataProcessorInterface
             : 'default';
 
         return [
-            'columns'  => $columns,
-            'colClass' => $colMap[$columns] ?? $colMap[3],
-            'style'    => $style,
+            'columns'   => $columns,
+            'colClass'  => $colMap[$columns] ?? $colMap[3],
+            'style'     => $style,
+            'accentBar' => (bool)($raw['accentBar'] ?? true),
         ];
     }
 
     private function defaultSettings(): array
     {
         return [
-            'columns'  => 3,
-            'colClass' => 'col-sm-6 col-lg-4',
-            'style'    => 'default',
+            'columns'   => 3,
+            'colClass'  => 'col-sm-6 col-lg-4',
+            'style'     => 'default',
+            'accentBar' => true,
         ];
     }
 }

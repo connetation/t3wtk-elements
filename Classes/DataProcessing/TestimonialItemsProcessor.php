@@ -99,6 +99,7 @@ final class TestimonialItemsProcessor implements DataProcessorInterface
             'autoplay'      => (bool)($raw['autoplay'] ?? true),
             'autoplayDelay' => max(1000, (int)($raw['autoplayDelay'] ?? 4000)),
             'showRating'    => (bool)($raw['showRating'] ?? true),
+            'accentBar'     => (bool)($raw['accentBar'] ?? true),
         ];
     }
 
@@ -111,6 +112,7 @@ final class TestimonialItemsProcessor implements DataProcessorInterface
             'autoplay'      => true,
             'autoplayDelay' => 4000,
             'showRating'    => true,
+            'accentBar'     => true,
         ];
     }
 }

@@ -51,6 +51,14 @@
                             <placeholder>4000</placeholder>
                         </config>
                     </settings.autoplayDelay>
+                    <settings.accentBar>
+                        <label>Accent bar on hover</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.accentBar>
                     <settings.showRating>
                         <label>Show star rating</label>
                         <config>

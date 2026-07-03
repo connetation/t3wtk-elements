@@ -14,7 +14,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-feature-grid conn-feature-grid--{settings.variant} conn-feature-grid--icon-{settings.iconStyle}"
+<section class="conn-feature-grid conn-feature-grid--{settings.variant} conn-feature-grid--icon-{settings.iconStyle}{f:if(condition: settings.accentBar, then: ' conn-feature-grid--accent-bar')}"
          id="conn-feature-grid-{data.uid}"
          data-columns="{settings.columns}">
     <div class="container-fluid">

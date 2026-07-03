@@ -14,7 +14,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-testimonials conn-testimonials--{settings.layout}"
+<section class="conn-testimonials conn-testimonials--{settings.layout}{f:if(condition: settings.accentBar, then: ' conn-testimonials--accent-bar')}"
          id="conn-testimonials-{data.uid}"
          data-layout="{settings.layout}"
          data-columns="{settings.columns}"

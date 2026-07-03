@@ -12,7 +12,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-stats conn-stats--{settings.layout}"
+<section class="conn-stats conn-stats--{settings.layout}{f:if(condition: settings.accentBar, then: ' conn-stats--accent-bar')}"
          id="conn-stats-{data.uid}"
          data-columns="{settings.columns}"
          data-countup="{f:if(condition: settings.countup, then: '1', else: '0')}"

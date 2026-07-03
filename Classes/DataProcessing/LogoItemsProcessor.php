@@ -103,6 +103,7 @@ final class LogoItemsProcessor implements DataProcessorInterface
             'speed'      => max(10, (int)($raw['speed'] ?? 30)),
             'direction'  => $direction,
             'grayscale'  => (bool)($raw['grayscale'] ?? true),
+            'accentBar'  => (bool)($raw['accentBar'] ?? true),
         ];
     }
 
@@ -115,6 +116,7 @@ final class LogoItemsProcessor implements DataProcessorInterface
             'speed'     => 30,
             'direction' => 'left',
             'grayscale' => true,
+            'accentBar' => true,
         ];
     }
 }

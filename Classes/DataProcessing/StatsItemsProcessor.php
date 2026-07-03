@@ -77,22 +77,24 @@ final class StatsItemsProcessor implements DataProcessorInterface
             : 'default';
 
         return [
-            'columns'  => $columns,
-            'colClass' => $colMap[$columns] ?? $colMap[4],
-            'layout'   => $layout,
-            'countup'  => (bool)($raw['countup'] ?? true),
-            'duration' => max(1000, (int)($raw['duration'] ?? 2) * 1000),
+            'columns'   => $columns,
+            'colClass'  => $colMap[$columns] ?? $colMap[4],
+            'layout'    => $layout,
+            'countup'   => (bool)($raw['countup'] ?? true),
+            'duration'  => max(1000, (int)($raw['duration'] ?? 2) * 1000),
+            'accentBar' => (bool)($raw['accentBar'] ?? true),
         ];
     }
 
     private function defaultSettings(): array
     {
         return [
-            'columns'  => 4,
-            'colClass' => 'col-sm-6 col-xl-3',
-            'layout'   => 'default',
-            'countup'  => true,
-            'duration' => 2000,
+            'columns'   => 4,
+            'colClass'  => 'col-sm-6 col-xl-3',
+            'layout'    => 'default',
+            'countup'   => true,
+            'duration'  => 2000,
+            'accentBar' => true,
         ];
     }
 }

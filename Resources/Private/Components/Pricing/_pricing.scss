@@ -43,6 +43,16 @@
             box-shadow var(--conn-transition),
             border-color var(--conn-transition);
 
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--conn-accent), var(--conn-accent-secondary));
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
         &:hover {
             transform: translateY(-4px);
             box-shadow: var(--conn-shadow-hover);
@@ -186,6 +196,12 @@
         .btn {
             width: 100%;
         }
+    }
+
+    // ── Accent bar toggle ─────────────────────
+    &--accent-bar {
+        .conn-pricing__card:hover::after,
+        .conn-pricing__card:focus::after { opacity: 1; }
     }
 
     // ── Style variants ────────────────────────
