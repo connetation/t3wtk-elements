@@ -1,4 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="swiper-slide conn-hero-slider__slide{f:if(condition: slide.text_pos_v, then: ' conn-hero-slider__slide--v-{slide.text_pos_v}')}{f:if(condition: slide.text_pos_h, then: ' conn-hero-slider__slide--h-{slide.text_pos_h}')}{f:if(condition: slide.text_animation, then: ' conn-hero-slider__slide--gsap')}">
@@ -6,11 +7,13 @@
     <f:if condition="{slide.imageFile}">
         <f:then>
             <div class="conn-hero-slider__bg">
-                <f:image image="{slide.imageFile}"
-                         class="conn-hero-slider__bg-img"
-                         alt="{slide.title}"
-                         width="1920"
-                         height="1080" />
+                <ce:responsiveImage image="{slide.imageFile}"
+                                    class="conn-hero-slider__bg-img"
+                                    alt="{slide.title}"
+                                    widths="640,960,1280,1920,2560,3840"
+                                    sizes="100vw"
+                                    loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}"
+                                    fetchpriority="{f:if(condition: isFirst, then: 'high', else: '')}" />
             </div>
         </f:then>
         <f:else>

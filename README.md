@@ -2,6 +2,16 @@
 
 TYPO3 14 content elements package for Connetation.
 
+## Responsive images
+
+All image-rendering elements use `<ce:responsiveImage>` (`Classes/ViewHelpers/ResponsiveImageViewHelper.php`) — it outputs a WebP `srcset` ladder with `sizes`, capped at the source file width, honoring the backend image editor crop. SVG/GIF are served unprocessed.
+
+### Server-side prerequisites (Install Tool)
+
+- `[GFX][processor_effects] = true` (sharpening after downscale — required for crisp output)
+- `webp` must be in `[GFX][imagefile_ext]` (default in modern TYPO3 if processor supports it)
+- **Editor guideline: hero uploads >= 2560px wide (ladder caps at source width)**
+
 ## Build
 
 **Local** — run from `vendor/conn/elements/`:

@@ -35,6 +35,87 @@
         height: 100%;
         display: flex;
         align-items: flex-end;
+
+        // Vertical position
+        &--v-top {
+            align-items: flex-start;
+
+            .conn-thumbs-slider__content {
+                padding-bottom: 0;
+                padding-top: clamp(2.5rem, 5vh, 4rem);
+            }
+
+            .conn-thumbs-slider__overlay {
+                background: linear-gradient(
+                    to bottom,
+                    rgb(0 0 0 / 70%) 0%,
+                    rgb(0 0 0 / 25%) 50%,
+                    rgb(0 0 0 / 0%)  100%
+                );
+            }
+        }
+
+        &--v-center {
+            align-items: center;
+
+            .conn-thumbs-slider__content {
+                padding-bottom: 0;
+            }
+
+            .conn-thumbs-slider__overlay {
+                background: rgb(0 0 0 / 45%);
+            }
+        }
+
+        &--v-bottom {
+            align-items: flex-end;
+        }
+
+        // Horizontal position
+        &--h-center {
+            .conn-thumbs-slider__inner {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+        }
+
+        &--h-right {
+            .conn-thumbs-slider__inner {
+                margin-left: auto;
+                text-align: right;
+            }
+        }
+
+        &--h-left {
+            .conn-thumbs-slider__inner {
+                margin-right: auto;
+                text-align: left;
+            }
+        }
+
+        // GSAP text animation active:
+        // - disable the CSS slide-in transition so it can't fight GSAP
+        // - keep text hidden while the slide is active; JS sets inline
+        //   opacity:1 just before GSAP splits and hides the children
+        &--gsap {
+            .conn-thumbs-slider__eyebrow,
+            .conn-thumbs-slider__title,
+            .conn-thumbs-slider__body,
+            .conn-thumbs-slider__cta {
+                transform: none;
+                transition: none;
+            }
+        }
+
+        &--gsap.swiper-slide-active {
+            .conn-thumbs-slider__eyebrow,
+            .conn-thumbs-slider__title,
+            .conn-thumbs-slider__body,
+            .conn-thumbs-slider__cta {
+                opacity: 0;
+            }
+        }
     }
 
     // ── Background image ─────────────────────

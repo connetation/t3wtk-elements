@@ -1,4 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="conn-timeline__track">
@@ -20,9 +21,10 @@
                 <div class="conn-timeline__card-inner">
                     <f:if condition="{item.imageFile}">
                         <div class="conn-timeline__card-image">
-                            <f:image image="{item.imageFile}"
-                                     alt="{item.title}"
-                                     width="300" />
+                            <ce:responsiveImage image="{item.imageFile}"
+                                                alt="{item.title}"
+                                                widths="300,600,900"
+                                                sizes="300px" />
                         </div>
                     </f:if>
                     <div class="conn-timeline__card-content">

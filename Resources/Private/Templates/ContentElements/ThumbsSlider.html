@@ -25,8 +25,8 @@
         <f:then>
             <div class="swiper conn-thumbs-slider__main">
                 <div class="swiper-wrapper">
-                    <f:for each="{slides}" as="slide">
-                        <f:render partial="ThumbsSlider/Slide" arguments="{slide: slide}" />
+                    <f:for each="{slides}" as="slide" iteration="slideIter">
+                        <f:render partial="ThumbsSlider/Slide" arguments="{slide: slide, isFirst: slideIter.isFirst}" />
                     </f:for>
                 </div>
 

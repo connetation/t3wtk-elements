@@ -72,6 +72,76 @@
         display: flex;
         align-items: flex-end;
         z-index: 2;
+
+        // Vertical position
+        // (the gradient overlay is shared across slides and stays bottom-anchored)
+        &--v-top {
+            align-items: flex-start;
+
+            .conn-parallax-slider__content {
+                padding-bottom: 0;
+                padding-top: clamp(3rem, 6vh, 5rem);
+            }
+        }
+
+        &--v-center {
+            align-items: center;
+
+            .conn-parallax-slider__content {
+                padding-bottom: 0;
+            }
+        }
+
+        &--v-bottom {
+            align-items: flex-end;
+        }
+
+        // Horizontal position
+        &--h-center {
+            .conn-parallax-slider__inner {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+        }
+
+        &--h-right {
+            .conn-parallax-slider__inner {
+                margin-left: auto;
+                text-align: right;
+            }
+        }
+
+        &--h-left {
+            .conn-parallax-slider__inner {
+                margin-right: auto;
+                text-align: left;
+            }
+        }
+
+        // GSAP text animation active:
+        // - disable the CSS slide-in transition (uses `translate` here) so it
+        //   can't fight GSAP
+        // - keep text hidden while the slide is active; JS sets inline
+        //   opacity:1 just before GSAP splits and hides the children
+        &--gsap {
+            .conn-parallax-slider__eyebrow,
+            .conn-parallax-slider__title,
+            .conn-parallax-slider__body,
+            .conn-parallax-slider__cta {
+                translate: none;
+                transition: none;
+            }
+        }
+
+        &--gsap.swiper-slide-active {
+            .conn-parallax-slider__eyebrow,
+            .conn-parallax-slider__title,
+            .conn-parallax-slider__body,
+            .conn-parallax-slider__cta {
+                opacity: 0;
+            }
+        }
     }
 
     // ── Text content ─────────────────────────
@@ -119,7 +189,6 @@
         line-height: 1.65;
         color: rgba(255, 255, 255, 0.82);
         margin-bottom: 1.5rem;
-        max-width: 540px;
         opacity: 0;
         translate: 0 10px;
         transition: opacity 0.45s ease 0.45s, translate 0.45s ease 0.45s;

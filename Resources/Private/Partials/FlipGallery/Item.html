@@ -5,8 +5,10 @@
     <div class="{colClass}">
         <div class="conn-flip-gallery__box">
             <f:variable name="imageUri"><f:uri.image image="{item.imageFile}" width="1200" /></f:variable>
+            <f:variable name="imageUri1x"><f:uri.image image="{item.imageFile}" width="600" fileExtension="webp" /></f:variable>
+            <f:variable name="imageUri2x"><f:uri.image image="{item.imageFile}" width="1200" fileExtension="webp" /></f:variable>
             <div class="conn-flip-gallery__box-content"
-                 style="background-image: url('{imageUri}')"
+                 style="background-image: url('{imageUri}'); background-image: image-set(url('{imageUri1x}') 1x, url('{imageUri2x}') 2x)"
                  aria-label="{item.title}">
                 <f:if condition="{item.title}">
                     <div class="conn-flip-gallery__box-info">

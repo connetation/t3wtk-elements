@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<div class="swiper-slide conn-parallax-slider__slide">
+<div class="swiper-slide conn-parallax-slider__slide{f:if(condition: slide.text_pos_v, then: ' conn-parallax-slider__slide--v-{slide.text_pos_v}')}{f:if(condition: slide.text_pos_h, then: ' conn-parallax-slider__slide--h-{slide.text_pos_h}')}{f:if(condition: slide.text_animation, then: ' conn-parallax-slider__slide--gsap')}">
 
     <div class="conn-parallax-slider__content container-fluid px-lg-5">
         <div class="conn-parallax-slider__inner" data-slide-animation="{slide.text_animation}" data-slide-duration="{slide.animation_duration}">

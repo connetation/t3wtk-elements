@@ -1,4 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <!-- ── TOP variant: image above, body below ── -->
@@ -6,11 +7,11 @@
     <div class="dashboard-compact__top-img">
         <f:if condition="{project.imageFiles}">
             <f:then>
-                <f:image image="{project.imageFiles.0}"
-                         class="dashboard-compact__top-img-el"
-                         alt="{project.title}"
-                         maxWidth="400"
-                         maxHeight="160" />
+                <ce:responsiveImage image="{project.imageFiles.0}"
+                                    class="dashboard-compact__top-img-el"
+                                    alt="{project.title}"
+                                    widths="320,480,640,800"
+                                    sizes="(max-width: 575px) 100vw, 320px" />
             </f:then>
             <f:else>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="opacity-25" viewBox="0 0 16 16">
@@ -48,11 +49,11 @@
         <div class="dashboard-compact__thumb">
             <f:if condition="{project.imageFiles}">
                 <f:then>
-                    <f:image image="{project.imageFiles.0}"
-                             class="dashboard-compact__logo"
-                             alt="{project.title}"
-                             maxWidth="40"
-                             maxHeight="40" />
+                    <ce:responsiveImage image="{project.imageFiles.0}"
+                                        class="dashboard-compact__logo"
+                                        alt="{project.title}"
+                                        widths="40,80,120"
+                                        sizes="40px" />
                 </f:then>
                 <f:else>
                     <div class="dashboard-compact__logo-placeholder">

@@ -1,13 +1,15 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div id="dashboard-{uid}-detail-{project.uid}" class="d-none">
     <f:if condition="{project.imageFiles}">
         <div class="mb-3 ratio ratio-16x9 rounded overflow-hidden" style="max-height:220px">
-            <f:image image="{project.imageFiles.0}"
-                     class="object-fit-contain w-100"
-                     alt="{project.title}"
-                     width="1200"/>
+            <ce:responsiveImage image="{project.imageFiles.0}"
+                                class="object-fit-contain w-100"
+                                alt="{project.title}"
+                                widths="480,800,1200,1600"
+                                sizes="(max-width: 991px) 100vw, 800px" />
         </div>
     </f:if>
     <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">

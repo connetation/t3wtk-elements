@@ -26,8 +26,8 @@
         <div class="swiper-wrapper">
             <f:if condition="{slides}">
                 <f:then>
-                    <f:for each="{slides}" as="slide">
-                        <f:render partial="HeroSlider/Slide" arguments="{slide: slide}" />
+                    <f:for each="{slides}" as="slide" iteration="slideIter">
+                        <f:render partial="HeroSlider/Slide" arguments="{slide: slide, isFirst: slideIter.isFirst}" />
                     </f:for>
                 </f:then>
                 <f:else>

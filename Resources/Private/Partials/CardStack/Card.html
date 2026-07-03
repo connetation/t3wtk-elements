@@ -1,13 +1,15 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="conn-card-stack__card" data-index="{index}">
     <div class="conn-card-stack__img-wrap">
         <f:if condition="{item.imageFile}">
-            <f:image image="{item.imageFile}"
-                     class="conn-card-stack__img"
-                     alt="{item.title}"
-                     width="600" />
+            <ce:responsiveImage image="{item.imageFile}"
+                                class="conn-card-stack__img"
+                                alt="{item.title}"
+                                widths="480,600,900,1200"
+                                sizes="(max-width: 767px) 90vw, 600px" />
         </f:if>
         <div class="conn-card-stack__card-body">
             <f:if condition="{item.subtitle}">

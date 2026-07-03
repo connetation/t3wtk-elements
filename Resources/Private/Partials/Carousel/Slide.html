@@ -1,12 +1,16 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="carousel-item{f:if(condition: isFirst, then: ' active')}">
     <f:if condition="{item.imageFile}">
-        <f:image image="{item.imageFile}"
-                 class="d-block w-100"
-                 alt="{item.title}"
-                 width="1920" />
+        <ce:responsiveImage image="{item.imageFile}"
+                            class="d-block w-100"
+                            alt="{item.title}"
+                            widths="640,960,1280,1920,2560,3840"
+                            sizes="100vw"
+                            loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}"
+                            fetchpriority="{f:if(condition: isFirst, then: 'high', else: '')}" />
     </f:if>
     <f:if condition="{item.title} || {item.caption}">
         <div class="carousel-caption">

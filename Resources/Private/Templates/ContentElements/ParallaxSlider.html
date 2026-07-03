@@ -26,7 +26,7 @@
             <div class="swiper conn-parallax-slider__swiper">
                 <f:if condition="{parallaxBgImage}">
                     <div class="conn-parallax-slider__bg"
-                         style="background-image: url('{f:uri.image(image: parallaxBgImage, width: 1920, height: 1080)}')">
+                         style="background-image: url('{f:uri.image(image: parallaxBgImage, width: 1920, height: 1080)}'); background-image: image-set(url('{f:uri.image(image: parallaxBgImage, width: 1920, height: 1080, fileExtension: 'webp')}') 1x, url('{f:uri.image(image: parallaxBgImage, width: 3840, height: 2160, fileExtension: 'webp')}') 2x)">
                     </div>
                 </f:if>
                 <div class="conn-parallax-slider__overlay"></div>
