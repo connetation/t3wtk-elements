@@ -187,4 +187,67 @@
             width: 100%;
         }
     }
+
+    // ── Style variants ────────────────────────
+    // --conn-card-border-color and --conn-card-shadow-color can be overridden
+    // per-element via site styles; both fall back to --conn-accent (primary).
+
+    &--default {
+        .conn-pricing__card {
+            border: 1px solid var(--conn-card-border-color, var(--conn-accent)) !important;
+            box-shadow: none !important;
+
+            &:hover {
+                box-shadow: none !important;
+                border-color: var(--conn-card-border-color, var(--conn-accent)) !important;
+            }
+        }
+
+        .conn-pricing__card--featured {
+            border-color: var(--conn-accent) !important;
+            box-shadow: none !important;
+        }
+    }
+
+    &--shadow {
+        .conn-pricing__card {
+            border: none !important;
+            box-shadow: 0 4px 20px var(--conn-card-shadow-color, var(--conn-accent-glow));
+
+            &:hover {
+                border-color: transparent !important;
+                box-shadow: var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
+            }
+        }
+
+        .conn-pricing__card--featured {
+            border: none !important;
+            box-shadow: 0 6px 28px var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
+
+            &:hover {
+                box-shadow: var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
+            }
+        }
+    }
+
+    &--flat {
+        .conn-pricing__card {
+            border: none !important;
+            box-shadow: none;
+
+            &:hover {
+                border-color: transparent !important;
+                box-shadow: none !important;
+            }
+        }
+
+        .conn-pricing__card--featured {
+            border: none !important;
+            box-shadow: none !important;
+
+            &:hover {
+                box-shadow: none !important;
+            }
+        }
+    }
 }

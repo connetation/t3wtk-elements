@@ -84,4 +84,47 @@
         font-size: 0.8125rem;
         font-weight: 600;
     }
+
+    // ── Style variants ───────────────────────────────
+    // --conn-card-border-color and --conn-card-shadow-color can be overridden
+    // per-element via site styles; both fall back to --conn-accent (primary).
+
+    &--default {
+        .conn-card-group__card {
+            border: 1px solid var(--conn-card-border-color, var(--conn-accent)) !important;
+            box-shadow: none !important;
+        }
+
+        .conn-card-group__card:hover,
+        .conn-card-group__card:focus {
+            box-shadow: none !important;
+            border-color: var(--conn-card-border-color, var(--conn-accent)) !important;
+        }
+    }
+
+    &--shadow {
+        .conn-card-group__card {
+            border: none !important;
+            box-shadow: 0 4px 20px var(--conn-card-shadow-color, var(--conn-accent-glow));
+        }
+
+        .conn-card-group__card:hover,
+        .conn-card-group__card:focus {
+            border-color: transparent !important;
+            box-shadow: var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
+        }
+    }
+
+    &--flat {
+        .conn-card-group__card {
+            border: none !important;
+            box-shadow: none;
+        }
+
+        .conn-card-group__card:hover,
+        .conn-card-group__card:focus {
+            border-color: transparent !important;
+            box-shadow: none !important;
+        }
+    }
 }
