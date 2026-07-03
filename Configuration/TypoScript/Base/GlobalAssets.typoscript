@@ -44,4 +44,14 @@ lib.conn_elements_ce {
     templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
     partialRootPaths.20 = EXT:conn_elements/Resources/Private/Partials/
     layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
+
+    # conn_base's ContentElements/Default.html adds the Appearance-tab background
+    # feature (color/image, cover/contain/parallax) on top of this same frame markup.
+    # Set at a higher priority than .20 above so it wins for every custom conn_elements
+    # CE (Logo Wall, Card Group, sliders, …) that copies this object below — including
+    # any added later, since they all inherit from this single definition.
+    layoutRootPaths.30 = EXT:conn_base/Resources/Private/Layouts/ContentElements/
+    # That layout renders a shared header partial from conn_base — needs to be
+    # resolvable too.
+    partialRootPaths.30 = EXT:conn_base/Resources/Private/Partials/
 }
