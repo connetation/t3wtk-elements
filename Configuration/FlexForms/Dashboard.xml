@@ -35,16 +35,16 @@
                     </settings.columns>
                     <settings.cardVariant>
                         <label>Card style</label>
-                        <displayCond>FIELD:settings.defaultView:=:grid</displayCond>
+                        <displayCond>FIELD:settings.defaultView:!=:list</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
-                            <default>image-top</default>
+                            <default>top</default>
                             <items>
-                                <numIndex index="0"><label>Image top (default)</label><value>image-top</value></numIndex>
-                                <numIndex index="1"><label>Image left (horizontal)</label><value>image-left</value></numIndex>
-                                <numIndex index="2"><label>No image (text only)</label><value>no-image</value></numIndex>
-                                <numIndex index="3"><label>Logo only (minimal)</label><value>logo-only</value></numIndex>
+                                <numIndex index="0"><label>Image top — preview above card body</label><value>top</value></numIndex>
+                                <numIndex index="1"><label>Horizontal — thumbnail on the left</label><value>horizontal</value></numIndex>
+                                <numIndex index="2"><label>Logo — small icon, no big image area</label><value>logo</value></numIndex>
+                                <numIndex index="3"><label>Text only — no image at all</label><value>text</value></numIndex>
                             </items>
                         </config>
                     </settings.cardVariant>

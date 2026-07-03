@@ -141,9 +141,9 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
             ? ($settings['tagsStyle'] ?? 'row')
             : 'row';
 
-        $cardVariant = in_array($settings['cardVariant'] ?? 'image-top', ['image-top', 'image-left', 'no-image', 'logo-only'], true)
-            ? ($settings['cardVariant'] ?? 'image-top')
-            : 'image-top';
+        $cardVariant = in_array($settings['cardVariant'] ?? 'top', ['top', 'horizontal', 'logo', 'text'], true)
+            ? ($settings['cardVariant'] ?? 'top')
+            : 'top';
 
         return [
             'defaultView'    => $defaultView,
@@ -168,7 +168,7 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
             'columns'        => 3,
             'colClass'       => 'col-sm-6 col-lg-4',
             'compactColumns' => 4,
-            'cardVariant'    => 'image-top',
+            'cardVariant'    => 'top',
             'showStats'      => true,
             'statsStyle'     => 'default',
             'showFilter'     => true,

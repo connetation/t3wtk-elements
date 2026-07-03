@@ -55,7 +55,7 @@
         <div class="d-none" id="dashboard-{data.uid}-compact">
             <div class="dashboard-compact" style="--conn-compact-cols: {settings.compactColumns}">
                 <f:for each="{projects}" as="project">
-                    <f:render partial="Dashboard/ProjectCardCompact" arguments="{project: project, uid: data.uid}" />
+                    <f:render partial="Dashboard/ProjectCardCompact" arguments="{project: project, uid: data.uid, cardVariant: settings.cardVariant, showModal: settings.showModal}" />
                 </f:for>
             </div>
         </div>
