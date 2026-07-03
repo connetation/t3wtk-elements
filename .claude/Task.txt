@@ -1,0 +1,33 @@
+## 2026-07-03 — Dashboard compact cards view
+
+Added a third "compact" view to the Dashboard content element for easier overview with 20+ services.
+
+### Files changed
+
+**Configuration/FlexForms/Dashboard.xml**
+- Added `compact` as third option in `settings.defaultView` select
+
+**Classes/DataProcessing/DashboardProjectsProcessor.php**
+- Added `compact` to the allowed `defaultView` values in `resolveSettings()`
+
+**Resources/Private/Partials/Dashboard/Controls.html**
+- Added compact view toggle button (2×2 squares icon) between grid and list buttons
+
+**Resources/Private/Templates/ContentElements/Dashboard.html**
+- Added compact view container `#dashboard-{uid}-compact` with `dashboard-compact` grid
+- Renders `ProjectCardCompact` partials
+
+**Resources/Private/Partials/Dashboard/ProjectCardCompact.html** (new)
+- Single-line card: 36px logo thumb + title (ellipsis) + status badge + external link icon
+- Carries same data-* attrs as full card (status, search, category, tags) — filtering works
+
+**Resources/Private/Components/Dashboard/dashboard.ts**
+- Added VIEW_COMPACT constant, this.compact property
+- compact container filtered in applyFilters(), toggled in view toggle handler and init()
+
+**Resources/Private/Components/Dashboard/_dashboard.scss**
+- .dashboard-compact: CSS grid auto-fill minmax(220px,1fr), ~6+ cols on wide
+- __card: flex row, 36px thumb, ellipsis title, badge, visit icon, accent top-bar on hover
+
+**Resources/Public/Css/dashboard.css** — rebuilt
+**Resources/Public/Js/components/dashboard.js** — rebuilt

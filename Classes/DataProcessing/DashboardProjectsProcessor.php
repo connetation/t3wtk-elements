@@ -115,7 +115,7 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
 
     private function resolveSettings(array $settings): array
     {
-        $defaultView = in_array($settings['defaultView'] ?? '', ['grid', 'list'], true)
+        $defaultView = in_array($settings['defaultView'] ?? '', ['grid', 'list', 'compact'], true)
             ? $settings['defaultView']
             : 'grid';
 
@@ -127,11 +127,55 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
             default => 'col-sm-6 col-lg-4',
         };
 
-        return ['defaultView' => $defaultView, 'columns' => $columns, 'colClass' => $colClass];
+        $compactColumns = max(3, min(6, (int)($settings['compactColumns'] ?? 4)));
+
+        $statsStyle = in_array($settings['statsStyle'] ?? 'default', ['default', 'compact'], true)
+            ? ($settings['statsStyle'] ?? 'default')
+            : 'default';
+
+        $filterStyle = in_array($settings['filterStyle'] ?? 'default', ['default', 'compact'], true)
+            ? ($settings['filterStyle'] ?? 'default')
+            : 'default';
+
+        $tagsStyle = in_array($settings['tagsStyle'] ?? 'row', ['row', 'dropdown', 'hidden'], true)
+            ? ($settings['tagsStyle'] ?? 'row')
+            : 'row';
+
+        $cardVariant = in_array($settings['cardVariant'] ?? 'image-top', ['image-top', 'image-left', 'no-image', 'logo-only'], true)
+            ? ($settings['cardVariant'] ?? 'image-top')
+            : 'image-top';
+
+        return [
+            'defaultView'    => $defaultView,
+            'columns'        => $columns,
+            'colClass'       => $colClass,
+            'compactColumns' => $compactColumns,
+            'cardVariant'    => $cardVariant,
+            'showStats'      => (bool)($settings['showStats'] ?? true),
+            'statsStyle'     => $statsStyle,
+            'showFilter'     => (bool)($settings['showFilter'] ?? true),
+            'filterStyle'    => $filterStyle,
+            'tagsStyle'      => $tagsStyle,
+            'showSearch'     => (bool)($settings['showSearch'] ?? true),
+            'showModal'      => (bool)($settings['showModal'] ?? true),
+        ];
     }
 
     private function defaultSettings(): array
     {
-        return ['defaultView' => 'grid', 'columns' => 3, 'colClass' => 'col-sm-6 col-lg-4'];
+        return [
+            'defaultView'    => 'grid',
+            'columns'        => 3,
+            'colClass'       => 'col-sm-6 col-lg-4',
+            'compactColumns' => 4,
+            'cardVariant'    => 'image-top',
+            'showStats'      => true,
+            'statsStyle'     => 'default',
+            'showFilter'     => true,
+            'filterStyle'    => 'default',
+            'tagsStyle'      => 'row',
+            'showSearch'     => true,
+            'showModal'      => true,
+        ];
     }
 }

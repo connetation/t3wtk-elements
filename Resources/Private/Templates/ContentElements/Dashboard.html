@@ -15,19 +15,31 @@
 <section class="dashboard" id="dashboard-{data.uid}-container" data-default-view="{settings.defaultView}">
     <div class="">
 
-        <div class="d-flex flex-column gap-2 mb-4">
-            <div class="d-flex align-items-start justify-content-end gap-3 flex-wrap">
-                <f:render partial="Dashboard/Controls" arguments="{categories: categories}" />
+        <f:if condition="{settings.showFilter}">
+            <div class="d-flex flex-column gap-2 mb-4">
+                <div class="d-flex align-items-start justify-content-end gap-3 flex-wrap">
+                    <f:render partial="Dashboard/Controls" arguments="{
+                        categories: categories,
+                        tags: tags,
+                        showSearch: settings.showSearch,
+                        filterStyle: settings.filterStyle,
+                        tagsStyle: settings.tagsStyle
+                    }" />
+                </div>
+                <f:if condition="{settings.tagsStyle} == 'row'">
+                    <f:render partial="Shared/Filter/TagRow" arguments="{tags: tags}" />
+                </f:if>
             </div>
-            <f:render partial="Shared/Filter/TagRow" arguments="{tags: tags}" />
-        </div>
+        </f:if>
 
-        <f:render partial="Dashboard/Stats" />
+        <f:if condition="{settings.showStats}">
+            <f:render partial="Dashboard/Stats" arguments="{statsStyle: settings.statsStyle}" />
+        </f:if>
 
         <!-- Grid View -->
         <div class="row g-3" id="dashboard-{data.uid}-grid">
             <f:for each="{projects}" as="project">
-                <f:render partial="Dashboard/ProjectCard" arguments="{project: project, uid: data.uid, colClass: settings.colClass}" />
+                <f:render partial="Dashboard/ProjectCard" arguments="{project: project, uid: data.uid, colClass: settings.colClass, cardVariant: settings.cardVariant, showModal: settings.showModal}" />
             </f:for>
             <div class="col-12 dashboard__empty d-none">
                 <div class="text-center py-5">
@@ -36,6 +48,15 @@
                     </svg>
                     <p class="mb-0 small" style="color:var(--conn-text-muted)"><f:translate key="dashboard.empty" extensionName="conn_elements" /></p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Compact View -->
+        <div class="d-none" id="dashboard-{data.uid}-compact">
+            <div class="dashboard-compact" style="--conn-compact-cols: {settings.compactColumns}">
+                <f:for each="{projects}" as="project">
+                    <f:render partial="Dashboard/ProjectCardCompact" arguments="{project: project, uid: data.uid}" />
+                </f:for>
             </div>
         </div>
 

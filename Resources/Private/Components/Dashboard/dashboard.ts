@@ -27,10 +27,12 @@ export class Dashboard {
     private static readonly VISIT_LINK_SEL   = '.dashboard__visit-link';
     private static readonly VIEW_GRID        = 'grid';
     private static readonly VIEW_LIST        = 'list';
+    private static readonly VIEW_COMPACT     = 'compact';
 
     private readonly uid: string;
     private readonly grid: HTMLElement | null;
     private readonly list: HTMLElement | null;
+    private readonly compact: HTMLElement | null;
     private readonly modal: HTMLElement | null;
     private readonly modalTitle: HTMLElement | null;
     private readonly modalBody: HTMLElement | null;
@@ -47,6 +49,7 @@ export class Dashboard {
         this.uid        = container.id.replace('dashboard-', '').replace('-container', '');
         this.grid       = document.getElementById('dashboard-' + this.uid + '-grid');
         this.list       = document.getElementById('dashboard-' + this.uid + '-list');
+        this.compact    = document.getElementById('dashboard-' + this.uid + '-compact');
         this.modal      = document.getElementById('projectModal-' + this.uid);
         this.modalTitle = document.getElementById('projectModalLabel-' + this.uid);
         this.modalBody  = document.getElementById('projectModalBody-' + this.uid);
@@ -172,6 +175,15 @@ export class Dashboard {
             });
         }
 
+        if (this.compact) {
+            this.compact.querySelectorAll<HTMLElement>(Dashboard.PROJECT_ITEM_SEL).forEach(item => {
+                const statusOk   = this.currentFilter === F.FILTER_ALL || item.dataset.status === this.currentFilter;
+                const categoryOk = this.filter.currentCategory === F.FILTER_ALL || item.dataset.category === this.filter.currentCategory;
+                const searchOk   = !q || (item.dataset.search || '').toLowerCase().includes(q);
+                item.classList.toggle(F.CLASS_D_NONE, !(statusOk && categoryOk && searchOk && this.filter.matchesTags(item)));
+            });
+        }
+
         if (this.list) {
             this.list.querySelectorAll<HTMLElement>(Dashboard.PROJECT_ITEM_SEL).forEach(item => {
                 const statusOk   = this.currentFilter === F.FILTER_ALL || item.dataset.status === this.currentFilter;
@@ -213,8 +225,9 @@ export class Dashboard {
                 this.viewBtns.forEach(b => b.classList.remove(F.CLASS_ACTIVE));
                 btn.classList.add(F.CLASS_ACTIVE);
                 const view = btn.dataset.view;
-                if (this.grid) this.grid.classList.toggle(F.CLASS_D_NONE, view !== Dashboard.VIEW_GRID);
-                if (this.list) this.list.classList.toggle(F.CLASS_D_NONE, view !== Dashboard.VIEW_LIST);
+                if (this.grid)    this.grid.classList.toggle(F.CLASS_D_NONE, view !== Dashboard.VIEW_GRID);
+                if (this.compact) this.compact.classList.toggle(F.CLASS_D_NONE, view !== Dashboard.VIEW_COMPACT);
+                if (this.list)    this.list.classList.toggle(F.CLASS_D_NONE, view !== Dashboard.VIEW_LIST);
             });
         });
 
@@ -242,8 +255,9 @@ export class Dashboard {
 
         const defaultView = this.container.dataset.defaultView || Dashboard.VIEW_GRID;
         this.viewBtns.forEach(btn => btn.classList.toggle(F.CLASS_ACTIVE, btn.dataset.view === defaultView));
-        if (this.grid) this.grid.classList.toggle(F.CLASS_D_NONE, defaultView !== Dashboard.VIEW_GRID);
-        if (this.list) this.list.classList.toggle(F.CLASS_D_NONE, defaultView !== Dashboard.VIEW_LIST);
+        if (this.grid)    this.grid.classList.toggle(F.CLASS_D_NONE, defaultView !== Dashboard.VIEW_GRID);
+        if (this.compact) this.compact.classList.toggle(F.CLASS_D_NONE, defaultView !== Dashboard.VIEW_COMPACT);
+        if (this.list)    this.list.classList.toggle(F.CLASS_D_NONE, defaultView !== Dashboard.VIEW_LIST);
     }
 
 }

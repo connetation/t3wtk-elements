@@ -23,6 +23,8 @@
     }
 
     &__stat {
+        display: flex;
+        flex-direction: column;
         background: var(--conn-surface);
         border: 1px solid var(--conn-border);
         border-radius: var(--conn-radius);
@@ -97,6 +99,9 @@
         flex-wrap: wrap;
         gap: 0.5rem;
 
+        // Filter icon hidden in default mode, shown in compact
+        .dashboard__filter-icon { display: none; }
+
         // View toggle: filled indigo active (distinct from filter dropdowns)
         .dashboard__view-btn {
             --bs-btn-active-color:        #fff;
@@ -118,9 +123,96 @@
             border-left-color: var(--conn-border-strong);
         }
 
+        // Compact mode: icon-only dropdown labels
+        &--compact {
+            gap: 0.3rem;
+
+            .dashboard__filter-icon {
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .dashboard__filter-label,
+            .conn-filter__category-label,
+            .dashboard__tags-label {
+                display: none;
+            }
+        }
+    }
+
+    // Tags dropdown content
+    &__tags-dropdown {
+        min-width: 200px;
+        max-width: 320px;
+    }
+
+    // ─── Card variants ──────────────────────
+    &__card {
+        // Image-left: square thumb column
+        &--image-left {
+            overflow: hidden;
+
+            .dashboard__card-thumb {
+                width: 110px;
+                min-height: 100px;
+                background: var(--conn-surface-alt);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem;
+                border-right: 1px solid var(--conn-border);
+                flex-shrink: 0;
+
+                &-img {
+                    display: block;
+                    max-width: 100%;
+                    max-height: 80px;
+                    width: auto;
+                    height: auto;
+                    object-fit: contain;
+                }
+
+                &-placeholder {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                    color: var(--conn-text-muted);
+                }
+            }
+        }
+
+        // Logo-only: centered logo + title + badge, no wasted image area
+        &--logo-only {
+            text-align: center;
+
+            .dashboard__card-logo-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.25rem 1rem 0.5rem;
+                min-height: 80px;
+
+                &-img {
+                    display: block;
+                    max-width: 80px;
+                    max-height: 60px;
+                    width: auto;
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
+        }
     }
 
     // ─── Project card ───────────────────────
+    // Handles both <article> (modal) and <a> (no-modal) wrappers
+    a.dashboard__card {
+        color: inherit;
+        &:hover, &:focus { color: inherit; }
+    }
+
     &__card {
         cursor: pointer;
         border-radius: var(--conn-radius) !important;
@@ -199,6 +291,188 @@
     .dropdown-divider {
         border-color: var(--conn-border);
     }
+}
+
+// ─── Compact stats style ──────────────────────
+.dashboard__stats--compact {
+    gap: 0.375rem;
+    margin-bottom: 1rem !important;
+
+    .dashboard__stat {
+        padding: 0.3rem 0.625rem;
+        min-width: unset;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.375rem;
+
+        &__icon {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+
+        &__number {
+            font-size: 0.875rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        &__label {
+            font-size: 0.625rem;
+            margin-top: 0;
+            white-space: nowrap;
+        }
+    }
+}
+
+// ─── Compact view ────────────────────────────
+.dashboard-compact {
+    display: grid;
+    grid-template-columns: repeat(var(--conn-compact-cols, 4), minmax(0, 1fr));
+    gap: 0.5rem;
+
+    @media (max-width: 991px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 575px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__card {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.5rem 0.625rem;
+        border-radius: var(--conn-radius);
+        border: 1px solid var(--conn-border);
+        background: var(--conn-surface);
+        box-shadow: var(--conn-shadow-card);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        min-width: 0;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color var(--conn-transition),
+            background-color var(--conn-transition);
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--conn-accent), var(--conn-accent-secondary));
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        &:hover,
+        &:focus {
+            transform: translateY(-2px);
+            box-shadow: var(--conn-shadow-hover) !important;
+            border-color: var(--conn-border-strong) !important;
+            outline: none;
+
+            &::after { opacity: 1; }
+        }
+    }
+
+    &__thumb {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: calc(var(--conn-radius) / 2);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--conn-surface-alt);
+    }
+
+    &__logo {
+        display: block;
+        max-width: 40px;
+        max-height: 40px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
+    &__logo-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: var(--conn-text-muted);
+        opacity: 0.4;
+    }
+
+    // ── Two-line body: title row + meta row ──
+    &__body {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    &__title {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--conn-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        min-width: 0;
+    }
+
+    &__category {
+        font-size: 0.6875rem;
+        color: var(--conn-text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__badge {
+        flex-shrink: 0;
+    }
+
+    &__visit {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: calc(var(--conn-radius) / 2);
+        color: var(--conn-text-muted);
+        transition: color var(--conn-transition), background var(--conn-transition);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--conn-accent);
+            background: var(--conn-accent-soft);
+        }
+    }
+}
+
+// ─── Tags dropdown ───────────────────────────
+.dashboard__tags-dropdown {
+    background: var(--conn-surface-raised);
+    border-color: var(--conn-border-strong) !important;
 }
 
 // ─── Table / List view ───────────────────────

@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<div class="dashboard__stats mb-4">
+<div class="dashboard__stats{f:if(condition: '{statsStyle} == compact', then: ' dashboard__stats--compact')} mb-4">
 
     <div class="dashboard__stat dashboard__stat--total" data-status="all" role="button" tabindex="0">
         <div class="dashboard__stat__icon" style="background:var(--conn-accent-soft)">
