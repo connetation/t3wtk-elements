@@ -39,6 +39,12 @@ tt_content.div.partialRootPaths.40 = EXT:conn_elements/Resources/Private/Partial
 # copies this object gets the correct paths without repeating them.
 lib.conn_elements_ce =< lib.contentElement
 lib.conn_elements_ce {
+    # Parse-time copy: the =< reference above does not deliver lib.contentElement's
+    # settings to the CEs at render time (same reason the path indexes are set
+    # directly here) — without this, {settings.*} is empty in Fluid for all
+    # conn_elements CEs (e.g. defaultHeaderType, media.popup/lightbox config).
+    settings < lib.contentElement.settings
+
     templateRootPaths.40 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
     partialRootPaths.40 = EXT:conn_elements/Resources/Private/Partials/
     layoutRootPaths.40 = EXT:conn_elements/Resources/Private/Layouts/

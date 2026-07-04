@@ -24,17 +24,23 @@ final class WikiPagesProcessor extends AbstractItemsProcessor
             'wiki'        => null,
             'categories'  => [],
             'tags'        => [],
-            'settings'    => $this->defaultSettings(''),
+            'settings'    => array_replace_recursive(
+                $this->getTypoScriptSettings($contentObjectConfiguration),
+                $this->defaultSettings('')
+            ),
         ]);
 
         if ($wikiId === 0) {
             return $empty();
         }
 
-        // ─── FlexForm settings ────────────────────────────────────
-        $processedData['settings'] = $this->resolveSettings(
-            $this->decodeFlexFormSettings($processedData['data'], $this->getSettingsField($processorConfiguration)),
-            ''
+        // ─── FlexForm settings (merged over the TypoScript settings) ─
+        $processedData['settings'] = array_replace_recursive(
+            $this->getTypoScriptSettings($contentObjectConfiguration),
+            $this->resolveSettings(
+                $this->decodeFlexFormSettings($processedData['data'], $this->getSettingsField($processorConfiguration)),
+                ''
+            )
         );
 
         // ─── Wiki directory record ────────────────────────────────

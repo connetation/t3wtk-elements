@@ -22,14 +22,20 @@ final class DashboardProjectsProcessor extends AbstractItemsProcessor
         if ($contentElementUid === 0) {
             $processedData[$targetVar] = [];
             $processedData['categories'] = [];
-            $processedData['settings'] = $this->defaultSettings('');
+            $processedData['settings'] = array_replace_recursive(
+                $this->getTypoScriptSettings($contentObjectConfiguration),
+                $this->defaultSettings('')
+            );
             return $processedData;
         }
 
-        // ─── FlexForm settings ────────────────────────────────────
-        $processedData['settings'] = $this->resolveSettings(
-            $this->decodeFlexFormSettings($processedData['data'], $this->getSettingsField($processorConfiguration)),
-            ''
+        // ─── FlexForm settings (merged over the TypoScript settings) ─
+        $processedData['settings'] = array_replace_recursive(
+            $this->getTypoScriptSettings($contentObjectConfiguration),
+            $this->resolveSettings(
+                $this->decodeFlexFormSettings($processedData['data'], $this->getSettingsField($processorConfiguration)),
+                ''
+            )
         );
 
         // ─── Projects ─────────────────────────────────────────────

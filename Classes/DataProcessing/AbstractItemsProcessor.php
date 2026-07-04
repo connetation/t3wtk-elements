@@ -11,6 +11,7 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Service\FlexFormService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -41,7 +42,10 @@ abstract class AbstractItemsProcessor implements DataProcessorInterface
 
         if ($contentElementUid === 0) {
             $processedData[$targetVar] = [];
-            $processedData['settings'] = $this->defaultSettings($settingsField);
+            $processedData['settings'] = array_replace_recursive(
+                $this->getTypoScriptSettings($contentObjectConfiguration),
+                $this->defaultSettings($settingsField)
+            );
             return $processedData;
         }
 
@@ -62,9 +66,25 @@ abstract class AbstractItemsProcessor implements DataProcessorInterface
         $rows = $this->postProcessRows($rows, $settings);
 
         $processedData[$targetVar] = $rows;
-        $processedData['settings'] = $settings;
+        $processedData['settings'] = array_replace_recursive(
+            $this->getTypoScriptSettings($contentObjectConfiguration),
+            $settings
+        );
 
         return $this->finalizeProcessedData($processedData, $rows, $settings, $settingsField, $contentElementUid);
+    }
+
+    /**
+     * TypoScript settings of the rendering content object (lib.contentElement.settings:
+     * defaultHeaderType, media/lightbox config, …). The FlexForm component settings are
+     * merged ON TOP of these — assigning them alone would overwrite Fluid's reserved
+     * `settings` variable and blank all TypoScript settings for the whole element,
+     * including the shared conn_base layout and header partial.
+     */
+    protected function getTypoScriptSettings(array $contentObjectConfiguration): array
+    {
+        return GeneralUtility::makeInstance(TypoScriptService::class)
+            ->convertTypoScriptArrayToPlainArray($contentObjectConfiguration['settings.'] ?? []);
     }
 
     // ─────────────────────────────────────────────────────────────
