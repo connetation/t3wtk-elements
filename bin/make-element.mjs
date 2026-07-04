@@ -163,10 +163,12 @@ tt_content.${ctype} =< lib.conn_elements_ce
 tt_content.${ctype} {
     templateName = ${pascal}
     dataProcessing {
-        10 = TYPO3\\CMS\\Frontend\\DataProcessing\\FlexFormProcessor
+        # Merges the FlexForm settings ON TOP of the TypoScript settings —
+        # never use the core FlexFormProcessor with `as = settings` (it would
+        # overwrite Fluid's reserved settings variable).
+        10 = Connetation\\Elements\\DataProcessing\\FlexFormSettingsProcessor
         10 {
             fieldName = tx_conn_elements_${snake}_settings
-            as = settings
         }
     }
 }
