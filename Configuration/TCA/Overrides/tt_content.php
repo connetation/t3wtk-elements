@@ -76,9 +76,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => false,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -101,9 +98,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:dashboard.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Dashboard.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Dashboard.xml',
         ],
     ],
 ]);
@@ -143,9 +138,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -154,9 +146,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_group.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/CardGroup.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/CardGroup.xml',
         ],
     ],
 ]);
@@ -196,9 +186,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -207,9 +194,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:accordion.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Accordion.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Accordion.xml',
         ],
     ],
 ]);
@@ -249,9 +234,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -260,9 +242,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:carousel.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Carousel.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Carousel.xml',
         ],
     ],
 ]);
@@ -306,9 +286,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -317,9 +294,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:hero_slider.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/HeroSlider.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/HeroSlider.xml',
         ],
     ],
 ]);
@@ -359,9 +334,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -370,9 +342,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slider.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Slider.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Slider.xml',
         ],
     ],
 ]);
@@ -412,9 +382,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -423,9 +390,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:thumbs_slider.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/ThumbsSlider.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/ThumbsSlider.xml',
         ],
     ],
 ]);
@@ -473,9 +438,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
             'overrideChildTca' => [
@@ -498,9 +460,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:parallax_slider.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/ParallaxSlider.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/ParallaxSlider.xml',
         ],
     ],
 ]);
@@ -547,9 +507,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:wiki.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Wiki.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Wiki.xml',
         ],
     ],
 ]);
@@ -589,9 +547,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -600,9 +555,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_stack.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/CardStack.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/CardStack.xml',
         ],
     ],
 ]);
@@ -642,9 +595,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -653,9 +603,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/FlipCarousel.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/FlipCarousel.xml',
         ],
     ],
 ]);
@@ -695,9 +643,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -706,9 +651,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/FlipGallery.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/FlipGallery.xml',
         ],
     ],
 ]);
@@ -748,9 +691,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -759,9 +699,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:mosaic_gallery.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => [
-                'default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/MosaicGallery.xml',
-            ],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/MosaicGallery.xml',
         ],
     ],
 ]);
@@ -801,9 +739,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -812,7 +747,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stats.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Stats.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Stats.xml',
         ],
     ],
 ]);
@@ -852,9 +787,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -863,7 +795,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:logo_wall.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/LogoWall.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/LogoWall.xml',
         ],
     ],
 ]);
@@ -903,9 +835,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -914,7 +843,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonials.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Testimonials.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Testimonials.xml',
         ],
     ],
 ]);
@@ -954,9 +883,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => false,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -965,7 +891,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:pricing.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Pricing.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Pricing.xml',
         ],
     ],
 ]);
@@ -1005,9 +931,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -1016,7 +939,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_grid.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/FeatureGrid.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/FeatureGrid.xml',
         ],
     ],
 ]);
@@ -1143,9 +1066,6 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'appearance'    => [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
                 'enabledControls'                 => ['dragdrop' => true],
             ],
         ],
@@ -1154,7 +1074,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/Timeline.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Timeline.xml',
         ],
     ],
 ]);

@@ -10,6 +10,7 @@ return [
         'tstamp'        => 'tstamp',
         'crdate'        => 'crdate',
         'delete'        => 'deleted',
+        'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
         'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/stats-ce.svg',
         'rootLevel'     => -1,

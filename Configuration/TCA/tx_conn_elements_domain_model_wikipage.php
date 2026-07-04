@@ -14,7 +14,6 @@ return [
         'delete'        => 'deleted',
         'enablecolumns' => ['disabled' => 'hidden'],
         'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/wiki-page.svg',
-        'searchFields'  => 'title,intro',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -53,9 +52,10 @@ return [
             'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:wikipage.tags',
             'description' => 'Comma-separated, e.g. PHP, TYPO3, Performance',
             'config'      => [
-                'type' => 'input',
-                'size' => 60,
-                'eval' => '',
+                'type'       => 'input',
+                'size'       => 60,
+                'eval'       => '',
+                'searchable' => false,
             ],
         ],
         'blocks' => [

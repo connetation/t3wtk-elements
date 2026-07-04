@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace Connetation\Elements\DataProcessing;
 
-use Doctrine\DBAL\ParameterType;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
-use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
-final class DashboardProjectsProcessor implements DataProcessorInterface
+final class DashboardProjectsProcessor extends AbstractItemsProcessor
 {
     public function process(
         ContentObjectRenderer $cObj,
@@ -21,50 +16,32 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ): array {
-        $targetVar = $processorConfiguration['as'] ?? 'projects';
+        $targetVar = $processorConfiguration['as'] ?? $this->getDefaultTargetVariable();
         $contentElementUid = (int)($processedData['data']['uid'] ?? 0);
 
         if ($contentElementUid === 0) {
             $processedData[$targetVar] = [];
             $processedData['categories'] = [];
-            $processedData['settings'] = $this->defaultSettings();
+            $processedData['settings'] = $this->defaultSettings('');
             return $processedData;
         }
 
         // ─── FlexForm settings ────────────────────────────────────
-        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-        $flexData = $flexFormService->convertFlexFormContentToArray(
-            $processedData['data']['tx_conn_elements_dashboard_settings'] ?? ''
+        $processedData['settings'] = $this->resolveSettings(
+            $this->decodeFlexFormSettings($processedData['data'], $this->getSettingsField($processorConfiguration)),
+            ''
         );
-        $processedData['settings'] = $this->resolveSettings($flexData['settings'] ?? []);
 
         // ─── Projects ─────────────────────────────────────────────
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_dashboard_project');
-
-        $rows = $queryBuilder
-            ->select('*')
-            ->from('tx_conn_elements_domain_model_dashboard_project')
-            ->where(
-                $queryBuilder->expr()->eq('content_element', $queryBuilder->createNamedParameter($contentElementUid, ParameterType::INTEGER)),
-                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
-                $queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
-            )
-            ->orderBy('sorting', 'ASC')
-            ->executeQuery()
-            ->fetchAllAssociative();
+        $rows = $this->fetchChildren($this->getTable(), $contentElementUid);
 
         // ─── Categories ───────────────────────────────────────────
-        $catQb = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_dashboard_projectcategory');
-
+        $catQb = $this->createFrontendQueryBuilder('tx_conn_elements_domain_model_dashboard_projectcategory');
         $catRows = $catQb
             ->select('uid', 'title')
             ->from('tx_conn_elements_domain_model_dashboard_projectcategory')
             ->where(
-                $catQb->expr()->eq('content_element', $catQb->createNamedParameter($contentElementUid, ParameterType::INTEGER)),
-                $catQb->expr()->eq('deleted', $catQb->createNamedParameter(0, ParameterType::INTEGER)),
-                $catQb->expr()->eq('hidden', $catQb->createNamedParameter(0, ParameterType::INTEGER))
+                $catQb->expr()->eq('content_element', $catQb->createNamedParameter($contentElementUid, \Doctrine\DBAL\ParameterType::INTEGER))
             )
             ->orderBy('title', 'ASC')
             ->executeQuery()
@@ -80,11 +57,17 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
         $siteLanguage    = $cObj->getRequest()->getAttribute('language');
         $languageService = GeneralUtility::makeInstance(LanguageServiceFactory::class)
             ->createFromSiteLanguage($siteLanguage);
-        $fileRepository  = GeneralUtility::makeInstance(FileRepository::class);
+
+        // ─── Resolve FAL images (batched, one query) ──────────────
+        $imagesByProject = $this->resolveFileReferences(
+            $this->getTable(),
+            'image',
+            array_column($rows, 'uid')
+        );
 
         $allTagsSet = [];
         $processedData[$targetVar] = array_map(
-            static function (array $row) use ($languageService, $fileRepository, $categoryMap, &$allTagsSet): array {
+            static function (array $row) use ($languageService, $imagesByProject, $categoryMap, &$allTagsSet): array {
                 $row['tagsArray'] = $row['tags'] !== ''
                     ? array_map('trim', explode(',', $row['tags']))
                     : [];
@@ -96,9 +79,7 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
                     'LLL:EXT:conn_elements/Resources/Private/Language/locallang.xlf:dashboard.status.' . $row['status']
                 ) ?: ucwords(str_replace('_', ' ', $row['status']));
                 $row['categoryTitle'] = $categoryMap[(int)$row['category']] ?? '';
-                $row['imageFiles']   = (int)$row['image'] > 0
-                    ? $fileRepository->findByRelation('tx_conn_elements_domain_model_dashboard_project', 'image', $row['uid'])
-                    : [];
+                $row['imageFiles']   = $imagesByProject[(int)$row['uid']] ?? [];
                 return $row;
             },
             $rows
@@ -113,7 +94,22 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
         return $processedData;
     }
 
-    private function resolveSettings(array $settings): array
+    protected function getTable(): string
+    {
+        return 'tx_conn_elements_domain_model_dashboard_project';
+    }
+
+    protected function getDefaultTargetVariable(): string
+    {
+        return 'projects';
+    }
+
+    protected function getSettingsField(array $processorConfiguration): string
+    {
+        return 'tx_conn_elements_dashboard_settings';
+    }
+
+    protected function resolveSettings(array $settings, string $settingsField): array
     {
         $defaultView = in_array($settings['defaultView'] ?? '', ['grid', 'list', 'compact'], true)
             ? $settings['defaultView']
@@ -161,7 +157,7 @@ final class DashboardProjectsProcessor implements DataProcessorInterface
         ];
     }
 
-    private function defaultSettings(): array
+    protected function defaultSettings(string $settingsField): array
     {
         return [
             'defaultView'    => 'grid',

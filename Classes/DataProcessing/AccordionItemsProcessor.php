@@ -4,75 +4,35 @@ declare(strict_types=1);
 
 namespace Connetation\Elements\DataProcessing;
 
-use Doctrine\DBAL\ParameterType;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Service\FlexFormService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
-
-final class AccordionItemsProcessor implements DataProcessorInterface
+final class AccordionItemsProcessor extends AbstractItemsProcessor
 {
-    public function process(
-        ContentObjectRenderer $cObj,
-        array $contentObjectConfiguration,
-        array $processorConfiguration,
-        array $processedData
-    ): array {
-        $targetVar         = $processorConfiguration['as'] ?? 'items';
-        $contentElementUid = (int)($processedData['data']['uid'] ?? 0);
+    protected function getTable(): string
+    {
+        return 'tx_conn_elements_domain_model_accordion_item';
+    }
 
-        if ($contentElementUid === 0) {
-            $processedData[$targetVar] = [];
-            $processedData['settings'] = $this->defaultSettings();
-            return $processedData;
-        }
+    protected function getDefaultTargetVariable(): string
+    {
+        return 'items';
+    }
 
-        // ─── FlexForm settings ────────────────────────────────────
-        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-        $flexData = $flexFormService->convertFlexFormContentToArray(
-            $processedData['data']['tx_conn_elements_accordion_settings'] ?? ''
-        );
-        $settings = $this->resolveSettings($flexData['settings'] ?? []);
+    protected function getSettingsField(array $processorConfiguration): string
+    {
+        return 'tx_conn_elements_accordion_settings';
+    }
 
-        // ─── Accordion items ──────────────────────────────────────
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_accordion_item');
-
-        $rows = $queryBuilder
-            ->select('*')
-            ->from('tx_conn_elements_domain_model_accordion_item')
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'content_element',
-                    $queryBuilder->createNamedParameter($contentElementUid, ParameterType::INTEGER)
-                ),
-                $queryBuilder->expr()->eq(
-                    'deleted',
-                    $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-                ),
-                $queryBuilder->expr()->eq(
-                    'hidden',
-                    $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-                )
-            )
-            ->orderBy('sorting', 'ASC')
-            ->executeQuery()
-            ->fetchAllAssociative();
-
+    protected function postProcessRows(array $rows, array $settings): array
+    {
         // Mark which item should be expanded on load
         foreach ($rows as $index => &$row) {
             $row['open'] = ($index === 0) && !$settings['collapseAll'];
         }
         unset($row);
 
-        $processedData[$targetVar]   = $rows;
-        $processedData['settings']   = $settings;
-
-        return $processedData;
+        return $rows;
     }
 
-    private function resolveSettings(array $raw): array
+    protected function resolveSettings(array $raw, string $settingsField): array
     {
         return [
             'style'          => ($raw['style'] ?? 'default') === 'flush' ? 'flush' : 'default',
@@ -82,7 +42,7 @@ final class AccordionItemsProcessor implements DataProcessorInterface
         ];
     }
 
-    private function defaultSettings(): array
+    protected function defaultSettings(string $settingsField): array
     {
         return [
             'style'          => 'default',

@@ -4,81 +4,39 @@ declare(strict_types=1);
 
 namespace Connetation\Elements\DataProcessing;
 
-use Doctrine\DBAL\ParameterType;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\Service\FlexFormService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
-
-final class TimelineItemsProcessor implements DataProcessorInterface
+final class TimelineItemsProcessor extends AbstractItemsProcessor
 {
-    public function process(
-        ContentObjectRenderer $cObj,
-        array $contentObjectConfiguration,
-        array $processorConfiguration,
-        array $processedData
-    ): array {
-        $targetVar         = $processorConfiguration['as'] ?? 'items';
-        $contentElementUid = (int)($processedData['data']['uid'] ?? 0);
+    protected function getTable(): string
+    {
+        return 'tx_conn_elements_domain_model_timeline_item';
+    }
 
-        if ($contentElementUid === 0) {
-            $processedData[$targetVar] = [];
-            $processedData['settings'] = $this->defaultSettings();
-            return $processedData;
-        }
+    protected function getDefaultTargetVariable(): string
+    {
+        return 'items';
+    }
 
-        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-        $flexData = $flexFormService->convertFlexFormContentToArray(
-            $processedData['data']['tx_conn_elements_timeline_settings'] ?? ''
-        );
-        $settings = $this->resolveSettings($flexData['settings'] ?? []);
+    protected function getSettingsField(array $processorConfiguration): string
+    {
+        return 'tx_conn_elements_timeline_settings';
+    }
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_timeline_item');
+    protected function getFalFields(): array
+    {
+        return ['image' => 'imageFile'];
+    }
 
-        $rows = $queryBuilder
-            ->select('*')
-            ->from('tx_conn_elements_domain_model_timeline_item')
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'content_element',
-                    $queryBuilder->createNamedParameter($contentElementUid, ParameterType::INTEGER)
-                ),
-                $queryBuilder->expr()->eq(
-                    'deleted',
-                    $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-                ),
-                $queryBuilder->expr()->eq(
-                    'hidden',
-                    $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-                )
-            )
-            ->orderBy('sorting', 'ASC')
-            ->executeQuery()
-            ->fetchAllAssociative();
-
+    protected function postProcessRows(array $rows, array $settings): array
+    {
         if ($settings['sortOrder'] === 'date_asc') {
             usort($rows, fn($a, $b) => ($a['date'] ?? 0) <=> ($b['date'] ?? 0));
         } elseif ($settings['sortOrder'] === 'date_desc') {
             usort($rows, fn($a, $b) => ($b['date'] ?? 0) <=> ($a['date'] ?? 0));
         }
 
-        $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
         $lastYear  = null;
         $sideIndex = 0;
         foreach ($rows as &$row) {
-            try {
-                $files = $fileRepository->findByRelation(
-                    'tx_conn_elements_domain_model_timeline_item',
-                    'image',
-                    $row['uid']
-                );
-                $row['imageFile'] = $files[0] ?? null;
-            } catch (\Exception $e) {
-                $row['imageFile'] = null;
-            }
             $ts = $row['date'] !== null ? (int)$row['date'] : null;
             $row['dateFormatted'] = $ts ? date('d.m.Y', $ts) : '';
             $row['dateYear']      = $ts ? date('Y', $ts) : '';
@@ -89,13 +47,10 @@ final class TimelineItemsProcessor implements DataProcessorInterface
         }
         unset($row);
 
-        $processedData[$targetVar] = $rows;
-        $processedData['settings'] = $settings;
-
-        return $processedData;
+        return $rows;
     }
 
-    private function resolveSettings(array $raw): array
+    protected function resolveSettings(array $raw, string $settingsField): array
     {
         return [
             'layout'       => in_array($raw['layout'] ?? '', ['changelog', 'responsive', 'scroll'], true)
@@ -117,7 +72,7 @@ final class TimelineItemsProcessor implements DataProcessorInterface
         ];
     }
 
-    private function defaultSettings(): array
+    protected function defaultSettings(string $settingsField): array
     {
         return [
             'layout'      => 'changelog',

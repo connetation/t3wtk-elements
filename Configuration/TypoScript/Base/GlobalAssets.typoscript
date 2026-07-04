@@ -1,16 +1,10 @@
 # ─────────────────────────────────────────────
-# Global assets loaded on every page when
-# conn_elements is active in the project.
+# Global assets for conn_elements.
+# Text-animation CSS/JS is NOT included here: it is collected on demand via
+# f:asset.css / f:asset.script in the content element layouts
+# (conn_elements Layouts/Default.html and conn_base Layouts/ContentElements/Default.html)
+# whenever an element actually has a text animation set.
 # ─────────────────────────────────────────────
-
-page.includeCSS {
-    conn_elements_text_animation = EXT:conn_elements/Resources/Public/Css/text-animation.css
-}
-
-page.includeJSFooter {
-    conn_elements_text_animation = EXT:conn_elements/Resources/Public/Js/components/text-animation.js
-    conn_elements_text_animation.type = module
-}
 
 # Extend lib.contentElement with conn_elements paths.
 # Note: fluid_styled_content CEs use =< lib.contentElement at parse-time (before this

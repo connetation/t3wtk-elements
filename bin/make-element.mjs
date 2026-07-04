@@ -159,13 +159,9 @@ function genTypoScriptSimple(pascal, snake, ctype, kebab) {
 # ${pascal} Content Element – conn_elements
 # ─────────────────────────────────────────────
 
-lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
-lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
-
-tt_content.${ctype} =< lib.contentElement
+tt_content.${ctype} =< lib.conn_elements_ce
 tt_content.${ctype} {
     templateName = ${pascal}
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = TYPO3\\CMS\\Frontend\\DataProcessing\\FlexFormProcessor
         10 {
@@ -182,17 +178,13 @@ function genTypoScriptWithItems(pascal, snake, ctype) {
 # ${pascal} Content Element – conn_elements
 # ─────────────────────────────────────────────
 
-lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
-lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
-
-tt_content.${ctype} =< lib.contentElement
+tt_content.${ctype} =< lib.conn_elements_ce
 tt_content.${ctype} {
     templateName = ${pascal}
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\\Elements\\DataProcessing\\${pascal}ItemsProcessor
         10 {
-            fieldName = tx_conn_elements_${snake}_items
+            settingsField = tx_conn_elements_${snake}_settings
             as = items
         }
     }
@@ -347,33 +339,34 @@ function genIcon(pascal) {
 `;
 }
 
-function genTcaModel(pascal, snake) {
-    const tableKey = `tx_conn_elements_domain_model_${snake}_item`;
+function genTcaModel(pascal, snake, kebab) {
     return `<?php
 
 declare(strict_types=1);
 
-defined('TYPO3') or die();
-
 return [
     'ctrl' => [
-        'title'          => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.${snake}_item',
-        'label'          => 'title',
-        'sortby'         => 'sorting',
-        'tstamp'         => 'tstamp',
-        'crdate'         => 'crdate',
-        'delete'         => 'deleted',
-        'enablecolumns'  => ['disabled' => 'hidden'],
-        'iconfile'       => 'EXT:conn_elements/Resources/Public/Icons/conn_logo_small.svg',
-        'rootLevel'      => -1,
-        'security'       => ['ignorePageTypeRestriction' => true],
+        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.${snake}_item',
+        'label'         => 'title',
+        'sortby'        => 'sorting',
+        'tstamp'        => 'tstamp',
+        'crdate'        => 'crdate',
+        'delete'        => 'deleted',
+        'versioningWS'  => true,
+        'enablecolumns' => ['disabled' => 'hidden'],
+        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/${kebab}-ce.svg',
+        'rootLevel'     => -1,
+        'security'      => ['ignorePageTypeRestriction' => true],
     ],
-
     'columns' => [
         'hidden' => [
             'exclude' => true,
-            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.disable',
-            'config'  => ['type' => 'check', 'renderType' => 'checkboxToggle'],
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
+            'config'  => [
+                'type'       => 'check',
+                'renderType' => 'checkboxToggle',
+                'items'      => [['label' => '', 'invertStateDisplay' => true]],
+            ],
         ],
         'sorting' => [
             'config' => ['type' => 'passthrough'],
@@ -382,25 +375,24 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'   => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}_item.title',
-            'config'  => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}_item.title',
+            'config' => [
                 'type'     => 'input',
-                'size'     => 50,
+                'size'     => 60,
                 'max'      => 255,
+                'eval'     => 'trim',
                 'required' => true,
             ],
         ],
         'body' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}_item.body',
             'config' => [
-                'type'           => 'text',
-                'enableRichtext' => true,
-                'richtextConfiguration' => 'default',
-                'rows'           => 6,
+                'type'            => 'text',
+                'enableRichtext'  => true,
+                'rows'            => 8,
             ],
         ],
     ],
-
     'types' => [
         '1' => [
             'showitem' => '
@@ -423,74 +415,33 @@ declare(strict_types=1);
 
 namespace Connetation\\Elements\\DataProcessing;
 
-use Doctrine\\DBAL\\ParameterType;
-use TYPO3\\CMS\\Core\\Database\\ConnectionPool;
-use TYPO3\\CMS\\Core\\Service\\FlexFormService;
-use TYPO3\\CMS\\Core\\Utility\\GeneralUtility;
-use TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer;
-use TYPO3\\CMS\\Frontend\\ContentObject\\DataProcessorInterface;
-
-final class ${pascal}ItemsProcessor implements DataProcessorInterface
+final class ${pascal}ItemsProcessor extends AbstractItemsProcessor
 {
-    public function process(
-        ContentObjectRenderer $cObj,
-        array $contentObjectConfiguration,
-        array $processorConfiguration,
-        array $processedData
-    ): array {
-        $targetVar         = $processorConfiguration['as'] ?? 'items';
-        $contentElementUid = (int)($processedData['data']['uid'] ?? 0);
-
-        if ($contentElementUid === 0) {
-            $processedData[$targetVar] = [];
-            $processedData['settings'] = $this->defaultSettings();
-            return $processedData;
-        }
-
-        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-        $flexData = $flexFormService->convertFlexFormContentToArray(
-            $processedData['data']['tx_conn_elements_${snake}_settings'] ?? ''
-        );
-        $settings = $this->resolveSettings($flexData['settings'] ?? []);
-
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('${tableKey}');
-
-        $rows = $queryBuilder
-            ->select('*')
-            ->from('${tableKey}')
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'content_element',
-                    $queryBuilder->createNamedParameter($contentElementUid, ParameterType::INTEGER)
-                ),
-                $queryBuilder->expr()->eq(
-                    'deleted',
-                    $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-                ),
-                $queryBuilder->expr()->eq(
-                    'hidden',
-                    $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-                )
-            )
-            ->orderBy('sorting', 'ASC')
-            ->executeQuery()
-            ->fetchAllAssociative();
-
-        $processedData[$targetVar] = $rows;
-        $processedData['settings'] = $settings;
-
-        return $processedData;
+    protected function getTable(): string
+    {
+        return '${tableKey}';
     }
 
-    private function resolveSettings(array $raw): array
+    protected function getDefaultTargetVariable(): string
+    {
+        return 'items';
+    }
+
+    protected function getSettingsField(array $processorConfiguration): string
+    {
+        return $processorConfiguration['settingsField'] ?? 'tx_conn_elements_${snake}_settings';
+    }
+
+    protected function resolveSettings(array $raw, string $settingsField): array
     {
         return [
-            'style' => ($raw['style'] ?? 'default'),
+            'style' => in_array($raw['style'] ?? 'default', ['default'], true)
+                ? ($raw['style'] ?? 'default')
+                : 'default',
         ];
     }
 
-    private function defaultSettings(): array
+    protected function defaultSettings(string $settingsField): array
     {
         return [
             'style' => 'default',
@@ -617,12 +568,9 @@ function patchTtContent(pascal, snake, ctype, kebab, group, hasItems) {
             'foreign_field' => 'content_element',
             'maxitems'      => 200,
             'appearance'    => [
-                'collapseAll'                     => true,
-                'levelLinksPosition'              => 'top',
-                'showSynchronizationLink'         => true,
-                'showAllLocalizationLink'         => true,
-                'showPossibleLocalizationRecords' => true,
-                'enabledControls'                 => ['dragdrop' => true],
+                'collapseAll'        => true,
+                'levelLinksPosition' => 'top',
+                'enabledControls'    => ['dragdrop' => true],
             ],
         ],
     ],
@@ -630,7 +578,7 @@ function patchTtContent(pascal, snake, ctype, kebab, group, hasItems) {
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/${pascal}.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/${pascal}.xml',
         ],
     ],
 ]);\n`
@@ -639,7 +587,7 @@ function patchTtContent(pascal, snake, ctype, kebab, group, hasItems) {
         'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => ['default' => 'FILE:EXT:conn_elements/Configuration/FlexForms/${pascal}.xml'],
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/${pascal}.xml',
         ],
     ],
 ]);\n`;
@@ -748,11 +696,9 @@ async function main() {
     const pascal = toPascal(rawName);
     const kebab  = toKebab(pascal);
     const snake  = toSnake(pascal);
-    const ctype  = `conn_bs_${snake}`;
 
     console.log(`\n  PascalCase : ${c.bold}${pascal}${c.reset}`);
-    console.log(`  kebab-case : ${kebab}`);
-    console.log(`  CType      : ${ctype}\n`);
+    console.log(`  kebab-case : ${kebab}\n`);
 
     const typeChoice = await ask('Type: [1] Simple (FlexForm only)  [2] With inline child records', '1');
     const hasItems   = typeChoice === '2';
@@ -761,6 +707,17 @@ async function main() {
     const groupList = '  [1] conn_bootstrap  [2] conn  [3] conn_swiper';
     const groupChoice = await ask(`CE group:\n${groupList}\n  Choice`, '1');
     const group = groups[groupChoice] ?? 'conn_bootstrap';
+
+    // CType prefix follows the chosen group, matching existing element names:
+    // conn_bootstrap → conn_bs_*, conn_swiper → conn_swiper_*, conn → conn_*
+    const ctypePrefixes = {
+        conn_bootstrap: 'conn_bs_',
+        conn_swiper:    'conn_swiper_',
+        conn:           'conn_',
+    };
+    const ctype = `${ctypePrefixes[group] ?? 'conn_'}${snake}`;
+
+    console.log(`\n  CType      : ${c.bold}${ctype}${c.reset}`);
 
     console.log(`\n${c.bold}Generating files…${c.reset}\n`);
 
@@ -781,7 +738,7 @@ async function main() {
         writeNew(`Resources/Private/Partials/${pascal}/Item.html`,
             genPartialItem(pascal, kebab));
         writeNew(`Configuration/TCA/tx_conn_elements_domain_model_${snake}_item.php`,
-            genTcaModel(pascal, snake));
+            genTcaModel(pascal, snake, kebab));
         writeNew(`Classes/DataProcessing/${pascal}ItemsProcessor.php`,
             genDataProcessor(pascal, snake));
     }

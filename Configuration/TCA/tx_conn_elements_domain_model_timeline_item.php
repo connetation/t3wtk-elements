@@ -12,6 +12,7 @@ return [
         'tstamp'         => 'tstamp',
         'crdate'         => 'crdate',
         'delete'         => 'deleted',
+        'versioningWS'         => true,
         'enablecolumns'  => ['disabled' => 'hidden'],
         'iconfile'       => 'EXT:conn_elements/Resources/Public/Icons/conn_logo_small.svg',
         'rootLevel'      => -1,

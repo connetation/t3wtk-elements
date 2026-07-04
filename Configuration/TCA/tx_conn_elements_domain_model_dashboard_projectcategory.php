@@ -12,6 +12,7 @@ return [
         'tstamp'        => 'tstamp',
         'crdate'        => 'crdate',
         'delete'        => 'deleted',
+        'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
         'iconfile'      => 'EXT:core/Resources/Public/Icons/T3Icons/svgs/mimetypes/mimetypes-x-sys_category.svg',
         'security'      => ['ignorePageTypeRestriction' => true],

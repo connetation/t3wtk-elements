@@ -34,6 +34,11 @@ final class WikiModuleController
             ->executeQuery()
             ->fetchAllAssociative();
 
+        $wikis = array_values(array_filter(
+            $wikis,
+            fn(array $wiki): bool => $this->isPidAccessible((int)$wiki['pid'])
+        ));
+
         $currentUrl = (string)$this->backendUriBuilder->buildUriFromRoute('conn_elements_wiki');
         $newWikiUri = (string)$this->backendUriBuilder->buildUriFromRoute('record_edit', [
             'edit'      => ['tx_conn_elements_domain_model_wiki' => [0 => 'new']],
@@ -78,6 +83,10 @@ final class WikiModuleController
             ->executeQuery()
             ->fetchAssociative();
 
+        if (is_array($wiki) && !$this->isPidAccessible((int)$wiki['pid'])) {
+            $wiki = false;
+        }
+
         $catQb = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_conn_elements_domain_model_wikicategory');
         $catQb->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
@@ -87,6 +96,11 @@ final class WikiModuleController
             ->orderBy('title', 'ASC')
             ->executeQuery()
             ->fetchAllAssociative();
+
+        $categories = array_values(array_filter(
+            $categories,
+            fn(array $category): bool => $this->isPidAccessible((int)$category['pid'])
+        ));
 
         $pid           = $wiki['pid'] ?? 0;
         $newCategoryUri = (string)$this->backendUriBuilder->buildUriFromRoute('record_edit', [
@@ -129,6 +143,10 @@ final class WikiModuleController
             ->executeQuery()
             ->fetchAssociative();
 
+        if (is_array($wiki) && !$this->isPidAccessible((int)$wiki['pid'])) {
+            $wiki = false;
+        }
+
         // ─── Pages (including hidden) ─────────────────────────────
         $pageQb = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_conn_elements_domain_model_wikipage');
@@ -141,6 +159,11 @@ final class WikiModuleController
             ->orderBy('p.sorting', 'ASC')
             ->executeQuery()
             ->fetchAllAssociative();
+
+        $pages = array_values(array_filter(
+            $pages,
+            fn(array $page): bool => $this->isPidAccessible((int)$page['pid'])
+        ));
 
         $pid        = $wiki['pid'] ?? 0;
         $newPageUri = (string)$this->backendUriBuilder->buildUriFromRoute('record_edit', [
@@ -165,5 +188,18 @@ final class WikiModuleController
             'indexUrl'   => $indexUrl,
         ]);
         return $moduleTemplate->renderResponse('Backend/WikiPages');
+    }
+
+    /**
+     * Whether the given pid lies inside the current backend user's webmounts.
+     * Admins always have access.
+     */
+    private function isPidAccessible(int $pid): bool
+    {
+        $backendUser = $GLOBALS['BE_USER'] ?? null;
+        if ($backendUser === null || $backendUser->isAdmin()) {
+            return true;
+        }
+        return $backendUser->isInWebMount($pid) !== null;
     }
 }

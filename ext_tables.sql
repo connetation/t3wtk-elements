@@ -89,7 +89,8 @@ CREATE TABLE tx_conn_elements_domain_model_dashboard_project (
     image           int(11) DEFAULT '0' NOT NULL,
 
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+    KEY content_element (content_element)
 );
 
 CREATE TABLE tx_conn_elements_domain_model_dashboard_projectcategory (
@@ -105,7 +106,8 @@ CREATE TABLE tx_conn_elements_domain_model_dashboard_projectcategory (
     title           varchar(255) DEFAULT '' NOT NULL,
 
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+    KEY content_element (content_element)
 );
 
 -- ─── Wiki ─────────────────────────────────────────────────────────────────────
@@ -182,7 +184,8 @@ CREATE TABLE tx_conn_elements_domain_model_wikicategory (
     title           varchar(255) DEFAULT '' NOT NULL,
 
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+    KEY wiki (wiki)
 );
 
 -- ─── Bootstrap Accordion ──────────────────────────────────────────────────────
@@ -271,7 +274,8 @@ CREATE TABLE tx_conn_elements_domain_model_wikitag (
     title           varchar(255) DEFAULT '' NOT NULL,
 
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+    KEY wiki (wiki)
 );
 
 CREATE TABLE tx_conn_elements_domain_model_wikipage_tag_mm (

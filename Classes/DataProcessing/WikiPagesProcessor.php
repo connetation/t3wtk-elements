@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Connetation\Elements\DataProcessing;
 
+use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Service\FlexFormService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
-final class WikiPagesProcessor implements DataProcessorInterface
+final class WikiPagesProcessor extends AbstractItemsProcessor
 {
     public function process(
         ContentObjectRenderer $cObj,
@@ -19,7 +16,7 @@ final class WikiPagesProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ): array {
-        $targetVar = $processorConfiguration['as'] ?? 'wikiPages';
+        $targetVar = $processorConfiguration['as'] ?? $this->getDefaultTargetVariable();
         $wikiId    = (int)($processedData['data']['tx_conn_elements_wiki_id'] ?? 0);
 
         $empty = fn () => array_merge($processedData, [
@@ -27,7 +24,7 @@ final class WikiPagesProcessor implements DataProcessorInterface
             'wiki'        => null,
             'categories'  => [],
             'tags'        => [],
-            'settings'    => $this->defaultSettings(),
+            'settings'    => $this->defaultSettings(''),
         ]);
 
         if ($wikiId === 0) {
@@ -35,15 +32,13 @@ final class WikiPagesProcessor implements DataProcessorInterface
         }
 
         // ─── FlexForm settings ────────────────────────────────────
-        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-        $flexData        = $flexFormService->convertFlexFormContentToArray(
-            $processedData['data']['tx_conn_elements_wiki_settings'] ?? ''
+        $processedData['settings'] = $this->resolveSettings(
+            $this->decodeFlexFormSettings($processedData['data'], $this->getSettingsField($processorConfiguration)),
+            ''
         );
-        $processedData['settings'] = $this->resolveSettings($flexData['settings'] ?? []);
 
         // ─── Wiki directory record ────────────────────────────────
-        $wikiQb = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_wiki');
+        $wikiQb = $this->createFrontendQueryBuilder('tx_conn_elements_domain_model_wiki');
         $wiki = $wikiQb->select('*')
             ->from('tx_conn_elements_domain_model_wiki')
             ->where($wikiQb->expr()->eq('uid', $wikiQb->createNamedParameter($wikiId, ParameterType::INTEGER)))
@@ -56,18 +51,7 @@ final class WikiPagesProcessor implements DataProcessorInterface
         $processedData['wiki'] = $wiki;
 
         // ─── Pages ────────────────────────────────────────────────
-        $pageQb = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_wikipage');
-        $pages = $pageQb->select('*')
-            ->from('tx_conn_elements_domain_model_wikipage')
-            ->where(
-                $pageQb->expr()->eq('wiki', $pageQb->createNamedParameter($wikiId, ParameterType::INTEGER)),
-                $pageQb->expr()->eq('deleted', $pageQb->createNamedParameter(0, ParameterType::INTEGER)),
-                $pageQb->expr()->eq('hidden', $pageQb->createNamedParameter(0, ParameterType::INTEGER))
-            )
-            ->orderBy('sorting', 'ASC')
-            ->executeQuery()
-            ->fetchAllAssociative();
+        $pages = $this->fetchChildren($this->getTable(), $wikiId, 'wiki');
 
         if (empty($pages)) {
             $processedData[$targetVar] = [];
@@ -79,14 +63,11 @@ final class WikiPagesProcessor implements DataProcessorInterface
         $pageUids = array_column($pages, 'uid');
 
         // ─── Blocks per page ─────────────────────────────────────
-        $blockQb = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_wikipage_block');
+        $blockQb = $this->createFrontendQueryBuilder('tx_conn_elements_domain_model_wikipage_block');
         $blockRows = $blockQb->select('*')
             ->from('tx_conn_elements_domain_model_wikipage_block')
             ->where(
-                $blockQb->expr()->in('page', $blockQb->createNamedParameter($pageUids, \Doctrine\DBAL\ArrayParameterType::INTEGER)),
-                $blockQb->expr()->eq('deleted', $blockQb->createNamedParameter(0, ParameterType::INTEGER)),
-                $blockQb->expr()->eq('hidden', $blockQb->createNamedParameter(0, ParameterType::INTEGER))
+                $blockQb->expr()->in('page', $blockQb->createNamedParameter($pageUids, ArrayParameterType::INTEGER))
             )
             ->orderBy('sorting', 'ASC')
             ->executeQuery()
@@ -115,14 +96,11 @@ final class WikiPagesProcessor implements DataProcessorInterface
         }
 
         // ─── Categories ───────────────────────────────────────────
-        $catQb = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_conn_elements_domain_model_wikicategory');
+        $catQb = $this->createFrontendQueryBuilder('tx_conn_elements_domain_model_wikicategory');
         $catRows = $catQb->select('uid', 'title')
             ->from('tx_conn_elements_domain_model_wikicategory')
             ->where(
-                $catQb->expr()->eq('wiki', $catQb->createNamedParameter($wikiId, ParameterType::INTEGER)),
-                $catQb->expr()->eq('deleted', $catQb->createNamedParameter(0, ParameterType::INTEGER)),
-                $catQb->expr()->eq('hidden', $catQb->createNamedParameter(0, ParameterType::INTEGER))
+                $catQb->expr()->eq('wiki', $catQb->createNamedParameter($wikiId, ParameterType::INTEGER))
             )
             ->orderBy('title', 'ASC')
             ->executeQuery()
@@ -160,7 +138,22 @@ final class WikiPagesProcessor implements DataProcessorInterface
         return $processedData;
     }
 
-    private function resolveSettings(array $settings): array
+    protected function getTable(): string
+    {
+        return 'tx_conn_elements_domain_model_wikipage';
+    }
+
+    protected function getDefaultTargetVariable(): string
+    {
+        return 'wikiPages';
+    }
+
+    protected function getSettingsField(array $processorConfiguration): string
+    {
+        return 'tx_conn_elements_wiki_settings';
+    }
+
+    protected function resolveSettings(array $settings, string $settingsField): array
     {
         return [
             'show_search'          => (bool)($settings['show_search'] ?? true),
@@ -169,7 +162,7 @@ final class WikiPagesProcessor implements DataProcessorInterface
         ];
     }
 
-    private function defaultSettings(): array
+    protected function defaultSettings(string $settingsField): array
     {
         return [
             'show_search'          => true,

@@ -1,4 +1,6 @@
 import * as esbuild from 'esbuild';
+import { readdirSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
 
 const watch = process.argv.includes('--watch');
 const dev   = watch || process.argv.includes('--dev');
@@ -37,11 +39,22 @@ const config = {
     sourcemap: dev ? 'inline' : false,
 };
 
+// Code splitting mints new content-hashed chunk-*.js names on every build —
+// remove previous chunks first so orphans don't accumulate in git.
+function cleanChunks() {
+    for (const file of readdirSync(config.outdir)) {
+        if (/^chunk-[A-Z0-9]+\.js$/.test(file)) {
+            rmSync(join(config.outdir, file));
+        }
+    }
+}
+
 if (watch) {
     const ctx = await esbuild.context(config);
     await ctx.watch();
     console.log('[elements] watching…');
 } else {
+    cleanChunks();
     await esbuild.build(config);
     console.log('[elements] built');
 }
