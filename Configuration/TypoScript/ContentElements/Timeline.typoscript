@@ -2,13 +2,9 @@
 # Timeline Content Element – conn_elements
 # ─────────────────────────────────────────────
 
-lib.contentElement.templateRootPaths.20 = EXT:conn_elements/Resources/Private/Templates/ContentElements/
-lib.contentElement.partialRootPaths.20  = EXT:conn_elements/Resources/Private/Partials/
-
-tt_content.conn_bs_timeline =< lib.contentElement
+tt_content.conn_bs_timeline =< lib.conn_elements_ce
 tt_content.conn_bs_timeline {
     templateName = Timeline
-    layoutRootPaths.20 = EXT:conn_elements/Resources/Private/Layouts/
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\TimelineItemsProcessor
         10 {
