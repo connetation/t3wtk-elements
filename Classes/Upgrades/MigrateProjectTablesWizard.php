@@ -10,8 +10,12 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
-#[UpgradeWizard('conn_elements_renameProjectTable')]
-final class RenameProjectTableWizard implements UpgradeWizardInterface
+// Replaces RenameProjectTableWizard, which left the old tables behind after
+// copying. TYPO3 marks wizards as done by FQCN in sys_registry, so a new
+// class name (not just a new identifier) is required to re-run on systems
+// where the old wizard already completed.
+#[UpgradeWizard('conn_elements_migrateProjectTables')]
+final class MigrateProjectTablesWizard implements UpgradeWizardInterface
 {
     private const RENAMES = [
         'tx_conn_elements_domain_model_project'         => 'tx_conn_elements_domain_model_dashboard_project',
@@ -25,22 +29,19 @@ final class RenameProjectTableWizard implements UpgradeWizardInterface
 
     public function getDescription(): string
     {
-        return 'Moves data from the old project/category tables into the new dashboard-scoped tables and updates file references.';
+        return 'Moves data from the old project/category tables into the new dashboard-scoped tables, '
+            . 'updates file references and drops the old tables afterwards.';
     }
 
     public function updateNecessary(): bool
     {
-        foreach (self::RENAMES as $old => $new) {
-            if ($this->tableExists($old) && $this->countRows($old) > 0 && $this->countRows($new) === 0) {
+        foreach (self::RENAMES as $old => $_new) {
+            if ($this->tableExists($old)) {
                 return true;
             }
         }
 
-        if ($this->countStaleFileReferences() > 0) {
-            return true;
-        }
-
-        return false;
+        return $this->countStaleFileReferences() > 0;
     }
 
     public function executeUpdate(): bool
@@ -49,7 +50,7 @@ final class RenameProjectTableWizard implements UpgradeWizardInterface
             ->getConnectionByName(ConnectionPool::DEFAULT_CONNECTION_NAME);
 
         foreach (self::RENAMES as $old => $new) {
-            if (!$this->tableExists($old) || $this->countRows($old) === 0 || $this->countRows($new) > 0) {
+            if (!$this->tableExists($old)) {
                 continue;
             }
 
@@ -57,11 +58,20 @@ final class RenameProjectTableWizard implements UpgradeWizardInterface
                 $connection->executeStatement(
                     sprintf('RENAME TABLE `%s` TO `%s`', $old, $new)
                 );
-            } else {
+                continue;
+            }
+
+            if ($this->countRows($new) === 0 && $this->countRows($old) > 0) {
                 $connection->executeStatement(
                     sprintf('INSERT INTO `%s` SELECT * FROM `%s`', $new, $old)
                 );
             }
+
+            // Either just copied or the new table already carries the data:
+            // the old table is a stale leftover either way.
+            $connection->executeStatement(
+                sprintf('DROP TABLE `%s`', $old)
+            );
         }
 
         $this->migrateFileReferences($connection);
