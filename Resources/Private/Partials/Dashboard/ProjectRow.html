@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <tr class="dashboard__project-item"
@@ -16,7 +16,7 @@
         <f:if condition="{project.imageFiles}">
             <f:then>
                 <div class="rounded overflow-hidden" style="width:40px;height:40px;flex-shrink:0">
-                    <ce:responsiveImage image="{project.imageFiles.0}"
+                    <conn:responsiveImage image="{project.imageFiles.0}"
                                         class="object-fit-contain w-100 h-100"
                                         alt="{project.title}"
                                         widths="40,80,120"

@@ -63,6 +63,40 @@ return [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
                 'maxitems' => 1,
+                'overrideChildTca' => [
+                    'columns' => [
+                        'crop' => [
+                            'config' => [
+                                'cropVariants' => [
+                                    'default' => [
+                                        'title' => 'Desktop',
+                                        'allowedAspectRatios' => [
+                                            'free' => [
+                                                'title' => 'Free',
+                                                'value' => 0.0,
+                                            ],
+                                        ],
+                                        'selectedRatio' => 'free',
+                                    ],
+                                    'mobile' => [
+                                        'title' => 'Mobile',
+                                        'allowedAspectRatios' => [
+                                            'free' => [
+                                                'title' => 'Free',
+                                                'value' => 0.0,
+                                            ],
+                                            'portrait' => [
+                                                'title' => 'Portrait (3:4)',
+                                                'value' => 0.75,
+                                            ],
+                                        ],
+                                        'selectedRatio' => 'portrait',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
         'link' => [

@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <!-- Image top: 16:9 preview image above card body -->
@@ -7,7 +7,7 @@
     <f:if condition="{project.imageFiles}">
         <f:then>
             <div class="ratio ratio-16x9 overflow-hidden rounded-top">
-                <ce:responsiveImage image="{project.imageFiles.0}"
+                <conn:responsiveImage image="{project.imageFiles.0}"
                                     class="object-fit-contain w-100 h-100 p-3 pb-0"
                                     alt="{project.title}"
                                     widths="480,640,800,1200"
@@ -31,7 +31,7 @@
         <div class="dashboard__card-thumb flex-shrink-0">
             <f:if condition="{project.imageFiles}">
                 <f:then>
-                    <ce:responsiveImage image="{project.imageFiles.0}"
+                    <conn:responsiveImage image="{project.imageFiles.0}"
                                         class="dashboard__card-thumb-img"
                                         alt="{project.title}"
                                         widths="120,240,360"
@@ -71,7 +71,7 @@
     <div class="dashboard__card-logo-wrap">
         <f:if condition="{project.imageFiles}">
             <f:then>
-                <ce:responsiveImage image="{project.imageFiles.0}"
+                <conn:responsiveImage image="{project.imageFiles.0}"
                                     class="dashboard__card-logo-img"
                                     alt="{project.title}"
                                     widths="80,160,240"

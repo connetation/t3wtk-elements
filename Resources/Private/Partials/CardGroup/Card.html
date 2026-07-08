@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="{colClass} conn-card-group__item">
@@ -8,7 +8,7 @@
         <f:if condition="{card.imageFile}">
             <f:then>
                 <div class="ratio ratio-16x9 overflow-hidden rounded-top">
-                    <ce:responsiveImage image="{card.imageFile}"
+                    <conn:responsiveImage image="{card.imageFile}"
                                         class="object-fit-cover w-100 h-100"
                                         alt="{card.title}"
                                         widths="480,640,800,1200,1600"

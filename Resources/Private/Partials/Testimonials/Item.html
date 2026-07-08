@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="conn-testimonials__item">
@@ -17,7 +17,7 @@
             <f:if condition="{testimonial.imageFile}">
                 <f:then>
                     <div class="conn-testimonials__avatar">
-                        <ce:responsiveImage image="{testimonial.imageFile}"
+                        <conn:responsiveImage image="{testimonial.imageFile}"
                                             class="conn-testimonials__avatar-img"
                                             alt="{testimonial.author_name}"
                                             widths="88,176"

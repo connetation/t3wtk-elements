@@ -1,10 +1,10 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="carousel-item{f:if(condition: isFirst, then: ' active')}">
     <f:if condition="{item.imageFile}">
-        <ce:responsiveImage image="{item.imageFile}"
+        <conn:responsiveImage image="{item.imageFile}"
                             class="d-block w-100"
                             alt="{item.title}"
                             widths="640,960,1280,1920,2560,3840"

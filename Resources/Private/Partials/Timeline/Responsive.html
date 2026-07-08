@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <div class="conn-timeline__track">
@@ -13,7 +13,7 @@
                     </f:if>
                     <f:if condition="{item.imageFile}">
                         <div class="conn-timeline__image">
-                            <ce:responsiveImage image="{item.imageFile}"
+                            <conn:responsiveImage image="{item.imageFile}"
                                                 class="img-fluid rounded"
                                                 alt="{item.title}"
                                                 widths="480,640,800,1200,1600"

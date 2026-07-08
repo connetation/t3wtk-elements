@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:if condition="{item.imageFile}">
@@ -15,7 +15,7 @@
          data-img-width="{item.imageFile.properties.width}"
          data-img-height="{item.imageFile.properties.height}">
         <div class="conn-mosaic-gallery__item-inner">
-            <ce:responsiveImage image="{item.imageFile}"
+            <conn:responsiveImage image="{item.imageFile}"
                                 class="conn-mosaic-gallery__img"
                                 alt="{item.title}"
                                 widths="400,600,800,1200"
