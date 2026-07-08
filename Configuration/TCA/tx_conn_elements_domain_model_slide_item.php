@@ -97,6 +97,18 @@ return [
                 ],
             ],
         ],
+        'bg_animation' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:bg_animation',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'default'    => '',
+                'items'      => [
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:bg_animation.none', 'value' => ''],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:bg_animation.zoom', 'value' => 'zoom'],
+                ],
+            ],
+        ],
         'animation_duration' => [
             'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:animation_duration',
             'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:animation_duration.description',
@@ -145,6 +157,7 @@ return [
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
                     text_animation, animation_duration,
                     text_pos_v, text_pos_h,
+                    bg_animation,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

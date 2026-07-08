@@ -31,6 +31,16 @@
             <trans-unit id="animation_duration.description">
                 <source>Override animation duration in milliseconds. 0 = use default (e.g. 650 for Words, 1100 for Fuzzy).</source>
             </trans-unit>
+            <!-- Slide background image animation (hero slider) -->
+            <trans-unit id="bg_animation">
+                <source>Background Image Animation</source>
+            </trans-unit>
+            <trans-unit id="bg_animation.none">
+                <source>None (default)</source>
+            </trans-unit>
+            <trans-unit id="bg_animation.zoom">
+                <source>Zoom in</source>
+            </trans-unit>
             <!-- Slide text position (hero slider) -->
             <trans-unit id="text_pos_v">
                 <source>Vertical Position</source>

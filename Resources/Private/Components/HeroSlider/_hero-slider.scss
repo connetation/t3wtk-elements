@@ -143,6 +143,19 @@
                 opacity: 0;
             }
         }
+
+        // Background image zoom (Ken Burns) animation, per slide
+        &--anim-zoom {
+            .conn-hero-slider__bg-img {
+                transition: transform 8s ease;
+            }
+        }
+
+        &--anim-zoom.swiper-slide-active {
+            .conn-hero-slider__bg-img {
+                transform: scale(1.04);
+            }
+        }
     }
 
     // ── Background image ─────────────────────
@@ -161,11 +174,6 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        transition: transform 8s ease;
-
-        .swiper-slide-active & {
-            transform: scale(1.04);
-        }
     }
 
     // ── Dark gradient overlay ─────────────────

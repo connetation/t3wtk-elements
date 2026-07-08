@@ -2,7 +2,7 @@
       xmlns:ce="http://typo3.org/ns/Connetation/Elements/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<div class="swiper-slide conn-hero-slider__slide{f:if(condition: slide.text_pos_v, then: ' conn-hero-slider__slide--v-{slide.text_pos_v}')}{f:if(condition: slide.text_pos_h, then: ' conn-hero-slider__slide--h-{slide.text_pos_h}')}{f:if(condition: slide.text_animation, then: ' conn-hero-slider__slide--gsap')}">
+<div class="swiper-slide conn-hero-slider__slide{f:if(condition: slide.text_pos_v, then: ' conn-hero-slider__slide--v-{slide.text_pos_v}')}{f:if(condition: slide.text_pos_h, then: ' conn-hero-slider__slide--h-{slide.text_pos_h}')}{f:if(condition: slide.text_animation, then: ' conn-hero-slider__slide--gsap')}{f:if(condition: slide.bg_animation, then: ' conn-hero-slider__slide--anim-{slide.bg_animation}')}">
 
     <f:if condition="{slide.imageFile}">
         <f:then>
