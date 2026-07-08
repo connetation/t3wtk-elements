@@ -69,7 +69,7 @@ return [
                             'config' => [
                                 'cropVariants' => [
                                     'default' => [
-                                        'title' => 'Desktop',
+                                        'title' => 'Default (>=1400px)',
                                         'allowedAspectRatios' => [
                                             'free' => [
                                                 'title' => 'Free',
@@ -78,8 +78,48 @@ return [
                                         ],
                                         'selectedRatio' => 'free',
                                     ],
-                                    'mobile' => [
-                                        'title' => 'Mobile',
+                                    'xl' => [
+                                        'title' => 'Extra Large (1200-1399px)',
+                                        'allowedAspectRatios' => [
+                                            'free' => [
+                                                'title' => 'Free',
+                                                'value' => 0.0,
+                                            ],
+                                        ],
+                                        'selectedRatio' => 'free',
+                                    ],
+                                    'lg' => [
+                                        'title' => 'Large (992-1199px)',
+                                        'allowedAspectRatios' => [
+                                            'free' => [
+                                                'title' => 'Free',
+                                                'value' => 0.0,
+                                            ],
+                                        ],
+                                        'selectedRatio' => 'free',
+                                    ],
+                                    'md' => [
+                                        'title' => 'Medium (768-991px)',
+                                        'allowedAspectRatios' => [
+                                            'free' => [
+                                                'title' => 'Free',
+                                                'value' => 0.0,
+                                            ],
+                                        ],
+                                        'selectedRatio' => 'free',
+                                    ],
+                                    'sm' => [
+                                        'title' => 'Small (576-767px)',
+                                        'allowedAspectRatios' => [
+                                            'free' => [
+                                                'title' => 'Free',
+                                                'value' => 0.0,
+                                            ],
+                                        ],
+                                        'selectedRatio' => 'free',
+                                    ],
+                                    'base' => [
+                                        'title' => 'Base (<576px)',
                                         'allowedAspectRatios' => [
                                             'free' => [
                                                 'title' => 'Free',
