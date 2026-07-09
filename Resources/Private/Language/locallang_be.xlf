@@ -3,6 +3,14 @@
     <file source-language="en" datatype="plaintext" original="EXT:conn_elements/Resources/Private/Language/locallang_be.xlf">
         <header/>
         <body>
+            <!-- Heading/subheading layout fields (shared label, reused across every
+                 item table's *_layout column — see e.g. card_item.title_layout) -->
+            <trans-unit id="layout.heading">
+                <source>Heading Layout</source>
+            </trans-unit>
+            <trans-unit id="layout.subheading">
+                <source>Subheading Layout</source>
+            </trans-unit>
             <!-- Text animation field (global, all CE types) -->
             <trans-unit id="text_animation">
                 <source>Text Animation</source>

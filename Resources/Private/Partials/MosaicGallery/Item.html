@@ -23,11 +23,9 @@
 
             <f:if condition="{settings.showCaptions} && ({item.title} || {item.caption})">
                 <div class="conn-mosaic-gallery__caption conn-mosaic-gallery__caption--{settings.captionStyle}">
-                    <f:if condition="{item.title}">
-                        <p class="conn-mosaic-gallery__caption-title">{item.title}</p>
-                    </f:if>
+                    <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-mosaic-gallery__caption-title', defaultTag: 'p'}" />
                     <f:if condition="{item.caption}">
-                        <p class="conn-mosaic-gallery__caption-text">{item.caption}</p>
+                        <p class="conn-mosaic-gallery__caption-text">{item.caption -> f:format.html()}</p>
                     </f:if>
                 </div>
             </f:if>

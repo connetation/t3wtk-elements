@@ -2,6 +2,18 @@
 
 declare(strict_types=1);
 
+// Same value set as TYPO3 core's native tt_content.header_layout: 0=default,
+// 1-5=H1-H5, 100=hidden. Reused for every heading/subheading layout column.
+$headingLayoutItems = [
+    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 'value' => 0],
+    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.1', 'value' => 1],
+    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.2', 'value' => 2],
+    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.3', 'value' => 3],
+    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.4', 'value' => 4],
+    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.5', 'value' => 5],
+    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.6', 'value' => 100],
+];
+
 return [
     'ctrl' => [
         'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.pricing_tier',
@@ -42,6 +54,15 @@ return [
                 'required' => true,
             ],
         ],
+        'name_layout' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingLayoutItems,
+                'default'    => 0,
+            ],
+        ],
         'tagline' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.tagline',
             'config' => [
@@ -49,6 +70,15 @@ return [
                 'size' => 60,
                 'max'  => 255,
                 'eval' => 'trim',
+            ],
+        ],
+        'tagline_layout' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingLayoutItems,
+                'default'    => 0,
             ],
         ],
         'currency' => [
@@ -134,7 +164,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    name, tagline, currency, amount, period, price_note, features,
+                    name, name_layout, tagline, tagline_layout, currency, amount, period, price_note, features,
                 --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.tab.cta,
                     cta_label, cta_link,
                 --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.tab.highlight,

@@ -33,7 +33,7 @@
             </f:else>
         </f:if>
     </td>
-    <td class="fw-semibold">{project.title}</td>
+    <td class="fw-semibold"><f:if condition="{project.title_layout} != 100">{project.title}</f:if></td>
     <td class="text-body-secondary small">{project.categoryTitle}</td>
     <td>
         <span class="badge badge--status badge--{project.status}">

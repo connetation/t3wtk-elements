@@ -8,7 +8,16 @@
          aria-hidden="true">
 
     <header class="wiki__page-header mb-4">
-        <h2 class="wiki__page-title">{page.title}</h2>
+        <f:if condition="{page.title_layout} != 100">
+            <f:switch expression="{page.title_layout}">
+                <f:case value="1"><h1 class="wiki__page-title">{page.title}</h1></f:case>
+                <f:case value="2"><h2 class="wiki__page-title">{page.title}</h2></f:case>
+                <f:case value="3"><h3 class="wiki__page-title">{page.title}</h3></f:case>
+                <f:case value="4"><h4 class="wiki__page-title">{page.title}</h4></f:case>
+                <f:case value="5"><h5 class="wiki__page-title">{page.title}</h5></f:case>
+                <f:defaultCase><h2 class="wiki__page-title">{page.title}</h2></f:defaultCase>
+            </f:switch>
+        </f:if>
         <div class="wiki__page-meta">
             <f:if condition="{page.categoryTitle}">
                 <span class="wiki__tag wiki__tag--category">
@@ -34,7 +43,16 @@
                 <f:then>
                     <div class="wiki__block wiki__block--code">
                         <f:if condition="{block.heading}">
-                            <h3 class="wiki__block-heading">{block.heading}</h3>
+                            <f:if condition="{block.heading_layout} != 100">
+                                <f:switch expression="{block.heading_layout}">
+                                    <f:case value="1"><h1 class="wiki__block-heading">{block.heading}</h1></f:case>
+                                    <f:case value="2"><h2 class="wiki__block-heading">{block.heading}</h2></f:case>
+                                    <f:case value="3"><h3 class="wiki__block-heading">{block.heading}</h3></f:case>
+                                    <f:case value="4"><h4 class="wiki__block-heading">{block.heading}</h4></f:case>
+                                    <f:case value="5"><h5 class="wiki__block-heading">{block.heading}</h5></f:case>
+                                    <f:defaultCase><h3 class="wiki__block-heading">{block.heading}</h3></f:defaultCase>
+                                </f:switch>
+                            </f:if>
                         </f:if>
                         <f:if condition="{block.code_text}">
                             <div class="wiki__block-text">{block.code_text -> f:format.raw()}</div>
@@ -47,7 +65,16 @@
                 <f:else>
                     <div class="wiki__block wiki__block--text">
                         <f:if condition="{block.heading}">
-                            <h3 class="wiki__block-heading">{block.heading}</h3>
+                            <f:if condition="{block.heading_layout} != 100">
+                                <f:switch expression="{block.heading_layout}">
+                                    <f:case value="1"><h1 class="wiki__block-heading">{block.heading}</h1></f:case>
+                                    <f:case value="2"><h2 class="wiki__block-heading">{block.heading}</h2></f:case>
+                                    <f:case value="3"><h3 class="wiki__block-heading">{block.heading}</h3></f:case>
+                                    <f:case value="4"><h4 class="wiki__block-heading">{block.heading}</h4></f:case>
+                                    <f:case value="5"><h5 class="wiki__block-heading">{block.heading}</h5></f:case>
+                                    <f:defaultCase><h3 class="wiki__block-heading">{block.heading}</h3></f:defaultCase>
+                                </f:switch>
+                            </f:if>
                         </f:if>
                         {block.content -> f:format.raw()}
                     </div>

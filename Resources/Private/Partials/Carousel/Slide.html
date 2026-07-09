@@ -15,7 +15,16 @@
     <f:if condition="{item.title} || {item.caption}">
         <div class="carousel-caption">
             <f:if condition="{item.title}">
-                <h5>{item.title}</h5>
+                <f:if condition="{item.title_layout} != 100">
+                    <f:switch expression="{item.title_layout}">
+                        <f:case value="1"><h1>{item.title}</h1></f:case>
+                        <f:case value="2"><h2>{item.title}</h2></f:case>
+                        <f:case value="3"><h3>{item.title}</h3></f:case>
+                        <f:case value="4"><h4>{item.title}</h4></f:case>
+                        <f:case value="5"><h5>{item.title}</h5></f:case>
+                        <f:defaultCase><h5>{item.title}</h5></f:defaultCase>
+                    </f:switch>
+                </f:if>
             </f:if>
             <f:if condition="{item.caption}">
                 {item.caption -> f:format.html()}

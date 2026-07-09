@@ -2,16 +2,82 @@
       data-namespace-typo3-fluid="true">
 
 <div class="accordion-item">
-    <h2 class="accordion-header" id="conn-acc-h-{parentUid}-{item.uid}">
-        <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#conn-acc-{parentUid}-{item.uid}"
-                aria-expanded="{f:if(condition: item.open, then: 'true', else: 'false')}"
-                aria-controls="conn-acc-{parentUid}-{item.uid}">
-            {item.title}
-        </button>
-    </h2>
+    <f:if condition="{item.title_layout} != 100">
+        <f:switch expression="{item.title_layout}">
+            <f:case value="1">
+                <h1 class="accordion-header" id="conn-acc-h-{parentUid}-{item.uid}">
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#conn-acc-{parentUid}-{item.uid}"
+                            aria-expanded="{f:if(condition: item.open, then: 'true', else: 'false')}"
+                            aria-controls="conn-acc-{parentUid}-{item.uid}">
+                        {item.title}
+                    </button>
+                </h1>
+            </f:case>
+            <f:case value="2">
+                <h2 class="accordion-header" id="conn-acc-h-{parentUid}-{item.uid}">
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#conn-acc-{parentUid}-{item.uid}"
+                            aria-expanded="{f:if(condition: item.open, then: 'true', else: 'false')}"
+                            aria-controls="conn-acc-{parentUid}-{item.uid}">
+                        {item.title}
+                    </button>
+                </h2>
+            </f:case>
+            <f:case value="3">
+                <h3 class="accordion-header" id="conn-acc-h-{parentUid}-{item.uid}">
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#conn-acc-{parentUid}-{item.uid}"
+                            aria-expanded="{f:if(condition: item.open, then: 'true', else: 'false')}"
+                            aria-controls="conn-acc-{parentUid}-{item.uid}">
+                        {item.title}
+                    </button>
+                </h3>
+            </f:case>
+            <f:case value="4">
+                <h4 class="accordion-header" id="conn-acc-h-{parentUid}-{item.uid}">
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#conn-acc-{parentUid}-{item.uid}"
+                            aria-expanded="{f:if(condition: item.open, then: 'true', else: 'false')}"
+                            aria-controls="conn-acc-{parentUid}-{item.uid}">
+                        {item.title}
+                    </button>
+                </h4>
+            </f:case>
+            <f:case value="5">
+                <h5 class="accordion-header" id="conn-acc-h-{parentUid}-{item.uid}">
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#conn-acc-{parentUid}-{item.uid}"
+                            aria-expanded="{f:if(condition: item.open, then: 'true', else: 'false')}"
+                            aria-controls="conn-acc-{parentUid}-{item.uid}">
+                        {item.title}
+                    </button>
+                </h5>
+            </f:case>
+            <f:defaultCase>
+                <h2 class="accordion-header" id="conn-acc-h-{parentUid}-{item.uid}">
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#conn-acc-{parentUid}-{item.uid}"
+                            aria-expanded="{f:if(condition: item.open, then: 'true', else: 'false')}"
+                            aria-controls="conn-acc-{parentUid}-{item.uid}">
+                        {item.title}
+                    </button>
+                </h2>
+            </f:defaultCase>
+        </f:switch>
+    </f:if>
 
     <f:if condition="{alwaysOpen}">
         <f:then>

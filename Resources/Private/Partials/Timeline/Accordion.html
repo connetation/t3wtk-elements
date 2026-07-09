@@ -10,16 +10,87 @@
                 <f:if condition="{item.date}">
                     <span class="conn-timeline__date">{item.date}</span>
                 </f:if>
-                <h2 class="accordion-header">
-                    <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#conn-tl-item-{item.uid}"
-                            aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
-                            aria-controls="conn-tl-item-{item.uid}">
-                        {item.title}
-                    </button>
-                </h2>
+                <f:switch expression="{item.title_layout}">
+                    <f:case value="1">
+                        <h1 class="accordion-header">
+                            <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#conn-tl-item-{item.uid}"
+                                    aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                    aria-controls="conn-tl-item-{item.uid}">
+                                {item.title}
+                            </button>
+                        </h1>
+                    </f:case>
+                    <f:case value="2">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#conn-tl-item-{item.uid}"
+                                    aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                    aria-controls="conn-tl-item-{item.uid}">
+                                {item.title}
+                            </button>
+                        </h2>
+                    </f:case>
+                    <f:case value="3">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#conn-tl-item-{item.uid}"
+                                    aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                    aria-controls="conn-tl-item-{item.uid}">
+                                {item.title}
+                            </button>
+                        </h3>
+                    </f:case>
+                    <f:case value="4">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#conn-tl-item-{item.uid}"
+                                    aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                    aria-controls="conn-tl-item-{item.uid}">
+                                {item.title}
+                            </button>
+                        </h4>
+                    </f:case>
+                    <f:case value="5">
+                        <h5 class="accordion-header">
+                            <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#conn-tl-item-{item.uid}"
+                                    aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                    aria-controls="conn-tl-item-{item.uid}">
+                                {item.title}
+                            </button>
+                        </h5>
+                    </f:case>
+                    <f:defaultCase>
+                        <!--
+                            Note: unlike the other timeline templates, this heading tag also
+                            carries the Bootstrap accordion toggle button. Value 100 ("hidden")
+                            intentionally falls through to this default case rather than
+                            suppressing the element entirely, because removing the button would
+                            leave that accordion item with no way to expand/collapse.
+                        -->
+                        <h2 class="accordion-header">
+                            <button class="accordion-button {f:if(condition: iter.isFirst, then: '', else: 'collapsed')}"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#conn-tl-item-{item.uid}"
+                                    aria-expanded="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                    aria-controls="conn-tl-item-{item.uid}">
+                                {item.title}
+                            </button>
+                        </h2>
+                    </f:defaultCase>
+                </f:switch>
                 <div id="conn-tl-item-{item.uid}"
                      class="accordion-collapse collapse {f:if(condition: iter.isFirst, then: 'show')}"
                      data-bs-parent="#conn-timeline-acc-{data.uid}">

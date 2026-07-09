@@ -12,10 +12,8 @@
                                 sizes="(max-width: 767px) 90vw, 600px" />
         </f:if>
         <div class="conn-card-stack__card-body">
-            <f:if condition="{item.subtitle}">
-                <p class="conn-card-stack__item-subtitle">{item.subtitle}</p>
-            </f:if>
-            <p class="conn-card-stack__item-title">{item.title}</p>
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: item.subtitle, layout: item.subtitle_layout, class: 'conn-card-stack__item-subtitle', defaultTag: 'p'}" />
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-card-stack__item-title', defaultTag: 'p'}" />
         </div>
     </div>
 </div>

@@ -32,7 +32,7 @@ return [
         ],
         'description' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:wiki.description',
-            'config' => ['type' => 'text', 'rows' => 3],
+            'config' => ['type' => 'text', 'rows' => 3, 'enableRichtext' => true],
         ],
         'categories' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:wiki.categories',

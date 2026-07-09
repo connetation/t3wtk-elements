@@ -33,9 +33,25 @@
                 </f:else>
             </f:if>
             <div class="conn-testimonials__author-info">
-                <span class="conn-testimonials__author-name">{testimonial.author_name}</span>
-                <f:if condition="{testimonial.author_role}">
-                    <span class="conn-testimonials__author-role">{testimonial.author_role}</span>
+                <f:if condition="{testimonial.author_name_layout} != 100">
+                    <f:switch expression="{testimonial.author_name_layout}">
+                        <f:case value="1"><h1 class="conn-testimonials__author-name">{testimonial.author_name}</h1></f:case>
+                        <f:case value="2"><h2 class="conn-testimonials__author-name">{testimonial.author_name}</h2></f:case>
+                        <f:case value="3"><h3 class="conn-testimonials__author-name">{testimonial.author_name}</h3></f:case>
+                        <f:case value="4"><h4 class="conn-testimonials__author-name">{testimonial.author_name}</h4></f:case>
+                        <f:case value="5"><h5 class="conn-testimonials__author-name">{testimonial.author_name}</h5></f:case>
+                        <f:defaultCase><span class="conn-testimonials__author-name">{testimonial.author_name}</span></f:defaultCase>
+                    </f:switch>
+                </f:if>
+                <f:if condition="{testimonial.author_role} && {testimonial.author_role_layout} != 100">
+                    <f:switch expression="{testimonial.author_role_layout}">
+                        <f:case value="1"><h1 class="conn-testimonials__author-role">{testimonial.author_role}</h1></f:case>
+                        <f:case value="2"><h2 class="conn-testimonials__author-role">{testimonial.author_role}</h2></f:case>
+                        <f:case value="3"><h3 class="conn-testimonials__author-role">{testimonial.author_role}</h3></f:case>
+                        <f:case value="4"><h4 class="conn-testimonials__author-role">{testimonial.author_role}</h4></f:case>
+                        <f:case value="5"><h5 class="conn-testimonials__author-role">{testimonial.author_role}</h5></f:case>
+                        <f:defaultCase><span class="conn-testimonials__author-role">{testimonial.author_role}</span></f:defaultCase>
+                    </f:switch>
                 </f:if>
             </div>
         </figcaption>

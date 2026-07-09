@@ -6,12 +6,26 @@
     <div class="conn-parallax-slider__content container-fluid px-lg-5">
         <div class="conn-parallax-slider__inner" data-slide-animation="{slide.text_animation}" data-slide-duration="{slide.animation_duration}">
 
-            <f:if condition="{slide.subtitle}">
-                <p class="conn-parallax-slider__eyebrow" data-swiper-parallax="-150">{slide.subtitle}</p>
+            <f:if condition="{slide.subtitle} && {slide.subtitle_layout} != 100">
+                <f:switch expression="{slide.subtitle_layout}">
+                    <f:case value="1"><h1 class="conn-parallax-slider__eyebrow" data-swiper-parallax="-150">{slide.subtitle}</h1></f:case>
+                    <f:case value="2"><h2 class="conn-parallax-slider__eyebrow" data-swiper-parallax="-150">{slide.subtitle}</h2></f:case>
+                    <f:case value="3"><h3 class="conn-parallax-slider__eyebrow" data-swiper-parallax="-150">{slide.subtitle}</h3></f:case>
+                    <f:case value="4"><h4 class="conn-parallax-slider__eyebrow" data-swiper-parallax="-150">{slide.subtitle}</h4></f:case>
+                    <f:case value="5"><h5 class="conn-parallax-slider__eyebrow" data-swiper-parallax="-150">{slide.subtitle}</h5></f:case>
+                    <f:defaultCase><p class="conn-parallax-slider__eyebrow" data-swiper-parallax="-150">{slide.subtitle}</p></f:defaultCase>
+                </f:switch>
             </f:if>
 
-            <f:if condition="{slide.title}">
-                <h2 class="conn-parallax-slider__title" data-swiper-parallax="-250">{slide.title}</h2>
+            <f:if condition="{slide.title} && {slide.title_layout} != 100">
+                <f:switch expression="{slide.title_layout}">
+                    <f:case value="1"><h1 class="conn-parallax-slider__title" data-swiper-parallax="-250">{slide.title}</h1></f:case>
+                    <f:case value="2"><h2 class="conn-parallax-slider__title" data-swiper-parallax="-250">{slide.title}</h2></f:case>
+                    <f:case value="3"><h3 class="conn-parallax-slider__title" data-swiper-parallax="-250">{slide.title}</h3></f:case>
+                    <f:case value="4"><h4 class="conn-parallax-slider__title" data-swiper-parallax="-250">{slide.title}</h4></f:case>
+                    <f:case value="5"><h5 class="conn-parallax-slider__title" data-swiper-parallax="-250">{slide.title}</h5></f:case>
+                    <f:defaultCase><h2 class="conn-parallax-slider__title" data-swiper-parallax="-250">{slide.title}</h2></f:defaultCase>
+                </f:switch>
             </f:if>
 
             <f:if condition="{slide.body}">

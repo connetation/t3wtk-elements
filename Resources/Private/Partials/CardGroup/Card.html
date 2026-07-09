@@ -28,14 +28,12 @@
 
         <div class="card-body p-3">
             <div class="d-flex justify-content-between align-items-start mb-2">
-                <h3 class="card-title h6 fw-bold mb-0 me-2">{card.title}</h3>
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: card.title, layout: card.title_layout, class: 'card-title h6 fw-bold mb-0 me-2', defaultTag: 'h3'}" />
                 <f:if condition="{card.badge}">
                     <span class="badge conn-card-group__badge flex-shrink-0">{card.badge}</span>
                 </f:if>
             </div>
-            <f:if condition="{card.subtitle}">
-                <p class="card-text text-body-secondary small mb-2">{card.subtitle}</p>
-            </f:if>
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: card.subtitle, layout: card.subtitle_layout, class: 'card-text text-body-secondary small mb-2', defaultTag: 'p'}" />
             <f:if condition="{card.body}">
                 <div class="conn-card-group__body small">
                     {card.body -> f:format.html()}
