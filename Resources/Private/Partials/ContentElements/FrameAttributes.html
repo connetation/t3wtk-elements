@@ -1,9 +1,3 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:comment>Overrides conn_base's empty ContentElements/FrameAttributes partial
-     (registered at partialRootPaths.40 > conn_base's .30): adds the
-     data-text-animation attribute to every frame div whose element has a text
-     animation set. Assets are only collected when an element on the page
-     actually uses one; f:asset.* dedupes by identifier, so multiple elements
-     still emit the assets once.</f:comment>
 <f:if condition="{data.tx_conn_elements_text_animation}"><f:asset.css identifier="connElementsTextAnimation" href="EXT:conn_elements/Resources/Public/Css/text-animation.css" /><f:asset.script identifier="connElementsTextAnimation" src="EXT:conn_elements/Resources/Public/Js/components/text-animation.js" type="module" />data-text-animation="{data.tx_conn_elements_text_animation}"</f:if>
 </html>
