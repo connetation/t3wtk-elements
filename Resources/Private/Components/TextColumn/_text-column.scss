@@ -1,0 +1,17 @@
+// ─────────────────────────────────────────────
+// Connetation Elements – Text Column
+// ─────────────────────────────────────────────
+
+.conn-text-column {
+    > *:first-child {
+        margin-top: 0;
+    }
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    @media (min-width: 576px) {
+        column-count: 2;
+        column-gap: 1.5rem;
+    }
+}

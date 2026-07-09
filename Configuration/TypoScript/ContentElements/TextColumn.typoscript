@@ -1,0 +1,4 @@
+tt_content.conn_text_column =< lib.conn_elements_ce
+tt_content.conn_text_column {
+    templateName = TextColumn
+}

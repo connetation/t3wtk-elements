@@ -481,6 +481,36 @@ $GLOBALS['TCA']['tt_content']['types']['conn_swiper_parallax_slider'] = [
     ',
 ];
 
+// ─── Text Column ──────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_text_column'] = 'content-text-columns';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_column',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_column.description',
+    'value' => 'conn_text_column',
+    'icon'  => 'content-text-columns',
+    'group' => 'conn',
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_text_column'] = [
+    'columnsOverrides' => [
+        'bodytext' => [
+            'config' => [
+                'enableRichtext' => true,
+            ],
+        ],
+    ],
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,bodytext,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
 // ─── Wiki ─────────────────────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_wiki'] = 'conn-ce-wiki';
 

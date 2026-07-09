@@ -21,3 +21,4 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Testimonials.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Pricing.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/FeatureGrid.typoscript'
+@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/TextColumn.typoscript'

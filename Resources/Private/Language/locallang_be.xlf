@@ -505,6 +505,13 @@
             <trans-unit id="module.wiki.title">
                 <source>Wiki</source>
             </trans-unit>
+            <!-- Text Column content element -->
+            <trans-unit id="ce.text_column">
+                <source>Text (Columns)</source>
+            </trans-unit>
+            <trans-unit id="ce.text_column.description">
+                <source>Plain text split into multiple CSS columns from tablet width up</source>
+            </trans-unit>
             <!-- Wiki content element -->
             <trans-unit id="ce.wiki">
                 <source>Wiki</source>
