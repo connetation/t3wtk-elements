@@ -210,6 +210,11 @@
     // ── Flippable card ────────────────────────────
     &__col {
         perspective: 1200px;
+        // Lets Visit Card's stacked layout respond to the COLUMN's actual
+        // width (which varies with the "Per row" setting) rather than only
+        // the viewport — a narrow column on a wide screen needs the same
+        // stacked treatment as a narrow phone viewport.
+        container-type: inline-size;
     }
 
     &__flip-card {
@@ -560,10 +565,16 @@
     &__visit--right &__visit-monogram { right: 0.9rem; }
 
     &__visit-photo {
+        // Explicit width AND height (both % of the card box) instead of
+        // relying on `aspect-ratio` to auto-derive height on an absolutely
+        // positioned image — that computation isn't reliable across engines
+        // and was blowing the photo up far past the card. object-fit:contain
+        // still prevents any distortion if these don't perfectly match the
+        // photo's real 360:452 ratio.
         position: absolute;
-        bottom: -6%;
-        height: 126%;
-        width: 40%;
+        bottom: 3%;
+        width: 42%;
+        height: 94%;
         object-fit: contain;
         z-index: 2;
         filter: drop-shadow(0 16px 20px rgba(0, 0, 0, 0.35));
@@ -623,45 +634,48 @@
     &__visit--a &__visit-ico { background: var(--conn-people-a); }
     &__visit--b &__visit-ico { background: var(--conn-people-b); }
 
-    @media (max-width: 480px) {
-        &__visit { aspect-ratio: auto; }
+    // Container query (not viewport) — stacks whenever the column itself is
+    // narrow, whether that's a small phone or a high "Per row" count on a
+    // wide screen.
+    // Same layout as desktop (band, hexagon photo bleed, monogram) — just
+    // scaled down: smaller photo/band share, more room for text, smaller type.
+    @container (max-width: 400px) {
+        &__visit-band { width: 38%; }
 
-        &__visit-panel {
-            position: relative;
-            height: auto;
-            padding-bottom: 1rem;
+        &__visit-monogram {
+            width: 1.7rem;
+            height: 2rem;
+            font-size: 0.6rem;
         }
 
-        &__visit-band {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: auto;
-            height: 40%;
-            width: 100%;
-        }
+        &__visit-photo { width: 36%; height: 88%; bottom: 4%; }
 
-        &__visit-photo {
-            position: relative;
-            bottom: auto;
-            height: auto;
-            width: 60%;
-            margin: 1rem auto 0;
-            display: block;
-        }
+        &__visit--left &__visit-photo { left: 1%; }
+        &__visit--right &__visit-photo { right: 1%; }
 
         &__visit-info {
-            position: relative;
-            inset: auto;
-            padding: 1rem !important;
-            align-items: center !important;
-            text-align: center !important;
+            padding: 1rem;
+            gap: 0.15rem;
         }
 
-        &__visit-divider { align-self: center !important; }
-        &__visit-line { flex-direction: row !important; justify-content: center; }
-        &__visit-monogram { display: none; }
+        &__visit--left &__visit-info { padding-left: 40%; }
+        &__visit--right &__visit-info { padding-right: 40%; }
+
+        .conn-people__name { font-size: 0.8rem; }
+        .conn-people__role { font-size: 0.7rem; margin-bottom: 0.3rem; }
+
+        &__visit-divider { width: 1.8rem; margin: 0.25rem 0 0.35rem; }
+
+        &__visit-line {
+            font-size: 0.66rem;
+            gap: 0.3rem;
+        }
+
+        &__visit-ico {
+            width: 1.1rem;
+            height: 1.1rem;
+            font-size: 0.58rem;
+        }
     }
 }
 

@@ -80,12 +80,15 @@ final class PeopleProcessor extends AbstractItemsProcessor
     protected function resolveSettings(array $raw, string $settingsField): array
     {
         $columns = (int)($raw['columns'] ?? 4);
+        // Mobile-first: always 1-per-row below 576px (col-12, no breakpoint
+        // infix), regardless of the configured column count — a cramped
+        // multi-column grid on a phone was part of what made cards unreadable.
         $colMap  = [
             1 => 'col-12',
-            2 => 'col-6 col-md-6',
-            3 => 'col-6 col-md-4',
-            4 => 'col-6 col-md-3',
-            6 => 'col-6 col-md-2',
+            2 => 'col-12 col-sm-6',
+            3 => 'col-12 col-sm-6 col-md-4',
+            4 => 'col-12 col-sm-6 col-md-3',
+            6 => 'col-12 col-sm-6 col-md-2',
         ];
 
         $style = in_array($raw['style'] ?? '', self::STYLES, true) ? $raw['style'] : 'reveal-sheet';
@@ -136,7 +139,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'peopleUids'      => [],
             'style'           => 'reveal-sheet',
             'columns'         => 4,
-            'colClass'        => 'col-6 col-md-3',
+            'colClass'        => 'col-12 col-sm-6 col-md-3',
             'textPosition'    => 'bottom',
             'textAlign'       => 'center',
             'showRole'        => true,
