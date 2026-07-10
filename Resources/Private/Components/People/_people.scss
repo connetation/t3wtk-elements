@@ -1,12 +1,3 @@
-// ─────────────────────────────────────────────
-// People Content Element
-// Person records are standalone (own table, own page-tree location) — this
-// element only fetches + renders them. All appearance knobs (radius, border,
-// shadow, background, accent A/B) come from FlexForm settings as CSS custom
-// properties set inline on .conn-people; the values below are just the
-// fallback if that's ever missing (e.g. a raw BE preview).
-// ─────────────────────────────────────────────
-
 .frame-type-conn_people header {
     h1, h2, h3, h4, h5, h6 {
         font-size: clamp(1.375rem, 3vw, 1.75rem);
@@ -21,13 +12,6 @@
     --conn-people-bg:           var(--conn-surface);
     --conn-people-radius:       var(--conn-radius);
     --conn-people-border-w:     1px;
-    // Matches the CardGroup convention: border/accent fall back to the
-    // site's brand tokens, not an invented default. The literal hex is a
-    // second-level fallback in case --conn-accent(-hover) isn't reachable
-    // in some cascade context — never resolve to an invalid/black value.
-    // A and B intentionally share the SAME fallback: with nothing set
-    // directly on this component, every card/button looks identical.
-    // They only diverge once an editor sets two different colors here.
     --conn-people-border-color: var(--conn-accent, #6366f1);
     --conn-people-shadow:       var(--conn-shadow-card);
     --conn-people-a:            var(--conn-accent, #6366f1);
@@ -41,10 +25,6 @@
     --conn-people-nametag-text: #ffffff;
 
     // ── Shared text ──────────────────────────────
-    // Name/text/link colors are editor-configurable (Card Colors tab) so a
-    // custom dark card background can still get readable text — they don't
-    // just inherit the site theme's light/dark tokens, which won't know
-    // about a one-off background chosen on this element.
     &__name {
         font-weight: 700;
         text-transform: uppercase;
@@ -152,7 +132,7 @@
         &:hover { transform: translateY(-3px); }
     }
 
-    // ── Contact card (each row is its own card, grid via row/col like the others) ──
+    // ── Contact card ──────────────────────────────
     &__row {
         display: flex;
         align-items: center;
@@ -210,10 +190,6 @@
     // ── Flippable card ────────────────────────────
     &__col {
         perspective: 1200px;
-        // Lets Visit Card's stacked layout respond to the COLUMN's actual
-        // width (which varies with the "Per row" setting) rather than only
-        // the viewport — a narrow column on a wide screen needs the same
-        // stacked treatment as a narrow phone viewport.
         container-type: inline-size;
     }
 
@@ -303,7 +279,6 @@
         transition: opacity 0.35s ease;
     }
 
-    // Nametag position — default is bottom (rule above); top/center override here.
     &__reveal--pos-top &__reveal-nametag {
         top: 0;
         bottom: auto;
@@ -318,9 +293,6 @@
         padding: 0.75rem 1rem;
     }
 
-    // Text alignment — default is center (rules above already assume it);
-    // left/right override the nametag, the revealed panel, the curtain and
-    // the spotlight text together so everything moves in sync.
     &__reveal--align-left &__reveal-nametag,
     &__reveal--align-left &__reveal-panel,
     &__reveal--align-left &__curtain {
@@ -366,10 +338,6 @@
         max-height: 100%;
         overflow: auto;
 
-        // Redeclares the shared name/text tokens scoped to this panel only —
-        // .name/.role/.bio already read from these, so this is enough to
-        // recolor them without duplicating rules. Falls back to the normal
-        // card colors when no reveal-specific color is set.
         --conn-people-name: var(--conn-people-reveal-text, var(--conn-people-name));
         --conn-people-text: var(--conn-people-reveal-text, var(--conn-people-text));
 
@@ -565,12 +533,6 @@
     &__visit--right &__visit-monogram { right: 0.9rem; }
 
     &__visit-photo {
-        // Explicit width AND height (both % of the card box) instead of
-        // relying on `aspect-ratio` to auto-derive height on an absolutely
-        // positioned image — that computation isn't reliable across engines
-        // and was blowing the photo up far past the card. object-fit:contain
-        // still prevents any distortion if these don't perfectly match the
-        // photo's real 360:452 ratio.
         position: absolute;
         bottom: 3%;
         width: 42%;
@@ -634,11 +596,6 @@
     &__visit--a &__visit-ico { background: var(--conn-people-a); }
     &__visit--b &__visit-ico { background: var(--conn-people-b); }
 
-    // Container query (not viewport) — stacks whenever the column itself is
-    // narrow, whether that's a small phone or a high "Per row" count on a
-    // wide screen.
-    // Same layout as desktop (band, hexagon photo bleed, monogram) — just
-    // scaled down: smaller photo/band share, more room for text, smaller type.
     @container (max-width: 400px) {
         &__visit-band { width: 38%; }
 
