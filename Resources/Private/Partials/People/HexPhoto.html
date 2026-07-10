@@ -1,0 +1,20 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{person.imageFile}">
+    <f:then>
+        <conn:responsiveImage image="{person.imageFile}"
+                            class="{cssClass}"
+                            alt="{person.name}"
+                            widths="{widths}"
+                            sizes="{sizes}" />
+    </f:then>
+    <f:else>
+        <div class="{cssClass} conn-people__photo-placeholder d-flex align-items-center justify-content-center">
+            <span class="conn-people__initials">{person.initials}</span>
+        </div>
+    </f:else>
+</f:if>
+
+</html>

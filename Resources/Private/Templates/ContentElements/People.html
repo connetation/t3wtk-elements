@@ -1,0 +1,55 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-people-css"
+    href="EXT:conn_elements/Resources/Public/Css/people.css" />
+<f:asset.script identifier="conn-elements-people-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/people.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-people conn-people--{settings.style} row" id="conn-people-{data.uid}"
+    style="--conn-people-bg:{f:if(condition: settings.backgroundColor, then: settings.backgroundColor, else: 'var(--conn-surface)')};--conn-people-radius:{f:if(condition: settings.roundedCorners, then: 'var(--conn-radius)', else: '0')};--conn-people-border-w:{f:if(condition: settings.showBorder, then: '1px', else: '0')};--conn-people-border-color:{f:if(condition: settings.borderColor, then: settings.borderColor, else: 'var(--conn-accent, #6366f1)')};--conn-people-shadow:{settings.shadowValue};--conn-people-a:{f:if(condition: settings.accentColorA, then: settings.accentColorA, else: 'var(--conn-accent, #6366f1)')};--conn-people-b:{f:if(condition: settings.accentColorB, then: settings.accentColorB, else: 'var(--conn-accent, #6366f1)')};--conn-people-a-hover:{f:if(condition: settings.accentColorAHover, then: settings.accentColorAHover, else: 'var(--conn-accent-hover, #4f52d4)')};--conn-people-b-hover:{f:if(condition: settings.accentColorBHover, then: settings.accentColorBHover, else: 'var(--conn-accent-hover, #4f52d4)')};--conn-people-name:{f:if(condition: settings.nameColor, then: settings.nameColor, else: 'var(--conn-heading)')};--conn-people-text:{f:if(condition: settings.textColor, then: settings.textColor, else: 'var(--conn-text-muted)')};--conn-people-link:{f:if(condition: settings.linkColor, then: settings.linkColor, else: 'var(--conn-text-muted)')};--conn-people-accent-text:{f:if(condition: settings.linkColor, then: settings.linkColor, else: '#fff')};--conn-people-nametag-bg:{settings.nametagBg};--conn-people-nametag-text:{settings.nametagTextColor};{f:if(condition: settings.revealBg, then: '--conn-people-reveal-bg:{settings.revealBg};')}{f:if(condition: settings.revealTextColor, then: '--conn-people-reveal-text:{settings.revealTextColor};')}">
+    <div class="container-fluid">
+
+        <f:if condition="{people}">
+            <f:then>
+                <f:switch expression="{settings.style}">
+                    <f:case value="team-card">
+                        <f:render partial="People/TeamCard" arguments="{people: people, settings: settings}" />
+                    </f:case>
+                    <f:case value="contact-card">
+                        <f:render partial="People/ContactCard" arguments="{people: people, settings: settings}" />
+                    </f:case>
+                    <f:case value="flippable-card">
+                        <f:render partial="People/FlippableCard" arguments="{people: people, settings: settings}" />
+                    </f:case>
+                    <f:case value="reveal-curtain">
+                        <f:render partial="People/RevealCurtain" arguments="{people: people, settings: settings}" />
+                    </f:case>
+                    <f:case value="reveal-spotlight">
+                        <f:render partial="People/RevealSpotlight" arguments="{people: people, settings: settings}" />
+                    </f:case>
+                    <f:case value="visit-card">
+                        <f:render partial="People/VisitCard" arguments="{people: people, settings: settings}" />
+                    </f:case>
+                    <f:defaultCase>
+                        <f:render partial="People/RevealSheet" arguments="{people: people, settings: settings}" />
+                    </f:defaultCase>
+                </f:switch>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No people to show yet — hand-pick some, or point this element at a folder full of Person records.</p>
+            </f:else>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

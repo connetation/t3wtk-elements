@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Content</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.source>
+                        <label>Source</label>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>manual</default>
+                            <items>
+                                <numIndex index="0"><label>Hand-pick people</label><value>manual</value></numIndex>
+                                <numIndex index="1"><label>Everyone in a folder</label><value>folder</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.source>
+                    <settings.people>
+                        <label>People (Hand-pick people only)</label>
+                        <displayCond>FIELD:settings.source:=:manual</displayCond>
+                        <config>
+                            <type>group</type>
+                            <allowed>tx_conn_elements_domain_model_person</allowed>
+                            <size>5</size>
+                            <maxitems>200</maxitems>
+                        </config>
+                    </settings.people>
+                    <settings.folder>
+                        <label>Folder (Everyone in a folder only)</label>
+                        <displayCond>FIELD:settings.source:=:folder</displayCond>
+                        <config>
+                            <type>group</type>
+                            <allowed>pages</allowed>
+                            <size>1</size>
+                            <maxitems>1</maxitems>
+                        </config>
+                    </settings.folder>
+                </el>
+            </ROOT>
+        </sDEF>
+        <display>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.style>
+                        <label>Style</label>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>reveal-sheet</default>
+                            <items>
+                                <numIndex index="0"><label>Reveal Info Card — slide-up (default)</label><value>reveal-sheet</value></numIndex>
+                                <numIndex index="1"><label>Reveal Info Card — curtain wipe</label><value>reveal-curtain</value></numIndex>
+                                <numIndex index="2"><label>Reveal Info Card — center spotlight</label><value>reveal-spotlight</value></numIndex>
+                                <numIndex index="3"><label>Flippable Card</label><value>flippable-card</value></numIndex>
+                                <numIndex index="4"><label>Team Card</label><value>team-card</value></numIndex>
+                                <numIndex index="5"><label>Contact Card</label><value>contact-card</value></numIndex>
+                                <numIndex index="6"><label>Visit Card</label><value>visit-card</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.style>
+                    <settings.columns>
+                        <label>Per row</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>4</default>
+                            <items>
+                                <numIndex index="0"><label>1 column</label><value>1</value></numIndex>
+                                <numIndex index="1"><label>2 columns</label><value>2</value></numIndex>
+                                <numIndex index="2"><label>3 columns</label><value>3</value></numIndex>
+                                <numIndex index="3"><label>4 columns (default)</label><value>4</value></numIndex>
+                                <numIndex index="4"><label>6 columns</label><value>6</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.columns>
+                    <settings.textPosition>
+                        <label>Nametag position (before hover/tap)</label>
+                        <displayCond>FIELD:settings.style:IN:reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>bottom</default>
+                            <items>
+                                <numIndex index="0"><label>Bottom (default)</label><value>bottom</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Top</label><value>top</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.textPosition>
+                    <settings.textAlign>
+                        <label>Text alignment (nametag + revealed name/role/bio)</label>
+                        <displayCond>FIELD:settings.style:IN:reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>center</default>
+                            <items>
+                                <numIndex index="0"><label>Center (default)</label><value>center</value></numIndex>
+                                <numIndex index="1"><label>Left</label><value>left</value></numIndex>
+                                <numIndex index="2"><label>Right</label><value>right</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.textAlign>
+                    <settings.showRole>
+                        <label>Show role / job title</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.showRole>
+                    <settings.showBio>
+                        <label>Show bio</label>
+                        <displayCond>FIELD:settings.style:IN:flippable-card,reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.showBio>
+                </el>
+            </ROOT>
+        </display>
+        <appearance>
+            <ROOT>
+                <sheetTitle>Appearance</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.roundedCorners>
+                        <label>Rounded corners</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.roundedCorners>
+                    <settings.showBorder>
+                        <label>Show card border</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.showBorder>
+                    <settings.showShadow>
+                        <label>Show drop shadow</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.showShadow>
+                </el>
+            </ROOT>
+        </appearance>
+        <colors_card>
+            <ROOT>
+                <sheetTitle>🎨 Card Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.backgroundColor>
+                        <label>Background color (empty = theme default)</label>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.backgroundColor>
+                    <settings.nameColor>
+                        <label>Name color (empty = theme default — set this on dark backgrounds)</label>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.nameColor>
+                    <settings.textColor>
+                        <label>Body text color — role / bio (empty = theme default)</label>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.textColor>
+                    <settings.linkColor>
+                        <label>Link color — Visit Card lines, and text on accent-colored buttons/curtain/monogram (empty = theme default / white)</label>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.linkColor>
+                    <settings.borderColor>
+                        <label>Border color (empty = theme default)</label>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.borderColor>
+                    <settings.shadowColor>
+                        <label>Drop shadow color (empty = theme default; use an 8-digit hex like #00000040 for transparency)</label>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.shadowColor>
+                </el>
+            </ROOT>
+        </colors_card>
+        <colors_accent>
+            <ROOT>
+                <sheetTitle>🎨 Accent Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.accentColorA>
+                        <label>Accent A — buttons, curtain, visit-card band (empty = site button color; "Auto" on a person alternates A/B)</label>
+                        <displayCond>FIELD:display.settings.style:!=:team-card</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.accentColorA>
+                    <settings.accentColorB>
+                        <label>Accent B (empty = site button color)</label>
+                        <displayCond>FIELD:display.settings.style:!=:team-card</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.accentColorB>
+                    <settings.accentColorAHover>
+                        <label>Accent A — hover color (empty = site button hover color)</label>
+                        <displayCond>FIELD:display.settings.style:!=:team-card</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.accentColorAHover>
+                    <settings.accentColorBHover>
+                        <label>Accent B — hover color (empty = site button hover color)</label>
+                        <displayCond>FIELD:display.settings.style:!=:team-card</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.accentColorBHover>
+                </el>
+            </ROOT>
+        </colors_accent>
+        <colors_nametag>
+            <ROOT>
+                <sheetTitle>🎨 Nametag Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.nametagBg>
+                        <label>Nametag overlay color (the bar shown before hover/tap)</label>
+                        <displayCond>FIELD:display.settings.style:IN:reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                            <default>#000000</default>
+                        </config>
+                    </settings.nametagBg>
+                    <settings.nametagTextColor>
+                        <label>Text color over the photo — nametag bar + center-spotlight text (set this if you pick a light nametag color above)</label>
+                        <displayCond>FIELD:display.settings.style:IN:reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                            <default>#ffffff</default>
+                        </config>
+                    </settings.nametagTextColor>
+                </el>
+            </ROOT>
+        </colors_nametag>
+        <colors_reveal>
+            <ROOT>
+                <sheetTitle>🎨 Reveal Panel Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.revealBg>
+                        <label>Reveal panel background (the sliding sheet — empty = same as card background)</label>
+                        <displayCond>FIELD:display.settings.style:=:reveal-sheet</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.revealBg>
+                    <settings.revealTextColor>
+                        <label>Reveal panel text color (name/role/bio — empty = same as card text colors)</label>
+                        <displayCond>FIELD:display.settings.style:=:reveal-sheet</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.revealTextColor>
+                </el>
+            </ROOT>
+        </colors_reveal>
+    </sheets>
+</T3DataStructure>

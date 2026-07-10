@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="row g-4">
+    <f:for each="{people}" as="person">
+        <div class="{settings.colClass} conn-people__col">
+            <div class="conn-people__row">
+                <div class="conn-people__thumb">
+                    <f:if condition="{person.imageFile}">
+                        <f:then>
+                            <conn:responsiveImage image="{person.imageFile}"
+                                                class="conn-people__thumb-img"
+                                                alt="{person.name}"
+                                                widths="80,120,160"
+                                                sizes="64px" />
+                        </f:then>
+                        <f:else>
+                            <div class="conn-people__thumb-placeholder">
+                                <span class="conn-people__initials">{person.initials}</span>
+                            </div>
+                        </f:else>
+                    </f:if>
+                </div>
+                <div class="conn-people__who">
+                    <div class="conn-people__name">{person.name}</div>
+                    <f:if condition="{settings.showRole}">
+                        <f:if condition="{person.role}">
+                            <div class="conn-people__role">{person.role}</div>
+                        </f:if>
+                    </f:if>
+                </div>
+                <f:render partial="People/ContactLinks" arguments="{person: person}" />
+            </div>
+        </div>
+    </f:for>
+</div>
+
+</html>

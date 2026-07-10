@@ -489,7 +489,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_column.description',
     'value' => 'conn_text_column',
     'icon'  => 'content-text-columns',
-    'group' => 'conn',
+    'group' => 'default',
 ]);
 
 $GLOBALS['TCA']['tt_content']['types']['conn_text_column'] = [
@@ -1115,6 +1115,40 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_timeline'] = [
             --palette--;;general,--palette--;;header,tx_conn_elements_timeline_items,
         --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline.tab.config,
             tx_conn_elements_timeline_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── People ─────────────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_people'] = 'conn-ce-people';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.people',
+    'value' => 'conn_people',
+    'icon'  => 'conn-ce-people',
+    'group' => 'conn',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_people_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:people.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/People.xml',
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_people'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:people.tab.config,
+            tx_conn_elements_people_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,

@@ -1,0 +1,302 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Connetation\Elements\DataProcessing;
+
+use Doctrine\DBAL\ArrayParameterType;
+use Doctrine\DBAL\ParameterType;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+
+/**
+ * People content element — unlike the other conn_elements processors, Person
+ * records are NOT children of the content element (no `content_element` FK).
+ * They're standalone records an editor places anywhere in the page tree, then
+ * this element either pulls every Person under one chosen folder, or an
+ * editor hand-picks specific people in a specific order.
+ *
+ * Extends AbstractItemsProcessor purely to reuse its query/FAL/FlexForm
+ * helpers — process() is fully overridden since the fetch strategy (folder
+ * vs. explicit uid list, preserving hand-picked order) doesn't fit the
+ * single "children of one content element" shape the parent assumes.
+ */
+final class PeopleProcessor extends AbstractItemsProcessor
+{
+    private const TABLE = 'tx_conn_elements_domain_model_person';
+
+    private const STYLES = [
+        'reveal-sheet',
+        'reveal-curtain',
+        'reveal-spotlight',
+        'flippable-card',
+        'team-card',
+        'contact-card',
+        'visit-card',
+    ];
+
+    public function process(
+        ContentObjectRenderer $cObj,
+        array $contentObjectConfiguration,
+        array $processorConfiguration,
+        array $processedData
+    ): array {
+        $targetVar     = $processorConfiguration['as'] ?? $this->getDefaultTargetVariable();
+        $settingsField = $this->getSettingsField($processorConfiguration);
+
+        $raw      = $this->decodeFlexFormSettings($processedData['data'] ?? [], $settingsField);
+        $settings = $this->resolveSettings($raw, $settingsField);
+
+        $rows = $settings['source'] === 'folder'
+            ? $this->fetchByFolder($settings['folderUid'])
+            : $this->fetchByUidsOrdered($settings['peopleUids']);
+
+        $rows = $this->attachFirstFileReference($rows, self::TABLE, 'image', 'imageFile');
+        $rows = $this->enrichRows($rows);
+
+        $processedData[$targetVar] = $rows;
+        $processedData['settings'] = array_replace_recursive(
+            $this->getTypoScriptSettings($contentObjectConfiguration),
+            $settings
+        );
+
+        return $processedData;
+    }
+
+    protected function getTable(): string
+    {
+        return self::TABLE;
+    }
+
+    protected function getDefaultTargetVariable(): string
+    {
+        return 'people';
+    }
+
+    protected function getSettingsField(array $processorConfiguration): string
+    {
+        return $processorConfiguration['settingsField'] ?? 'tx_conn_elements_people_settings';
+    }
+
+    protected function resolveSettings(array $raw, string $settingsField): array
+    {
+        $columns = (int)($raw['columns'] ?? 4);
+        $colMap  = [
+            1 => 'col-12',
+            2 => 'col-6 col-md-6',
+            3 => 'col-6 col-md-4',
+            4 => 'col-6 col-md-3',
+            6 => 'col-6 col-md-2',
+        ];
+
+        $style = in_array($raw['style'] ?? '', self::STYLES, true) ? $raw['style'] : 'reveal-sheet';
+
+        $showShadow  = (bool)($raw['showShadow'] ?? true);
+        $shadowColor = $this->sanitizeColor((string)($raw['shadowColor'] ?? ''), '');
+        $shadowValue = !$showShadow
+            ? 'none'
+            : ($shadowColor !== '' ? "0 8px 24px {$shadowColor}" : 'var(--conn-shadow-card)');
+
+        return [
+            'source'          => ($raw['source'] ?? 'manual') === 'folder' ? 'folder' : 'manual',
+            'folderUid'       => $this->firstUidFromGroupField((string)($raw['folder'] ?? '')),
+            'peopleUids'      => $this->uidsFromGroupField((string)($raw['people'] ?? '')),
+            'style'           => $style,
+            'columns'         => $columns,
+            'colClass'        => $colMap[$columns] ?? $colMap[4],
+            'textPosition'    => in_array($raw['textPosition'] ?? '', ['top', 'center', 'bottom'], true) ? $raw['textPosition'] : 'bottom',
+            'textAlign'       => in_array($raw['textAlign'] ?? '', ['left', 'center', 'right'], true) ? $raw['textAlign'] : 'center',
+            'showRole'        => (bool)($raw['showRole'] ?? true),
+            'showBio'         => (bool)($raw['showBio'] ?? true),
+            'roundedCorners'  => (bool)($raw['roundedCorners'] ?? true),
+            'showBorder'      => (bool)($raw['showBorder'] ?? true),
+            'showShadow'      => (bool)($raw['showShadow'] ?? true),
+            'shadowValue'     => $shadowValue,
+            'backgroundColor'  => $this->sanitizeColor((string)($raw['backgroundColor'] ?? ''), ''),
+            'nameColor'        => $this->sanitizeColor((string)($raw['nameColor'] ?? ''), ''),
+            'textColor'        => $this->sanitizeColor((string)($raw['textColor'] ?? ''), ''),
+            'linkColor'        => $this->sanitizeColor((string)($raw['linkColor'] ?? ''), ''),
+            'borderColor'      => $this->sanitizeColor((string)($raw['borderColor'] ?? ''), ''),
+            'shadowColor'      => $this->sanitizeColor((string)($raw['shadowColor'] ?? ''), ''),
+            'accentColorA'     => $this->sanitizeColor((string)($raw['accentColorA'] ?? ''), ''),
+            'accentColorB'     => $this->sanitizeColor((string)($raw['accentColorB'] ?? ''), ''),
+            'accentColorAHover' => $this->sanitizeColor((string)($raw['accentColorAHover'] ?? ''), ''),
+            'accentColorBHover' => $this->sanitizeColor((string)($raw['accentColorBHover'] ?? ''), ''),
+            'nametagBg'        => $this->sanitizeColor((string)($raw['nametagBg'] ?? ''), '#000000'),
+            'nametagTextColor' => $this->sanitizeColor((string)($raw['nametagTextColor'] ?? ''), '#ffffff'),
+            'revealBg'         => $this->sanitizeColor((string)($raw['revealBg'] ?? ''), ''),
+            'revealTextColor'  => $this->sanitizeColor((string)($raw['revealTextColor'] ?? ''), ''),
+        ];
+    }
+
+    protected function defaultSettings(string $settingsField): array
+    {
+        return [
+            'source'          => 'manual',
+            'folderUid'       => 0,
+            'peopleUids'      => [],
+            'style'           => 'reveal-sheet',
+            'columns'         => 4,
+            'colClass'        => 'col-6 col-md-3',
+            'textPosition'    => 'bottom',
+            'textAlign'       => 'center',
+            'showRole'        => true,
+            'showBio'         => true,
+            'roundedCorners'  => true,
+            'showBorder'      => true,
+            'showShadow'      => true,
+            'shadowValue'     => 'var(--conn-shadow-card)',
+            'backgroundColor'  => '',
+            'nameColor'        => '',
+            'textColor'        => '',
+            'linkColor'        => '',
+            'borderColor'      => '',
+            'shadowColor'      => '',
+            'accentColorA'     => '',
+            'accentColorB'     => '',
+            'accentColorAHover' => '',
+            'accentColorBHover' => '',
+            'nametagBg'        => '#000000',
+            'nametagTextColor' => '#ffffff',
+            'revealBg'         => '',
+            'revealTextColor'  => '',
+        ];
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Fetching
+    // ─────────────────────────────────────────────────────────────
+
+    private function fetchByFolder(int $folderUid): array
+    {
+        if ($folderUid === 0) {
+            return [];
+        }
+
+        $queryBuilder = $this->createFrontendQueryBuilder(self::TABLE);
+
+        return $queryBuilder
+            ->select('*')
+            ->from(self::TABLE)
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'pid',
+                    $queryBuilder->createNamedParameter($folderUid, ParameterType::INTEGER)
+                )
+            )
+            ->orderBy('sorting', 'ASC')
+            ->executeQuery()
+            ->fetchAllAssociative();
+    }
+
+    /** Fetches by uid and re-orders the result to match the editor-chosen order (DB IN() doesn't preserve it). */
+    private function fetchByUidsOrdered(array $uids): array
+    {
+        if ($uids === []) {
+            return [];
+        }
+
+        $queryBuilder = $this->createFrontendQueryBuilder(self::TABLE);
+        $rows = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE)
+            ->where(
+                $queryBuilder->expr()->in(
+                    'uid',
+                    $queryBuilder->createNamedParameter($uids, ArrayParameterType::INTEGER)
+                )
+            )
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        $byUid = [];
+        foreach ($rows as $row) {
+            $byUid[(int)$row['uid']] = $row;
+        }
+
+        $ordered = [];
+        foreach ($uids as $uid) {
+            if (isset($byUid[$uid])) {
+                $ordered[] = $byUid[$uid];
+            }
+        }
+
+        return $ordered;
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Row enrichment
+    // ─────────────────────────────────────────────────────────────
+
+    private function enrichRows(array $rows): array
+    {
+        $i = 0;
+        foreach ($rows as &$row) {
+            $accent = $row['accent'] ?? 'auto';
+            if (!in_array($accent, ['a', 'b'], true)) {
+                $accent = $i % 2 === 0 ? 'a' : 'b';
+            }
+
+            $imageSide = $row['image_side'] ?? 'auto';
+            if (!in_array($imageSide, ['left', 'right'], true)) {
+                // Alternates in sync with accent: person 1 = left/A, person 2 = right/B, ...
+                $imageSide = $i % 2 === 0 ? 'left' : 'right';
+            }
+
+            $row['accent']    = $accent;
+            $row['imageSide'] = $imageSide;
+            $row['initials']  = $this->initialsFromName((string)($row['name'] ?? ''));
+            $i++;
+        }
+        unset($row);
+
+        return $rows;
+    }
+
+    private function initialsFromName(string $name): string
+    {
+        $words = array_values(array_filter(preg_split('/\s+/', trim($name)) ?: []));
+        $letters = array_map(
+            static fn (string $word): string => mb_strtoupper(mb_substr($word, 0, 1)),
+            array_slice($words, 0, 2)
+        );
+
+        return $letters === [] ? '?' : implode('', $letters);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // FlexForm "group" field parsing
+    // ─────────────────────────────────────────────────────────────
+
+    /** @return int[] */
+    private function uidsFromGroupField(string $value): array
+    {
+        if (trim($value) === '') {
+            return [];
+        }
+
+        $uids = [];
+        foreach (explode(',', $value) as $item) {
+            // "group" fields may store "uid" or "table_uid" depending on config; keep the numeric tail.
+            $item = trim($item);
+            if (preg_match('/(\d+)$/', $item, $matches) === 1) {
+                $uids[] = (int)$matches[1];
+            }
+        }
+
+        return array_values(array_filter($uids, static fn (int $uid): bool => $uid > 0));
+    }
+
+    private function firstUidFromGroupField(string $value): int
+    {
+        $uids = $this->uidsFromGroupField($value);
+
+        return $uids[0] ?? 0;
+    }
+
+    private function sanitizeColor(string $value, string $default): string
+    {
+        $value = trim($value);
+
+        return preg_match('/^#[0-9a-fA-F]{3,8}$/', $value) === 1 ? $value : $default;
+    }
+}

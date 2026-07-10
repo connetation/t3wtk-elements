@@ -1,0 +1,56 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="row g-4">
+    <f:for each="{people}" as="person">
+        <div class="{settings.colClass} conn-people__col">
+            <div class="conn-people__visit conn-people__visit--{person.imageSide} conn-people__visit--{person.accent}">
+                <div class="conn-people__visit-panel">
+                    <div class="conn-people__visit-band">
+                        <svg class="conn-people__visit-watermark" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                            <polygon points="50,3 93,26 93,74 50,97 7,74 7,26" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                            <polygon points="50,20 78,35 78,65 50,80 22,65 22,35" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                        </svg>
+                    </div>
+                    <div class="conn-people__visit-monogram">{person.initials}</div>
+                    <div class="conn-people__visit-info">
+                        <div class="conn-people__name">{person.name}</div>
+                        <f:if condition="{settings.showRole}">
+                            <f:if condition="{person.role}">
+                                <div class="conn-people__role">{person.role}</div>
+                            </f:if>
+                        </f:if>
+                        <div class="conn-people__visit-divider"></div>
+                        <f:if condition="{person.email}">
+                            <a href="mailto:{person.email}" class="conn-people__visit-line">
+                                <span class="conn-people__visit-ico">&#9993;</span>{person.email}
+                            </a>
+                        </f:if>
+                        <f:if condition="{person.phone}">
+                            <a href="tel:{person.phone}" class="conn-people__visit-line">
+                                <span class="conn-people__visit-ico">&#9742;</span>{person.phone}
+                            </a>
+                        </f:if>
+                        <f:if condition="{person.link}">
+                            <f:link.typolink parameter="{person.link}" class="conn-people__visit-line">
+                                <span class="conn-people__visit-ico">&#128279;</span>
+                                <f:if condition="{person.link_label}">
+                                    <f:then>{person.link_label}</f:then>
+                                    <f:else>More</f:else>
+                                </f:if>
+                            </f:link.typolink>
+                        </f:if>
+                    </div>
+                </div>
+                <f:render partial="People/HexPhoto" arguments="{
+                    person:   person,
+                    cssClass: 'conn-people__visit-photo',
+                    widths:   '220,330,440,600',
+                    sizes:    '280px'
+                }" />
+            </div>
+        </div>
+    </f:for>
+</div>
+
+</html>

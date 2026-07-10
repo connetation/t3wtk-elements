@@ -44,7 +44,8 @@ CREATE TABLE tt_content (
     tx_conn_elements_pricing_tiers           int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_pricing_settings        mediumtext,
     tx_conn_elements_feature_grid_items      int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_feature_grid_settings   mediumtext
+    tx_conn_elements_feature_grid_settings   mediumtext,
+    tx_conn_elements_people_settings         mediumtext
 );
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────
@@ -518,4 +519,32 @@ CREATE TABLE tx_conn_elements_domain_model_timeline_item (
     PRIMARY KEY (uid),
     KEY parent (pid),
     KEY content_element (content_element)
+);
+
+-- ─── Person (standalone record, not tied to a content element) ───────────────
+
+CREATE TABLE tx_conn_elements_domain_model_person (
+    uid        int(11) NOT NULL auto_increment,
+    pid        int(11) DEFAULT '0' NOT NULL,
+    tstamp     int(11) DEFAULT '0' NOT NULL,
+    crdate     int(11) DEFAULT '0' NOT NULL,
+    deleted    tinyint(4) DEFAULT '0' NOT NULL,
+    hidden     tinyint(4) DEFAULT '0' NOT NULL,
+    starttime  int(11) DEFAULT '0' NOT NULL,
+    endtime    int(11) DEFAULT '0' NOT NULL,
+    sorting    int(11) DEFAULT '0' NOT NULL,
+
+    name       varchar(255) DEFAULT '' NOT NULL,
+    role       varchar(255) DEFAULT '' NOT NULL,
+    image      int(11) DEFAULT '0' NOT NULL,
+    bio        mediumtext,
+    email      varchar(255) DEFAULT '' NOT NULL,
+    phone      varchar(60) DEFAULT '' NOT NULL,
+    link       varchar(1024) DEFAULT '' NOT NULL,
+    link_label varchar(100) DEFAULT '' NOT NULL,
+    accent     varchar(20) DEFAULT 'auto' NOT NULL,
+    image_side varchar(20) DEFAULT 'auto' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid)
 );

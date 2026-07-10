@@ -1,0 +1,672 @@
+// ─────────────────────────────────────────────
+// People Content Element
+// Person records are standalone (own table, own page-tree location) — this
+// element only fetches + renders them. All appearance knobs (radius, border,
+// shadow, background, accent A/B) come from FlexForm settings as CSS custom
+// properties set inline on .conn-people; the values below are just the
+// fallback if that's ever missing (e.g. a raw BE preview).
+// ─────────────────────────────────────────────
+
+.frame-type-conn_people header {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        letter-spacing: -0.025em;
+        color: var(--conn-heading);
+    }
+}
+
+.conn-people {
+    background: var(--conn-bg);
+
+    --conn-people-bg:           var(--conn-surface);
+    --conn-people-radius:       var(--conn-radius);
+    --conn-people-border-w:     1px;
+    // Matches the CardGroup convention: border/accent fall back to the
+    // site's brand tokens, not an invented default. The literal hex is a
+    // second-level fallback in case --conn-accent(-hover) isn't reachable
+    // in some cascade context — never resolve to an invalid/black value.
+    // A and B intentionally share the SAME fallback: with nothing set
+    // directly on this component, every card/button looks identical.
+    // They only diverge once an editor sets two different colors here.
+    --conn-people-border-color: var(--conn-accent, #6366f1);
+    --conn-people-shadow:       var(--conn-shadow-card);
+    --conn-people-a:            var(--conn-accent, #6366f1);
+    --conn-people-b:            var(--conn-accent, #6366f1);
+    --conn-people-a-hover:      var(--conn-accent-hover, #4f52d4);
+    --conn-people-b-hover:      var(--conn-accent-hover, #4f52d4);
+    --conn-people-name:         var(--conn-heading);
+    --conn-people-text:         var(--conn-text-muted);
+    --conn-people-link:         var(--conn-text-muted);
+    --conn-people-nametag-bg:   #000000;
+    --conn-people-nametag-text: #ffffff;
+
+    // ── Shared text ──────────────────────────────
+    // Name/text/link colors are editor-configurable (Card Colors tab) so a
+    // custom dark card background can still get readable text — they don't
+    // just inherit the site theme's light/dark tokens, which won't know
+    // about a one-off background chosen on this element.
+    &__name {
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        color: var(--conn-people-name);
+        font-size: 0.95rem;
+    }
+
+    &__role {
+        color: var(--conn-people-text);
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &__role--a { color: var(--conn-people-a); }
+    &__role--b { color: var(--conn-people-b); }
+
+    &__bio {
+        color: var(--conn-people-text);
+        font-size: 0.85rem;
+        line-height: 1.5;
+
+        p:last-child { margin-bottom: 0; }
+    }
+
+    // ── Photo (natural hexagon-cutout ratio, no crop) ──
+    &__photo {
+        display: block;
+        width: 100%;
+        max-width: 220px;
+        margin: 0 auto 1rem;
+        aspect-ratio: 360 / 452;
+        object-fit: contain;
+    }
+
+    &__photo-placeholder {
+        max-width: 220px;
+        aspect-ratio: 360 / 452;
+        margin: 0 auto 1rem;
+        background: var(--conn-surface-alt);
+        border-radius: var(--conn-people-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__initials {
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--conn-text-muted);
+    }
+
+    // ── Contact buttons (reuses global .btn-hexagon shape) ──
+    &__contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        margin-top: 0.65rem;
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.72rem;
+        color: var(--conn-people-accent-text) !important;
+        transition: background-color var(--conn-transition), border-color var(--conn-transition);
+    }
+
+    &__btn--a {
+        background-color: var(--conn-people-a) !important;
+        border-color: var(--conn-people-a) !important;
+    }
+
+    &__btn--b {
+        background-color: var(--conn-people-b) !important;
+        border-color: var(--conn-people-b) !important;
+    }
+
+    &__btn--a:hover, &__btn--a:focus {
+        background-color: var(--conn-people-a-hover) !important;
+        border-color: var(--conn-people-a-hover) !important;
+    }
+
+    &__btn--b:hover, &__btn--b:focus {
+        background-color: var(--conn-people-b-hover) !important;
+        border-color: var(--conn-people-b-hover) !important;
+    }
+
+    // ── Team card ─────────────────────────────────
+    &__card {
+        text-align: center;
+    }
+
+    &__card--team {
+        height: 100%;
+        padding: 1.25rem 1rem 1.5rem;
+        background: var(--conn-people-bg);
+        border: var(--conn-people-border-w) solid var(--conn-people-border-color);
+        border-radius: var(--conn-people-radius);
+        box-shadow: var(--conn-people-shadow);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+        &:hover { transform: translateY(-3px); }
+    }
+
+    // ── Contact card (each row is its own card, grid via row/col like the others) ──
+    &__row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        height: 100%;
+        padding: 0.85rem 1rem;
+        background: var(--conn-people-bg);
+        border: var(--conn-people-border-w) solid var(--conn-people-border-color);
+        border-radius: var(--conn-people-radius);
+        box-shadow: var(--conn-people-shadow);
+
+        .conn-people__name, .conn-people__role { text-align: left; }
+        .conn-people__role { margin-bottom: 0; }
+        .conn-people__contact { margin-top: 0; flex-wrap: nowrap; justify-content: flex-end; }
+        .conn-people__btn-label { display: none; }
+    }
+
+    &__thumb {
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+        overflow: hidden;
+        background: var(--conn-surface-alt);
+        clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__thumb-img {
+        display: block;
+        width: 100%;
+        height: 130%;
+        margin-top: -12%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    &__thumb-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--conn-surface-alt);
+
+        .conn-people__initials { font-size: 0.9rem; }
+    }
+
+    &__who {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    // ── Flippable card ────────────────────────────
+    &__col {
+        perspective: 1200px;
+    }
+
+    &__flip-card {
+        aspect-ratio: 3 / 4;
+        outline: none;
+    }
+
+    &__flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+
+    &__flip-card:hover &__flip-inner,
+    &__flip-card:focus-within &__flip-inner,
+    &__flip-card.is-flipped &__flip-inner {
+        transform: rotateY(180deg);
+    }
+
+    &__flip-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        background: var(--conn-people-bg);
+        border: var(--conn-people-border-w) solid var(--conn-people-border-color);
+        border-radius: var(--conn-people-radius);
+        box-shadow: var(--conn-people-shadow);
+        padding: 1.1rem;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    &__flip-face--front {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        .conn-people__photo { max-width: 70%; margin-bottom: 0.75rem; }
+        .conn-people__name { margin-bottom: 0; }
+    }
+
+    &__flip-face--back {
+        transform: rotateY(180deg);
+        justify-content: center;
+        text-align: center;
+
+        .conn-people__contact { margin-top: 0.75rem; }
+    }
+
+    // ── Reveal cards (shared photo + nametag shell) ──
+    &__reveal {
+        position: relative;
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        background: var(--conn-people-bg);
+        border: var(--conn-people-border-w) solid var(--conn-people-border-color);
+        border-radius: var(--conn-people-radius);
+        box-shadow: var(--conn-people-shadow);
+    }
+
+    &__reveal-photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 1rem;
+        transition: transform 0.45s ease, filter 0.5s ease;
+    }
+
+    &__reveal-nametag {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0.9rem 1rem;
+        text-align: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: var(--conn-people-nametag-text);
+        background: linear-gradient(to top, var(--conn-people-nametag-bg), transparent);
+        transition: opacity 0.35s ease;
+    }
+
+    // Nametag position — default is bottom (rule above); top/center override here.
+    &__reveal--pos-top &__reveal-nametag {
+        top: 0;
+        bottom: auto;
+        background: linear-gradient(to bottom, var(--conn-people-nametag-bg), transparent);
+    }
+
+    &__reveal--pos-center &__reveal-nametag {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        background: var(--conn-people-nametag-bg);
+        padding: 0.75rem 1rem;
+    }
+
+    // Text alignment — default is center (rules above already assume it);
+    // left/right override the nametag, the revealed panel, the curtain and
+    // the spotlight text together so everything moves in sync.
+    &__reveal--align-left &__reveal-nametag,
+    &__reveal--align-left &__reveal-panel,
+    &__reveal--align-left &__curtain {
+        text-align: left;
+    }
+
+    &__reveal--align-left &__spotlight-info {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    &__reveal--align-left &__contact {
+        justify-content: flex-start;
+    }
+
+    &__reveal--align-right &__reveal-nametag,
+    &__reveal--align-right &__reveal-panel,
+    &__reveal--align-right &__curtain {
+        text-align: right;
+    }
+
+    &__reveal--align-right &__spotlight-info {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    &__reveal--align-right &__contact {
+        justify-content: flex-end;
+    }
+
+    // ── Reveal — sheet variant ───────────────────
+    &__reveal--sheet &__reveal-panel {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1.1rem;
+        text-align: center;
+        background: var(--conn-people-reveal-bg, var(--conn-people-bg));
+        border-top: var(--conn-people-border-w) solid var(--conn-people-border-color);
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.22, 0.9, 0.35, 1);
+        max-height: 100%;
+        overflow: auto;
+
+        // Redeclares the shared name/text tokens scoped to this panel only —
+        // .name/.role/.bio already read from these, so this is enough to
+        // recolor them without duplicating rules. Falls back to the normal
+        // card colors when no reveal-specific color is set.
+        --conn-people-name: var(--conn-people-reveal-text, var(--conn-people-name));
+        --conn-people-text: var(--conn-people-reveal-text, var(--conn-people-text));
+
+        .conn-people__contact { margin-top: 0.75rem; }
+    }
+
+    &__reveal--sheet:hover &__reveal-photo,
+    &__reveal--sheet:focus-within &__reveal-photo,
+    &__reveal--sheet.is-flipped &__reveal-photo {
+        transform: scale(1.03);
+        filter: brightness(0.55);
+    }
+
+    &__reveal--sheet:hover &__reveal-nametag,
+    &__reveal--sheet:focus-within &__reveal-nametag,
+    &__reveal--sheet.is-flipped &__reveal-nametag {
+        opacity: 0;
+    }
+
+    &__reveal--sheet:hover &__reveal-panel,
+    &__reveal--sheet:focus-within &__reveal-panel,
+    &__reveal--sheet.is-flipped &__reveal-panel {
+        transform: translateY(0);
+    }
+
+    // ── Reveal — curtain variant ─────────────────
+    &__curtain {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 66%;
+        color: var(--conn-people-accent-text);
+        padding: 1.1rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.35rem;
+        transform: translateX(105%);
+        transition: transform 0.45s cubic-bezier(0.22, 0.9, 0.35, 1);
+
+        .conn-people__name, .conn-people__role { color: var(--conn-people-accent-text); }
+        .conn-people__bio { color: var(--conn-people-accent-text); opacity: 0.85; }
+
+        a {
+            color: var(--conn-people-accent-text);
+            text-decoration: none;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            display: block;
+        }
+
+        a:hover { opacity: 1; text-decoration: underline; }
+
+        .conn-people__curtain-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+    }
+
+    &__curtain--a { background: var(--conn-people-a); }
+    &__curtain--b { background: var(--conn-people-b); }
+
+    &__reveal--curtain:hover &__reveal-photo,
+    &__reveal--curtain:focus-within &__reveal-photo,
+    &__reveal--curtain.is-flipped &__reveal-photo {
+        transform: translateX(-10%) scale(1.02);
+    }
+
+    &__reveal--curtain:hover &__curtain,
+    &__reveal--curtain:focus-within &__curtain,
+    &__reveal--curtain.is-flipped &__curtain {
+        transform: translateX(0);
+    }
+
+    &__reveal--curtain:hover &__reveal-nametag,
+    &__reveal--curtain:focus-within &__reveal-nametag,
+    &__reveal--curtain.is-flipped &__reveal-nametag {
+        opacity: 0;
+    }
+
+    // ── Reveal — center spotlight variant ────────
+    &__reveal--spotlight:hover &__reveal-photo,
+    &__reveal--spotlight:focus-within &__reveal-photo,
+    &__reveal--spotlight.is-flipped &__reveal-photo {
+        filter: blur(3px) brightness(0.4);
+        transform: scale(1.07);
+    }
+
+    &__spotlight-info {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1.2rem;
+        gap: 0.3rem;
+        color: var(--conn-people-nametag-text);
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+
+        .conn-people__name { color: var(--conn-people-nametag-text); }
+        .conn-people__bio { color: var(--conn-people-nametag-text); opacity: 0.85; }
+        .conn-people__contact { margin-top: 0.5rem; }
+    }
+
+    &__reveal--spotlight:hover &__spotlight-info,
+    &__reveal--spotlight:focus-within &__spotlight-info,
+    &__reveal--spotlight.is-flipped &__spotlight-info {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &__reveal--spotlight:hover &__reveal-nametag,
+    &__reveal--spotlight:focus-within &__reveal-nametag,
+    &__reveal--spotlight.is-flipped &__reveal-nametag {
+        opacity: 0;
+    }
+
+    // ── Visit card ────────────────────────────────
+    &__visit {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        aspect-ratio: 16 / 9;
+        margin: 0 auto;
+    }
+
+    &__visit-panel {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--conn-people-bg);
+        border: var(--conn-people-border-w) solid var(--conn-people-border-color);
+        border-radius: var(--conn-people-radius);
+        box-shadow: var(--conn-people-shadow);
+    }
+
+    &__visit-band {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 44%;
+        color: var(--conn-people-accent-text);
+    }
+
+    &__visit--left &__visit-band { left: 0; }
+    &__visit--right &__visit-band { right: 0; }
+
+    &__visit--a &__visit-band {
+        background: linear-gradient(155deg, var(--conn-people-a), var(--conn-people-a));
+        background: linear-gradient(155deg, var(--conn-people-a), color-mix(in srgb, var(--conn-people-a) 65%, black));
+    }
+
+    &__visit--b &__visit-band {
+        background: linear-gradient(155deg, var(--conn-people-b), var(--conn-people-b));
+        background: linear-gradient(155deg, var(--conn-people-b), color-mix(in srgb, var(--conn-people-b) 65%, black));
+    }
+
+    &__visit-watermark {
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        top: -25%;
+        opacity: 0.14;
+    }
+
+    &__visit--left &__visit-watermark { left: -35%; }
+    &__visit--right &__visit-watermark { right: -35%; }
+
+    &__visit-monogram {
+        position: absolute;
+        top: 0.9rem;
+        width: 2.1rem;
+        height: 2.4rem;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+        background: rgba(255, 255, 255, 0.16);
+        color: var(--conn-people-accent-text);
+        font-weight: 800;
+        font-size: 0.72rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 0.02em;
+    }
+
+    &__visit--left &__visit-monogram { left: 0.9rem; }
+    &__visit--right &__visit-monogram { right: 0.9rem; }
+
+    &__visit-photo {
+        position: absolute;
+        bottom: -6%;
+        height: 126%;
+        width: 40%;
+        object-fit: contain;
+        z-index: 2;
+        filter: drop-shadow(0 16px 20px rgba(0, 0, 0, 0.35));
+        pointer-events: none;
+    }
+
+    &__visit--left &__visit-photo { left: 2%; }
+    &__visit--right &__visit-photo { right: 2%; }
+
+    &__visit-info {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.3rem;
+        padding: 1.5rem;
+    }
+
+    &__visit--left &__visit-info { padding-left: 46%; align-items: flex-start; text-align: left; }
+    &__visit--right &__visit-info { padding-right: 46%; align-items: flex-end; text-align: right; }
+
+    &__visit-divider {
+        width: 2.4rem;
+        height: 2px;
+        background: var(--conn-people-border-color);
+        margin: 0.4rem 0 0.5rem;
+    }
+
+    &__visit--right &__visit-divider { align-self: flex-end; }
+
+    &__visit-line {
+        font-size: 0.76rem;
+        color: var(--conn-people-link);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+
+        &:hover { text-decoration: underline; }
+    }
+
+    &__visit--right &__visit-line { flex-direction: row-reverse; }
+
+    &__visit-ico {
+        width: 1.3rem;
+        height: 1.3rem;
+        border-radius: 50%;
+        color: var(--conn-people-accent-text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.68rem;
+        flex-shrink: 0;
+    }
+
+    &__visit--a &__visit-ico { background: var(--conn-people-a); }
+    &__visit--b &__visit-ico { background: var(--conn-people-b); }
+
+    @media (max-width: 480px) {
+        &__visit { aspect-ratio: auto; }
+
+        &__visit-panel {
+            position: relative;
+            height: auto;
+            padding-bottom: 1rem;
+        }
+
+        &__visit-band {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: auto;
+            height: 40%;
+            width: 100%;
+        }
+
+        &__visit-photo {
+            position: relative;
+            bottom: auto;
+            height: auto;
+            width: 60%;
+            margin: 1rem auto 0;
+            display: block;
+        }
+
+        &__visit-info {
+            position: relative;
+            inset: auto;
+            padding: 1rem !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        &__visit-divider { align-self: center !important; }
+        &__visit-line { flex-direction: row !important; justify-content: center; }
+        &__visit-monogram { display: none; }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .conn-people, .conn-people * {
+        transition-duration: 0.001ms !important;
+    }
+}

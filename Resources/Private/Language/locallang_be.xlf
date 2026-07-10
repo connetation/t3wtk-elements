@@ -849,6 +849,58 @@
             <trans-unit id="feature_item.tab.link">
                 <source>Link</source>
             </trans-unit>
+
+            <!-- Person record (standalone, not a content-element child) -->
+            <trans-unit id="model.person">
+                <source>Person</source>
+            </trans-unit>
+            <trans-unit id="person.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="person.role">
+                <source>Role / Job title</source>
+            </trans-unit>
+            <trans-unit id="person.image">
+                <source>Photo</source>
+            </trans-unit>
+            <trans-unit id="person.bio">
+                <source>Bio</source>
+            </trans-unit>
+            <trans-unit id="person.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="person.phone">
+                <source>Phone</source>
+            </trans-unit>
+            <trans-unit id="person.link">
+                <source>Link</source>
+            </trans-unit>
+            <trans-unit id="person.link_label">
+                <source>Link label</source>
+            </trans-unit>
+            <trans-unit id="person.accent">
+                <source>Accent color</source>
+            </trans-unit>
+            <trans-unit id="person.image_side">
+                <source>Image side (Visit Card style)</source>
+            </trans-unit>
+            <trans-unit id="person.tab.contact">
+                <source>Contact</source>
+            </trans-unit>
+
+            <!-- People content element -->
+            <trans-unit id="ce.people">
+                <source>People</source>
+            </trans-unit>
+            <trans-unit id="ce.people.description">
+                <source>Renders Person records — hand-picked or a whole folder — as team cards, contact cards, flip cards, reveal cards or a visit card</source>
+            </trans-unit>
+            <trans-unit id="people.tab.config">
+                <source>People Settings</source>
+            </trans-unit>
+            <trans-unit id="people.settings">
+                <source>Display Settings</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="row g-4">
+    <f:for each="{people}" as="person">
+        <div class="{settings.colClass} conn-people__col">
+            <div class="conn-people__flip-card" tabindex="0">
+                <div class="conn-people__flip-inner">
+
+                    <div class="conn-people__flip-face conn-people__flip-face--front">
+                        <f:render partial="People/HexPhoto" arguments="{
+                            person:   person,
+                            cssClass: 'conn-people__photo',
+                            widths:   '240,360,480,640,800',
+                            sizes:    '(max-width: 575px) 60vw, 420px'
+                        }" />
+                        <div class="conn-people__name">{person.name}</div>
+                    </div>
+
+                    <div class="conn-people__flip-face conn-people__flip-face--back">
+                        <div class="conn-people__name">{person.name}</div>
+                        <f:if condition="{settings.showRole}">
+                            <f:if condition="{person.role}">
+                                <div class="conn-people__role">{person.role}</div>
+                            </f:if>
+                        </f:if>
+                        <f:if condition="{settings.showBio}">
+                            <f:if condition="{person.bio}">
+                                <div class="conn-people__bio">{person.bio -> f:format.html()}</div>
+                            </f:if>
+                        </f:if>
+                        <f:render partial="People/ContactLinks" arguments="{person: person}" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </f:for>
+</div>
+
+</html>

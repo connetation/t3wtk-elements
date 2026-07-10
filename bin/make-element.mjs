@@ -164,7 +164,7 @@ tt_content.${ctype} {
     templateName = ${pascal}
     dataProcessing {
         # Merges the FlexForm settings ON TOP of the TypoScript settings —
-        # never use the core FlexFormProcessor with `as = settings` (it would
+        # never use the core FlexFormProcessor with \`as = settings\` (it would
         # overwrite Fluid's reserved settings variable).
         10 = Connetation\\Elements\\DataProcessing\\FlexFormSettingsProcessor
         10 {

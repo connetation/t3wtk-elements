@@ -30,6 +30,7 @@ const config = {
         'testimonials':    'Resources/Private/Components/Testimonials/testimonials.ts',
         'pricing':         'Resources/Private/Components/Pricing/pricing.ts',
         'feature-grid':    'Resources/Private/Components/FeatureGrid/feature-grid.ts',
+        'people':          'Resources/Private/Components/People/people.ts',
     },
     bundle:    true,
     splitting: true,
