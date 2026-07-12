@@ -45,7 +45,15 @@ CREATE TABLE tt_content (
     tx_conn_elements_pricing_settings        mediumtext,
     tx_conn_elements_feature_grid_items      int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_feature_grid_settings   mediumtext,
-    tx_conn_elements_people_settings         mediumtext
+    tx_conn_elements_people_settings         mediumtext,
+    tx_conn_elements_text_icon_library       varchar(30) DEFAULT 'bootstrap-icons' NOT NULL,
+    tx_conn_elements_text_icon_style         varchar(20) DEFAULT 'solid' NOT NULL,
+    tx_conn_elements_text_icon_name          varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_elements_text_icon_position      varchar(20) DEFAULT 'top' NOT NULL,
+    tx_conn_elements_text_icon_shape         varchar(20) DEFAULT 'circle' NOT NULL,
+    tx_conn_elements_text_icon_size          varchar(20) DEFAULT 'medium' NOT NULL,
+    tx_conn_elements_text_icon_color         varchar(20) DEFAULT '' NOT NULL,
+    tx_conn_elements_text_icon_bg            varchar(20) DEFAULT '' NOT NULL
 );
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────

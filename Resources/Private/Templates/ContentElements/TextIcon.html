@@ -1,0 +1,62 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Header"></f:section>
+
+<f:section name="Main">
+
+<f:variable name="positionClass"><f:if condition="{data.header_position}">ce-headline-{data.header_position}</f:if></f:variable>
+
+<f:variable name="iconMaskUrl"></f:variable>
+<f:switch expression="{data.tx_conn_elements_text_icon_library}">
+    <f:case value="font-awesome">
+        <f:variable name="iconClass">fa-{data.tx_conn_elements_text_icon_style} fa-{data.tx_conn_elements_text_icon_name}</f:variable>
+    </f:case>
+    <f:case value="ionicons">
+        <f:variable name="ioSuffix"></f:variable>
+        <f:if condition="{data.tx_conn_elements_text_icon_style} == 'outline'"><f:variable name="ioSuffix">-outline</f:variable></f:if>
+        <f:if condition="{data.tx_conn_elements_text_icon_style} == 'sharp'"><f:variable name="ioSuffix">-sharp</f:variable></f:if>
+        <f:variable name="iconClass">conn-icon--ionicon</f:variable>
+        <f:variable name="iconMaskUrl"><f:uri.resource path="Icons/Ionicons/{data.tx_conn_elements_text_icon_name}{ioSuffix}.svg" extensionName="ConnElements" /></f:variable>
+    </f:case>
+    <f:defaultCase>
+        <f:variable name="iconClass">bi bi-{data.tx_conn_elements_text_icon_name}</f:variable>
+    </f:defaultCase>
+</f:switch>
+
+<f:if condition="{data.tx_conn_elements_text_icon_library} == 'font-awesome'">
+    <f:then>
+        <f:asset.css identifier="conn-elements-font-awesome-css" href="EXT:conn_elements/Resources/Public/Css/font-awesome.min.css" />
+    </f:then>
+</f:if>
+<f:if condition="{data.tx_conn_elements_text_icon_library} == 'bootstrap-icons'">
+    <f:then>
+        <f:asset.css identifier="conn-elements-bootstrap-icons-css" href="EXT:conn_elements/Resources/Public/Css/bootstrap-icons.css" />
+    </f:then>
+</f:if>
+<f:asset.css identifier="conn-elements-text-icon-css" href="EXT:conn_elements/Resources/Public/Css/text-icon.css" />
+
+<section class="conn-text-icon conn-text-icon--pos-{data.tx_conn_elements_text_icon_position} conn-text-icon--shape-{data.tx_conn_elements_text_icon_shape} conn-text-icon--size-{data.tx_conn_elements_text_icon_size}"
+         id="conn-text-icon-{data.uid}"
+         style="--conn-text-icon-color:{f:if(condition: data.tx_conn_elements_text_icon_color, then: data.tx_conn_elements_text_icon_color, else: 'var(--conn-accent, #6366f1)')};--conn-text-icon-bg:{f:if(condition: data.tx_conn_elements_text_icon_bg, then: data.tx_conn_elements_text_icon_bg, else: 'var(--conn-accent-soft, rgba(99, 102, 241, .12))')};">
+    <div class="container-fluid">
+        <div class="conn-text-icon__inner">
+            <f:if condition="{data.tx_conn_elements_text_icon_name}">
+                <div class="conn-text-icon__badge">
+                    <i class="{iconClass}" aria-hidden="true" style="--conn-icon-mask:{f:if(condition: iconMaskUrl, then: 'url({iconMaskUrl})')};"></i>
+                </div>
+            </f:if>
+            <div class="conn-text-icon__content">
+                <f:render partial="ContentElements/HeaderSwitch" arguments="{data: data, positionClass: positionClass, settings: settings}" />
+                <f:if condition="{data.bodytext}">
+                    <div class="conn-text-icon__text">{data.bodytext -> f:format.html()}</div>
+                </f:if>
+            </div>
+        </div>
+    </div>
+</section>
+
+</f:section>
+</html>

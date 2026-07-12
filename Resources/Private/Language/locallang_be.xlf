@@ -901,6 +901,104 @@
             <trans-unit id="people.settings">
                 <source>Display Settings</source>
             </trans-unit>
+
+            <!-- Text Icon content element -->
+            <trans-unit id="ce.text_icon">
+                <source>Text Icon</source>
+            </trans-unit>
+            <trans-unit id="ce.text_icon.description">
+                <source>Header, subheader and text with an icon from Bootstrap Icons or Font Awesome</source>
+            </trans-unit>
+            <trans-unit id="text_icon.tab.icon">
+                <source>Icon</source>
+            </trans-unit>
+            <trans-unit id="text_icon.library">
+                <source>Icon library</source>
+            </trans-unit>
+            <trans-unit id="text_icon.library.bootstrap">
+                <source>Bootstrap Icons</source>
+            </trans-unit>
+            <trans-unit id="text_icon.library.fontawesome">
+                <source>Font Awesome</source>
+            </trans-unit>
+            <trans-unit id="text_icon.library.ionicons">
+                <source>Ionicons</source>
+            </trans-unit>
+            <trans-unit id="text_icon.style">
+                <source>Icon style</source>
+            </trans-unit>
+            <trans-unit id="text_icon.style.solid">
+                <source>Solid</source>
+            </trans-unit>
+            <trans-unit id="text_icon.style.regular">
+                <source>Regular</source>
+            </trans-unit>
+            <trans-unit id="text_icon.style.filled">
+                <source>Filled</source>
+            </trans-unit>
+            <trans-unit id="text_icon.style.outline">
+                <source>Outline</source>
+            </trans-unit>
+            <trans-unit id="text_icon.style.sharp">
+                <source>Sharp</source>
+            </trans-unit>
+            <trans-unit id="text_icon.name">
+                <source>Icon</source>
+            </trans-unit>
+            <trans-unit id="text_icon.name.empty">
+                <source>— select icon —</source>
+            </trans-unit>
+            <trans-unit id="text_icon.position">
+                <source>Icon position</source>
+            </trans-unit>
+            <trans-unit id="text_icon.position.top">
+                <source>Top</source>
+            </trans-unit>
+            <trans-unit id="text_icon.position.left">
+                <source>Left</source>
+            </trans-unit>
+            <trans-unit id="text_icon.position.right">
+                <source>Right</source>
+            </trans-unit>
+            <trans-unit id="text_icon.shape">
+                <source>Badge shape</source>
+            </trans-unit>
+            <trans-unit id="text_icon.shape.none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="text_icon.shape.square">
+                <source>Square</source>
+            </trans-unit>
+            <trans-unit id="text_icon.shape.circle">
+                <source>Circle</source>
+            </trans-unit>
+            <trans-unit id="text_icon.shape.hexagon">
+                <source>Hexagon</source>
+            </trans-unit>
+            <trans-unit id="text_icon.size">
+                <source>Icon size</source>
+            </trans-unit>
+            <trans-unit id="text_icon.size.small">
+                <source>Small</source>
+            </trans-unit>
+            <trans-unit id="text_icon.size.medium">
+                <source>Medium</source>
+            </trans-unit>
+            <trans-unit id="text_icon.size.large">
+                <source>Large</source>
+            </trans-unit>
+            <trans-unit id="text_icon.size.xlarge">
+                <source>Extra Large</source>
+            </trans-unit>
+            <trans-unit id="text_icon.size.xxlarge">
+                <source>Extra Extra Large</source>
+            </trans-unit>
+            <trans-unit id="text_icon.color">
+                <source>Icon color (empty = theme default)</source>
+            </trans-unit>
+            <trans-unit id="text_icon.bg">
+                <source>Badge background color (empty = theme default)</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

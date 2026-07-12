@@ -1156,3 +1156,143 @@ $GLOBALS['TCA']['tt_content']['types']['conn_people'] = [
             --palette--;;hidden,--palette--;;access,
     ',
 ];
+
+// ─── Text Icon ──────────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_text_icon'] = 'conn-ce-text-icon';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_icon',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_icon.description',
+    'value' => 'conn_text_icon',
+    'icon'  => 'conn-ce-text-icon',
+    'group' => 'default',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_text_icon_library' => [
+        'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.library',
+        'onChange' => 'reload',
+        'config'   => [
+            'type'       => 'select',
+            'renderType' => 'selectSingle',
+            'items'      => [
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.library.bootstrap', 'value' => 'bootstrap-icons'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.library.fontawesome', 'value' => 'font-awesome'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.library.ionicons', 'value' => 'ionicons'],
+            ],
+            'default'  => 'bootstrap-icons',
+        ],
+    ],
+    'tx_conn_elements_text_icon_style' => [
+        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style',
+        'displayCond' => 'FIELD:tx_conn_elements_text_icon_library:!=:bootstrap-icons',
+        'onChange'    => 'reload',
+        'config'      => [
+            'type'          => 'select',
+            'renderType'    => 'connIconStyleSelect',
+            'itemsProcFunc' => \Connetation\Elements\Service\IconItemsProcFunc::class . '->getIconStyleItems',
+            'items'         => [],
+            'default'       => 'solid',
+        ],
+    ],
+    'tx_conn_elements_text_icon_name' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.name',
+        'config' => [
+            'type'          => 'select',
+            'renderType'    => 'connIconSelect',
+            'itemsProcFunc' => \Connetation\Elements\Service\IconItemsProcFunc::class . '->getIconNameItems',
+            'items'         => [
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.name.empty', 'value' => ''],
+            ],
+        ],
+    ],
+    'tx_conn_elements_text_icon_position' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.position',
+        'config' => [
+            'type'       => 'select',
+            'renderType' => 'selectSingle',
+            'items'      => [
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.position.top', 'value' => 'top'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.position.left', 'value' => 'left'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.position.right', 'value' => 'right'],
+            ],
+            'default' => 'top',
+        ],
+    ],
+    'tx_conn_elements_text_icon_shape' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.shape',
+        'config' => [
+            'type'       => 'select',
+            'renderType' => 'selectSingle',
+            'items'      => [
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.shape.none', 'value' => 'none'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.shape.square', 'value' => 'square'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.shape.circle', 'value' => 'circle'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.shape.hexagon', 'value' => 'hexagon'],
+            ],
+            'default' => 'none',
+        ],
+    ],
+    'tx_conn_elements_text_icon_size' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.size',
+        'config' => [
+            'type'       => 'select',
+            'renderType' => 'selectSingle',
+            'items'      => [
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.size.small', 'value' => 'small'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.size.medium', 'value' => 'medium'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.size.large', 'value' => 'large'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.size.xlarge', 'value' => 'xlarge'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.size.xxlarge', 'value' => 'xxlarge'],
+            ],
+            'default' => 'medium',
+        ],
+    ],
+    'tx_conn_elements_text_icon_color' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.color',
+        'config' => [
+            'type'       => 'input',
+            'renderType' => 'color',
+            'size'       => 10,
+        ],
+    ],
+    'tx_conn_elements_text_icon_bg' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.bg',
+        'config' => [
+            'type'       => 'input',
+            'renderType' => 'color',
+            'size'       => 10,
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['palettes']['conn_text_icon_source'] = [
+    'showitem' => 'tx_conn_elements_text_icon_library, tx_conn_elements_text_icon_style',
+];
+
+$GLOBALS['TCA']['tt_content']['palettes']['conn_text_icon_appearance'] = [
+    'showitem' => 'tx_conn_elements_text_icon_position, tx_conn_elements_text_icon_shape, tx_conn_elements_text_icon_size, --linebreak--, tx_conn_elements_text_icon_color, tx_conn_elements_text_icon_bg',
+];
+
+$GLOBALS['TCA']['tt_content']['types']['conn_text_icon'] = [
+    'columnsOverrides' => [
+        'bodytext' => [
+            'config' => [
+                'enableRichtext' => true,
+            ],
+        ],
+    ],
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;headers,bodytext,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.tab.icon,
+            --palette--;;conn_text_icon_source,
+            tx_conn_elements_text_icon_name,
+            --palette--;;conn_text_icon_appearance,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];

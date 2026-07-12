@@ -6,3 +6,8 @@ services:
 
   Connetation\Elements\:
     resource: '../Classes/*'
+
+  # Ajax route targets are instantiated by class name outside the container's
+  # own dependency graph, so they must be public to be resolvable there.
+  Connetation\Elements\Controller\Backend\IconListAjaxController:
+    public: true

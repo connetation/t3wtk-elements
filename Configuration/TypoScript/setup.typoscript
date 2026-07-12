@@ -23,3 +23,4 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/FeatureGrid.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/TextColumn.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/People.typoscript'
+@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/TextIcon.typoscript'

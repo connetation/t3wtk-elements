@@ -7,6 +7,18 @@ defined('TYPO3') or die();
 
 $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['WikiCode'] = 'EXT:conn_elements/Configuration/RTE/WikiCode.yaml';
 
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000001] = [
+    'nodeName' => 'connIconSelect',
+    'priority'  => 40,
+    'class'     => \Connetation\Elements\Form\Element\IconPreviewSelectElement::class,
+];
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000002] = [
+    'nodeName' => 'connIconStyleSelect',
+    'priority'  => 40,
+    'class'     => \Connetation\Elements\Form\Element\IconStyleSelectElement::class,
+];
+
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
     'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_bs_timeline,conn_bs_stats,conn_bs_logo_wall,conn_bs_testimonials,conn_bs_pricing,conn_bs_feature_grid,conn_people
@@ -166,10 +178,16 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.people.description
         tt_content_defValues.CType = conn_people
     }
-     mod.wizards.newContentElement.wizardItems.default.show := addToList(conn_text_column)
+     mod.wizards.newContentElement.wizardItems.default.show := addToList(conn_text_column,conn_text_icon)
      mod.wizards.newContentElement.wizardItems.default.elements.conn_text_column {
         iconIdentifier = content-text-columns
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_column
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_column.description
         tt_content_defValues.CType = conn_text_column
+    }
+     mod.wizards.newContentElement.wizardItems.default.elements.conn_text_icon {
+        iconIdentifier = conn-ce-text-icon
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_icon
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.text_icon.description
+        tt_content_defValues.CType = conn_text_icon
     }';
