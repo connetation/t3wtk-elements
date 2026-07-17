@@ -40,9 +40,12 @@ final class ProcessItemsProcessor extends AbstractItemsProcessor
     {
         $connectorStyle = $raw['connectorStyle'] ?? 'solid';
 
+        $maxPerRow = (int)($raw['maxPerRow'] ?? 0);
+
         return [
             'numbered'          => !empty($raw['numbered'] ?? true),
             'connectorStyle'    => in_array($connectorStyle, ['none', 'solid', 'dashed', 'dotted'], true) ? $connectorStyle : 'solid',
+            'maxPerRow'         => in_array($maxPerRow, [2, 3, 4, 5, 6], true) ? $maxPerRow : 0,
             'connectorColor'    => $this->resolveColor($raw['connectorColor'] ?? ''),
             'markerColor'       => $this->resolveColor($raw['markerColor'] ?? ''),
             'markerBorderColor' => $this->resolveColor($raw['markerBorderColor'] ?? ''),
@@ -55,6 +58,7 @@ final class ProcessItemsProcessor extends AbstractItemsProcessor
         return [
             'numbered'          => true,
             'connectorStyle'    => 'solid',
+            'maxPerRow'         => 0,
             'connectorColor'    => null,
             'markerColor'       => null,
             'markerBorderColor' => null,

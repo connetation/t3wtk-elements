@@ -2,6 +2,8 @@
 // Process/Steps – conn theme layer
 // ─────────────────────────────────────────────
 
+$conn-process-gap: 2rem;
+
 .frame-type-conn_bs_process header {
     h1, h2, h3, h4, h5, h6 {
         font-weight: 700;
@@ -19,7 +21,7 @@
         position: relative;
         display: flex;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: $conn-process-gap;
         // Room for the connector's rounded gutter loop (process.ts: GUTTER +
         // CORNER_RADIUS = 44px) — without it the loop clips against the
         // viewport edge on narrow screens, where there's no other margin
@@ -28,6 +30,21 @@
         // single-column layout), so both edges need clearance, not just
         // whichever one happened to get used.
         padding-inline: 3.5rem;
+    }
+
+    // Caps items per row even on very wide screens (settings.maxPerRow) —
+    // flex-basis is fixed at exactly 1/N of the row (gap already subtracted
+    // via calc(), since flexbox does NOT automatically shrink a percentage
+    // flex-basis to account for `gap`), with flex-grow disabled so a
+    // trailing partial row doesn't stretch to fill the full width. The
+    // min-width floor is what still lets narrower screens wrap to fewer
+    // than N per row — same as the uncapped default, just clamped from the
+    // wide-screen side too.
+    @for $n from 2 through 6 {
+        &__list--max-#{$n} &__step {
+            flex: 0 1 calc((100% - #{$n - 1} * #{$conn-process-gap}) / #{$n});
+            min-width: 200px;
+        }
     }
 
     // The connector line itself is drawn by process.ts into this SVG overlay,

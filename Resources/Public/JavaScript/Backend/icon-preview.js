@@ -1,6 +1,5 @@
 import AjaxRequest from '@typo3/core/ajax/ajax-request.js';
 
-const FIELD_SUFFIX_PATTERN = /^(.*)\[tx_conn_elements_text_icon_(?:library|style|name)\]$/;
 const MAX_TILES = 4000;
 const IONICON_STYLE_SUFFIXES = { filled: '', outline: '-outline', sharp: '-sharp' };
 const listCache = new Map();
@@ -8,28 +7,27 @@ const pickerState = new WeakMap();
 
 // "library"/"style"/"name" aren't guaranteed to share a DOM ancestor — the
 // "Icon" field can be rendered standalone (full width) in a different
-// fieldset/palette than "library"/"style". Every relevant element is looked
-// up by its exact TYPO3 field name instead of by DOM proximity.
-function prefixFromFieldName(name) {
-    const match = FIELD_SUFFIX_PATTERN.exec(name || '');
-    return match ? match[1] : null;
-}
-
-function fieldsByPrefix(prefix) {
+// fieldset/palette than "library"/"style" — and some tables using this
+// picker (e.g. a plain icon-only field with no library/style switcher) don't
+// have all three at all. Every relevant element is looked up by its own
+// TYPO3 field name, read from the picker's own data-*-field attributes
+// (emitted by IconPreviewSelectElement from that field's real TCA column),
+// instead of a hardcoded suffix or DOM proximity — this is what makes the
+// same picker reusable for fields other than TextIcon's own three.
+function fieldsFor(picker) {
+    const prefix = picker.dataset.recordPrefix || '';
+    const libraryField = picker.dataset.libraryField;
+    const styleField = picker.dataset.styleField;
+    const nameField = picker.dataset.nameField;
     return {
-        library: document.querySelector(`select[name="${prefix}[tx_conn_elements_text_icon_library]"]`),
-        style: document.querySelector(`select[name="${prefix}[tx_conn_elements_text_icon_style]"]`),
-        name: document.querySelector(`select[name="${prefix}[tx_conn_elements_text_icon_name]"]`),
+        library: libraryField ? document.querySelector(`select[name="${prefix}[${libraryField}]"]`) : null,
+        style: styleField ? document.querySelector(`select[name="${prefix}[${styleField}]"]`) : null,
+        name: nameField ? document.querySelector(`select[name="${prefix}[${nameField}]"]`) : null,
     };
 }
 
-function pickerForPrefix(prefix) {
-    return [...document.querySelectorAll('.conn-icon-picker')].find((el) => el.dataset.recordPrefix === prefix) || null;
-}
-
 async function stateFor(picker) {
-    const prefix = picker.dataset.recordPrefix || '';
-    const fields = fieldsByPrefix(prefix);
+    const fields = fieldsFor(picker);
     const library = fields.library?.value || 'bootstrap-icons';
     const style = fields.style?.value || 'solid';
     const cached = pickerState.get(picker);
@@ -63,13 +61,12 @@ function applyIconMarkup(icon, markup) {
     icon.style.setProperty('--conn-icon-mask', markup.mask);
 }
 
-function updatePreview(prefix) {
-    const picker = pickerForPrefix(prefix);
-    const icon = picker?.querySelector('.conn-icon-preview i');
+function updatePreview(picker) {
+    const icon = picker.querySelector('.conn-icon-preview i');
     if (!icon) {
         return;
     }
-    const fields = fieldsByPrefix(prefix);
+    const fields = fieldsFor(picker);
     const markup = iconMarkup(picker, fields.library?.value, fields.style?.value, fields.name?.value || '');
     applyIconMarkup(icon, markup);
 }
@@ -124,11 +121,12 @@ document.addEventListener('change', (event) => {
     if (!(target instanceof HTMLSelectElement)) {
         return;
     }
-    const prefix = prefixFromFieldName(target.name);
-    if (prefix === null) {
-        return;
-    }
-    updatePreview(prefix);
+    document.querySelectorAll('.conn-icon-picker').forEach((picker) => {
+        const fields = fieldsFor(picker);
+        if (target === fields.library || target === fields.style) {
+            updatePreview(picker);
+        }
+    });
 });
 
 document.addEventListener('click', async (event) => {
@@ -159,11 +157,12 @@ document.addEventListener('click', async (event) => {
     const tile = event.target.closest('.conn-icon-picker__tile');
     if (tile) {
         const picker = tile.closest('.conn-icon-picker');
-        const fields = fieldsByPrefix(picker.dataset.recordPrefix || '');
+        const fields = fieldsFor(picker);
         if (fields.name) {
             fields.name.value = tile.dataset.iconName;
             fields.name.dispatchEvent(new Event('change', { bubbles: true }));
         }
+        updatePreview(picker);
         picker.querySelector('.conn-icon-picker__panel').hidden = true;
     }
 });

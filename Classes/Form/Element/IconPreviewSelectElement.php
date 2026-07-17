@@ -28,10 +28,24 @@ final class IconPreviewSelectElement extends SelectSingleElement
 
     public function render(): array
     {
-        $row     = $this->data['databaseRow'] ?? [];
-        $library = $this->firstValue($row['tx_conn_elements_text_icon_library'] ?? 'bootstrap-icons');
-        $style   = $this->iconItemsProcFunc->normalizeStyle($library, $this->firstValue($row['tx_conn_elements_text_icon_style'] ?? 'solid'));
-        $name    = $this->firstValue($row['tx_conn_elements_text_icon_name'] ?? '');
+        $row = $this->data['databaseRow'] ?? [];
+        $config = $this->data['parameterArray']['fieldConf']['config'] ?? [];
+
+        // "library"/"style" are optional companion fields (TextIcon has them,
+        // for switching between Bootstrap Icons/Font Awesome/Ionicons) — a
+        // field with no such switcher (e.g. a plain icon picker always using
+        // Bootstrap Icons) simply won't have these columns, and IconItemsProcFunc
+        // already defaults to bootstrap-icons/solid when they're absent.
+        // The "name" field, in contrast, is always THIS field — its real TCA
+        // column, whatever it's called on whichever table — never a
+        // hardcoded assumption, so this element is reusable outside TextIcon.
+        $libraryFieldName = (string)($config['iconLibraryField'] ?? 'tx_conn_elements_text_icon_library');
+        $styleFieldName   = (string)($config['iconStyleField'] ?? 'tx_conn_elements_text_icon_style');
+        $nameFieldName    = (string)($this->data['fieldName'] ?? 'tx_conn_elements_text_icon_name');
+
+        $library = $this->firstValue($row[$libraryFieldName] ?? 'bootstrap-icons');
+        $style   = $this->iconItemsProcFunc->normalizeStyle($library, $this->firstValue($row[$styleFieldName] ?? 'solid'));
+        $name    = $this->firstValue($row[$nameFieldName] ?? '');
         $request = $this->data['request'] ?? null;
 
         // Switching "Icon library" (or "Icon style") can leave a previously
@@ -40,7 +54,7 @@ final class IconPreviewSelectElement extends SelectSingleElement
         // A never-touched (empty) selection is left alone.
         if ($name !== '' && !$this->iconItemsProcFunc->isValidName($library, $style, $name)) {
             $name = $this->iconItemsProcFunc->firstAvailableName($library, $style);
-            $this->data['databaseRow']['tx_conn_elements_text_icon_name'] = $name;
+            $this->data['databaseRow'][$nameFieldName] = $name;
             $this->data['parameterArray']['itemFormElValue'] = $name;
         }
 
@@ -50,10 +64,11 @@ final class IconPreviewSelectElement extends SelectSingleElement
         // "library"/"style" (it's rendered standalone for full width), so the
         // JS can't rely on DOM proximity to find its sibling fields. Derive
         // the record-specific field-name prefix here, where it's directly
-        // available, and let JS target siblings by exact name instead.
+        // available, and let JS target siblings by exact name (emitted below
+        // as data-*-field attributes) instead.
         $itemFormElName = (string)($this->data['parameterArray']['itemFormElName'] ?? '');
-        $recordPrefix   = str_ends_with($itemFormElName, '[tx_conn_elements_text_icon_name]')
-            ? substr($itemFormElName, 0, -strlen('[tx_conn_elements_text_icon_name]'))
+        $recordPrefix   = str_ends_with($itemFormElName, '[' . $nameFieldName . ']')
+            ? substr($itemFormElName, 0, -strlen('[' . $nameFieldName . ']'))
             : '';
 
         $iconMarkup = $this->buildIconMarkup($library, $style, $name, $request);
@@ -67,7 +82,12 @@ final class IconPreviewSelectElement extends SelectSingleElement
         $resultArray['stylesheetFiles'][] = 'EXT:conn_elements/Resources/Public/Css/font-awesome.min.css';
         $resultArray['stylesheetFiles'][] = 'EXT:conn_elements/Resources/Public/Css/icon-preview.css';
 
-        $resultArray['html'] .= '<div class="conn-icon-picker" data-ionicons-base="' . htmlspecialchars($ioniconsBaseUrl) . '" data-record-prefix="' . htmlspecialchars($recordPrefix) . '">'
+        $resultArray['html'] .= '<div class="conn-icon-picker"'
+            . ' data-ionicons-base="' . htmlspecialchars($ioniconsBaseUrl) . '"'
+            . ' data-record-prefix="' . htmlspecialchars($recordPrefix) . '"'
+            . ' data-library-field="' . htmlspecialchars($libraryFieldName) . '"'
+            . ' data-style-field="' . htmlspecialchars($styleFieldName) . '"'
+            . ' data-name-field="' . htmlspecialchars($nameFieldName) . '">'
             . '<div class="conn-icon-preview"><i class="' . htmlspecialchars($iconMarkup['class']) . '" aria-hidden="true" style="--conn-icon-mask:' . htmlspecialchars($iconMarkup['mask']) . ';"></i></div>'
             . '<button type="button" class="btn btn-default btn-sm conn-icon-picker__toggle">Browse icons&hellip;</button>'
             . '<div class="conn-icon-picker__panel" hidden>'
