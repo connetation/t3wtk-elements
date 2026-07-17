@@ -60,6 +60,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_dashboard'] = 'c
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard.description',
     'value' => 'conn_dashboard',
     'icon'  => 'conn-ce-dashboard',
     'group' => 'conn',
@@ -122,6 +123,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_card_group'] 
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_card_group',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_card_group.description',
     'value' => 'conn_bs_card_group',
     'icon'  => 'conn-ce-card-group',
     'group' => 'conn_bootstrap',
@@ -170,6 +172,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_accordion'] =
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_accordion',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_accordion.description',
     'value' => 'conn_bs_accordion',
     'icon'  => 'conn-ce-accordion',
     'group' => 'conn_bootstrap',
@@ -218,6 +221,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_tabs'] = 'con
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_tabs',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_tabs.description',
     'value' => 'conn_bs_tabs',
     'icon'  => 'conn-ce-tabs',
     'group' => 'conn_bootstrap',
@@ -266,6 +270,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_faq'] = 'conn
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_faq',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_faq.description',
     'value' => 'conn_bs_faq',
     'icon'  => 'conn-ce-faq',
     'group' => 'conn_bootstrap',
@@ -314,6 +319,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_process'] = '
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_process',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_process.description',
     'value' => 'conn_bs_process',
     'icon'  => 'conn-ce-process',
     'group' => 'conn_bootstrap',
@@ -362,6 +368,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_before_after'
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_before_after',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_before_after.description',
     'value' => 'conn_bs_before_after',
     'icon'  => 'conn-ce-before-after',
     'group' => 'conn_bootstrap',
@@ -430,6 +437,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_quote'] = 'conn-
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.quote',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.quote.description',
     'value' => 'conn_quote',
     'icon'  => 'conn-ce-quote',
     'group' => 'conn',
@@ -506,6 +514,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_alert'] = 'conn-
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.alert',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.alert.description',
     'value' => 'conn_alert',
     'icon'  => 'conn-ce-alert',
     'group' => 'conn',
@@ -610,6 +619,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_carousel'] = 
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel.description',
     'value' => 'conn_bs_carousel',
     'icon'  => 'conn-ce-bs-carousel',
     'group' => 'conn_bootstrap',
@@ -662,6 +672,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_hero_slid
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_hero_slider',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_hero_slider.description',
     'value' => 'conn_swiper_hero_slider',
     'icon'  => 'conn-ce-hero-slider',
     'group' => 'conn_swiper',
@@ -710,6 +721,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_slider'] 
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_slider',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_slider.description',
     'value' => 'conn_swiper_slider',
     'icon'  => 'conn-ce-slider',
     'group' => 'conn_swiper',
@@ -758,6 +770,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_thumbs_sl
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_thumbs_slider',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_thumbs_slider.description',
     'value' => 'conn_swiper_thumbs_slider',
     'icon'  => 'conn-ce-thumbs-slider',
     'group' => 'conn_swiper',
@@ -806,6 +819,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_parallax_
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_parallax_slider',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_parallax_slider.description',
     'value' => 'conn_swiper_parallax_slider',
     'icon'  => 'conn-ce-parallax-slider',
     'group' => 'conn_swiper',
@@ -908,6 +922,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_wiki'] = 'conn-c
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.wiki',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.wiki.description',
     'value' => 'conn_wiki',
     'icon'  => 'conn-ce-wiki',
     'group' => 'conn',
@@ -953,6 +968,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_card_stack'] = '
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack.description',
     'value' => 'conn_card_stack',
     'icon'  => 'conn-ce-card-stack',
     'group' => 'conn',
@@ -1001,6 +1017,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_flip_carousel'] 
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel.description',
     'value' => 'conn_flip_carousel',
     'icon'  => 'conn-ce-flip-carousel',
     'group' => 'conn',
@@ -1049,6 +1066,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_flip_gallery'] =
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery.description',
     'value' => 'conn_flip_gallery',
     'icon'  => 'conn-ce-flip-gallery',
     'group' => 'conn',
@@ -1097,6 +1115,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_mosaic_gallery']
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.mosaic_gallery',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.mosaic_gallery.description',
     'value' => 'conn_mosaic_gallery',
     'icon'  => 'conn-ce-mosaic-gallery',
     'group' => 'conn',
@@ -1145,6 +1164,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_stats'] = 'co
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats.description',
     'value' => 'conn_bs_stats',
     'icon'  => 'conn-ce-stats',
     'group' => 'conn',
@@ -1193,6 +1213,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_logo_wall'] =
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall.description',
     'value' => 'conn_bs_logo_wall',
     'icon'  => 'conn-ce-logo-wall',
     'group' => 'conn',
@@ -1241,6 +1262,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_testimonials'
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials.description',
     'value' => 'conn_bs_testimonials',
     'icon'  => 'conn-ce-testimonials',
     'group' => 'conn',
@@ -1289,6 +1311,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_pricing'] = '
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_pricing',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_pricing.description',
     'value' => 'conn_bs_pricing',
     'icon'  => 'conn-ce-pricing',
     'group' => 'conn',
@@ -1337,6 +1360,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_feature_grid'
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid.description',
     'value' => 'conn_bs_feature_grid',
     'icon'  => 'conn-ce-feature-grid',
     'group' => 'conn',
@@ -1472,6 +1496,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_timeline'] = 
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline.description',
     'value' => 'conn_bs_timeline',
     'icon'  => 'conn-ce-timeline',
     'group' => 'conn',
@@ -1520,6 +1545,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_people'] = 'conn
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.people',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.people.description',
     'value' => 'conn_people',
     'icon'  => 'conn-ce-people',
     'group' => 'conn',
