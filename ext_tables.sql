@@ -53,7 +53,9 @@ CREATE TABLE tt_content (
     tx_conn_elements_text_icon_shape         varchar(20) DEFAULT 'circle' NOT NULL,
     tx_conn_elements_text_icon_size          varchar(20) DEFAULT 'medium' NOT NULL,
     tx_conn_elements_text_icon_color         varchar(20) DEFAULT '' NOT NULL,
-    tx_conn_elements_text_icon_bg            varchar(20) DEFAULT '' NOT NULL
+    tx_conn_elements_text_icon_bg            varchar(20) DEFAULT '' NOT NULL,
+    tx_conn_elements_tabs_items              int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_tabs_settings           mediumtext
 );
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────
@@ -555,4 +557,24 @@ CREATE TABLE tx_conn_elements_domain_model_person (
 
     PRIMARY KEY (uid),
     KEY parent (pid)
+);
+
+-- ─── Bootstrap Tabs ──────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_tab_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    title           varchar(60) DEFAULT '' NOT NULL,
+    body            mediumtext,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
 );

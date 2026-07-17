@@ -11,6 +11,7 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/MosaicGallery.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/ParallaxSlider.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Slider.typoscript'
+@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Tabs.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/ThumbsSlider.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Wiki.typoscript'
 

@@ -481,6 +481,32 @@
             <trans-unit id="accordion_item.body">
                 <source>Content</source>
             </trans-unit>
+            <!-- Bootstrap Tabs content element -->
+            <trans-unit id="ce.bs_tabs">
+                <source>Bootstrap Tabs</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_tabs.description">
+                <source>Switchable content panels using Bootstrap 5 tabs</source>
+            </trans-unit>
+            <trans-unit id="tabs.tab.config">
+                <source>Tabs Settings</source>
+            </trans-unit>
+            <trans-unit id="tabs.items">
+                <source>Tabs</source>
+            </trans-unit>
+            <trans-unit id="tabs.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <!-- Tab item model -->
+            <trans-unit id="model.tab_item">
+                <source>Tab</source>
+            </trans-unit>
+            <trans-unit id="tab_item.title">
+                <source>Label</source>
+            </trans-unit>
+            <trans-unit id="tab_item.body">
+                <source>Content</source>
+            </trans-unit>
             <!-- Dashboard content element -->
             <trans-unit id="ce.dashboard">
                 <source>Service Dashboard</source>

@@ -117,7 +117,7 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_8_4.description
         tt_content_defValues.CType = conn_grid_8_4
     }
-     mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion,conn_bs_card_group,conn_bs_carousel
+     mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion,conn_bs_card_group,conn_bs_carousel,conn_bs_tabs
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_accordion {
         iconIdentifier = conn-ce-accordion
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_accordion
@@ -135,6 +135,12 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel.description
         tt_content_defValues.CType = conn_bs_carousel
+    }
+     mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_tabs {
+        iconIdentifier = conn-ce-tabs
+        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_tabs
+        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_tabs.description
+        tt_content_defValues.CType = conn_bs_tabs
     }
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_timeline {
         iconIdentifier = conn-ce-timeline

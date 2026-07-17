@@ -31,6 +31,7 @@ const config = {
         'pricing':         'Resources/Private/Components/Pricing/pricing.ts',
         'feature-grid':    'Resources/Private/Components/FeatureGrid/feature-grid.ts',
         'people':          'Resources/Private/Components/People/people.ts',
+        'tabs':            'Resources/Private/Components/Tabs/tabs.ts',
     },
     bundle:    true,
     splitting: true,

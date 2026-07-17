@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.style>
+                        <label>Style</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>tabs</default>
+                            <items>
+                                <numIndex index="0"><label>Tabs</label><value>tabs</value></numIndex>
+                                <numIndex index="1"><label>Pills</label><value>pills</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.style>
+                    <settings.fade>
+                        <label>Fade transition between panes</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.fade>
+                    <settings.justified>
+                        <label>Stretch tabs to fill the full width</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.justified>
+                    <settings.roundedCorners>
+                        <label>Rounded corners</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.roundedCorners>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

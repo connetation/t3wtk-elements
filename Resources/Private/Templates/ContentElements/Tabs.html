@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-tabs-css"
+    href="EXT:conn_elements/Resources/Public/Css/tabs.css" />
+<f:asset.script identifier="conn-elements-tabs-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/tabs.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-tabs row{f:if(condition: settings.roundedCorners, then: ' conn-tabs--rounded')}" id="conn-tabs-section-{data.uid}">
+    <div class="container-fluid">
+
+        <f:if condition="{items}">
+            <f:then>
+                <div class="conn-tabs__wrap" id="conn-tabs-{data.uid}">
+                    <ul class="nav {settings.navClass} conn-tabs__nav" id="conn-tabs-nav-{data.uid}" role="tablist">
+                        <f:for each="{items}" as="item">
+                            <f:render partial="Tabs/NavItem" arguments="{item: item, parentUid: data.uid}" />
+                        </f:for>
+                    </ul>
+                    <div class="tab-content conn-tabs__content{f:if(condition: '{settings.style} == pills', then: ' conn-tabs__content--pills')}" id="conn-tabs-content-{data.uid}">
+                        <f:for each="{items}" as="item">
+                            <f:render partial="Tabs/Pane" arguments="{item: item, parentUid: data.uid, paneClass: settings.paneClass}" />
+                        </f:for>
+                    </div>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">
+                    <f:translate key="tabs.empty" extensionName="conn_elements" />
+                </p>
+            </f:else>
+        </f:if>
+
+        <f:if condition="{data.bodytext}">
+            <div class="conn-tabs__footer mt-3">
+                {data.bodytext -> f:format.html()}
+            </div>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>
