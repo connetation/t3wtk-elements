@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-quote-css"
+    href="EXT:conn_elements/Resources/Public/Css/quote.css" />
+
+<f:variable name="authorImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_quote_image')}" />
+
+<section class="conn-quote conn-quote--{data.tx_conn_elements_quote_style} row" id="conn-quote-{data.uid}">
+    <div class="container-fluid">
+        <blockquote class="conn-quote__blockquote">
+            <f:if condition="{data.bodytext}">
+                <div class="conn-quote__text">
+                    {data.bodytext -> f:format.html()}
+                </div>
+            </f:if>
+
+            <f:if condition="{data.tx_conn_elements_quote_author}">
+                <footer class="conn-quote__author">
+                    <f:if condition="{authorImage}">
+                        <f:image image="{authorImage}" class="conn-quote__author-image" alt="{data.tx_conn_elements_quote_author}" />
+                    </f:if>
+                    <span class="conn-quote__author-info">
+                        <cite class="conn-quote__author-name">{data.tx_conn_elements_quote_author}</cite>
+                        <f:if condition="{data.tx_conn_elements_quote_role}">
+                            <span class="conn-quote__author-role">{data.tx_conn_elements_quote_role}</span>
+                        </f:if>
+                    </span>
+                </footer>
+            </f:if>
+        </blockquote>
+    </div>
+</section>
+
+</f:section>
+
+</html>

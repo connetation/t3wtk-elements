@@ -1,0 +1,8 @@
+# ─────────────────────────────────────────────
+# Alert/Notice Banner Content Element – conn_elements
+# ─────────────────────────────────────────────
+
+tt_content.conn_alert =< lib.conn_elements_ce
+tt_content.conn_alert {
+    templateName = Alert
+}

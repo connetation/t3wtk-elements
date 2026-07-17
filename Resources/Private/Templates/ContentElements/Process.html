@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-bootstrap-icons-css"
+    href="EXT:conn_elements/Resources/Public/Css/bootstrap-icons.css" />
+<f:asset.css identifier="conn-elements-process-css"
+    href="EXT:conn_elements/Resources/Public/Css/process.css" />
+<f:asset.script identifier="conn-elements-process-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/process.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-process row" id="conn-process-{data.uid}">
+    <div class="container-fluid">
+
+        <f:if condition="{items}">
+            <f:then>
+                <div class="conn-process__list" style="{f:if(condition: settings.connectorColor, then: '--conn-process-connector: {settings.connectorColor};')}{f:if(condition: settings.markerColor, then: '--conn-process-marker: {settings.markerColor};')}{f:if(condition: settings.markerBorderColor, then: '--conn-process-marker-border: {settings.markerBorderColor};')}{f:if(condition: settings.markerNumberColor, then: '--conn-process-marker-number: {settings.markerNumberColor};')}">
+                    <f:if condition="{settings.connectorStyle} != 'none'">
+                        <svg class="conn-process__connectors conn-process__connectors--{settings.connectorStyle}" aria-hidden="true"></svg>
+                    </f:if>
+                    <f:for each="{items}" as="item" iteration="iterator">
+                        <f:render partial="Process/Step" arguments="{item: item, numbered: settings.numbered, isLast: iterator.isLast}" />
+                    </f:for>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">
+                    <f:translate key="process.empty" extensionName="conn_elements" />
+                </p>
+            </f:else>
+        </f:if>
+
+        <f:if condition="{data.bodytext}">
+            <div class="conn-process__footer mt-3">
+                {data.bodytext -> f:format.html()}
+            </div>
+        </f:if>
+
+    </div>
+</section>
+
+</f:section>
+
+</html>

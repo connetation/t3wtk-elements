@@ -55,7 +55,24 @@ CREATE TABLE tt_content (
     tx_conn_elements_text_icon_color         varchar(20) DEFAULT '' NOT NULL,
     tx_conn_elements_text_icon_bg            varchar(20) DEFAULT '' NOT NULL,
     tx_conn_elements_tabs_items              int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_tabs_settings           mediumtext
+    tx_conn_elements_tabs_settings           mediumtext,
+    tx_conn_elements_faq_items               int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_faq_settings            mediumtext,
+    tx_conn_elements_process_items           int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_process_settings        mediumtext,
+    tx_conn_elements_before_after_before          int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_before_after_after           int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_before_after_before_label    varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_elements_before_after_after_label     varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_elements_quote_author            varchar(255) DEFAULT '' NOT NULL,
+    tx_conn_elements_quote_role              varchar(255) DEFAULT '' NOT NULL,
+    tx_conn_elements_quote_image             int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_quote_style             varchar(20) DEFAULT 'mark' NOT NULL,
+    tx_conn_elements_alert_style             varchar(20) DEFAULT 'info' NOT NULL,
+    tx_conn_elements_alert_dismissible       tinyint(4) DEFAULT '0' NOT NULL,
+    tx_conn_elements_alert_icon              tinyint(4) DEFAULT '1' NOT NULL,
+    tx_conn_elements_alert_position          varchar(20) DEFAULT 'static' NOT NULL,
+    tx_conn_elements_alert_compact           tinyint(4) DEFAULT '0' NOT NULL
 );
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────
@@ -572,6 +589,48 @@ CREATE TABLE tx_conn_elements_domain_model_tab_item (
     content_element int(11) DEFAULT '0' NOT NULL,
 
     title           varchar(60) DEFAULT '' NOT NULL,
+    body            mediumtext,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── FAQ ─────────────────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_faq_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    title           varchar(255) DEFAULT '' NOT NULL,
+    title_layout    int(11) DEFAULT '0' NOT NULL,
+    body            mediumtext,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
+);
+
+-- ─── Process/Steps ───────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_elements_domain_model_process_step (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    title           varchar(100) DEFAULT '' NOT NULL,
+    icon            varchar(60) DEFAULT '' NOT NULL,
     body            mediumtext,
 
     PRIMARY KEY (uid),

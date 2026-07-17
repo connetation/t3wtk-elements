@@ -1,0 +1,83 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-alert-css"
+    href="EXT:conn_elements/Resources/Public/Css/alert.css" />
+
+<f:variable name="dismissible" value="0" />
+<f:if condition="{data.tx_conn_elements_alert_dismissible}"><f:variable name="dismissible" value="1" /></f:if>
+
+<f:variable name="position"><f:if condition="{data.tx_conn_elements_alert_position}">{data.tx_conn_elements_alert_position}</f:if></f:variable>
+<f:variable name="isFloating" value="0" />
+<f:if condition="{position} && {position} != 'static'"><f:variable name="isFloating" value="1" /></f:if>
+<f:variable name="isCompact" value="0" />
+<f:if condition="{isFloating} && {data.tx_conn_elements_alert_compact}"><f:variable name="isCompact" value="1" /></f:if>
+
+<f:variable name="iconClass">
+    <f:switch expression="{data.tx_conn_elements_alert_style}">
+        <f:case value="success">bi-check-circle-fill</f:case>
+        <f:case value="warning">bi-exclamation-triangle-fill</f:case>
+        <f:case value="danger">bi-x-octagon-fill</f:case>
+        <f:defaultCase>bi-info-circle-fill</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<f:section name="AlertBody">
+    <div class="conn-alert alert alert-{data.tx_conn_elements_alert_style}{f:if(condition: dismissible, then: ' alert-dismissible fade show')} d-flex align-items-start" role="alert" id="conn-alert-{data.uid}">
+        <f:if condition="{data.tx_conn_elements_alert_icon}">
+            <i class="conn-alert__icon bi {iconClass}" aria-hidden="true"></i>
+        </f:if>
+
+        <div class="conn-alert__body">
+            <f:if condition="{data.header}">
+                <strong class="conn-alert__header">{data.header}</strong>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                <div class="conn-alert__text">
+                    {data.bodytext -> f:format.html()}
+                </div>
+            </f:if>
+        </div>
+
+        <f:if condition="{dismissible}">
+            <f:variable name="closeLabel"><f:translate key="alert.close" extensionName="conn_elements" /></f:variable>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{closeLabel}"></button>
+        </f:if>
+    </div>
+</f:section>
+
+<f:if condition="{isFloating}">
+    <f:then>
+        <f:asset.script identifier="conn-elements-alert-js"
+            src="EXT:conn_elements/Resources/Public/Js/components/alert.js"
+            type="module"
+            priority="false" />
+
+        <div class="conn-alert-float conn-alert-float--{position}{f:if(condition: isCompact, then: ' conn-alert-float--compact')}" id="conn-alert-float-{data.uid}">
+            <f:if condition="{isCompact}">
+                <f:variable name="expandLabel"><f:translate key="alert.expand" extensionName="conn_elements" /></f:variable>
+                <button type="button"
+                        class="conn-alert-float__toggle conn-alert-float__toggle--{data.tx_conn_elements_alert_style}"
+                        aria-expanded="false"
+                        aria-controls="conn-alert-float-panel-{data.uid}"
+                        aria-label="{expandLabel}">
+                    <i class="bi {iconClass}" aria-hidden="true"></i>
+                </button>
+            </f:if>
+            <div class="conn-alert-float__panel" id="conn-alert-float-panel-{data.uid}">
+                <f:render section="AlertBody" />
+            </div>
+        </div>
+    </f:then>
+    <f:else>
+        <f:render section="AlertBody" />
+    </f:else>
+</f:if>
+
+</f:section>
+
+</html>

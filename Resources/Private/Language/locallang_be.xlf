@@ -1048,6 +1048,170 @@
             <trans-unit id="text_icon.bg">
                 <source>Badge background color (empty = theme default)</source>
             </trans-unit>
+            <!-- FAQ content element -->
+            <trans-unit id="ce.bs_faq">
+                <source>FAQ</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_faq.description">
+                <source>Same collapsible layout as Accordion, but also generates FAQPage structured data — Google can show your questions directly in search results. Use this for actual FAQ content; use Accordion for any other collapsible content.</source>
+            </trans-unit>
+            <trans-unit id="faq.tab.config">
+                <source>FAQ Settings</source>
+            </trans-unit>
+            <trans-unit id="faq.items">
+                <source>Questions</source>
+            </trans-unit>
+            <trans-unit id="faq.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="model.faq_item">
+                <source>FAQ Item</source>
+            </trans-unit>
+            <trans-unit id="faq_item.title">
+                <source>Question</source>
+            </trans-unit>
+            <trans-unit id="faq_item.body">
+                <source>Answer</source>
+            </trans-unit>
+            <!-- Process/Steps content element -->
+            <trans-unit id="ce.bs_process">
+                <source>Process/Steps</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_process.description">
+                <source>Numbered step-by-step process, e.g. "How we work"</source>
+            </trans-unit>
+            <trans-unit id="process.tab.config">
+                <source>Process Settings</source>
+            </trans-unit>
+            <trans-unit id="process.items">
+                <source>Steps</source>
+            </trans-unit>
+            <trans-unit id="process.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="model.process_step">
+                <source>Process Step</source>
+            </trans-unit>
+            <trans-unit id="process_step.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="process_step.icon">
+                <source>Icon (optional)</source>
+            </trans-unit>
+            <trans-unit id="process_step.icon.description">
+                <source>Pick an icon from the browser. Leave empty to show the step number instead.</source>
+            </trans-unit>
+            <trans-unit id="process_step.body">
+                <source>Description</source>
+            </trans-unit>
+            <!-- Before/After Image Slider content element -->
+            <trans-unit id="ce.bs_before_after">
+                <source>Before/After Image Slider</source>
+            </trans-unit>
+            <trans-unit id="ce.bs_before_after.description">
+                <source>Drag-to-compare image slider, e.g. for redesign or renovation showcases</source>
+            </trans-unit>
+            <trans-unit id="before_after.before_image">
+                <source>Before Image</source>
+            </trans-unit>
+            <trans-unit id="before_after.before_label">
+                <source>Before Label</source>
+            </trans-unit>
+            <trans-unit id="before_after.after_image">
+                <source>After Image</source>
+            </trans-unit>
+            <trans-unit id="before_after.after_label">
+                <source>After Label</source>
+            </trans-unit>
+            <!-- Quote content element -->
+            <trans-unit id="ce.quote">
+                <source>Quote</source>
+            </trans-unit>
+            <trans-unit id="ce.quote.description">
+                <source>Standalone pull-quote with optional author attribution</source>
+            </trans-unit>
+            <trans-unit id="quote.author">
+                <source>Author Name</source>
+            </trans-unit>
+            <trans-unit id="quote.role">
+                <source>Author Role</source>
+            </trans-unit>
+            <trans-unit id="quote.image">
+                <source>Author Image</source>
+            </trans-unit>
+            <trans-unit id="quote.style">
+                <source>Style</source>
+            </trans-unit>
+            <trans-unit id="quote.style.mark">
+                <source>Giant quotation mark</source>
+            </trans-unit>
+            <trans-unit id="quote.style.card">
+                <source>Shadowed card</source>
+            </trans-unit>
+            <trans-unit id="quote.style.minimal">
+                <source>Minimal, centered</source>
+            </trans-unit>
+            <!-- Alert/Notice Banner content element -->
+            <trans-unit id="ce.alert">
+                <source>Alert/Notice Banner</source>
+            </trans-unit>
+            <trans-unit id="ce.alert.description">
+                <source>Dismissible Bootstrap alert banner for announcements</source>
+            </trans-unit>
+            <trans-unit id="alert.style">
+                <source>Style</source>
+            </trans-unit>
+            <trans-unit id="alert.style.info">
+                <source>Info</source>
+            </trans-unit>
+            <trans-unit id="alert.style.success">
+                <source>Success</source>
+            </trans-unit>
+            <trans-unit id="alert.style.warning">
+                <source>Warning</source>
+            </trans-unit>
+            <trans-unit id="alert.style.danger">
+                <source>Danger</source>
+            </trans-unit>
+            <trans-unit id="alert.dismissible">
+                <source>Dismissible</source>
+            </trans-unit>
+            <trans-unit id="alert.show_icon">
+                <source>Show icon</source>
+            </trans-unit>
+            <trans-unit id="alert.position">
+                <source>Position</source>
+            </trans-unit>
+            <trans-unit id="alert.position.description">
+                <source>"Inline" places the alert in the normal page flow where the content element is positioned. Any other option floats it fixed to that screen corner/edge instead.</source>
+            </trans-unit>
+            <trans-unit id="alert.position.static">
+                <source>Inline (in page content)</source>
+            </trans-unit>
+            <trans-unit id="alert.position.top_left">
+                <source>Floating — top left</source>
+            </trans-unit>
+            <trans-unit id="alert.position.top_center">
+                <source>Floating — top center</source>
+            </trans-unit>
+            <trans-unit id="alert.position.top_right">
+                <source>Floating — top right</source>
+            </trans-unit>
+            <trans-unit id="alert.position.bottom_left">
+                <source>Floating — bottom left</source>
+            </trans-unit>
+            <trans-unit id="alert.position.bottom_center">
+                <source>Floating — bottom center</source>
+            </trans-unit>
+            <trans-unit id="alert.position.bottom_right">
+                <source>Floating — bottom right</source>
+            </trans-unit>
+            <trans-unit id="alert.compact">
+                <source>Icon only (expand on click)</source>
+            </trans-unit>
+            <trans-unit id="alert.compact.description">
+                <source>Show only a small floating icon button; clicking it reveals the full alert. Only applies to floating positions.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

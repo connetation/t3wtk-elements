@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.numbered>
+                        <label>Show step numbers</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.numbered>
+                    <settings.connectorStyle>
+                        <label>Connector line</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>solid</default>
+                            <items>
+                                <numIndex index="0"><label>None (not connected)</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Solid</label><value>solid</value></numIndex>
+                                <numIndex index="2"><label>Dashed</label><value>dashed</value></numIndex>
+                                <numIndex index="3"><label>Dotted</label><value>dotted</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.connectorStyle>
+                </el>
+            </ROOT>
+        </sDEF>
+        <colors>
+            <ROOT>
+                <sheetTitle>Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.connectorColor>
+                        <label>Connector line color (empty = theme accent)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.connectorColor>
+                    <settings.markerColor>
+                        <label>Marker color (empty = theme default)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.markerColor>
+                    <settings.markerBorderColor>
+                        <label>Marker border color (empty = theme default)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.markerBorderColor>
+                    <settings.markerNumberColor>
+                        <label>Marker number/icon color (empty = theme accent)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.markerNumberColor>
+                </el>
+            </ROOT>
+        </colors>
+    </sheets>
+</T3DataStructure>

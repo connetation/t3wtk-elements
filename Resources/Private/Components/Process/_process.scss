@@ -1,0 +1,116 @@
+// ─────────────────────────────────────────────
+// Process/Steps – conn theme layer
+// ─────────────────────────────────────────────
+
+.frame-type-conn_bs_process header {
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        color: var(--conn-heading);
+    }
+}
+
+.conn-process {
+    &__footer {
+        color: var(--conn-text-muted);
+        font-size: 0.9rem;
+    }
+
+    &__list {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        // Room for the connector's rounded gutter loop (process.ts: GUTTER +
+        // CORNER_RADIUS = 44px) — without it the loop clips against the
+        // viewport edge on narrow screens, where there's no other margin
+        // between the steps and the container edge. A bit more than the
+        // 44px minimum since the loop now alternates sides (including on a
+        // single-column layout), so both edges need clearance, not just
+        // whichever one happened to get used.
+        padding-inline: 3.5rem;
+    }
+
+    // The connector line itself is drawn by process.ts into this SVG overlay,
+    // not CSS — a pure-CSS per-step ::after line only knows its own item's
+    // width, so it breaks the moment steps wrap onto a new row (nothing to
+    // visually continue into on the next line). Measuring each marker's
+    // actual on-screen position and routing a real path between them works
+    // regardless of how many rows they wrap onto.
+    &__connectors {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: visible;
+    }
+
+    &__connector-line {
+        fill: none;
+        stroke: var(--conn-process-connector, var(--conn-accent));
+        stroke-width: 2;
+        stroke-linecap: round;
+    }
+
+    &__connectors--dashed &__connector-line {
+        stroke-dasharray: 10 7;
+    }
+
+    &__connectors--dotted &__connector-line {
+        stroke-dasharray: 1 8;
+        stroke-linecap: round;
+    }
+
+    &__step {
+        position: relative;
+        flex: 1 1 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    &__marker {
+        position: relative;
+        z-index: 1;
+        flex: 0 0 auto;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        // Two background layers: an OPAQUE base (background-color) so the
+        // connector line never shows through, with the actual (often
+        // semi-transparent, e.g. the default --conn-accent-soft tint, or a
+        // custom color at a lower opacity setting) color painted on top of
+        // it via background-image — background-image layers above
+        // background-color, so this blocks anything behind the marker
+        // regardless of the tint's own alpha.
+        background-color: var(--conn-surface);
+        background-image: linear-gradient(var(--conn-process-marker, var(--conn-accent-soft)), var(--conn-process-marker, var(--conn-accent-soft)));
+        border: 1px solid var(--conn-process-marker-border, var(--conn-border-strong));
+        color: var(--conn-process-marker-number, var(--conn-accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    &__number {
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    &__title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--conn-heading);
+        margin-bottom: 0.25rem;
+    }
+
+    &__text {
+        color: var(--conn-text-muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+
+        p:last-child { margin-bottom: 0; }
+    }
+}

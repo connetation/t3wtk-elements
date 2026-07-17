@@ -1,0 +1,144 @@
+// ─────────────────────────────────────────────
+// Quote – conn theme layer
+//
+// Three genuinely distinct treatments (not size variants of the same
+// layout): a giant decorative quotation mark, a shadowed testimonial card,
+// and a minimal centered editorial style.
+// ─────────────────────────────────────────────
+
+.conn-quote {
+    &__blockquote {
+        position: relative;
+        margin: 0;
+        max-width: 760px;
+    }
+
+    &__text {
+        position: relative;
+        z-index: 1;
+        font-size: 1.35rem;
+        font-weight: 600;
+        line-height: 1.5;
+        color: var(--conn-heading);
+
+        p:last-child { margin-bottom: 0; }
+    }
+
+    &__author {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+    }
+
+    &__author-image {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        object-fit: cover;
+        flex: 0 0 auto;
+    }
+
+    &__author-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__author-name {
+        font-style: normal;
+        font-weight: 700;
+        color: var(--conn-text);
+    }
+
+    &__author-role {
+        font-size: 0.85rem;
+        color: var(--conn-text-muted);
+    }
+
+    // ── Mark: giant decorative quotation mark behind the text ──
+    &--mark {
+        .conn-quote__blockquote {
+            padding-top: 2.5rem;
+        }
+
+        .conn-quote__blockquote::before {
+            content: '\201C';
+            position: absolute;
+            z-index: 0;
+            top: -1rem;
+            left: -0.25rem;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 7rem;
+            line-height: 1;
+            color: var(--conn-accent-soft);
+        }
+
+        .conn-quote__text {
+            font-style: italic;
+        }
+    }
+
+    // ── Card: shadowed panel with a left accent bar ─────────────
+    &--card {
+        .conn-quote__blockquote {
+            background-color: var(--conn-surface);
+            border-radius: var(--conn-radius);
+            box-shadow: var(--conn-shadow-card);
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .conn-quote__blockquote::before {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--conn-accent);
+        }
+
+        .conn-quote__author {
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--conn-border);
+        }
+    }
+
+    // ── Minimal: centered editorial style, no border/background ─
+    &--minimal {
+        text-align: center;
+
+        .conn-quote__blockquote {
+            margin-inline: auto;
+        }
+
+        .conn-quote__text {
+            font-size: 1.6rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .conn-quote__text::before {
+            content: '';
+            display: block;
+            width: 3rem;
+            height: 3px;
+            margin: 0 auto 1.25rem;
+            background: var(--conn-accent);
+        }
+
+        .conn-quote__author {
+            justify-content: center;
+        }
+
+        .conn-quote__author-name {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+        }
+    }
+}

@@ -95,6 +95,28 @@
             <trans-unit id="tabs.empty">
                 <source>No tabs have been added yet.</source>
             </trans-unit>
+            <!-- FAQ frontend -->
+            <trans-unit id="faq.empty">
+                <source>No questions have been added yet.</source>
+            </trans-unit>
+            <!-- Process/Steps frontend -->
+            <trans-unit id="process.empty">
+                <source>No steps have been added yet.</source>
+            </trans-unit>
+            <!-- Before/After Image Slider frontend -->
+            <trans-unit id="before_after.empty">
+                <source>Please add a before and an after image.</source>
+            </trans-unit>
+            <trans-unit id="before_after.slider.label">
+                <source>Drag to compare before and after</source>
+            </trans-unit>
+            <!-- Alert/Notice Banner frontend -->
+            <trans-unit id="alert.close">
+                <source>Close</source>
+            </trans-unit>
+            <trans-unit id="alert.expand">
+                <source>Show notice</source>
+            </trans-unit>
             <!-- Wiki frontend -->
             <trans-unit id="wiki.search.placeholder">
                 <source>Search pages…</source>
