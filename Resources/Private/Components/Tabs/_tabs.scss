@@ -21,15 +21,12 @@
         position: relative;
         border-color: var(--conn-border);
 
-        // Square by default (--conn-tabs--rounded below opts back in) — Bootstrap
-        // would otherwise apply its own default border-radius unconditionally.
-        --bs-nav-tabs-border-radius: 0;
-        --bs-nav-pills-border-radius: 0;
-
         .nav-link {
             color: var(--conn-text-muted);
             font-weight: 600;
             transition: color var(--conn-transition), background-color var(--conn-transition), border-color var(--conn-transition);
+
+            border-radius: 0 !important;
 
             &:hover:not(.active) {
                 color: var(--conn-text);
@@ -51,10 +48,6 @@
         }
     }
 
-    // Sliding active-indicator bar (nav-tabs style only — see tabs.ts).
-    // Same sliding-underline aesthetic as the site's own link hover treatment
-    // (_links.scss), positioned/animated in JS since it tracks the active
-    // button's own offset/width.
     &__indicator {
         position: absolute;
         bottom: -1px;
@@ -69,7 +62,7 @@
         color: var(--conn-text);
         border: 1px solid var(--conn-border);
         border-top: none;
-        border-radius: 0;
+        border-radius: 0 !important;
         padding: 1.25rem;
 
         // Pills style has no attached nav bar to visually continue from
@@ -81,18 +74,21 @@
         p:last-child { margin-bottom: 0; }
     }
 
-    // Opt-in rounded corners (settings.roundedCorners) — square by default.
+    // ── Opt-in rounded corners (settings.roundedCorners) ──────────────
     &--rounded {
-        .conn-tabs__nav {
-            --bs-nav-tabs-border-radius: var(--conn-radius);
-            --bs-nav-pills-border-radius: var(--conn-radius);
+        .conn-tabs__nav:not(.nav-pills) .nav-link {
+            border-radius: var(--conn-radius) var(--conn-radius) 0 0 !important;
+        }
+
+        .conn-tabs__nav.nav-pills .nav-link {
+            border-radius: var(--conn-radius) !important;
         }
 
         .conn-tabs__content {
-            border-radius: 0 0 var(--conn-radius) var(--conn-radius);
+            border-radius: 0 0 var(--conn-radius) var(--conn-radius) !important;
 
             &.conn-tabs__content--pills {
-                border-radius: var(--conn-radius);
+                border-radius: var(--conn-radius) !important;
             }
         }
     }

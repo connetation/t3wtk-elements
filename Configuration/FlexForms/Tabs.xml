@@ -36,6 +36,7 @@
                     </settings.justified>
                     <settings.roundedCorners>
                         <label>Rounded corners</label>
+                        <description>Rounds the nav bar's tabs/pills and the content pane's outer corners. With Tabs style only the top corners of each tab round off (the pane sits flush below); with Pills style every pill button rounds on all sides. Off (default) keeps them square.</description>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
