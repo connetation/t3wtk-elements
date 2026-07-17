@@ -11,6 +11,20 @@
             <trans-unit id="layout.subheading">
                 <source>Subheading Layout</source>
             </trans-unit>
+            <!-- Text alignment field (shared label, reused across every
+                 item table's *_align column — see e.g. card_item.title_align) -->
+            <trans-unit id="layout.align">
+                <source>Alignment</source>
+            </trans-unit>
+            <trans-unit id="align.left">
+                <source>Left</source>
+            </trans-unit>
+            <trans-unit id="align.center">
+                <source>Center</source>
+            </trans-unit>
+            <trans-unit id="align.right">
+                <source>Right</source>
+            </trans-unit>
             <!-- Text animation field (global, all CE types) -->
             <trans-unit id="text_animation">
                 <source>Text Animation</source>
@@ -258,6 +272,15 @@
                 <source>Link Label</source>
             </trans-unit>
             <trans-unit id="card_item.tab.link">
+                <source>Link</source>
+            </trans-unit>
+            <trans-unit id="card_item.palette.header">
+                <source>Header</source>
+            </trans-unit>
+            <trans-unit id="card_item.palette.subheader">
+                <source>Subheader</source>
+            </trans-unit>
+            <trans-unit id="card_item.palette.link">
                 <source>Link</source>
             </trans-unit>
             <!-- Bootstrap Carousel content element -->

@@ -56,4 +56,24 @@ final class CardItemsProcessor extends AbstractItemsProcessor
             'accentBar' => true,
         ];
     }
+
+    // Records saved before the *_align columns existed have '' rather than
+    // the TCA default (only applied to newly created records), which would
+    // render a broken "text-" class.
+    protected function postProcessRows(array $rows, array $settings): array
+    {
+        foreach ($rows as &$row) {
+            $row['title_align']    = $this->resolveAlign($row['title_align'] ?? null);
+            $row['subtitle_align'] = $this->resolveAlign($row['subtitle_align'] ?? null);
+            $row['link_align']     = $this->resolveAlign($row['link_align'] ?? null);
+        }
+        unset($row);
+
+        return $rows;
+    }
+
+    private function resolveAlign(?string $align): string
+    {
+        return in_array($align, ['start', 'center', 'end'], true) ? $align : 'start';
+    }
 }

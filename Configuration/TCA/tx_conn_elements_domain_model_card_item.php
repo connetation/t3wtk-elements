@@ -14,6 +14,14 @@ $headingLayoutItems = [
     ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.6', 'value' => 100],
 ];
 
+// Bootstrap 5 text-align suffixes ('' + this value = 'text-start'/'text-center'/'text-end').
+// Shared, reused across every item table's *_align column.
+$alignItems = [
+    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:align.left', 'value' => 'start'],
+    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:align.center', 'value' => 'center'],
+    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:align.right', 'value' => 'end'],
+];
+
 return [
     'ctrl' => [
         'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.card_item',
@@ -81,6 +89,24 @@ return [
                 'default'    => 0,
             ],
         ],
+        'title_align' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $alignItems,
+                'default'    => 'start',
+            ],
+        ],
+        'subtitle_align' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $alignItems,
+                'default'    => 'start',
+            ],
+        ],
         'badge' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.badge',
             'config' => [
@@ -122,14 +148,37 @@ return [
                 'eval' => 'trim',
             ],
         ],
+        'link_align' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $alignItems,
+                'default'    => 'start',
+            ],
+        ],
+    ],
+    'palettes' => [
+        'header' => [
+            'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.header',
+            'showitem' => 'title, title_layout, title_align',
+        ],
+        'subheader' => [
+            'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.subheader',
+            'showitem' => 'subtitle, subtitle_layout, subtitle_align',
+        ],
+        'link' => [
+            'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.link',
+            'showitem' => 'link, link_label, link_align',
+        ],
     ],
     'types' => [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, title_layout, subtitle, subtitle_layout, badge, body, image,
+                    --palette--;;header, --palette--;;subheader, badge, body, image,
                 --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.tab.link,
-                    link, link_label,
+                    --palette--;;link,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',
