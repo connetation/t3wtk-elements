@@ -470,23 +470,17 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'maxitems' => 1,
         ],
     ],
-    'tx_conn_elements_quote_style' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:quote.style',
+    'tx_conn_elements_quote_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:quote.settings',
         'config' => [
-            'type'       => 'select',
-            'renderType' => 'selectSingle',
-            'items'      => [
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:quote.style.mark', 'value' => 'mark'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:quote.style.card', 'value' => 'card'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:quote.style.minimal', 'value' => 'minimal'],
-            ],
-            'default' => 'mark',
+            'type' => 'flex',
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Quote.xml',
         ],
     ],
 ]);
 
 $GLOBALS['TCA']['tt_content']['palettes']['conn_quote_author'] = [
-    'showitem' => 'tx_conn_elements_quote_author, tx_conn_elements_quote_role, --linebreak--, tx_conn_elements_quote_image, tx_conn_elements_quote_style',
+    'showitem' => 'tx_conn_elements_quote_author, tx_conn_elements_quote_role, --linebreak--, tx_conn_elements_quote_image',
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['conn_quote'] = [
@@ -501,6 +495,8 @@ $GLOBALS['TCA']['tt_content']['types']['conn_quote'] = [
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             bodytext,
             --palette--;;conn_quote_author,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:quote.tab.config,
+            tx_conn_elements_quote_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,

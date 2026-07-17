@@ -11,9 +11,17 @@
 
 <f:variable name="authorImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_quote_image')}" />
 
-<section class="conn-quote conn-quote--{data.tx_conn_elements_quote_style} row" id="conn-quote-{data.uid}">
+<section class="conn-quote conn-quote--{settings.style} conn-quote--align-{settings.align} row" id="conn-quote-{data.uid}"
+    style="{f:if(condition: settings.accentColor, then: '--conn-quote-accent: {settings.accentColor};')}">
     <div class="container-fluid">
         <blockquote class="conn-quote__blockquote">
+            <f:if condition="{settings.style} == 'container'">
+                <span class="conn-quote__corner conn-quote__corner--tl" aria-hidden="true"></span>
+                <span class="conn-quote__corner conn-quote__corner--tr" aria-hidden="true"></span>
+                <span class="conn-quote__corner conn-quote__corner--bl" aria-hidden="true"></span>
+                <span class="conn-quote__corner conn-quote__corner--br" aria-hidden="true"></span>
+            </f:if>
+
             <f:if condition="{data.bodytext}">
                 <div class="conn-quote__text">
                     {data.bodytext -> f:format.html()}
@@ -26,7 +34,7 @@
                         <f:image image="{authorImage}" class="conn-quote__author-image" alt="{data.tx_conn_elements_quote_author}" />
                     </f:if>
                     <span class="conn-quote__author-info">
-                        <cite class="conn-quote__author-name">{data.tx_conn_elements_quote_author}</cite>
+                        <cite class="conn-quote__author-name">{f:if(condition: authorImage, then: '', else: '— ')}{data.tx_conn_elements_quote_author}</cite>
                         <f:if condition="{data.tx_conn_elements_quote_role}">
                             <span class="conn-quote__author-role">{data.tx_conn_elements_quote_role}</span>
                         </f:if>

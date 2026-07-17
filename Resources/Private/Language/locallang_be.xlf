@@ -1139,17 +1139,11 @@
             <trans-unit id="quote.image">
                 <source>Author Image</source>
             </trans-unit>
-            <trans-unit id="quote.style">
-                <source>Style</source>
+            <trans-unit id="quote.tab.config">
+                <source>Quote Settings</source>
             </trans-unit>
-            <trans-unit id="quote.style.mark">
-                <source>Giant quotation mark</source>
-            </trans-unit>
-            <trans-unit id="quote.style.card">
-                <source>Shadowed card</source>
-            </trans-unit>
-            <trans-unit id="quote.style.minimal">
-                <source>Minimal, centered</source>
+            <trans-unit id="quote.settings">
+                <source>Display Settings</source>
             </trans-unit>
             <!-- Alert/Notice Banner content element -->
             <trans-unit id="ce.alert">

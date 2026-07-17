@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.style>
+                        <label>Style</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>container</default>
+                            <items>
+                                <numIndex index="0"><label>Giant quotation mark</label><value>mark</value></numIndex>
+                                <numIndex index="1"><label>Minimal, centered</label><value>minimal</value></numIndex>
+                                <numIndex index="2"><label>Simple</label><value>simple</value></numIndex>
+                                <numIndex index="3"><label>Framed container</label><value>container</value></numIndex>
+                                <numIndex index="4"><label>Sketch accent</label><value>sketch</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.style>
+                    <settings.align>
+                        <label>Content alignment</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>center</default>
+                            <displayCond>FIELD:settings.style:!=:minimal</displayCond>
+                            <items>
+                                <numIndex index="0"><label>Left</label><value>left</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Right</label><value>right</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.align>
+                    <settings.accentColor>
+                        <label>Accent color (empty = theme accent)</label>
+                        <description>Overrides the theme accent color used for this quote's decorative mark/bar/underline.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.accentColor>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

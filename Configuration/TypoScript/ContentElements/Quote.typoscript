@@ -5,4 +5,7 @@
 tt_content.conn_quote =< lib.conn_elements_ce
 tt_content.conn_quote {
     templateName = Quote
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\QuoteSettingsProcessor
+    }
 }
