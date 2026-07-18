@@ -5,4 +5,7 @@
 tt_content.conn_alert =< lib.conn_elements_ce
 tt_content.conn_alert {
     templateName = Alert
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\AlertSettingsProcessor
+    }
 }

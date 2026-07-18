@@ -68,11 +68,9 @@ CREATE TABLE tt_content (
     tx_conn_elements_quote_role              varchar(255) DEFAULT '' NOT NULL,
     tx_conn_elements_quote_image             int(11) DEFAULT '0' NOT NULL,
     tx_conn_elements_quote_settings          mediumtext,
-    tx_conn_elements_alert_style             varchar(20) DEFAULT 'info' NOT NULL,
-    tx_conn_elements_alert_dismissible       tinyint(4) DEFAULT '0' NOT NULL,
-    tx_conn_elements_alert_icon              tinyint(4) DEFAULT '1' NOT NULL,
-    tx_conn_elements_alert_position          varchar(20) DEFAULT 'static' NOT NULL,
-    tx_conn_elements_alert_compact           tinyint(4) DEFAULT '0' NOT NULL
+    tx_conn_elements_alert_settings          mediumtext,
+    tx_conn_elements_alert_custom_icon_name  varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_elements_alert_custom_icon_image int(11) DEFAULT '0' NOT NULL
 );
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────

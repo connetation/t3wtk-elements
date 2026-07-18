@@ -517,76 +517,38 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
-    'tx_conn_elements_alert_style' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.style',
+    'tx_conn_elements_alert_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.settings',
         'config' => [
-            'type'       => 'select',
-            'renderType' => 'selectSingle',
-            'items'      => [
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.style.info', 'value' => 'info'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.style.success', 'value' => 'success'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.style.warning', 'value' => 'warning'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.style.danger', 'value' => 'danger'],
-            ],
-            'default' => 'info',
+            'type' => 'flex',
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Alert.xml',
         ],
     ],
-    'tx_conn_elements_alert_dismissible' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.dismissible',
-        'config' => [
-            'type'       => 'check',
-            'renderType' => 'checkboxToggle',
-            'items'      => [['label' => '']],
-            'default'    => 0,
-        ],
-    ],
-    'tx_conn_elements_alert_icon' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.show_icon',
-        'config' => [
-            'type'       => 'check',
-            'renderType' => 'checkboxToggle',
-            'items'      => [['label' => '']],
-            'default'    => 1,
-        ],
-    ],
-    'tx_conn_elements_alert_position' => [
-        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position',
-        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.description',
-        'onChange'    => 'reload',
+    'tx_conn_elements_alert_custom_icon_name' => [
+        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.customIconName',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.customIconName.description',
         'config'      => [
-            'type'       => 'select',
-            'renderType' => 'selectSingle',
-            'items'      => [
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.static', 'value' => 'static'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.top_left', 'value' => 'top-left'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.top_center', 'value' => 'top-center'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.top_right', 'value' => 'top-right'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.bottom_left', 'value' => 'bottom-left'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.bottom_center', 'value' => 'bottom-center'],
-                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.position.bottom_right', 'value' => 'bottom-right'],
+            'type'          => 'select',
+            'renderType'    => 'connIconSelect',
+            'itemsProcFunc' => \Connetation\Elements\Service\IconItemsProcFunc::class . '->getIconNameItems',
+            'items'         => [
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.name.empty', 'value' => ''],
             ],
-            'default' => 'static',
         ],
     ],
-    'tx_conn_elements_alert_compact' => [
-        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.compact',
-        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.compact.description',
-        'displayCond' => 'FIELD:tx_conn_elements_alert_position:!=:static',
+    'tx_conn_elements_alert_custom_icon_image' => [
+        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.customIconImage',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.customIconImage.description',
         'config'      => [
-            'type'       => 'check',
-            'renderType' => 'checkboxToggle',
-            'items'      => [['label' => '']],
-            'default'    => 0,
+            'type'     => 'file',
+            'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
+            'maxitems' => 1,
         ],
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['palettes']['conn_alert_options'] = [
-    'showitem' => 'tx_conn_elements_alert_style, tx_conn_elements_alert_icon, tx_conn_elements_alert_dismissible',
-];
-
-$GLOBALS['TCA']['tt_content']['palettes']['conn_alert_position'] = [
-    'showitem' => 'tx_conn_elements_alert_position, tx_conn_elements_alert_compact',
+$GLOBALS['TCA']['tt_content']['palettes']['conn_alert_custom_icon'] = [
+    'showitem' => 'tx_conn_elements_alert_custom_icon_name, --linebreak--, tx_conn_elements_alert_custom_icon_image',
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['conn_alert'] = [
@@ -600,8 +562,10 @@ $GLOBALS['TCA']['tt_content']['types']['conn_alert'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,bodytext,
-            --palette--;;conn_alert_options,
-            --palette--;;conn_alert_position,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.tab.config,
+            tx_conn_elements_alert_settings,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.tab.custom,
+            --palette--;;conn_alert_custom_icon,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,

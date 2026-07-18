@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.style>
+                        <label>Style</label>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>info</default>
+                            <items>
+                                <numIndex index="0"><label>Info</label><value>info</value></numIndex>
+                                <numIndex index="1"><label>Success</label><value>success</value></numIndex>
+                                <numIndex index="2"><label>Warning</label><value>warning</value></numIndex>
+                                <numIndex index="3"><label>Danger</label><value>danger</value></numIndex>
+                                <numIndex index="4"><label>Custom</label><value>custom</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.style>
+                    <settings.icon>
+                        <label>Show icon</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.icon>
+                    <settings.dismissible>
+                        <label>Dismissible</label>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.dismissible>
+                    <settings.closeColor>
+                        <label>Close (×) button color</label>
+                        <description>Leave empty to use the theme default. Only shown when Dismissible is on.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:settings.dismissible:=:1</displayCond>
+                        </config>
+                    </settings.closeColor>
+                    <settings.position>
+                        <label>Position</label>
+                        <description>"Inline" places the alert in the normal page flow. The others pin it to a screen edge, ignoring scroll: Top/Bottom as a full-width bar, Left/Right edge as a small button that expands into the full alert on click.</description>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>static</default>
+                            <items>
+                                <numIndex index="0"><label>Inline (in page content)</label><value>static</value></numIndex>
+                                <numIndex index="1"><label>Fixed — Top (full width)</label><value>fixed-top</value></numIndex>
+                                <numIndex index="2"><label>Fixed — Bottom (full width)</label><value>fixed-bottom</value></numIndex>
+                                <numIndex index="3"><label>Fixed — Left edge (button)</label><value>edge-left</value></numIndex>
+                                <numIndex index="4"><label>Fixed — Right edge (button)</label><value>edge-right</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.position>
+                    <settings.verticalAlign>
+                        <label>Vertical position</label>
+                        <description>Where the button sits along the edge.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>center</default>
+                            <displayCond>FIELD:settings.position:IN:edge-left,edge-right</displayCond>
+                            <items>
+                                <numIndex index="0"><label>Top</label><value>top</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Bottom</label><value>bottom</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.verticalAlign>
+                    <settings.buttonShape>
+                        <label>Button shape</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>circle</default>
+                            <displayCond>FIELD:settings.position:IN:edge-left,edge-right</displayCond>
+                            <items>
+                                <numIndex index="0"><label>Circle</label><value>circle</value></numIndex>
+                                <numIndex index="1"><label>Square</label><value>square</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.buttonShape>
+                    <settings.pushContent>
+                        <label>Avoid the navigation</label>
+                        <description>On: a Top bar sits below the navigation instead of covering it, and a Bottom bar reserves room so it doesn't cover the footer once scrolled all the way down. Off: the bar floats over the page instead, ignoring the navigation too — e.g. to deliberately show something important over it. Only applies to Top/Bottom.</description>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <displayCond>FIELD:settings.position:IN:fixed-top,fixed-bottom</displayCond>
+                        </config>
+                    </settings.pushContent>
+                </el>
+            </ROOT>
+        </sDEF>
+        <custom>
+            <ROOT>
+                <sheetTitle>Custom</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.customAccentColor>
+                        <label>Accent color</label>
+                        <description>Left border color, and icon color (only if the custom icon is a Bootstrap Icons name, not an image). The custom icon itself is set in its own field below the Style selector on the Display tab. Only used when Style (Display tab) is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customAccentColor>
+                    <settings.customBackgroundColor>
+                        <label>Background color</label>
+                        <description>Only used when Style (Display tab) is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customBackgroundColor>
+                    <settings.customTextColor>
+                        <label>Text color</label>
+                        <description>Only used when Style (Display tab) is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customTextColor>
+                </el>
+            </ROOT>
+        </custom>
+    </sheets>
+</T3DataStructure>

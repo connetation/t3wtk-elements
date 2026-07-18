@@ -1,40 +1,67 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
 
 <f:section name="Main">
 
+<f:asset.css identifier="conn-elements-bootstrap-icons-css"
+    href="EXT:conn_elements/Resources/Public/Css/bootstrap-icons.css" />
 <f:asset.css identifier="conn-elements-alert-css"
     href="EXT:conn_elements/Resources/Public/Css/alert.css" />
 
-<f:variable name="dismissible" value="0" />
-<f:if condition="{data.tx_conn_elements_alert_dismissible}"><f:variable name="dismissible" value="1" /></f:if>
+<f:variable name="isPositioned" value="{settings.isFixed}" />
+<f:variable name="isCompact" value="{settings.compact}" />
 
-<f:variable name="position"><f:if condition="{data.tx_conn_elements_alert_position}">{data.tx_conn_elements_alert_position}</f:if></f:variable>
-<f:variable name="isFloating" value="0" />
-<f:if condition="{position} && {position} != 'static'"><f:variable name="isFloating" value="1" /></f:if>
-<f:variable name="isCompact" value="0" />
-<f:if condition="{isFloating} && {data.tx_conn_elements_alert_compact}"><f:variable name="isCompact" value="1" /></f:if>
+<f:variable name="customIconImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_alert_custom_icon_image')}" />
+
+<f:variable name="hasCustomImage" value="0" />
+<f:if condition="{settings.style} == 'custom' && {customIconImage}"><f:variable name="hasCustomImage" value="1" /></f:if>
+<f:variable name="hasCustomIconName" value="0" />
+<f:if condition="{settings.style} == 'custom' && !{hasCustomImage} && {data.tx_conn_elements_alert_custom_icon_name}"><f:variable name="hasCustomIconName" value="1" /></f:if>
+<f:variable name="hasIcon" value="0" />
+<f:if condition="{settings.style} != 'custom'"><f:variable name="hasIcon" value="1" /></f:if>
+<f:if condition="{hasCustomImage} || {hasCustomIconName}"><f:variable name="hasIcon" value="1" /></f:if>
 
 <f:variable name="iconClass">
-    <f:switch expression="{data.tx_conn_elements_alert_style}">
+    <f:switch expression="{settings.style}">
         <f:case value="success">bi-check-circle-fill</f:case>
         <f:case value="warning">bi-exclamation-triangle-fill</f:case>
         <f:case value="danger">bi-x-octagon-fill</f:case>
+        <f:case value="custom">bi-{data.tx_conn_elements_alert_custom_icon_name}</f:case>
         <f:defaultCase>bi-info-circle-fill</f:defaultCase>
     </f:switch>
 </f:variable>
 
+<f:variable name="customStyle"></f:variable>
+<f:if condition="{settings.style} == 'custom'">
+    <f:variable name="customStyle">{f:if(condition: settings.customBackgroundColor, then: 'background-color: {settings.customBackgroundColor};')}{f:if(condition: settings.customAccentColor, then: 'border-color: {settings.customAccentColor};')}{f:if(condition: settings.customTextColor, then: 'color: {settings.customTextColor};')}</f:variable>
+</f:if>
+
 <f:section name="AlertBody">
-    <div class="conn-alert alert alert-{data.tx_conn_elements_alert_style}{f:if(condition: dismissible, then: ' alert-dismissible fade show')} d-flex align-items-start" role="alert" id="conn-alert-{data.uid}">
-        <f:if condition="{data.tx_conn_elements_alert_icon}">
+    <div class="conn-alert alert alert-{settings.style}{f:if(condition: settings.dismissible, then: ' alert-dismissible fade show')} d-flex align-items-start" role="alert" id="conn-alert-{data.uid}" style="{customStyle}">
+        <f:if condition="{settings.icon} && {hasCustomImage}">
+            <f:image image="{customIconImage}" class="conn-alert__icon-image" alt="" />
+        </f:if>
+        <f:if condition="{settings.icon} && {hasIcon} && !{hasCustomImage}">
             <i class="conn-alert__icon bi {iconClass}" aria-hidden="true"></i>
         </f:if>
 
         <div class="conn-alert__body">
-            <f:if condition="{data.header}">
-                <strong class="conn-alert__header">{data.header}</strong>
+            <f:if condition="{data.header} && {data.header_layout} != 100">
+                <f:switch expression="{data.header_layout}">
+                    <f:case value="1"><h1 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h1></f:case>
+                    <f:case value="2"><h2 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h2></f:case>
+                    <f:case value="3"><h3 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h3></f:case>
+                    <f:case value="4"><h4 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h4></f:case>
+                    <f:case value="5"><h5 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h5></f:case>
+                    <f:case value="6"><h6 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h6></f:case>
+                    <f:defaultCase><strong class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></strong></f:defaultCase>
+                </f:switch>
+            </f:if>
+            <f:if condition="{data.subheader}">
+                <span class="conn-alert__subheader">{data.subheader}</span>
             </f:if>
             <f:if condition="{data.bodytext}">
                 <div class="conn-alert__text">
@@ -43,38 +70,59 @@
             </f:if>
         </div>
 
-        <f:if condition="{dismissible}">
+        <f:if condition="{settings.dismissible}">
             <f:variable name="closeLabel"><f:translate key="alert.close" extensionName="conn_elements" /></f:variable>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{closeLabel}"></button>
+            <button type="button"
+                    class="btn-close{f:if(condition: settings.closeColor, then: ' conn-alert__close--custom')}"
+                    style="{f:if(condition: settings.closeColor, then: '--conn-alert-close-color: {settings.closeColor};')}"
+                    data-bs-dismiss="alert"
+                    aria-label="{closeLabel}"></button>
         </f:if>
     </div>
 </f:section>
 
-<f:if condition="{isFloating}">
+<f:variable name="toggleIconClass" value="bi-info-circle-fill" />
+<f:if condition="{hasIcon}"><f:variable name="toggleIconClass" value="{iconClass}" /></f:if>
+<f:variable name="toggleStyle"></f:variable>
+<f:if condition="{settings.style} == 'custom'">
+    <f:variable name="toggleStyle">{f:if(condition: settings.customAccentColor, then: 'background-color: {settings.customAccentColor};', else: 'background-color: {settings.customBackgroundColor};')}{f:if(condition: settings.customTextColor, then: 'color: {settings.customTextColor};')}</f:variable>
+</f:if>
+
+<f:variable name="edge" value="top" />
+<f:if condition="{settings.position} == 'fixed-bottom'"><f:variable name="edge" value="bottom" /></f:if>
+
+<f:if condition="{isPositioned}">
     <f:then>
         <f:asset.script identifier="conn-elements-alert-js"
             src="EXT:conn_elements/Resources/Public/Js/components/alert.js"
             type="module"
             priority="false" />
 
-        <div class="conn-alert-float conn-alert-float--{position}{f:if(condition: isCompact, then: ' conn-alert-float--compact')}" id="conn-alert-float-{data.uid}">
+        <div class="conn-alert-positioned conn-alert-positioned--{settings.position}{f:if(condition: isCompact, then: ' conn-alert-positioned--compact conn-alert-positioned--align-{settings.verticalAlign}')}"
+             id="conn-alert-float-{data.uid}"
+             data-push-content="{f:if(condition: settings.pushContent, then: '1', else: '0')}"
+             data-edge="{edge}">
             <f:if condition="{isCompact}">
                 <f:variable name="expandLabel"><f:translate key="alert.expand" extensionName="conn_elements" /></f:variable>
                 <button type="button"
-                        class="conn-alert-float__toggle conn-alert-float__toggle--{data.tx_conn_elements_alert_style}"
+                        class="conn-alert-positioned__toggle conn-alert-positioned__toggle--{settings.style} conn-alert-positioned__toggle--{settings.buttonShape}"
+                        style="{toggleStyle}"
                         aria-expanded="false"
                         aria-controls="conn-alert-float-panel-{data.uid}"
                         aria-label="{expandLabel}">
-                    <i class="bi {iconClass}" aria-hidden="true"></i>
+                    <f:if condition="{hasCustomImage}">
+                        <f:then><f:image image="{customIconImage}" class="conn-alert-positioned__toggle-image" alt="" /></f:then>
+                        <f:else><i class="bi {toggleIconClass}" aria-hidden="true"></i></f:else>
+                    </f:if>
                 </button>
             </f:if>
-            <div class="conn-alert-float__panel" id="conn-alert-float-panel-{data.uid}">
-                <f:render section="AlertBody" />
+            <div class="conn-alert-positioned__panel" id="conn-alert-float-panel-{data.uid}">
+                <f:render section="AlertBody" arguments="{_all}" />
             </div>
         </div>
     </f:then>
     <f:else>
-        <f:render section="AlertBody" />
+        <f:render section="AlertBody" arguments="{_all}" />
     </f:else>
 </f:if>
 

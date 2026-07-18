@@ -14,64 +14,110 @@
         margin-top: 0.1rem;
     }
 
+    &__icon-image {
+        flex: 0 0 auto;
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+        margin-right: 0.75rem;
+        margin-top: 0.1rem;
+    }
+
     &__header {
         display: block;
         margin-bottom: 0.25rem;
+        font-size: inherit;
+        font-weight: 700;
+        color: inherit;
+    }
+
+    &__subheader {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.9em;
+        opacity: 0.85;
     }
 
     &__text {
         p:last-child { margin-bottom: 0; }
     }
+
+    &__close--custom {
+        background-image: none;
+        background-color: var(--conn-alert-close-color);
+        -webkit-mask-image: var(--bs-btn-close-bg);
+        mask-image: var(--bs-btn-close-bg);
+        -webkit-mask-size: 1em auto;
+        mask-size: 1em auto;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+    }
 }
 
-// ── Floating positions ──────────────────────────────────────────
-// Modeled on conn_base's floating theme toggle (_theme-toggle-float.scss):
-// position:fixed + a --corner modifier class, one fixed default offset.
-.conn-alert-float {
-    position: fixed;
+.conn-alert-positioned {
     z-index: 1050; // above navbar (1030), below modals (1055)
-    max-width: 380px;
 
-    &--top-left    { top: 24px; left: 24px; }
-    &--top-center  { top: 24px; left: 50%; transform: translateX(-50%); }
-    &--top-right   { top: 24px; right: 24px; }
-    &--bottom-left { bottom: 24px; left: 24px; }
-    &--bottom-center { bottom: 24px; left: 50%; transform: translateX(-50%); }
-    &--bottom-right  { bottom: 24px; right: 24px; }
+    &--fixed-top, &--fixed-bottom {
+        position: fixed;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    &--fixed-top    { top: 0; }
+    &--fixed-bottom { bottom: 0; }
+
+    &--edge-left, &--edge-right {
+        position: fixed;
+    }
+
+    &--edge-left  { left: 0; }
+    &--edge-right { right: 0; }
+    &--align-top    { top: 24px; }
+    &--align-center { top: 50%; transform: translateY(-50%); }
+    &--align-bottom { bottom: 24px; }
+
+    .conn-alert {
+        color: var(--conn-text);
+
+        &.alert-info    { background-color: color-mix(in srgb, var(--conn-accent-secondary) 18%, var(--conn-surface)); }
+        &.alert-success { background-color: color-mix(in srgb, var(--conn-success) 18%, var(--conn-surface)); }
+        &.alert-warning { background-color: color-mix(in srgb, #eab308 18%, var(--conn-surface)); }
+        &.alert-danger  { background-color: color-mix(in srgb, var(--conn-danger) 18%, var(--conn-surface)); }
+    }
 
     .conn-alert {
         margin-bottom: 0;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
 
-    // Non-compact: the alert itself IS the floating element, always visible.
-    // Compact: only the round toggle button floats; the alert becomes a
-    // hidden popover panel anchored to whichever side the button sits on,
-    // opened via .is-open (see alert.ts).
     &--compact {
-        .conn-alert-float__panel {
-            position: absolute;
+        display: flex;
+
+        .conn-alert-positioned__panel {
             display: none;
             width: max-content;
             max-width: 380px;
         }
 
-        &.is-open .conn-alert-float__panel {
+        &.is-open .conn-alert-positioned__panel {
             display: block;
+        }
+
+        &.is-open .conn-alert-positioned__toggle {
+            box-shadow: none;
         }
     }
 
-    &--compact.conn-alert-float--top-left .conn-alert-float__panel      { top: calc(100% + 8px); left: 0; }
-    &--compact.conn-alert-float--top-center .conn-alert-float__panel    { top: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
-    &--compact.conn-alert-float--top-right .conn-alert-float__panel     { top: calc(100% + 8px); right: 0; }
-    &--compact.conn-alert-float--bottom-left .conn-alert-float__panel   { bottom: calc(100% + 8px); left: 0; }
-    &--compact.conn-alert-float--bottom-center .conn-alert-float__panel { bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
-    &--compact.conn-alert-float--bottom-right .conn-alert-float__panel  { bottom: calc(100% + 8px); right: 0; }
+    &--compact.conn-alert-positioned--edge-left  { flex-direction: row; }
+    &--compact.conn-alert-positioned--edge-right { flex-direction: row-reverse; }
 
     &__toggle {
         width: 3.25rem;
-        height: 3.25rem;
-        border-radius: 50%;
+        min-height: 3.25rem;
+        flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -80,10 +126,10 @@
         color: #fff;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
         cursor: pointer;
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        transition: filter 0.18s ease, box-shadow 0.18s ease;
 
         &:hover {
-            transform: scale(1.08);
+            filter: brightness(1.1);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
         }
 
@@ -96,18 +142,33 @@
         &--success { background-color: var(--bs-success, #198754); }
         &--warning { background-color: var(--bs-warning, #ffc107); color: #000; }
         &--danger  { background-color: var(--bs-danger, #dc3545); }
+        // &--custom: no fixed background here — set inline via settings.customAccentColor/customBackgroundColor (see Alert.html).
+
+        &--circle { border-radius: 50%; }
+        &--square { border-radius: var(--conn-radius); }
+
+        i {
+            line-height: 1;
+        }
+
+        .bi-send,
+        .bi-send-fill {
+            transform: translate(1px, -1px);
+        }
+    }
+
+    &__toggle-image {
+        width: 1.75rem;
+        height: 1.75rem;
+        object-fit: contain;
     }
 }
 
-// On very small screens a 380px-wide floating panel can overflow the
-// viewport — let it shrink instead, same breakpoint conn_base's floating
-// theme toggle uses for its own mobile handling.
 @media (max-width: 575.98px) {
-    .conn-alert-float {
-        max-width: calc(100vw - 32px);
-
-        &--compact .conn-alert-float__panel {
-            max-width: calc(100vw - 32px);
+    .conn-alert-positioned--edge-left,
+    .conn-alert-positioned--edge-right {
+        .conn-alert-positioned__panel {
+            max-width: calc(100vw - 32px - 3.25rem);
         }
     }
 }

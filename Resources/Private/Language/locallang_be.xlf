@@ -1152,59 +1152,26 @@
             <trans-unit id="ce.alert.description">
                 <source>Dismissible Bootstrap alert banner for announcements</source>
             </trans-unit>
-            <trans-unit id="alert.style">
-                <source>Style</source>
+            <trans-unit id="alert.tab.config">
+                <source>Alert Settings</source>
             </trans-unit>
-            <trans-unit id="alert.style.info">
-                <source>Info</source>
+            <trans-unit id="alert.tab.custom">
+                <source>Custom</source>
             </trans-unit>
-            <trans-unit id="alert.style.success">
-                <source>Success</source>
+            <trans-unit id="alert.settings">
+                <source>Display Settings</source>
             </trans-unit>
-            <trans-unit id="alert.style.warning">
-                <source>Warning</source>
+            <trans-unit id="alert.customIconName">
+                <source>Custom icon (Bootstrap Icons)</source>
             </trans-unit>
-            <trans-unit id="alert.style.danger">
-                <source>Danger</source>
+            <trans-unit id="alert.customIconName.description">
+                <source>Only used when Style (in Display Settings above) is set to Custom, and no custom icon image is uploaded below.</source>
             </trans-unit>
-            <trans-unit id="alert.dismissible">
-                <source>Dismissible</source>
+            <trans-unit id="alert.customIconImage">
+                <source>Custom icon (image)</source>
             </trans-unit>
-            <trans-unit id="alert.show_icon">
-                <source>Show icon</source>
-            </trans-unit>
-            <trans-unit id="alert.position">
-                <source>Position</source>
-            </trans-unit>
-            <trans-unit id="alert.position.description">
-                <source>"Inline" places the alert in the normal page flow where the content element is positioned. Any other option floats it fixed to that screen corner/edge instead.</source>
-            </trans-unit>
-            <trans-unit id="alert.position.static">
-                <source>Inline (in page content)</source>
-            </trans-unit>
-            <trans-unit id="alert.position.top_left">
-                <source>Floating — top left</source>
-            </trans-unit>
-            <trans-unit id="alert.position.top_center">
-                <source>Floating — top center</source>
-            </trans-unit>
-            <trans-unit id="alert.position.top_right">
-                <source>Floating — top right</source>
-            </trans-unit>
-            <trans-unit id="alert.position.bottom_left">
-                <source>Floating — bottom left</source>
-            </trans-unit>
-            <trans-unit id="alert.position.bottom_center">
-                <source>Floating — bottom center</source>
-            </trans-unit>
-            <trans-unit id="alert.position.bottom_right">
-                <source>Floating — bottom right</source>
-            </trans-unit>
-            <trans-unit id="alert.compact">
-                <source>Icon only (expand on click)</source>
-            </trans-unit>
-            <trans-unit id="alert.compact.description">
-                <source>Show only a small floating icon button; clicking it reveals the full alert. Only applies to floating positions.</source>
+            <trans-unit id="alert.customIconImage.description">
+                <source>Overrides the Bootstrap Icons name above. Only used when Style (in Display Settings above) is set to Custom.</source>
             </trans-unit>
         </body>
     </file>
