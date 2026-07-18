@@ -7,23 +7,51 @@
 
 import { gsap } from 'gsap';
 
+interface PushState {
+    property: 'paddingTop' | 'paddingBottom';
+    target: HTMLElement;
+    resizeObserver: ResizeObserver;
+    update: () => void;
+}
+
 class AlertFloat {
+    private static readonly stacks = new Map<string, HTMLElement>();
+    private static readonly pushStates = new Map<string, PushState>();
 
     private readonly toggle: HTMLElement | null;
-    private pushResizeObserver: ResizeObserver | null = null;
-    private readonly pushProperty: 'paddingTop' | 'paddingBottom' | null;
-    private readonly pushTarget: HTMLElement | null;
+    private readonly stackKey: string;
+    private readonly stackContainer: HTMLElement;
 
     constructor(private readonly el: HTMLElement) {
         this.toggle = el.querySelector('.conn-alert-positioned__toggle');
-        this.pushProperty = el.dataset.pushContent === '1'
-            ? (el.dataset.edge === 'top' ? 'paddingTop' : 'paddingBottom')
-            : null;
-        this.pushTarget = this.pushProperty === 'paddingBottom'
-            ? (document.querySelector<HTMLElement>('.footer') ?? document.body)
-            : null;
+        this.stackKey = AlertFloat.computeStackKey(el);
+        this.stackContainer = AlertFloat.getOrCreateStack(this.stackKey, el);
+        this.stackContainer.appendChild(el);
+
         this.init();
         this.initPushContent();
+    }
+
+    private static computeStackKey(el: HTMLElement): string {
+        const position = el.dataset.position ?? 'fixed-top';
+        const isEdge = position === 'edge-left' || position === 'edge-right';
+        return isEdge ? `${position}--${el.dataset.verticalAlign}` : position;
+    }
+
+    private static getOrCreateStack(key: string, sample: HTMLElement): HTMLElement {
+        const existing = AlertFloat.stacks.get(key);
+        if (existing) {
+            return existing;
+        }
+
+        const stack = document.createElement('div');
+        stack.className = `conn-alert-stack conn-alert-stack--${sample.dataset.position}`;
+        if (sample.dataset.position === 'edge-left' || sample.dataset.position === 'edge-right') {
+            stack.classList.add(`conn-alert-stack--align-${sample.dataset.verticalAlign}`);
+        }
+        document.body.appendChild(stack);
+        AlertFloat.stacks.set(key, stack);
+        return stack;
     }
 
     private init(): void {
@@ -47,30 +75,55 @@ class AlertFloat {
         }
 
         this.el.querySelector('.alert')?.addEventListener('closed.bs.alert', () => {
-            if (this.pushProperty) {
-                if (this.pushTarget) {
-                    this.pushTarget.style[this.pushProperty] = '';
-                }
-                window.removeEventListener('resize', this.updatePushContent);
-            }
-            this.pushResizeObserver?.disconnect();
+            const stackKey = this.stackKey;
+            const stackContainer = this.stackContainer;
             this.el.remove();
+
+            if (stackContainer.children.length === 0) {
+                AlertFloat.teardownStack(stackKey, stackContainer);
+            } else {
+                AlertFloat.pushStates.get(stackKey)?.update();
+            }
         });
     }
 
+    private static teardownStack(key: string, container: HTMLElement): void {
+        const push = AlertFloat.pushStates.get(key);
+        if (push) {
+            push.target.style[push.property] = '';
+            push.resizeObserver.disconnect();
+            window.removeEventListener('resize', push.update);
+            AlertFloat.pushStates.delete(key);
+        }
+        container.remove();
+        AlertFloat.stacks.delete(key);
+    }
+
     private initPushContent(): void {
-        if (!this.pushProperty) {
+        if (this.el.dataset.pushContent !== '1' || AlertFloat.pushStates.has(this.stackKey)) {
             return;
         }
 
-        this.updatePushContent = this.updatePushContent.bind(this);
-        this.pushResizeObserver = new ResizeObserver(this.updatePushContent);
-        this.pushResizeObserver.observe(this.el);
-        window.addEventListener('resize', this.updatePushContent);
+        const property: 'paddingTop' | 'paddingBottom' = this.el.dataset.edge === 'top' ? 'paddingTop' : 'paddingBottom';
+        const target = property === 'paddingBottom'
+            ? (document.querySelector<HTMLElement>('.footer') ?? document.body)
+            : document.body;
+
+        const stackContainer = this.stackContainer;
+        const update = (): void => AlertFloat.updatePushContent(property, target, stackContainer);
+        const resizeObserver = new ResizeObserver(update);
+        resizeObserver.observe(stackContainer);
+        window.addEventListener('resize', update);
+
+        AlertFloat.pushStates.set(this.stackKey, { property, target, resizeObserver, update });
+        update();
     }
 
-    private updatePushContent(): void {
-        const property = this.pushProperty!;
+    private static updatePushContent(
+        property: 'paddingTop' | 'paddingBottom',
+        target: HTMLElement,
+        stackContainer: HTMLElement
+    ): void {
         const offsetSide = property === 'paddingTop' ? 'top' : 'bottom';
 
         const fixedNavSelector = property === 'paddingTop'
@@ -80,24 +133,15 @@ class AlertFloat {
             ? parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--conn-navbar-height')) || 0
             : 0;
 
-        this.el.style[offsetSide] = '';
-        const baseOffset = parseFloat(getComputedStyle(this.el)[offsetSide]) || 0;
-        this.el.style[offsetSide] = navHeight ? `${baseOffset + navHeight}px` : '';
-
-        if (!this.pushTarget) {
-            return;
-        }
+        stackContainer.style[offsetSide] = navHeight ? `${navHeight}px` : '';
 
         const cssProperty = property === 'paddingTop' ? 'padding-top' : 'padding-bottom';
-        const target = this.pushTarget;
-
         target.style.removeProperty(cssProperty);
         const foreignBase = parseFloat(getComputedStyle(target)[property]) || 0;
 
-        const edgeOffset = parseFloat(getComputedStyle(this.el)[offsetSide]) || 0;
-        const ownHeight = this.el.getBoundingClientRect().height;
+        const stackHeight = stackContainer.getBoundingClientRect().height;
 
-        target.style.setProperty(cssProperty, `${foreignBase + ownHeight + edgeOffset}px`, 'important');
+        target.style.setProperty(cssProperty, `${foreignBase + stackHeight}px`, 'important');
     }
 
     private isOpen(): boolean {

@@ -98,10 +98,12 @@
             type="module"
             priority="false" />
 
-        <div class="conn-alert-positioned conn-alert-positioned--{settings.position}{f:if(condition: isCompact, then: ' conn-alert-positioned--compact conn-alert-positioned--align-{settings.verticalAlign}')}"
+        <div class="conn-alert-positioned conn-alert-positioned--{settings.position}{f:if(condition: isCompact, then: ' conn-alert-positioned--compact')}"
              id="conn-alert-float-{data.uid}"
              data-push-content="{f:if(condition: settings.pushContent, then: '1', else: '0')}"
-             data-edge="{edge}">
+             data-edge="{edge}"
+             data-position="{settings.position}"
+             data-vertical-align="{settings.verticalAlign}">
             <f:if condition="{isCompact}">
                 <f:variable name="expandLabel"><f:translate key="alert.expand" extensionName="conn_elements" /></f:variable>
                 <button type="button"

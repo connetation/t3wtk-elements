@@ -56,29 +56,22 @@
     }
 }
 
-.conn-alert-positioned {
+.conn-alert-stack {
+    position: fixed;
     z-index: 1050; // above navbar (1030), below modals (1055)
+    display: flex;
+    flex-direction: column;
+}
 
-    &--fixed-top, &--fixed-bottom {
-        position: fixed;
-        left: 0;
-        right: 0;
-        width: 100%;
-    }
+.conn-alert-stack--fixed-top    { top: 0; left: 0; right: 0; width: 100%; }
+.conn-alert-stack--fixed-bottom { bottom: 0; left: 0; right: 0; width: 100%; flex-direction: column-reverse; }
+.conn-alert-stack--edge-left  { left: 0; gap: 12px; align-items: flex-start; }
+.conn-alert-stack--edge-right { right: 0; gap: 12px; align-items: flex-end; }
+.conn-alert-stack--align-top    { top: 24px; }
+.conn-alert-stack--align-center { top: 50%; transform: translateY(-50%); }
+.conn-alert-stack--align-bottom { bottom: 24px; flex-direction: column-reverse; }
 
-    &--fixed-top    { top: 0; }
-    &--fixed-bottom { bottom: 0; }
-
-    &--edge-left, &--edge-right {
-        position: fixed;
-    }
-
-    &--edge-left  { left: 0; }
-    &--edge-right { right: 0; }
-    &--align-top    { top: 24px; }
-    &--align-center { top: 50%; transform: translateY(-50%); }
-    &--align-bottom { bottom: 24px; }
-
+.conn-alert-positioned {
     .conn-alert {
         color: var(--conn-text);
 
