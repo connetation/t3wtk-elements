@@ -1123,6 +1123,48 @@
             <trans-unit id="before_after.after_label">
                 <source>After Label</source>
             </trans-unit>
+            <trans-unit id="before_after.tab.config">
+                <source>Before/After Settings</source>
+            </trans-unit>
+            <trans-unit id="before_after.start">
+                <source>Initial position</source>
+            </trans-unit>
+            <trans-unit id="before_after.start.description">
+                <source>Where the divider starts, from 0 (fully "before") to 100 (fully "after").</source>
+            </trans-unit>
+            <trans-unit id="before_after.direction">
+                <source>Reveal direction</source>
+            </trans-unit>
+            <trans-unit id="before_after.direction.left_right">
+                <source>Left → Right</source>
+            </trans-unit>
+            <trans-unit id="before_after.direction.top_bottom">
+                <source>Top → Bottom</source>
+            </trans-unit>
+            <trans-unit id="before_after.direction.diagonal_tlbr">
+                <source>Diagonal ↘ (Top-Left → Bottom-Right)</source>
+            </trans-unit>
+            <trans-unit id="before_after.direction.diagonal_bltr">
+                <source>Diagonal ↗ (Bottom-Left → Top-Right)</source>
+            </trans-unit>
+            <trans-unit id="before_after.handle_icon">
+                <source>Handle icon</source>
+            </trans-unit>
+            <trans-unit id="before_after.handle_icon.description">
+                <source>Leave empty to use the default arrows icon.</source>
+            </trans-unit>
+            <trans-unit id="before_after.handle_color">
+                <source>Handle/divider color</source>
+            </trans-unit>
+            <trans-unit id="before_after.handle_color.description">
+                <source>Background color of the divider line and the round grip button. Leave empty to use the theme default.</source>
+            </trans-unit>
+            <trans-unit id="before_after.handle_border_color">
+                <source>Handle border color</source>
+            </trans-unit>
+            <trans-unit id="before_after.handle_border_color.description">
+                <source>Border color of the round grip button. Leave empty to use the theme default.</source>
+            </trans-unit>
             <!-- Quote content element -->
             <trans-unit id="ce.quote">
                 <source>Quote</source>

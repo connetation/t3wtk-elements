@@ -35,13 +35,17 @@
         clip-path: inset(0 calc(100% - var(--conn-ba-position)) 0 0);
     }
 
+    &__image--after {
+        clip-path: inset(0 0 0 var(--conn-ba-position));
+    }
+
     &__handle {
         position: absolute;
         top: 0;
         bottom: 0;
         left: var(--conn-ba-position);
         width: 3px;
-        background: var(--conn-surface);
+        background: var(--conn-ba-handle-color, color-mix(in srgb, var(--conn-surface) 70%, transparent));
         transform: translateX(-50%);
         pointer-events: none;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
@@ -55,8 +59,8 @@
         width: 2.5rem;
         height: 2.5rem;
         border-radius: 50%;
-        background: var(--conn-surface);
-        border: 2px solid var(--conn-accent);
+        background: var(--conn-ba-handle-color, color-mix(in srgb, var(--conn-surface) 70%, transparent));
+        border: 2px solid var(--conn-ba-handle-border-color, color-mix(in srgb, var(--conn-accent) 70%, transparent));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -66,18 +70,113 @@
             font-size: 1.1rem;
             color: var(--conn-accent);
         }
+
+        &--custom-icon::before {
+            content: '';
+            width: 60%;
+            height: 60%;
+            background-image: var(--conn-ba-handle-icon);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+
+    &__wrap--top-bottom {
+        cursor: ns-resize;
+
+        .conn-before-after__image--before {
+            clip-path: inset(0 0 calc(100% - var(--conn-ba-position)) 0);
+        }
+
+        .conn-before-after__image--after {
+            clip-path: inset(var(--conn-ba-position) 0 0 0);
+        }
+
+        .conn-before-after__handle {
+            top: var(--conn-ba-position);
+            left: 0;
+            right: 0;
+            bottom: auto;
+            width: 100%;
+            height: 3px;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__wrap--diagonal-tlbr {
+        cursor: nwse-resize;
+
+        .conn-before-after__image--before {
+            clip-path: polygon(0 0, calc(var(--conn-ba-position) * 2) 0, 0 calc(var(--conn-ba-position) * 2));
+        }
+
+        // L-shaped: everything except before's triangle.
+        .conn-before-after__image--after {
+            clip-path: polygon(
+                calc(var(--conn-ba-position) * 2) 0,
+                100% 0,
+                100% 100%,
+                0 100%,
+                0 calc(var(--conn-ba-position) * 2)
+            );
+        }
+
+        .conn-before-after__handle {
+            width: 200%;
+            height: 3px;
+            top: var(--conn-ba-position);
+            left: calc(var(--conn-ba-position) - 100%);
+            bottom: auto;
+            transform: rotate(var(--conn-ba-angle, -45deg));
+        }
+
+        .conn-before-after__handle-grip {
+            transform: translate(-50%, -50%) rotate(calc(-1 * var(--conn-ba-angle, -45deg)));
+        }
+    }
+
+    &__wrap--diagonal-bltr {
+        cursor: nesw-resize;
+
+        .conn-before-after__image--before {
+            clip-path: polygon(0 100%, calc(var(--conn-ba-position) * 2) 100%, 0 calc(100% - var(--conn-ba-position) * 2));
+        }
+
+        .conn-before-after__image--after {
+            clip-path: polygon(
+                calc(var(--conn-ba-position) * 2) 100%,
+                100% 100%,
+                100% 0,
+                0 0,
+                0 calc(100% - var(--conn-ba-position) * 2)
+            );
+        }
+
+        .conn-before-after__handle {
+            width: 200%;
+            height: 3px;
+            top: calc(100% - var(--conn-ba-position));
+            left: calc(var(--conn-ba-position) - 100%);
+            bottom: auto;
+            transform: rotate(var(--conn-ba-angle, 45deg));
+        }
+
+        .conn-before-after__handle-grip {
+            transform: translate(-50%, -50%) rotate(calc(-1 * var(--conn-ba-angle, 45deg)));
+        }
     }
 
     &__label {
         position: absolute;
         bottom: 1rem;
-        z-index: 1;
         padding: 0.25rem 0.75rem;
         background: rgba(0, 0, 0, 0.6);
         color: #fff;
         border-radius: 50rem;
         font-size: 0.8rem;
         font-weight: 600;
+        pointer-events: none;
     }
 
     &__label--before { left: 1rem; }

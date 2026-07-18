@@ -409,6 +409,54 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             'eval' => 'trim',
         ],
     ],
+    'tx_conn_elements_before_after_start' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.start',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.start.description',
+        'config' => [
+            'type'    => 'number',
+            'default' => 50,
+            'range'   => ['lower' => 0, 'upper' => 100],
+        ],
+    ],
+    'tx_conn_elements_before_after_direction' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.direction',
+        'config' => [
+            'type'       => 'select',
+            'renderType' => 'selectSingle',
+            'default'    => 'left-right',
+            'items' => [
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.direction.left_right', 'value' => 'left-right'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.direction.top_bottom', 'value' => 'top-bottom'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.direction.diagonal_tlbr', 'value' => 'diagonal-tlbr'],
+                ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.direction.diagonal_bltr', 'value' => 'diagonal-bltr'],
+            ],
+        ],
+    ],
+    'tx_conn_elements_before_after_handle_icon' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.handle_icon',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.handle_icon.description',
+        'config' => [
+            'type'     => 'file',
+            'allowed'  => 'svg,png,webp',
+            'maxitems' => 1,
+        ],
+    ],
+    'tx_conn_elements_before_after_handle_color' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.handle_color',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.handle_color.description',
+        'config' => [
+            'type'    => 'color',
+            'opacity' => true,
+        ],
+    ],
+    'tx_conn_elements_before_after_handle_border_color' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.handle_border_color',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.handle_border_color.description',
+        'config' => [
+            'type'    => 'color',
+            'opacity' => true,
+        ],
+    ],
 ]);
 
 $GLOBALS['TCA']['tt_content']['palettes']['conn_before_after_before'] = [
@@ -417,13 +465,19 @@ $GLOBALS['TCA']['tt_content']['palettes']['conn_before_after_before'] = [
 $GLOBALS['TCA']['tt_content']['palettes']['conn_before_after_after'] = [
     'showitem' => 'tx_conn_elements_before_after_after, tx_conn_elements_before_after_after_label',
 ];
+$GLOBALS['TCA']['tt_content']['palettes']['conn_before_after_settings'] = [
+    'showitem' => 'tx_conn_elements_before_after_start, tx_conn_elements_before_after_direction, tx_conn_elements_before_after_handle_icon,
+        tx_conn_elements_before_after_handle_color, tx_conn_elements_before_after_handle_border_color',
+];
 
 $GLOBALS['TCA']['tt_content']['types']['conn_bs_before_after'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:before_after.tab.config,
             --palette--;;conn_before_after_before,
             --palette--;;conn_before_after_after,
+            --palette--;;conn_before_after_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,

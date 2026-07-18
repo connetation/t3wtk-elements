@@ -15,36 +15,56 @@
 
 <f:variable name="beforeFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_before_after_before')}" />
 <f:variable name="afterFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_before_after_after')}" />
+<f:variable name="handleIconFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_before_after_handle_icon')}" />
 <f:variable name="sliderLabel"><f:translate key="before_after.slider.label" extensionName="conn_elements" /></f:variable>
+
+<f:variable name="direction" value="left-right" />
+<f:if condition="{data.tx_conn_elements_before_after_direction}"><f:variable name="direction" value="{data.tx_conn_elements_before_after_direction}" /></f:if>
+<f:variable name="start" value="50" />
+<f:if condition="{data.tx_conn_elements_before_after_start} || {data.tx_conn_elements_before_after_start} == 0"><f:variable name="start" value="{data.tx_conn_elements_before_after_start}" /></f:if>
+
+<f:variable name="handleStyle"></f:variable>
+<f:if condition="{handleIconFile}">
+    <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-icon: url('{f:uri.image(image: handleIconFile)}');</f:variable>
+</f:if>
+<f:if condition="{data.tx_conn_elements_before_after_handle_color}">
+    <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-color: {data.tx_conn_elements_before_after_handle_color};</f:variable>
+</f:if>
+<f:if condition="{data.tx_conn_elements_before_after_handle_border_color}">
+    <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-border-color: {data.tx_conn_elements_before_after_handle_border_color};</f:variable>
+</f:if>
 
 <section class="conn-before-after row" id="conn-before-after-{data.uid}">
     <div class="container-fluid">
 
         <f:if condition="{beforeFile} && {afterFile}">
             <f:then>
-                <div class="conn-before-after__wrap"
+                <div class="conn-before-after__wrap conn-before-after__wrap--{direction}"
                      id="conn-before-after-wrap-{data.uid}"
                      role="slider"
                      tabindex="0"
                      aria-valuemin="0"
                      aria-valuemax="100"
-                     aria-valuenow="50"
-                     aria-label="{sliderLabel}">
+                     aria-valuenow="{start}"
+                     aria-label="{sliderLabel}"
+                     data-start="{start}"
+                     data-direction="{direction}"
+                     style="{handleStyle}">
                     <div class="conn-before-after__image conn-before-after__image--after">
                         <f:image image="{afterFile}" alt="{data.tx_conn_elements_before_after_after_label}" />
+                        <f:if condition="{data.tx_conn_elements_before_after_after_label}">
+                            <span class="conn-before-after__label conn-before-after__label--after">{data.tx_conn_elements_before_after_after_label}</span>
+                        </f:if>
                     </div>
                     <div class="conn-before-after__image conn-before-after__image--before">
                         <f:image image="{beforeFile}" alt="{data.tx_conn_elements_before_after_before_label}" />
+                        <f:if condition="{data.tx_conn_elements_before_after_before_label}">
+                            <span class="conn-before-after__label conn-before-after__label--before">{data.tx_conn_elements_before_after_before_label}</span>
+                        </f:if>
                     </div>
                     <div class="conn-before-after__handle" aria-hidden="true">
-                        <span class="conn-before-after__handle-grip"></span>
+                        <span class="conn-before-after__handle-grip{f:if(condition: handleIconFile, then: ' conn-before-after__handle-grip--custom-icon')}"></span>
                     </div>
-                    <f:if condition="{data.tx_conn_elements_before_after_before_label}">
-                        <span class="conn-before-after__label conn-before-after__label--before">{data.tx_conn_elements_before_after_before_label}</span>
-                    </f:if>
-                    <f:if condition="{data.tx_conn_elements_before_after_after_label}">
-                        <span class="conn-before-after__label conn-before-after__label--after">{data.tx_conn_elements_before_after_after_label}</span>
-                    </f:if>
                 </div>
             </f:then>
             <f:else>
