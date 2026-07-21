@@ -27,25 +27,33 @@
     <div class="conn-hero-slider__content container-fluid px-lg-5">
         <div class="conn-hero-slider__inner" data-slide-animation="{slide.text_animation}" data-slide-duration="{slide.animation_duration}">
 
+            <!-- Per-slide color overrides — each is a light/dark CSS custom property
+                 pair (see _hero-slider.scss), since the slide sits on a background
+                 image rather than the site's own light/dark surface. Left empty,
+                 var()'s fallback keeps the element's built-in default color. -->
+            <f:variable name="subtitleStyle"><f:if condition="{slide.subtitle_color_light}">--conn-hero-slide-subtitle-light: {slide.subtitle_color_light};</f:if><f:if condition="{slide.subtitle_color_dark}">--conn-hero-slide-subtitle-dark: {slide.subtitle_color_dark};</f:if></f:variable>
+            <f:variable name="titleStyle"><f:if condition="{slide.title_color_light}">--conn-hero-slide-title-light: {slide.title_color_light};</f:if><f:if condition="{slide.title_color_dark}">--conn-hero-slide-title-dark: {slide.title_color_dark};</f:if></f:variable>
+            <f:variable name="buttonStyle"><f:if condition="{slide.button_color_light}">--conn-hero-slide-button-light: {slide.button_color_light};</f:if><f:if condition="{slide.button_color_dark}">--conn-hero-slide-button-dark: {slide.button_color_dark};</f:if><f:if condition="{slide.button_text_color_light}">--conn-hero-slide-button-text-light: {slide.button_text_color_light};</f:if><f:if condition="{slide.button_text_color_dark}">--conn-hero-slide-button-text-dark: {slide.button_text_color_dark};</f:if></f:variable>
+
             <f:if condition="{slide.subtitle} && {slide.subtitle_layout} != 100">
                 <f:switch expression="{slide.subtitle_layout}">
-                    <f:case value="1"><h1 class="conn-hero-slider__eyebrow">{slide.subtitle}</h1></f:case>
-                    <f:case value="2"><h2 class="conn-hero-slider__eyebrow">{slide.subtitle}</h2></f:case>
-                    <f:case value="3"><h3 class="conn-hero-slider__eyebrow">{slide.subtitle}</h3></f:case>
-                    <f:case value="4"><h4 class="conn-hero-slider__eyebrow">{slide.subtitle}</h4></f:case>
-                    <f:case value="5"><h5 class="conn-hero-slider__eyebrow">{slide.subtitle}</h5></f:case>
-                    <f:defaultCase><p class="conn-hero-slider__eyebrow">{slide.subtitle}</p></f:defaultCase>
+                    <f:case value="1"><h1 class="conn-hero-slider__eyebrow" style="{subtitleStyle}">{slide.subtitle}</h1></f:case>
+                    <f:case value="2"><h2 class="conn-hero-slider__eyebrow" style="{subtitleStyle}">{slide.subtitle}</h2></f:case>
+                    <f:case value="3"><h3 class="conn-hero-slider__eyebrow" style="{subtitleStyle}">{slide.subtitle}</h3></f:case>
+                    <f:case value="4"><h4 class="conn-hero-slider__eyebrow" style="{subtitleStyle}">{slide.subtitle}</h4></f:case>
+                    <f:case value="5"><h5 class="conn-hero-slider__eyebrow" style="{subtitleStyle}">{slide.subtitle}</h5></f:case>
+                    <f:defaultCase><p class="conn-hero-slider__eyebrow" style="{subtitleStyle}">{slide.subtitle}</p></f:defaultCase>
                 </f:switch>
             </f:if>
 
             <f:if condition="{slide.title} && {slide.title_layout} != 100">
                 <f:switch expression="{slide.title_layout}">
-                    <f:case value="1"><h1 class="conn-hero-slider__title">{slide.title}</h1></f:case>
-                    <f:case value="2"><h2 class="conn-hero-slider__title">{slide.title}</h2></f:case>
-                    <f:case value="3"><h3 class="conn-hero-slider__title">{slide.title}</h3></f:case>
-                    <f:case value="4"><h4 class="conn-hero-slider__title">{slide.title}</h4></f:case>
-                    <f:case value="5"><h5 class="conn-hero-slider__title">{slide.title}</h5></f:case>
-                    <f:defaultCase><h2 class="conn-hero-slider__title">{slide.title}</h2></f:defaultCase>
+                    <f:case value="1"><h1 class="conn-hero-slider__title" style="{titleStyle}">{slide.title}</h1></f:case>
+                    <f:case value="2"><h2 class="conn-hero-slider__title" style="{titleStyle}">{slide.title}</h2></f:case>
+                    <f:case value="3"><h3 class="conn-hero-slider__title" style="{titleStyle}">{slide.title}</h3></f:case>
+                    <f:case value="4"><h4 class="conn-hero-slider__title" style="{titleStyle}">{slide.title}</h4></f:case>
+                    <f:case value="5"><h5 class="conn-hero-slider__title" style="{titleStyle}">{slide.title}</h5></f:case>
+                    <f:defaultCase><h2 class="conn-hero-slider__title" style="{titleStyle}">{slide.title}</h2></f:defaultCase>
                 </f:switch>
             </f:if>
 
@@ -54,7 +62,7 @@
             </f:if>
 
             <f:if condition="{slide.link}">
-                <f:link.typolink parameter="{slide.link}" class="conn-hero-slider__cta btn btn-primary">
+                <f:link.typolink parameter="{slide.link}" class="conn-hero-slider__cta btn btn-primary" additionalAttributes="{style: buttonStyle}">
                     <f:if condition="{slide.link_label}">
                         <f:then>{slide.link_label}</f:then>
                         <f:else>Learn more</f:else>

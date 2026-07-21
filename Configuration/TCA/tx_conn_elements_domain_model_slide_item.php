@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 // Same value set as TYPO3 core's native tt_content.header_layout: 0=default,
 // 1-5=H1-H5, 100=hidden. Reused for every heading/subheading layout column.
+// Labels reuse conn_base's relabeled H1-H5 strings (not core's "Layout N"),
+// so this matches the same convention across every content element.
 $headingLayoutItems = [
-    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 'value' => 0],
-    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.1', 'value' => 1],
-    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.2', 'value' => 2],
-    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.3', 'value' => 3],
-    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.4', 'value' => 4],
-    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.5', 'value' => 5],
-    ['label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_layout.I.6', 'value' => 100],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.default', 'value' => 0],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h1', 'value' => 1],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h2', 'value' => 2],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h3', 'value' => 3],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h4', 'value' => 4],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h5', 'value' => 5],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
 return [
@@ -251,6 +253,49 @@ return [
                 ],
             ],
         ],
+        // Per-slide color overrides — each is a light/dark pair since these
+        // sit on a background image whose readability differs from the
+        // site's own light/dark mode. Left empty, the slide keeps its
+        // built-in default look (white title, accent eyebrow/button).
+        // opacity:true enables an alpha channel in the color picker.
+        'title_color_light' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title_color_light',
+            'config' => ['type' => 'color', 'opacity' => true],
+        ],
+        'title_color_dark' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title_color_dark',
+            'config' => ['type' => 'color', 'opacity' => true],
+        ],
+        'subtitle_color_light' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle_color_light',
+            'config' => ['type' => 'color', 'opacity' => true],
+        ],
+        'subtitle_color_dark' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle_color_dark',
+            'config' => ['type' => 'color', 'opacity' => true],
+        ],
+        'button_color_light' => [
+            'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color_light',
+            'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color.description',
+            'config'      => ['type' => 'color', 'opacity' => true],
+        ],
+        'button_color_dark' => [
+            'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color_dark',
+            'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color.description',
+            'config'      => ['type' => 'color', 'opacity' => true],
+        ],
+        // Independent of the background above — the button's default (Bootstrap
+        // .btn-primary) text color doesn't auto-contrast against a custom
+        // background, so a light background + the default white text is
+        // unreadable unless the editor can also set the text color.
+        'button_text_color_light' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_text_color_light',
+            'config' => ['type' => 'color', 'opacity' => true],
+        ],
+        'button_text_color_dark' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_text_color_dark',
+            'config' => ['type' => 'color', 'opacity' => true],
+        ],
     ],
     'types' => [
         '1' => [
@@ -259,10 +304,16 @@ return [
                     title, title_layout, subtitle, subtitle_layout, body, image,
                 --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.tab.link,
                     link, link_label,
+                    --linebreak--,
+                    button_color_light, button_color_dark,
+                    button_text_color_light, button_text_color_dark,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
                     text_animation, animation_duration,
                     text_pos_v, text_pos_h,
                     bg_animation,
+                    --linebreak--,
+                    title_color_light, title_color_dark,
+                    subtitle_color_light, subtitle_color_dark,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

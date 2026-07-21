@@ -230,6 +230,33 @@
             <trans-unit id="slide_item.tab.link">
                 <source>Link</source>
             </trans-unit>
+            <trans-unit id="slide_item.title_color_light">
+                <source>Title color (light mode)</source>
+            </trans-unit>
+            <trans-unit id="slide_item.title_color_dark">
+                <source>Title color (dark mode)</source>
+            </trans-unit>
+            <trans-unit id="slide_item.subtitle_color_light">
+                <source>Subtitle color (light mode)</source>
+            </trans-unit>
+            <trans-unit id="slide_item.subtitle_color_dark">
+                <source>Subtitle color (dark mode)</source>
+            </trans-unit>
+            <trans-unit id="slide_item.button_color_light">
+                <source>Button background color (light mode)</source>
+            </trans-unit>
+            <trans-unit id="slide_item.button_color_dark">
+                <source>Button background color (dark mode)</source>
+            </trans-unit>
+            <trans-unit id="slide_item.button_color.description">
+                <source>Overrides the button's default background. If you set this to something light, also set the button text color below so it stays readable.</source>
+            </trans-unit>
+            <trans-unit id="slide_item.button_text_color_light">
+                <source>Button text color (light mode)</source>
+            </trans-unit>
+            <trans-unit id="slide_item.button_text_color_dark">
+                <source>Button text color (dark mode)</source>
+            </trans-unit>
             <!-- Bootstrap Card Group content element -->
             <trans-unit id="ce.bs_card_group">
                 <source>Bootstrap Card Group</source>

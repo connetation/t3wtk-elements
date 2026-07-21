@@ -206,7 +206,7 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--conn-accent);
+        color: var(--conn-hero-slide-subtitle-light, var(--conn-accent));
         margin-bottom: 0.5rem;
         opacity: 0;
         transform: translateY(12px);
@@ -216,6 +216,10 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        [data-bs-theme="dark"] & {
+            color: var(--conn-hero-slide-subtitle-dark, var(--conn-hero-slide-subtitle-light, var(--conn-accent)));
+        }
     }
 
     &__title {
@@ -223,7 +227,7 @@
         font-weight: 800;
         line-height: 1.1;
         letter-spacing: -0.03em;
-        color: #ffffff;
+        color: var(--conn-hero-slide-title-light, #ffffff);
         margin-bottom: 0.75rem;
         opacity: 0;
         transform: translateY(16px);
@@ -232,6 +236,10 @@
         .swiper-slide-active & {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        [data-bs-theme="dark"] & {
+            color: var(--conn-hero-slide-title-dark, var(--conn-hero-slide-title-light, #ffffff));
         }
     }
 
@@ -257,19 +265,29 @@
         font-weight: 600;
         padding: 0.625rem 1.5rem;
         border-radius: 50rem;
-        background: var(--conn-accent);
-        border-color: var(--conn-accent);
-        color: #fff;
+        background: var(--conn-hero-slide-button-light, var(--conn-accent));
+        border-color: var(--conn-hero-slide-button-light, var(--conn-accent));
+        color: var(--conn-hero-slide-button-text-light, #fff);
 
         &:hover {
             background: var(--conn-accent-hover);
             border-color: var(--conn-accent-hover);
-            color: #fff;
+            color: var(--conn-hero-slide-button-text-light, #fff);
         }
 
         .swiper-slide-active & {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        [data-bs-theme="dark"] & {
+            background: var(--conn-hero-slide-button-dark, var(--conn-hero-slide-button-light, var(--conn-accent)));
+            border-color: var(--conn-hero-slide-button-dark, var(--conn-hero-slide-button-light, var(--conn-accent)));
+            color: var(--conn-hero-slide-button-text-dark, var(--conn-hero-slide-button-text-light, #fff));
+
+            &:hover {
+                color: var(--conn-hero-slide-button-text-dark, var(--conn-hero-slide-button-text-light, #fff));
+            }
         }
     }
 
