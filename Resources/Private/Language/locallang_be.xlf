@@ -1224,9 +1224,6 @@
             <trans-unit id="alert.tab.config">
                 <source>Alert Settings</source>
             </trans-unit>
-            <trans-unit id="alert.tab.custom">
-                <source>Custom</source>
-            </trans-unit>
             <trans-unit id="alert.settings">
                 <source>Display Settings</source>
             </trans-unit>

@@ -36,10 +36,15 @@
 
 <f:variable name="customStyle"></f:variable>
 <f:if condition="{settings.style} == 'custom'">
-    <f:variable name="customStyle">{f:if(condition: settings.customBackgroundColor, then: 'background-color: {settings.customBackgroundColor};')}{f:if(condition: settings.customAccentColor, then: 'border-color: {settings.customAccentColor};')}{f:if(condition: settings.customTextColor, then: 'color: {settings.customTextColor};')}</f:variable>
+    <f:variable name="customStyle">{f:if(condition: settings.customBackgroundColor, then: 'background-color: {settings.customBackgroundColor};')}{f:if(condition: settings.customTextColor, then: 'color: {settings.customTextColor};')}</f:variable>
 </f:if>
 <f:if condition="{settings.borderColor}">
     <f:variable name="customStyle">{customStyle}border-color: {settings.borderColor};</f:variable>
+</f:if>
+
+<f:variable name="iconStyle"></f:variable>
+<f:if condition="{settings.style} == 'custom' && {settings.customAccentColor}">
+    <f:variable name="iconStyle">color: {settings.customAccentColor};</f:variable>
 </f:if>
 
 <f:variable name="dismissKey"></f:variable>
@@ -58,7 +63,7 @@
             <f:image image="{customIconImage}" class="conn-alert__icon-image" alt="" />
         </f:if>
         <f:if condition="{settings.icon} && {hasIcon} && !{hasCustomImage}">
-            <i class="conn-alert__icon bi {iconClass}" aria-hidden="true"></i>
+            <i class="conn-alert__icon bi {iconClass}" style="{iconStyle}" aria-hidden="true"></i>
         </f:if>
 
         <div class="conn-alert__body">

@@ -618,7 +618,6 @@ $GLOBALS['TCA']['tt_content']['types']['conn_alert'] = [
             --palette--;;general,--palette--;;header,bodytext,
         --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.tab.config,
             tx_conn_elements_alert_settings,
-        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:alert.tab.custom,
             --palette--;;conn_alert_custom_icon,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,

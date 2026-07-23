@@ -22,33 +22,6 @@
                             </items>
                         </config>
                     </settings.style>
-                    <settings.customAccentColor>
-                        <label>Accent color</label>
-                        <description>Border color, and icon color (only if the custom icon is a Bootstrap Icons name, not an image). The custom icon itself is set in its own field below the Style selector. Only used when Style is set to Custom.</description>
-                        <config>
-                            <type>color</type>
-                            <opacity>1</opacity>
-                            <displayCond>FIELD:settings.style:=:custom</displayCond>
-                        </config>
-                    </settings.customAccentColor>
-                    <settings.customBackgroundColor>
-                        <label>Background color</label>
-                        <description>Only used when Style is set to Custom.</description>
-                        <config>
-                            <type>color</type>
-                            <opacity>1</opacity>
-                            <displayCond>FIELD:settings.style:=:custom</displayCond>
-                        </config>
-                    </settings.customBackgroundColor>
-                    <settings.customTextColor>
-                        <label>Text color</label>
-                        <description>Only used when Style is set to Custom.</description>
-                        <config>
-                            <type>color</type>
-                            <opacity>1</opacity>
-                            <displayCond>FIELD:settings.style:=:custom</displayCond>
-                        </config>
-                    </settings.customTextColor>
                     <settings.icon>
                         <label>Show icon</label>
                         <config>
@@ -74,6 +47,41 @@
                 </el>
             </ROOT>
         </sDEF>
+        <custom>
+            <ROOT>
+                <sheetTitle>Custom</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.customAccentColor>
+                        <label>Icon color</label>
+                        <description>Color of the custom icon (set on the icon fields further down this tab), only if it's a Bootstrap Icons name, not an image. Only used when Style (Style tab) is set to Custom. For the border, use the Border tab's Border color instead.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customAccentColor>
+                    <settings.customBackgroundColor>
+                        <label>Background color</label>
+                        <description>Only used when Style (Style tab) is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customBackgroundColor>
+                    <settings.customTextColor>
+                        <label>Text color</label>
+                        <description>Only used when Style (Style tab) is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customTextColor>
+                </el>
+            </ROOT>
+        </custom>
         <border>
             <ROOT>
                 <sheetTitle>Border</sheetTitle>
