@@ -21,8 +21,7 @@ final class AlertSettingsProcessor implements DataProcessorInterface
     private const BORDER_RADII = ['none', 'small', 'medium', 'large', 'pill'];
     // Left/right edge positions are always a small button that expands on
     // click (there's no full-width bar variant for them); top/bottom are
-    // always the full-width bar (no button/collapse variant). Position
-    // alone decides this now — settings.compact was dropped.
+    // always the full-width bar
     private const EDGE_POSITIONS = ['edge-left', 'edge-right'];
 
     public function process(
@@ -57,6 +56,7 @@ final class AlertSettingsProcessor implements DataProcessorInterface
             'customTextColor'     => $this->resolveHexColor($raw['customTextColor'] ?? ''),
             'icon'                => !empty($raw['icon'] ?? true),
             'dismissible'         => !empty($raw['dismissible']),
+            'rememberDismiss'     => !empty($raw['rememberDismiss']),
             'closeColor'          => $this->resolveHexColor($raw['closeColor'] ?? ''),
             'position'            => $position,
             'isFixed'             => $position !== 'static',
@@ -64,15 +64,15 @@ final class AlertSettingsProcessor implements DataProcessorInterface
             // edge buttons float over the page like any other floating
             // action button, they don't reserve space for themselves.
             'pushContent'         => $position === 'static' || $isEdgeButton ? false : !empty($raw['pushContent'] ?? true),
-            // Edge buttons alone are the "compact" icon-that-expands
             // widget; Top/Bottom are always the full bar. Position alone
-            // decides this now (settings.compact was dropped).
             'compact'             => $isEdgeButton,
             'verticalAlign'       => $verticalAlign,
             'buttonShape'         => $buttonShape,
             'contentAlign'        => $contentAlign,
             'borderColor'         => $this->resolveHexColor($raw['borderColor'] ?? ''),
             'borderRadius'        => $borderRadius,
+            'buttonColor'         => $this->resolveHexColor($raw['buttonColor'] ?? ''),
+            'buttonTextColor'     => $this->resolveHexColor($raw['buttonTextColor'] ?? ''),
         ];
 
         $typoScriptSettings = GeneralUtility::makeInstance(TypoScriptService::class)

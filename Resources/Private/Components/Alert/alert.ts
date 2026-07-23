@@ -1,8 +1,9 @@
 /**
- * Conn Alert/Notice Banner — fixed position
- * Static (inline) alerts need no JS at all — Bootstrap's own alert.js
- * (already loaded globally) handles the dismiss button.
- *
+ * Conn Alert/Notice Banner
+ * Static (inline, non-"remember dismissal") alerts need no JS at all —
+ * Bootstrap's own alert.js (already loaded globally) handles the dismiss
+ * button. AlertFloat below only applies to fixed/positioned alerts;
+ * initDismissMemory applies to any alert with "remember dismissal" on.
  */
 
 import { gsap } from 'gsap';
@@ -105,9 +106,12 @@ class AlertFloat {
         }
 
         const property: 'paddingTop' | 'paddingBottom' = this.el.dataset.edge === 'top' ? 'paddingTop' : 'paddingBottom';
+        // Push the page content, never <body> itself — the navbar is a sibling
+        // of #main-content, both direct children of body. Padding on body would
+        // shift the (sticky/fixed) navbar down too, corrupting its own offset.
         const target = property === 'paddingBottom'
             ? (document.querySelector<HTMLElement>('.footer') ?? document.body)
-            : document.body;
+            : (document.querySelector<HTMLElement>('#main-content') ?? document.body);
 
         const stackContainer = this.stackContainer;
         const update = (): void => AlertFloat.updatePushContent(property, target, stackContainer);
@@ -129,9 +133,10 @@ class AlertFloat {
         const fixedNavSelector = property === 'paddingTop'
             ? '.navbar.fixed-top, .navbar.sticky-top'
             : '.navbar.fixed-bottom';
-        const navHeight = document.querySelector(fixedNavSelector)
-            ? parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--conn-navbar-height')) || 0
-            : 0;
+        // Measure the real rendered navbar — --conn-navbar-height is a static
+        // 64px approximation that drifts from the actual height (logo size,
+        // breakpoint, dropdown style, ...), leaving a gap or overlap.
+        const navHeight = document.querySelector<HTMLElement>(fixedNavSelector)?.getBoundingClientRect().height ?? 0;
 
         stackContainer.style[offsetSide] = navHeight ? `${navHeight}px` : '';
 
@@ -165,12 +170,16 @@ class AlertFloat {
             return;
         }
 
+        // Square stays sharp-cornered in both states — nothing to morph.
+        // Only circle morphs into a rounded rect as the panel opens.
+        if (this.toggle.classList.contains('conn-alert-positioned__toggle--square')) {
+            return;
+        }
+
         const radius = getComputedStyle(document.documentElement).getPropertyValue('--conn-radius').trim() || '0px';
-        const isSquare = this.toggle.classList.contains('conn-alert-positioned__toggle--square');
-        const restingRadius = isSquare ? radius : '50%';
 
         gsap.to(this.toggle, {
-            borderRadius: opening ? radius : restingRadius,
+            borderRadius: opening ? radius : '50%',
             duration: 0.3,
             ease: 'power2.out',
         });
@@ -178,5 +187,41 @@ class AlertFloat {
 
 }
 
+/**
+ * If this alert was dismissed before, remove it before it's ever shown.
+ * Otherwise, write the dismissal key on close so it stays gone next visit.
+ * Listens on the close button's click directly rather than Bootstrap's
+ * `closed.bs.alert` event — no dependency on the Alert plugin's internal
+ * event lifecycle actually firing/being caught in time.
+ */
+function initDismissMemory(el: HTMLElement): void {
+    const key = el.dataset.dismissKey;
+    if (!key) {
+        return;
+    }
+
+    const target = el.closest<HTMLElement>('.conn-alert-positioned') ?? el;
+
+    if (localStorage.getItem(key)) {
+        target.remove();
+        return;
+    }
+
+    el.querySelector('[data-bs-dismiss="alert"]')?.addEventListener('click', () => {
+        try {
+            localStorage.setItem(key, '1');
+        } catch {
+            // Private browsing / storage disabled / quota exceeded — dismissal
+            // just won't persist, the alert still closes normally either way.
+        }
+    });
+}
+
 import { registry } from '../Shared/registry';
+// Must run before AlertFloat: an already-dismissed positioned alert needs to
+// be gone before AlertFloat re-parents it into a stack container and
+// reserves push-content padding for it — otherwise that state leaks (stale
+// padding, orphaned stack) since we remove it here without AlertFloat's own
+// teardown path.
+registry.register('.conn-alert[data-remember-dismiss="1"]', initDismissMemory);
 registry.register('.conn-alert-positioned', el => new AlertFloat(el));

@@ -3,7 +3,7 @@
     <sheets>
         <sDEF>
             <ROOT>
-                <sheetTitle>Display</sheetTitle>
+                <sheetTitle>Style</sheetTitle>
                 <type>array</type>
                 <el>
                     <settings.style>
@@ -22,6 +22,33 @@
                             </items>
                         </config>
                     </settings.style>
+                    <settings.customAccentColor>
+                        <label>Accent color</label>
+                        <description>Border color, and icon color (only if the custom icon is a Bootstrap Icons name, not an image). The custom icon itself is set in its own field below the Style selector. Only used when Style is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customAccentColor>
+                    <settings.customBackgroundColor>
+                        <label>Background color</label>
+                        <description>Only used when Style is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customBackgroundColor>
+                    <settings.customTextColor>
+                        <label>Text color</label>
+                        <description>Only used when Style is set to Custom.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:settings.style:=:custom</displayCond>
+                        </config>
+                    </settings.customTextColor>
                     <settings.icon>
                         <label>Show icon</label>
                         <config>
@@ -30,24 +57,59 @@
                             <default>1</default>
                         </config>
                     </settings.icon>
-                    <settings.dismissible>
-                        <label>Dismissible</label>
-                        <onChange>reload</onChange>
+                    <settings.contentAlign>
+                        <label>Content alignment</label>
+                        <description>Vertical alignment of the icon and text. "Top" (default) keeps the icon aligned with the first line, which reads best once header/subheader/body stack up. "Center" suits a single short line.</description>
                         <config>
-                            <type>check</type>
-                            <renderType>checkboxToggle</renderType>
-                            <default>0</default>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>start</default>
+                            <items>
+                                <numIndex index="0"><label>Top</label><value>start</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Bottom</label><value>end</value></numIndex>
+                            </items>
                         </config>
-                    </settings.dismissible>
-                    <settings.closeColor>
-                        <label>Close (×) button color</label>
-                        <description>Leave empty to use the theme default. Only shown when Dismissible is on.</description>
+                    </settings.contentAlign>
+                </el>
+            </ROOT>
+        </sDEF>
+        <border>
+            <ROOT>
+                <sheetTitle>Border</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.borderColor>
+                        <label>Border color</label>
+                        <description>Leave empty to use the style's default border color. Supports opacity.</description>
                         <config>
                             <type>color</type>
                             <opacity>1</opacity>
-                            <displayCond>FIELD:settings.dismissible:=:1</displayCond>
                         </config>
-                    </settings.closeColor>
+                    </settings.borderColor>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                                <numIndex index="4"><label>Pill (fully rounded)</label><value>pill</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.borderRadius>
+                </el>
+            </ROOT>
+        </border>
+        <position>
+            <ROOT>
+                <sheetTitle>Position</sheetTitle>
+                <type>array</type>
+                <el>
                     <settings.position>
                         <label>Position</label>
                         <description>"Inline" places the alert in the normal page flow. The others pin it to a screen edge, ignoring scroll: Top/Bottom as a full-width bar, Left/Right edge as a small button that expands into the full alert on click.</description>
@@ -93,6 +155,24 @@
                             </items>
                         </config>
                     </settings.buttonShape>
+                    <settings.buttonColor>
+                        <label>Button color</label>
+                        <description>Background of the collapsed edge button. Leave empty to use the style's default (Accent/Background color for Custom, the theme color otherwise). Independent from the Text/Accent colors above.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:settings.position:IN:edge-left,edge-right</displayCond>
+                        </config>
+                    </settings.buttonColor>
+                    <settings.buttonTextColor>
+                        <label>Button icon color</label>
+                        <description>Icon color of the collapsed edge button. Leave empty to use the style's default. Independent from the alert's own Text color.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:settings.position:IN:edge-left,edge-right</displayCond>
+                        </config>
+                    </settings.buttonTextColor>
                     <settings.pushContent>
                         <label>Avoid the navigation</label>
                         <description>On: a Top bar sits below the navigation instead of covering it, and a Bottom bar reserves room so it doesn't cover the footer once scrolled all the way down. Off: the bar floats over the page instead, ignoring the navigation too — e.g. to deliberately show something important over it. Only applies to Top/Bottom.</description>
@@ -103,80 +183,44 @@
                             <displayCond>FIELD:settings.position:IN:fixed-top,fixed-bottom</displayCond>
                         </config>
                     </settings.pushContent>
-                    <settings.contentAlign>
-                        <label>Content alignment</label>
-                        <description>Vertical alignment of the icon and text. "Top" (default) keeps the icon aligned with the first line, which reads best once header/subheader/body stack up. "Center" suits a single short line.</description>
-                        <config>
-                            <type>select</type>
-                            <renderType>selectSingle</renderType>
-                            <default>start</default>
-                            <items>
-                                <numIndex index="0"><label>Top</label><value>start</value></numIndex>
-                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
-                                <numIndex index="2"><label>Bottom</label><value>end</value></numIndex>
-                            </items>
-                        </config>
-                    </settings.contentAlign>
-                    <settings.borderColor>
-                        <label>Border color</label>
-                        <description>Leave empty to use the style's default border color. Supports opacity.</description>
-                        <config>
-                            <type>color</type>
-                            <opacity>1</opacity>
-                        </config>
-                    </settings.borderColor>
-                    <settings.borderRadius>
-                        <label>Border radius</label>
-                        <config>
-                            <type>select</type>
-                            <renderType>selectSingle</renderType>
-                            <default>medium</default>
-                            <items>
-                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
-                                <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
-                                <numIndex index="2"><label>Medium (default)</label><value>medium</value></numIndex>
-                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
-                                <numIndex index="4"><label>Pill (fully rounded)</label><value>pill</value></numIndex>
-                            </items>
-                        </config>
-                    </settings.borderRadius>
                 </el>
             </ROOT>
-        </sDEF>
-        <custom>
+        </position>
+        <dismiss>
             <ROOT>
-                <sheetTitle>Custom</sheetTitle>
+                <sheetTitle>Dismiss</sheetTitle>
                 <type>array</type>
                 <el>
-                    <settings.customAccentColor>
-                        <label>Accent color</label>
-                        <description>Left border color, and icon color (only if the custom icon is a Bootstrap Icons name, not an image). The custom icon itself is set in its own field below the Style selector on the Display tab. Only used when Style (Display tab) is set to Custom.</description>
+                    <settings.dismissible>
+                        <label>Dismissible</label>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.dismissible>
+                    <settings.closeColor>
+                        <label>Close (×) button color</label>
+                        <description>Leave empty to use the theme default. Only shown when Dismissible is on.</description>
                         <config>
                             <type>color</type>
                             <opacity>1</opacity>
-                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                            <displayCond>FIELD:settings.dismissible:=:1</displayCond>
                         </config>
-                    </settings.customAccentColor>
-                    <settings.customBackgroundColor>
-                        <label>Background color</label>
-                        <description>Only used when Style (Display tab) is set to Custom.</description>
+                    </settings.closeColor>
+                    <settings.rememberDismiss>
+                        <label>Remember dismissal</label>
+                        <description>On: once a visitor closes this alert, it stays closed for them (stored in their browser) instead of reappearing on the next page load. Editing this alert's text/settings and saving resets it for everyone, since that changes what there is to see.</description>
                         <config>
-                            <type>color</type>
-                            <opacity>1</opacity>
-                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                            <displayCond>FIELD:settings.dismissible:=:1</displayCond>
                         </config>
-                    </settings.customBackgroundColor>
-                    <settings.customTextColor>
-                        <label>Text color</label>
-                        <description>Only used when Style (Display tab) is set to Custom.</description>
-                        <config>
-                            <type>color</type>
-                            <opacity>1</opacity>
-                            <displayCond>FIELD:sDEF.settings.style:=:custom</displayCond>
-                        </config>
-                    </settings.customTextColor>
+                    </settings.rememberDismiss>
                 </el>
             </ROOT>
-        </custom>
+        </dismiss>
     </sheets>
 </T3DataStructure>

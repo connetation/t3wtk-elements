@@ -42,8 +42,18 @@
     <f:variable name="customStyle">{customStyle}border-color: {settings.borderColor};</f:variable>
 </f:if>
 
+<f:variable name="dismissKey"></f:variable>
+<f:if condition="{settings.dismissible} && {settings.rememberDismiss}">
+    <f:variable name="dismissKey">conn-alert-dismissed-{data.uid}-{data.tstamp}</f:variable>
+    <f:asset.script identifier="conn-elements-alert-js"
+        src="EXT:conn_elements/Resources/Public/Js/components/alert.js"
+        type="module"
+        priority="false" />
+</f:if>
+
 <f:section name="AlertBody">
-    <div class="conn-alert alert alert-{settings.style}{f:if(condition: settings.dismissible, then: ' alert-dismissible fade show')} d-flex align-items-{settings.contentAlign}" role="alert" id="conn-alert-{data.uid}" data-radius="{settings.borderRadius}" style="{customStyle}">
+    <div class="conn-alert alert alert-{settings.style}{f:if(condition: settings.dismissible, then: ' alert-dismissible fade show')} d-flex align-items-{settings.contentAlign}" role="alert" id="conn-alert-{data.uid}" data-radius="{settings.borderRadius}" style="{customStyle}"
+         data-remember-dismiss="{f:if(condition: dismissKey, then: '1', else: '0')}" data-dismiss-key="{dismissKey}">
         <f:if condition="{settings.icon} && {hasCustomImage}">
             <f:image image="{customIconImage}" class="conn-alert__icon-image" alt="" />
         </f:if>
@@ -89,6 +99,12 @@
 <f:variable name="toggleStyle"></f:variable>
 <f:if condition="{settings.style} == 'custom'">
     <f:variable name="toggleStyle">{f:if(condition: settings.customAccentColor, then: 'background-color: {settings.customAccentColor};', else: 'background-color: {settings.customBackgroundColor};')}{f:if(condition: settings.customTextColor, then: 'color: {settings.customTextColor};')}</f:variable>
+</f:if>
+<f:if condition="{settings.buttonColor}">
+    <f:variable name="toggleStyle">{toggleStyle}background-color: {settings.buttonColor};</f:variable>
+</f:if>
+<f:if condition="{settings.buttonTextColor}">
+    <f:variable name="toggleStyle">{toggleStyle}color: {settings.buttonTextColor};</f:variable>
 </f:if>
 
 <f:variable name="edge" value="top" />

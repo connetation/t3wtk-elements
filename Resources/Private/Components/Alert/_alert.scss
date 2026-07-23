@@ -146,7 +146,7 @@
         // &--custom: no fixed background here — set inline via settings.customAccentColor/customBackgroundColor (see Alert.html).
 
         &--circle { border-radius: 50%; }
-        &--square { border-radius: var(--conn-radius); }
+        &--square { border-radius: 0; }
 
         i {
             line-height: 1;
