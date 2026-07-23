@@ -43,6 +43,28 @@
                             <opacity>1</opacity>
                         </config>
                     </settings.accentColor>
+                    <settings.textColor>
+                        <label>Quote text color (empty = theme default)</label>
+                        <description>Overrides the color of the quote text itself.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.textColor>
+                    <settings.textSize>
+                        <label>Quote text size</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><label>Default</label><value></value></numIndex>
+                                <numIndex index="1"><label>Small</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Large</label><value>large</value></numIndex>
+                                <numIndex index="3"><label>Extra large</label><value>xlarge</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.textSize>
                 </el>
             </ROOT>
         </sDEF>

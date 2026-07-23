@@ -15,6 +15,7 @@ final class QuoteSettingsProcessor implements DataProcessorInterface
     private const SETTINGS_FIELD = 'tx_conn_elements_quote_settings';
     private const STYLES = ['mark', 'minimal', 'simple', 'container', 'sketch'];
     private const ALIGNMENTS = ['left', 'center', 'right'];
+    private const TEXT_SIZES = ['small' => '1.1rem', 'large' => '1.6rem', 'xlarge' => '2rem'];
 
     public function process(
         ContentObjectRenderer $cObj,
@@ -31,10 +32,14 @@ final class QuoteSettingsProcessor implements DataProcessorInterface
         $style = $raw['style'] ?? 'container';
         $align = $raw['align'] ?? 'center';
 
+        $textSize = trim((string)($raw['textSize'] ?? ''));
+
         $settings = [
             'style'       => in_array($style, self::STYLES, true) ? $style : 'container',
             'align'       => in_array($align, self::ALIGNMENTS, true) ? $align : 'center',
             'accentColor' => trim((string)($raw['accentColor'] ?? '')) ?: null,
+            'textColor'   => trim((string)($raw['textColor'] ?? '')) ?: null,
+            'textSize'    => self::TEXT_SIZES[$textSize] ?? null,
         ];
 
         $typoScriptSettings = GeneralUtility::makeInstance(TypoScriptService::class)

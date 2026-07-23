@@ -547,6 +547,7 @@ $GLOBALS['TCA']['tt_content']['types']['conn_quote'] = [
     ],
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,
             bodytext,
             --palette--;;conn_quote_author,
         --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:quote.tab.config,

@@ -7,15 +7,20 @@
         position: relative;
         margin: 0;
         max-width: 760px;
+        // Prevent conn_base's global `blockquote { border-left; padding-left; color }`
+        // RTE-content reset (this element IS a <blockquote>) so every style variant
+        border-left: 0;
+        padding-left: 0;
+        color: inherit;
     }
 
     &__text {
         position: relative;
         z-index: 1;
-        font-size: 1.35rem;
+        font-size: var(--conn-quote-text-size, 1.35rem);
         font-weight: 600;
         line-height: 1.5;
-        color: var(--conn-heading);
+        color: var(--conn-quote-text-color, var(--conn-heading));
 
         p:last-child { margin-bottom: 0; }
     }
@@ -95,7 +100,7 @@
 
         .conn-quote__text {
             font-weight: 400;
-            color: var(--conn-text-muted);
+            color: var(--conn-quote-text-color, var(--conn-text-muted));
         }
 
         .conn-quote__author-name {
@@ -116,7 +121,7 @@
         }
 
         .conn-quote__text {
-            font-size: 1.6rem;
+            font-size: var(--conn-quote-text-size, 1.6rem);
             font-style: italic;
             font-weight: 500;
         }
@@ -186,7 +191,12 @@
             transform: translate(-50%, -50%);
             margin-top: 0;
             justify-content: center;
-            background-color: var(--conn-surface);
+            // Punches a hole in the frame border behind the label — must stay
+            // opaque (a fully transparent value lets the border paint straight
+            // through the text). --conn-bg is the actual page background
+            // (not --conn-surface, which is the lighter "card" tone and visibly
+            // mismatches the page in most contexts).
+            background-color: var(--conn-bg);
             padding: 0 1rem;
         }
 
@@ -202,7 +212,8 @@
         height: 1.75rem;
         border: 1px solid transparent;
         border-radius: 50%;
-        background-color: var(--conn-surface);
+        // Same hole-punch reasoning as .conn-quote__author above.
+        background-color: var(--conn-bg);
         transform: rotate(-45deg);
 
         &--tl {

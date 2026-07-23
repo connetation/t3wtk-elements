@@ -12,7 +12,7 @@
 <f:variable name="authorImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_quote_image')}" />
 
 <section class="conn-quote conn-quote--{settings.style} conn-quote--align-{settings.align} row" id="conn-quote-{data.uid}"
-    style="{f:if(condition: settings.accentColor, then: '--conn-quote-accent: {settings.accentColor};')}">
+    style="{f:if(condition: settings.accentColor, then: '--conn-quote-accent: {settings.accentColor};')}{f:if(condition: settings.textColor, then: '--conn-quote-text-color: {settings.textColor};')}{f:if(condition: settings.textSize, then: '--conn-quote-text-size: {settings.textSize};')}">
     <div class="container-fluid">
         <blockquote class="conn-quote__blockquote">
             <f:if condition="{settings.style} == 'container'">
