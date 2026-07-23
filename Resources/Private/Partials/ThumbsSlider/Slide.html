@@ -48,7 +48,7 @@
             </f:if>
 
             <f:if condition="{slide.body}">
-                <p class="conn-thumbs-slider__body">{slide.body}</p>
+                <div class="conn-thumbs-slider__body">{slide.body -> f:format.html()}</div>
             </f:if>
 
             <f:if condition="{slide.link}">

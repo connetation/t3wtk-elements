@@ -33,7 +33,7 @@
                         <f:for each="{wikis}" as="wiki">
                             <tr>
                                 <td><strong>{wiki.title}</strong></td>
-                                <td>{wiki.description}</td>
+                                <td>{wiki.description -> f:format.stripTags() -> f:format.crop(maxCharacters: 120)}</td>
                                 <td>
                                     <f:if condition="{wiki.hidden}">
                                         <f:then><span class="badge badge-warning">Hidden</span></f:then>

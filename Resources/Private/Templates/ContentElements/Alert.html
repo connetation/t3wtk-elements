@@ -38,9 +38,12 @@
 <f:if condition="{settings.style} == 'custom'">
     <f:variable name="customStyle">{f:if(condition: settings.customBackgroundColor, then: 'background-color: {settings.customBackgroundColor};')}{f:if(condition: settings.customAccentColor, then: 'border-color: {settings.customAccentColor};')}{f:if(condition: settings.customTextColor, then: 'color: {settings.customTextColor};')}</f:variable>
 </f:if>
+<f:if condition="{settings.borderColor}">
+    <f:variable name="customStyle">{customStyle}border-color: {settings.borderColor};</f:variable>
+</f:if>
 
 <f:section name="AlertBody">
-    <div class="conn-alert alert alert-{settings.style}{f:if(condition: settings.dismissible, then: ' alert-dismissible fade show')} d-flex align-items-start" role="alert" id="conn-alert-{data.uid}" style="{customStyle}">
+    <div class="conn-alert alert alert-{settings.style}{f:if(condition: settings.dismissible, then: ' alert-dismissible fade show')} d-flex align-items-{settings.contentAlign}" role="alert" id="conn-alert-{data.uid}" data-radius="{settings.borderRadius}" style="{customStyle}">
         <f:if condition="{settings.icon} && {hasCustomImage}">
             <f:image image="{customIconImage}" class="conn-alert__icon-image" alt="" />
         </f:if>

@@ -103,6 +103,43 @@
                             <displayCond>FIELD:settings.position:IN:fixed-top,fixed-bottom</displayCond>
                         </config>
                     </settings.pushContent>
+                    <settings.contentAlign>
+                        <label>Content alignment</label>
+                        <description>Vertical alignment of the icon and text. "Top" (default) keeps the icon aligned with the first line, which reads best once header/subheader/body stack up. "Center" suits a single short line.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>start</default>
+                            <items>
+                                <numIndex index="0"><label>Top</label><value>start</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Bottom</label><value>end</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.contentAlign>
+                    <settings.borderColor>
+                        <label>Border color</label>
+                        <description>Leave empty to use the style's default border color. Supports opacity.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.borderColor>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                                <numIndex index="4"><label>Pill (fully rounded)</label><value>pill</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.borderRadius>
                 </el>
             </ROOT>
         </sDEF>

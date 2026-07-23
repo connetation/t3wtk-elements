@@ -6,7 +6,7 @@
     <figure class="conn-testimonials__card">
 
         <blockquote class="conn-testimonials__quote">
-            <p>{testimonial.quote}</p>
+            {testimonial.quote -> f:format.html()}
         </blockquote>
 
         <f:if condition="{showRating} && {testimonial.rating} > 0">

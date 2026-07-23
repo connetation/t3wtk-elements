@@ -36,7 +36,7 @@
             </f:switch>
         </f:if>
         <f:if condition="{feature.body}">
-            <p class="conn-feature-grid__body">{feature.body}</p>
+            <div class="conn-feature-grid__body">{feature.body -> f:format.html()}</div>
         </f:if>
         <f:if condition="{feature.link}">
             <f:link.typolink parameter="{feature.link}" class="conn-feature-grid__link">

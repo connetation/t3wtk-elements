@@ -34,7 +34,7 @@
     </header>
 
     <f:if condition="{page.intro}">
-        <p class="wiki__page-intro">{page.intro}</p>
+        <div class="wiki__page-intro">{page.intro -> f:format.html()}</div>
     </f:if>
 
     <div class="wiki__page-content">

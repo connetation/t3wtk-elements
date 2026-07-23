@@ -17,6 +17,8 @@ final class AlertSettingsProcessor implements DataProcessorInterface
     private const POSITIONS = ['static', 'fixed-top', 'fixed-bottom', 'edge-left', 'edge-right'];
     private const VERTICAL_ALIGNS = ['top', 'center', 'bottom'];
     private const BUTTON_SHAPES = ['circle', 'square'];
+    private const CONTENT_ALIGNS = ['start', 'center', 'end'];
+    private const BORDER_RADII = ['none', 'small', 'medium', 'large', 'pill'];
     // Left/right edge positions are always a small button that expands on
     // click (there's no full-width bar variant for them); top/bottom are
     // always the full-width bar (no button/collapse variant). Position
@@ -43,6 +45,10 @@ final class AlertSettingsProcessor implements DataProcessorInterface
         $buttonShape = $raw['buttonShape'] ?? 'circle';
         $buttonShape = in_array($buttonShape, self::BUTTON_SHAPES, true) ? $buttonShape : 'circle';
         $isEdgeButton = in_array($position, self::EDGE_POSITIONS, true);
+        $contentAlign = $raw['contentAlign'] ?? 'start';
+        $contentAlign = in_array($contentAlign, self::CONTENT_ALIGNS, true) ? $contentAlign : 'start';
+        $borderRadius = $raw['borderRadius'] ?? 'medium';
+        $borderRadius = in_array($borderRadius, self::BORDER_RADII, true) ? $borderRadius : 'medium';
 
         $settings = [
             'style'               => in_array($style, self::STYLES, true) ? $style : 'info',
@@ -64,6 +70,9 @@ final class AlertSettingsProcessor implements DataProcessorInterface
             'compact'             => $isEdgeButton,
             'verticalAlign'       => $verticalAlign,
             'buttonShape'         => $buttonShape,
+            'contentAlign'        => $contentAlign,
+            'borderColor'         => $this->resolveHexColor($raw['borderColor'] ?? ''),
+            'borderRadius'        => $borderRadius,
         ];
 
         $typoScriptSettings = GeneralUtility::makeInstance(TypoScriptService::class)

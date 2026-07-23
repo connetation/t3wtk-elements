@@ -179,6 +179,8 @@
         border-left: 3px solid var(--conn-accent);
         padding-left: 0.875rem;
         margin-bottom: 1.5rem;
+
+        p:last-child { margin-bottom: 0; }
     }
 
     // ─── Content blocks ────────────────────

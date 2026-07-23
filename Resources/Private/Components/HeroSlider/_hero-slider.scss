@@ -252,6 +252,8 @@
         transform: translateY(12px);
         transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
 
+        p:last-child { margin-bottom: 0; }
+
         .swiper-slide-active & {
             opacity: 1;
             transform: translateY(0);

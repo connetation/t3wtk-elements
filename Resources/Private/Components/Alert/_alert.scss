@@ -5,7 +5,15 @@
 // ─────────────────────────────────────────────
 
 .conn-alert {
-    border-radius: var(--conn-radius);
+    --alert-radius: var(--conn-radius);
+    border-radius: var(--alert-radius);
+
+    // ── Border radius mapping ────────────────────────────────────
+    &[data-radius="none"]   { --alert-radius: 0; }
+    &[data-radius="small"]  { --alert-radius: 4px; }
+    &[data-radius="medium"] { --alert-radius: var(--conn-radius); }
+    &[data-radius="large"]  { --alert-radius: 1.5rem; }
+    &[data-radius="pill"]   { --alert-radius: 9999px; }
 
     &__icon {
         flex: 0 0 auto;

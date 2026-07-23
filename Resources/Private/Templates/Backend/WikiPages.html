@@ -21,7 +21,7 @@
     </div>
 
     <f:if condition="{wiki.description}">
-        <p class="text-muted mt-2">{wiki.description}</p>
+        <p class="text-muted mt-2">{wiki.description -> f:format.stripTags()}</p>
     </f:if>
 
     <f:if condition="{pages}">

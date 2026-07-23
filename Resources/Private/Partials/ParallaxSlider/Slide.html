@@ -29,7 +29,7 @@
             </f:if>
 
             <f:if condition="{slide.body}">
-                <p class="conn-parallax-slider__body" data-swiper-parallax="-350">{slide.body}</p>
+                <div class="conn-parallax-slider__body" data-swiper-parallax="-350">{slide.body -> f:format.html()}</div>
             </f:if>
 
             <f:if condition="{slide.link}">
