@@ -4,7 +4,11 @@
 
 <f:layout name="Default" />
 
+<f:section name="Header"></f:section>
+
 <f:section name="Main">
+
+<f:variable name="positionClass"><f:if condition="{data.header_position}">ce-headline-{data.header_position}</f:if></f:variable>
 
 <f:asset.css identifier="conn-elements-bootstrap-icons-css"
     href="EXT:conn_elements/Resources/Public/Css/bootstrap-icons.css" />
@@ -67,20 +71,7 @@
         </f:if>
 
         <div class="conn-alert__body">
-            <f:if condition="{data.header} && {data.header_layout} != 100">
-                <f:switch expression="{data.header_layout}">
-                    <f:case value="1"><h1 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h1></f:case>
-                    <f:case value="2"><h2 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h2></f:case>
-                    <f:case value="3"><h3 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h3></f:case>
-                    <f:case value="4"><h4 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h4></f:case>
-                    <f:case value="5"><h5 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h5></f:case>
-                    <f:case value="6"><h6 class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></h6></f:case>
-                    <f:defaultCase><strong class="conn-alert__header"><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></strong></f:defaultCase>
-                </f:switch>
-            </f:if>
-            <f:if condition="{data.subheader}">
-                <span class="conn-alert__subheader">{data.subheader}</span>
-            </f:if>
+            <f:render partial="ContentElements/HeaderSwitch" arguments="{data: data, positionClass: positionClass, settings: settings}" />
             <f:if condition="{data.bodytext}">
                 <div class="conn-alert__text">
                     {data.bodytext -> f:format.html()}

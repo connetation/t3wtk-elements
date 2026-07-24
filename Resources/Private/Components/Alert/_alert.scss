@@ -31,21 +31,6 @@
         margin-top: 0.1rem;
     }
 
-    &__header {
-        display: block;
-        margin-bottom: 0.25rem;
-        font-size: inherit;
-        font-weight: 700;
-        color: inherit;
-    }
-
-    &__subheader {
-        display: block;
-        margin-bottom: 0.25rem;
-        font-size: 0.9em;
-        opacity: 0.85;
-    }
-
     &__text {
         p:last-child { margin-bottom: 0; }
     }
@@ -61,6 +46,34 @@
         mask-repeat: no-repeat;
         -webkit-mask-position: center;
         mask-position: center;
+    }
+}
+
+// Specificity here is tuned deliberately: (.conn-alert__body) is :where()'d
+// away, but "header h1" keeps two real element selectors (specificity 0,0,2)
+// so it still beats Bootstrap's own bare h1–h6 rules (0,0,1) when no custom
+// class is set, while still losing — regardless of stylesheet order — to any
+// custom header/subheader class (e.g. Bootstrap's .h1–.h6 utilities, 0,1,0),
+// so a custom class can still resize the header/subheader.
+// Color is !important instead: Bootstrap's shared h1–h6/.h1–.h6 rule sets
+// color: var(--bs-heading-color) on the same selectors, and a custom size
+// class (e.g. .h1) carries that color along with it — the header/subheader
+// must always match the surrounding alert's text color, never that variable.
+:where(.conn-alert__body) header {
+    h1, h2, h3, h4, h5, h6 {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: inherit;
+        font-weight: 700;
+        color: inherit !important;
+    }
+
+    :where(.ce-subheader) {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.9em;
+        opacity: 0.85;
+        color: inherit !important;
     }
 }
 
