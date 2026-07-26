@@ -94,18 +94,24 @@
             <trans-unit id="text_pos_h.left_explicit">
                 <source>Left</source>
             </trans-unit>
-            <!-- CE Groups -->
-            <trans-unit id="ce_group.conn_swiper">
-                <source>Swiper</source>
+            <!-- CE Groups — grouped by editor-facing function, not implementation -->
+            <trans-unit id="ce_group.conn_sliders">
+                <source>Sliders &amp; Carousels</source>
             </trans-unit>
-            <trans-unit id="ce_group.conn">
-                <source>Connetation Elements</source>
+            <trans-unit id="ce_group.conn_galleries">
+                <source>Galleries</source>
             </trans-unit>
-            <trans-unit id="ce_group.conn_bootstrap">
-                <source>Bootstrap</source>
+            <trans-unit id="ce_group.conn_interactive">
+                <source>Interactive Content</source>
             </trans-unit>
-            <trans-unit id="ce_group.conn_grid">
-                <source>Bootstrap Grid</source>
+            <trans-unit id="ce_group.conn_layout">
+                <source>Grids</source>
+            </trans-unit>
+            <trans-unit id="ce_group.conn_data">
+                <source>Data &amp; Social Proof</source>
+            </trans-unit>
+            <trans-unit id="ce_group.conn_apps">
+                <source>Apps</source>
             </trans-unit>
             <!-- Bootstrap Grid container content elements -->
             <trans-unit id="ce.grid_2col">

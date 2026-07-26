@@ -46,14 +46,25 @@ ExtensionManagementUtility::addFieldsToPalette(
 );
 
 // ─── Register CE groups ───────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn'] =
-    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn';
+// Grouped by editor-facing function 
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_sliders'] =
+    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_sliders';
 
-$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_bootstrap'] =
-    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_bootstrap';
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_galleries'] =
+    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_galleries';
 
-$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_grid'] =
-    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_grid';
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_interactive'] =
+    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_interactive';
+
+// conn_layout: the 5 Bootstrap Grid containers only — kept standalone
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_layout'] =
+    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_layout';
+
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_data'] =
+    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_data';
+
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_apps'] =
+    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_apps';
 
 // ─── Dashboard ────────────────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_dashboard'] = 'conn-ce-dashboard';
@@ -63,7 +74,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard.description',
     'value' => 'conn_dashboard',
     'icon'  => 'conn-ce-dashboard',
-    'group' => 'conn',
+    'group' => 'conn_apps',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -126,7 +137,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_card_group.description',
     'value' => 'conn_bs_card_group',
     'icon'  => 'conn-ce-card-group',
-    'group' => 'conn_bootstrap',
+    'group' => 'default',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -175,7 +186,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_accordion.description',
     'value' => 'conn_bs_accordion',
     'icon'  => 'conn-ce-accordion',
-    'group' => 'conn_bootstrap',
+    'group' => 'conn_interactive',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -224,7 +235,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_tabs.description',
     'value' => 'conn_bs_tabs',
     'icon'  => 'conn-ce-tabs',
-    'group' => 'conn_bootstrap',
+    'group' => 'conn_interactive',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -273,7 +284,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_faq.description',
     'value' => 'conn_bs_faq',
     'icon'  => 'conn-ce-faq',
-    'group' => 'conn_bootstrap',
+    'group' => 'conn_interactive',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -322,7 +333,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_process.description',
     'value' => 'conn_bs_process',
     'icon'  => 'conn-ce-process',
-    'group' => 'conn_bootstrap',
+    'group' => 'conn_data',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -371,7 +382,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_before_after.description',
     'value' => 'conn_bs_before_after',
     'icon'  => 'conn-ce-before-after',
-    'group' => 'conn_bootstrap',
+    'group' => 'conn_sliders',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -494,7 +505,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.quote.description',
     'value' => 'conn_quote',
     'icon'  => 'conn-ce-quote',
-    'group' => 'conn',
+    'group' => 'default',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -568,7 +579,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.alert.description',
     'value' => 'conn_alert',
     'icon'  => 'conn-ce-alert',
-    'group' => 'conn',
+    'group' => 'special',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -636,7 +647,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_carousel.description',
     'value' => 'conn_bs_carousel',
     'icon'  => 'conn-ce-bs-carousel',
-    'group' => 'conn_bootstrap',
+    'group' => 'conn_sliders',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -677,10 +688,6 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_carousel'] = [
     ',
 ];
 
-// ─── Swiper group ────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['conn_swiper'] =
-    'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce_group.conn_swiper';
-
 // ─── Swiper Hero Slider ───────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_hero_slider'] = 'conn-ce-hero-slider';
 
@@ -689,7 +696,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_hero_slider.description',
     'value' => 'conn_swiper_hero_slider',
     'icon'  => 'conn-ce-hero-slider',
-    'group' => 'conn_swiper',
+    'group' => 'conn_sliders',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -738,7 +745,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_slider.description',
     'value' => 'conn_swiper_slider',
     'icon'  => 'conn-ce-slider',
-    'group' => 'conn_swiper',
+    'group' => 'conn_sliders',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -787,7 +794,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_thumbs_slider.description',
     'value' => 'conn_swiper_thumbs_slider',
     'icon'  => 'conn-ce-thumbs-slider',
-    'group' => 'conn_swiper',
+    'group' => 'conn_sliders',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -836,7 +843,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.swiper_parallax_slider.description',
     'value' => 'conn_swiper_parallax_slider',
     'icon'  => 'conn-ce-parallax-slider',
-    'group' => 'conn_swiper',
+    'group' => 'conn_sliders',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -939,7 +946,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.wiki.description',
     'value' => 'conn_wiki',
     'icon'  => 'conn-ce-wiki',
-    'group' => 'conn',
+    'group' => 'conn_apps',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -985,7 +992,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack.description',
     'value' => 'conn_card_stack',
     'icon'  => 'conn-ce-card-stack',
-    'group' => 'conn',
+    'group' => 'conn_sliders',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1034,7 +1041,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel.description',
     'value' => 'conn_flip_carousel',
     'icon'  => 'conn-ce-flip-carousel',
-    'group' => 'conn',
+    'group' => 'conn_galleries',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1083,7 +1090,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery.description',
     'value' => 'conn_flip_gallery',
     'icon'  => 'conn-ce-flip-gallery',
-    'group' => 'conn',
+    'group' => 'conn_galleries',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1132,7 +1139,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.mosaic_gallery.description',
     'value' => 'conn_mosaic_gallery',
     'icon'  => 'conn-ce-mosaic-gallery',
-    'group' => 'conn',
+    'group' => 'conn_galleries',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1181,7 +1188,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats.description',
     'value' => 'conn_bs_stats',
     'icon'  => 'conn-ce-stats',
-    'group' => 'conn',
+    'group' => 'conn_data',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1230,7 +1237,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall.description',
     'value' => 'conn_bs_logo_wall',
     'icon'  => 'conn-ce-logo-wall',
-    'group' => 'conn',
+    'group' => 'conn_galleries',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1279,7 +1286,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials.description',
     'value' => 'conn_bs_testimonials',
     'icon'  => 'conn-ce-testimonials',
-    'group' => 'conn',
+    'group' => 'conn_data',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1328,7 +1335,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_pricing.description',
     'value' => 'conn_bs_pricing',
     'icon'  => 'conn-ce-pricing',
-    'group' => 'conn',
+    'group' => 'conn_data',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1377,7 +1384,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid.description',
     'value' => 'conn_bs_feature_grid',
     'icon'  => 'conn-ce-feature-grid',
-    'group' => 'conn',
+    'group' => 'conn_data',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1434,7 +1441,7 @@ $registry->configureContainer(
         ]
     ))
     ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-2col-ce.svg')
-    ->setGroup('conn_grid')
+    ->setGroup('conn_layout')
 );
 
 $registry->configureContainer(
@@ -1451,7 +1458,7 @@ $registry->configureContainer(
         ]
     ))
     ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-3col-ce.svg')
-    ->setGroup('conn_grid')
+    ->setGroup('conn_layout')
 );
 
 $registry->configureContainer(
@@ -1469,7 +1476,7 @@ $registry->configureContainer(
         ]
     ))
     ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-4col-ce.svg')
-    ->setGroup('conn_grid')
+    ->setGroup('conn_layout')
 );
 
 $registry->configureContainer(
@@ -1485,7 +1492,7 @@ $registry->configureContainer(
         ]
     ))
     ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-4-8-ce.svg')
-    ->setGroup('conn_grid')
+    ->setGroup('conn_layout')
 );
 
 $registry->configureContainer(
@@ -1501,7 +1508,7 @@ $registry->configureContainer(
         ]
     ))
     ->setIcon('EXT:conn_elements/Resources/Public/Icons/grid-8-4-ce.svg')
-    ->setGroup('conn_grid')
+    ->setGroup('conn_layout')
 );
 
 
@@ -1513,7 +1520,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline.description',
     'value' => 'conn_bs_timeline',
     'icon'  => 'conn-ce-timeline',
-    'group' => 'conn',
+    'group' => 'conn_data',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
@@ -1562,7 +1569,7 @@ ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.people.description',
     'value' => 'conn_people',
     'icon'  => 'conn-ce-people',
-    'group' => 'conn',
+    'group' => 'conn_data',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
