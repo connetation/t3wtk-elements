@@ -536,13 +536,23 @@ function patchLocalconf(pascal, snake, ctype, kebab, group) {
         ok(`patched: ext_localconf.php (wizard entry)`);
     }
 
-    // Update show list for the group
-    const showPattern = new RegExp(`(mod\\.wizards\\.newContentElement\\.wizardItems\\.${group}\\.show = [^\\n]+)`);
-    const showMatch = src.match(showPattern);
-    if (showMatch && !showMatch[1].includes(ctype)) {
-        src = src.replace(showMatch[1], `${showMatch[1]},${ctype}`);
+    // Update show list for the group — handles both assignment styles:
+    //   mod.wizards.newContentElement.wizardItems.<group>.show = a,b,c
+    //   mod.wizards.newContentElement.wizardItems.<group>.show := addToList(a,b,c)
+    const showPatternEquals    = new RegExp(`(mod\\.wizards\\.newContentElement\\.wizardItems\\.${group}\\.show = [^\\n]+)`);
+    const showPatternAddToList = new RegExp(`(mod\\.wizards\\.newContentElement\\.wizardItems\\.${group}\\.show := addToList\\()([^)]*)(\\))`);
+    const showMatchEquals    = src.match(showPatternEquals);
+    const showMatchAddToList = src.match(showPatternAddToList);
+
+    if (showMatchAddToList && !showMatchAddToList[2].includes(ctype)) {
+        src = src.replace(showMatchAddToList[0], `${showMatchAddToList[1]}${showMatchAddToList[2]},${ctype}${showMatchAddToList[3]}`);
         ok(`patched: ext_localconf.php (show list for ${group})`);
-    } else if (showMatch) {
+    } else if (showMatchAddToList) {
+        warn(`ext_localconf.php show list for ${group} already has ${ctype}, skipping`);
+    } else if (showMatchEquals && !showMatchEquals[1].includes(ctype)) {
+        src = src.replace(showMatchEquals[1], `${showMatchEquals[1]},${ctype}`);
+        ok(`patched: ext_localconf.php (show list for ${group})`);
+    } else if (showMatchEquals) {
         warn(`ext_localconf.php show list for ${group} already has ${ctype}, skipping`);
     } else {
         info(`No show list found for group ${group} — add manually if needed`);
@@ -705,17 +715,19 @@ async function main() {
     const typeChoice = await ask('Type: [1] Simple (FlexForm only)  [2] With inline child records', '1');
     const hasItems   = typeChoice === '2';
 
-    const groups    = { '1': 'conn_bootstrap', '2': 'conn', '3': 'conn_swiper' };
-    const groupList = '  [1] conn_bootstrap  [2] conn  [3] conn_swiper';
+    const groups    = { '1': 'conn_bootstrap', '2': 'conn', '3': 'conn_swiper', '4': 'conn_grid', '5': 'default' };
+    const groupList = '  [1] conn_bootstrap  [2] conn  [3] conn_swiper  [4] conn_grid  [5] default (Typical page content)';
     const groupChoice = await ask(`CE group:\n${groupList}\n  Choice`, '1');
     const group = groups[groupChoice] ?? 'conn_bootstrap';
 
     // CType prefix follows the chosen group, matching existing element names:
-    // conn_bootstrap → conn_bs_*, conn_swiper → conn_swiper_*, conn → conn_*
+    // conn_bootstrap → conn_bs_*, conn_swiper → conn_swiper_*, conn_grid → conn_grid_*, conn/default → conn_*
     const ctypePrefixes = {
         conn_bootstrap: 'conn_bs_',
         conn_swiper:    'conn_swiper_',
+        conn_grid:      'conn_grid_',
         conn:           'conn_',
+        default:        'conn_',
     };
     const ctype = `${ctypePrefixes[group] ?? 'conn_'}${snake}`;
 
