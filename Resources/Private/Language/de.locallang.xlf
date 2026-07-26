@@ -145,6 +145,14 @@
                 <source>Tags</source>
                 <target>Tags</target>
             </trans-unit>
+            <trans-unit id="accordion.empty">
+                <source>No accordion items have been added yet.</source>
+                <target>Es wurden noch keine Elemente hinzugefügt.</target>
+            </trans-unit>
+            <trans-unit id="faq.empty">
+                <source>No questions have been added yet.</source>
+                <target>Es wurden noch keine Fragen hinzugefügt.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
