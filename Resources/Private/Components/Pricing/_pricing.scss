@@ -220,7 +220,11 @@
 
         .conn-pricing__card--featured {
             border-color: var(--conn-accent) !important;
-            box-shadow: none !important;
+            box-shadow: 0 0 0 2px var(--conn-accent) !important;
+
+            &:hover {
+                box-shadow: 0 0 0 2px var(--conn-accent) !important;
+            }
         }
     }
 
@@ -237,10 +241,10 @@
 
         .conn-pricing__card--featured {
             border: none !important;
-            box-shadow: 0 6px 28px var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
+            box-shadow: 0 0 0 2px var(--conn-accent), 0 6px 28px var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
 
             &:hover {
-                box-shadow: var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
+                box-shadow: 0 0 0 2px var(--conn-accent), var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-card-shadow-color, var(--conn-sh-color)) !important;
             }
         }
     }
@@ -258,10 +262,10 @@
 
         .conn-pricing__card--featured {
             border: none !important;
-            box-shadow: none !important;
+            box-shadow: 0 0 0 2px var(--conn-accent) !important;
 
             &:hover {
-                box-shadow: none !important;
+                box-shadow: 0 0 0 2px var(--conn-accent) !important;
             }
         }
     }
