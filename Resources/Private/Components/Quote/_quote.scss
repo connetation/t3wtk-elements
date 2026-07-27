@@ -294,7 +294,7 @@
             display: inline-block;
             background: var(--conn-quote-accent, var(--conn-accent));
             color: var(--conn-btn-color);
-            padding: 0.5rem 1rem;
+            padding: var(--conn-space-xs) 1rem;
         }
 
         .conn-quote__author-name {

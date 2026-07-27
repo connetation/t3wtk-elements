@@ -19,7 +19,7 @@
         gap: 1.5rem;
         align-items: stretch;
 
-        @media (max-width: 991px) {
+        @media (max-width: 991.98px) {
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         }
     }
@@ -107,7 +107,7 @@
     &__content {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: var(--conn-space-xs);
         flex: 1;
         min-width: 0;
     }
@@ -139,7 +139,7 @@
 
         &:hover {
             color: var(--conn-accent-hover);
-            gap: 0.5rem;
+            gap: var(--conn-space-xs);
         }
     }
 
@@ -176,6 +176,37 @@
                 background: var(--conn-border-strong);
                 z-index: 1;
             }
+        }
+    }
+
+    // ── Icon style toggle ──────────────────────
+    // Declared after &--steps so it wins ties when both a variant and an
+    // iconStyle modifier class target .conn-feature-grid__icon at equal
+    // specificity — e.g. Steps + icon-none actually strips the circle,
+    // instead of Steps always winning by source order.
+    &--icon-solid {
+        .conn-feature-grid__icon {
+            background: var(--conn-accent);
+            border-color: var(--conn-accent);
+            color: #fff;
+        }
+    }
+
+    &--icon-none {
+        .conn-feature-grid__icon {
+            align-self: flex-start;
+            width: auto;
+            height: auto;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            color: var(--conn-accent);
+        }
+
+        .conn-feature-grid__item:hover .conn-feature-grid__icon {
+            background: transparent;
+            border-color: transparent;
+            color: var(--conn-accent);
         }
     }
 

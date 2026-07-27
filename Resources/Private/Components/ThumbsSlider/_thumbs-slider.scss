@@ -12,11 +12,11 @@
 }
 
 .conn-thumbs-slider {
-    --thumbs-height: 70vh;
-    --thumb-h:       90px;
+    --conn-thumbs-height: 70vh;
+    --conn-thumb-h:       90px;
 
-    &--medium { --thumbs-height: 55vh; }
-    &--large  { --thumbs-height: 70vh; }
+    &--medium { --conn-thumbs-height: 55vh; }
+    &--large  { --conn-thumbs-height: 70vh; }
 
     position: relative;
     width: 100%;
@@ -25,7 +25,7 @@
     // ── Main slide area ──────────────────────
     &__main {
         width: 100%;
-        height: var(--thumbs-height);
+        height: var(--conn-thumbs-height);
     }
 
     &__slide {
@@ -169,7 +169,7 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--conn-accent);
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--conn-space-xs);
         opacity: 0;
         transform: translateY(10px);
         transition: opacity 0.45s ease 0.2s, transform 0.45s ease 0.2s;
@@ -183,7 +183,7 @@
         line-height: 1.15;
         letter-spacing: -0.03em;
         color: #fff;
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--conn-space-xs);
         opacity: 0;
         transform: translateY(14px);
         transition: opacity 0.45s ease 0.3s, transform 0.45s ease 0.3s;
@@ -210,13 +210,14 @@
         transform: translateY(8px);
         transition: opacity 0.4s ease 0.6s, transform 0.4s ease 0.6s;
         font-weight: 600;
-        padding: 0.5rem 1.375rem;
+        padding: var(--conn-space-xs) 1.375rem;
         border-radius: 50rem;
         background: var(--conn-accent);
         border-color: var(--conn-accent);
         color: #fff;
 
         &:hover { background: var(--conn-accent-hover); border-color: var(--conn-accent-hover); color: #fff; }
+        &:focus-visible { outline: 2px solid var(--conn-accent); outline-offset: 2px; }
 
         .swiper-slide-active & { opacity: 1; transform: translateY(0); }
     }
@@ -233,6 +234,7 @@
 
         &::after { font-size: 1rem !important; font-weight: 900; }
         &:hover  { background: rgba(0, 0, 0, 0.6); }
+        &:focus-visible { outline: 2px solid var(--conn-accent); outline-offset: 2px; }
         &.swiper-button-disabled { opacity: 0.3; }
         & > svg { width: 11px; }
     }
@@ -242,14 +244,14 @@
 
     // ── Thumbnails strip ─────────────────────
     &__thumbs {
-        height: var(--thumb-h);
+        height: var(--conn-thumb-h);
         background: var(--conn-surface);
         border-top: 1px solid var(--conn-border);
         padding: 0;
     }
 
     &__thumb {
-        height: var(--thumb-h);
+        height: var(--conn-thumb-h);
         cursor: pointer;
         position: relative;
         overflow: hidden;
@@ -294,7 +296,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 0.25rem 0.5rem;
+        padding: var(--conn-space-2xs) 0.5rem;
         font-size: 0.6875rem;
         font-weight: 600;
         color: #fff;

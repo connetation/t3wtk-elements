@@ -9,24 +9,24 @@
 .conn-mosaic-gallery {
 
     // ── CSS custom properties ────────────────────────────────────
-    --mg-cols:      3;
-    --mg-gap:       16px;
-    --mg-radius:    var(--conn-radius);
-    --mg-aspect:    auto;
-    --mg-gallery-h: 280px;
+    --conn-mosaic-gallery-cols:      3;
+    --conn-mosaic-gallery-gap:       16px;
+    --conn-mosaic-gallery-radius:    var(--conn-radius);
+    --conn-mosaic-gallery-aspect:    auto;
+    --conn-mosaic-gallery-h: 280px;
 
     // ── Border radius mapping ────────────────────────────────────
-    &[data-radius="none"]   { --mg-radius: 0; }
-    &[data-radius="small"]  { --mg-radius: 4px; }
-    &[data-radius="medium"] { --mg-radius: var(--conn-radius); }
-    &[data-radius="large"]  { --mg-radius: 1.5rem; }
-    &[data-radius="pill"]   { --mg-radius: 9999px; }
+    &[data-radius="none"]   { --conn-mosaic-gallery-radius: 0; }
+    &[data-radius="small"]  { --conn-mosaic-gallery-radius: 4px; }
+    &[data-radius="medium"] { --conn-mosaic-gallery-radius: var(--conn-radius); }
+    &[data-radius="large"]  { --conn-mosaic-gallery-radius: 1.5rem; }
+    &[data-radius="pill"]   { --conn-mosaic-gallery-radius: 9999px; }
 
     // ── Gap mapping ──────────────────────────────────────────────
-    &[data-gap="none"]   { --mg-gap: 0px; }
-    &[data-gap="small"]  { --mg-gap: 8px; }
-    &[data-gap="medium"] { --mg-gap: 16px; }
-    &[data-gap="large"]  { --mg-gap: 24px; }
+    &[data-gap="none"]   { --conn-mosaic-gallery-gap: 0px; }
+    &[data-gap="small"]  { --conn-mosaic-gallery-gap: 8px; }
+    &[data-gap="medium"] { --conn-mosaic-gallery-gap: 16px; }
+    &[data-gap="large"]  { --conn-mosaic-gallery-gap: 24px; }
 
     // ── Grid (masonry: absolute-positioned children) ──────────────
     &__grid {
@@ -46,7 +46,7 @@
     &__item-inner {
         position: relative;
         overflow: hidden;
-        border-radius: var(--mg-radius);
+        border-radius: var(--conn-mosaic-gallery-radius);
         background: var(--conn-surface-alt);
     }
 
@@ -65,14 +65,14 @@
     &:not([data-layout])[data-aspect]:not([data-aspect="none"]) {
         .conn-mosaic-gallery__grid {
             display: grid;
-            grid-template-columns: repeat(var(--mg-cols), 1fr);
+            grid-template-columns: repeat(var(--conn-mosaic-gallery-cols), 1fr);
             grid-auto-rows: auto;
-            gap: var(--mg-gap);
+            gap: var(--conn-mosaic-gallery-gap);
             position: static;
             height: auto !important;
 
-            @media (max-width: 991px) { grid-template-columns: repeat(2, 1fr); }
-            @media (max-width: 575px) { grid-template-columns: 1fr; }
+            @media (max-width: 991.98px) { grid-template-columns: repeat(2, 1fr); }
+            @media (max-width: 575.98px) { grid-template-columns: 1fr; }
         }
 
         .conn-mosaic-gallery__item {
@@ -82,7 +82,7 @@
             top: auto !important;
         }
 
-        .conn-mosaic-gallery__item-inner { aspect-ratio: var(--mg-aspect); }
+        .conn-mosaic-gallery__item-inner { aspect-ratio: var(--conn-mosaic-gallery-aspect); }
 
         .conn-mosaic-gallery__img {
             width: 100%;
@@ -93,11 +93,11 @@
     }
 
     // ── Masonry + fixed aspect ratio ──────────────────────────────
-    // JS sets --mg-aspect when data-aspect is not "none". CSS then
+    // JS sets --conn-mosaic-gallery-aspect when data-aspect is not "none". CSS then
     // constrains item-inner height; masonry reads this via getBoundingClientRect.
     &[data-layout="masonry"][data-aspect]:not([data-aspect="none"]) {
         .conn-mosaic-gallery__item-inner {
-            aspect-ratio: var(--mg-aspect);
+            aspect-ratio: var(--conn-mosaic-gallery-aspect);
         }
 
         .conn-mosaic-gallery__img {
@@ -114,7 +114,7 @@
     &[data-layout="justified"] {
         .conn-mosaic-gallery__item {
             overflow: hidden;
-            border-radius: var(--mg-radius);
+            border-radius: var(--conn-mosaic-gallery-radius);
         }
 
         .conn-mosaic-gallery__item-inner {
@@ -144,8 +144,8 @@
         .conn-mosaic-gallery__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr); // hardcoded — pattern only works for 3 cols
-            grid-auto-rows: var(--mg-gallery-h, 280px);
-            gap: var(--mg-gap);
+            grid-auto-rows: var(--conn-mosaic-gallery-h, 280px);
+            gap: var(--conn-mosaic-gallery-gap);
             position: static;
             height: auto !important;
         }
@@ -179,7 +179,7 @@
         }
 
         // Tablet: reset featured spans → clean uniform 2-col grid, no gaps
-        @media (max-width: 991px) {
+        @media (max-width: 991.98px) {
             .conn-mosaic-gallery__grid { grid-template-columns: repeat(2, 1fr); }
 
             .conn-mosaic-gallery__item:nth-child(5n + 1),
@@ -189,7 +189,7 @@
             }
         }
 
-        @media (max-width: 575px) {
+        @media (max-width: 575.98px) {
             .conn-mosaic-gallery__grid { grid-template-columns: 1fr; }
         }
     }
@@ -215,18 +215,18 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 1rem;
+            padding: var(--conn-space-sm);
             background: linear-gradient(to top, rgb(0 0 0 / 65%) 0%, transparent 60%);
             opacity: 0;
             transition: opacity var(--conn-transition);
             pointer-events: none;
-            border-radius: var(--mg-radius);
+            border-radius: var(--conn-mosaic-gallery-radius);
 
             .conn-mosaic-gallery__item:hover & { opacity: 1; }
         }
 
         &--below {
-            padding: 0.5rem 0.25rem 0;
+            padding: var(--conn-space-xs) 0.25rem 0;
         }
 
         &-title {
@@ -281,7 +281,7 @@
         z-index: 1;
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: var(--conn-space-sm);
         max-width: 96vw;
         max-height: 96vh;
         animation: conn-mg-scale-in 0.2s ease forwards;
@@ -294,7 +294,7 @@
         max-width: calc(96vw - 120px);
         max-height: 90vh;
 
-        @media (max-width: 575px) {
+        @media (max-width: 575.98px) {
             max-width: 100vw;
         }
     }
@@ -335,7 +335,12 @@
             transform: scale(1.08);
         }
 
-        @media (max-width: 575px) {
+        &:focus-visible {
+            outline: 2px solid var(--conn-accent);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 575.98px) {
             position: fixed;
             bottom: 5rem;
             width: 2.5rem;
@@ -343,15 +348,15 @@
         }
     }
 
-    &__lb-prev { @media (max-width: 575px) { left: 1rem; } }
-    &__lb-next { @media (max-width: 575px) { right: 1rem; } }
+    &__lb-prev { @media (max-width: 575.98px) { left: 1rem; } }
+    &__lb-next { @media (max-width: 575.98px) { right: 1rem; } }
 
     &__lb-footer {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 1rem 1.5rem 1.25rem;
+        padding: var(--conn-space-sm) 1.5rem 1.25rem;
         display: flex;
         flex-direction: column;
         align-items: center;

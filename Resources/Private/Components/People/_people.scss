@@ -35,7 +35,7 @@
     &__role {
         color: var(--conn-people-text);
         font-size: 0.8rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--conn-space-xs);
     }
 
     &__role--a { color: var(--conn-people-a); }
@@ -80,7 +80,7 @@
     &__contact {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: var(--conn-space-xs);
         justify-content: center;
         margin-top: 0.65rem;
     }
@@ -135,7 +135,7 @@
     &__row {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: var(--conn-space-sm);
         height: 100%;
         padding: 0.85rem 1rem;
         background: var(--conn-people-bg);
@@ -259,7 +259,7 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-        padding: 1rem;
+        padding: var(--conn-space-sm);
         transition: transform 0.45s ease, filter 0.5s ease;
     }
 
@@ -445,7 +445,7 @@
 
         .conn-people__name { color: var(--conn-people-nametag-text); }
         .conn-people__bio { color: var(--conn-people-nametag-text); opacity: 0.85; }
-        .conn-people__contact { margin-top: 0.5rem; }
+        .conn-people__contact { margin-top: var(--conn-space-xs); }
     }
 
     &__reveal--spotlight:hover &__spotlight-info,
@@ -610,7 +610,7 @@
         &__visit--right &__visit-photo { right: 1%; }
 
         &__visit-info {
-            padding: 1rem;
+            padding: var(--conn-space-sm);
             gap: 0.15rem;
         }
 
@@ -620,7 +620,7 @@
         .conn-people__name { font-size: 0.8rem; }
         .conn-people__role { font-size: 0.7rem; margin-bottom: 0.3rem; }
 
-        &__visit-divider { width: 1.8rem; margin: 0.25rem 0 0.35rem; }
+        &__visit-divider { width: 1.8rem; margin: var(--conn-space-2xs) 0 0.35rem; }
 
         &__visit-line {
             font-size: 0.66rem;
@@ -632,11 +632,5 @@
             height: 1.1rem;
             font-size: 0.58rem;
         }
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .conn-people, .conn-people * {
-        transition-duration: 0.001ms !important;
     }
 }

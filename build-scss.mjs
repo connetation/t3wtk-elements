@@ -33,10 +33,17 @@ const entries = readdirSync(COMPONENTS_DIR)
         dest: `${OUT_DIR}/${toKebab(name)}.css`,
     }));
 
+// conn/elements requires conn/base (see composer.json), so vendor/conn/base is
+// always a sibling directory of this package under vendor/conn/ — load-path
+// lets Shared/_tokens.scss `@use` conn/base's token mixins at compile time
+// without creating a runtime dependency (each component's CSS still ships
+// with the values baked in).
+const BASE_SCSS = '../base/Resources/Private/Scss';
+
 const pairs = entries.map((e) => `${e.src}:${e.dest}`);
 const args = watch
-    ? ['--watch', ...pairs]
-    : [...pairs, '--style=compressed'];
+    ? ['--watch', `--load-path=${BASE_SCSS}`, ...pairs]
+    : [...pairs, '--style=compressed', `--load-path=${BASE_SCSS}`];
 
 const result = spawnSync('npx', ['sass', ...args], { stdio: 'inherit' });
 process.exit(result.status ?? 1);

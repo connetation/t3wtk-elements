@@ -88,7 +88,7 @@
         display: flex;
         align-items: center;
         gap: 0.875rem;
-        padding-top: 1rem;
+        padding-top: var(--conn-space-sm);
         border-top: 1px solid var(--conn-border);
         margin-top: auto;
     }
@@ -159,7 +159,7 @@
             gap: 1.5rem;
             align-items: stretch;
 
-            @media (max-width: 991px) {
+            @media (max-width: 991.98px) {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
@@ -180,7 +180,7 @@
 
     &--carousel {
         .conn-testimonials__swiper {
-            padding: 0.5rem 0.25rem 3rem !important;
+            padding: var(--conn-space-xs) 0.25rem 3rem !important;
             overflow: visible !important;
 
             .swiper-wrapper { align-items: stretch; }
@@ -192,7 +192,7 @@
             display: flex;
             justify-content: center;
             gap: 0.375rem;
-            margin-top: 0.5rem;
+            margin-top: var(--conn-space-xs);
 
             .swiper-pagination-bullet {
                 width: 8px;

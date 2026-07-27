@@ -38,7 +38,7 @@
     }
 
     &__image {
-        margin-bottom: 1rem;
+        margin-bottom: var(--conn-space-sm);
         border-radius: var(--conn-radius);
         overflow: hidden;
 
@@ -116,13 +116,13 @@
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            padding-top: 0.25rem;
+            padding-top: var(--conn-space-2xs);
         }
 
         .conn-timeline__meta {
             display: flex;
             align-items: flex-start;
-            padding-top: 0.25rem;
+            padding-top: var(--conn-space-2xs);
         }
 
         .conn-timeline__date {
@@ -247,7 +247,7 @@
 
         // ── Mobile: all positions collapse to left-line layout ───────────────
 
-        @media (max-width: 575px) {
+        @media (max-width: 575.98px) {
             &.conn-timeline--pos-left,
             &.conn-timeline--pos-center,
             &.conn-timeline--pos-right {
@@ -386,7 +386,7 @@
             .conn-timeline__card {
                 grid-column: 1;
                 grid-row: 1;
-                margin-right: 1rem;
+                margin-right: var(--conn-space-sm);
 
                 &::before {
                     right: -7px;
@@ -404,7 +404,7 @@
             .conn-timeline__card {
                 grid-column: 3;
                 grid-row: 1;
-                margin-left: 1rem;
+                margin-left: var(--conn-space-sm);
 
                 &::before {
                     left: -7px;
@@ -418,7 +418,7 @@
 
         // ── Mobile: single column, line left ─────────────────────────────────
 
-        @media (max-width: 767px) {
+        @media (max-width: 767.98px) {
             .conn-timeline__line {
                 left: 0.875rem;
                 transform: translateX(-50%);
@@ -642,7 +642,7 @@
 
         // ── Mobile: single column, line left ─────────────────────────────────
 
-        @media (max-width: 767px) {
+        @media (max-width: 767.98px) {
             .conn-timeline__line {
                 left: 0.875rem;
                 transform: translateX(-50%);

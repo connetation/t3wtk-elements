@@ -23,6 +23,7 @@ class Stats {
         if (!items.length) return;
 
         const duration = parseInt(this.el.dataset.duration || '2000', 10) / 1000;
+        const countup  = this.el.dataset.countup === '1';
 
         gsap.from(items, {
             opacity: 0,
@@ -35,6 +36,8 @@ class Stats {
                 once: true,
             },
         });
+
+        if (!countup) return;
 
         items.forEach((item) => {
             const valueEl = item.querySelector<HTMLElement>(Stats.VALUE_SEL);

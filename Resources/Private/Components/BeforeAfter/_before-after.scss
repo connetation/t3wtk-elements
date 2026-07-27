@@ -170,7 +170,7 @@
     &__label {
         position: absolute;
         bottom: 1rem;
-        padding: 0.25rem 0.75rem;
+        padding: var(--conn-space-2xs) 0.75rem;
         background: rgba(0, 0, 0, 0.6);
         color: #fff;
         border-radius: 50rem;

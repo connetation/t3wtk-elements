@@ -1,52 +1,24 @@
 // ─────────────────────────────────────────────
 // Connetation Elements – Design Tokens
-// Self-contained. No dependency on sitepackage.
+// Runtime-independent: each component's compiled CSS ships these values
+// baked in, so it never depends on conn/base's CSS being loaded on the page.
+// The *values* below are sourced at compile time from conn/base's token
+// mixins (conn/elements requires conn/base via composer.json, which
+// guarantees vendor/conn/base sits alongside this package — see
+// build-scss.mjs's --load-path) rather than hand-copied, so the two
+// packages can no longer drift apart silently.
 // ─────────────────────────────────────────────
+@use 'theme/tokens' as base;
 
 // ── Theme-invariant ─────────────────────────
 :root {
-    // Follows --bs-primary so a single --bs-primary override in the sitepackage
-    // re-themes all conn components. Override --conn-accent to decouple from BS primary.
-    --conn-accent:       var(--bs-primary, #6366f1);
-    --conn-accent-hover: #4f52d4;
-    --conn-radius:       0.75rem;
-    --conn-transition:   0.2s ease-in-out;
-
-    // Shadow-hover component vars (overridable individually via site settings)
-    --conn-sh-x:      0;
-    --conn-sh-y:      8px;
-    --conn-sh-blur:   32px;
-    --conn-sh-spread: 0;
+    @include base.conn-design-tokens;
 }
 
 // ── Light theme ─────────────────────────────
 [data-bs-theme="light"],
 :root:not([data-bs-theme="dark"]) {
-    --conn-bg:             #f4f5ff;
-    --conn-surface:        #ffffff;
-    --conn-surface-alt:    #f1f2ff;
-    --conn-surface-raised: #ffffff;
-    --conn-surface-hover:  rgba(99, 102, 241, 0.1);
-    --conn-border:         rgba(99, 102, 241, 0.12);
-    --conn-border-strong:  rgba(99, 102, 241, 0.28);
-    --conn-text:                   #1e1e3f;
-    --conn-heading:                #0a0a0a;
-    --conn-text-muted:             #6b7280;
-    --conn-emphasis:               #0a0a0a;
-    --conn-link:                   #6366f1;
-    --conn-link-hover:             #4f52d4;
-    --conn-accent-secondary:       #06b6d4;
-    --conn-accent-secondary-hover: #0891b2;
-    --conn-success:                #22c55e;
-    --conn-success-glow:           rgba(34, 197, 94, 0.2);
-    --conn-danger:                 #ef4444;
-    --conn-danger-glow:            rgba(239, 68, 68, 0.2);
-    --conn-accent-soft:    rgba(99, 102, 241, 0.1);
-    --conn-accent-glow:    rgba(99, 102, 241, 0.2);
-    --conn-shadow:         0 4px 24px rgb(99 102 241 / 15%);
-    --conn-shadow-card:    0 1px 4px rgb(0 0 0 / 6%);
-    --conn-sh-color:       rgb(99 102 241 / 22%);
-    --conn-shadow-hover:   var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-sh-color);
+    @include base.conn-light-theme;
 
     --conn-badge-active-bg:           #dcfce7;
     --conn-badge-active-color:        #15803d;
@@ -70,31 +42,7 @@
 
 // ── Dark theme ──────────────────────────────
 [data-bs-theme="dark"] {
-    --conn-bg:             #0b0b1a;
-    --conn-surface:        #12122a;
-    --conn-surface-alt:    #1a1a38;
-    --conn-surface-raised: #1e1e42;
-    --conn-surface-hover:  rgba(255, 255, 255, 0.07);
-    --conn-border:         rgba(255, 255, 255, 0.08);
-    --conn-border-strong:  rgba(255, 255, 255, 0.15);
-    --conn-text:                   #e2e2ff;
-    --conn-heading:                #fafafa;
-    --conn-text-muted:             #8b8bcd;
-    --conn-emphasis:               #ffffff;
-    --conn-link:                   #a5b4fc;
-    --conn-link-hover:             #c7d2fe;
-    --conn-accent-secondary:       #22d3ee;
-    --conn-accent-secondary-hover: #06b6d4;
-    --conn-success:                #86efac;
-    --conn-success-glow:           rgba(134, 239, 172, 0.2);
-    --conn-danger:                 #f87171;
-    --conn-danger-glow:            rgba(248, 113, 113, 0.2);
-    --conn-accent-soft:    rgba(99, 102, 241, 0.15);
-    --conn-accent-glow:    rgba(99, 102, 241, 0.3);
-    --conn-shadow:         0 4px 24px rgb(0 0 0 / 40%);
-    --conn-shadow-card:    0 1px 4px rgb(0 0 0 / 25%);
-    --conn-sh-color:       rgb(99 102 241 / 28%);
-    --conn-shadow-hover:   var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-sh-color);
+    @include base.conn-dark-theme;
 
     --conn-badge-active-bg:           rgb(21 128 61 / 20%);
     --conn-badge-active-color:        #86efac;
@@ -115,3 +63,7 @@
     --conn-badge-archived-color:      #fbbf24;
     --conn-badge-archived-border:     rgb(146 64 14 / 40%);
 }
+
+// Repeated in every component bundle (self-contained principle) so the
+// safety net holds regardless of which elements a given page actually uses.
+@include base.conn-reduced-motion;

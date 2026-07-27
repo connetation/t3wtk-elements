@@ -50,7 +50,7 @@ class MosaicGallery {
 
         // Apply aspect-ratio CSS variable for grid, masonry, and old instances without data-layout
         const aspect = el.dataset.aspect;
-        if (aspect && aspect !== 'none') el.style.setProperty('--mg-aspect', aspect);
+        if (aspect && aspect !== 'none') el.style.setProperty('--conn-mosaic-gallery-aspect', aspect);
 
         this.collectItems();
         this.initLayout();

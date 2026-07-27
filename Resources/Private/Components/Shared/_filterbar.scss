@@ -10,7 +10,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: 0.5rem 0.75rem;
+        gap: var(--conn-space-xs) 0.75rem;
     }
 
     // Search input
@@ -87,6 +87,11 @@
             border-color: var(--conn-accent);
             color: var(--conn-accent);
             background: var(--conn-surface-hover);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--conn-accent);
+            outline-offset: 2px;
         }
 
         &.is-active {

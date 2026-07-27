@@ -27,11 +27,11 @@
 
 // ── Height variants ──────────────────────────
 .conn-hero-slider {
-    --hero-height: 70vh;
+    --conn-hero-height: 70vh;
 
-    &--medium   { --hero-height: 55vh; }
-    &--large    { --hero-height: 70vh; }
-    &--fullscreen { --hero-height: 100vh; }
+    &--medium   { --conn-hero-height: 55vh; }
+    &--large    { --conn-hero-height: 70vh; }
+    &--fullscreen { --conn-hero-height: 100vh; }
 }
 
 // ── Wrapper ──────────────────────────────────
@@ -43,7 +43,7 @@
     // ── Swiper container ─────────────────────
     &__swiper {
         width: 100%;
-        height: var(--hero-height);
+        height: var(--conn-hero-height);
     }
 
     // ── Individual slide ─────────────────────
@@ -206,7 +206,7 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--conn-hero-slide-subtitle-light, var(--conn-accent));
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--conn-space-xs);
         opacity: 0;
         transform: translateY(12px);
         transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;

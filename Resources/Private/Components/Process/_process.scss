@@ -120,7 +120,7 @@ $conn-process-gap: 2rem;
         font-size: 1rem;
         font-weight: 700;
         color: var(--conn-heading);
-        margin-bottom: 0.25rem;
+        margin-bottom: var(--conn-space-2xs);
     }
 
     &__text {

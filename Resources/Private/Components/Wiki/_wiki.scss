@@ -34,7 +34,7 @@
         background: var(--conn-surface);
         border: 1px solid var(--conn-border);
         border-radius: var(--conn-radius);
-        padding: 0.5rem;
+        padding: var(--conn-space-xs);
 
         // Thin scrollbar
         scrollbar-width: thin;
@@ -68,7 +68,7 @@
         display: block;
         width: 100%;
         text-align: left;
-        padding: 0.5rem 0.75rem;
+        padding: var(--conn-space-xs) 0.75rem;
         border: none;
         background: transparent;
         color: var(--conn-text);
@@ -121,7 +121,7 @@
     // ─── Page header ───────────────────────
     &__page-header {
         border-bottom: 1px solid var(--conn-border);
-        padding-bottom: 1rem;
+        padding-bottom: var(--conn-space-sm);
     }
 
     &__page-title {
@@ -129,7 +129,7 @@
         font-weight: 700;
         letter-spacing: -0.02em;
         color: var(--conn-text);
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--conn-space-xs);
     }
 
     // ─── Page meta & tags ──────────────────
@@ -210,7 +210,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem 1rem;
+        padding: var(--conn-space-xs) 1rem;
         background: var(--conn-surface-alt);
         border-bottom: 1px solid var(--conn-border-strong);
     }
@@ -295,13 +295,13 @@
         h3 { font-size: 1.125rem; }
         h4, h5, h6 { font-size: 1rem; }
 
-        p { margin-bottom: 1rem; }
+        p { margin-bottom: var(--conn-space-sm); }
 
         ul, ol {
             padding-left: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: var(--conn-space-sm);
 
-            li { margin-bottom: 0.25rem; }
+            li { margin-bottom: var(--conn-space-2xs); }
         }
 
         a {
@@ -314,8 +314,8 @@
 
         blockquote {
             border-left: 3px solid var(--conn-accent);
-            margin: 1rem 0;
-            padding: 0.5rem 1rem;
+            margin: var(--conn-space-sm) 0;
+            padding: var(--conn-space-xs) 1rem;
             background: var(--conn-surface-alt);
             border-radius: 0 var(--conn-radius) var(--conn-radius) 0;
             color: var(--conn-text-muted);
@@ -335,7 +335,7 @@
             border-radius: var(--conn-radius);
             border-top-left-radius: 0;
             border-top-right-radius: 0;
-            padding: 1rem 1.25rem;
+            padding: var(--conn-space-sm) 1.25rem;
             overflow-x: auto;
 
             code {
@@ -349,11 +349,11 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 1rem;
+            margin-bottom: var(--conn-space-sm);
             font-size: 0.875rem;
 
             th, td {
-                padding: 0.5rem 0.75rem;
+                padding: var(--conn-space-xs) 0.75rem;
                 border: 1px solid var(--conn-border);
                 text-align: left;
             }

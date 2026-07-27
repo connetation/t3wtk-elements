@@ -19,7 +19,7 @@
         gap: 1.5rem;
         align-items: stretch;
 
-        @media (max-width: 991px) {
+        @media (max-width: 991.98px) {
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         }
     }
@@ -109,7 +109,7 @@
     &__price {
         display: flex;
         align-items: baseline;
-        gap: 0.25rem;
+        gap: var(--conn-space-2xs);
     }
 
     &__currency {

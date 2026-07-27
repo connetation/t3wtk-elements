@@ -5,15 +5,15 @@
 // ─────────────────────────────────────────────
 
 .conn-alert {
-    --alert-radius: var(--conn-radius);
-    border-radius: var(--alert-radius);
+    --conn-alert-radius: var(--conn-radius);
+    border-radius: var(--conn-alert-radius);
 
     // ── Border radius mapping ────────────────────────────────────
-    &[data-radius="none"]   { --alert-radius: 0; }
-    &[data-radius="small"]  { --alert-radius: 4px; }
-    &[data-radius="medium"] { --alert-radius: var(--conn-radius); }
-    &[data-radius="large"]  { --alert-radius: 1.5rem; }
-    &[data-radius="pill"]   { --alert-radius: 9999px; }
+    &[data-radius="none"]   { --conn-alert-radius: 0; }
+    &[data-radius="small"]  { --conn-alert-radius: 4px; }
+    &[data-radius="medium"] { --conn-alert-radius: var(--conn-radius); }
+    &[data-radius="large"]  { --conn-alert-radius: 1.5rem; }
+    &[data-radius="pill"]   { --conn-alert-radius: 9999px; }
 
     &__icon {
         flex: 0 0 auto;
@@ -62,7 +62,7 @@
 :where(.conn-alert__body) header {
     h1, h2, h3, h4, h5, h6 {
         display: block;
-        margin-bottom: 0.25rem;
+        margin-bottom: var(--conn-space-2xs);
         font-size: inherit;
         font-weight: 700;
         color: inherit !important;
@@ -70,7 +70,7 @@
 
     :where(.ce-subheader) {
         display: block;
-        margin-bottom: 0.25rem;
+        margin-bottom: var(--conn-space-2xs);
         font-size: 0.9em;
         opacity: 0.85;
         color: inherit !important;

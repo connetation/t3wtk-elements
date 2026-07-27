@@ -68,7 +68,7 @@
         // Pills style has no attached nav bar to visually continue from
         &.conn-tabs__content--pills {
             border-top: 1px solid var(--conn-border);
-            margin-top: 1rem;
+            margin-top: var(--conn-space-sm);
         }
 
         p:last-child { margin-bottom: 0; }
