@@ -8,26 +8,8 @@
         </f:if>
 
         <div class="conn-pricing__header">
-            <f:if condition="{tier.name_layout} != 100">
-                <f:switch expression="{tier.name_layout}">
-                    <f:case value="1"><h1 class="conn-pricing__name">{tier.name}</h1></f:case>
-                    <f:case value="2"><h2 class="conn-pricing__name">{tier.name}</h2></f:case>
-                    <f:case value="3"><h3 class="conn-pricing__name">{tier.name}</h3></f:case>
-                    <f:case value="4"><h4 class="conn-pricing__name">{tier.name}</h4></f:case>
-                    <f:case value="5"><h5 class="conn-pricing__name">{tier.name}</h5></f:case>
-                    <f:defaultCase><h3 class="conn-pricing__name">{tier.name}</h3></f:defaultCase>
-                </f:switch>
-            </f:if>
-            <f:if condition="{tier.tagline} && {tier.tagline_layout} != 100">
-                <f:switch expression="{tier.tagline_layout}">
-                    <f:case value="1"><h1 class="conn-pricing__tagline">{tier.tagline}</h1></f:case>
-                    <f:case value="2"><h2 class="conn-pricing__tagline">{tier.tagline}</h2></f:case>
-                    <f:case value="3"><h3 class="conn-pricing__tagline">{tier.tagline}</h3></f:case>
-                    <f:case value="4"><h4 class="conn-pricing__tagline">{tier.tagline}</h4></f:case>
-                    <f:case value="5"><h5 class="conn-pricing__tagline">{tier.tagline}</h5></f:case>
-                    <f:defaultCase><p class="conn-pricing__tagline">{tier.tagline}</p></f:defaultCase>
-                </f:switch>
-            </f:if>
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: tier.name, layout: tier.name_layout, class: 'conn-pricing__name', defaultTag: 'h3'}" />
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: tier.tagline, layout: tier.tagline_layout, class: 'conn-pricing__tagline', defaultTag: 'h4'}" />
         </div>
 
         <div class="conn-pricing__price">

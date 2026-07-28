@@ -2,13 +2,9 @@
 // Connetation Elements – Pricing Table
 // ─────────────────────────────────────────────
 
-.frame-type-conn_bs_pricing header {
-    h1, h2, h3, h4, h5, h6 {
-        font-size: clamp(1.375rem, 3vw, 1.75rem);
-        letter-spacing: -0.025em;
-        color: var(--conn-heading);
-    }
-}
+// Headings inherit conn/base's shared heading system (components/_typography.scss
+// for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
+// --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-pricing {
 
@@ -92,17 +88,19 @@
         gap: 0.375rem;
     }
 
-    &__name {
-        font-size: 1.125rem;
-        font-weight: 700;
-        color: var(--conn-heading);
-        line-height: 1.2;
-    }
-
+    // No font-size/weight/color override on &__name/&__tagline — both inherit
+    // the tag chosen via name_layout/tagline_layout (h1-h3 fluid scale from
+    // conn/base, Bootstrap defaults for h4-h5, global $headings-font-weight/
+    // heading-color). A hardcoded muted/small style would win over the shared
+    // h1-h3 system by CSS specificity (class beats element selector) whenever
+    // an editor picks h1-h3.
+    // margin: 0 on both — &__header is a flex column with its own `gap`, so a
+    // heading tag's own default margin-bottom would add on top of that gap,
+    // double-spacing name from tagline (and varying by whichever heading
+    // level happens to be chosen instead of a single controlled value).
+    &__name,
     &__tagline {
-        font-size: 0.875rem;
-        color: var(--conn-text-muted);
-        line-height: 1.5;
+        margin: 0;
     }
 
     // ── Price block ───────────────────────────

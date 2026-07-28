@@ -3,13 +3,9 @@
 // ─────────────────────────────────────────────
 
 // ─── TYPO3 standard header within wiki frame ───────
-.frame-type-conn_wiki header {
-    h1, h2, h3, h4, h5, h6 {
-        font-size: clamp(1.375rem, 3vw, 1.75rem);
-        letter-spacing: -0.025em;
-        color: var(--conn-text);
-    }
-}
+// Headings inherit conn/base's shared heading system (components/_typography.scss
+// for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
+// --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .wiki {
 
@@ -125,10 +121,9 @@
     }
 
     &__page-title {
-        font-size: clamp(1.25rem, 3vw, 1.625rem);
-        font-weight: 700;
+        // font-size/font-weight/color removed — inherited from conn/base's
+        // shared heading system (page.title always renders a real h1-h5 tag).
         letter-spacing: -0.02em;
-        color: var(--conn-text);
         margin-bottom: var(--conn-space-xs);
     }
 
@@ -173,8 +168,8 @@
     // ─── Page intro ────────────────────────
     &__page-intro {
         color: var(--conn-text-muted);
-        font-size: 0.9375rem;
-        line-height: 1.6;
+        font-size: var(--conn-font-size-body);
+        line-height: var(--conn-line-height-normal);
         border-left: 3px solid var(--conn-accent);
         padding-left: 0.875rem;
         margin-bottom: 1.5rem;
@@ -190,9 +185,8 @@
     }
 
     &__block-heading {
-        font-size: 1.0625rem;
-        font-weight: 700;
-        color: var(--conn-text);
+        // font-size/font-weight/color removed — inherited from conn/base's
+        // shared heading system (block.heading always renders a real h1-h5 tag).
         margin-bottom: 0.625rem;
         letter-spacing: -0.01em;
     }

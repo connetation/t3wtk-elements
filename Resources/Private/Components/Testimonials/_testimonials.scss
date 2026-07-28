@@ -2,13 +2,9 @@
 // Connetation Elements – Testimonials
 // ─────────────────────────────────────────────
 
-.frame-type-conn_bs_testimonials header {
-    h1, h2, h3, h4, h5, h6 {
-        font-size: clamp(1.375rem, 3vw, 1.75rem);
-        letter-spacing: -0.025em;
-        color: var(--conn-heading);
-    }
-}
+// Headings inherit conn/base's shared heading system (components/_typography.scss
+// for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
+// --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-testimonials {
 
@@ -65,8 +61,8 @@
 
     // ── Quote text ────────────────────────────
     &__quote {
-        font-size: 0.9375rem;
-        line-height: 1.7;
+        font-size: var(--conn-font-size-body);
+        line-height: var(--conn-line-height-normal);
         color: var(--conn-text);
         flex: 1;
 
@@ -129,17 +125,22 @@
         min-width: 0;
     }
 
+    // &__author-name: no font-size/weight/color override — inherits the tag
+    // chosen via author_name_layout (conn/base's shared heading system).
+    // margin: 0 on both — &__author-info is a flex column with its own `gap`,
+    // so a heading tag's own default margin-bottom would add on top of that
+    // gap whenever author_name_layout/author_role_layout renders a real
+    // heading (either can, at editor's choice, even though author-role's
+    // un-set default stays a plain span).
     &__author-name {
-        font-weight: 600;
-        font-size: 0.9375rem;
-        color: var(--conn-heading);
-        line-height: 1.3;
+        margin: 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     &__author-role {
+        margin: 0;
         font-size: 0.8125rem;
         color: var(--conn-text-muted);
         line-height: 1.3;

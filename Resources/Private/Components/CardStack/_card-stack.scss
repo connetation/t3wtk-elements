@@ -2,13 +2,9 @@
 // GSAP Card Stack Content Element
 // ─────────────────────────────────────────────
 
-.frame-type-conn_card_stack header {
-    h1, h2, h3, h4, h5, h6 {
-        font-size: clamp(1.375rem, 3vw, 1.75rem);
-        letter-spacing: -0.025em;
-        color: var(--conn-heading);
-    }
-}
+// Headings inherit conn/base's shared heading system (components/_typography.scss
+// for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
+// --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-card-stack {
 

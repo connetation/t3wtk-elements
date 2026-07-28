@@ -40,6 +40,10 @@
         // Force white on all children — overrides .carousel-dark
         &, h5, p, a, li, span { color: #fff !important; }
 
+        // title_layout defaults to (and value=5 explicitly renders) <h5>; conn/base's
+        // shared typography scale only covers h1-h3 (h4-h6 use Bootstrap's static
+        // stock sizes), so this fluid clamp isn't duplicating anything shared — it's
+        // filling a gap for the default case in a narrow caption box on small screens.
         h5 {
             font-size: clamp(0.95rem, 2.5vw, 1.4rem);
             font-weight: 600;

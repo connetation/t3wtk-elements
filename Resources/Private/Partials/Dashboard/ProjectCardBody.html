@@ -49,16 +49,7 @@
         <div class="card-body p-3 d-flex flex-column justify-content-between">
             <div>
                 <div class="d-flex justify-content-between align-items-start mb-2">
-                    <f:if condition="{project.title_layout} != 100">
-                        <f:switch expression="{project.title_layout}">
-                            <f:case value="1"><h1 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h1></f:case>
-                            <f:case value="2"><h2 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h2></f:case>
-                            <f:case value="3"><h3 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h3></f:case>
-                            <f:case value="4"><h4 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h4></f:case>
-                            <f:case value="5"><h5 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h5></f:case>
-                            <f:defaultCase><h3 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h3></f:defaultCase>
-                        </f:switch>
-                    </f:if>
+                    <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'card-title me-2', defaultTag: 'h3'}" />
                     <span class="badge badge--status badge--{project.status} flex-shrink-0">{project.statusLabel}</span>
                 </div>
                 <f:if condition="{project.categoryTitle}">
@@ -99,16 +90,7 @@
 <f:if condition="{cardVariant} != 'horizontal'">
     <div class="card-body p-3">
         <div class="d-flex justify-content-between align-items-start mb-2">
-            <f:if condition="{project.title_layout} != 100">
-                <f:switch expression="{project.title_layout}">
-                    <f:case value="1"><h1 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h1></f:case>
-                    <f:case value="2"><h2 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h2></f:case>
-                    <f:case value="3"><h3 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h3></f:case>
-                    <f:case value="4"><h4 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h4></f:case>
-                    <f:case value="5"><h5 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h5></f:case>
-                    <f:defaultCase><h3 class="card-title h6 fw-bold mb-0 me-2">{project.title}</h3></f:defaultCase>
-                </f:switch>
-            </f:if>
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'card-title me-2', defaultTag: 'h3'}" />
             <span class="badge badge--status badge--{project.status} flex-shrink-0">
                 {project.statusLabel}
             </span>

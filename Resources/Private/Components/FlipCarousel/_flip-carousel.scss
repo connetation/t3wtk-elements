@@ -2,13 +2,12 @@
 // GSAP Flip Carousel (Caterpillar) Content Element
 // ─────────────────────────────────────────────
 
-.frame-type-conn_flip_carousel header {
-    h1, h2, h3, h4, h5, h6 {
-        font-size: clamp(1.375rem, 3vw, 1.75rem);
-        letter-spacing: -0.025em;
-        color: var(--conn-heading);
-    }
-}
+// Real headings elsewhere inherit conn/base's shared heading system
+// (components/_typography.scss for h1-h3, Bootstrap defaults for h4-h6,
+// global $headings-font-weight/--bs-heading-color). &__item-title and
+// &__item-subtitle below are exceptions: title_layout/subtitle_layout both
+// default to a plain <p> (not a heading), so they keep their own compact
+// caption sizes — see comment at those rules.
 
 .conn-flip-carousel {
 
@@ -70,6 +69,9 @@
         pointer-events: none;
     }
 
+    // title_layout/subtitle_layout both default to <p>, so these can't rely on
+    // the shared h1-h3 scale for the common case; kept as their own compact
+    // overlay-caption sizes regardless of which tag (p or h1-h5) is rendered.
     &__item-title {
         font-size: 0.875rem;
         font-weight: 600;

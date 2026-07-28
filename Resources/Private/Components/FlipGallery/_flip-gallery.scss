@@ -2,13 +2,11 @@
 // GSAP Flip Gallery Modal Content Element
 // ─────────────────────────────────────────────
 
-.frame-type-conn_flip_gallery header {
-    h1, h2, h3, h4, h5, h6 {
-        font-size: clamp(1.375rem, 3vw, 1.75rem);
-        letter-spacing: -0.025em;
-        color: var(--conn-heading);
-    }
-}
+// Real headings elsewhere inherit conn/base's shared heading system
+// (components/_typography.scss for h1-h3, Bootstrap defaults for h4-h6,
+// global $headings-font-weight/--bs-heading-color). &__box-title below is an
+// exception: title_layout defaults to a plain <p> (not a heading), so it
+// keeps its own compact caption size/weight — see comment at that rule.
 
 .conn-flip-gallery {
 
@@ -49,6 +47,9 @@
         pointer-events: none;
     }
 
+    // title_layout defaults to <p>, so this can't rely on the shared h1-h3
+    // scale for the common case; kept as its own compact overlay-caption size
+    // regardless of which tag (p or h1-h5) is actually rendered.
     &__box-title {
         font-size: 0.875rem;
         font-weight: 600;

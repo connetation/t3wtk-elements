@@ -2,16 +2,7 @@
       data-namespace-typo3-fluid="true">
 
 <div class="conn-timeline__item">
-    <f:if condition="{item.title_layout} != 100">
-        <f:switch expression="{item.title_layout}">
-            <f:case value="1"><h1 class="conn-timeline__title">{item.title}</h1></f:case>
-            <f:case value="2"><h2 class="conn-timeline__title">{item.title}</h2></f:case>
-            <f:case value="3"><h3 class="conn-timeline__title">{item.title}</h3></f:case>
-            <f:case value="4"><h4 class="conn-timeline__title">{item.title}</h4></f:case>
-            <f:case value="5"><h5 class="conn-timeline__title">{item.title}</h5></f:case>
-            <f:defaultCase><h3 class="conn-timeline__title">{item.title}</h3></f:defaultCase>
-        </f:switch>
-    </f:if>
+    <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-timeline__title', defaultTag: 'h3'}" />
     <f:if condition="{item.body}">
         <div class="conn-timeline__body">
             {item.body -> f:format.html()}

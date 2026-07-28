@@ -3,13 +3,9 @@
 // Full-height main view + thumbnail strip
 // ─────────────────────────────────────────────
 
-.frame-type-conn_swiper_thumbs_slider header {
-    h1, h2, h3, h4, h5, h6 {
-        font-size: clamp(1.375rem, 3vw, 1.75rem);
-        letter-spacing: -0.025em;
-        color: var(--conn-heading);
-    }
-}
+// Headings inherit conn/base's shared heading system (components/_typography.scss
+// for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
+// --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-thumbs-slider {
     --conn-thumbs-height: 70vh;
@@ -178,9 +174,12 @@
     }
 
     &__title {
-        font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-        font-weight: 800;
-        line-height: 1.15;
+        // font-size/font-weight/line-height inherit conn/base's shared heading
+        // system (h1-h5 all rendered via title_layout switch above) — this
+        // class previously locked every heading level to the same size,
+        // defeating the point of the layout choice. letter-spacing is kept
+        // since the shared system doesn't provide one and it's additive, not
+        // a duplicate.
         letter-spacing: -0.03em;
         color: #fff;
         margin-bottom: var(--conn-space-xs);
@@ -192,8 +191,8 @@
     }
 
     &__body {
-        font-size: 0.9375rem;
-        line-height: 1.65;
+        font-size: var(--conn-font-size-body);
+        line-height: var(--conn-line-height-normal);
         color: rgba(255, 255, 255, 0.8);
         margin-bottom: 1.25rem;
         opacity: 0;
