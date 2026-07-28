@@ -712,6 +712,15 @@
             <trans-unit id="timeline_item.date">
                 <source>Date / Period</source>
             </trans-unit>
+            <trans-unit id="timeline_item.date_precision">
+                <source>Date display</source>
+            </trans-unit>
+            <trans-unit id="timeline_item.date_precision.full">
+                <source>Full date</source>
+            </trans-unit>
+            <trans-unit id="timeline_item.date_precision.year">
+                <source>Year only</source>
+            </trans-unit>
             <trans-unit id="timeline_item.title">
                 <source>Title</source>
             </trans-unit>

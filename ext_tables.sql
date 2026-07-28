@@ -542,6 +542,7 @@ CREATE TABLE tx_conn_elements_domain_model_timeline_item (
     content_element int(11) DEFAULT '0' NOT NULL,
 
     date            int(11) DEFAULT NULL,
+    date_precision  varchar(10) DEFAULT 'full' NOT NULL,
     title           varchar(255) DEFAULT '' NOT NULL,
     body            mediumtext,
     image           int(11) DEFAULT '0' NOT NULL,

@@ -38,7 +38,9 @@ final class TimelineItemsProcessor extends AbstractItemsProcessor
         $sideIndex = 0;
         foreach ($rows as &$row) {
             $ts = $row['date'] !== null ? (int)$row['date'] : null;
-            $row['dateFormatted'] = $ts ? date('d.m.Y', $ts) : '';
+            $row['dateFormatted'] = $ts
+                ? (($row['date_precision'] ?? 'full') === 'year' ? date('Y', $ts) : date('d.m.Y', $ts))
+                : '';
             $row['dateYear']      = $ts ? date('Y', $ts) : '';
             $row['isNewYear']     = ($row['dateYear'] !== $lastYear);
             $row['scrollSide']    = ($sideIndex % 2 === 0) ? 'left' : 'right';

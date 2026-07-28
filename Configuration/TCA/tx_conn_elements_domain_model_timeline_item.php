@@ -31,6 +31,12 @@ return [
         'security'       => ['ignorePageTypeRestriction' => true],
     ],
 
+    'palettes' => [
+        'date' => [
+            'showitem' => 'date, date_precision',
+        ],
+    ],
+
     'columns' => [
         'hidden' => [
             'exclude' => true,
@@ -49,6 +55,18 @@ return [
                 'type'     => 'datetime',
                 'format'   => 'date',
                 'nullable' => true,
+            ],
+        ],
+        'date_precision' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date_precision',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => [
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date_precision.full', 'value' => 'full'],
+                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date_precision.year', 'value' => 'year'],
+                ],
+                'default' => 'full',
             ],
         ],
         'title' => [
@@ -92,7 +110,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    date, title, title_layout, body, image,
+                    --palette--;;date, title, title_layout, body, image,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',
