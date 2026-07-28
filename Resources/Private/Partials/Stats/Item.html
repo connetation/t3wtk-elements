@@ -11,17 +11,10 @@
                 <span class="conn-stats__suffix">{stat.suffix}</span>
             </f:if>
     </div>
-    <f:if condition="{stat.label_layout} != 100">
-        <f:switch expression="{stat.label_layout}">
-            <f:case value="1"><h1 class="conn-stats__label">{stat.label}</h1></f:case>
-            <f:case value="2"><h2 class="conn-stats__label">{stat.label}</h2></f:case>
-            <f:case value="3"><h3 class="conn-stats__label">{stat.label}</h3></f:case>
-            <f:case value="4"><h4 class="conn-stats__label">{stat.label}</h4></f:case>
-            <f:case value="5"><h5 class="conn-stats__label">{stat.label}</h5></f:case>
-            <f:defaultCase><div class="conn-stats__label">{stat.label}</div></f:defaultCase>
-        </f:switch>
+    <f:render partial="Shared/HeadingSwitch" arguments="{text: stat.label, layout: stat.label_layout, class: 'conn-stats__label', defaultTag: 'h3'}" />
+    <f:if condition="{stat.description}">
+        <p class="conn-stats__description">{stat.description}</p>
     </f:if>
-    <f:render partial="Shared/HeadingSwitch" arguments="{text: stat.description, layout: stat.description_layout, class: 'conn-stats__description', defaultTag: 'p'}" />
 </div>
 
 </html>

@@ -91,6 +91,9 @@ return [
                 'default'    => 0,
             ],
         ],
+        // Description is supplementary caption text under the label — always
+        // plain text, never a heading, so unlike label it has no _layout
+        // field/editor choice at all.
         'description' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stat_item.description',
             'config' => [
@@ -100,21 +103,12 @@ return [
                 'eval' => 'trim',
             ],
         ],
-        'description_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
-            'config' => [
-                'type'       => 'select',
-                'renderType' => 'selectSingle',
-                'items'      => $headingLayoutItems,
-                'default'    => 0,
-            ],
-        ],
     ],
     'types' => [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    value, prefix, suffix, label, label_layout, description, description_layout,
+                    value, prefix, suffix, label, label_layout, description,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

@@ -9,9 +9,17 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-const FUZZY_CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
-const HEADING_SEL   = 'h1, h2, h3, h4';
-const BODY_SEL      = 'p, li';
+const FUZZY_CHARSET  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+const HEADING_SEL    = 'h1, h2, h3, h4';
+const BODY_SEL       = 'p, li';
+// The CSS opacity:0 → 1 (--gsap.swiper-slide-active) toggle that this reveal
+// step overrides sits on the *wrapping* body container (e.g.
+// .conn-hero-slider__body), not on the <p>/<li> tags BODY_SEL finds inside
+// it. A parent left at opacity:0 hides its children regardless of the
+// children's own opacity, so the wrapper needs revealing too — title/eyebrow
+// don't need this since their CSS class is on the element HEADING_SEL
+// already targets directly.
+const BODY_WRAPPER_SEL = '[class*="__body"]';
 
 // Per-slide cleanup tracking
 const activeSplits = new WeakMap<HTMLElement, SplitText[]>();
@@ -57,6 +65,13 @@ export function animateSlide(slideEl: HTMLElement): void {
     // (inline beats CSS) lets the parent be visible while GSAP immediately
     // hides the split child spans via its from() initial render — no flash.
     all.forEach(el => {
+        el.style.opacity    = '1';
+        el.style.transform  = '';
+        el.style.transition = 'none';
+    });
+
+    // Also reveal the body wrapper(s) themselves — see BODY_WRAPPER_SEL above.
+    [...container.querySelectorAll<HTMLElement>(BODY_WRAPPER_SEL)].forEach(el => {
         el.style.opacity    = '1';
         el.style.transform  = '';
         el.style.transition = 'none';

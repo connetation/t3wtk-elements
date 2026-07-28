@@ -21,16 +21,7 @@
         </f:if>
     </div>
     <div class="dashboard-compact__body">
-        <f:if condition="{project.title_layout} != 100">
-            <f:switch expression="{project.title_layout}">
-                <f:case value="1"><h1 class="dashboard-compact__title">{project.title}</h1></f:case>
-                <f:case value="2"><h2 class="dashboard-compact__title">{project.title}</h2></f:case>
-                <f:case value="3"><h3 class="dashboard-compact__title">{project.title}</h3></f:case>
-                <f:case value="4"><h4 class="dashboard-compact__title">{project.title}</h4></f:case>
-                <f:case value="5"><h5 class="dashboard-compact__title">{project.title}</h5></f:case>
-                <f:defaultCase><div class="dashboard-compact__title">{project.title}</div></f:defaultCase>
-            </f:switch>
-        </f:if>
+        <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'dashboard-compact__title', defaultTag: 'h3'}" />
         <div class="dashboard-compact__meta">
             <f:if condition="{project.categoryTitle}">
                 <span class="dashboard-compact__category">{project.categoryTitle}</span>
@@ -76,16 +67,7 @@
     </f:if>
 
     <div class="dashboard-compact__body">
-        <f:if condition="{project.title_layout} != 100">
-            <f:switch expression="{project.title_layout}">
-                <f:case value="1"><h1 class="dashboard-compact__title">{project.title}</h1></f:case>
-                <f:case value="2"><h2 class="dashboard-compact__title">{project.title}</h2></f:case>
-                <f:case value="3"><h3 class="dashboard-compact__title">{project.title}</h3></f:case>
-                <f:case value="4"><h4 class="dashboard-compact__title">{project.title}</h4></f:case>
-                <f:case value="5"><h5 class="dashboard-compact__title">{project.title}</h5></f:case>
-                <f:defaultCase><div class="dashboard-compact__title">{project.title}</div></f:defaultCase>
-            </f:switch>
-        </f:if>
+        <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'dashboard-compact__title', defaultTag: 'h3'}" />
         <div class="dashboard-compact__meta">
             <f:if condition="{project.categoryTitle}">
                 <span class="dashboard-compact__category">{project.categoryTitle}</span>
