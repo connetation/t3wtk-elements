@@ -14,6 +14,19 @@ $headingLayoutItems = [
     ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
+// Visual size, independent of the tag *_layout picks — lets an editor keep
+// the SEO-correct heading level while styling it like a different size
+// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_base's
+// tt_content header_class/subheader_class. Reused for every *_class column.
+$headingClassItems = [
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
+];
+
 return [
     'ctrl' => [
         'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.testimonial_item',
@@ -72,6 +85,15 @@ return [
                 'default'    => 0,
             ],
         ],
+        'author_name_class' => [
+            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingClassItems,
+                'default'    => '',
+            ],
+        ],
         'author_role' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.author_role',
             'config' => [
@@ -88,6 +110,15 @@ return [
                 'renderType' => 'selectSingle',
                 'items'      => $headingLayoutItems,
                 'default'    => 0,
+            ],
+        ],
+        'author_role_class' => [
+            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingClassItems,
+                'default'    => '',
             ],
         ],
         'rating' => [
@@ -121,7 +152,7 @@ return [
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     quote, rating,
                 --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.tab.author,
-                    author_name, author_name_layout, author_role, author_role_layout, image,
+                    author_name, author_name_layout, author_name_class, author_role, author_role_layout, author_role_class, image,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

@@ -27,8 +27,8 @@
         </f:if>
 
         <div class="card-body p-3" data-slide-animation="{slide.text_animation}" data-slide-duration="{slide.animation_duration}">
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.title, layout: slide.title_layout, class: 'card-title mb-1', defaultTag: 'h3'}" />
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.subtitle, layout: slide.subtitle_layout, class: 'card-text mb-2', defaultTag: 'h4'}" />
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.title, layout: slide.title_layout, class: 'card-title mb-1 {slide.title_class}', defaultTag: 'h3'}" />
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.subtitle, layout: slide.subtitle_layout, class: 'card-text mb-2 {slide.subtitle_class}', defaultTag: 'h4'}" />
             <f:if condition="{slide.body}">
                 <div class="conn-slider__body small">
                     {slide.body -> f:format.html()}

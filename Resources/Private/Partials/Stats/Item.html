@@ -11,7 +11,7 @@
                 <span class="conn-stats__suffix">{stat.suffix}</span>
             </f:if>
     </div>
-    <f:render partial="Shared/HeadingSwitch" arguments="{text: stat.label, layout: stat.label_layout, class: 'conn-stats__label', defaultTag: 'h3'}" />
+    <f:render partial="Shared/HeadingSwitch" arguments="{text: stat.label, layout: stat.label_layout, class: 'conn-stats__label {stat.label_class}', defaultTag: 'h3'}" />
     <f:if condition="{stat.description}">
         <p class="conn-stats__description">{stat.description}</p>
     </f:if>

@@ -17,12 +17,12 @@
             <f:if condition="{item.title}">
                 <f:if condition="{item.title_layout} != 100">
                     <f:switch expression="{item.title_layout}">
-                        <f:case value="1"><h1>{item.title}</h1></f:case>
-                        <f:case value="2"><h2>{item.title}</h2></f:case>
-                        <f:case value="3"><h3>{item.title}</h3></f:case>
-                        <f:case value="4"><h4>{item.title}</h4></f:case>
-                        <f:case value="5"><h5>{item.title}</h5></f:case>
-                        <f:defaultCase><h5>{item.title}</h5></f:defaultCase>
+                        <f:case value="1"><h1 class="{item.title_class}">{item.title}</h1></f:case>
+                        <f:case value="2"><h2 class="{item.title_class}">{item.title}</h2></f:case>
+                        <f:case value="3"><h3 class="{item.title_class}">{item.title}</h3></f:case>
+                        <f:case value="4"><h4 class="{item.title_class}">{item.title}</h4></f:case>
+                        <f:case value="5"><h5 class="{item.title_class}">{item.title}</h5></f:case>
+                        <f:defaultCase><h5 class="{item.title_class}">{item.title}</h5></f:defaultCase>
                     </f:switch>
                 </f:if>
             </f:if>

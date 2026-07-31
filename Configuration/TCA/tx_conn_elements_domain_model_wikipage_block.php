@@ -16,6 +16,19 @@ $headingLayoutItems = [
     ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
+// Visual size, independent of the tag *_layout picks — lets an editor keep
+// the SEO-correct heading level while styling it like a different size
+// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_base's
+// tt_content header_class/subheader_class. Reused for every *_class column.
+$headingClassItems = [
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
+];
+
 return [
     'ctrl' => [
         'title'           => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.wikipage_block',
@@ -74,6 +87,15 @@ return [
                 'default'    => 0,
             ],
         ],
+        'heading_class' => [
+            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingClassItems,
+                'default'    => '',
+            ],
+        ],
         'content' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:block.content',
             'config' => [
@@ -117,10 +139,10 @@ return [
         'sorting' => ['config' => ['type' => 'passthrough']],
     ],
     'types' => [
-        '0'    => ['showitem' => 'type, heading, heading_layout, content, --div--;Access, hidden'],
-        'text' => ['showitem' => 'type, heading, heading_layout, content, --div--;Access, hidden'],
+        '0'    => ['showitem' => 'type, heading, heading_layout, heading_class, content, --div--;Access, hidden'],
+        'text' => ['showitem' => 'type, heading, heading_layout, heading_class, content, --div--;Access, hidden'],
         'code' => [
-            'showitem' => 'type, heading, heading_layout, code_text, code_language, content, --div--;Access, hidden',
+            'showitem' => 'type, heading, heading_layout, heading_class, code_text, code_language, content, --div--;Access, hidden',
             'columnsOverrides' => [
                 'content' => [
                     'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:block.code_content',

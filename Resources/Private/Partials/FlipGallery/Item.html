@@ -12,7 +12,7 @@
                  aria-label="{item.title}">
                 <f:if condition="{item.title}">
                     <div class="conn-flip-gallery__box-info">
-                        <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-flip-gallery__box-title', defaultTag: 'p'}" />
+                        <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-flip-gallery__box-title {item.title_class}', defaultTag: 'p'}" />
                         <f:if condition="{item.caption}">
                             <p class="conn-flip-gallery__box-caption">{item.caption -> f:format.html()}</p>
                         </f:if>

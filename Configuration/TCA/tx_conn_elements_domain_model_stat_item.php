@@ -14,6 +14,19 @@ $headingLayoutItems = [
     ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
+// Visual size, independent of the tag *_layout picks — lets an editor keep
+// the SEO-correct heading level while styling it like a different size
+// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_base's
+// tt_content header_class/subheader_class. Reused for every *_class column.
+$headingClassItems = [
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
+];
+
 return [
     'ctrl' => [
         'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.stat_item',
@@ -91,6 +104,15 @@ return [
                 'default'    => 0,
             ],
         ],
+        'label_class' => [
+            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingClassItems,
+                'default'    => '',
+            ],
+        ],
         // Description is supplementary caption text under the label — always
         // plain text, never a heading, so unlike label it has no _layout
         // field/editor choice at all.
@@ -108,7 +130,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    value, prefix, suffix, label, label_layout, description,
+                    value, prefix, suffix, label, label_layout, label_class, description,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

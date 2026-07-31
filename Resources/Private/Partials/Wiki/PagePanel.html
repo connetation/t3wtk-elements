@@ -8,7 +8,7 @@
          aria-hidden="true">
 
     <header class="wiki__page-header mb-4">
-        <f:render partial="Shared/HeadingSwitch" arguments="{text: page.title, layout: page.title_layout, class: 'wiki__page-title', defaultTag: 'h2'}" />
+        <f:render partial="Shared/HeadingSwitch" arguments="{text: page.title, layout: page.title_layout, class: 'wiki__page-title {page.title_class}', defaultTag: 'h2'}" />
         <div class="wiki__page-meta">
             <f:if condition="{page.categoryTitle}">
                 <span class="wiki__tag wiki__tag--category">
@@ -33,7 +33,7 @@
             <f:if condition="{block.type} == 'code'">
                 <f:then>
                     <div class="wiki__block wiki__block--code">
-                        <f:render partial="Shared/HeadingSwitch" arguments="{text: block.heading, layout: block.heading_layout, class: 'wiki__block-heading', defaultTag: 'h3'}" />
+                        <f:render partial="Shared/HeadingSwitch" arguments="{text: block.heading, layout: block.heading_layout, class: 'wiki__block-heading {block.heading_class}', defaultTag: 'h3'}" />
                         <f:if condition="{block.code_text}">
                             <div class="wiki__block-text">{block.code_text -> f:format.raw()}</div>
                         </f:if>
@@ -44,7 +44,7 @@
                 </f:then>
                 <f:else>
                     <div class="wiki__block wiki__block--text">
-                        <f:render partial="Shared/HeadingSwitch" arguments="{text: block.heading, layout: block.heading_layout, class: 'wiki__block-heading', defaultTag: 'h3'}" />
+                        <f:render partial="Shared/HeadingSwitch" arguments="{text: block.heading, layout: block.heading_layout, class: 'wiki__block-heading {block.heading_class}', defaultTag: 'h3'}" />
                         {block.content -> f:format.raw()}
                     </div>
                 </f:else>

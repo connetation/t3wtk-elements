@@ -25,7 +25,7 @@
     </f:if>
 
     <div class="conn-feature-grid__content">
-        <f:render partial="Shared/HeadingSwitch" arguments="{text: feature.title, layout: feature.title_layout, class: 'conn-feature-grid__title', defaultTag: 'h3'}" />
+        <f:render partial="Shared/HeadingSwitch" arguments="{text: feature.title, layout: feature.title_layout, class: 'conn-feature-grid__title {feature.title_class}', defaultTag: 'h3'}" />
         <f:if condition="{feature.body}">
             <div class="conn-feature-grid__body">{feature.body -> f:format.html()}</div>
         </f:if>

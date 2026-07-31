@@ -21,7 +21,7 @@
         </f:if>
     </div>
     <div class="dashboard-compact__body">
-        <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'dashboard-compact__title', defaultTag: 'h3'}" />
+        <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'dashboard-compact__title {project.title_class}', defaultTag: 'h3'}" />
         <div class="dashboard-compact__meta">
             <f:if condition="{project.categoryTitle}">
                 <span class="dashboard-compact__category">{project.categoryTitle}</span>
@@ -67,7 +67,7 @@
     </f:if>
 
     <div class="dashboard-compact__body">
-        <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'dashboard-compact__title', defaultTag: 'h3'}" />
+        <f:render partial="Shared/HeadingSwitch" arguments="{text: project.title, layout: project.title_layout, class: 'dashboard-compact__title {project.title_class}', defaultTag: 'h3'}" />
         <div class="dashboard-compact__meta">
             <f:if condition="{project.categoryTitle}">
                 <span class="dashboard-compact__category">{project.categoryTitle}</span>

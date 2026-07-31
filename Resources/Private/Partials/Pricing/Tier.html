@@ -8,8 +8,8 @@
         </f:if>
 
         <div class="conn-pricing__header">
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: tier.name, layout: tier.name_layout, class: 'conn-pricing__name', defaultTag: 'h3'}" />
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: tier.tagline, layout: tier.tagline_layout, class: 'conn-pricing__tagline', defaultTag: 'h4'}" />
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: tier.name, layout: tier.name_layout, class: 'conn-pricing__name {tier.name_class}', defaultTag: 'h3'}" />
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: tier.tagline, layout: tier.tagline_layout, class: 'conn-pricing__tagline {tier.tagline_class}', defaultTag: 'h4'}" />
         </div>
 
         <div class="conn-pricing__price">

@@ -14,6 +14,19 @@ $headingLayoutItems = [
     ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
+// Visual size, independent of the tag *_layout picks — lets an editor keep
+// the SEO-correct heading level while styling it like a different size
+// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_base's
+// tt_content header_class/subheader_class. Reused for every *_class column.
+$headingClassItems = [
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
+    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
+];
+
 // Bootstrap 5 text-align suffixes ('' + this value = 'text-start'/'text-center'/'text-end').
 // Shared, reused across every item table's *_align column.
 $alignItems = [
@@ -71,6 +84,15 @@ return [
                 'default'    => 0,
             ],
         ],
+        'title_class' => [
+            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingClassItems,
+                'default'    => '',
+            ],
+        ],
         'subtitle' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.subtitle',
             'config' => [
@@ -87,6 +109,15 @@ return [
                 'renderType' => 'selectSingle',
                 'items'      => $headingLayoutItems,
                 'default'    => 0,
+            ],
+        ],
+        'subtitle_class' => [
+            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingClassItems,
+                'default'    => '',
             ],
         ],
         'title_align' => [
@@ -161,11 +192,11 @@ return [
     'palettes' => [
         'header' => [
             'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.header',
-            'showitem' => 'title, title_layout, title_align',
+            'showitem' => 'title, title_layout, title_class, title_align',
         ],
         'subheader' => [
             'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.subheader',
-            'showitem' => 'subtitle, subtitle_layout, subtitle_align',
+            'showitem' => 'subtitle, subtitle_layout, subtitle_class, subtitle_align',
         ],
         'link' => [
             'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.link',

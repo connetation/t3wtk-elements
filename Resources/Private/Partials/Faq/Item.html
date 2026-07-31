@@ -6,7 +6,7 @@
         <f:switch expression="{item.title_layout}">
             <f:case value="1">
                 <h1 class="accordion-header" id="conn-faq-h-{parentUid}-{item.uid}">
-                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')} {item.title_class}"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#conn-faq-{parentUid}-{item.uid}"
@@ -18,7 +18,7 @@
             </f:case>
             <f:case value="2">
                 <h2 class="accordion-header" id="conn-faq-h-{parentUid}-{item.uid}">
-                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')} {item.title_class}"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#conn-faq-{parentUid}-{item.uid}"
@@ -30,7 +30,7 @@
             </f:case>
             <f:case value="3">
                 <h3 class="accordion-header" id="conn-faq-h-{parentUid}-{item.uid}">
-                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')} {item.title_class}"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#conn-faq-{parentUid}-{item.uid}"
@@ -42,7 +42,7 @@
             </f:case>
             <f:case value="4">
                 <h4 class="accordion-header" id="conn-faq-h-{parentUid}-{item.uid}">
-                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')} {item.title_class}"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#conn-faq-{parentUid}-{item.uid}"
@@ -54,7 +54,7 @@
             </f:case>
             <f:case value="5">
                 <h5 class="accordion-header" id="conn-faq-h-{parentUid}-{item.uid}">
-                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')} {item.title_class}"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#conn-faq-{parentUid}-{item.uid}"
@@ -66,7 +66,7 @@
             </f:case>
             <f:defaultCase>
                 <h2 class="accordion-header" id="conn-faq-h-{parentUid}-{item.uid}">
-                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')}"
+                    <button class="accordion-button{f:if(condition: item.open, then: '', else: ' collapsed')} {item.title_class}"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#conn-faq-{parentUid}-{item.uid}"

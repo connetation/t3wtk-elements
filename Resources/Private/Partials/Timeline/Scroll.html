@@ -33,7 +33,7 @@
                                 <span class="conn-timeline__item-date">{item.dateFormatted}</span>
                             </f:if>
                         </f:if>
-                        <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-timeline__title', defaultTag: 'h3'}" />
+                        <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-timeline__title {item.title_class}', defaultTag: 'h3'}" />
                         <f:if condition="{item.body}">
                             <div class="conn-timeline__body">
                                 {item.body -> f:format.html()}
