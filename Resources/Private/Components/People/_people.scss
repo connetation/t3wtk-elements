@@ -1,7 +1,3 @@
-// Headings inherit conn/base's shared heading system (components/_typography.scss
-// for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
-// --bs-heading-color) — no per-element font-size/weight/color override here.
-
 .conn-people {
 
     --conn-people-bg:           var(--conn-surface);
@@ -10,9 +6,9 @@
     --conn-people-border-color: var(--conn-accent, #6366f1);
     --conn-people-shadow:       var(--conn-shadow-card);
     --conn-people-a:            var(--conn-accent, #6366f1);
-    --conn-people-b:            var(--conn-accent, #6366f1);
+    --conn-people-b:            var(--conn-accent-secondary, #06b6d4);
     --conn-people-a-hover:      var(--conn-accent-hover, #4f52d4);
-    --conn-people-b-hover:      var(--conn-accent-hover, #4f52d4);
+    --conn-people-b-hover:      var(--conn-accent-secondary-hover, #0891b2);
     --conn-people-name:         var(--conn-heading);
     --conn-people-text:         var(--conn-text-muted);
     --conn-people-link:         var(--conn-text-muted);
@@ -116,6 +112,9 @@
     }
 
     &__card--team {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
         height: 100%;
         padding: 1.25rem 1rem 1.5rem;
         background: var(--conn-people-bg);
@@ -132,6 +131,9 @@
         display: flex;
         align-items: center;
         gap: var(--conn-space-sm);
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
         height: 100%;
         padding: 0.85rem 1rem;
         background: var(--conn-people-bg);
@@ -182,13 +184,47 @@
         min-width: 0;
     }
 
-    // ── Flippable card ────────────────────────────
     &__col {
         perspective: 1200px;
         container-type: inline-size;
     }
 
+    // ── Content position / card width ─────────────
+    // Only visible once a card's max-width (below) is narrower than its
+    // column — e.g. a single item, or a "Per row" count too coarse to fill
+    // the row exactly. Default (no modifier) centers via each card's own
+    // `margin: 0 auto`.
+    &--align-left &__visit,
+    &--align-left &__reveal,
+    &--align-left &__flip-card,
+    &--align-left &__card--team,
+    &--align-left &__row {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    &--align-right &__visit,
+    &--align-right &__reveal,
+    &--align-right &__flip-card,
+    &--align-right &__card--team,
+    &--align-right &__row {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    &--width-fill &__visit,
+    &--width-fill &__reveal,
+    &--width-fill &__flip-card,
+    &--width-fill &__card--team,
+    &--width-fill &__row {
+        max-width: none;
+    }
+
+    // ── Flippable card ────────────────────────────
     &__flip-card {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
         aspect-ratio: 3 / 4;
         outline: none;
     }
@@ -241,6 +277,9 @@
     // ── Reveal cards (shared photo + nametag shell) ──
     &__reveal {
         position: relative;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
         aspect-ratio: 3 / 4;
         overflow: hidden;
         background: var(--conn-people-bg);
@@ -522,6 +561,8 @@
         align-items: center;
         justify-content: center;
         letter-spacing: 0.02em;
+        z-index: 10;
+        background: var(--conn-border)
     }
 
     &__visit--left &__visit-monogram { left: 0.9rem; }

@@ -51,7 +51,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             : $this->fetchByUidsOrdered($settings['peopleUids']);
 
         $rows = $this->attachFirstFileReference($rows, self::TABLE, 'image', 'imageFile');
-        $rows = $this->enrichRows($rows);
+        $rows = $this->enrichRows($rows, $settings);
 
         $processedData[$targetVar] = $rows;
         $processedData['settings'] = array_replace_recursive(
@@ -94,10 +94,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
         $style = in_array($raw['style'] ?? '', self::STYLES, true) ? $raw['style'] : 'reveal-sheet';
 
         $showShadow  = (bool)($raw['showShadow'] ?? true);
-        $shadowColor = $this->sanitizeColor((string)($raw['shadowColor'] ?? ''), '');
-        $shadowValue = !$showShadow
-            ? 'none'
-            : ($shadowColor !== '' ? "0 8px 24px {$shadowColor}" : 'var(--conn-shadow-card)');
+        $shadowValue = $showShadow ? 'var(--conn-shadow-card)' : 'none';
 
         return [
             'source'          => ($raw['source'] ?? 'manual') === 'folder' ? 'folder' : 'manual',
@@ -106,6 +103,9 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'style'           => $style,
             'columns'         => $columns,
             'colClass'        => $colMap[$columns] ?? $colMap[4],
+            'align'           => in_array($raw['align'] ?? '', ['left', 'center', 'right'], true) ? $raw['align'] : 'center',
+            'cardWidth'       => in_array($raw['cardWidth'] ?? '', ['fixed', 'fill'], true) ? $raw['cardWidth'] : 'fixed',
+            'imageSideMode'   => in_array($raw['imageSideMode'] ?? '', ['left', 'right'], true) ? $raw['imageSideMode'] : 'auto',
             'textPosition'    => in_array($raw['textPosition'] ?? '', ['top', 'center', 'bottom'], true) ? $raw['textPosition'] : 'bottom',
             'textAlign'       => in_array($raw['textAlign'] ?? '', ['left', 'center', 'right'], true) ? $raw['textAlign'] : 'center',
             'showRole'        => (bool)($raw['showRole'] ?? true),
@@ -114,16 +114,6 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'showBorder'      => (bool)($raw['showBorder'] ?? true),
             'showShadow'      => (bool)($raw['showShadow'] ?? true),
             'shadowValue'     => $shadowValue,
-            'backgroundColor'  => $this->sanitizeColor((string)($raw['backgroundColor'] ?? ''), ''),
-            'nameColor'        => $this->sanitizeColor((string)($raw['nameColor'] ?? ''), ''),
-            'textColor'        => $this->sanitizeColor((string)($raw['textColor'] ?? ''), ''),
-            'linkColor'        => $this->sanitizeColor((string)($raw['linkColor'] ?? ''), ''),
-            'borderColor'      => $this->sanitizeColor((string)($raw['borderColor'] ?? ''), ''),
-            'shadowColor'      => $this->sanitizeColor((string)($raw['shadowColor'] ?? ''), ''),
-            'accentColorA'     => $this->sanitizeColor((string)($raw['accentColorA'] ?? ''), ''),
-            'accentColorB'     => $this->sanitizeColor((string)($raw['accentColorB'] ?? ''), ''),
-            'accentColorAHover' => $this->sanitizeColor((string)($raw['accentColorAHover'] ?? ''), ''),
-            'accentColorBHover' => $this->sanitizeColor((string)($raw['accentColorBHover'] ?? ''), ''),
             'nametagBg'        => $this->sanitizeColor((string)($raw['nametagBg'] ?? ''), '#000000'),
             'nametagTextColor' => $this->sanitizeColor((string)($raw['nametagTextColor'] ?? ''), '#ffffff'),
             'revealBg'         => $this->sanitizeColor((string)($raw['revealBg'] ?? ''), ''),
@@ -140,6 +130,9 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'style'           => 'reveal-sheet',
             'columns'         => 4,
             'colClass'        => 'col-12 col-sm-6 col-md-3',
+            'align'           => 'center',
+            'cardWidth'       => 'fixed',
+            'imageSideMode'   => 'auto',
             'textPosition'    => 'bottom',
             'textAlign'       => 'center',
             'showRole'        => true,
@@ -148,16 +141,6 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'showBorder'      => true,
             'showShadow'      => true,
             'shadowValue'     => 'var(--conn-shadow-card)',
-            'backgroundColor'  => '',
-            'nameColor'        => '',
-            'textColor'        => '',
-            'linkColor'        => '',
-            'borderColor'      => '',
-            'shadowColor'      => '',
-            'accentColorA'     => '',
-            'accentColorB'     => '',
-            'accentColorAHover' => '',
-            'accentColorBHover' => '',
             'nametagBg'        => '#000000',
             'nametagTextColor' => '#ffffff',
             'revealBg'         => '',
@@ -230,8 +213,10 @@ final class PeopleProcessor extends AbstractItemsProcessor
     // Row enrichment
     // ─────────────────────────────────────────────────────────────
 
-    private function enrichRows(array $rows): array
+    private function enrichRows(array $rows, array $settings): array
     {
+        $imageSideMode = $settings['imageSideMode'] ?? 'auto';
+
         $i = 0;
         foreach ($rows as &$row) {
             $accent = $row['accent'] ?? 'auto';
@@ -239,7 +224,9 @@ final class PeopleProcessor extends AbstractItemsProcessor
                 $accent = $i % 2 === 0 ? 'a' : 'b';
             }
 
-            $imageSide = $row['image_side'] ?? 'auto';
+            // Element-level "All -> Left/Right" wins over the per-person record
+            // field; the per-person field only matters while left on Auto.
+            $imageSide = $imageSideMode !== 'auto' ? $imageSideMode : ($row['image_side'] ?? 'auto');
             if (!in_array($imageSide, ['left', 'right'], true)) {
                 // Alternates in sync with accent: person 1 = left/A, person 2 = right/B, ...
                 $imageSide = $i % 2 === 0 ? 'left' : 'right';

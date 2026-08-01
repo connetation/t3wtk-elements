@@ -41,7 +41,6 @@
 <section class="conn-text-icon conn-text-icon--pos-{data.tx_conn_elements_text_icon_position} conn-text-icon--shape-{data.tx_conn_elements_text_icon_shape} conn-text-icon--size-{data.tx_conn_elements_text_icon_size}"
          id="conn-text-icon-{data.uid}"
          style="--conn-text-icon-color:{f:if(condition: data.tx_conn_elements_text_icon_color, then: data.tx_conn_elements_text_icon_color, else: 'var(--conn-accent, #6366f1)')};--conn-text-icon-bg:{f:if(condition: data.tx_conn_elements_text_icon_bg, then: data.tx_conn_elements_text_icon_bg, else: 'var(--conn-accent-soft, rgba(99, 102, 241, .12))')};">
-    <div class="container-fluid">
         <div class="conn-text-icon__inner">
             <f:if condition="{data.tx_conn_elements_text_icon_name}">
                 <div class="conn-text-icon__badge">
@@ -55,7 +54,6 @@
                 </f:if>
             </div>
         </div>
-    </div>
 </section>
 
 </f:section>
