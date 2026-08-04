@@ -106,30 +106,80 @@
         border-color: var(--conn-people-b-hover) !important;
     }
 
-    // ── Team card ─────────────────────────────────
-    &__card {
-        text-align: center;
-    }
-
-    &__card--team {
+    // ── Team card (flip — photo+nametag front, role/bio/contact back) ──
+    &__team-flip {
         width: 100%;
         max-width: 320px;
         margin: 0 auto;
+        aspect-ratio: 3 / 4;
+        outline: none;
+    }
+
+    &__team-flip-inner {
+        position: relative;
+        width: 100%;
         height: 100%;
-        padding: 1.25rem 1rem 1.5rem;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+
+    &__team-flip:hover &__team-flip-inner,
+    &__team-flip:focus-within &__team-flip-inner,
+    &__team-flip.is-flipped &__team-flip-inner {
+        transform: rotateY(180deg);
+    }
+
+    &__team-flip-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
         background: var(--conn-people-bg);
         border: var(--conn-people-border-w) solid var(--conn-people-border-color);
         border-radius: var(--conn-people-radius);
         box-shadow: var(--conn-people-shadow);
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        overflow: hidden;
+    }
 
-        &:hover { transform: translateY(-3px); }
+    &__team-flip-face--back {
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.2rem;
+        text-align: center;
+        overflow: auto;
+
+        .conn-people__role { margin-bottom: var(--conn-space-xs); }
+        .conn-people__bio { margin-bottom: 0.5rem; }
+    }
+
+    &__team-flip-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center; // otherwise flex's default align-items:stretch
+        gap: 0.3rem;          // makes each <a> a full-width hover/click target
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.8rem;
+            color: var(--conn-people-text);
+            text-decoration: none;
+        }
+
+        a:hover { color: var(--conn-people-a); }
     }
 
     // ── Contact card ──────────────────────────────
+    // Thumb stretches to the card's full height (align-items:stretch)
+    // instead of a small fixed badge. Name/role+contact (.row-main) stack
+    // in their own column, two-line-safe by construction — a long surname
+    // or a 3rd (website) button can no longer squeeze the name into an
+    // unreadable sliver like before.
     &__row {
         display: flex;
-        align-items: center;
+        align-items: stretch;
         gap: var(--conn-space-sm);
         width: 100%;
         max-width: 480px;
@@ -141,19 +191,51 @@
         border-radius: var(--conn-people-radius);
         box-shadow: var(--conn-people-shadow);
 
-        .conn-people__name, .conn-people__role { text-align: left; }
+        .conn-people__row-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--conn-space-xs);
+            flex: 1 1 auto;
+            // enough room before overflow-wrap has to break mid-word,
+            // instead of collapsing to near-zero width
+            min-width: 6rem;
+        }
+
+        .conn-people__name, .conn-people__role { text-align: left; overflow-wrap: break-word; }
         .conn-people__role { margin-bottom: 0; }
         .conn-people__contact { margin-top: 0; flex-wrap: nowrap; justify-content: flex-end; }
         .conn-people__btn-label { display: none; }
+
+        // Bare icons instead of hexagon buttons — kill .btn-hexagon's side
+        // wedges/shadow/margin and swap the accent from background to the
+        // icon's own color.
+        .conn-people__btn {
+            margin: 0;
+            padding: 0;
+            width: 1.6rem;
+            height: 1.6rem;
+            justify-content: center;
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+
+            &::before, &::after { content: none; }
+        }
+        .conn-people__btn--a { color: var(--conn-people-a) !important; }
+        .conn-people__btn--b { color: var(--conn-people-b) !important; }
+        .conn-people__btn--a:hover, .conn-people__btn--a:focus { color: var(--conn-people-a-hover) !important; }
+        .conn-people__btn--b:hover, .conn-people__btn--b:focus { color: var(--conn-people-b-hover) !important; }
     }
 
     &__thumb {
-        width: 56px;
-        height: 56px;
+        width: auto;
+        aspect-ratio: 1 / 1;
+        max-width: 9rem;
         flex-shrink: 0;
         overflow: hidden;
         background: var(--conn-surface-alt);
-        clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+        border-radius: var(--conn-people-radius);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -162,8 +244,7 @@
     &__thumb-img {
         display: block;
         width: 100%;
-        height: 130%;
-        margin-top: -12%;
+        height: 100%;
         object-fit: cover;
         object-position: top;
     }
@@ -197,7 +278,7 @@
     &--align-left &__visit,
     &--align-left &__reveal,
     &--align-left &__flip-card,
-    &--align-left &__card--team,
+    &--align-left &__team-flip,
     &--align-left &__row {
         margin-left: 0;
         margin-right: auto;
@@ -206,7 +287,7 @@
     &--align-right &__visit,
     &--align-right &__reveal,
     &--align-right &__flip-card,
-    &--align-right &__card--team,
+    &--align-right &__team-flip,
     &--align-right &__row {
         margin-left: auto;
         margin-right: 0;
@@ -215,7 +296,7 @@
     &--width-fill &__visit,
     &--width-fill &__reveal,
     &--width-fill &__flip-card,
-    &--width-fill &__card--team,
+    &--width-fill &__team-flip,
     &--width-fill &__row {
         max-width: none;
     }
@@ -404,7 +485,7 @@
         right: 0;
         bottom: 0;
         width: 66%;
-        color: var(--conn-people-accent-text);
+        color: var(--conn-people-curtain-text, var(--conn-people-accent-text));
         padding: 1.1rem;
         text-align: center;
         display: flex;
@@ -414,28 +495,20 @@
         transform: translateX(105%);
         transition: transform 0.45s cubic-bezier(0.22, 0.9, 0.35, 1);
 
-        .conn-people__name, .conn-people__role { color: var(--conn-people-accent-text); }
-        .conn-people__bio { color: var(--conn-people-accent-text); opacity: 0.85; }
-
-        a {
-            color: var(--conn-people-accent-text);
-            text-decoration: none;
-            font-size: 0.8rem;
-            opacity: 0.9;
-            display: block;
+        .conn-people__name, .conn-people__role {
+            color: var(--conn-people-curtain-text, var(--conn-people-accent-text));
         }
-
-        a:hover { opacity: 1; text-decoration: underline; }
-
-        .conn-people__curtain-line {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
+        .conn-people__bio {
+            color: var(--conn-people-curtain-text, var(--conn-people-accent-text));
+            opacity: 0.85;
         }
+        .conn-people__contact { margin-top: 0.75rem; }
     }
 
-    &__curtain--a { background: var(--conn-people-a); }
-    &__curtain--b { background: var(--conn-people-b); }
+    // Element-level override wins (var's 2nd arg); unset falls back to the
+    // per-person accent alternation, same as before this setting existed.
+    &__curtain--a { background: var(--conn-people-curtain-bg, var(--conn-people-a)); }
+    &__curtain--b { background: var(--conn-people-curtain-bg, var(--conn-people-b)); }
 
     &__reveal--curtain:hover &__reveal-photo,
     &__reveal--curtain:focus-within &__reveal-photo,
@@ -603,9 +676,11 @@
         display: flex;
         align-items: center;
         gap: 0.4rem;
-
-        &:hover { text-decoration: underline; }
     }
+
+    // scoped to the text span only — underlining the whole flex line draws
+    // it under the icon circle too, which looks wrong
+    &__visit-line:hover &__visit-text { text-decoration: underline; }
 
     &__visit--right &__visit-line { flex-direction: row-reverse; }
 

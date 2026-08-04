@@ -9,16 +9,7 @@ use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
- * People content element — unlike the other conn_elements processors, Person
- * records are NOT children of the content element (no `content_element` FK).
- * They're standalone records an editor places anywhere in the page tree, then
- * this element either pulls every Person under one chosen folder, or an
- * editor hand-picks specific people in a specific order.
- *
- * Extends AbstractItemsProcessor purely to reuse its query/FAL/FlexForm
- * helpers — process() is fully overridden since the fetch strategy (folder
- * vs. explicit uid list, preserving hand-picked order) doesn't fit the
- * single "children of one content element" shape the parent assumes.
+ * People content element 
  */
 final class PeopleProcessor extends AbstractItemsProcessor
 {
@@ -93,6 +84,12 @@ final class PeopleProcessor extends AbstractItemsProcessor
 
         $style = in_array($raw['style'] ?? '', self::STYLES, true) ? $raw['style'] : 'reveal-sheet';
 
+        // Visit Card is a fixed 16:9 business-card shape — past 2-up it gets
+        // squeezed so narrow the band/monogram/contact lines feel cramped.
+        if ($style === 'visit-card' && $columns > 2) {
+            $columns = 2;
+        }
+
         $showShadow  = (bool)($raw['showShadow'] ?? true);
         $shadowValue = $showShadow ? 'var(--conn-shadow-card)' : 'none';
 
@@ -118,6 +115,8 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'nametagTextColor' => $this->sanitizeColor((string)($raw['nametagTextColor'] ?? ''), '#ffffff'),
             'revealBg'         => $this->sanitizeColor((string)($raw['revealBg'] ?? ''), ''),
             'revealTextColor'  => $this->sanitizeColor((string)($raw['revealTextColor'] ?? ''), ''),
+            'curtainBg'        => $this->sanitizeColor((string)($raw['curtainBg'] ?? ''), ''),
+            'curtainTextColor' => $this->sanitizeColor((string)($raw['curtainTextColor'] ?? ''), ''),
         ];
     }
 
@@ -145,6 +144,8 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'nametagTextColor' => '#ffffff',
             'revealBg'         => '',
             'revealTextColor'  => '',
+            'curtainBg'        => '',
+            'curtainTextColor' => '',
         ];
     }
 

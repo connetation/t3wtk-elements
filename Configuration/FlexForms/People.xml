@@ -78,6 +78,7 @@
                                 <numIndex index="3"><label>4 columns (default)</label><value>4</value></numIndex>
                                 <numIndex index="4"><label>6 columns</label><value>6</value></numIndex>
                             </items>
+                            <itemsProcFunc>Connetation\Elements\Service\PeopleItemsProcFunc->getColumnsItems</itemsProcFunc>
                         </config>
                     </settings.columns>
                     <settings.align>
@@ -157,7 +158,7 @@
                     </settings.showRole>
                     <settings.showBio>
                         <label>Show bio</label>
-                        <displayCond>FIELD:settings.style:IN:flippable-card,reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
+                        <displayCond>FIELD:settings.style:IN:flippable-card,team-card,reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
@@ -250,6 +251,24 @@
                             <size>10</size>
                         </config>
                     </settings.revealTextColor>
+                    <settings.curtainBg>
+                        <label>Curtain background color (empty = alternates using each person's accent color)</label>
+                        <displayCond>FIELD:display.settings.style:=:reveal-curtain</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.curtainBg>
+                    <settings.curtainTextColor>
+                        <label>Curtain text color (name/role/bio/contact — empty = white)</label>
+                        <displayCond>FIELD:display.settings.style:=:reveal-curtain</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.curtainTextColor>
                 </el>
             </ROOT>
         </colors_reveal>

@@ -1,15 +1,12 @@
 /**
  * Connetation Elements – People
- *
- * The flip and reveal-* styles rely on :hover / :focus-within in CSS. Neither
- * fires reliably on touch devices, so this adds a tap-to-toggle fallback —
- * skipped entirely on devices that support real hover (desktop/mouse).
  */
 
 class People {
 
     private static readonly INTERACTIVE_SEL = [
         '.conn-people__flip-card',
+        '.conn-people__team-flip',
         '.conn-people__reveal--sheet',
         '.conn-people__reveal--curtain',
         '.conn-people__reveal--spotlight',

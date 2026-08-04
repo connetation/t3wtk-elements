@@ -12,8 +12,8 @@
                             <conn:responsiveImage image="{person.imageFile}"
                                                 class="conn-people__thumb-img"
                                                 alt="{person.name}"
-                                                widths="80,120,160"
-                                                sizes="64px" />
+                                                widths="120,180,240"
+                                                sizes="144px" />
                         </f:then>
                         <f:else>
                             <div class="conn-people__thumb-placeholder">
@@ -22,15 +22,17 @@
                         </f:else>
                     </f:if>
                 </div>
-                <div class="conn-people__who">
-                    <div class="conn-people__name">{person.name}</div>
-                    <f:if condition="{settings.showRole}">
-                        <f:if condition="{person.role}">
-                            <div class="conn-people__role">{person.role}</div>
+                <div class="conn-people__row-main">
+                    <div class="conn-people__who">
+                        <div class="conn-people__name">{person.name}</div>
+                        <f:if condition="{settings.showRole}">
+                            <f:if condition="{person.role}">
+                                <div class="conn-people__role">{person.role}</div>
+                            </f:if>
                         </f:if>
-                    </f:if>
+                    </div>
+                    <f:render partial="People/ContactLinks" arguments="{person: person}" />
                 </div>
-                <f:render partial="People/ContactLinks" arguments="{person: person}" />
             </div>
         </div>
     </f:for>

@@ -4,20 +4,64 @@
 <div class="row g-4">
     <f:for each="{people}" as="person">
         <div class="{settings.colClass} conn-people__col">
-            <article class="conn-people__card conn-people__card--team">
-                <f:render partial="People/HexPhoto" arguments="{
-                    person:   person,
-                    cssClass: 'conn-people__photo',
-                    widths:   '220,330,440,660',
-                    sizes:    '(max-width: 575px) 45vw, 240px'
-                }" />
-                <div class="conn-people__name">{person.name}</div>
-                <f:if condition="{settings.showRole}">
-                    <f:if condition="{person.role}">
-                        <div class="conn-people__role">{person.role}</div>
-                    </f:if>
-                </f:if>
-            </article>
+            <div class="conn-people__team-flip" tabindex="0">
+                <div class="conn-people__team-flip-inner">
+
+                    <div class="conn-people__team-flip-face conn-people__team-flip-face--front">
+                        <f:render partial="People/HexPhoto" arguments="{
+                            person:   person,
+                            cssClass: 'conn-people__reveal-photo',
+                            widths:   '220,330,440,660',
+                            sizes:    '(max-width: 575px) 45vw, 240px'
+                        }" />
+                        <div class="conn-people__reveal-nametag">{person.name}</div>
+                    </div>
+
+                    <div class="conn-people__team-flip-face conn-people__team-flip-face--back">
+                        <div class="conn-people__name">{person.name}</div>
+                        <f:if condition="{settings.showRole}">
+                            <f:if condition="{person.role}">
+                                <div class="conn-people__role">{person.role}</div>
+                            </f:if>
+                        </f:if>
+                        <f:if condition="{settings.showBio}">
+                            <f:if condition="{person.bio}">
+                                <div class="conn-people__bio">{person.bio -> f:format.html()}</div>
+                            </f:if>
+                        </f:if>
+                        <div class="conn-people__team-flip-links">
+                            <f:if condition="{person.email}">
+                                <a href="mailto:{person.email}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                    </svg>
+                                    {person.email}
+                                </a>
+                            </f:if>
+                            <f:if condition="{person.phone}">
+                                <a href="tel:{person.phone}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.87a.68.68 0 0 0-.703-.082l-1.885.837a.6.6 0 0 1-.634-.084 15.4 15.4 0 0 1-3.257-3.257.6.6 0 0 1-.084-.634l.837-1.885a.68.68 0 0 0-.082-.703l-1.87-2.307Z"/>
+                                    </svg>
+                                    {person.phone}
+                                </a>
+                            </f:if>
+                            <f:if condition="{person.link}">
+                                <f:link.typolink parameter="{person.link}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
+                                    </svg>
+                                    <f:if condition="{person.link_label}">
+                                        <f:then>{person.link_label}</f:then>
+                                        <f:else>More</f:else>
+                                    </f:if>
+                                </f:link.typolink>
+                            </f:if>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </f:for>
 </div>
