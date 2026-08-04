@@ -166,17 +166,13 @@
             font-size: 0.8rem;
             color: var(--conn-people-text);
             text-decoration: none;
+            &::before { content: none; }
         }
 
         a:hover { color: var(--conn-people-a); }
     }
 
     // ── Contact card ──────────────────────────────
-    // Thumb stretches to the card's full height (align-items:stretch)
-    // instead of a small fixed badge. Name/role+contact (.row-main) stack
-    // in their own column, two-line-safe by construction — a long surname
-    // or a 3rd (website) button can no longer squeeze the name into an
-    // unreadable sliver like before.
     &__row {
         display: flex;
         align-items: stretch;
@@ -197,8 +193,6 @@
             justify-content: center;
             gap: var(--conn-space-xs);
             flex: 1 1 auto;
-            // enough room before overflow-wrap has to break mid-word,
-            // instead of collapsing to near-zero width
             min-width: 6rem;
         }
 
@@ -207,9 +201,6 @@
         .conn-people__contact { margin-top: 0; flex-wrap: nowrap; justify-content: flex-end; }
         .conn-people__btn-label { display: none; }
 
-        // Bare icons instead of hexagon buttons — kill .btn-hexagon's side
-        // wedges/shadow/margin and swap the accent from background to the
-        // icon's own color.
         .conn-people__btn {
             margin: 0;
             padding: 0;
@@ -271,10 +262,6 @@
     }
 
     // ── Content position / card width ─────────────
-    // Only visible once a card's max-width (below) is narrower than its
-    // column — e.g. a single item, or a "Per row" count too coarse to fill
-    // the row exactly. Default (no modifier) centers via each card's own
-    // `margin: 0 auto`.
     &--align-left &__visit,
     &--align-left &__reveal,
     &--align-left &__flip-card,
@@ -676,10 +663,9 @@
         display: flex;
         align-items: center;
         gap: 0.4rem;
+        &::before { content: none; }
     }
 
-    // scoped to the text span only — underlining the whole flex line draws
-    // it under the icon circle too, which looks wrong
     &__visit-line:hover &__visit-text { text-decoration: underline; }
 
     &__visit--right &__visit-line { flex-direction: row-reverse; }
