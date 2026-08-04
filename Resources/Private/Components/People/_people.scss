@@ -166,8 +166,6 @@
             font-size: 0.8rem;
             color: var(--conn-people-text);
             text-decoration: none;
-
-            &::before { content: none !important; }
         }
 
         a:hover { color: var(--conn-people-a); }
@@ -493,8 +491,6 @@
         .conn-people__contact { margin-top: 0.75rem; }
     }
 
-    // Element-level override wins (var's 2nd arg); unset falls back to the
-    // per-person accent alternation, same as before this setting existed.
     &__curtain--a { background: var(--conn-people-curtain-bg, var(--conn-people-a)); }
     &__curtain--b { background: var(--conn-people-curtain-bg, var(--conn-people-b)); }
 
@@ -664,11 +660,7 @@
         display: flex;
         align-items: center;
         gap: 0.4rem;
-
-        &::before { content: none !important; }
     }
-
-    &__visit-line:hover &__visit-text { text-decoration: underline; }
 
     &__visit--right &__visit-line { flex-direction: row-reverse; }
 
