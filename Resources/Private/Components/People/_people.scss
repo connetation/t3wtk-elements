@@ -166,7 +166,8 @@
             font-size: 0.8rem;
             color: var(--conn-people-text);
             text-decoration: none;
-            &::before { content: none; }
+
+            &::before { content: none !important; }
         }
 
         a:hover { color: var(--conn-people-a); }
@@ -663,7 +664,8 @@
         display: flex;
         align-items: center;
         gap: 0.4rem;
-        &::before { content: none; }
+
+        &::before { content: none !important; }
     }
 
     &__visit-line:hover &__visit-text { text-decoration: underline; }
