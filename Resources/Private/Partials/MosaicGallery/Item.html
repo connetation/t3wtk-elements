@@ -3,23 +3,31 @@
       data-namespace-typo3-fluid="true">
 
 <f:if condition="{item.imageFile}">
-    <f:variable name="thumbUri"><f:uri.image image="{item.imageFile}" width="{settings.imageWidth}" /></f:variable>
     <f:variable name="fullUri"><f:uri.image image="{item.imageFile}" width="1920" /></f:variable>
 
     <div class="conn-mosaic-gallery__item"
          data-index="{index}"
-         data-src="{fullUri}"
-         data-thumb="{thumbUri}"
-         data-title="{item.title}"
-         data-caption="{item.caption}"
          data-img-width="{item.imageFile.properties.width}"
          data-img-height="{item.imageFile.properties.height}">
         <div class="conn-mosaic-gallery__item-inner">
-            <conn:responsiveImage image="{item.imageFile}"
-                                class="conn-mosaic-gallery__img"
-                                alt="{item.title}"
-                                widths="400,600,800,1200"
-                                sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" />
+            <f:if condition="{settings.openInLightbox}">
+                <f:then>
+                    <a href="{fullUri}" class="glightbox" data-gallery="mosaic-gallery-{data.uid}" data-title="{item.title}" data-description="{item.caption}">
+                        <conn:responsiveImage image="{item.imageFile}"
+                                            class="conn-mosaic-gallery__img"
+                                            alt="{item.title}"
+                                            widths="400,600,800,1200"
+                                            sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" />
+                    </a>
+                </f:then>
+                <f:else>
+                    <conn:responsiveImage image="{item.imageFile}"
+                                        class="conn-mosaic-gallery__img"
+                                        alt="{item.title}"
+                                        widths="400,600,800,1200"
+                                        sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" />
+                </f:else>
+            </f:if>
 
             <f:if condition="{settings.showCaptions} && ({item.title} || {item.caption})">
                 <div class="conn-mosaic-gallery__caption conn-mosaic-gallery__caption--{settings.captionStyle}">

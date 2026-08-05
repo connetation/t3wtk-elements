@@ -22,7 +22,7 @@
          data-aspect="{settings.aspectRatio}"
          data-hover="{settings.hoverEffect}"
          data-caption-style="{settings.captionStyle}"
-         data-lightbox="{f:if(condition: settings.enableLightbox, then: '1', else: '0')}"
+         data-lightbox="{f:if(condition: settings.openInLightbox, then: '1', else: '0')}"
          data-show-captions="{f:if(condition: settings.showCaptions, then: '1', else: '0')}"
          style="--conn-mosaic-gallery-cols: {settings.columns}; --conn-mosaic-gallery-h: {settings.galleryHeight}px">
 
@@ -31,34 +31,9 @@
             <div class="conn-mosaic-gallery__grid">
                 <f:for each="{items}" as="item" iteration="i">
                     <f:render partial="MosaicGallery/Item"
-                              arguments="{item: item, settings: settings, index: i.index, total: i.total}" />
+                              arguments="{item: item, settings: settings, index: i.index, total: i.total, data: data}" />
                 </f:for>
             </div>
-
-            <f:if condition="{settings.enableLightbox}">
-                <div class="conn-mosaic-gallery__lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-                    <div class="conn-mosaic-gallery__lb-overlay"></div>
-                    <div class="conn-mosaic-gallery__lb-stage">
-                        <button class="conn-mosaic-gallery__lb-prev" type="button" aria-label="Previous image">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <polyline points="15 18 9 12 15 6"/>
-                            </svg>
-                        </button>
-                        <div class="conn-mosaic-gallery__lb-media">
-                            <img class="conn-mosaic-gallery__lb-img" src="" alt="" />
-                        </div>
-                        <button class="conn-mosaic-gallery__lb-next" type="button" aria-label="Next image">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <polyline points="9 18 15 12 9 6"/>
-                            </svg>
-                        </button>
-                        <div class="conn-mosaic-gallery__lb-footer">
-                            <span class="conn-mosaic-gallery__lb-counter"></span>
-                            <p class="conn-mosaic-gallery__lb-caption"></p>
-                        </div>
-                    </div>
-                </div>
-            </f:if>
         </f:then>
         <f:else>
             <p class="text-muted fst-italic">No images added yet.</p>

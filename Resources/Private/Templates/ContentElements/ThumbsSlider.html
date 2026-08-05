@@ -26,7 +26,7 @@
             <div class="swiper conn-thumbs-slider__main">
                 <div class="swiper-wrapper">
                     <f:for each="{slides}" as="slide" iteration="slideIter">
-                        <f:render partial="ThumbsSlider/Slide" arguments="{slide: slide, isFirst: slideIter.isFirst}" />
+                        <f:render partial="ThumbsSlider/Slide" arguments="{slide: slide, isFirst: slideIter.isFirst, data: data}" />
                     </f:for>
                 </div>
 

@@ -9,7 +9,7 @@
             <div class="conn-thumbs-slider__bg">
                 <f:if condition="{settings.openInLightbox}">
                     <f:then>
-                        <a href="{slide.imageFile.publicUrl}" class="glightbox" data-title="{slide.title}" data-description="{slide.subtitle}">
+                        <a href="{slide.imageFile.publicUrl}" class="glightbox" data-gallery="thumbs-slider-{data.uid}" data-title="{slide.title}" data-description="{slide.subtitle}">
                             <conn:responsiveImage image="{slide.imageFile}"
                                                 class="conn-thumbs-slider__bg-img"
                                                 alt="{slide.title}"

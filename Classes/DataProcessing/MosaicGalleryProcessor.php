@@ -34,7 +34,6 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
         $allowedGaps     = ['none', 'small', 'medium', 'large'];
         $allowedHover    = ['none', 'zoom', 'dim', 'overlay'];
         $allowedCaption  = ['overlay', 'below'];
-        $allowedWidths   = [400, 600, 800, 1200];
         $allowedRadius   = ['none', 'small', 'medium', 'large', 'pill'];
         $allowedAspects  = ['none', '1/1', '4/3', '16/9', '3/4'];
 
@@ -56,8 +55,6 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             ? ($raw['hoverEffect'] ?? 'zoom') : 'zoom';
         $captionStyle  = in_array($raw['captionStyle'] ?? 'overlay', $allowedCaption, true)
             ? ($raw['captionStyle'] ?? 'overlay') : 'overlay';
-        $imageWidth    = in_array((int)($raw['imageWidth'] ?? 800), $allowedWidths, true)
-            ? (int)($raw['imageWidth'] ?? 800) : 800;
         $borderRadius  = in_array($raw['borderRadius'] ?? 'medium', $allowedRadius, true)
             ? ($raw['borderRadius'] ?? 'medium') : 'medium';
         $aspectRatio   = in_array($raw['aspectRatio'] ?? 'none', $allowedAspects, true)
@@ -70,9 +67,8 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             'gap'            => $gap,
             'hoverEffect'    => $hoverEffect,
             'captionStyle'   => $captionStyle,
-            'enableLightbox' => (bool)($raw['enableLightbox'] ?? true),
+            'openInLightbox' => (bool)($raw['openInLightbox'] ?? true),
             'showCaptions'   => (bool)($raw['showCaptions'] ?? true),
-            'imageWidth'     => $imageWidth,
             'borderRadius'   => $borderRadius,
             'aspectRatio'    => $aspectRatio,
         ];
@@ -87,9 +83,8 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             'gap'            => 'medium',
             'hoverEffect'    => 'zoom',
             'captionStyle'   => 'overlay',
-            'enableLightbox' => true,
+            'openInLightbox' => true,
             'showCaptions'   => true,
-            'imageWidth'     => 800,
             'borderRadius'   => 'medium',
             'aspectRatio'    => 'none',
         ];
