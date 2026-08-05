@@ -33,7 +33,10 @@
                 <div class="conn-mosaic-gallery__caption conn-mosaic-gallery__caption--{settings.captionStyle}">
                     <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-mosaic-gallery__caption-title {item.title_class}', defaultTag: 'p'}" />
                     <f:if condition="{item.caption}">
-                        <p class="conn-mosaic-gallery__caption-text">{item.caption -> f:format.html()}</p>
+                        <!-- div, not p: caption is RTE-enabled and already emits its own <p> —
+                             nesting that inside a <p> here would force the browser to auto-close
+                             this wrapper immediately, silently dropping its class/color. -->
+                        <div class="conn-mosaic-gallery__caption-text">{item.caption -> f:format.html()}</div>
                     </f:if>
                 </div>
             </f:if>

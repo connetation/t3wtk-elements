@@ -22,9 +22,10 @@
          data-aspect="{settings.aspectRatio}"
          data-hover="{settings.hoverEffect}"
          data-caption-style="{settings.captionStyle}"
+         data-caption-scrim="{settings.captionScrim}"
          data-lightbox="{f:if(condition: settings.openInLightbox, then: '1', else: '0')}"
          data-show-captions="{f:if(condition: settings.showCaptions, then: '1', else: '0')}"
-         style="--conn-mosaic-gallery-cols: {settings.columns}; --conn-mosaic-gallery-h: {settings.galleryHeight}px">
+         style="--conn-mosaic-gallery-cols: {settings.columns}; --conn-mosaic-gallery-h: {settings.galleryHeight}px; --conn-mg-caption-title-color: {settings.captionTitleColor}; --conn-mg-caption-text-color: {settings.captionTextColor}">
 
     <f:if condition="{items}">
         <f:then>

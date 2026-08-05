@@ -36,6 +36,7 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
         $allowedCaption  = ['overlay', 'below'];
         $allowedRadius   = ['none', 'small', 'medium', 'large', 'pill'];
         $allowedAspects  = ['none', '1/1', '4/3', '16/9', '3/4'];
+        $allowedScrim    = ['none', 'light', 'medium', 'strong', 'solid'];
 
         // Backward compat: old instances without layoutType derive it from aspectRatio
         $layoutType = $raw['layoutType'] ?? '';
@@ -59,34 +60,49 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             ? ($raw['borderRadius'] ?? 'medium') : 'medium';
         $aspectRatio   = in_array($raw['aspectRatio'] ?? 'none', $allowedAspects, true)
             ? ($raw['aspectRatio'] ?? 'none') : 'none';
+        $captionScrim  = in_array($raw['captionScrim'] ?? 'medium', $allowedScrim, true)
+            ? ($raw['captionScrim'] ?? 'medium') : 'medium';
 
         return [
-            'layoutType'     => $layoutType,
-            'columns'        => $columns,
-            'galleryHeight'  => $galleryHeight,
-            'gap'            => $gap,
-            'hoverEffect'    => $hoverEffect,
-            'captionStyle'   => $captionStyle,
-            'openInLightbox' => (bool)($raw['openInLightbox'] ?? true),
-            'showCaptions'   => (bool)($raw['showCaptions'] ?? true),
-            'borderRadius'   => $borderRadius,
-            'aspectRatio'    => $aspectRatio,
+            'layoutType'        => $layoutType,
+            'columns'           => $columns,
+            'galleryHeight'     => $galleryHeight,
+            'gap'               => $gap,
+            'hoverEffect'       => $hoverEffect,
+            'captionStyle'      => $captionStyle,
+            'openInLightbox'    => (bool)($raw['openInLightbox'] ?? true),
+            'showCaptions'      => (bool)($raw['showCaptions'] ?? true),
+            'borderRadius'      => $borderRadius,
+            'aspectRatio'       => $aspectRatio,
+            'captionScrim'      => $captionScrim,
+            // Native color-with-opacity FlexForm fields already emit a ready-to-use
+            // #RRGGBBAA string — no conversion needed, just guard against garbage.
+            'captionTitleColor' => $this->sanitizeHexColor($raw['captionTitleColor'] ?? '', '#ffffff'),
+            'captionTextColor'  => $this->sanitizeHexColor($raw['captionTextColor'] ?? '', '#ffffffd9'),
         ];
     }
 
     protected function defaultSettings(string $settingsField): array
     {
         return [
-            'layoutType'     => 'masonry',
-            'columns'        => 3,
-            'galleryHeight'  => 280,
-            'gap'            => 'medium',
-            'hoverEffect'    => 'zoom',
-            'captionStyle'   => 'overlay',
-            'openInLightbox' => true,
-            'showCaptions'   => true,
-            'borderRadius'   => 'medium',
-            'aspectRatio'    => 'none',
+            'layoutType'        => 'masonry',
+            'columns'           => 3,
+            'galleryHeight'     => 280,
+            'gap'               => 'medium',
+            'hoverEffect'       => 'zoom',
+            'captionStyle'      => 'overlay',
+            'openInLightbox'    => true,
+            'showCaptions'      => true,
+            'borderRadius'      => 'medium',
+            'aspectRatio'       => 'none',
+            'captionScrim'      => 'medium',
+            'captionTitleColor' => '#ffffff',
+            'captionTextColor'  => '#ffffffd9',
         ];
+    }
+
+    private function sanitizeHexColor(string $hex, string $default): string
+    {
+        return preg_match('/^#[0-9a-fA-F]{3,8}$/', $hex) ? $hex : $default;
     }
 }

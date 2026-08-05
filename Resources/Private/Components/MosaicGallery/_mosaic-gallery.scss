@@ -236,27 +236,42 @@
         // color is likewise NOT var(--conn-heading): it's a contrast fix for
         // white text over an image scrim (overlay) vs. body text (below).
         &-title {
-            margin: 0 0 0.2rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            line-height: 1.3;
             color: #fff;
 
             .conn-mosaic-gallery__caption--below & {
                 color: var(--conn-text);
             }
+
+            // "Caption title color"/"opacity" settings — overlay style only.
+            .conn-mosaic-gallery__caption--overlay & {
+                color: var(--conn-mg-caption-title-color, #fff);
+            }
         }
 
         &-text {
-            margin: 0;
-            font-size: 0.8rem;
-            line-height: 1.4;
             color: rgba(255, 255, 255, 0.85);
+
+            // RTE output (the caption field is richtext-enabled) — reset its
+            // own <p> margins since this wrapper already handles spacing.
+            p { margin: 0 0 0.3em; }
+            p:last-child { margin-bottom: 0; }
 
             .conn-mosaic-gallery__caption--below & {
                 color: var(--conn-text-muted);
             }
+
+            // "Caption text color"/"opacity" settings — overlay style only.
+            .conn-mosaic-gallery__caption--overlay & {
+                color: var(--conn-mg-caption-text-color, rgba(255, 255, 255, 0.85));
+            }
         }
     }
+
+    // ── Caption background strength ("None"..."Solid", overlay style only) ──
+    &[data-caption-scrim="none"]   &__caption--overlay { background: transparent; }
+    &[data-caption-scrim="light"]  &__caption--overlay { background: linear-gradient(to top, rgb(0 0 0 / 40%) 0%, transparent 65%); }
+    &[data-caption-scrim="medium"] &__caption--overlay { background: linear-gradient(to top, rgb(0 0 0 / 65%) 0%, transparent 60%); }
+    &[data-caption-scrim="strong"] &__caption--overlay { background: linear-gradient(to top, rgb(0 0 0 / 85%) 0%, transparent 50%); }
+    &[data-caption-scrim="solid"]  &__caption--overlay { background: rgb(0 0 0 / 92%); }
 
 }

@@ -143,6 +143,43 @@
                             </items>
                         </config>
                     </settings.showCaptions>
+                    <settings.captionTitleColor>
+                        <label>Caption title color</label>
+                        <description>Only affects the "Overlay on image" caption style — "Below image" captions already follow the site's text color.</description>
+                        <displayCond>FIELD:settings.captionStyle:=:overlay</displayCond>
+                        <config>
+                            <type>color</type>
+                            <default>#ffffff</default>
+                            <opacity>true</opacity>
+                        </config>
+                    </settings.captionTitleColor>
+                    <settings.captionTextColor>
+                        <label>Caption text color</label>
+                        <description>Only affects the "Overlay on image" caption style — "Below image" captions already follow the site's text color.</description>
+                        <displayCond>FIELD:settings.captionStyle:=:overlay</displayCond>
+                        <config>
+                            <type>color</type>
+                            <default>#ffffffd9</default>
+                            <opacity>true</opacity>
+                        </config>
+                    </settings.captionTextColor>
+                    <settings.captionScrim>
+                        <label>Caption background strength</label>
+                        <description>Darkens (or, with dark text, lightens) the image behind overlay captions so text stays readable over busy or high-contrast photos.</description>
+                        <displayCond>FIELD:settings.captionStyle:=:overlay</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Light</label><value>light</value></numIndex>
+                                <numIndex index="2"><label>Medium (default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Strong</label><value>strong</value></numIndex>
+                                <numIndex index="4"><label>Solid</label><value>solid</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.captionScrim>
                 </el>
             </ROOT>
         </sDisplay>
