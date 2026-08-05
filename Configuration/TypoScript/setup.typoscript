@@ -13,7 +13,6 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Slider.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Tabs.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/ThumbsSlider.typoscript'
-@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Faq.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Process.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/BeforeAfter.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Quote.typoscript'

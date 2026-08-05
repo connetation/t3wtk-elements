@@ -1090,31 +1090,6 @@
             <trans-unit id="text_icon.bg">
                 <source>Badge background color (empty = theme default)</source>
             </trans-unit>
-            <!-- FAQ content element -->
-            <trans-unit id="ce.bs_faq">
-                <source>FAQ</source>
-            </trans-unit>
-            <trans-unit id="ce.bs_faq.description">
-                <source>Same collapsible layout as Accordion, but also generates FAQPage structured data — Google can show your questions directly in search results. Use this for actual FAQ content; use Accordion for any other collapsible content.</source>
-            </trans-unit>
-            <trans-unit id="faq.tab.config">
-                <source>FAQ Settings</source>
-            </trans-unit>
-            <trans-unit id="faq.items">
-                <source>Questions</source>
-            </trans-unit>
-            <trans-unit id="faq.settings">
-                <source>Display Settings</source>
-            </trans-unit>
-            <trans-unit id="model.faq_item">
-                <source>FAQ Item</source>
-            </trans-unit>
-            <trans-unit id="faq_item.title">
-                <source>Question</source>
-            </trans-unit>
-            <trans-unit id="faq_item.body">
-                <source>Answer</source>
-            </trans-unit>
             <!-- Process/Steps content element -->
             <trans-unit id="ce.bs_process">
                 <source>Process/Steps</source>

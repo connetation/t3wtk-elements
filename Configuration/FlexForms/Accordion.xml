@@ -34,6 +34,15 @@
                             <default>0</default>
                         </config>
                     </settings.collapseAll>
+                    <settings.useAsFaq>
+                        <label>Use as FAQ</label>
+                        <description>Also generates FAQPage structured data (schema.org JSON-LD) — Google can show your questions directly in search results. Enable this only for actual FAQ content; leave off for any other collapsible content.</description>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.useAsFaq>
                 </el>
             </ROOT>
         </sDEF>

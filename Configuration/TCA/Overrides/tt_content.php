@@ -276,55 +276,6 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_tabs'] = [
     ',
 ];
 
-// ─── FAQ ────────────────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_faq'] = 'conn-ce-faq';
-
-ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
-    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_faq',
-    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_faq.description',
-    'value' => 'conn_bs_faq',
-    'icon'  => 'conn-ce-faq',
-    'group' => 'conn_interactive',
-]);
-
-ExtensionManagementUtility::addTCAcolumns('tt_content', [
-    'tx_conn_elements_faq_items' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:faq.items',
-        'config' => [
-            'type'          => 'inline',
-            'foreign_table' => 'tx_conn_elements_domain_model_faq_item',
-            'foreign_field' => 'content_element',
-            'maxitems'      => 200,
-            'appearance'    => [
-                'collapseAll'                     => true,
-                'levelLinksPosition'              => 'top',
-                'enabledControls'                 => ['dragdrop' => true],
-            ],
-        ],
-    ],
-    'tx_conn_elements_faq_settings' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:faq.settings',
-        'config' => [
-            'type' => 'flex',
-            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Faq.xml',
-        ],
-    ],
-]);
-
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_faq'] = [
-    'showitem' => '
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_elements_faq_items,
-        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:faq.tab.config,
-            tx_conn_elements_faq_settings,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
-            --palette--;;frames,
-            --palette--;;appearanceLinks,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            --palette--;;hidden,--palette--;;access,
-    ',
-];
-
 // ─── Process/Steps ──────────────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_process'] = 'conn-ce-process';
 

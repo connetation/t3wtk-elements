@@ -229,12 +229,6 @@
             padding: var(--conn-space-xs) 0.25rem 0;
         }
 
-        // title_layout defaults to a plain <p> (not a heading) here, so unlike
-        // headings elsewhere this class can't rely on conn/base's shared h1-h3
-        // scale for its typical case — it needs its own compact caption size/
-        // weight regardless of which tag (p or h1-h5) actually gets rendered.
-        // color is likewise NOT var(--conn-heading): it's a contrast fix for
-        // white text over an image scrim (overlay) vs. body text (below).
         &-title {
             color: #fff;
 

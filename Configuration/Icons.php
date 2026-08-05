@@ -119,10 +119,6 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/tabs-ce.svg',
     ],
-    'conn-ce-faq' => [
-        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source'   => 'EXT:conn_elements/Resources/Public/Icons/faq-ce.svg',
-    ],
     'conn-ce-process' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/process-ce.svg',

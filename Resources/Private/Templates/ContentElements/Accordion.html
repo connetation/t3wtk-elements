@@ -12,6 +12,10 @@
     type="module"
     priority="false" />
 
+<f:if condition="{faqJsonLd}">
+    <script type="application/ld+json">{faqJsonLd -> f:format.raw()}</script>
+</f:if>
+
 <section class="conn-accordion" id="conn-accordion-section-{data.uid}">
 
         <f:if condition="{items}">
@@ -28,7 +32,10 @@
             </f:then>
             <f:else>
                 <p class="text-muted fst-italic">
-                    <f:translate key="accordion.empty" extensionName="conn_elements" />
+                    <f:if condition="{settings.useAsFaq}">
+                        <f:then><f:translate key="faq.empty" extensionName="conn_elements" /></f:then>
+                        <f:else><f:translate key="accordion.empty" extensionName="conn_elements" /></f:else>
+                    </f:if>
                 </p>
             </f:else>
         </f:if>
