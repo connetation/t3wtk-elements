@@ -28,31 +28,46 @@ final class CarouselProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $allowedRatios = ['21x9', '16x9', '4x3', '1x1'];
+        $allowedRatios = ['21x9', '16x9', '4x3', '1x1', 'original'];
         $aspectRatio   = in_array($raw['aspectRatio'] ?? '', $allowedRatios, true)
             ? $raw['aspectRatio'] : '16x9';
 
+        $allowedOriginalHeights = ['auto', '55vh', '70vh', '100vh'];
+        $originalHeightRaw = $raw['originalHeight'] ?? 'auto';
+        $originalHeight = in_array($originalHeightRaw, $allowedOriginalHeights, true)
+            ? $originalHeightRaw : 'auto';
+
         return [
-            'aspectRatio' => $aspectRatio,
-            'controls'    => (bool)(int)($raw['controls']   ?? 1),
-            'indicators'  => (bool)(int)($raw['indicators'] ?? 1),
-            'autoplay'    => (bool)(int)($raw['autoplay']   ?? 0),
-            'interval'    => max(1000, (int)($raw['interval'] ?? 5000)),
-            'fade'        => (bool)(int)($raw['fade']       ?? 0),
-            'dark'        => (bool)(int)($raw['dark']       ?? 0),
+            'aspectRatio'       => $aspectRatio,
+            'originalHeight'    => $originalHeight,
+            'controls'          => (bool)(int)($raw['controls']   ?? 1),
+            'indicators'        => (bool)(int)($raw['indicators'] ?? 1),
+            'autoplay'          => (bool)(int)($raw['autoplay']   ?? 0),
+            'interval'          => max(1000, (int)($raw['interval'] ?? 5000)),
+            'fade'              => (bool)(int)($raw['fade']       ?? 0),
+            'dark'              => (bool)(int)($raw['dark']       ?? 0),
+            'openInLightbox'    => (bool)(int)($raw['openInLightbox'] ?? 0),
+            'captionTitleColor' => $this->sanitizeHexColor($raw['captionTitleColor'] ?? '', '#ffffff'),
+            'captionTextColor'  => $this->sanitizeHexColor($raw['captionTextColor'] ?? '', '#ffffff'),
+            'captionBgColor'    => $this->sanitizeHexColor($raw['captionBgColor'] ?? '', '#00000094'),
         ];
     }
 
     protected function defaultSettings(string $settingsField): array
     {
         return [
-            'aspectRatio' => '16x9',
-            'controls'    => true,
-            'indicators'  => true,
-            'autoplay'    => false,
-            'interval'    => 5000,
-            'fade'        => false,
-            'dark'        => false,
+            'aspectRatio'       => '16x9',
+            'originalHeight'    => 'auto',
+            'controls'          => true,
+            'indicators'        => true,
+            'autoplay'          => false,
+            'interval'          => 5000,
+            'fade'              => false,
+            'dark'              => false,
+            'openInLightbox'    => false,
+            'captionTitleColor' => '#ffffff',
+            'captionTextColor'  => '#ffffff',
+            'captionBgColor'    => '#00000094',
         ];
     }
 }

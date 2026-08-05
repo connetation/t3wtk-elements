@@ -249,4 +249,13 @@ abstract class AbstractItemsProcessor implements DataProcessorInterface
 
         return $rows;
     }
+
+    /**
+     * Guards a FlexForm `type=color` value (with `opacity=true`, so up to 8 hex
+     * digits: #RRGGBBAA) before it's trusted as a raw CSS custom property value.
+     */
+    protected function sanitizeHexColor(string $hex, string $default): string
+    {
+        return preg_match('/^#[0-9a-fA-F]{3,8}$/', $hex) ? $hex : $default;
+    }
 }

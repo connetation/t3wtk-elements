@@ -8,7 +8,9 @@
 <f:asset.css identifier="conn-elements-carousel-css"
     href="EXT:conn_elements/Resources/Public/Css/carousel.css" />
 
-<section class="conn-bs-carousel conn-bs-carousel--ratio-{settings.aspectRatio}" id="conn-bs-carousel-section-{data.uid}">
+<section class="conn-bs-carousel conn-bs-carousel--ratio-{settings.aspectRatio}"
+         id="conn-bs-carousel-section-{data.uid}"
+         style="--conn-carousel-caption-title-color: {settings.captionTitleColor}; --conn-carousel-caption-text-color: {settings.captionTextColor}; --conn-carousel-caption-bg: {settings.captionBgColor}; --conn-carousel-original-height: {settings.originalHeight}">
     <div class="container-fluid px-0">
 
         <f:if condition="{items}">
@@ -33,7 +35,7 @@
 
                     <div class="carousel-inner">
                         <f:for each="{items}" as="item" iteration="iter">
-                            <f:render partial="Carousel/Slide" arguments="{item: item, isFirst: iter.isFirst, carouselId: data.uid}" />
+                            <f:render partial="Carousel/Slide" arguments="{item: item, isFirst: iter.isFirst, carouselId: data.uid, settings: settings}" />
                         </f:for>
                     </div>
 

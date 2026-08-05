@@ -4,13 +4,29 @@
 
 <div class="carousel-item{f:if(condition: isFirst, then: ' active')}">
     <f:if condition="{item.imageFile}">
-        <conn:responsiveImage image="{item.imageFile}"
-                            class="d-block w-100"
-                            alt="{item.title}"
-                            widths="640,960,1280,1920,2560,3840"
-                            sizes="100vw"
-                            loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}"
-                            fetchpriority="{f:if(condition: isFirst, then: 'high', else: '')}" />
+        <f:variable name="fullUri"><f:uri.image image="{item.imageFile}" width="1920" /></f:variable>
+        <f:if condition="{settings.openInLightbox}">
+            <f:then>
+                <a href="{fullUri}" class="glightbox" data-gallery="carousel-{carouselId}" data-title="{item.title}" data-description="{item.caption}">
+                    <conn:responsiveImage image="{item.imageFile}"
+                                        class="d-block w-100"
+                                        alt="{item.title}"
+                                        widths="640,960,1280,1920,2560,3840"
+                                        sizes="100vw"
+                                        loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}"
+                                        fetchpriority="{f:if(condition: isFirst, then: 'high', else: '')}" />
+                </a>
+            </f:then>
+            <f:else>
+                <conn:responsiveImage image="{item.imageFile}"
+                                    class="d-block w-100"
+                                    alt="{item.title}"
+                                    widths="640,960,1280,1920,2560,3840"
+                                    sizes="100vw"
+                                    loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}"
+                                    fetchpriority="{f:if(condition: isFirst, then: 'high', else: '')}" />
+            </f:else>
+        </f:if>
     </f:if>
     <f:if condition="{item.title} || {item.caption}">
         <div class="carousel-caption">

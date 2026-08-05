@@ -100,9 +100,4 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             'captionTextColor'  => '#ffffffd9',
         ];
     }
-
-    private function sanitizeHexColor(string $hex, string $default): string
-    {
-        return preg_match('/^#[0-9a-fA-F]{3,8}$/', $hex) ? $hex : $default;
-    }
 }

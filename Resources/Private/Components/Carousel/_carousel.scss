@@ -11,34 +11,77 @@
     &--ratio-1x1  .carousel-item { aspect-ratio: 1  / 1; }
 
     // ── Consistent aspect ratio, prevents height jumps between slides ──
+    // The image may be a direct child (no lightbox) or wrapped in an
+    // <a class="glightbox"> (lightbox enabled) — both are covered here.
     .carousel-item {
         overflow: hidden;
 
-        > img {
+        > img,
+        > a {
             position: absolute;
             inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
     }
 
+    // ── "Original" ratio: no cropping ─────────────────────────────────
+    // "Original height" setting controls the height:
+    //  - auto: --conn-carousel-original-height resolves to the literal
+    //    keyword "auto" — a percentage height against an auto-height
+    //    parent itself computes to auto per spec, so the item's height
+    //    naturally follows each slide's own image (may jump between
+    //    slides of different proportions).
+    //  - a fixed vh value: the item gets that height and object-fit:
+    //    contain letterboxes the image inside it — no cropping, no jump.
+    // object-fit: contain is a no-op in the auto case since the box
+    // already matches the image's own rendered aspect ratio exactly.
+    &--ratio-original .carousel-item {
+        aspect-ratio: auto;
+        height: var(--conn-carousel-original-height, auto);
+        background: var(--conn-surface-alt);
+
+        > img,
+        > a {
+            position: static;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
     // ── Caption: solid dark panel, always white text ─────────────────
     // Bootstrap .carousel-dark sets color:#000 — override with !important
     // so caption is readable on any image in both light and dark page mode.
+    // Colors come from the "Caption title/text/background color" settings
+    // (CSS vars set inline on the section) — defaults here match the
+    // previous hardcoded look.
     .carousel-caption {
         left: 0;
         right: 0;
         bottom: 0;
         padding: 1.25rem 2rem 1.25rem;
-        background: rgba(0, 0, 0, 0.58);
+        background: var(--conn-carousel-caption-bg, rgba(0, 0, 0, 0.58));
         backdrop-filter: blur(3px);
         -webkit-backdrop-filter: blur(3px);
         text-align: left;
         text-shadow: none;
 
-        // Force white on all children — overrides .carousel-dark
-        &, h5, p, a, li, span { color: #fff !important; }
+        // Overrides .carousel-dark
+        &, p, a, li, span { color: var(--conn-carousel-caption-text-color, #fff) !important; }
+        h1, h2, h3, h4, h5 { color: var(--conn-carousel-caption-title-color, #fff) !important; }
 
         // title_layout defaults to (and value=5 explicitly renders) <h5>; conn/base's
         // shared typography scale only covers h1-h3 (h4-h6 use Bootstrap's static
