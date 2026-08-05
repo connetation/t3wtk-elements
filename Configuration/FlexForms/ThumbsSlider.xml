@@ -61,6 +61,14 @@
                             </items>
                         </config>
                     </settings.autoplay_delay>
+                    <settings.openInLightbox>
+                        <label>Open in lightbox</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.openInLightbox>
                 </el>
             </ROOT>
         </sDEF>

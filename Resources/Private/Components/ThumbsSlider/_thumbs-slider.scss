@@ -90,9 +90,6 @@
         }
 
         // GSAP text animation active:
-        // - disable the CSS slide-in transition so it can't fight GSAP
-        // - keep text hidden while the slide is active; JS sets inline
-        //   opacity:1 just before GSAP splits and hides the children
         &--gsap {
             .conn-thumbs-slider__eyebrow,
             .conn-thumbs-slider__title,
@@ -121,6 +118,14 @@
 
         &--placeholder {
             background: var(--conn-surface-alt);
+        }
+
+        // "Open in lightbox" wraps the image in a link — it must fill the
+        // background layer the same way the bare image does.
+        > a {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
     }
 
@@ -174,12 +179,6 @@
     }
 
     &__title {
-        // font-size/font-weight/line-height inherit conn/base's shared heading
-        // system (h1-h5 all rendered via title_layout switch above) — this
-        // class previously locked every heading level to the same size,
-        // defeating the point of the layout choice. letter-spacing is kept
-        // since the shared system doesn't provide one and it's additive, not
-        // a duplicate.
         letter-spacing: -0.03em;
         color: #fff;
         margin-bottom: var(--conn-space-xs);

@@ -7,12 +7,26 @@
     <f:if condition="{slide.imageFile}">
         <f:then>
             <div class="conn-thumbs-slider__bg">
-                <conn:responsiveImage image="{slide.imageFile}"
-                                    class="conn-thumbs-slider__bg-img"
-                                    alt="{slide.title}"
-                                    widths="640,960,1280,1920,2560,3840"
-                                    sizes="100vw"
-                                    loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}" />
+                <f:if condition="{settings.openInLightbox}">
+                    <f:then>
+                        <a href="{slide.imageFile.publicUrl}" class="glightbox" data-title="{slide.title}" data-description="{slide.subtitle}">
+                            <conn:responsiveImage image="{slide.imageFile}"
+                                                class="conn-thumbs-slider__bg-img"
+                                                alt="{slide.title}"
+                                                widths="640,960,1280,1920,2560,3840"
+                                                sizes="100vw"
+                                                loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}" />
+                        </a>
+                    </f:then>
+                    <f:else>
+                        <conn:responsiveImage image="{slide.imageFile}"
+                                            class="conn-thumbs-slider__bg-img"
+                                            alt="{slide.title}"
+                                            widths="640,960,1280,1920,2560,3840"
+                                            sizes="100vw"
+                                            loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}" />
+                    </f:else>
+                </f:if>
             </div>
         </f:then>
         <f:else>

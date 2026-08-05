@@ -74,6 +74,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
                 'autoplay'        => (bool)($raw['autoplay'] ?? false),
                 'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
+                'openInLightbox'  => (bool)($raw['openInLightbox'] ?? false),
             ];
         }
 
@@ -122,6 +123,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'show_navigation' => true,
                 'autoplay'        => false,
                 'autoplay_delay'  => 4000,
+                'openInLightbox'  => false,
             ];
         }
 
