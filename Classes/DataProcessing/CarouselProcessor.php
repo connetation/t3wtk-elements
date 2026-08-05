@@ -37,9 +37,24 @@ final class CarouselProcessor extends AbstractItemsProcessor
         $originalHeight = in_array($originalHeightRaw, $allowedOriginalHeights, true)
             ? $originalHeightRaw : 'auto';
 
+        $allowedStyles = ['none', 'shadow', 'border'];
+        $styleRaw = $raw['style'] ?? 'none';
+        $style = in_array($styleRaw, $allowedStyles, true) ? $styleRaw : 'none';
+
+        $borderRadiusMap = [
+            'none'   => '0',
+            'small'  => '4px',
+            'medium' => 'var(--conn-radius)',
+            'large'  => '1.5rem',
+        ];
+        $borderRadiusKey = $raw['borderRadius'] ?? 'none';
+        $borderRadius = $borderRadiusMap[$borderRadiusKey] ?? $borderRadiusMap['none'];
+
         return [
             'aspectRatio'       => $aspectRatio,
             'originalHeight'    => $originalHeight,
+            'style'             => $style,
+            'borderRadius'      => $borderRadius,
             'controls'          => (bool)(int)($raw['controls']   ?? 1),
             'indicators'        => (bool)(int)($raw['indicators'] ?? 1),
             'autoplay'          => (bool)(int)($raw['autoplay']   ?? 0),
@@ -58,6 +73,8 @@ final class CarouselProcessor extends AbstractItemsProcessor
         return [
             'aspectRatio'       => '16x9',
             'originalHeight'    => 'auto',
+            'style'             => 'none',
+            'borderRadius'      => '0',
             'controls'          => true,
             'indicators'        => true,
             'autoplay'          => false,

@@ -89,6 +89,33 @@
                             <default>0</default>
                         </config>
                     </settings.dark>
+                    <settings.style>
+                        <label>Style</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>none</default>
+                            <items>
+                                <numIndex index="0"><label>None (default)</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Shadow</label><value>shadow</value></numIndex>
+                                <numIndex index="2"><label>Border</label><value>border</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.style>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>none</default>
+                            <items>
+                                <numIndex index="0"><label>None (default)</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (12 px)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.borderRadius>
                     <settings.openInLightbox>
                         <label>Open in lightbox</label>
                         <config>
