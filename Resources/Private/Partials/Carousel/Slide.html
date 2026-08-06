@@ -3,14 +3,19 @@
       data-namespace-typo3-fluid="true">
 
 <div class="carousel-item{f:if(condition: isFirst, then: ' active')}">
+    <f:variable name="slideCaption" value="{item.caption}" />
+    <f:if condition="{item.imageFile.description}"><f:variable name="slideCaption" value="{item.imageFile.description}" /></f:if>
     <f:if condition="{item.imageFile}">
         <f:variable name="fullUri"><f:uri.image image="{item.imageFile}" width="1920" /></f:variable>
+        <f:variable name="slideImgAlt" value="{item.title}" />
+        <f:if condition="{item.imageFile.alternative}"><f:variable name="slideImgAlt" value="{item.imageFile.alternative}" /></f:if>
         <f:if condition="{settings.openInLightbox}">
             <f:then>
-                <a href="{fullUri}" class="glightbox" data-gallery="carousel-{carouselId}" data-title="{item.title}" data-description="{item.caption}">
+                <a href="{fullUri}" class="glightbox" data-gallery="carousel-{carouselId}" data-title="{item.title}" data-description="{slideCaption}">
                     <conn:responsiveImage image="{item.imageFile}"
                                         class="d-block w-100"
-                                        alt="{item.title}"
+                                        alt="{slideImgAlt}"
+                                        title="{item.imageFile.title}"
                                         widths="640,960,1280,1920,2560,3840"
                                         sizes="100vw"
                                         loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}"
@@ -20,7 +25,8 @@
             <f:else>
                 <conn:responsiveImage image="{item.imageFile}"
                                     class="d-block w-100"
-                                    alt="{item.title}"
+                                    alt="{slideImgAlt}"
+                                    title="{item.imageFile.title}"
                                     widths="640,960,1280,1920,2560,3840"
                                     sizes="100vw"
                                     loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}"
@@ -28,7 +34,7 @@
             </f:else>
         </f:if>
     </f:if>
-    <f:if condition="{item.title} || {item.caption}">
+    <f:if condition="{item.title} || {slideCaption}">
         <div class="carousel-caption">
             <f:if condition="{item.title}">
                 <f:if condition="{item.title_layout} != 100">
@@ -42,8 +48,8 @@
                     </f:switch>
                 </f:if>
             </f:if>
-            <f:if condition="{item.caption}">
-                {item.caption -> f:format.html()}
+            <f:if condition="{slideCaption}">
+                {slideCaption -> f:format.html()}
             </f:if>
             <f:if condition="{item.link}">
                 <f:link.typolink parameter="{item.link}" class="btn btn-light btn-sm">

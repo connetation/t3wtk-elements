@@ -4,10 +4,13 @@
 
 <div id="dashboard-{uid}-detail-{project.uid}" class="d-none">
     <f:if condition="{project.imageFiles}">
+        <f:variable name="projectDetailImgAlt" value="{project.title}" />
+        <f:if condition="{project.imageFiles.0.alternative}"><f:variable name="projectDetailImgAlt" value="{project.imageFiles.0.alternative}" /></f:if>
         <div class="mb-3 ratio ratio-16x9 rounded overflow-hidden" style="max-height:220px">
             <conn:responsiveImage image="{project.imageFiles.0}"
                                 class="object-fit-contain w-100"
-                                alt="{project.title}"
+                                alt="{projectDetailImgAlt}"
+                                title="{project.imageFiles.0.title}"
                                 widths="480,800,1200,1600"
                                 sizes="(max-width: 991px) 100vw, 800px" />
         </div>

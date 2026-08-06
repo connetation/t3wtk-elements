@@ -8,9 +8,12 @@
         <div class="conn-feature-grid__icon">
             <f:if condition="{feature.imageFile}">
                 <f:then>
+                    <f:variable name="featureImgAlt" value="{feature.title}" />
+                    <f:if condition="{feature.imageFile.alternative}"><f:variable name="featureImgAlt" value="{feature.imageFile.alternative}" /></f:if>
                     <conn:responsiveImage image="{feature.imageFile}"
                                         class="conn-feature-grid__icon-img"
-                                        alt="{feature.title}"
+                                        alt="{featureImgAlt}"
+                                        title="{feature.imageFile.title}"
                                         widths="48,96,144"
                                         sizes="48px"
                                         aspectRatio="1:1" />

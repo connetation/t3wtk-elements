@@ -12,10 +12,13 @@
                         <span class="conn-timeline__date">{item.dateFormatted}</span>
                     </f:if>
                     <f:if condition="{item.imageFile}">
+                        <f:variable name="itemImgAlt" value="{item.title}" />
+                        <f:if condition="{item.imageFile.alternative}"><f:variable name="itemImgAlt" value="{item.imageFile.alternative}" /></f:if>
                         <div class="conn-timeline__image">
                             <conn:responsiveImage image="{item.imageFile}"
                                                 class="img-fluid rounded"
-                                                alt="{item.title}"
+                                                alt="{itemImgAlt}"
+                                                title="{item.imageFile.title}"
                                                 widths="480,640,800,1200,1600"
                                                 sizes="(max-width: 767px) 100vw, 50vw" />
                         </div>

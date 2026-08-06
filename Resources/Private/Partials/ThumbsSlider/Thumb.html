@@ -7,9 +7,12 @@
     <div class="conn-thumbs-slider__thumb-img-wrap">
         <f:if condition="{slide.imageFile}">
             <f:then>
+                <f:variable name="slideImgAlt" value="{slide.title}" />
+                <f:if condition="{slide.imageFile.alternative}"><f:variable name="slideImgAlt" value="{slide.imageFile.alternative}" /></f:if>
                 <conn:responsiveImage image="{slide.imageFile}"
                                     class="conn-thumbs-slider__thumb-img"
-                                    alt="{slide.title}"
+                                    alt="{slideImgAlt}"
+                                    title="{slide.imageFile.title}"
                                     widths="200,300,450,600"
                                     sizes="25vw"
                                     aspectRatio="5:3" />

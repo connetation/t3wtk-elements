@@ -10,6 +10,8 @@
     href="EXT:conn_elements/Resources/Public/Css/quote.css" />
 
 <f:variable name="authorImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_quote_image')}" />
+<f:variable name="authorImageAlt" value="{data.tx_conn_elements_quote_author}" />
+<f:if condition="{authorImage.alternative}"><f:variable name="authorImageAlt" value="{authorImage.alternative}" /></f:if>
 
 <section class="conn-quote conn-quote--{settings.style} conn-quote--align-{settings.align} row" id="conn-quote-{data.uid}"
     style="{f:if(condition: settings.accentColor, then: '--conn-quote-accent: {settings.accentColor};')}{f:if(condition: settings.textColor, then: '--conn-quote-text-color: {settings.textColor};')}{f:if(condition: settings.textSize, then: '--conn-quote-text-size: {settings.textSize};')}">
@@ -30,7 +32,7 @@
             <f:if condition="{data.tx_conn_elements_quote_author}">
                 <footer class="conn-quote__author">
                     <f:if condition="{authorImage}">
-                        <f:image image="{authorImage}" class="conn-quote__author-image" alt="{data.tx_conn_elements_quote_author}" />
+                        <f:image image="{authorImage}" class="conn-quote__author-image" alt="{authorImageAlt}" title="{authorImage.title}" />
                     </f:if>
                     <span class="conn-quote__author-info">
                         <cite class="conn-quote__author-name">{f:if(condition: authorImage, then: '', else: '— ')}{data.tx_conn_elements_quote_author}</cite>

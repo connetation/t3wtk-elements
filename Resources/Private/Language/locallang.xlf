@@ -110,6 +110,12 @@
             <trans-unit id="before_after.slider.label">
                 <source>Drag to compare before and after</source>
             </trans-unit>
+            <trans-unit id="before_after.before.alt">
+                <source>Before</source>
+            </trans-unit>
+            <trans-unit id="before_after.after.alt">
+                <source>After</source>
+            </trans-unit>
             <!-- Alert/Notice Banner frontend -->
             <trans-unit id="alert.close">
                 <source>Close</source>

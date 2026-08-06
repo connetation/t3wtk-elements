@@ -16,10 +16,13 @@
         <figcaption class="conn-testimonials__author">
             <f:if condition="{testimonial.imageFile}">
                 <f:then>
+                    <f:variable name="testimonialImgAlt" value="{testimonial.author_name}" />
+                    <f:if condition="{testimonial.imageFile.alternative}"><f:variable name="testimonialImgAlt" value="{testimonial.imageFile.alternative}" /></f:if>
                     <div class="conn-testimonials__avatar">
                         <conn:responsiveImage image="{testimonial.imageFile}"
                                             class="conn-testimonials__avatar-img"
-                                            alt="{testimonial.author_name}"
+                                            alt="{testimonialImgAlt}"
+                                            title="{testimonial.imageFile.title}"
                                             widths="88,176"
                                             sizes="88px"
                                             aspectRatio="1:1" />

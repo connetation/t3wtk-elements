@@ -2,6 +2,10 @@
       data-namespace-typo3-fluid="true">
 
 <f:if condition="{item.imageFile}">
+    <f:variable name="itemImgAlt" value="{item.title}" />
+    <f:if condition="{item.imageFile.alternative}"><f:variable name="itemImgAlt" value="{item.imageFile.alternative}" /></f:if>
+    <f:variable name="itemCaption" value="{item.caption}" />
+    <f:if condition="{item.imageFile.description}"><f:variable name="itemCaption" value="{item.imageFile.description}" /></f:if>
     <div class="{colClass}">
         <div class="conn-flip-gallery__box">
             <f:variable name="imageUri"><f:uri.image image="{item.imageFile}" width="1200" /></f:variable>
@@ -9,12 +13,13 @@
             <f:variable name="imageUri2x"><f:uri.image image="{item.imageFile}" width="1200" fileExtension="webp" /></f:variable>
             <div class="conn-flip-gallery__box-content"
                  style="background-image: url('{imageUri}'); background-image: image-set(url('{imageUri1x}') 1x, url('{imageUri2x}') 2x)"
-                 aria-label="{item.title}">
+                 aria-label="{itemImgAlt}"
+                 title="{item.imageFile.title}">
                 <f:if condition="{item.title}">
                     <div class="conn-flip-gallery__box-info">
                         <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-flip-gallery__box-title {item.title_class}', defaultTag: 'p'}" />
-                        <f:if condition="{item.caption}">
-                            <p class="conn-flip-gallery__box-caption">{item.caption -> f:format.html()}</p>
+                        <f:if condition="{itemCaption}">
+                            <p class="conn-flip-gallery__box-caption">{itemCaption -> f:format.html()}</p>
                         </f:if>
                     </div>
                 </f:if>

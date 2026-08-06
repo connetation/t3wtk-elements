@@ -6,10 +6,13 @@
 <f:if condition="{cardVariant} == 'top'">
     <f:if condition="{project.imageFiles}">
         <f:then>
+            <f:variable name="projectTopImgAlt" value="{project.title}" />
+            <f:if condition="{project.imageFiles.0.alternative}"><f:variable name="projectTopImgAlt" value="{project.imageFiles.0.alternative}" /></f:if>
             <div class="ratio ratio-16x9 overflow-hidden rounded-top">
                 <conn:responsiveImage image="{project.imageFiles.0}"
                                     class="object-fit-contain w-100 h-100 p-3 pb-0"
-                                    alt="{project.title}"
+                                    alt="{projectTopImgAlt}"
+                                    title="{project.imageFiles.0.title}"
                                     widths="480,640,800,1200"
                                     sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" />
             </div>
@@ -17,7 +20,7 @@
         <f:else>
             <div class="dashboard__card-placeholder rounded-top d-flex align-items-center justify-content-center"
                  style="height:140px;background:var(--conn-surface)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="opacity-25" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="opacity-25" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
                 </svg>
             </div>
@@ -31,15 +34,18 @@
         <div class="dashboard__card-thumb flex-shrink-0">
             <f:if condition="{project.imageFiles}">
                 <f:then>
+                    <f:variable name="projectThumbImgAlt" value="{project.title}" />
+                    <f:if condition="{project.imageFiles.0.alternative}"><f:variable name="projectThumbImgAlt" value="{project.imageFiles.0.alternative}" /></f:if>
                     <conn:responsiveImage image="{project.imageFiles.0}"
                                         class="dashboard__card-thumb-img"
-                                        alt="{project.title}"
+                                        alt="{projectThumbImgAlt}"
+                                        title="{project.imageFiles.0.title}"
                                         widths="120,240,360"
                                         sizes="120px" />
                 </f:then>
                 <f:else>
                     <div class="dashboard__card-thumb-placeholder">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="opacity-25" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="opacity-25" viewBox="0 0 16 16" aria-hidden="true">
                             <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
                         </svg>
                     </div>
@@ -71,14 +77,17 @@
     <div class="dashboard__card-logo-wrap">
         <f:if condition="{project.imageFiles}">
             <f:then>
+                <f:variable name="projectLogoImgAlt" value="{project.title}" />
+                <f:if condition="{project.imageFiles.0.alternative}"><f:variable name="projectLogoImgAlt" value="{project.imageFiles.0.alternative}" /></f:if>
                 <conn:responsiveImage image="{project.imageFiles.0}"
                                     class="dashboard__card-logo-img"
-                                    alt="{project.title}"
+                                    alt="{projectLogoImgAlt}"
+                                    title="{project.imageFiles.0.title}"
                                     widths="80,160,240"
                                     sizes="80px" />
             </f:then>
             <f:else>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="opacity-25" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="opacity-25" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
                 </svg>
             </f:else>

@@ -6,13 +6,16 @@
 
     <f:if condition="{slide.imageFile}">
         <f:then>
+            <f:variable name="slideImgAlt" value="{slide.title}" />
+            <f:if condition="{slide.imageFile.alternative}"><f:variable name="slideImgAlt" value="{slide.imageFile.alternative}" /></f:if>
             <div class="conn-thumbs-slider__bg">
                 <f:if condition="{settings.openInLightbox}">
                     <f:then>
                         <a href="{slide.imageFile.publicUrl}" class="glightbox" data-gallery="thumbs-slider-{data.uid}" data-title="{slide.title}" data-description="{slide.subtitle}">
                             <conn:responsiveImage image="{slide.imageFile}"
                                                 class="conn-thumbs-slider__bg-img"
-                                                alt="{slide.title}"
+                                                alt="{slideImgAlt}"
+                                                title="{slide.imageFile.title}"
                                                 widths="640,960,1280,1920,2560,3840"
                                                 sizes="100vw"
                                                 loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}" />
@@ -21,7 +24,8 @@
                     <f:else>
                         <conn:responsiveImage image="{slide.imageFile}"
                                             class="conn-thumbs-slider__bg-img"
-                                            alt="{slide.title}"
+                                            alt="{slideImgAlt}"
+                                            title="{slide.imageFile.title}"
                                             widths="640,960,1280,1920,2560,3840"
                                             sizes="100vw"
                                             loading="{f:if(condition: isFirst, then: 'eager', else: 'lazy')}" />

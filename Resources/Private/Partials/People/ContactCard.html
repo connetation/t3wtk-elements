@@ -9,9 +9,12 @@
                 <div class="conn-people__thumb">
                     <f:if condition="{person.imageFile}">
                         <f:then>
+                            <f:variable name="personImgAlt" value="{person.name}" />
+                            <f:if condition="{person.imageFile.alternative}"><f:variable name="personImgAlt" value="{person.imageFile.alternative}" /></f:if>
                             <conn:responsiveImage image="{person.imageFile}"
                                                 class="conn-people__thumb-img"
-                                                alt="{person.name}"
+                                                alt="{personImgAlt}"
+                                                title="{person.imageFile.title}"
                                                 widths="120,180,240"
                                                 sizes="144px" />
                         </f:then>

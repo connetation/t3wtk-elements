@@ -20,9 +20,12 @@
             <div class="conn-timeline__card">
                 <div class="conn-timeline__card-inner">
                     <f:if condition="{item.imageFile}">
+                        <f:variable name="itemImgAlt" value="{item.title}" />
+                        <f:if condition="{item.imageFile.alternative}"><f:variable name="itemImgAlt" value="{item.imageFile.alternative}" /></f:if>
                         <div class="conn-timeline__card-image">
                             <conn:responsiveImage image="{item.imageFile}"
-                                                alt="{item.title}"
+                                                alt="{itemImgAlt}"
+                                                title="{item.imageFile.title}"
                                                 widths="300,600,900"
                                                 sizes="300px" />
                         </div>

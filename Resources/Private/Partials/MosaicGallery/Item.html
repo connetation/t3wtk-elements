@@ -2,8 +2,13 @@
       xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
+<f:variable name="itemCaption" value="{item.caption}" />
+<f:if condition="{item.imageFile.description}"><f:variable name="itemCaption" value="{item.imageFile.description}" /></f:if>
+
 <f:if condition="{item.imageFile}">
     <f:variable name="fullUri"><f:uri.image image="{item.imageFile}" width="1920" /></f:variable>
+    <f:variable name="itemImgAlt" value="{item.title}" />
+    <f:if condition="{item.imageFile.alternative}"><f:variable name="itemImgAlt" value="{item.imageFile.alternative}" /></f:if>
 
     <div class="conn-mosaic-gallery__item"
          data-index="{index}"
@@ -12,10 +17,11 @@
         <div class="conn-mosaic-gallery__item-inner">
             <f:if condition="{settings.openInLightbox}">
                 <f:then>
-                    <a href="{fullUri}" class="glightbox" data-gallery="mosaic-gallery-{data.uid}" data-title="{item.title}" data-description="{item.caption}">
+                    <a href="{fullUri}" class="glightbox" data-gallery="mosaic-gallery-{data.uid}" data-title="{item.title}" data-description="{itemCaption}">
                         <conn:responsiveImage image="{item.imageFile}"
                                             class="conn-mosaic-gallery__img"
-                                            alt="{item.title}"
+                                            alt="{itemImgAlt}"
+                                            title="{item.imageFile.title}"
                                             widths="400,600,800,1200"
                                             sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" />
                     </a>
@@ -23,20 +29,21 @@
                 <f:else>
                     <conn:responsiveImage image="{item.imageFile}"
                                         class="conn-mosaic-gallery__img"
-                                        alt="{item.title}"
+                                        alt="{itemImgAlt}"
+                                        title="{item.imageFile.title}"
                                         widths="400,600,800,1200"
                                         sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" />
                 </f:else>
             </f:if>
 
-            <f:if condition="{settings.showCaptions} && ({item.title} || {item.caption})">
+            <f:if condition="{settings.showCaptions} && ({item.title} || {itemCaption})">
                 <div class="conn-mosaic-gallery__caption conn-mosaic-gallery__caption--{settings.captionStyle}">
                     <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-mosaic-gallery__caption-title {item.title_class}', defaultTag: 'p'}" />
-                    <f:if condition="{item.caption}">
+                    <f:if condition="{itemCaption}">
                         <!-- div, not p: caption is RTE-enabled and already emits its own <p> —
                              nesting that inside a <p> here would force the browser to auto-close
                              this wrapper immediately, silently dropping its class/color. -->
-                        <div class="conn-mosaic-gallery__caption-text">{item.caption -> f:format.html()}</div>
+                        <div class="conn-mosaic-gallery__caption-text">{itemCaption -> f:format.html()}</div>
                     </f:if>
                 </div>
             </f:if>

@@ -6,10 +6,13 @@
 
     <f:if condition="{slide.imageFile}">
         <f:then>
+            <f:variable name="slideImgAlt" value="{slide.title}" />
+            <f:if condition="{slide.imageFile.alternative}"><f:variable name="slideImgAlt" value="{slide.imageFile.alternative}" /></f:if>
             <div class="conn-hero-slider__bg">
                 <conn:responsiveImage image="{slide.imageFile}"
                                     class="conn-hero-slider__bg-img"
-                                    alt="{slide.title}"
+                                    alt="{slideImgAlt}"
+                                    title="{slide.imageFile.title}"
                                     widths="640,960,1280,1920,2560,3840"
                                     sizes="100vw"
                                     breakpoints="{0: {cropVariant: 'base', maxWidth: 575.98}, 1: {cropVariant: 'sm', maxWidth: 767.98}, 2: {cropVariant: 'md', maxWidth: 991.98}, 3: {cropVariant: 'lg', maxWidth: 1199.98}, 4: {cropVariant: 'xl', maxWidth: 1399.98}}"

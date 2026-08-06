@@ -7,14 +7,17 @@
     <div class="dashboard-compact__top-img">
         <f:if condition="{project.imageFiles}">
             <f:then>
+                <f:variable name="projectTopImgAlt" value="{project.title}" />
+                <f:if condition="{project.imageFiles.0.alternative}"><f:variable name="projectTopImgAlt" value="{project.imageFiles.0.alternative}" /></f:if>
                 <conn:responsiveImage image="{project.imageFiles.0}"
                                     class="dashboard-compact__top-img-el"
-                                    alt="{project.title}"
+                                    alt="{projectTopImgAlt}"
+                                    title="{project.imageFiles.0.title}"
                                     widths="320,480,640,800"
                                     sizes="(max-width: 575px) 100vw, 320px" />
             </f:then>
             <f:else>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="opacity-25" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="opacity-25" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
                 </svg>
             </f:else>
@@ -49,9 +52,12 @@
         <div class="dashboard-compact__thumb">
             <f:if condition="{project.imageFiles}">
                 <f:then>
+                    <f:variable name="projectLogoImgAlt" value="{project.title}" />
+                    <f:if condition="{project.imageFiles.0.alternative}"><f:variable name="projectLogoImgAlt" value="{project.imageFiles.0.alternative}" /></f:if>
                     <conn:responsiveImage image="{project.imageFiles.0}"
                                         class="dashboard-compact__logo"
-                                        alt="{project.title}"
+                                        alt="{projectLogoImgAlt}"
+                                        title="{project.imageFiles.0.title}"
                                         widths="40,80,120"
                                         sizes="40px" />
                 </f:then>

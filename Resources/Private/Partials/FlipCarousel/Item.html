@@ -5,9 +5,12 @@
 <div class="conn-flip-carousel__item">
     <div class="conn-flip-carousel__img-wrap">
         <f:if condition="{item.imageFile}">
+            <f:variable name="itemImgAlt" value="{item.title}" />
+            <f:if condition="{item.imageFile.alternative}"><f:variable name="itemImgAlt" value="{item.imageFile.alternative}" /></f:if>
             <conn:responsiveImage image="{item.imageFile}"
                                 class="conn-flip-carousel__img"
-                                alt="{item.title}"
+                                alt="{itemImgAlt}"
+                                title="{item.imageFile.title}"
                                 widths="480,600,900,1200"
                                 sizes="(max-width: 767px) 90vw, 600px" />
         </f:if>

@@ -4,9 +4,12 @@
 
 <f:if condition="{person.imageFile}">
     <f:then>
+        <f:variable name="personImgAlt" value="{person.name}" />
+        <f:if condition="{person.imageFile.alternative}"><f:variable name="personImgAlt" value="{person.imageFile.alternative}" /></f:if>
         <conn:responsiveImage image="{person.imageFile}"
                             class="{cssClass}"
-                            alt="{person.name}"
+                            alt="{personImgAlt}"
+                            title="{person.imageFile.title}"
                             widths="{widths}"
                             sizes="{sizes}" />
     </f:then>
