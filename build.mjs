@@ -35,6 +35,8 @@ const config = {
         'before-after':    'Resources/Private/Components/BeforeAfter/before-after.ts',
         'process':         'Resources/Private/Components/Process/process.ts',
         'alert':           'Resources/Private/Components/Alert/alert.ts',
+        'video-hero':      'Resources/Private/Components/VideoHero/video-hero.ts',
+        'map':             'Resources/Private/Components/Map/map.ts',
     },
     bundle:    true,
     splitting: true,

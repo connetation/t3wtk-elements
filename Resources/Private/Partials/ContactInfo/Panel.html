@@ -1,0 +1,71 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<!--
+    Shared office-info panel — phone / email / address / hours, read from the
+    global contact.* Set settings (Site Settings, not this element's own
+    FlexForm). Reused by Contact Form and Map & Location so both stay in sync
+    with a single source of truth.
+
+    Expects {settings.contact.*} to already be populated — the content
+    element's dataProcessing must use
+    Classes/DataProcessing/ContactAwareSettingsProcessor.php (not the generic
+    FlexFormSettingsProcessor), which reads contact.* straight from
+    Site::getSettings() rather than via TypoScript {$contact.*} substitution.
+-->
+
+<div class="conn-contact-info">
+    <f:if condition="{settings.contact.address.company} || {settings.contact.address.street}">
+        <div class="conn-contact-info__row">
+            <span class="conn-contact-info__icon"><f:render partial="ContactInfo/Icon" arguments="{name: 'pin'}" /></span>
+            <div class="conn-contact-info__text">
+                <f:if condition="{settings.contact.address.company}">
+                    <strong>{settings.contact.address.company}</strong><br />
+                </f:if>
+                <f:if condition="{settings.contact.address.street}">
+                    {settings.contact.address.street}<br />
+                </f:if>
+                <f:if condition="{settings.contact.address.zip} || {settings.contact.address.city}">
+                    {settings.contact.address.zip} {settings.contact.address.city}<br />
+                </f:if>
+                <f:if condition="{settings.contact.address.country}">
+                    {settings.contact.address.country}
+                </f:if>
+            </div>
+        </div>
+    </f:if>
+
+    <f:if condition="{settings.contact.phone}">
+        <div class="conn-contact-info__row">
+            <span class="conn-contact-info__icon"><f:render partial="ContactInfo/Icon" arguments="{name: 'phone'}" /></span>
+            <div class="conn-contact-info__text">
+                <f:link.typolink parameter="tel:{settings.contact.phone}" class="conn-contact-info__link">{settings.contact.phone}</f:link.typolink>
+            </div>
+        </div>
+    </f:if>
+
+    <f:if condition="{settings.contact.email}">
+        <div class="conn-contact-info__row">
+            <span class="conn-contact-info__icon"><f:render partial="ContactInfo/Icon" arguments="{name: 'mail'}" /></span>
+            <div class="conn-contact-info__text">
+                <f:link.typolink parameter="mailto:{settings.contact.email}" class="conn-contact-info__link">{settings.contact.email}</f:link.typolink>
+            </div>
+        </div>
+    </f:if>
+
+    <f:if condition="{settings.contact.officeHours}">
+        <div class="conn-contact-info__row">
+            <span class="conn-contact-info__icon"><f:render partial="ContactInfo/Icon" arguments="{name: 'clock'}" /></span>
+            <div class="conn-contact-info__text">{settings.contact.officeHours}</div>
+        </div>
+    </f:if>
+
+    <f:if condition="{settings.showDirectionsButton} && {settings.contact.address.url}">
+        <f:link.typolink parameter="{settings.contact.address.url}" target="_blank" class="btn btn-outline-primary conn-contact-info__directions">
+            <f:render partial="ContactInfo/Icon" arguments="{name: 'compass'}" />
+            <f:translate key="contact_info.directions" extensionName="conn_elements" />
+        </f:link.typolink>
+    </f:if>
+</div>
+
+</html>

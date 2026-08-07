@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Video</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.mode>
+                        <label>Playback mode</label>
+                        <description>Background loop: autoplays muted behind the text, no controls. Click to play: shows a poster with a play button; clicking loads and plays the real video with sound and controls.</description>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>background</default>
+                            <items>
+                                <numIndex index="0"><label>Background loop (muted, autoplay)</label><value>background</value></numIndex>
+                                <numIndex index="1"><label>Click to play</label><value>click-to-play</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.mode>
+                    <settings.overlayDarkness>
+                        <label>Overlay darkness</label>
+                        <description>Darkens the video so the text stays readable.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Light</label><value>light</value></numIndex>
+                                <numIndex index="2"><label>Medium</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Dark</label><value>dark</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.overlayDarkness>
+                    <settings.durationLabel>
+                        <label>Duration badge</label>
+                        <description>Optional short badge in the top-right corner, e.g. "2:34". Leave empty to hide. Only shown in Click to play mode.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <eval>trim</eval>
+                            <displayCond>FIELD:sDEF.settings.mode:=:click-to-play</displayCond>
+                        </config>
+                    </settings.durationLabel>
+                </el>
+            </ROOT>
+        </sDEF>
+        <display>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.height>
+                        <label>Height</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>large</default>
+                            <items>
+                                <numIndex index="0"><label>Medium (55vh)</label><value>medium</value></numIndex>
+                                <numIndex index="1"><label>Large (70vh, default)</label><value>large</value></numIndex>
+                                <numIndex index="2"><label>Fullscreen (100vh)</label><value>fullscreen</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.height>
+                    <settings.tag>
+                        <label>Small tag label</label>
+                        <description>Optional short badge in the top-left corner, e.g. "Case study". Leave empty to hide.</description>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.tag>
+                    <settings.ctaLabel>
+                        <label>Button label</label>
+                        <description>Leave empty to hide the button entirely (the Link below is then unused).</description>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.ctaLabel>
+                    <settings.ctaLink>
+                        <label>Button link</label>
+                        <config>
+                            <type>link</type>
+                            <size>50</size>
+                        </config>
+                    </settings.ctaLink>
+                    <settings.ctaCaption>
+                        <label>Button caption</label>
+                        <description>Small reassurance text shown above the button, e.g. "No credit card required". Leave empty to hide. Max 60 characters — this is a short caption, not a paragraph.</description>
+                        <config>
+                            <type>input</type>
+                            <size>40</size>
+                            <max>60</max>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.ctaCaption>
+                </el>
+            </ROOT>
+        </display>
+    </sheets>
+</T3DataStructure>

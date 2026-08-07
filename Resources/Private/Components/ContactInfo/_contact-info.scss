@@ -1,0 +1,56 @@
+.conn-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+    }
+
+    &__icon {
+        flex: none;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: var(--conn-accent-soft);
+        color: var(--conn-accent-hover);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__svg {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    &__text {
+        color: var(--conn-text-muted);
+        line-height: 1.5;
+
+        strong {
+            color: var(--conn-text);
+        }
+    }
+
+    &__link {
+        color: var(--conn-text-muted);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--conn-accent);
+        }
+    }
+
+    &__directions {
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 0.25rem;
+
+        svg { width: 0.9rem; height: 0.9rem; }
+    }
+}

@@ -1,0 +1,126 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Header"></f:section>
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-video-hero-css"
+    href="EXT:conn_elements/Resources/Public/Css/video-hero.css" />
+<f:asset.script identifier="conn-elements-video-hero-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/video-hero.js"
+    type="module"
+    priority="false" />
+
+<f:variable name="media" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_video_hero_media')}" />
+<f:variable name="poster" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_video_hero_poster')}" />
+<f:variable name="isOnlineMedia" value="0" />
+<f:variable name="videoId" value="" />
+<f:if condition="{media.originalFile.extension} == 'youtube' || {media.originalFile.extension} == 'vimeo'">
+    <f:variable name="isOnlineMedia" value="1" />
+    <f:variable name="videoId"><conn:videoId url="{media.publicUrl}" /></f:variable>
+</f:if>
+
+<f:variable name="posterUrl" value="" />
+<f:if condition="{poster}">
+    <f:then>
+        <f:variable name="posterUrl"><f:uri.image image="{poster}" maxWidth="1920" /></f:variable>
+    </f:then>
+    <f:else>
+        <f:if condition="{isOnlineMedia} && {media.originalFile.extension} == 'youtube'">
+            <f:variable name="posterUrl">https://img.youtube.com/vi/{videoId}/hqdefault.jpg</f:variable>
+        </f:if>
+        <f:if condition="{isOnlineMedia} && {media.originalFile.extension} == 'vimeo'">
+            <f:variable name="posterUrl">https://vumbnail.com/{videoId}.jpg</f:variable>
+        </f:if>
+    </f:else>
+</f:if>
+
+<f:variable name="showPosterAsBackground" value="0" />
+<f:if condition="{posterUrl} && {settings.mode} == 'click-to-play'">
+    <f:variable name="showPosterAsBackground" value="1" />
+</f:if>
+
+<section class="conn-video-hero conn-video-hero--{settings.mode} conn-video-hero--overlay-{settings.overlayDarkness} conn-video-hero--{settings.height}"
+         id="conn-video-hero-{data.uid}"
+         data-mode="{settings.mode}"
+         data-media-type="{f:if(condition: isOnlineMedia, then: media.originalFile.extension, else: 'file')}"
+         data-video-id="{videoId}"
+         data-media-url="{media.publicUrl}"
+         data-media-mime="{media.originalFile.mimeType}"
+         style="{f:if(condition: showPosterAsBackground, then: 'background-image: url({posterUrl});')}">
+
+    <f:if condition="{settings.mode} == 'background' && {media}">
+        <f:variable name="bgEmbedUrl" value="" />
+        <f:if condition="{isOnlineMedia}">
+            <f:switch expression="{media.originalFile.extension}">
+                <f:case value="youtube">
+                    <f:variable name="bgEmbedUrl">https://www.youtube.com/embed/{videoId}?autoplay=1&amp;mute=1&amp;loop=1&amp;controls=0&amp;playlist={videoId}&amp;disablekb=1&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3&amp;fs=0</f:variable>
+                </f:case>
+                <f:case value="vimeo">
+                    <f:variable name="bgEmbedUrl">https://player.vimeo.com/video/{videoId}?autoplay=1&amp;muted=1&amp;loop=1&amp;background=1</f:variable>
+                </f:case>
+            </f:switch>
+        </f:if>
+        <div class="conn-video-hero__bg" aria-hidden="true">
+            <f:if condition="{isOnlineMedia}">
+                <f:then>
+                    <iframe
+                        class="conn-video-hero__bg-iframe"
+                        src="{bgEmbedUrl}"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media"
+                        tabindex="-1"
+                    ></iframe>
+                </f:then>
+                <f:else>
+                    <video class="conn-video-hero__bg-video" autoplay muted loop playsinline preload="auto">
+                        <source src="{media.publicUrl}" type="{media.originalFile.mimeType}" />
+                    </video>
+                </f:else>
+            </f:if>
+        </div>
+    </f:if>
+
+    <div class="conn-video-hero__overlay" aria-hidden="true"></div>
+
+    <f:if condition="{settings.tag}">
+        <span class="conn-video-hero__tag">{settings.tag}</span>
+    </f:if>
+    <f:if condition="{settings.mode} == 'click-to-play' && {settings.durationLabel}">
+        <span class="conn-video-hero__duration">{settings.durationLabel}</span>
+    </f:if>
+
+    <div class="conn-video-hero__inner">
+        <f:if condition="{settings.mode} == 'click-to-play' && {media}">
+            <button type="button" class="conn-video-hero__play" aria-label="{f:translate(key: 'video_hero.play', extensionName: 'conn_elements')}">
+                <svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" /></svg>
+            </button>
+        </f:if>
+
+        <f:if condition="{data.header}">
+            <h2 class="conn-video-hero__heading">
+                <f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink>
+            </h2>
+        </f:if>
+        <f:if condition="{data.subheader}">
+            <p class="conn-video-hero__subtext">{data.subheader}</p>
+        </f:if>
+        <f:if condition="{settings.ctaLabel} && {settings.ctaLink}">
+            <div class="conn-video-hero__cta-group">
+                <f:if condition="{settings.ctaCaption}">
+                    <p class="conn-video-hero__cta-caption">{settings.ctaCaption}</p>
+                </f:if>
+                <f:link.typolink parameter="{settings.ctaLink}" class="btn btn-primary conn-video-hero__cta">{settings.ctaLabel}</f:link.typolink>
+            </div>
+        </f:if>
+    </div>
+
+</section>
+
+</f:section>
+
+</html>

@@ -1,0 +1,79 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/Base/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Header"></f:section>
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-elements-map-css"
+    href="EXT:conn_elements/Resources/Public/Css/map.css" />
+<f:asset.css identifier="conn-elements-contact-info-css"
+    href="EXT:conn_elements/Resources/Public/Css/contact-info.css" />
+<f:asset.script identifier="conn-elements-map-js"
+    src="EXT:conn_elements/Resources/Public/Js/components/map.js"
+    type="module"
+    priority="false" />
+
+<f:variable name="addressText">{settings.contact.address.street}, {settings.contact.address.zip} {settings.contact.address.city}, {settings.contact.address.country}</f:variable>
+
+<f:variable name="illustrationImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_map_illustration_image')}" />
+
+<f:variable name="hasIllustrationImage" value="0" />
+<f:if condition="{settings.provider} == 'static' && {illustrationImage}">
+    <f:variable name="hasIllustrationImage" value="1" />
+</f:if>
+
+<f:variable name="showGrid" value="1" />
+<f:if condition="{hasIllustrationImage} && !{settings.showGridOverImage}">
+    <f:variable name="showGrid" value="0" />
+</f:if>
+
+<f:variable name="gapValue">1.5rem</f:variable>
+<f:switch expression="{settings.gap}">
+    <f:case value="none"><f:variable name="gapValue">0</f:variable></f:case>
+    <f:case value="sm"><f:variable name="gapValue">1rem</f:variable></f:case>
+    <f:case value="lg"><f:variable name="gapValue">3rem</f:variable></f:case>
+</f:switch>
+
+<div class="conn-map row conn-map--panel-{settings.panelPosition} conn-map--radius-{settings.borderRadius}"
+     style="--bs-gutter-x: {gapValue}; --bs-gutter-y: {gapValue};">
+    <div class="{f:if(condition: settings.showInfoPanel, then: 'col-lg-7', else: 'col-12')} conn-map__canvas-col">
+        <div class="conn-map__canvas conn-map__canvas--{settings.height}"
+             data-provider="{settings.provider}"
+             data-auto-load="{f:if(condition: settings.privacyMode, then: '0', else: '1')}"
+             data-address="{addressText}"
+             data-zoom="{settings.zoom}">
+            <f:if condition="{hasIllustrationImage}">
+                <conn:responsiveImage image="{illustrationImage}" class="conn-map__illustration-img" alt="{illustrationImage.alternative}" widths="600,900,1200" sizes="(min-width: 992px) 58vw, 100vw" />
+            </f:if>
+            <f:if condition="{showGrid}">
+                <div class="conn-map__decorative" aria-hidden="true">
+                    <div class="conn-map__grid"></div>
+                    <f:if condition="{settings.provider} == 'google' && {settings.privacyMode}">
+                        <button type="button" class="btn btn-light conn-map__load-button">
+                            <f:translate key="map.load" extensionName="conn_elements" />
+                        </button>
+                    </f:if>
+                </div>
+            </f:if>
+        </div>
+    </div>
+
+    <f:if condition="{settings.showInfoPanel}">
+        <div class="col-lg-5 conn-map__panel-col">
+            <div class="conn-map__panel">
+                <f:if condition="{data.header}">
+                    <h3 class="conn-map__heading">{data.header}</h3>
+                </f:if>
+                <f:render partial="ContactInfo/Panel" arguments="{settings: settings}" />
+            </div>
+        </div>
+    </f:if>
+</div>
+
+</f:section>
+
+</html>

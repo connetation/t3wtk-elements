@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.provider>
+                        <label>Map provider</label>
+                        <description>"Illustrative" shows your own uploaded image (below), or a decorative placeholder if none is set — no third-party embed at all. "Google Maps" loads a real, keyless Google Maps embed for the address set under Site Settings → Contact Information.</description>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>static</default>
+                            <items>
+                                <numIndex index="0"><label>Illustrative (image or placeholder)</label><value>static</value></numIndex>
+                                <numIndex index="1"><label>Google Maps</label><value>google</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.provider>
+                    <settings.privacyMode>
+                        <label>Click to load</label>
+                        <description>On: shows the illustrative placeholder with a "Load map" button — nothing is requested from Google until the visitor clicks. Off: the real map loads immediately with the page.</description>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <displayCond>FIELD:sDEF.settings.provider:=:google</displayCond>
+                        </config>
+                    </settings.privacyMode>
+                    <settings.zoom>
+                        <label>Zoom level</label>
+                        <description>1 (whole world) to 20 (building-level). 14–16 suits a street address.</description>
+                        <config>
+                            <type>number</type>
+                            <default>15</default>
+                            <range>
+                                <lower>1</lower>
+                                <upper>20</upper>
+                            </range>
+                            <displayCond>FIELD:sDEF.settings.provider:=:google</displayCond>
+                        </config>
+                    </settings.zoom>
+                    <settings.height>
+                        <label>Map height</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>md</default>
+                            <items>
+                                <numIndex index="0"><label>Small (300px)</label><value>sm</value></numIndex>
+                                <numIndex index="1"><label>Medium (400px)</label><value>md</value></numIndex>
+                                <numIndex index="2"><label>Large (550px)</label><value>lg</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.height>
+                    <settings.showGridOverImage>
+                        <label>Show grid over image</label>
+                        <description>Only relevant once an illustration image is set (Media tab). Off (default): the image replaces the decorative grid entirely. On: keeps the grid pattern visible on top of your image.</description>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                            <displayCond>FIELD:sDEF.settings.provider:=:static</displayCond>
+                        </config>
+                    </settings.showGridOverImage>
+                    <settings.gap>
+                        <label>Space between map and info panel</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>md</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small</label><value>sm</value></numIndex>
+                                <numIndex index="2"><label>Medium (default)</label><value>md</value></numIndex>
+                                <numIndex index="3"><label>Large</label><value>lg</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.gap>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
+                        <description>Applies to both the map canvas and the info panel.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                                <numIndex index="4"><label>Pill (fully rounded)</label><value>pill</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.borderRadius>
+                </el>
+            </ROOT>
+        </sDEF>
+        <panel>
+            <ROOT>
+                <sheetTitle>Info Panel</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.showInfoPanel>
+                        <label>Show contact info panel</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.showInfoPanel>
+                    <settings.panelPosition>
+                        <label>Info panel position</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>right</default>
+                            <items>
+                                <numIndex index="0"><label>Right</label><value>right</value></numIndex>
+                                <numIndex index="1"><label>Left</label><value>left</value></numIndex>
+                            </items>
+                            <displayCond>FIELD:sDEF.settings.showInfoPanel:=:1</displayCond>
+                        </config>
+                    </settings.panelPosition>
+                    <settings.showDirectionsButton>
+                        <label>Show "Get directions" button</label>
+                        <description>Only shown when a Google Maps / directions URL is set under Site Settings → Contact Information → Address URL.</description>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                            <displayCond>FIELD:sDEF.settings.showInfoPanel:=:1</displayCond>
+                        </config>
+                    </settings.showDirectionsButton>
+                </el>
+            </ROOT>
+        </panel>
+    </sheets>
+</T3DataStructure>

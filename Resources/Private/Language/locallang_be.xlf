@@ -1229,6 +1229,50 @@
             <trans-unit id="alert.customIconImage.description">
                 <source>Overrides the Bootstrap Icons name above. Only used when Style (in Display Settings above) is set to Custom.</source>
             </trans-unit>
+            <!-- Video Hero content element -->
+            <trans-unit id="ce.video_hero">
+                <source>Video Hero</source>
+            </trans-unit>
+            <trans-unit id="ce.video_hero.description">
+                <source>Full-width video hero — self-hosted, YouTube or Vimeo — as a muted background loop or click-to-play</source>
+            </trans-unit>
+            <trans-unit id="video_hero.media">
+                <source>Video</source>
+            </trans-unit>
+            <trans-unit id="video_hero.media.description">
+                <source>Upload an mp4, webm or mov file, or use "Add online media" in the file browser to paste a YouTube/Vimeo URL instead.</source>
+            </trans-unit>
+            <trans-unit id="video_hero.poster">
+                <source>Poster image</source>
+            </trans-unit>
+            <trans-unit id="video_hero.poster.description">
+                <source>Shown before playback starts (Click to play mode) or while the video loads. Leave empty to auto-derive a thumbnail for YouTube/Vimeo.</source>
+            </trans-unit>
+            <trans-unit id="video_hero.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="video_hero.tab.config">
+                <source>Video Hero Settings</source>
+            </trans-unit>
+            <!-- Map & Location content element -->
+            <trans-unit id="ce.map">
+                <source>Map &amp; Location</source>
+            </trans-unit>
+            <trans-unit id="ce.map.description">
+                <source>Address/phone/email panel next to a map — illustrative-only by default, or a real keyless Google Maps embed</source>
+            </trans-unit>
+            <trans-unit id="map.illustration_image">
+                <source>Illustration image</source>
+            </trans-unit>
+            <trans-unit id="map.illustration_image.description">
+                <source>Only used when "Map provider" (Map Settings tab → Display sheet) is set to Illustrative — ignored for Google Maps. Fills the map canvas in place of the decorative placeholder — e.g. a branded graphic or a photo of your office. Leave empty to keep the placeholder.</source>
+            </trans-unit>
+            <trans-unit id="map.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="map.tab.config">
+                <source>Map Settings</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

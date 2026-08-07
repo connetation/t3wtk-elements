@@ -29,3 +29,5 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/TextColumn.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/People.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/TextIcon.typoscript'
+@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/VideoHero.typoscript'
+@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Map.typoscript'

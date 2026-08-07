@@ -1,0 +1,14 @@
+# ─────────────────────────────────────────────
+# Video Hero Content Element – conn_elements
+# ─────────────────────────────────────────────
+
+tt_content.conn_video_hero =< lib.conn_elements_ce
+tt_content.conn_video_hero {
+    templateName = VideoHero
+    dataProcessing {
+        10 = Connetation\Elements\DataProcessing\FlexFormSettingsProcessor
+        10 {
+            fieldName = tx_conn_elements_video_hero_settings
+        }
+    }
+}

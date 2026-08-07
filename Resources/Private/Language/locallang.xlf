@@ -161,6 +161,15 @@
             <trans-unit id="filter.tag.label">
                 <source>Tags</source>
             </trans-unit>
+            <trans-unit id="contact_info.directions">
+                <source>Get directions</source>
+            </trans-unit>
+            <trans-unit id="video_hero.play">
+                <source>Play video</source>
+            </trans-unit>
+            <trans-unit id="map.load">
+                <source>Load map</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -135,4 +135,12 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_elements/Resources/Public/Icons/alert-ce.svg',
     ],
+    'conn-ce-video-hero' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_elements/Resources/Public/Icons/video-hero-ce.svg',
+    ],
+    'conn-ce-map' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_elements/Resources/Public/Icons/map-ce.svg',
+    ],
 ];

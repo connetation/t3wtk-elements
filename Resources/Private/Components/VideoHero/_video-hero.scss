@@ -1,0 +1,175 @@
+.conn-video-hero {
+    position: relative;
+    // Same convention as Hero Slider (Components/HeroSlider/_hero-slider.scss)
+    // — a custom property per size, set once via a modifier class rather than
+    // repeating the height rule for each.
+    --conn-hero-height: 70vh;
+    height: var(--conn-hero-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    background-color: #0a0a17;
+    background-size: cover;
+    background-position: center;
+
+    &--medium     { --conn-hero-height: 55vh; }
+    &--large      { --conn-hero-height: 70vh; }
+    &--fullscreen { --conn-hero-height: 100vh; }
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+
+    &__bg-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Standard "cover the container" trick for a fixed-ratio iframe: oversize
+    // it and center via transform, since object-fit doesn't apply to iframes.
+    &__bg-iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 177.78vh;
+        height: 56.25vw;
+        min-width: 100%;
+        min-height: 100%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+
+        // Hidden until video-hero.ts confirms the iframe has actually
+        // loaded (the 'load' event) — masks the brief flash of the
+        // provider's own player chrome (e.g. YouTube's controls before its
+        // controls=0 etc. params take effect) behind the section's own
+        // background-color instead of showing it.
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        &--ready { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__bg-iframe { transition: none; }
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    &--overlay-none .conn-video-hero__overlay { background: transparent; }
+    &--overlay-light .conn-video-hero__overlay { background: rgba(0, 0, 0, 0.25); }
+    &--overlay-medium .conn-video-hero__overlay { background: rgba(0, 0, 0, 0.5); }
+    &--overlay-dark .conn-video-hero__overlay { background: rgba(0, 0, 0, 0.7); }
+
+    &__tag,
+    &__duration {
+        position: absolute;
+        top: 1rem;
+        z-index: 2;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.14);
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.3rem;
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__tag { left: 1rem; }
+    &__duration { right: 1rem; background: rgba(0, 0, 0, 0.45); }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem;
+        max-width: 42rem;
+    }
+
+    &__play {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: none;
+        background: var(--conn-accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform var(--conn-transition, 0.2s ease-in-out), background var(--conn-transition, 0.2s ease-in-out);
+        animation: conn-video-hero-pulse 2.6s ease-out infinite;
+
+        svg { width: 1.15rem; height: 1.15rem; fill: #fff; margin-left: 2px; }
+
+        &:hover {
+            background: var(--conn-accent-hover);
+            transform: scale(1.05);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__play { animation: none; }
+    }
+
+    &__heading {
+        color: #fff;
+        margin: 0;
+
+        a { color: inherit; text-decoration: none; }
+    }
+
+    &__subtext {
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+    }
+
+    &__cta-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__cta-caption {
+        margin: 0;
+        font-size: var(--conn-font-size-sm, 0.875rem);
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    &--playing {
+        .conn-video-hero__overlay,
+        .conn-video-hero__bg {
+            display: none;
+        }
+    }
+
+    &__player {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        z-index: 3;
+        background: #000;
+    }
+}
+
+@keyframes conn-video-hero-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.45); }
+    70%  { box-shadow: 0 0 0 16px rgba(99, 102, 241, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}

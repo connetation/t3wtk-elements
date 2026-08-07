@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<!-- Minimal inline icon set for ContactInfo/Panel — avoids pulling the full
+     Bootstrap Icons font just for 4 glyphs. Expects {name}: pin|phone|mail|clock|compass -->
+
+<f:switch expression="{name}">
+    <f:case value="pin">
+        <svg class="conn-contact-info__svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22s7-7.4 7-12.5A7 7 0 0 0 5 9.5C5 14.6 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.5" fill="var(--conn-surface)"/></svg>
+    </f:case>
+    <f:case value="phone">
+        <svg class="conn-contact-info__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8c1.6 3.2 4 5.6 7.2 7.2l2.4-2.4c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.7.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.6 22 2 13.4 2 3c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg>
+    </f:case>
+    <f:case value="mail">
+        <svg class="conn-contact-info__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg>
+    </f:case>
+    <f:case value="clock">
+        <svg class="conn-contact-info__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+    </f:case>
+    <f:case value="compass">
+        <svg class="conn-contact-info__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6z"/></svg>
+    </f:case>
+</f:switch>
+
+</html>

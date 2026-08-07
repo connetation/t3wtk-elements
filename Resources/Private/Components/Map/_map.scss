@@ -1,0 +1,87 @@
+.conn-map {
+    &--panel-left {
+        .conn-map__panel-col {
+            @media (min-width: 992px) { order: -1; }
+        }
+    }
+
+    // Border radius (applies to both the canvas and the panel)
+    &--radius-none { .conn-map__canvas, .conn-map__panel { border-radius: 0; } }
+    &--radius-small { .conn-map__canvas, .conn-map__panel { border-radius: 4px; } }
+    &--radius-medium { .conn-map__canvas, .conn-map__panel { border-radius: var(--conn-radius); } }
+    &--radius-large { .conn-map__canvas, .conn-map__panel { border-radius: 24px; } }
+    &--radius-pill { .conn-map__canvas, .conn-map__panel { border-radius: 999px; } }
+
+    &__canvas-col {
+        // Bootstrap's .row already stretches columns to equal height by
+        // default (align-items: stretch) — this just lets the canvas fill
+        // that stretched height instead of only respecting min-height, so
+        // it's never shorter than a taller info panel next to it. On mobile
+        // (stacked, no sibling on the same line) this has no effect and the
+        // per-size min-height below is what's actually visible.
+        display: flex;
+    }
+
+    &__canvas {
+        position: relative;
+        flex: 1 1 auto;
+        border-radius: var(--conn-radius);
+        overflow: hidden;
+        background: var(--conn-surface-alt);
+        border: 1px solid var(--conn-border);
+
+        &--sm { min-height: 300px; }
+        &--md { min-height: 400px; }
+        &--lg { min-height: 550px; }
+    }
+
+    &__illustration-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__decorative {
+        position: absolute;
+        inset: 0;
+    }
+
+    &__grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(var(--conn-border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--conn-border) 1px, transparent 1px);
+        background-size: 28px 28px;
+    }
+
+    &__load-button {
+        position: absolute;
+        bottom: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: var(--conn-shadow-card);
+    }
+
+    &__iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    &__panel {
+        background: var(--conn-surface-alt);
+        border: 1px solid var(--conn-border);
+        border-radius: var(--conn-radius);
+        padding: 1.75rem;
+        height: 100%;
+    }
+
+    &__heading {
+        margin-bottom: 1rem;
+    }
+}

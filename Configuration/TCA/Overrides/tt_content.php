@@ -1686,3 +1686,112 @@ $GLOBALS['TCA']['tt_content']['types']['conn_text_icon'] = [
             --palette--;;hidden,--palette--;;access,
     ',
 ];
+
+// ─── Map & Location ─────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_map'] = 'conn-ce-map';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.map',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.map.description',
+    'value' => 'conn_map',
+    'icon'  => 'conn-ce-map',
+    'group' => 'conn_data',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_map_illustration_image' => [
+        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:map.illustration_image',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:map.illustration_image.description',
+        'config'      => [
+            'type'     => 'file',
+            'allowed'  => 'common-image-types',
+            'maxitems' => 1,
+        ],
+    ],
+    'tx_conn_elements_map_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:map.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/Map.xml',
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_map'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;header,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:media,
+            tx_conn_elements_map_illustration_image,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:map.tab.config,
+            tx_conn_elements_map_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+
+// ─── Video Hero ─────────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_video_hero'] = 'conn-ce-video-hero';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.video_hero',
+    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.video_hero.description',
+    'value' => 'conn_video_hero',
+    'icon'  => 'conn-ce-video-hero',
+    'group' => 'conn_sliders',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_elements_video_hero_media' => [
+        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:video_hero.media',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:video_hero.media.description',
+        'config'      => [
+            'type'     => 'file',
+            // Most standard formats only, not the full common-media-types
+            // alias (28 extensions incl. audio/documents/images — way more
+            // than a video field needs): mp4/webm/mov cover self-hosted,
+            // youtube/vimeo cover online media.
+            'allowed'  => 'mp4,webm,mov,youtube,vimeo',
+            'maxitems' => 1,
+        ],
+    ],
+    'tx_conn_elements_video_hero_poster' => [
+        'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:video_hero.poster',
+        'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:video_hero.poster.description',
+        'config'      => [
+            'type'     => 'file',
+            // Most standard web image formats only, not the full
+            // common-image-types alias (14 extensions incl. ai/psd/tif/pdf —
+            // irrelevant for a poster image).
+            'allowed'  => 'jpg,jpeg,png,webp,gif',
+            'maxitems' => 1,
+        ],
+    ],
+    'tx_conn_elements_video_hero_settings' => [
+        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:video_hero.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/VideoHero.xml',
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_video_hero'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;headers,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:media,
+            tx_conn_elements_video_hero_media, tx_conn_elements_video_hero_poster,
+        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:video_hero.tab.config,
+            tx_conn_elements_video_hero_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];
+

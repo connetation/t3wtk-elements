@@ -73,7 +73,12 @@ CREATE TABLE tt_content (
     tx_conn_elements_quote_settings          mediumtext,
     tx_conn_elements_alert_settings          mediumtext,
     tx_conn_elements_alert_custom_icon_name  varchar(100) DEFAULT '' NOT NULL,
-    tx_conn_elements_alert_custom_icon_image int(11) DEFAULT '0' NOT NULL
+    tx_conn_elements_alert_custom_icon_image int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_video_hero_media        int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_video_hero_poster       int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_video_hero_settings     mediumtext,
+    tx_conn_elements_map_illustration_image  int(11) DEFAULT '0' NOT NULL,
+    tx_conn_elements_map_settings            mediumtext
 );
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────
