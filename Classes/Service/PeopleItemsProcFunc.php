@@ -14,9 +14,13 @@ final class PeopleItemsProcFunc
             return;
         }
 
+        // $item is a plain array on older TYPO3 versions, or a
+        // TYPO3\CMS\Core\Schema\Struct\SelectItem (TYPO3 v13+) — both support
+        // ['value'] access (SelectItem implements ArrayAccess), so the
+        // parameter is intentionally left untyped rather than `array`.
         $parameters['items'] = array_values(array_filter(
             $parameters['items'],
-            static fn (array $item): bool => (int)$item['value'] <= 2
+            static fn ($item): bool => (int)$item['value'] <= 2
         ));
     }
 
