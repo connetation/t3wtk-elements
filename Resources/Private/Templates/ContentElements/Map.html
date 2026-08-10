@@ -51,7 +51,7 @@
             </f:if>
             <f:if condition="{showGrid}">
                 <div class="conn-map__decorative" aria-hidden="true">
-                    <div class="conn-map__grid"></div>
+                    <div class="conn-map__grid" style="{f:if(condition: settings.gridColor, then: '--conn-map-grid-color: {settings.gridColor};')}"></div>
                     <f:if condition="{settings.provider} == 'google' && {settings.privacyMode}">
                         <button type="button" class="btn btn-light conn-map__load-button">
                             <f:translate key="map.load" extensionName="conn_elements" />

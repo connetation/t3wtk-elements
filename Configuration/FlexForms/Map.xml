@@ -66,6 +66,15 @@
                             <displayCond>FIELD:sDEF.settings.provider:=:static</displayCond>
                         </config>
                     </settings.showGridOverImage>
+                    <settings.gridColor>
+                        <label>Grid color</label>
+                        <description>Empty = theme default border color. Only relevant while the decorative grid is visible (Illustrative mode, no image or "Show grid over image" enabled).</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.provider:=:static</displayCond>
+                        </config>
+                    </settings.gridColor>
                     <settings.gap>
                         <label>Space between map and info panel</label>
                         <config>

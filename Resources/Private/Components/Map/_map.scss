@@ -52,8 +52,8 @@
         position: absolute;
         inset: 0;
         background-image:
-            linear-gradient(var(--conn-border) 1px, transparent 1px),
-            linear-gradient(90deg, var(--conn-border) 1px, transparent 1px);
+            linear-gradient(var(--conn-map-grid-color, var(--conn-border)) 1px, transparent 1px),
+            linear-gradient(90deg, var(--conn-map-grid-color, var(--conn-border)) 1px, transparent 1px);
         background-size: 28px 28px;
     }
 
