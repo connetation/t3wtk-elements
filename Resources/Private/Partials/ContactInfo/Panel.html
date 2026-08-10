@@ -1,19 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<!--
-    Shared office-info panel — phone / email / address / hours, read from the
-    global contact.* Set settings (Site Settings, not this element's own
-    FlexForm). Reused by Contact Form and Map & Location so both stay in sync
-    with a single source of truth.
-
-    Expects {settings.contact.*} to already be populated — the content
-    element's dataProcessing must use
-    Classes/DataProcessing/ContactAwareSettingsProcessor.php (not the generic
-    FlexFormSettingsProcessor), which reads contact.* straight from
-    Site::getSettings() rather than via TypoScript {$contact.*} substitution.
--->
-
 <div class="conn-contact-info">
     <f:if condition="{settings.contact.address.company} || {settings.contact.address.street}">
         <div class="conn-contact-info__row">

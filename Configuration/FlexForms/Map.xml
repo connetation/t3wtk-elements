@@ -8,7 +8,7 @@
                 <el>
                     <settings.provider>
                         <label>Map provider</label>
-                        <description>"Illustrative" shows your own uploaded image (below), or a decorative placeholder if none is set — no third-party embed at all. "Google Maps" loads a real, keyless Google Maps embed for the address set under Site Settings → Contact Information.</description>
+                        <description>"Illustrative" shows your own uploaded image (below), or a decorative placeholder if none is set — no third-party embed at all. "Google Maps" loads a real, keyless Google Maps embed for this element's address (Location tab) — falling back to Site Settings → Contact Information if nothing is overridden there.</description>
                         <onChange>reload</onChange>
                         <config>
                             <type>select</type>
@@ -99,6 +99,94 @@
                 </el>
             </ROOT>
         </sDEF>
+        <location>
+            <ROOT>
+                <sheetTitle>Location</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.contact.address.company>
+                        <label>Company name</label>
+                        <description>Leave empty to use the site-wide company name (Site Settings → Contact Information). Only fill this in when this element shows a different office than the default.</description>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.address.company>
+                    <settings.contact.address.street>
+                        <label>Street address</label>
+                        <description>Leave empty to use the site-wide street address.</description>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.address.street>
+                    <settings.contact.address.zip>
+                        <label>ZIP / Postal code</label>
+                        <description>Leave empty to use the site-wide ZIP code.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.address.zip>
+                    <settings.contact.address.city>
+                        <label>City</label>
+                        <description>Leave empty to use the site-wide city.</description>
+                        <config>
+                            <type>input</type>
+                            <size>20</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.address.city>
+                    <settings.contact.address.country>
+                        <label>Country</label>
+                        <description>Leave empty to use the site-wide country.</description>
+                        <config>
+                            <type>input</type>
+                            <size>20</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.address.country>
+                    <settings.contact.address.url>
+                        <label>Directions link (e.g. Google Maps)</label>
+                        <description>Used for the "Get directions" button. Leave empty to use the site-wide link — but if you overrode the address above for a different office, set this too, or directions will point to the wrong place.</description>
+                        <config>
+                            <type>link</type>
+                            <size>50</size>
+                        </config>
+                    </settings.contact.address.url>
+                    <settings.contact.phone>
+                        <label>Phone number</label>
+                        <description>Leave empty to use the site-wide phone number.</description>
+                        <config>
+                            <type>input</type>
+                            <size>20</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.phone>
+                    <settings.contact.email>
+                        <label>E-mail address</label>
+                        <description>Leave empty to use the site-wide e-mail address.</description>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.email>
+                    <settings.contact.officeHours>
+                        <label>Office hours</label>
+                        <description>Leave empty to use the site-wide office hours.</description>
+                        <config>
+                            <type>input</type>
+                            <size>40</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.contact.officeHours>
+                </el>
+            </ROOT>
+        </location>
         <panel>
             <ROOT>
                 <sheetTitle>Info Panel</sheetTitle>
@@ -127,7 +215,7 @@
                     </settings.panelPosition>
                     <settings.showDirectionsButton>
                         <label>Show "Get directions" button</label>
-                        <description>Only shown when a Google Maps / directions URL is set under Site Settings → Contact Information → Address URL.</description>
+                        <description>Only shown when a directions URL is set (Location tab, or Site Settings → Contact Information as a fallback).</description>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
