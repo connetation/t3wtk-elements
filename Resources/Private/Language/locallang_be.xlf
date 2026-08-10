@@ -227,6 +227,9 @@
             <trans-unit id="slide_item.image">
                 <source>Image</source>
             </trans-unit>
+            <trans-unit id="slide_item.show_placeholder">
+                <source>Show placeholder image</source>
+            </trans-unit>
             <trans-unit id="slide_item.link">
                 <source>Link / CTA URL</source>
             </trans-unit>

@@ -203,6 +203,15 @@ return [
                 ],
             ],
         ],
+        'show_placeholder' => [
+            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.show_placeholder',
+            'config' => [
+                'type'       => 'check',
+                'renderType' => 'checkboxToggle',
+                'items'      => [['label' => '']],
+                'default'    => 0,
+            ],
+        ],
         'link' => [
             'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.link',
             'config' => [
@@ -332,7 +341,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, body, image,
+                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, body, image, show_placeholder,
                 --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.tab.link,
                     link, link_label,
                     --linebreak--,
