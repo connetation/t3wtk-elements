@@ -53,8 +53,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
         if (str_contains($settingsField, 'hero')) {
             $delay = (int)($raw['autoplay_delay'] ?? 4000);
             return [
-                'height'          => in_array($raw['height'] ?? 'large', ['medium', 'large', 'fullscreen'], true)
-                                        ? ($raw['height'] ?? 'large') : 'large',
+                'height'          => $this->resolveHeroHeight($raw['height'] ?? null),
                 'effect'          => in_array($raw['effect'] ?? 'fade', ['fade', 'slide'], true)
                                         ? ($raw['effect'] ?? 'fade') : 'fade',
                 'autoplay'        => (bool)($raw['autoplay'] ?? true),
@@ -103,11 +102,26 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
         ];
     }
 
+    // settings.height used to be a medium/large/fullscreen select; it is now a
+    // 20-100 (step 5) vh slider. Map old saved keyword values to their
+    // equivalent vh number so existing elements keep their original height.
+    private function resolveHeroHeight(mixed $raw): int
+    {
+        $legacy = ['medium' => 55, 'large' => 70, 'fullscreen' => 100];
+        if (is_string($raw) && isset($legacy[$raw])) {
+            return $legacy[$raw];
+        }
+
+        $height = (int)($raw ?? 50);
+
+        return ($height >= 20 && $height <= 100) ? $height : 50;
+    }
+
     protected function defaultSettings(string $settingsField): array
     {
         if (str_contains($settingsField, 'hero')) {
             return [
-                'height'          => 'large',
+                'height'          => 50,
                 'effect'          => 'fade',
                 'autoplay'        => true,
                 'autoplay_delay'  => 4000,
