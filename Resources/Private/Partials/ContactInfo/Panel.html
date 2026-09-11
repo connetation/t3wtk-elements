@@ -26,7 +26,7 @@
         <div class="conn-contact-info__row">
             <span class="conn-contact-info__icon"><f:render partial="ContactInfo/Icon" arguments="{name: 'phone'}" /></span>
             <div class="conn-contact-info__text">
-                <f:link.typolink parameter="tel:{settings.contact.phone}" class="conn-contact-info__link">{settings.contact.phone}</f:link.typolink>
+                <a href="tel:{settings.contact.phoneDial}" class="conn-contact-info__link">{settings.contact.phone}</a>
             </div>
         </div>
     </f:if>
