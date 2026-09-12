@@ -1276,6 +1276,16 @@
             <trans-unit id="map.tab.config">
                 <source>Map Settings</source>
             </trans-unit>
+            <!-- sys_file_reference TCA override — adds "Muted" next to core's own
+                 "Autoplay" checkbox in the video overlay palette (see
+                 Configuration/TCA/Overrides/sys_file_reference.php). Used by Video
+                 Hero's Background loop mode; ignored by Click to play. -->
+            <trans-unit id="sys_file_reference.muted">
+                <source>Muted</source>
+            </trans-unit>
+            <trans-unit id="sys_file_reference.muted.description">
+                <source>Used by Video Hero's Background loop mode. Most browsers block autoplay with sound, so leaving this unchecked while Autoplay is checked will likely prevent the video from autoplaying at all.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

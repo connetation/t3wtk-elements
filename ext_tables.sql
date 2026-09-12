@@ -81,6 +81,16 @@ CREATE TABLE tt_content (
     tx_conn_elements_map_settings            mediumtext
 );
 
+-- ─── Video Hero: per-media "Muted" (core sys_file_reference) ────────────────
+-- Adds the column backing Configuration/TCA/Overrides/sys_file_reference.php's
+-- "muted" field, shown next to core's own "autoplay" in the video overlay
+-- palette. Read directly off the Media file reference by Video Hero's
+-- Background loop mode.
+
+CREATE TABLE sys_file_reference (
+    muted tinyint(1) unsigned DEFAULT '1' NOT NULL
+);
+
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────
 
 CREATE TABLE tx_conn_elements_domain_model_mosaic_item (

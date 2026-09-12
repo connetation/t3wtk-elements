@@ -8,14 +8,14 @@
                 <el>
                     <settings.mode>
                         <label>Playback mode</label>
-                        <description>Background loop: autoplays muted behind the text, no controls. Click to play: shows a poster with a play button; clicking loads and plays the real video with sound and controls.</description>
+                        <description>Background loop: loops behind the text, no controls. Autoplay and Muted are set on the Media file itself — open it in the Media field above (video files show these two checkboxes automatically) — and without Autoplay checked there the video won't start on its own. Click to play: shows a poster with a play button; clicking loads and plays the real video with sound and controls.</description>
                         <onChange>reload</onChange>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
                             <default>background</default>
                             <items>
-                                <numIndex index="0"><label>Background loop (muted, autoplay)</label><value>background</value></numIndex>
+                                <numIndex index="0"><label>Background loop</label><value>background</value></numIndex>
                                 <numIndex index="1"><label>Click to play</label><value>click-to-play</value></numIndex>
                             </items>
                         </config>
@@ -66,6 +66,19 @@
                             </items>
                         </config>
                     </settings.height>
+                    <settings.fit>
+                        <label>Video fit</label>
+                        <description>Fill container: the video covers the full width and height, cropping its edges as needed — no empty bars, but part of the frame may be cut off. Keep aspect ratio: the whole video stays visible, uncropped, with letterbox/pillarbox bars filling any leftover space.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>cover</default>
+                            <items>
+                                <numIndex index="0"><label>Fill container (crop to fit)</label><value>cover</value></numIndex>
+                                <numIndex index="1"><label>Keep aspect ratio (letterboxed)</label><value>contain</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.fit>
                     <settings.tag>
                         <label>Small tag label</label>
                         <description>Optional short badge in the top-left corner, e.g. "Case study". Leave empty to hide.</description>
