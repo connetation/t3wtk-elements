@@ -20,6 +20,42 @@
                             </items>
                         </config>
                     </settings.columns>
+                    <settings.gap>
+                        <label>Space between items</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (8 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (16 px, default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.gap>
+                    <settings.fit>
+                        <label>Image fit</label>
+                        <description>Fill container: each thumbnail covers its full square box, cropping the edges as needed (default). Keep aspect ratio: the whole image stays visible in the box, uncropped, with letterbox bars filling any leftover space. Either way, opening an image in the lightbox always shows it in full, uncropped.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>cover</default>
+                            <items>
+                                <numIndex index="0"><label>Fill container (crop to fit)</label><value>cover</value></numIndex>
+                                <numIndex index="1"><label>Keep aspect ratio (letterboxed)</label><value>contain</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.fit>
+                    <settings.backgroundColor>
+                        <label>Letterbox background color</label>
+                        <description>Fills the empty space left when an image doesn't fully cover its box. Leave empty to use the theme's default surface color. Only used when Image fit above is set to Keep aspect ratio.</description>
+                        <displayCond>FIELD:sDEF.settings.fit:=:contain</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.backgroundColor>
                     <settings.textPosition>
                         <label>Text Position</label>
                         <config>
@@ -46,8 +82,63 @@
                             </items>
                         </config>
                     </settings.textAlign>
+                    <settings.captionInLightboxOnly>
+                        <label>Show caption only in lightbox</label>
+                        <description>Keeps the title visible in the grid, but hides the caption text there — it only appears once an image is opened. Leave unchecked to show both in the grid, as before.</description>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.captionInLightboxOnly>
                 </el>
             </ROOT>
         </sDEF>
+        <border>
+            <ROOT>
+                <sheetTitle>Border</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.borderStyle>
+                        <label>Border style</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>dashed</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Solid</label><value>solid</value></numIndex>
+                                <numIndex index="2"><label>Dashed (default)</label><value>dashed</value></numIndex>
+                                <numIndex index="3"><label>Dotted</label><value>dotted</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.borderStyle>
+                    <settings.borderColor>
+                        <label>Border color</label>
+                        <description>Leave empty to use the theme's default border color. Only used when Border style above isn't None.</description>
+                        <displayCond>FIELD:border.settings.borderStyle:!=:none</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.borderColor>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>medium</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
+                                <numIndex index="2"><label>Medium (12 px, default)</label><value>medium</value></numIndex>
+                                <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
+                                <numIndex index="4"><label>Pill (fully rounded)</label><value>pill</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.borderRadius>
+                </el>
+            </ROOT>
+        </border>
     </sheets>
 </T3DataStructure>

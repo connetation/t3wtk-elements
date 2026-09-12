@@ -10,30 +10,42 @@
 
 .conn-flip-gallery {
 
-    // ── Boxes container (Bootstrap row g-3) ─────
-    &__boxes-container {
-        // row + g-3 from Bootstrap handles grid and gaps
-    }
-
     // ── Box placeholder ──────────────────────────
     &__box {
         width: 100%;
         aspect-ratio: 1;
         position: relative;
-        border: 2px dashed var(--conn-border);
-        border-radius: 10px;
+        border-width: 2px;
+        border-style: var(--conn-flip-gallery-border-style, dashed);
+        border-color: var(--conn-flip-gallery-border-color, var(--conn-border));
+        border-radius: var(--conn-flip-gallery-radius, 12px);
     }
 
     // ── Box content (moves to modal via Flip) ────
     &__box-content {
         position: absolute;
         inset: 0;
-        border-radius: 8px;
+        border-radius: var(--conn-flip-gallery-radius, 12px);
+        background-color: var(--conn-flip-gallery-bg-color, color-mix(in srgb, var(--conn-surface-alt) 70%, transparent));
         background-position: center;
         background-size: cover;
+        background-repeat: no-repeat;
         cursor: pointer;
         overflow: hidden;
     }
+
+    // ── Border style modifiers ───────────────────
+    &--border-none   &__box { border-style: none; border-width: 0; }
+    &--border-solid  &__box { border-style: solid; }
+    &--border-dashed &__box { border-style: dashed; }
+    &--border-dotted &__box { border-style: dotted; }
+
+    // ── Border radius modifiers (same scale as Mosaic Gallery) ──────────
+    &--radius-none   { --conn-flip-gallery-radius: 0px; }
+    &--radius-small  { --conn-flip-gallery-radius: 4px; }
+    &--radius-medium { --conn-flip-gallery-radius: 12px; }
+    &--radius-large  { --conn-flip-gallery-radius: 24px; }
+    &--radius-pill   { --conn-flip-gallery-radius: 9999px; }
 
     // ── Title/caption overlay (default: bottom) ──
     &__box-info {
@@ -47,9 +59,6 @@
         pointer-events: none;
     }
 
-    // title_layout defaults to <p>, so this can't rely on the shared h1-h3
-    // scale for the common case; kept as its own compact overlay-caption size
-    // regardless of which tag (p or h1-h5) is actually rendered.
     &__box-title {
         font-size: 0.875rem;
         font-weight: 600;
@@ -62,7 +71,16 @@
         opacity: 0.8;
         margin: 0;
         line-height: 1.3;
+
+        p { margin: 0; }
     }
+
+    // ── Caption only in lightbox ──────────────────
+    &--caption-lightbox-only &__box-caption { display: none; }
+
+    // ── Image fit modifiers (default: cover) ─────────────
+    &--fit-cover &__box-content { background-size: cover; }
+    &--fit-contain &__box-content { background-size: contain; }
 
     // ── Position modifiers ───────────────────────
     &--pos-top &__box-info {
@@ -101,17 +119,24 @@
 
     // ── Modal content target ─────────────────────
     &__content {
-        height: 90vh;
-        aspect-ratio: 4/5;
+        max-width: 92vw;
+        max-height: 92vh;
         position: relative;
         z-index: 1002;
+    }
 
-        .conn-flip-gallery__box-content {
-            width: 100%;
-            height: 100%;
-            border-radius: 1rem;
-            border: none;
-        }
+    &__modal &__content .conn-flip-gallery__box-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        border: none;
+        background-size: contain;
+        background-color: transparent;
+    }
+
+    // Re-show the caption once it's the one currently in the lightbox.
+    &--caption-lightbox-only &__modal &__content .conn-flip-gallery__box-caption {
+        display: block;
     }
 
     // ── Modal prev/next navigation ───────────────

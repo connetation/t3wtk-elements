@@ -7,7 +7,7 @@
     <f:variable name="itemCaption" value="{item.caption}" />
     <f:if condition="{item.imageFile.description}"><f:variable name="itemCaption" value="{item.imageFile.description}" /></f:if>
     <div class="{colClass}">
-        <div class="conn-flip-gallery__box">
+        <div class="conn-flip-gallery__box" data-nat-w="{item.imageFile.properties.width}" data-nat-h="{item.imageFile.properties.height}">
             <f:variable name="imageUri"><f:uri.image image="{item.imageFile}" width="1200" /></f:variable>
             <f:variable name="imageUri1x"><f:uri.image image="{item.imageFile}" width="600" fileExtension="webp" /></f:variable>
             <f:variable name="imageUri2x"><f:uri.image image="{item.imageFile}" width="1200" fileExtension="webp" /></f:variable>
@@ -19,7 +19,7 @@
                     <div class="conn-flip-gallery__box-info">
                         <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-flip-gallery__box-title {item.title_class}', defaultTag: 'p'}" />
                         <f:if condition="{itemCaption}">
-                            <p class="conn-flip-gallery__box-caption">{itemCaption -> f:format.html()}</p>
+                            <div class="conn-flip-gallery__box-caption">{itemCaption -> f:format.html()}</div>
                         </f:if>
                     </div>
                 </f:if>

@@ -22,6 +22,13 @@ class FlipGallery {
     private static readonly KEY_ARROW_RIGHT     = 'ArrowRight';
     private static readonly KEY_ARROW_LEFT      = 'ArrowLeft';
 
+    // How much of the viewport the lightbox is allowed to fill, and the
+    // aspect ratio it falls back to for an item missing width/height
+    // metadata (e.g. an SVG or a very old import) — matches this element's
+    // previous fixed 4:5 modal shape.
+    private static readonly VIEWPORT_FRACTION   = 0.92;
+    private static readonly FALLBACK_RATIO      = 4 / 5;
+
     private readonly modal: HTMLElement;
     private readonly modalContent: HTMLElement;
     private readonly modalOverlay: HTMLElement | null;
@@ -50,6 +57,29 @@ class FlipGallery {
     }
 
     // ─── Open / close ─────────────────────────────────────────────────
+    // The modal has no fixed shape of its own (see &__content in the SCSS —
+    // just a max-width/max-height cap): this sizes it to whatever box is
+    // currently open, preserving that image's own aspect ratio instead of
+    // stretching/letterboxing every image into one fixed frame.
+    private sizeContentTo(box: HTMLElement): void {
+        const natW = parseFloat(box.dataset.natW ?? '');
+        const natH = parseFloat(box.dataset.natH ?? '');
+        const ratio = natW > 0 && natH > 0 ? natW / natH : FlipGallery.FALLBACK_RATIO;
+
+        const maxW = window.innerWidth * FlipGallery.VIEWPORT_FRACTION;
+        const maxH = window.innerHeight * FlipGallery.VIEWPORT_FRACTION;
+
+        let width = maxW;
+        let height = width / ratio;
+        if (height > maxH) {
+            height = maxH;
+            width = height * ratio;
+        }
+
+        this.modalContent.style.width = `${width}px`;
+        this.modalContent.style.height = `${height}px`;
+    }
+
     private handleBoxClick(box: HTMLElement, i: number): void {
         if (this.swipeConsumed) { this.swipeConsumed = false; return; }
 
@@ -68,6 +98,11 @@ class FlipGallery {
             gsap.set(box, { zIndex: 1002 });
         } else {
             // Open
+            // sizeContentTo reads data-nat-w/-h, which live on the outer
+            // .conn-flip-gallery__box (this.boxes[i]) — box here is the inner
+            // .conn-flip-gallery__box-content (this.boxesContent[i], the one
+            // actually reparented into the modal below) and carries neither.
+            this.sizeContentTo(this.boxes[i]);
             const state = Flip.getState(box);
             this.modalContent.appendChild(box);
             this.boxIndex = i;
@@ -99,6 +134,7 @@ class FlipGallery {
                 gsap.set(current, { x: 0, opacity: 1 });
                 this.boxes[this.boxIndex as number].appendChild(current);
                 this.boxIndex = nextIndex;
+                this.sizeContentTo(this.boxes[nextIndex]);
                 this.modalContent.appendChild(nextContent);
                 gsap.fromTo(nextContent,
                     { x: direction > 0 ? 50 : -50, opacity: 0 },
@@ -135,6 +171,12 @@ class FlipGallery {
             }
             if (e.key === FlipGallery.KEY_ARROW_RIGHT) this.navigateTo(1);
             if (e.key === FlipGallery.KEY_ARROW_LEFT)  this.navigateTo(-1);
+        });
+
+        // ─── Resize: keep the open image's own size correct ────────────────
+        window.addEventListener('resize', () => {
+            if (this.boxIndex === undefined) return;
+            this.sizeContentTo(this.boxes[this.boxIndex]);
         });
 
         // ─── Swipe / drag support ─────────────────────────────────────────

@@ -12,11 +12,13 @@
     type="module"
     priority="false" />
 
-<section class="conn-flip-gallery conn-flip-gallery--pos-{settings.textPosition} conn-flip-gallery--align-{settings.textAlign}" id="conn-flip-gallery-{data.uid}">
+<section class="conn-flip-gallery conn-flip-gallery--pos-{settings.textPosition} conn-flip-gallery--align-{settings.textAlign} conn-flip-gallery--fit-{settings.fit} conn-flip-gallery--border-{settings.borderStyle} conn-flip-gallery--radius-{settings.borderRadius} {f:if(condition: settings.captionInLightboxOnly, then: 'conn-flip-gallery--caption-lightbox-only')}"
+         id="conn-flip-gallery-{data.uid}"
+         style="{f:if(condition: settings.borderColor, then: '--conn-flip-gallery-border-color: {settings.borderColor};')}{f:if(condition: settings.backgroundColor, then: '--conn-flip-gallery-bg-color: {settings.backgroundColor};')}">
 
         <f:if condition="{items}">
             <f:then>
-                <div class="conn-flip-gallery__boxes-container row g-3">
+                <div class="conn-flip-gallery__boxes-container row {settings.gapClass}">
                     <f:for each="{items}" as="item">
                         <f:render partial="FlipGallery/Item" arguments="{item: item, colClass: settings.colClass}" />
                     </f:for>
