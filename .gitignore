@@ -12,3 +12,6 @@ Thumbs.db
 
 # Claude Code
 .claude/Task.txt
+
+# Local documentation render output
+Documentation-GENERATED-temp/
