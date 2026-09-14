@@ -43,4 +43,5 @@ scaffold CLI for adding new ones consistently.
 
    Introduction/Index
    Installation/Index
+   ContentElements/Index
    DeveloperGuide/Index
