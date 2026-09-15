@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Connetation\Elements\DataProcessing;
 
+use Connetation\Base\DataProcessing\AbstractItemsProcessor;
+
 final class TestimonialItemsProcessor extends AbstractItemsProcessor
 {
     protected function getTable(): string

@@ -3,7 +3,6 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/CardGroup.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/CardStack.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Carousel.typoscript'
-@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Dashboard.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/FlipCarousel.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/FlipGallery.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Grid.typoscript'
@@ -17,7 +16,6 @@
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/BeforeAfter.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Quote.typoscript'
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Alert.typoscript'
-@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Wiki.typoscript'
 
 @import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/Timeline.typoscript'
 

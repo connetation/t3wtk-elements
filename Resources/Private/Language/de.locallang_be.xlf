@@ -7,66 +7,6 @@
                 <source>Connetation Elements</source>
                 <target>Connetation Elemente</target>
             </trans-unit>
-            <trans-unit id="ce.dashboard">
-                <source>Service Dashboard</source>
-                <target>Service-Dashboard</target>
-            </trans-unit>
-            <trans-unit id="ce.dashboard.description">
-                <source>Interactive service overview with filter and navigation</source>
-                <target>Interaktive Serviceübersicht mit Filter und Navigation</target>
-            </trans-unit>
-            <trans-unit id="dashboard.tab.config">
-                <source>Dashboard Config</source>
-                <target>Dashboard-Konfiguration</target>
-            </trans-unit>
-            <trans-unit id="dashboard.categories">
-                <source>Categories</source>
-                <target>Kategorien</target>
-            </trans-unit>
-            <trans-unit id="dashboard.settings">
-                <source>Display Settings</source>
-                <target>Anzeigeeinstellungen</target>
-            </trans-unit>
-            <trans-unit id="model.project">
-                <source>Service</source>
-                <target>Service</target>
-            </trans-unit>
-            <trans-unit id="model.projectcategory">
-                <source>Service Category</source>
-                <target>Service-Kategorie</target>
-            </trans-unit>
-            <trans-unit id="project.title">
-                <source>Title</source>
-                <target>Titel</target>
-            </trans-unit>
-            <trans-unit id="project.description">
-                <source>Description</source>
-                <target>Beschreibung</target>
-            </trans-unit>
-            <trans-unit id="project.status">
-                <source>Status</source>
-                <target>Status</target>
-            </trans-unit>
-            <trans-unit id="project.category">
-                <source>Category</source>
-                <target>Kategorie</target>
-            </trans-unit>
-            <trans-unit id="projectcategory.title">
-                <source>Title</source>
-                <target>Titel</target>
-            </trans-unit>
-            <trans-unit id="project.url">
-                <source>URL</source>
-                <target>URL</target>
-            </trans-unit>
-            <trans-unit id="project.tags">
-                <source>Tags (comma-separated)</source>
-                <target>Tags (kommasepariert)</target>
-            </trans-unit>
-            <trans-unit id="project.image">
-                <source>Preview Image</source>
-                <target>Vorschaubild</target>
-            </trans-unit>
         </body>
     </file>
 </xliff>

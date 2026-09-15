@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 defined('TYPO3') or die();
 
-
-$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['WikiCode'] = 'EXT:conn_elements/Configuration/RTE/WikiCode.yaml';
-
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000001] = [
     'nodeName' => 'connIconSelect',
     'priority'  => 40,
@@ -21,19 +18,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000002] = [
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
-    'mod.wizards.newContentElement.wizardItems.conn.show = conn_dashboard,conn_wiki,conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_bs_timeline,conn_bs_stats,conn_bs_logo_wall,conn_bs_testimonials,conn_bs_pricing,conn_bs_feature_grid,conn_people,conn_quote,conn_alert
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_dashboard {
-        iconIdentifier = conn-ce-dashboard
-        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard
-        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.dashboard.description
-        tt_content_defValues.CType = conn_dashboard
-    }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_wiki {
-        iconIdentifier = conn-ce-wiki
-        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.wiki
-        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.wiki.description
-        tt_content_defValues.CType = conn_wiki
-    }
+    'mod.wizards.newContentElement.wizardItems.conn.show = conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_bs_timeline,conn_bs_stats,conn_bs_logo_wall,conn_bs_testimonials,conn_bs_pricing,conn_bs_feature_grid,conn_people,conn_quote,conn_alert
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_card_stack {
         iconIdentifier = conn-ce-card-stack
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack

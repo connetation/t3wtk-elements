@@ -110,9 +110,6 @@
             <trans-unit id="ce_group.conn_data">
                 <source>Data &amp; Social Proof</source>
             </trans-unit>
-            <trans-unit id="ce_group.conn_apps">
-                <source>Apps</source>
-            </trans-unit>
             <!-- Bootstrap Grid container content elements -->
             <trans-unit id="ce.grid_2col">
                 <source>2 Columns</source>
@@ -543,60 +540,9 @@
             <trans-unit id="tab_item.body">
                 <source>Content</source>
             </trans-unit>
-            <!-- Dashboard content element -->
-            <trans-unit id="ce.dashboard">
-                <source>Service Dashboard</source>
-            </trans-unit>
-            <trans-unit id="ce.dashboard.description">
-                <source>Interactive service overview with filter and navigation</source>
-            </trans-unit>
-            <trans-unit id="dashboard.tab.config">
-                <source>Dashboard Settings</source>
-            </trans-unit>
-            <trans-unit id="dashboard.categories">
-                <source>Categories</source>
-            </trans-unit>
-            <trans-unit id="dashboard.settings">
-                <source>Display Settings</source>
-            </trans-unit>
-            <!-- Project model -->
-            <trans-unit id="model.project">
-                <source>Service</source>
-            </trans-unit>
-            <trans-unit id="model.projectcategory">
-                <source>Service Category</source>
-            </trans-unit>
-            <trans-unit id="project.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="project.description">
-                <source>Description</source>
-            </trans-unit>
-            <trans-unit id="project.status">
-                <source>Status</source>
-            </trans-unit>
-            <trans-unit id="project.category">
-                <source>Category</source>
-            </trans-unit>
-            <trans-unit id="projectcategory.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="project.url">
-                <source>URL</source>
-            </trans-unit>
-            <trans-unit id="project.tags">
-                <source>Tags (comma-separated)</source>
-            </trans-unit>
-            <trans-unit id="project.image">
-                <source>Preview Image</source>
-            </trans-unit>
             <!-- Backend module group -->
             <trans-unit id="module.conn.title">
                 <source>Conn</source>
-            </trans-unit>
-            <!-- Wiki backend module -->
-            <trans-unit id="module.wiki.title">
-                <source>Wiki</source>
             </trans-unit>
             <!-- Text Column content element -->
             <trans-unit id="ce.text_column">
@@ -605,97 +551,6 @@
             <trans-unit id="ce.text_column.description">
                 <source>Plain text split into multiple CSS columns from tablet width up</source>
             </trans-unit>
-            <!-- Wiki content element -->
-            <trans-unit id="ce.wiki">
-                <source>Wiki</source>
-            </trans-unit>
-            <trans-unit id="ce.wiki.description">
-                <source>Knowledge base with pages, search and navigation</source>
-            </trans-unit>
-            <trans-unit id="wiki.tab.config">
-                <source>Wiki Settings</source>
-            </trans-unit>
-            <trans-unit id="wiki.wiki_id">
-                <source>Wiki Directory</source>
-            </trans-unit>
-            <trans-unit id="wiki.settings">
-                <source>Display Settings</source>
-            </trans-unit>
-            <!-- Wiki directory model -->
-            <trans-unit id="model.wiki">
-                <source>Wiki Directory</source>
-            </trans-unit>
-            <trans-unit id="wiki.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="wiki.description">
-                <source>Description</source>
-            </trans-unit>
-            <trans-unit id="wiki.categories">
-                <source>Categories</source>
-            </trans-unit>
-            <!-- Wiki page model -->
-            <trans-unit id="model.wikipage">
-                <source>Wiki Page</source>
-            </trans-unit>
-            <trans-unit id="wikipage.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="wikipage.intro">
-                <source>Introduction</source>
-            </trans-unit>
-            <trans-unit id="wikipage.category">
-                <source>Category</source>
-            </trans-unit>
-            <trans-unit id="wikipage.tags">
-                <source>Tags</source>
-            </trans-unit>
-            <trans-unit id="wikipage.blocks">
-                <source>Content Blocks</source>
-            </trans-unit>
-            <!-- Wiki content block model -->
-            <trans-unit id="model.wikipage_block">
-                <source>Content Block</source>
-            </trans-unit>
-            <trans-unit id="block.type">
-                <source>Block Type</source>
-            </trans-unit>
-            <trans-unit id="block.type.text">
-                <source>Text / Rich Text</source>
-            </trans-unit>
-            <trans-unit id="block.type.code">
-                <source>Code</source>
-            </trans-unit>
-            <trans-unit id="block.heading">
-                <source>Heading</source>
-            </trans-unit>
-            <trans-unit id="block.content">
-                <source>Content</source>
-            </trans-unit>
-            <trans-unit id="block.code_content">
-                <source>Code</source>
-            </trans-unit>
-            <trans-unit id="block.code_text">
-                <source>Description Text</source>
-            </trans-unit>
-            <trans-unit id="block.code_language">
-                <source>Language</source>
-            </trans-unit>
-            <!-- Wiki category model -->
-            <trans-unit id="model.wikicategory">
-                <source>Wiki Category</source>
-            </trans-unit>
-            <trans-unit id="wikicategory.title">
-                <source>Title</source>
-            </trans-unit>
-            <!-- Wiki tag model -->
-            <trans-unit id="model.wikitag">
-                <source>Wiki Tag</source>
-            </trans-unit>
-            <trans-unit id="wikitag.title">
-                <source>Title</source>
-            </trans-unit>
-
             <!-- Timeline content element -->
             <trans-unit id="ce.timeline">
                 <source>Timeline</source>

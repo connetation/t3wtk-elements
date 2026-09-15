@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Connetation\Elements\DataProcessing;
 
+use Connetation\Base\DataProcessing\AbstractItemsProcessor;
+
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
