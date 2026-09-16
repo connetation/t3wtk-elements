@@ -3,6 +3,16 @@
     <file source-language="en" datatype="plaintext" original="EXT:conn_elements/Resources/Private/Language/locallang.xlf">
         <header/>
         <body>
+            <!-- People contact links -->
+            <trans-unit id="people.contact.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="people.contact.phone">
+                <source>Phone</source>
+            </trans-unit>
+            <trans-unit id="people.contact.link">
+                <source>Website</source>
+            </trans-unit>
             <!-- Accordion frontend -->
             <trans-unit id="accordion.empty">
                 <source>No accordion items have been added yet.</source>

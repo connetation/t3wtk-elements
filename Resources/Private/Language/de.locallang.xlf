@@ -3,6 +3,19 @@
     <file source-language="en" target-language="de" datatype="plaintext" original="EXT:conn_elements/Resources/Private/Language/locallang.xlf">
         <header/>
         <body>
+            <!-- People contact links -->
+            <trans-unit id="people.contact.email">
+                <source>Email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="people.contact.phone">
+                <source>Phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="people.contact.link">
+                <source>Website</source>
+                <target>Webseite</target>
+            </trans-unit>
             <!-- Shared filter bar -->
             <trans-unit id="filter.search.placeholder">
                 <source>Search…</source>

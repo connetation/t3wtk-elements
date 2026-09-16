@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\Elements\DataProcessing;
 
+use Connetation\Base\Utility\PhoneUtility;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -75,22 +76,9 @@ final class ContactAwareSettingsProcessor implements DataProcessorInterface
             // Dial-safe variant for `tel:` links, kept separate from the display
             // string in `phone` (e.g. "+43 (0) 662 123 456 - 7"), which is meant
             // to be read, not dialed as-is.
-            $contact['phoneDial'] = self::sanitizePhoneForDialing($contact['phone']);
+            $contact['phoneDial'] = PhoneUtility::sanitizeForDialing($contact['phone']);
         }
 
         return $contact;
-    }
-
-    /**
-     * Reduces a human-formatted phone number to a dial-safe string for `tel:` links:
-     * drops the "(0)" trunk-prefix hint used in AT/DE numbers (must not be dialed
-     * alongside a country code), then strips everything but a leading "+" and digits.
-     */
-    private static function sanitizePhoneForDialing(string $phone): string
-    {
-        $phone = preg_replace('/\(\s*0\s*\)/', '', $phone) ?? $phone;
-        $phone = preg_replace('/[^\d+]/', '', $phone) ?? $phone;
-
-        return preg_replace('/(?!^)\+/', '', $phone) ?? $phone;
     }
 }

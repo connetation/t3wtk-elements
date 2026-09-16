@@ -68,7 +68,7 @@
         color: var(--conn-text-muted);
     }
 
-    // ── Contact buttons (reuses global .btn-hexagon shape) ──
+    // ── Contact links (plain icon + text, accent-colored) ──
     &__contact {
         display: flex;
         flex-wrap: wrap;
@@ -82,28 +82,24 @@
         align-items: center;
         gap: 0.35rem;
         font-size: 0.72rem;
-        color: var(--conn-people-accent-text) !important;
-        transition: background-color var(--conn-transition), border-color var(--conn-transition);
+        text-decoration: none;
+        transition: color var(--conn-transition);
     }
 
     &__btn--a {
-        background-color: var(--conn-people-a) !important;
-        border-color: var(--conn-people-a) !important;
+        color: var(--conn-people-a) !important;
     }
 
     &__btn--b {
-        background-color: var(--conn-people-b) !important;
-        border-color: var(--conn-people-b) !important;
+        color: var(--conn-people-b) !important;
     }
 
     &__btn--a:hover, &__btn--a:focus {
-        background-color: var(--conn-people-a-hover) !important;
-        border-color: var(--conn-people-a-hover) !important;
+        color: var(--conn-people-a-hover) !important;
     }
 
     &__btn--b:hover, &__btn--b:focus {
-        background-color: var(--conn-people-b-hover) !important;
-        border-color: var(--conn-people-b-hover) !important;
+        color: var(--conn-people-b-hover) !important;
     }
 
     // ── Team card (flip — photo+nametag front, role/bio/contact back) ──
@@ -370,20 +366,32 @@
         left: 0;
         right: 0;
         bottom: 0;
-        padding: 0.9rem 1rem;
+        padding: 1.1rem 1rem 0.8rem;
         text-align: center;
         font-weight: 700;
         font-size: 0.85rem;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         color: var(--conn-people-nametag-text);
-        background: linear-gradient(to top, var(--conn-people-nametag-bg), transparent);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(
+            to top,
+            var(--conn-people-nametag-bg) 0%,
+            var(--conn-people-nametag-bg) 45%,
+            transparent 100%
+        );
         transition: opacity 0.35s ease;
     }
 
     &__reveal--pos-top &__reveal-nametag {
         top: 0;
         bottom: auto;
-        background: linear-gradient(to bottom, var(--conn-people-nametag-bg), transparent);
+        background: linear-gradient(
+            to bottom,
+            var(--conn-people-nametag-bg) 0%,
+            var(--conn-people-nametag-bg) 45%,
+            transparent 100%
+        );
     }
 
     &__reveal--pos-center &__reveal-nametag {
@@ -489,6 +497,18 @@
             opacity: 0.85;
         }
         .conn-people__contact { margin-top: 0.75rem; }
+
+        // The curtain's own background IS --conn-people-a/-b (see &__curtain--a/--b
+        // below), so the contact links can't use that same accent for their text —
+        // it would vanish against its own background. Match the curtain's own
+        // (already-contrasting) text color instead.
+        .conn-people__btn--a, .conn-people__btn--b {
+            color: var(--conn-people-curtain-text, var(--conn-people-accent-text)) !important;
+        }
+        .conn-people__btn--a:hover, .conn-people__btn--a:focus,
+        .conn-people__btn--b:hover, .conn-people__btn--b:focus {
+            opacity: 0.75;
+        }
     }
 
     &__curtain--a { background: var(--conn-people-curtain-bg, var(--conn-people-a)); }
@@ -531,9 +551,22 @@
         padding: 1.2rem;
         gap: 0.3rem;
         color: var(--conn-people-nametag-text);
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
         opacity: 0;
         transform: scale(0.9);
         transition: opacity 0.4s ease, transform 0.4s ease;
+
+        // A blur+brightness filter on the photo alone isn't reliable — a
+        // light/white-background photo (illustration, studio headshot, …)
+        // barely darkens enough for white text to stay readable. A solid
+        // scrim behind the text guarantees contrast regardless of the photo.
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.75) 100%);
+            z-index: -1;
+        }
 
         .conn-people__name { color: var(--conn-people-nametag-text); }
         .conn-people__bio { color: var(--conn-people-nametag-text); opacity: 0.85; }
