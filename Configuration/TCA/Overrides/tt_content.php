@@ -101,7 +101,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_bs_card_group'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_elements_card_group_items,
+            --palette--;;general,--palette--;;headers,tx_conn_elements_card_group_items,
         --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_group.tab.config,
             tx_conn_elements_card_group_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
