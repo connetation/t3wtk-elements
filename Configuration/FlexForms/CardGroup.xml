@@ -41,6 +41,19 @@
                             </items>
                         </config>
                     </settings.style>
+                    <settings.bodyPosition>
+                        <label>Body text position</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>top</default>
+                            <items>
+                                <numIndex index="0"><label>Top (default)</label><value>top</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Bottom</label><value>bottom</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.bodyPosition>
                 </el>
             </ROOT>
         </sDEF>

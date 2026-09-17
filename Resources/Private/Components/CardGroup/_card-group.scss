@@ -52,6 +52,22 @@
         .conn-card-group__card:focus::after { opacity: 1; }
     }
 
+    // ── Body text position (title/subtitle/badge always stay at the top;
+    // only the body block's position within the remaining space moves) ───
+    .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--body-center .conn-card-group__body {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    &--body-bottom .conn-card-group__body {
+        margin-top: auto;
+    }
+
     // ── Image placeholder (no image uploaded) ───────
     &__placeholder {
         background: var(--conn-surface-alt) !important;

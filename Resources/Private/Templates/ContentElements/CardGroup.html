@@ -12,7 +12,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-card-group conn-card-group--{settings.style}{f:if(condition: settings.accentBar, then: ' conn-card-group--accent-bar')}" id="conn-card-group-{data.uid}">
+<section class="conn-card-group conn-card-group--{settings.style} conn-card-group--body-{settings.bodyPosition}{f:if(condition: settings.accentBar, then: ' conn-card-group--accent-bar')}" id="conn-card-group-{data.uid}">
 
         <f:if condition="{cards}">
             <f:then>
