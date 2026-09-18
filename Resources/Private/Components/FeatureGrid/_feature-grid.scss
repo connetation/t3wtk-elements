@@ -2,7 +2,7 @@
 // Connetation Elements – Feature Grid
 // ─────────────────────────────────────────────
 
-// Headings inherit conn/base's shared heading system (components/_typography.scss
+// Headings inherit conn/t3kit-base's shared heading system (components/_typography.scss
 // for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
@@ -92,7 +92,7 @@
 
     // ── Title ─────────────────────────────────
     // No font-size/weight/color override — inherits the tag chosen via
-    // title_layout (conn/base's shared heading system). margin: 0 stays —
+    // title_layout (conn/t3kit-base's shared heading system). margin: 0 stays —
     // spacing here comes from &__content's flex gap, not heading margin.
     &__title {
         margin: 0;

@@ -33,9 +33,9 @@ const entries = readdirSync(COMPONENTS_DIR)
         dest: `${OUT_DIR}/${toKebab(name)}.css`,
     }));
 
-// conn/t3kit-elements requires conn/base (see composer.json), so vendor/conn/base is
+// conn/t3kit-elements requires conn/t3kit-base (see composer.json), so vendor/conn/t3kit-base is
 // always a sibling directory of this package under vendor/conn/ — load-path
-// lets Shared/_tokens.scss `@use` conn/base's token mixins at compile time
+// lets Shared/_tokens.scss `@use` conn/t3kit-base's token mixins at compile time
 // without creating a runtime dependency (each component's CSS still ships
 // with the values baked in).
 const BASE_SCSS = '../base/Resources/Private/Scss';

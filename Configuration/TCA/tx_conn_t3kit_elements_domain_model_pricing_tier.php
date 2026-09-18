@@ -5,27 +5,27 @@ declare(strict_types=1);
 // Same value set as TYPO3 core's native tt_content.header_layout: 0=default,
 // 1-5=H1-H5, 100=hidden. Reused for every heading/subheading layout column.
 $headingLayoutItems = [
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.default', 'value' => 0],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h1', 'value' => 1],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h2', 'value' => 2],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h3', 'value' => 3],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h4', 'value' => 4],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.h5', 'value' => 5],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.default', 'value' => 0],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h1', 'value' => 1],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h2', 'value' => 2],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h3', 'value' => 3],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h4', 'value' => 4],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h5', 'value' => 5],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
 // Visual size, independent of the tag *_layout picks — lets an editor keep
 // the SEO-correct heading level while styling it like a different size
-// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_base's
+// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_t3kit_base's
 // tt_content header_class/subheader_class. Reused for every *_class column.
 $headingClassItems = [
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
-    ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.hidden', 'value' => 'visually-hidden'],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
+    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.hidden', 'value' => 'visually-hidden'],
 ];
 
 return [
@@ -78,7 +78,7 @@ return [
             ],
         ],
         'name_class' => [
-            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
+            'label'  => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -105,7 +105,7 @@ return [
             ],
         ],
         'tagline_class' => [
-            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
+            'label'  => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',

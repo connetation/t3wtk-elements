@@ -10,7 +10,7 @@ Install via Composer::
 
    composer require conn/t3kit-elements
 
-This requires ``conn/base`` and ``b13/container`` as dependencies; Composer
+This requires ``conn/t3kit-base`` and ``b13/container`` as dependencies; Composer
 resolves both automatically.
 
 .. _installation-site-set:
@@ -23,7 +23,7 @@ Add ``conn/t3kit-elements`` as a Set dependency in your site configuration
 sitepackage::
 
    dependencies:
-     - conn/base
+     - conn/t3kit-base
      - conn/t3kit-elements
 
 .. _installation-build:

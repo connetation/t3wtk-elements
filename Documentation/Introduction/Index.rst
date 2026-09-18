@@ -14,7 +14,7 @@ What does it do?
 Connetation Elements adds a set of Bootstrap-based content elements to a
 TYPO3 v14 site, built with `b13/container
 <https://packagist.org/packages/b13/container>`__ and requiring
-`conn/base <https://packagist.org/packages/conn/base>`__ for shared theme
+`conn/t3kit-base <https://packagist.org/packages/conn/t3kit-base>`__ for shared theme
 tokens, ViewHelpers, and Fluid layouts.
 
 .. _responsive-images:

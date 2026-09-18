@@ -1,10 +1,10 @@
 // ─────────────────────────────────────────────
 // Connetation Elements – Design Tokens
 // Runtime-independent: each component's compiled CSS ships these values
-// baked in, so it never depends on conn/base's CSS being loaded on the page.
-// The *values* below are sourced at compile time from conn/base's token
-// mixins (conn/t3kit-elements requires conn/base via composer.json, which
-// guarantees vendor/conn/base sits alongside this package — see
+// baked in, so it never depends on conn/t3kit-base's CSS being loaded on the page.
+// The *values* below are sourced at compile time from conn/t3kit-base's token
+// mixins (conn/t3kit-elements requires conn/t3kit-base via composer.json, which
+// guarantees vendor/conn/t3kit-base sits alongside this package — see
 // build-scss.mjs's --load-path) rather than hand-copied, so the two
 // packages can no longer drift apart silently.
 // ─────────────────────────────────────────────

@@ -1,4 +1,4 @@
 name: conn/t3kit-elements
 label: 'Connetation Elements'
 dependencies:
-  - conn/base
+  - conn/t3kit-base

@@ -6,11 +6,11 @@
 # ─────────────────────────────────────────────
 
 # Extend lib.contentElement with conn_t3kit_elements paths.
-# Path layering: fluid_styled_content (0/10) < conn_base (30) < conn_t3kit_elements (40)
+# Path layering: fluid_styled_content (0/10) < conn_t3kit_base (30) < conn_t3kit_elements (40)
 # < sitepackage (50) — higher index wins for same-named Fluid files.
-# Index 40 lets conn_t3kit_elements override conn_base partials, in particular
+# Index 40 lets conn_t3kit_elements override conn_t3kit_base partials, in particular
 # ContentElements/FrameAttributes.html (the frame-div attribute hook rendered by
-# conn_base's ContentElements/Default.html layout), which adds
+# conn_t3kit_base's ContentElements/Default.html layout), which adds
 # data-text-animation to every frame div.
 lib.contentElement {
     templateRootPaths.40 = EXT:conn_t3kit_elements/Resources/Private/Templates/ContentElements/
@@ -49,13 +49,13 @@ lib.conn_t3kit_elements_ce {
     partialRootPaths.40 = EXT:conn_t3kit_elements/Resources/Private/Partials/
     layoutRootPaths.40 = EXT:conn_t3kit_elements/Resources/Private/Layouts/
 
-    # conn_base's ContentElements/Default.html adds the Appearance-tab background
+    # conn_t3kit_base's ContentElements/Default.html adds the Appearance-tab background
     # feature (color/image, cover/contain/parallax) on top of this same frame markup.
     # Registered here so it wins for every custom conn_t3kit_elements CE (Logo Wall,
     # Card Group, sliders, …) that copies this object below — including any added
     # later, since they all inherit from this single definition.
-    layoutRootPaths.30 = EXT:conn_base/Resources/Private/Layouts/ContentElements/
-    # That layout renders shared partials from conn_base (HeaderSwitch,
+    layoutRootPaths.30 = EXT:conn_t3kit_base/Resources/Private/Layouts/ContentElements/
+    # That layout renders shared partials from conn_t3kit_base (HeaderSwitch,
     # FrameAttributes default) — need to be resolvable too.
-    partialRootPaths.30 = EXT:conn_base/Resources/Private/Partials/
+    partialRootPaths.30 = EXT:conn_t3kit_base/Resources/Private/Partials/
 }

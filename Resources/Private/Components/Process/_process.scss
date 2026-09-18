@@ -4,7 +4,7 @@
 
 $conn-process-gap: 2rem;
 
-// Headings inherit conn/base's shared heading system (components/_typography.scss
+// Headings inherit conn/t3kit-base's shared heading system (components/_typography.scss
 // for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
@@ -114,7 +114,7 @@ $conn-process-gap: 2rem;
     }
 
     &__title {
-        // font-size/weight/color inherited from conn/base's shared heading
+        // font-size/weight/color inherited from conn/t3kit-base's shared heading
         // system (h3 is hardcoded in Step.html) — no override here.
         // margin-bottom is normal document-flow spacing before &__text
         // (not a flex-gap sibling), kept as-is.

@@ -6,7 +6,7 @@
  *
  * Lightbox ("Open in lightbox" setting) is real GLightbox — it self-binds
  * to the `.glightbox` anchors rendered in Partials/MosaicGallery/Item.html
- * (see conn_base's main.js), no per-component wiring needed here.
+ * (see conn_t3kit_base's main.js), no per-component wiring needed here.
  */
 
 const GAP_MAP: Record<string, number> = { none: 0, small: 8, medium: 16, large: 24 };

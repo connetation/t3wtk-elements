@@ -3,7 +3,7 @@
 // Full-height slides with Swiper parallax depth
 // ─────────────────────────────────────────────
 
-// Headings inherit conn/base's shared heading system (components/_typography.scss
+// Headings inherit conn/t3kit-base's shared heading system (components/_typography.scss
 // for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
@@ -166,7 +166,7 @@
     }
 
     &__title {
-        // font-size/font-weight/line-height inherit conn/base's shared heading
+        // font-size/font-weight/line-height inherit conn/t3kit-base's shared heading
         // system (h1-h5 all rendered via title_layout switch above) — this
         // class previously locked every heading level to the same size,
         // defeating the point of the layout choice. letter-spacing is kept

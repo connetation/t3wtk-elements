@@ -159,9 +159,27 @@ readonly class RenameExtensionKeySchemaUpdate implements UpgradeWizardInterface
 
     public function executeUpdate(): bool
     {
-        $this->migrateTables();
-        $this->migrateTtContentColumns();
-        $this->migrateFileReferences();
+        // tt_content accumulates columns from every installed extension over the life of a
+        // site; on many real installs its theoretical maximum row size (the sum of every
+        // VARCHAR/CHAR column's max possible byte length) is already over InnoDB's
+        // 8126-byte-not-counting-BLOBs limit, even though actual stored data fits fine.
+        // MariaDB/MySQL re-validates that theoretical maximum on ANY structural ALTER
+        // touching a VARCHAR/CHAR column — rename, drop, whatever — and rejects it with
+        // "Row size too large", regardless of how little the operation actually changes.
+        // innodb_strict_mode=0 downgrades that check to a warning, which is the standard,
+        // TYPO3-core-documented way to get such an ALTER through; restore the session's
+        // original value afterward rather than assuming it was 1.
+        $connection = $this->connectionPool->getConnectionForTable('tt_content');
+        $originalStrictMode = (string)$connection->executeQuery('SELECT @@SESSION.innodb_strict_mode')->fetchOne();
+        $connection->executeStatement('SET SESSION innodb_strict_mode = 0');
+
+        try {
+            $this->migrateTables();
+            $this->migrateTtContentColumns();
+            $this->migrateFileReferences();
+        } finally {
+            $connection->executeStatement('SET SESSION innodb_strict_mode = ' . ($originalStrictMode !== '' ? (int)$originalStrictMode : 1));
+        }
 
         return true;
     }
@@ -275,16 +293,17 @@ readonly class RenameExtensionKeySchemaUpdate implements UpgradeWizardInterface
                 continue;
             }
 
-            // Clean rename: reconstruct the old column's exact definition under the new name.
-            $schemaTable = $connection->createSchemaManager()->introspectTable('tt_content');
-            $columnDefinition = $schemaTable->getColumn($action['old']);
-            $newColumnDeclaration = $platform->getColumnDeclarationSQL($action['new'], $columnDefinition->toArray());
-
+            // Clean rename: RENAME COLUMN is metadata-only (no table rebuild), unlike
+            // CHANGE COLUMN which forces InnoDB to rebuild the whole row layout even when
+            // only the name changes — on a table with as many columns as tt_content that
+            // rebuild can exceed InnoDB's 8126-byte row-size limit ("Row size too large")
+            // depending on the table's ROW_FORMAT, even though nothing about the actual
+            // column definition is changing.
             $connection->executeStatement(sprintf(
-                'ALTER TABLE %s CHANGE %s %s',
+                'ALTER TABLE %s RENAME COLUMN %s TO %s',
                 $platform->quoteIdentifier('tt_content'),
                 $platform->quoteIdentifier($action['old']),
-                $newColumnDeclaration
+                $platform->quoteIdentifier($action['new'])
             ));
         }
     }

@@ -1,4 +1,4 @@
-// Headings inherit conn/base's shared heading system (components/_typography.scss
+// Headings inherit conn/t3kit-base's shared heading system (components/_typography.scss
 // for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
@@ -8,7 +8,7 @@
     padding: 3rem 0;
 
     // No font-size/weight/color override — inherits the tag chosen via
-    // title_layout (conn/base's shared heading system). margin-bottom stays —
+    // title_layout (conn/t3kit-base's shared heading system). margin-bottom stays —
     // separates title from &__body below (no flex gap in this layout).
     &__title {
         margin: 0 0 0.55rem;

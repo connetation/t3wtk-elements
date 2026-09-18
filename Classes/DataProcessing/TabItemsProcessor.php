@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
-use Connetation\Base\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
 
 final class TabItemsProcessor extends AbstractItemsProcessor
 {
