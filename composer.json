@@ -1,6 +1,6 @@
 {
     "name": "conn/t3kit-elements",
-    "version": "1.0.0",
+    "version": "2.0.2",
     "description": "Connetation Content Elements for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
@@ -9,7 +9,7 @@
         "typo3/cms-core": "^14.0",
         "typo3/cms-fluid": "^14.0",
         "typo3/cms-frontend": "^14.0",
-        "conn/t3kit-base": "^1.0.0"
+        "conn/t3kit-base": "^2.0.0"
     },
     "autoload": {
         "psr-4": {
