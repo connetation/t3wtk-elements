@@ -1,4 +1,4 @@
-tt_content.conn_text_icon =< lib.conn_elements_ce
+tt_content.conn_text_icon =< lib.conn_t3kit_elements_ce
 tt_content.conn_text_icon {
     templateName = TextIcon
 }

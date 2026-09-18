@@ -11,8 +11,8 @@ defined('TYPO3') or die();
 // them, so editors control autoplay/mute per media file, not per element.
 $GLOBALS['TCA']['sys_file_reference']['columns']['muted'] = [
     'exclude' => true,
-    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:sys_file_reference.muted',
-    'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:sys_file_reference.muted.description',
+    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:sys_file_reference.muted',
+    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:sys_file_reference.muted.description',
     'config' => [
         'type' => 'check',
         'renderType' => 'checkboxToggle',

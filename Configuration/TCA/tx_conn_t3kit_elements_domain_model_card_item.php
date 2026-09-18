@@ -31,14 +31,14 @@ $headingClassItems = [
 // Bootstrap 5 text-align suffixes ('' + this value = 'text-start'/'text-center'/'text-end').
 // Shared, reused across every item table's *_align column.
 $alignItems = [
-    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:align.left', 'value' => 'start'],
-    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:align.center', 'value' => 'center'],
-    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:align.right', 'value' => 'end'],
+    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:align.left', 'value' => 'start'],
+    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:align.center', 'value' => 'center'],
+    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:align.right', 'value' => 'end'],
 ];
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.card_item',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.card_item',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -46,7 +46,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/card-group-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/card-group-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -67,7 +67,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.title',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -77,7 +77,7 @@ return [
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -95,7 +95,7 @@ return [
             ],
         ],
         'subtitle' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.subtitle',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.subtitle',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -104,7 +104,7 @@ return [
             ],
         ],
         'subtitle_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -122,7 +122,7 @@ return [
             ],
         ],
         'title_align' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -131,7 +131,7 @@ return [
             ],
         ],
         'subtitle_align' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -140,7 +140,7 @@ return [
             ],
         ],
         'badge' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.badge',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.badge',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -149,7 +149,7 @@ return [
             ],
         ],
         'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.body',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.body',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
@@ -157,7 +157,7 @@ return [
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.image',
             'config' => [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
@@ -165,14 +165,14 @@ return [
             ],
         ],
         'link' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.link',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.link',
             'config' => [
                 'type'         => 'link',
                 'allowedTypes' => ['page', 'url', 'email', 'telephone'],
             ],
         ],
         'link_label' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.link_label',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.link_label',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -181,7 +181,7 @@ return [
             ],
         ],
         'link_align' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -192,15 +192,15 @@ return [
     ],
     'palettes' => [
         'header' => [
-            'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.header',
+            'label'    => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.header',
             'showitem' => 'title, title_layout, title_class, title_align',
         ],
         'subheader' => [
-            'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.subheader',
+            'label'    => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.subheader',
             'showitem' => 'subtitle, subtitle_layout, subtitle_class, subtitle_align',
         ],
         'link' => [
-            'label'    => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.link',
+            'label'    => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.link',
             'showitem' => 'link, link_label, link_align',
         ],
     ],
@@ -209,7 +209,7 @@ return [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     --palette--;;header, --palette--;;subheader, badge, body, image,
-                --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:card_item.tab.link,
+                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.tab.link,
                     --palette--;;link,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,

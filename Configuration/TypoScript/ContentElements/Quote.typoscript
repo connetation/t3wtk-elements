@@ -1,11 +1,11 @@
 # ─────────────────────────────────────────────
-# Quote Content Element – conn_elements
+# Quote Content Element – conn_t3kit_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_quote =< lib.conn_elements_ce
+tt_content.conn_quote =< lib.conn_t3kit_elements_ce
 tt_content.conn_quote {
     templateName = Quote
     dataProcessing {
-        10 = Connetation\Elements\DataProcessing\QuoteSettingsProcessor
+        10 = Connetation\T3kitElements\DataProcessing\QuoteSettingsProcessor
     }
 }

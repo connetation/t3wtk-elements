@@ -32,7 +32,7 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.slide_item',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.slide_item',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -40,7 +40,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/slider-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/slider-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -61,7 +61,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -70,7 +70,7 @@ return [
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -88,7 +88,7 @@ return [
             ],
         ],
         'subtitle' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -97,7 +97,7 @@ return [
             ],
         ],
         'subtitle_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -115,7 +115,7 @@ return [
             ],
         ],
         'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.body',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.body',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
@@ -123,7 +123,7 @@ return [
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.image',
             'config' => [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
@@ -205,7 +205,7 @@ return [
             ],
         ],
         'show_placeholder' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.show_placeholder',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.show_placeholder',
             'config' => [
                 'type'       => 'check',
                 'renderType' => 'checkboxToggle',
@@ -214,14 +214,14 @@ return [
             ],
         ],
         'link' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.link',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.link',
             'config' => [
                 'type'         => 'link',
                 'allowedTypes' => ['page', 'url', 'email', 'telephone'],
             ],
         ],
         'link_label' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.link_label',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.link_label',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -230,36 +230,36 @@ return [
             ],
         ],
         'text_animation' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_animation',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
                 'default'    => '',
                 'items'      => [
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.none',   'value' => ''],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.words',  'value' => 'words'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.lines',  'value' => 'lines'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.chars',  'value' => 'chars'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.reveal', 'value' => 'reveal'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_animation.fuzzy',  'value' => 'fuzzy'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_animation.none',   'value' => ''],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_animation.words',  'value' => 'words'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_animation.lines',  'value' => 'lines'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_animation.chars',  'value' => 'chars'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_animation.reveal', 'value' => 'reveal'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_animation.fuzzy',  'value' => 'fuzzy'],
                 ],
             ],
         ],
         'bg_animation' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:bg_animation',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:bg_animation',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
                 'default'    => '',
                 'items'      => [
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:bg_animation.none', 'value' => ''],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:bg_animation.zoom', 'value' => 'zoom'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:bg_animation.none', 'value' => ''],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:bg_animation.zoom', 'value' => 'zoom'],
                 ],
             ],
         ],
         'animation_duration' => [
-            'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:animation_duration',
-            'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:animation_duration.description',
+            'label'       => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:animation_duration',
+            'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:animation_duration.description',
             'config'      => [
                 'type'    => 'number',
                 'default' => 0,
@@ -267,30 +267,30 @@ return [
             ],
         ],
         'text_pos_v' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
                 'default'    => '',
                 'items'      => [
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.bottom', 'value' => ''],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.top',    'value' => 'top'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.center', 'value' => 'center'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.bottom_explicit', 'value' => 'bottom'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.bottom', 'value' => ''],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.top',    'value' => 'top'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.center', 'value' => 'center'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_v.bottom_explicit', 'value' => 'bottom'],
                 ],
             ],
         ],
         'text_pos_h' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
                 'default'    => '',
                 'items'      => [
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.left',   'value' => ''],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.center', 'value' => 'center'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.right',  'value' => 'right'],
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.left_explicit', 'value' => 'left'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.left',   'value' => ''],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.center', 'value' => 'center'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.right',  'value' => 'right'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_pos_h.left_explicit', 'value' => 'left'],
                 ],
             ],
         ],
@@ -300,29 +300,29 @@ return [
         // built-in default look (white title, accent eyebrow/button).
         // opacity:true enables an alpha channel in the color picker.
         'title_color_light' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title_color_light',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title_color_light',
             'config' => ['type' => 'color', 'opacity' => true],
         ],
         'title_color_dark' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title_color_dark',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.title_color_dark',
             'config' => ['type' => 'color', 'opacity' => true],
         ],
         'subtitle_color_light' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle_color_light',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle_color_light',
             'config' => ['type' => 'color', 'opacity' => true],
         ],
         'subtitle_color_dark' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle_color_dark',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.subtitle_color_dark',
             'config' => ['type' => 'color', 'opacity' => true],
         ],
         'button_color_light' => [
-            'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color_light',
-            'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color.description',
+            'label'       => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color_light',
+            'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color.description',
             'config'      => ['type' => 'color', 'opacity' => true],
         ],
         'button_color_dark' => [
-            'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color_dark',
-            'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color.description',
+            'label'       => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color_dark',
+            'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_color.description',
             'config'      => ['type' => 'color', 'opacity' => true],
         ],
         // Independent of the background above — the button's default (Bootstrap
@@ -330,11 +330,11 @@ return [
         // background, so a light background + the default white text is
         // unreadable unless the editor can also set the text color.
         'button_text_color_light' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_text_color_light',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_text_color_light',
             'config' => ['type' => 'color', 'opacity' => true],
         ],
         'button_text_color_dark' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_text_color_dark',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.button_text_color_dark',
             'config' => ['type' => 'color', 'opacity' => true],
         ],
     ],
@@ -343,7 +343,7 @@ return [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, body, image, show_placeholder,
-                --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:slide_item.tab.link,
+                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slide_item.tab.link,
                     link, link_label,
                     --linebreak--,
                     button_color_light, button_color_dark,

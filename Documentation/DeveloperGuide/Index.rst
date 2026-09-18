@@ -14,12 +14,12 @@ Adding a new content element
 Use the scaffold CLI — it generates every required file and patches all
 registration files automatically.
 
-Local (Node.js installed on host), from :file:`vendor/conn/elements`::
+Local (Node.js installed on host), from :file:`vendor/conn/t3kit-elements`::
 
    npm run make-element
 
 This works out of the box wherever the package is installed, since the
-script (:file:`bin/make-element.mjs`) ships inside ``conn/elements``
+script (:file:`bin/make-element.mjs`) ships inside ``conn/t3kit-elements``
 itself.
 
 Optional: a DDEV host command
@@ -28,9 +28,9 @@ Optional: a DDEV host command
 .. important::
 
    Unlike ``npm run make-element``, the ``ddev make-element`` shortcut is
-   **not** part of the ``conn/elements`` package — it is a project-level
+   **not** part of the ``conn/t3kit-elements`` package — it is a project-level
    DDEV host command that must exist in *your own* project's
-   :file:`.ddev/commands/host/make-element`. Installing ``conn/elements``
+   :file:`.ddev/commands/host/make-element`. Installing ``conn/t3kit-elements``
    via Composer into a fresh project does not give you this command; you
    need to add the script yourself before ``ddev make-element`` will
    work.
@@ -40,13 +40,13 @@ To add it:
 #. Create the file :file:`.ddev/commands/host/make-element` at the root
    of your TYPO3 project (create the ``host`` directory too if it
    doesn't exist yet — note this is a project-level DDEV directory, not
-   part of ``conn/elements``).
+   part of ``conn/t3kit-elements``).
 #. Paste in the following script:
 
    .. code-block:: bash
 
       #!/usr/bin/env bash
-      ## Description: Scaffold a new content element in conn/elements
+      ## Description: Scaffold a new content element in conn/t3kit-elements
       ## Usage: make-element ["Element Name"]
       ## Example: ddev make-element
       ## Example: ddev make-element "Hero Banner"
@@ -55,9 +55,9 @@ To add it:
 
       ARGS="$*"
       if [ -n "$ARGS" ]; then
-          ddev exec bash -c "cd /var/www/html/vendor/conn/elements && node bin/make-element.mjs '$ARGS'"
+          ddev exec bash -c "cd /var/www/html/vendor/conn/t3kit-elements && node bin/make-element.mjs '$ARGS'"
       else
-          ddev exec bash -c "cd /var/www/html/vendor/conn/elements && node bin/make-element.mjs"
+          ddev exec bash -c "cd /var/www/html/vendor/conn/t3kit-elements && node bin/make-element.mjs"
       fi
 
 #. Make it executable — DDEV silently ignores host commands that aren't::
@@ -87,7 +87,7 @@ Or pass the element name directly to skip the first prompt::
 
 The host command itself is a thin wrapper that opens an interactive
 terminal inside the web container (``ddev exec -it``) and runs
-``node bin/make-element.mjs`` from :file:`vendor/conn/elements`, so
+``node bin/make-element.mjs`` from :file:`vendor/conn/t3kit-elements`, so
 readline prompts work correctly; running plain ``ddev exec`` without
 ``-it`` would hang waiting for input.
 
@@ -111,7 +111,7 @@ What gets generated
      - Display settings form
    * - ``Configuration/TypoScript/ContentElements/<Name>.typoscript``
      - Frontend rendering setup
-   * - ``Configuration/TCA/tx_conn_elements_domain_model_<name>_item.php``
+   * - ``Configuration/TCA/tx_conn_t3kit_elements_domain_model_<name>_item.php``
      - Child record TCA (with-items only)
    * - ``Classes/DataProcessing/<Name>ItemsProcessor.php``
      - DB query + FlexForm resolver (with-items only)
@@ -164,7 +164,7 @@ Customising the generated element
 - **FlexForm** — edit ``Configuration/FlexForms/<Name>.xml`` to add or
   change display settings.
 - **Child record fields** — extend
-  ``Configuration/TCA/tx_conn_elements_domain_model_<name>_item.php`` and
+  ``Configuration/TCA/tx_conn_t3kit_elements_domain_model_<name>_item.php`` and
   ``ext_tables.sql``, then re-run database analysis.
 - **Data Processor** — extend ``resolveSettings()`` and the ``$rows``
   enrichment in the generated processor.

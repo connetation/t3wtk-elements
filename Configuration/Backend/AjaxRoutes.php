@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'conn_elements_icon_list' => [
-        'path'   => '/conn-elements/icon-list',
-        'target' => \Connetation\Elements\Controller\Backend\IconListAjaxController::class . '::listAction',
+    'conn_t3kit_elements_icon_list' => [
+        'path'   => '/conn-t3kit-elements/icon-list',
+        'target' => \Connetation\T3kitElements\Controller\Backend\IconListAjaxController::class . '::listAction',
     ],
 ];

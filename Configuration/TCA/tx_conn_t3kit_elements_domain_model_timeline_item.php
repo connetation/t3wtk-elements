@@ -28,29 +28,34 @@ $headingClassItems = [
     ['label' => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class.hidden', 'value' => 'visually-hidden'],
 ];
 
+defined('TYPO3') or die();
+
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.mosaic_item',
-        'label'         => 'title',
-        'sortby'        => 'sorting',
-        'tstamp'        => 'tstamp',
-        'crdate'        => 'crdate',
-        'delete'        => 'deleted',
-        'versioningWS'        => true,
-        'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/mosaic-gallery-ce.svg',
-        'rootLevel'     => -1,
-        'security'      => ['ignorePageTypeRestriction' => true],
+        'title'          => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.timeline_item',
+        'label'          => 'title',
+        'sortby'         => 'sorting',
+        'tstamp'         => 'tstamp',
+        'crdate'         => 'crdate',
+        'delete'         => 'deleted',
+        'versioningWS'         => true,
+        'enablecolumns'  => ['disabled' => 'hidden'],
+        'iconfile'       => 'EXT:conn_t3kit_elements/Resources/Public/Icons/conn_logo_small.svg',
+        'rootLevel'      => -1,
+        'security'       => ['ignorePageTypeRestriction' => true],
     ],
+
+    'palettes' => [
+        'date' => [
+            'showitem' => 'date, date_precision',
+        ],
+    ],
+
     'columns' => [
         'hidden' => [
             'exclude' => true,
-            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-            'config'  => [
-                'type'       => 'check',
-                'renderType' => 'checkboxToggle',
-                'items'      => [['label' => '', 'invertStateDisplay' => true]],
-            ],
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.disable',
+            'config'  => ['type' => 'check', 'renderType' => 'checkboxToggle'],
         ],
         'sorting' => [
             'config' => ['type' => 'passthrough'],
@@ -58,17 +63,37 @@ return [
         'content_element' => [
             'config' => ['type' => 'passthrough'],
         ],
-        'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:mosaic_item.title',
+        'date' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date',
             'config' => [
-                'type' => 'input',
-                'size' => 60,
-                'max'  => 255,
-                'eval' => 'trim',
+                'type'     => 'datetime',
+                'format'   => 'date',
+                'nullable' => true,
+            ],
+        ],
+        'date_precision' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date_precision',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => [
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date_precision.full', 'value' => 'full'],
+                    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.date_precision.year', 'value' => 'year'],
+                ],
+                'default' => 'full',
+            ],
+        ],
+        'title' => [
+            'label'   => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.title',
+            'config'  => [
+                'type'     => 'input',
+                'size'     => 50,
+                'max'      => 255,
+                'required' => true,
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -85,29 +110,30 @@ return [
                 'default'    => '',
             ],
         ],
-        'caption' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:mosaic_item.caption',
+        'body' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.body',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
-                'rows'           => 3,
+                'richtextConfiguration' => 'default',
+                'rows'           => 6,
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:mosaic_item.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline_item.image',
             'config' => [
                 'type'     => 'file',
-                'allowed'  => 'jpg,jpeg,png,gif,webp',
+                'allowed'  => 'common-image-types',
                 'maxitems' => 1,
-                'minitems' => 1,
             ],
         ],
     ],
+
     'types' => [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    image, title, title_layout, title_class, caption,
+                    --palette--;;date, title, title_layout, title_class, body, image,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

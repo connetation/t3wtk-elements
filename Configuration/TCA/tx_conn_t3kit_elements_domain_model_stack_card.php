@@ -30,7 +30,7 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.flip_carousel_item',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.stack_card',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -38,7 +38,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/flip-carousel-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/card-stack-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -59,7 +59,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.title',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -69,7 +69,7 @@ return [
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -87,7 +87,7 @@ return [
             ],
         ],
         'subtitle' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.subtitle',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.subtitle',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -96,7 +96,7 @@ return [
             ],
         ],
         'subtitle_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -113,17 +113,8 @@ return [
                 'default'    => '',
             ],
         ],
-        'category' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.category',
-            'config' => [
-                'type' => 'input',
-                'size' => 40,
-                'max'  => 100,
-                'eval' => 'trim',
-            ],
-        ],
         'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.body',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.body',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
@@ -131,27 +122,11 @@ return [
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.image',
             'config' => [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
                 'maxitems' => 1,
-            ],
-        ],
-        'link' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.link',
-            'config' => [
-                'type'         => 'link',
-                'allowedTypes' => ['page', 'url', 'email', 'telephone'],
-            ],
-        ],
-        'link_label' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.link_label',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max'  => 100,
-                'eval' => 'trim',
             ],
         ],
     ],
@@ -159,9 +134,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, category, body, image,
-                --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.tab.link,
-                    link, link_label,
+                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, body, image,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

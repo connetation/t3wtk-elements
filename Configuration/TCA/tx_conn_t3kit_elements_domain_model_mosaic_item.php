@@ -30,7 +30,7 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.gallery_item',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.mosaic_item',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -38,7 +38,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/flip-gallery-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/mosaic-gallery-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -59,7 +59,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:gallery_item.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:mosaic_item.title',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -68,7 +68,7 @@ return [
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -86,15 +86,15 @@ return [
             ],
         ],
         'caption' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:gallery_item.caption',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:mosaic_item.caption',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
-                'rows'           => 4,
+                'rows'           => 3,
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:gallery_item.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:mosaic_item.image',
             'config' => [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp',

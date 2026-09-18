@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\DataProcessing;
+namespace Connetation\T3kitElements\DataProcessing;
 
 use Connetation\Base\DataProcessing\AbstractItemsProcessor;
 
@@ -15,7 +15,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 final class PeopleProcessor extends AbstractItemsProcessor
 {
-    private const TABLE = 'tx_conn_elements_domain_model_person';
+    private const TABLE = 'tx_conn_t3kit_elements_domain_model_person';
 
     private const STYLES = [
         'reveal-sheet',
@@ -67,7 +67,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return $processorConfiguration['settingsField'] ?? 'tx_conn_elements_people_settings';
+        return $processorConfiguration['settingsField'] ?? 'tx_conn_t3kit_elements_people_settings';
     }
 
     protected function resolveSettings(array $raw, string $settingsField): array

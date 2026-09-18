@@ -5,12 +5,12 @@
     <div class="dropdown">
         <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
             <span class="conn-filter__category-label"
-                  data-default="{f:translate(key:'filter.category.label', extensionName:'conn_elements')}">
-                <f:translate key="filter.category.label" extensionName="conn_elements" />
+                  data-default="{f:translate(key:'filter.category.label', extensionName:'conn_t3kit_elements')}">
+                <f:translate key="filter.category.label" extensionName="conn_t3kit_elements" />
             </span>
         </button>
         <ul class="dropdown-menu shadow-lg">
-            <li><a class="dropdown-item conn-filter__category-item active" data-category="all" href="#"><f:translate key="filter.category.all" extensionName="conn_elements" /></a></li>
+            <li><a class="dropdown-item conn-filter__category-item active" data-category="all" href="#"><f:translate key="filter.category.all" extensionName="conn_t3kit_elements" /></a></li>
             <f:for each="{categories}" as="category">
                 <li><a class="dropdown-item conn-filter__category-item" data-category="{category.uid}" href="#">{category.title}</a></li>
             </f:for>

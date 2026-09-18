@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\DataProcessing;
+namespace Connetation\T3kitElements\DataProcessing;
 
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -20,9 +20,9 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  * same pitfall AbstractItemsProcessor::getTypoScriptSettings() guards against.
  *
  * Configuration:
- *   10 = Connetation\Elements\DataProcessing\FlexFormSettingsProcessor
+ *   10 = Connetation\T3kitElements\DataProcessing\FlexFormSettingsProcessor
  *   10 {
- *       fieldName = tx_conn_elements_example_settings
+ *       fieldName = tx_conn_t3kit_elements_example_settings
  *   }
  */
 final class FlexFormSettingsProcessor implements DataProcessorInterface

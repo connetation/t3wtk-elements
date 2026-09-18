@@ -7,10 +7,10 @@ Connetation Elements
 =====================
 
 :Extension key:
-   conn_elements
+   conn_t3kit_elements
 
 :Package name:
-   conn/elements
+   conn/t3kit-elements
 
 :Version:
    |release|

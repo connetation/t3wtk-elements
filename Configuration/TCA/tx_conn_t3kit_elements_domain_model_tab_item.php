@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.process_step',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.tab_item',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -12,7 +12,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/process-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/tabs-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -33,33 +33,21 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:process_step.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:tab_item.title',
             'config' => [
                 'type'     => 'input',
                 'size'     => 40,
-                'max'      => 100,
+                'max'      => 60,
                 'eval'     => 'trim',
                 'required' => true,
             ],
         ],
-        'icon' => [
-            'label'       => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:process_step.icon',
-            'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:process_step.icon.description',
-            'config'      => [
-                'type'          => 'select',
-                'renderType'    => 'connIconSelect',
-                'itemsProcFunc' => \Connetation\Elements\Service\IconItemsProcFunc::class . '->getIconNameItems',
-                'items'         => [
-                    ['label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:text_icon.name.empty', 'value' => ''],
-                ],
-            ],
-        ],
         'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:process_step.body',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:tab_item.body',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
-                'rows'           => 6,
+                'rows'           => 8,
             ],
         ],
     ],
@@ -67,7 +55,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, icon, body,
+                    title, body,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

@@ -30,7 +30,7 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.stack_card',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.gallery_item',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -38,7 +38,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/card-stack-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/flip-gallery-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -59,17 +59,16 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stack_card.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:gallery_item.title',
             'config' => [
-                'type'     => 'input',
-                'size'     => 60,
-                'max'      => 255,
-                'eval'     => 'trim',
-                'required' => true,
+                'type' => 'input',
+                'size' => 60,
+                'max'  => 255,
+                'eval' => 'trim',
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -86,47 +85,21 @@ return [
                 'default'    => '',
             ],
         ],
-        'subtitle' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stack_card.subtitle',
-            'config' => [
-                'type' => 'input',
-                'size' => 60,
-                'max'  => 100,
-                'eval' => 'trim',
-            ],
-        ],
-        'subtitle_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
-            'config' => [
-                'type'       => 'select',
-                'renderType' => 'selectSingle',
-                'items'      => $headingLayoutItems,
-                'default'    => 0,
-            ],
-        ],
-        'subtitle_class' => [
-            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
-            'config' => [
-                'type'       => 'select',
-                'renderType' => 'selectSingle',
-                'items'      => $headingClassItems,
-                'default'    => '',
-            ],
-        ],
-        'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stack_card.body',
+        'caption' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:gallery_item.caption',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
-                'rows'           => 6,
+                'rows'           => 4,
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stack_card.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:gallery_item.image',
             'config' => [
                 'type'     => 'file',
-                'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
+                'allowed'  => 'jpg,jpeg,png,gif,webp',
                 'maxitems' => 1,
+                'minitems' => 1,
             ],
         ],
     ],
@@ -134,7 +107,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, body, image,
+                    image, title, title_layout, title_class, caption,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

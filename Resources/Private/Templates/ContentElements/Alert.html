@@ -10,20 +10,20 @@
 
 <f:variable name="positionClass"><f:if condition="{data.header_position}">ce-headline-{data.header_position}</f:if></f:variable>
 
-<f:asset.css identifier="conn-elements-bootstrap-icons-css"
-    href="EXT:conn_elements/Resources/Public/Css/bootstrap-icons.css" />
-<f:asset.css identifier="conn-elements-alert-css"
-    href="EXT:conn_elements/Resources/Public/Css/alert.css" />
+<f:asset.css identifier="conn-t3kit-elements-bootstrap-icons-css"
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/bootstrap-icons.css" />
+<f:asset.css identifier="conn-t3kit-elements-alert-css"
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/alert.css" />
 
 <f:variable name="isPositioned" value="{settings.isFixed}" />
 <f:variable name="isCompact" value="{settings.compact}" />
 
-<f:variable name="customIconImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_alert_custom_icon_image')}" />
+<f:variable name="customIconImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_alert_custom_icon_image')}" />
 
 <f:variable name="hasCustomImage" value="0" />
 <f:if condition="{settings.style} == 'custom' && {customIconImage}"><f:variable name="hasCustomImage" value="1" /></f:if>
 <f:variable name="hasCustomIconName" value="0" />
-<f:if condition="{settings.style} == 'custom' && !{hasCustomImage} && {data.tx_conn_elements_alert_custom_icon_name}"><f:variable name="hasCustomIconName" value="1" /></f:if>
+<f:if condition="{settings.style} == 'custom' && !{hasCustomImage} && {data.tx_conn_t3kit_elements_alert_custom_icon_name}"><f:variable name="hasCustomIconName" value="1" /></f:if>
 <f:variable name="hasIcon" value="0" />
 <f:if condition="{settings.style} != 'custom'"><f:variable name="hasIcon" value="1" /></f:if>
 <f:if condition="{hasCustomImage} || {hasCustomIconName}"><f:variable name="hasIcon" value="1" /></f:if>
@@ -33,7 +33,7 @@
         <f:case value="success">bi-check-circle-fill</f:case>
         <f:case value="warning">bi-exclamation-triangle-fill</f:case>
         <f:case value="danger">bi-x-octagon-fill</f:case>
-        <f:case value="custom">bi-{data.tx_conn_elements_alert_custom_icon_name}</f:case>
+        <f:case value="custom">bi-{data.tx_conn_t3kit_elements_alert_custom_icon_name}</f:case>
         <f:defaultCase>bi-info-circle-fill</f:defaultCase>
     </f:switch>
 </f:variable>
@@ -54,8 +54,8 @@
 <f:variable name="dismissKey"></f:variable>
 <f:if condition="{settings.dismissible} && {settings.rememberDismiss}">
     <f:variable name="dismissKey">conn-alert-dismissed-{data.uid}-{data.tstamp}</f:variable>
-    <f:asset.script identifier="conn-elements-alert-js"
-        src="EXT:conn_elements/Resources/Public/Js/components/alert.js"
+    <f:asset.script identifier="conn-t3kit-elements-alert-js"
+        src="EXT:conn_t3kit_elements/Resources/Public/Js/components/alert.js"
         type="module"
         priority="false" />
 </f:if>
@@ -80,7 +80,7 @@
         </div>
 
         <f:if condition="{settings.dismissible}">
-            <f:variable name="closeLabel"><f:translate key="alert.close" extensionName="conn_elements" /></f:variable>
+            <f:variable name="closeLabel"><f:translate key="alert.close" extensionName="conn_t3kit_elements" /></f:variable>
             <button type="button"
                     class="btn-close{f:if(condition: settings.closeColor, then: ' conn-alert__close--custom')}"
                     style="{f:if(condition: settings.closeColor, then: '--conn-alert-close-color: {settings.closeColor};')}"
@@ -108,8 +108,8 @@
 
 <f:if condition="{isPositioned}">
     <f:then>
-        <f:asset.script identifier="conn-elements-alert-js"
-            src="EXT:conn_elements/Resources/Public/Js/components/alert.js"
+        <f:asset.script identifier="conn-t3kit-elements-alert-js"
+            src="EXT:conn_t3kit_elements/Resources/Public/Js/components/alert.js"
             type="module"
             priority="false" />
 
@@ -120,7 +120,7 @@
              data-position="{settings.position}"
              data-vertical-align="{settings.verticalAlign}">
             <f:if condition="{isCompact}">
-                <f:variable name="expandLabel"><f:translate key="alert.expand" extensionName="conn_elements" /></f:variable>
+                <f:variable name="expandLabel"><f:translate key="alert.expand" extensionName="conn_t3kit_elements" /></f:variable>
                 <button type="button"
                         class="conn-alert-positioned__toggle conn-alert-positioned__toggle--{settings.style} conn-alert-positioned__toggle--{settings.buttonShape}"
                         style="{toggleStyle}"

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.tab_item',
-        'label'         => 'title',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.logo_item',
+        'label'         => 'alt',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
         'crdate'        => 'crdate',
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/tabs-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/logo-wall-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -32,22 +32,29 @@ return [
         'content_element' => [
             'config' => ['type' => 'passthrough'],
         ],
-        'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:tab_item.title',
+        'image' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:logo_item.image',
             'config' => [
-                'type'     => 'input',
-                'size'     => 40,
-                'max'      => 60,
-                'eval'     => 'trim',
+                'type'     => 'file',
+                'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
+                'maxitems' => 1,
                 'required' => true,
             ],
         ],
-        'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:tab_item.body',
+        'alt' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:logo_item.alt',
             'config' => [
-                'type'           => 'text',
-                'enableRichtext' => true,
-                'rows'           => 8,
+                'type' => 'input',
+                'size' => 60,
+                'max'  => 255,
+                'eval' => 'trim',
+            ],
+        ],
+        'link' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:logo_item.link',
+            'config' => [
+                'type'         => 'link',
+                'allowedTypes' => ['page', 'url'],
             ],
         ],
     ],
@@ -55,7 +62,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, body,
+                    image, alt, link,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

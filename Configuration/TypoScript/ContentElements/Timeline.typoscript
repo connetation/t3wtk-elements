@@ -1,14 +1,14 @@
 # ─────────────────────────────────────────────
-# Timeline Content Element – conn_elements
+# Timeline Content Element – conn_t3kit_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_timeline =< lib.conn_elements_ce
+tt_content.conn_timeline =< lib.conn_t3kit_elements_ce
 tt_content.conn_timeline {
     templateName = Timeline
     dataProcessing {
-        10 = Connetation\Elements\DataProcessing\TimelineItemsProcessor
+        10 = Connetation\T3kitElements\DataProcessing\TimelineItemsProcessor
         10 {
-            fieldName = tx_conn_elements_timeline_items
+            fieldName = tx_conn_t3kit_elements_timeline_items
             as = items
         }
     }

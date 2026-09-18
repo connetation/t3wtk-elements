@@ -3,6 +3,6 @@
 return [
     'dependencies' => ['backend'],
     'imports' => [
-        '@conn/elements/' => 'EXT:conn_elements/Resources/Public/JavaScript/Backend/',
+        '@conn/t3kit-elements/' => 'EXT:conn_t3kit_elements/Resources/Public/JavaScript/Backend/',
     ],
 ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\DataProcessing;
+namespace Connetation\T3kitElements\DataProcessing;
 
 use Connetation\Base\DataProcessing\AbstractItemsProcessor;
 
@@ -10,7 +10,7 @@ final class FlipGalleryProcessor extends AbstractItemsProcessor
 {
     protected function getTable(): string
     {
-        return 'tx_conn_elements_domain_model_gallery_item';
+        return 'tx_conn_t3kit_elements_domain_model_gallery_item';
     }
 
     protected function getDefaultTargetVariable(): string
@@ -20,7 +20,7 @@ final class FlipGalleryProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return 'tx_conn_elements_flip_gallery_settings';
+        return 'tx_conn_t3kit_elements_flip_gallery_settings';
     }
 
     protected function getFalFields(): array

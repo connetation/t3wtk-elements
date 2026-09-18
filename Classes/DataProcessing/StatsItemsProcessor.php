@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\DataProcessing;
+namespace Connetation\T3kitElements\DataProcessing;
 
 use Connetation\Base\DataProcessing\AbstractItemsProcessor;
 
@@ -10,7 +10,7 @@ final class StatsItemsProcessor extends AbstractItemsProcessor
 {
     protected function getTable(): string
     {
-        return 'tx_conn_elements_domain_model_stat_item';
+        return 'tx_conn_t3kit_elements_domain_model_stat_item';
     }
 
     protected function getDefaultTargetVariable(): string
@@ -20,7 +20,7 @@ final class StatsItemsProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return 'tx_conn_elements_stats_settings';
+        return 'tx_conn_t3kit_elements_stats_settings';
     }
 
     protected function resolveSettings(array $raw, string $settingsField): array

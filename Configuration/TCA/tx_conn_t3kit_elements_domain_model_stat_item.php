@@ -30,15 +30,15 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.accordion_item',
-        'label'         => 'title',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.stat_item',
+        'label'         => 'label',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
         'crdate'        => 'crdate',
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/accordion-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/stats-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -58,8 +58,36 @@ return [
         'content_element' => [
             'config' => ['type' => 'passthrough'],
         ],
-        'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:accordion_item.title',
+        'value' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stat_item.value',
+            'config' => [
+                'type'     => 'input',
+                'size'     => 20,
+                'max'      => 60,
+                'eval'     => 'trim',
+                'required' => true,
+            ],
+        ],
+        'prefix' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stat_item.prefix',
+            'config' => [
+                'type' => 'input',
+                'size' => 10,
+                'max'  => 20,
+                'eval' => 'trim',
+            ],
+        ],
+        'suffix' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stat_item.suffix',
+            'config' => [
+                'type' => 'input',
+                'size' => 10,
+                'max'  => 20,
+                'eval' => 'trim',
+            ],
+        ],
+        'label' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stat_item.label',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -68,8 +96,8 @@ return [
                 'required' => true,
             ],
         ],
-        'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+        'label_layout' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -77,7 +105,7 @@ return [
                 'default'    => 0,
             ],
         ],
-        'title_class' => [
+        'label_class' => [
             'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
             'config' => [
                 'type'       => 'select',
@@ -86,12 +114,16 @@ return [
                 'default'    => '',
             ],
         ],
-        'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:accordion_item.body',
+        // Description is supplementary caption text under the label — always
+        // plain text, never a heading, so unlike label it has no _layout
+        // field/editor choice at all.
+        'description' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stat_item.description',
             'config' => [
-                'type'            => 'text',
-                'enableRichtext'  => true,
-                'rows'            => 8,
+                'type' => 'input',
+                'size' => 60,
+                'max'  => 255,
+                'eval' => 'trim',
             ],
         ],
     ],
@@ -99,7 +131,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, title_layout, title_class, body,
+                    value, prefix, suffix, label, label_layout, label_class, description,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

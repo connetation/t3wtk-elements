@@ -8,18 +8,18 @@
 
 <f:section name="Main">
 
-<f:asset.css identifier="conn-elements-map-css"
-    href="EXT:conn_elements/Resources/Public/Css/map.css" />
-<f:asset.css identifier="conn-elements-contact-info-css"
-    href="EXT:conn_elements/Resources/Public/Css/contact-info.css" />
-<f:asset.script identifier="conn-elements-map-js"
-    src="EXT:conn_elements/Resources/Public/Js/components/map.js"
+<f:asset.css identifier="conn-t3kit-elements-map-css"
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/map.css" />
+<f:asset.css identifier="conn-t3kit-elements-contact-info-css"
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/contact-info.css" />
+<f:asset.script identifier="conn-t3kit-elements-map-js"
+    src="EXT:conn_t3kit_elements/Resources/Public/Js/components/map.js"
     type="module"
     priority="false" />
 
 <f:variable name="addressText">{settings.contact.address.street}, {settings.contact.address.zip} {settings.contact.address.city}, {settings.contact.address.country}</f:variable>
 
-<f:variable name="illustrationImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_map_illustration_image')}" />
+<f:variable name="illustrationImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_map_illustration_image')}" />
 
 <f:variable name="hasIllustrationImage" value="0" />
 <f:if condition="{settings.provider} == 'static' && {illustrationImage}">
@@ -54,7 +54,7 @@
                     <div class="conn-map__grid" style="{f:if(condition: settings.gridColor, then: '--conn-map-grid-color: {settings.gridColor};')}"></div>
                     <f:if condition="{settings.provider} == 'google' && {settings.privacyMode}">
                         <button type="button" class="btn btn-light conn-map__load-button">
-                            <f:translate key="map.load" extensionName="conn_elements" />
+                            <f:translate key="map.load" extensionName="conn_t3kit_elements" />
                         </button>
                     </f:if>
                 </div>

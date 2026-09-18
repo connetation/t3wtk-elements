@@ -6,40 +6,40 @@
 
 <f:section name="Main">
 
-<f:asset.css identifier="conn-elements-before-after-css"
-    href="EXT:conn_elements/Resources/Public/Css/before-after.css" />
-<f:asset.script identifier="conn-elements-before-after-js"
-    src="EXT:conn_elements/Resources/Public/Js/components/before-after.js"
+<f:asset.css identifier="conn-t3kit-elements-before-after-css"
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/before-after.css" />
+<f:asset.script identifier="conn-t3kit-elements-before-after-js"
+    src="EXT:conn_t3kit_elements/Resources/Public/Js/components/before-after.js"
     type="module"
     priority="false" />
 
-<f:variable name="beforeFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_before_after_before')}" />
-<f:variable name="afterFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_before_after_after')}" />
-<f:variable name="handleIconFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_elements_before_after_handle_icon')}" />
-<f:variable name="sliderLabel"><f:translate key="before_after.slider.label" extensionName="conn_elements" /></f:variable>
+<f:variable name="beforeFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_before_after_before')}" />
+<f:variable name="afterFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_before_after_after')}" />
+<f:variable name="handleIconFile" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_before_after_handle_icon')}" />
+<f:variable name="sliderLabel"><f:translate key="before_after.slider.label" extensionName="conn_t3kit_elements" /></f:variable>
 
-<f:variable name="beforeAlt" value="{data.tx_conn_elements_before_after_before_label}" />
+<f:variable name="beforeAlt" value="{data.tx_conn_t3kit_elements_before_after_before_label}" />
 <f:if condition="{beforeFile.alternative}"><f:variable name="beforeAlt" value="{beforeFile.alternative}" /></f:if>
-<f:if condition="{beforeAlt} == ''"><f:variable name="beforeAlt"><f:translate key="before_after.before.alt" extensionName="conn_elements" /></f:variable></f:if>
+<f:if condition="{beforeAlt} == ''"><f:variable name="beforeAlt"><f:translate key="before_after.before.alt" extensionName="conn_t3kit_elements" /></f:variable></f:if>
 
-<f:variable name="afterAlt" value="{data.tx_conn_elements_before_after_after_label}" />
+<f:variable name="afterAlt" value="{data.tx_conn_t3kit_elements_before_after_after_label}" />
 <f:if condition="{afterFile.alternative}"><f:variable name="afterAlt" value="{afterFile.alternative}" /></f:if>
-<f:if condition="{afterAlt} == ''"><f:variable name="afterAlt"><f:translate key="before_after.after.alt" extensionName="conn_elements" /></f:variable></f:if>
+<f:if condition="{afterAlt} == ''"><f:variable name="afterAlt"><f:translate key="before_after.after.alt" extensionName="conn_t3kit_elements" /></f:variable></f:if>
 
 <f:variable name="direction" value="left-right" />
-<f:if condition="{data.tx_conn_elements_before_after_direction}"><f:variable name="direction" value="{data.tx_conn_elements_before_after_direction}" /></f:if>
+<f:if condition="{data.tx_conn_t3kit_elements_before_after_direction}"><f:variable name="direction" value="{data.tx_conn_t3kit_elements_before_after_direction}" /></f:if>
 <f:variable name="start" value="50" />
-<f:if condition="{data.tx_conn_elements_before_after_start} || {data.tx_conn_elements_before_after_start} == 0"><f:variable name="start" value="{data.tx_conn_elements_before_after_start}" /></f:if>
+<f:if condition="{data.tx_conn_t3kit_elements_before_after_start} || {data.tx_conn_t3kit_elements_before_after_start} == 0"><f:variable name="start" value="{data.tx_conn_t3kit_elements_before_after_start}" /></f:if>
 
 <f:variable name="handleStyle"></f:variable>
 <f:if condition="{handleIconFile}">
     <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-icon: url('{f:uri.image(image: handleIconFile)}');</f:variable>
 </f:if>
-<f:if condition="{data.tx_conn_elements_before_after_handle_color}">
-    <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-color: {data.tx_conn_elements_before_after_handle_color};</f:variable>
+<f:if condition="{data.tx_conn_t3kit_elements_before_after_handle_color}">
+    <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-color: {data.tx_conn_t3kit_elements_before_after_handle_color};</f:variable>
 </f:if>
-<f:if condition="{data.tx_conn_elements_before_after_handle_border_color}">
-    <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-border-color: {data.tx_conn_elements_before_after_handle_border_color};</f:variable>
+<f:if condition="{data.tx_conn_t3kit_elements_before_after_handle_border_color}">
+    <f:variable name="handleStyle">{handleStyle}--conn-ba-handle-border-color: {data.tx_conn_t3kit_elements_before_after_handle_border_color};</f:variable>
 </f:if>
 
 <section class="conn-before-after" id="conn-before-after-{data.uid}">
@@ -59,14 +59,14 @@
                      style="{handleStyle}">
                     <div class="conn-before-after__image conn-before-after__image--after">
                         <f:image image="{afterFile}" alt="{afterAlt}" title="{afterFile.title}" />
-                        <f:if condition="{data.tx_conn_elements_before_after_after_label}">
-                            <span class="conn-before-after__label conn-before-after__label--after">{data.tx_conn_elements_before_after_after_label}</span>
+                        <f:if condition="{data.tx_conn_t3kit_elements_before_after_after_label}">
+                            <span class="conn-before-after__label conn-before-after__label--after">{data.tx_conn_t3kit_elements_before_after_after_label}</span>
                         </f:if>
                     </div>
                     <div class="conn-before-after__image conn-before-after__image--before">
                         <f:image image="{beforeFile}" alt="{beforeAlt}" title="{beforeFile.title}" />
-                        <f:if condition="{data.tx_conn_elements_before_after_before_label}">
-                            <span class="conn-before-after__label conn-before-after__label--before">{data.tx_conn_elements_before_after_before_label}</span>
+                        <f:if condition="{data.tx_conn_t3kit_elements_before_after_before_label}">
+                            <span class="conn-before-after__label conn-before-after__label--before">{data.tx_conn_t3kit_elements_before_after_before_label}</span>
                         </f:if>
                     </div>
                     <div class="conn-before-after__handle" aria-hidden="true">
@@ -76,7 +76,7 @@
             </f:then>
             <f:else>
                 <p class="text-muted fst-italic">
-                    <f:translate key="before_after.empty" extensionName="conn_elements" />
+                    <f:translate key="before_after.empty" extensionName="conn_t3kit_elements" />
                 </p>
             </f:else>
         </f:if>

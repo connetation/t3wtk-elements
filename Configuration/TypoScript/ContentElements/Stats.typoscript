@@ -1,8 +1,8 @@
-tt_content.conn_stats =< lib.conn_elements_ce
+tt_content.conn_stats =< lib.conn_t3kit_elements_ce
 tt_content.conn_stats {
     templateName = Stats
     dataProcessing {
-        10 = Connetation\Elements\DataProcessing\StatsItemsProcessor
+        10 = Connetation\T3kitElements\DataProcessing\StatsItemsProcessor
         10 {
             as = stats
         }

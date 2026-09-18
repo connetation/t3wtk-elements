@@ -30,7 +30,7 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.feature_item',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.feature_item',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -38,7 +38,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/feature-grid-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/feature-grid-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -59,7 +59,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'icon' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_item.icon',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_item.icon',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -126,7 +126,7 @@ return [
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_item.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_item.image',
             'config' => [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
@@ -134,7 +134,7 @@ return [
             ],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_item.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_item.title',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -144,7 +144,7 @@ return [
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -162,7 +162,7 @@ return [
             ],
         ],
         'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_item.body',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_item.body',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
@@ -170,14 +170,14 @@ return [
             ],
         ],
         'link' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_item.link',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_item.link',
             'config' => [
                 'type'         => 'link',
                 'allowedTypes' => ['page', 'url'],
             ],
         ],
         'link_label' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_item.link_label',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_item.link_label',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -191,7 +191,7 @@ return [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     icon, image, title, title_layout, title_class, body,
-                --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:feature_item.tab.link,
+                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_item.tab.link,
                     link, link_label,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,

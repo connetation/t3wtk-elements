@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.person',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.person',
         'label'         => 'name',
         'label_alt'     => 'role',
         'label_alt_force' => true,
@@ -18,7 +18,7 @@ return [
             'starttime' => 'starttime',
             'endtime'   => 'endtime',
         ],
-        'iconfile'  => 'EXT:conn_elements/Resources/Public/Icons/people-ce.svg',
+        'iconfile'  => 'EXT:conn_t3kit_elements/Resources/Public/Icons/people-ce.svg',
         'security'  => ['ignorePageTypeRestriction' => true],
         'searchFields' => 'name,role,email',
     ],
@@ -53,7 +53,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'name' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.name',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.name',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -63,7 +63,7 @@ return [
             ],
         ],
         'role' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.role',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.role',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -72,7 +72,7 @@ return [
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.image',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.image',
             'config' => [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp',
@@ -80,7 +80,7 @@ return [
             ],
         ],
         'bio' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.bio',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.bio',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
@@ -88,7 +88,7 @@ return [
             ],
         ],
         'email' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.email',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.email',
             'config' => [
                 'type' => 'input',
                 'size' => 40,
@@ -97,7 +97,7 @@ return [
             ],
         ],
         'phone' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.phone',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.phone',
             'config' => [
                 'type' => 'input',
                 'size' => 40,
@@ -106,14 +106,14 @@ return [
             ],
         ],
         'link' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.link',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.link',
             'config' => [
                 'type'         => 'link',
                 'allowedTypes' => ['page', 'url'],
             ],
         ],
         'link_label' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.link_label',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.link_label',
             'config' => [
                 'type'        => 'input',
                 'size'        => 30,
@@ -123,7 +123,7 @@ return [
             ],
         ],
         'accent' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.accent',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.accent',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -136,7 +136,7 @@ return [
             ],
         ],
         'image_side' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.image_side',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.image_side',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -154,7 +154,7 @@ return [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     name, role, image, bio, accent, image_side,
-                --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:person.tab.contact,
+                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:person.tab.contact,
                     email, phone, link, link_label,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden, starttime, endtime,

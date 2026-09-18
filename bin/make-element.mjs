@@ -156,19 +156,19 @@ function genFlexForm(pascal, snake) {
 
 function genTypoScriptSimple(pascal, snake, ctype, kebab) {
     return `# ─────────────────────────────────────────────
-# ${pascal} Content Element – conn_elements
+# ${pascal} Content Element – conn_t3kit_elements
 # ─────────────────────────────────────────────
 
-tt_content.${ctype} =< lib.conn_elements_ce
+tt_content.${ctype} =< lib.conn_t3kit_elements_ce
 tt_content.${ctype} {
     templateName = ${pascal}
     dataProcessing {
         # Merges the FlexForm settings ON TOP of the TypoScript settings —
         # never use the core FlexFormProcessor with \`as = settings\` (it would
         # overwrite Fluid's reserved settings variable).
-        10 = Connetation\\Elements\\DataProcessing\\FlexFormSettingsProcessor
+        10 = Connetation\\T3kitElements\\DataProcessing\\FlexFormSettingsProcessor
         10 {
-            fieldName = tx_conn_elements_${snake}_settings
+            fieldName = tx_conn_t3kit_elements_${snake}_settings
         }
     }
 }
@@ -177,16 +177,16 @@ tt_content.${ctype} {
 
 function genTypoScriptWithItems(pascal, snake, ctype) {
     return `# ─────────────────────────────────────────────
-# ${pascal} Content Element – conn_elements
+# ${pascal} Content Element – conn_t3kit_elements
 # ─────────────────────────────────────────────
 
-tt_content.${ctype} =< lib.conn_elements_ce
+tt_content.${ctype} =< lib.conn_t3kit_elements_ce
 tt_content.${ctype} {
     templateName = ${pascal}
     dataProcessing {
-        10 = Connetation\\Elements\\DataProcessing\\${pascal}ItemsProcessor
+        10 = Connetation\\T3kitElements\\DataProcessing\\${pascal}ItemsProcessor
         10 {
-            settingsField = tx_conn_elements_${snake}_settings
+            settingsField = tx_conn_t3kit_elements_${snake}_settings
             as = items
         }
     }
@@ -195,7 +195,7 @@ tt_content.${ctype} {
 }
 
 function genTemplate(pascal, snake, ctype, kebab, hasItems) {
-    const assetId = `conn-elements-${kebab}`;
+    const assetId = `conn-t3kit-elements-${kebab}`;
     const itemsBlock = hasItems ? `
     <f:if condition="{items}">
         <f:then>
@@ -207,7 +207,7 @@ function genTemplate(pascal, snake, ctype, kebab, hasItems) {
         </f:then>
         <f:else>
             <p class="text-muted fst-italic">
-                <f:translate key="${snake}.empty" extensionName="conn_elements" />
+                <f:translate key="${snake}.empty" extensionName="conn_t3kit_elements" />
             </p>
         </f:else>
     </f:if>` : `
@@ -225,9 +225,9 @@ function genTemplate(pascal, snake, ctype, kebab, hasItems) {
 <f:section name="Main">
 
 <f:asset.css identifier="${assetId}-css"
-    href="EXT:conn_elements/Resources/Public/Css/${kebab}.css" />
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/${kebab}.css" />
 <f:asset.script identifier="${assetId}-js"
-    src="EXT:conn_elements/Resources/Public/Js/components/${kebab}.js"
+    src="EXT:conn_t3kit_elements/Resources/Public/Js/components/${kebab}.js"
     type="module"
     priority="false" />
 
@@ -348,7 +348,7 @@ declare(strict_types=1);
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.${snake}_item',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.${snake}_item',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -356,7 +356,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'  => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/${kebab}-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/${kebab}-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -377,7 +377,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}_item.title',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:${snake}_item.title',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -387,7 +387,7 @@ return [
             ],
         ],
         'body' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}_item.body',
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:${snake}_item.body',
             'config' => [
                 'type'            => 'text',
                 'enableRichtext'  => true,
@@ -410,12 +410,12 @@ return [
 }
 
 function genDataProcessor(pascal, snake) {
-    const tableKey = `tx_conn_elements_domain_model_${snake}_item`;
+    const tableKey = `tx_conn_t3kit_elements_domain_model_${snake}_item`;
     return `<?php
 
 declare(strict_types=1);
 
-namespace Connetation\\Elements\\DataProcessing;
+namespace Connetation\\T3kitElements\\DataProcessing;
 
 final class ${pascal}ItemsProcessor extends AbstractItemsProcessor
 {
@@ -431,7 +431,7 @@ final class ${pascal}ItemsProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return $processorConfiguration['settingsField'] ?? 'tx_conn_elements_${snake}_settings';
+        return $processorConfiguration['settingsField'] ?? 'tx_conn_t3kit_elements_${snake}_settings';
     }
 
     protected function resolveSettings(array $raw, string $settingsField): array
@@ -458,7 +458,7 @@ final class ${pascal}ItemsProcessor extends AbstractItemsProcessor
 function patchIcons(pascal, kebab) {
     const entry = `    'conn-ce-${kebab}' => [
         'provider' => \\TYPO3\\CMS\\Core\\Imaging\\IconProvider\\SvgIconProvider::class,
-        'source'   => 'EXT:conn_elements/Resources/Public/Icons/${kebab}-ce.svg',
+        'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/${kebab}-ce.svg',
     ],\n`;
     patchFile(
         'Configuration/Icons.php',
@@ -495,9 +495,9 @@ function patchSql(pascal, snake, hasItems) {
 
     // Add tt_content fields — comma goes on the previous last line, NOT on the new last line
     const newFields = hasItems
-        ? `    tx_conn_elements_${snake}_items     int(11) DEFAULT '0' NOT NULL,\n    tx_conn_elements_${snake}_settings   mediumtext`
-        : `    tx_conn_elements_${snake}_settings   mediumtext`;
-    if (!src.includes(`tx_conn_elements_${snake}_`)) {
+        ? `    tx_conn_t3kit_elements_${snake}_items     int(11) DEFAULT '0' NOT NULL,\n    tx_conn_t3kit_elements_${snake}_settings   mediumtext`
+        : `    tx_conn_t3kit_elements_${snake}_settings   mediumtext`;
+    if (!src.includes(`tx_conn_t3kit_elements_${snake}_`)) {
         // Replace `\n);` — adds comma to the previous last field and appends new field(s)
         src = src.replace(/\n(\);)\n\n--/, `,\n${newFields}\n$1\n\n--`);
         ok(`patched: ext_tables.sql (tt_content fields)`);
@@ -507,7 +507,7 @@ function patchSql(pascal, snake, hasItems) {
 
     // Add child table if needed
     if (hasItems) {
-        const tableKey = `tx_conn_elements_domain_model_${snake}_item`;
+        const tableKey = `tx_conn_t3kit_elements_domain_model_${snake}_item`;
         if (!src.includes(tableKey)) {
             const tableBlock = `\n-- ─── ${pascal} ─────────────────────────────────────────────────────────────────\n\nCREATE TABLE ${tableKey} (\n    uid             int(11) NOT NULL auto_increment,\n    pid             int(11) DEFAULT '0' NOT NULL,\n    tstamp          int(11) DEFAULT '0' NOT NULL,\n    crdate          int(11) DEFAULT '0' NOT NULL,\n    deleted         tinyint(4) DEFAULT '0' NOT NULL,\n    hidden          tinyint(4) DEFAULT '0' NOT NULL,\n    sorting         int(11) DEFAULT '0' NOT NULL,\n    content_element int(11) DEFAULT '0' NOT NULL,\n\n    title           varchar(255) DEFAULT '' NOT NULL,\n    body            mediumtext,\n\n    PRIMARY KEY (uid),\n    KEY parent (pid),\n    KEY content_element (content_element)\n);\n`;
             src += tableBlock;
@@ -525,7 +525,7 @@ function patchLocalconf(pascal, snake, ctype, kebab, group) {
     let src = readFileSync(abs, 'utf8');
 
     // Add wizard entry before closing ';
-    const wizardEntry = `\n     mod.wizards.newContentElement.wizardItems.${group}.elements.${ctype} {\n        iconIdentifier = conn-ce-${kebab}\n        title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}\n        description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}.description\n        tt_content_defValues.CType = ${ctype}\n    }`;
+    const wizardEntry = `\n     mod.wizards.newContentElement.wizardItems.${group}.elements.${ctype} {\n        iconIdentifier = conn-ce-${kebab}\n        title = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}\n        description = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}.description\n        tt_content_defValues.CType = ${ctype}\n    }`;
 
     if (src.includes(`tt_content_defValues.CType = ${ctype}`)) {
         warn(`ext_localconf.php already has wizard entry for ${ctype}, skipping`);
@@ -572,11 +572,11 @@ function patchTtContent(pascal, snake, ctype, kebab, group, hasItems) {
 
     const colsBlock = hasItems
         ? `ExtensionManagementUtility::addTCAcolumns('tt_content', [
-    'tx_conn_elements_${snake}_items' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}.items',
+    'tx_conn_t3kit_elements_${snake}_items' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:${snake}.items',
         'config' => [
             'type'          => 'inline',
-            'foreign_table' => 'tx_conn_elements_domain_model_${snake}_item',
+            'foreign_table' => 'tx_conn_t3kit_elements_domain_model_${snake}_item',
             'foreign_field' => 'content_element',
             'maxitems'      => 200,
             'appearance'    => [
@@ -586,32 +586,32 @@ function patchTtContent(pascal, snake, ctype, kebab, group, hasItems) {
             ],
         ],
     ],
-    'tx_conn_elements_${snake}_settings' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}.settings',
+    'tx_conn_t3kit_elements_${snake}_settings' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:${snake}.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/${pascal}.xml',
+            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/${pascal}.xml',
         ],
     ],
 ]);\n`
         : `ExtensionManagementUtility::addTCAcolumns('tt_content', [
-    'tx_conn_elements_${snake}_settings' => [
-        'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}.settings',
+    'tx_conn_t3kit_elements_${snake}_settings' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:${snake}.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => 'FILE:EXT:conn_elements/Configuration/FlexForms/${pascal}.xml',
+            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/${pascal}.xml',
         ],
     ],
 ]);\n`;
 
-    const mainField = hasItems ? `tx_conn_elements_${snake}_items,` : '';
+    const mainField = hasItems ? `tx_conn_t3kit_elements_${snake}_items,` : '';
 
     const block = `
 // ─── ${pascal} ─────────────────────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['${ctype}'] = 'conn-ce-${kebab}';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
-    'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}',
+    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}',
     'value' => '${ctype}',
     'icon'  => 'conn-ce-${kebab}',
     'group' => '${group}',
@@ -622,8 +622,8 @@ $GLOBALS['TCA']['tt_content']['types']['${ctype}'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,${mainField}
-        --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:${snake}.tab.config,
-            tx_conn_elements_${snake}_settings,
+        --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:${snake}.tab.config,
+            tx_conn_t3kit_elements_${snake}_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,
@@ -685,7 +685,7 @@ function patchTypoScriptSetup(pascal, ctype, kebab) {
     const abs = join(ROOT, 'Configuration/TypoScript/setup.typoscript');
     if (!existsSync(abs)) { return; }
     let src = readFileSync(abs, 'utf8');
-    const importLine = `@import 'EXT:conn_elements/Configuration/TypoScript/ContentElements/${pascal}.typoscript'`;
+    const importLine = `@import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/${pascal}.typoscript'`;
     if (src.includes(importLine)) {
         warn(`setup.typoscript already imports ${pascal}.typoscript, skipping`);
         return;
@@ -751,7 +751,7 @@ async function main() {
     if (hasItems) {
         writeNew(`Resources/Private/Partials/${pascal}/Item.html`,
             genPartialItem(pascal, kebab));
-        writeNew(`Configuration/TCA/tx_conn_elements_domain_model_${snake}_item.php`,
+        writeNew(`Configuration/TCA/tx_conn_t3kit_elements_domain_model_${snake}_item.php`,
             genTcaModel(pascal, snake, kebab));
         writeNew(`Classes/DataProcessing/${pascal}ItemsProcessor.php`,
             genDataProcessor(pascal, snake));
@@ -784,7 +784,7 @@ async function main() {
     // ── Summary ────────────────────────────────────────────────────────────────
 
     console.log(`\n${c.bold}${c.green}Done!${c.reset} Next steps ${c.dim}(in order)${c.reset}:\n`);
-    info(`1. npm run build  ${c.dim}(or: ddev exec "cd /var/www/html/vendor/conn/elements && npm run build")${c.reset}`);
+    info(`1. npm run build  ${c.dim}(or: ddev exec "cd /var/www/html/vendor/conn/t3kit-elements && npm run build")${c.reset}`);
     info(`2. TYPO3 → Admin Tools → Maintenance → Flush all caches`);
     if (hasItems) {
         info(`3. TYPO3 → Admin Tools → Maintenance → Analyze Database Structure → apply`);

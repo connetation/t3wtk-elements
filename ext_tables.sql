@@ -4,76 +4,76 @@
 --
 
 CREATE TABLE tt_content (
-    tx_conn_elements_accordion_items      int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_accordion_settings   mediumtext,
-    tx_conn_elements_card_group_items     int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_card_group_settings  mediumtext,
-    tx_conn_elements_hero_slider_items    int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_hero_slider_settings mediumtext,
-    tx_conn_elements_slider_items              int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_slider_settings           mediumtext,
-    tx_conn_elements_thumbs_slider_items       int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_thumbs_slider_settings    mediumtext,
-    tx_conn_elements_parallax_slider_items     int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_parallax_slider_settings  mediumtext,
-    tx_conn_elements_parallax_slider_bg_image  int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_text_animation            varchar(30) DEFAULT '' NOT NULL,
-    tx_conn_elements_card_stack_items          int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_card_stack_settings       mediumtext,
-    tx_conn_elements_flip_carousel_items       int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_flip_carousel_settings    mediumtext,
-    tx_conn_elements_flip_gallery_items          int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_flip_gallery_settings       mediumtext,
-    tx_conn_elements_mosaic_gallery_items       int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_mosaic_gallery_settings    mediumtext,
-    tx_conn_elements_carousel_items    int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_carousel_settings mediumtext,
-    tx_conn_elements_timeline_items          int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_timeline_settings       mediumtext,
-    tx_conn_elements_stats_items             int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_stats_settings          mediumtext,
-    tx_conn_elements_logo_wall_items         int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_logo_wall_settings      mediumtext,
-    tx_conn_elements_testimonials_items      int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_testimonials_settings   mediumtext,
-    tx_conn_elements_pricing_tiers           int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_pricing_settings        mediumtext,
-    tx_conn_elements_feature_grid_items      int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_feature_grid_settings   mediumtext,
-    tx_conn_elements_people_settings         mediumtext,
-    tx_conn_elements_text_icon_library       varchar(30) DEFAULT 'bootstrap-icons' NOT NULL,
-    tx_conn_elements_text_icon_style         varchar(20) DEFAULT 'solid' NOT NULL,
-    tx_conn_elements_text_icon_name          varchar(100) DEFAULT '' NOT NULL,
-    tx_conn_elements_text_icon_position      varchar(20) DEFAULT 'top' NOT NULL,
-    tx_conn_elements_text_icon_shape         varchar(20) DEFAULT 'circle' NOT NULL,
-    tx_conn_elements_text_icon_size          varchar(20) DEFAULT 'medium' NOT NULL,
-    tx_conn_elements_text_icon_color         varchar(20) DEFAULT '' NOT NULL,
-    tx_conn_elements_text_icon_bg            varchar(20) DEFAULT '' NOT NULL,
-    tx_conn_elements_tabs_items              int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_tabs_settings           mediumtext,
-    tx_conn_elements_process_items           int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_process_settings        mediumtext,
-    tx_conn_elements_before_after_before          int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_before_after_after           int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_before_after_before_label    varchar(100) DEFAULT '' NOT NULL,
-    tx_conn_elements_before_after_after_label     varchar(100) DEFAULT '' NOT NULL,
-    tx_conn_elements_before_after_start           int(11) DEFAULT '50' NOT NULL,
-    tx_conn_elements_before_after_direction       varchar(20) DEFAULT 'left-right' NOT NULL,
-    tx_conn_elements_before_after_handle_icon     int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_before_after_handle_color        varchar(9) DEFAULT '' NOT NULL,
-    tx_conn_elements_before_after_handle_border_color varchar(9) DEFAULT '' NOT NULL,
-    tx_conn_elements_quote_author            varchar(255) DEFAULT '' NOT NULL,
-    tx_conn_elements_quote_role              varchar(255) DEFAULT '' NOT NULL,
-    tx_conn_elements_quote_image             int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_quote_settings          mediumtext,
-    tx_conn_elements_alert_settings          mediumtext,
-    tx_conn_elements_alert_custom_icon_name  varchar(100) DEFAULT '' NOT NULL,
-    tx_conn_elements_alert_custom_icon_image int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_video_hero_media        int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_video_hero_poster       int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_video_hero_settings     mediumtext,
-    tx_conn_elements_map_illustration_image  int(11) DEFAULT '0' NOT NULL,
-    tx_conn_elements_map_settings            mediumtext
+    tx_conn_t3kit_elements_accordion_items      int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_accordion_settings   mediumtext,
+    tx_conn_t3kit_elements_card_group_items     int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_card_group_settings  mediumtext,
+    tx_conn_t3kit_elements_hero_slider_items    int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_hero_slider_settings mediumtext,
+    tx_conn_t3kit_elements_slider_items              int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_slider_settings           mediumtext,
+    tx_conn_t3kit_elements_thumbs_slider_items       int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_thumbs_slider_settings    mediumtext,
+    tx_conn_t3kit_elements_parallax_slider_items     int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_parallax_slider_settings  mediumtext,
+    tx_conn_t3kit_elements_parallax_slider_bg_image  int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_text_animation            varchar(30) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_card_stack_items          int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_card_stack_settings       mediumtext,
+    tx_conn_t3kit_elements_flip_carousel_items       int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_flip_carousel_settings    mediumtext,
+    tx_conn_t3kit_elements_flip_gallery_items          int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_flip_gallery_settings       mediumtext,
+    tx_conn_t3kit_elements_mosaic_gallery_items       int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_mosaic_gallery_settings    mediumtext,
+    tx_conn_t3kit_elements_carousel_items    int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_carousel_settings mediumtext,
+    tx_conn_t3kit_elements_timeline_items          int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_timeline_settings       mediumtext,
+    tx_conn_t3kit_elements_stats_items             int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_stats_settings          mediumtext,
+    tx_conn_t3kit_elements_logo_wall_items         int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_logo_wall_settings      mediumtext,
+    tx_conn_t3kit_elements_testimonials_items      int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_testimonials_settings   mediumtext,
+    tx_conn_t3kit_elements_pricing_tiers           int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_pricing_settings        mediumtext,
+    tx_conn_t3kit_elements_feature_grid_items      int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_feature_grid_settings   mediumtext,
+    tx_conn_t3kit_elements_people_settings         mediumtext,
+    tx_conn_t3kit_elements_text_icon_library       varchar(30) DEFAULT 'bootstrap-icons' NOT NULL,
+    tx_conn_t3kit_elements_text_icon_style         varchar(20) DEFAULT 'solid' NOT NULL,
+    tx_conn_t3kit_elements_text_icon_name          varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_text_icon_position      varchar(20) DEFAULT 'top' NOT NULL,
+    tx_conn_t3kit_elements_text_icon_shape         varchar(20) DEFAULT 'circle' NOT NULL,
+    tx_conn_t3kit_elements_text_icon_size          varchar(20) DEFAULT 'medium' NOT NULL,
+    tx_conn_t3kit_elements_text_icon_color         varchar(20) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_text_icon_bg            varchar(20) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_tabs_items              int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_tabs_settings           mediumtext,
+    tx_conn_t3kit_elements_process_items           int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_process_settings        mediumtext,
+    tx_conn_t3kit_elements_before_after_before          int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_before_after_after           int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_before_after_before_label    varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_before_after_after_label     varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_before_after_start           int(11) DEFAULT '50' NOT NULL,
+    tx_conn_t3kit_elements_before_after_direction       varchar(20) DEFAULT 'left-right' NOT NULL,
+    tx_conn_t3kit_elements_before_after_handle_icon     int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_before_after_handle_color        varchar(9) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_before_after_handle_border_color varchar(9) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_quote_author            varchar(255) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_quote_role              varchar(255) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_quote_image             int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_quote_settings          mediumtext,
+    tx_conn_t3kit_elements_alert_settings          mediumtext,
+    tx_conn_t3kit_elements_alert_custom_icon_name  varchar(100) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_alert_custom_icon_image int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_video_hero_media        int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_video_hero_poster       int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_video_hero_settings     mediumtext,
+    tx_conn_t3kit_elements_map_illustration_image  int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_map_settings            mediumtext
 );
 
 -- ─── Video Hero: per-media "Muted" (core sys_file_reference) ────────────────
@@ -88,7 +88,7 @@ CREATE TABLE sys_file_reference (
 
 -- ─── Mosaic Gallery ──────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_mosaic_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_mosaic_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE tx_conn_elements_domain_model_mosaic_item (
 
 -- ─── Bootstrap Accordion ──────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_accordion_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_accordion_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -129,7 +129,7 @@ CREATE TABLE tx_conn_elements_domain_model_accordion_item (
 
 -- ─── Bootstrap Card Group ────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_card_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_card_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -154,7 +154,7 @@ CREATE TABLE tx_conn_elements_domain_model_card_item (
 
 -- ─── Sliders ──────────────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_slide_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_slide_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -182,7 +182,7 @@ CREATE TABLE tx_conn_elements_domain_model_slide_item (
 
 -- ─── GSAP Card Stack ──────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_stack_card (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_stack_card (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -204,7 +204,7 @@ CREATE TABLE tx_conn_elements_domain_model_stack_card (
 
 -- ─── GSAP Flip Carousel ───────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_flip_carousel_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_flip_carousel_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -229,7 +229,7 @@ CREATE TABLE tx_conn_elements_domain_model_flip_carousel_item (
 
 -- ─── Bootstrap Carousel ───────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_carousel_slide (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_carousel_slide (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -252,7 +252,7 @@ CREATE TABLE tx_conn_elements_domain_model_carousel_slide (
 
 -- ─── GSAP Flip Gallery ────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_gallery_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_gallery_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -273,7 +273,7 @@ CREATE TABLE tx_conn_elements_domain_model_gallery_item (
 
 -- ─── Stats / Counter ─────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_stat_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_stat_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -296,7 +296,7 @@ CREATE TABLE tx_conn_elements_domain_model_stat_item (
 
 -- ─── Logo Wall ────────────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_logo_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_logo_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -317,7 +317,7 @@ CREATE TABLE tx_conn_elements_domain_model_logo_item (
 
 -- ─── Testimonials ─────────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_testimonial_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_testimonial_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -340,7 +340,7 @@ CREATE TABLE tx_conn_elements_domain_model_testimonial_item (
 
 -- ─── Pricing ──────────────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_pricing_tier (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_pricing_tier (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -369,7 +369,7 @@ CREATE TABLE tx_conn_elements_domain_model_pricing_tier (
 
 -- ─── Feature Grid ─────────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_feature_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_feature_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -393,7 +393,7 @@ CREATE TABLE tx_conn_elements_domain_model_feature_item (
 
 -- ─── Timeline ─────────────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_timeline_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_timeline_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -416,7 +416,7 @@ CREATE TABLE tx_conn_elements_domain_model_timeline_item (
 
 -- ─── Person (standalone record, not tied to a content element) ───────────────
 
-CREATE TABLE tx_conn_elements_domain_model_person (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_person (
     uid        int(11) NOT NULL auto_increment,
     pid        int(11) DEFAULT '0' NOT NULL,
     tstamp     int(11) DEFAULT '0' NOT NULL,
@@ -444,7 +444,7 @@ CREATE TABLE tx_conn_elements_domain_model_person (
 
 -- ─── Bootstrap Tabs ──────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_tab_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_tab_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -464,7 +464,7 @@ CREATE TABLE tx_conn_elements_domain_model_tab_item (
 
 -- ─── Process/Steps ───────────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_elements_domain_model_process_step (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_process_step (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,

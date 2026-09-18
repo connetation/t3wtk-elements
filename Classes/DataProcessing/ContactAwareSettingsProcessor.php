@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\DataProcessing;
+namespace Connetation\T3kitElements\DataProcessing;
 
 use Connetation\Base\Utility\PhoneUtility;
 use TYPO3\CMS\Core\Service\FlexFormService;

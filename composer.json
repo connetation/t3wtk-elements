@@ -1,5 +1,5 @@
 {
-    "name": "conn/elements",
+    "name": "conn/t3kit-elements",
     "version": "1.0.0",
     "description": "Connetation Content Elements for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Connetation\\Elements\\": "Classes/"
+            "Connetation\\T3kitElements\\": "Classes/"
         }
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "conn_elements"
+            "extension-key": "conn_t3kit_elements"
         }
     }
 }

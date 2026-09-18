@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\Service;
+namespace Connetation\T3kitElements\Service;
 
 final class PeopleItemsProcFunc
 {

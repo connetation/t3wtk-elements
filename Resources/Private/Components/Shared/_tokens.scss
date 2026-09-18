@@ -3,7 +3,7 @@
 // Runtime-independent: each component's compiled CSS ships these values
 // baked in, so it never depends on conn/base's CSS being loaded on the page.
 // The *values* below are sourced at compile time from conn/base's token
-// mixins (conn/elements requires conn/base via composer.json, which
+// mixins (conn/t3kit-elements requires conn/base via composer.json, which
 // guarantees vendor/conn/base sits alongside this package — see
 // build-scss.mjs's --load-path) rather than hand-copied, so the two
 // packages can no longer drift apart silently.

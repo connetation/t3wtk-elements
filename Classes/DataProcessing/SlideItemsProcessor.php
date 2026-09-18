@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\DataProcessing;
+namespace Connetation\T3kitElements\DataProcessing;
 
 use Connetation\Base\DataProcessing\AbstractItemsProcessor;
 
@@ -10,7 +10,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
 {
     protected function getTable(): string
     {
-        return 'tx_conn_elements_domain_model_slide_item';
+        return 'tx_conn_t3kit_elements_domain_model_slide_item';
     }
 
     protected function getDefaultTargetVariable(): string
@@ -39,7 +39,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
         if (str_contains($settingsField, 'parallax')) {
             $grouped = $this->resolveFileReferences(
                 'tt_content',
-                'tx_conn_elements_parallax_slider_bg_image',
+                'tx_conn_t3kit_elements_parallax_slider_bg_image',
                 [$contentElementUid]
             );
             $processedData['parallaxBgImage'] = $grouped[$contentElementUid][0] ?? null;

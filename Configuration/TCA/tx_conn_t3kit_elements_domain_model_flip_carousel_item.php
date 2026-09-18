@@ -30,15 +30,15 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.stat_item',
-        'label'         => 'label',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.flip_carousel_item',
+        'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
         'crdate'        => 'crdate',
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/stats-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/flip-carousel-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -58,36 +58,8 @@ return [
         'content_element' => [
             'config' => ['type' => 'passthrough'],
         ],
-        'value' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stat_item.value',
-            'config' => [
-                'type'     => 'input',
-                'size'     => 20,
-                'max'      => 60,
-                'eval'     => 'trim',
-                'required' => true,
-            ],
-        ],
-        'prefix' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stat_item.prefix',
-            'config' => [
-                'type' => 'input',
-                'size' => 10,
-                'max'  => 20,
-                'eval' => 'trim',
-            ],
-        ],
-        'suffix' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stat_item.suffix',
-            'config' => [
-                'type' => 'input',
-                'size' => 10,
-                'max'  => 20,
-                'eval' => 'trim',
-            ],
-        ],
-        'label' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stat_item.label',
+        'title' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.title',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -96,8 +68,8 @@ return [
                 'required' => true,
             ],
         ],
-        'label_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+        'title_layout' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -105,7 +77,7 @@ return [
                 'default'    => 0,
             ],
         ],
-        'label_class' => [
+        'title_class' => [
             'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
             'config' => [
                 'type'       => 'select',
@@ -114,15 +86,71 @@ return [
                 'default'    => '',
             ],
         ],
-        // Description is supplementary caption text under the label — always
-        // plain text, never a heading, so unlike label it has no _layout
-        // field/editor choice at all.
-        'description' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:stat_item.description',
+        'subtitle' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.subtitle',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
-                'max'  => 255,
+                'max'  => 100,
+                'eval' => 'trim',
+            ],
+        ],
+        'subtitle_layout' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingLayoutItems,
+                'default'    => 0,
+            ],
+        ],
+        'subtitle_class' => [
+            'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => $headingClassItems,
+                'default'    => '',
+            ],
+        ],
+        'category' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.category',
+            'config' => [
+                'type' => 'input',
+                'size' => 40,
+                'max'  => 100,
+                'eval' => 'trim',
+            ],
+        ],
+        'body' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.body',
+            'config' => [
+                'type'           => 'text',
+                'enableRichtext' => true,
+                'rows'           => 6,
+            ],
+        ],
+        'image' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.image',
+            'config' => [
+                'type'     => 'file',
+                'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
+                'maxitems' => 1,
+            ],
+        ],
+        'link' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.link',
+            'config' => [
+                'type'         => 'link',
+                'allowedTypes' => ['page', 'url', 'email', 'telephone'],
+            ],
+        ],
+        'link_label' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.link_label',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'max'  => 100,
                 'eval' => 'trim',
             ],
         ],
@@ -131,7 +159,9 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    value, prefix, suffix, label, label_layout, label_class, description,
+                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, category, body, image,
+                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel_item.tab.link,
+                    link, link_label,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

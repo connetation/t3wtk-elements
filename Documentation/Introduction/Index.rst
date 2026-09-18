@@ -23,7 +23,7 @@ Responsive images
 ==================
 
 Image-rendering elements use the ``<ce:responsiveImage>`` ViewHelper
-(``Connetation\Elements\Classes\ViewHelpers\ResponsiveImageViewHelper``),
+(``Connetation\T3kitElements\Classes\ViewHelpers\ResponsiveImageViewHelper``),
 which outputs a WebP ``srcset`` ladder with ``sizes``, capped at the
 source file's width, honouring the backend image editor's crop. SVG and
 GIF files are served unprocessed.

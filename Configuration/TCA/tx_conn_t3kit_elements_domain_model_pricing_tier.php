@@ -30,15 +30,15 @@ $headingClassItems = [
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:model.testimonial_item',
-        'label'         => 'author_name',
+        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.pricing_tier',
+        'label'         => 'name',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
         'crdate'        => 'crdate',
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_elements/Resources/Public/Icons/testimonials-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/pricing-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -58,27 +58,18 @@ return [
         'content_element' => [
             'config' => ['type' => 'passthrough'],
         ],
-        'quote' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.quote',
-            'config' => [
-                'type'           => 'text',
-                'enableRichtext' => true,
-                'rows'           => 5,
-                'required'       => true,
-            ],
-        ],
-        'author_name' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.author_name',
+        'name' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.name',
             'config' => [
                 'type'     => 'input',
-                'size'     => 60,
-                'max'      => 255,
+                'size'     => 40,
+                'max'      => 100,
                 'eval'     => 'trim',
                 'required' => true,
             ],
         ],
-        'author_name_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+        'name_layout' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -86,7 +77,7 @@ return [
                 'default'    => 0,
             ],
         ],
-        'author_name_class' => [
+        'name_class' => [
             'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:header_class',
             'config' => [
                 'type'       => 'select',
@@ -95,8 +86,8 @@ return [
                 'default'    => '',
             ],
         ],
-        'author_role' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.author_role',
+        'tagline' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.tagline',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -104,8 +95,8 @@ return [
                 'eval' => 'trim',
             ],
         ],
-        'author_role_layout' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
+        'tagline_layout' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -113,7 +104,7 @@ return [
                 'default'    => 0,
             ],
         ],
-        'author_role_class' => [
+        'tagline_class' => [
             'label'  => 'LLL:EXT:conn_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
             'config' => [
                 'type'       => 'select',
@@ -122,28 +113,82 @@ return [
                 'default'    => '',
             ],
         ],
-        'rating' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.rating',
+        'currency' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.currency',
             'config' => [
-                'type'    => 'select',
-                'renderType' => 'selectSingle',
-                'items'   => [
-                    ['label' => '—', 'value' => '0'],
-                    ['label' => '★', 'value' => '1'],
-                    ['label' => '★★', 'value' => '2'],
-                    ['label' => '★★★', 'value' => '3'],
-                    ['label' => '★★★★', 'value' => '4'],
-                    ['label' => '★★★★★', 'value' => '5'],
-                ],
-                'default' => '5',
+                'type'    => 'input',
+                'size'    => 5,
+                'max'     => 5,
+                'eval'    => 'trim',
+                'default' => '€',
             ],
         ],
-        'image' => [
-            'label'  => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.image',
+        'amount' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.amount',
             'config' => [
-                'type'     => 'file',
-                'allowed'  => 'jpg,jpeg,png,gif,webp',
-                'maxitems' => 1,
+                'type' => 'input',
+                'size' => 15,
+                'max'  => 30,
+                'eval' => 'trim',
+            ],
+        ],
+        'period' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.period',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'max'  => 50,
+                'eval' => 'trim',
+            ],
+        ],
+        'price_note' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.price_note',
+            'config' => [
+                'type' => 'input',
+                'size' => 60,
+                'max'  => 255,
+                'eval' => 'trim',
+            ],
+        ],
+        'features' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.features',
+            'config' => [
+                'type' => 'text',
+                'rows' => 8,
+                'placeholder' => 'One feature per line. Prefix with - to mark as unavailable.',
+            ],
+        ],
+        'cta_label' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.cta_label',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'max'  => 100,
+                'eval' => 'trim',
+            ],
+        ],
+        'cta_link' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.cta_link',
+            'config' => [
+                'type'         => 'link',
+                'allowedTypes' => ['page', 'url', 'email'],
+            ],
+        ],
+        'featured' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.featured',
+            'config' => [
+                'type'       => 'check',
+                'renderType' => 'checkboxToggle',
+                'items'      => [['label' => '']],
+            ],
+        ],
+        'badge_text' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.badge_text',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'max'  => 60,
+                'eval' => 'trim',
             ],
         ],
     ],
@@ -151,9 +196,11 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    quote, rating,
-                --div--;LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:testimonial_item.tab.author,
-                    author_name, author_name_layout, author_name_class, author_role, author_role_layout, author_role_class, image,
+                    name, name_layout, name_class, tagline, tagline_layout, tagline_class, currency, amount, period, price_note, features,
+                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.tab.cta,
+                    cta_label, cta_link,
+                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing_tier.tab.highlight,
+                    featured, badge_text,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,
             ',

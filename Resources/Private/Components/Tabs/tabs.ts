@@ -50,7 +50,7 @@ class Tabs {
         if (btn && !btn.classList.contains('active')) {
             // Bootstrap's Tab data-API is attached globally (conn_base's
             // main.js does `import 'bootstrap'` once for the whole page) and
-            // listens for real click events — conn_elements has no direct
+            // listens for real click events — conn_t3kit_elements has no direct
             // access to the Tab class itself, so a synthesized click is the
             // simplest way to trigger it with full ARIA/pane sync included.
             btn.click();

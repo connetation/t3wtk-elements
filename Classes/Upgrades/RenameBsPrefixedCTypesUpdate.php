@@ -2,18 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Connetation\Elements\Upgrades;
+namespace Connetation\T3kitElements\Upgrades;
 
 use TYPO3\CMS\Core\Attribute\UpgradeWizard;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Upgrades\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
 
 /**
  * A few content elements were shipped with a "conn_bs_*" (Bootstrap) CType prefix even
  * though they render no Bootstrap component. This wizard corrects existing tt_content
  * records to the renamed "conn_*" CType so they keep rendering after the code rename.
+ *
+ * Deliberately declares NO prerequisites (in particular not DatabaseUpdatedPrerequisite):
+ * that prerequisite runs the standard "add missing tables/fields" schema sync as a side
+ * effect of checking it, which — since other wizards in this package rename real tables/
+ * columns — must not run before those wizards get a chance to migrate the old ones first.
+ * This wizard only touches a value in an existing, unchanged column, so it never needed
+ * that prerequisite anyway.
  */
 #[UpgradeWizard('connElementsRenameBsPrefixedCTypes')]
 readonly class RenameBsPrefixedCTypesUpdate implements UpgradeWizardInterface
@@ -36,7 +42,7 @@ readonly class RenameBsPrefixedCTypesUpdate implements UpgradeWizardInterface
 
     public function getTitle(): string
     {
-        return 'EXT:conn_elements: Rename misleading "conn_bs_*" CTypes to "conn_*"';
+        return 'EXT:conn_t3kit_elements: Rename misleading "conn_bs_*" CTypes to "conn_*"';
     }
 
     public function getDescription(): string
@@ -54,9 +60,7 @@ readonly class RenameBsPrefixedCTypesUpdate implements UpgradeWizardInterface
 
     public function getPrerequisites(): array
     {
-        return [
-            DatabaseUpdatedPrerequisite::class,
-        ];
+        return [];
     }
 
     public function updateNecessary(): bool

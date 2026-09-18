@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────
-# Bootstrap Tabs Content Element – conn_elements
+# Bootstrap Tabs Content Element – conn_t3kit_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_bs_tabs =< lib.conn_elements_ce
+tt_content.conn_bs_tabs =< lib.conn_t3kit_elements_ce
 tt_content.conn_bs_tabs {
     templateName = Tabs
     dataProcessing {
-        10 = Connetation\Elements\DataProcessing\TabItemsProcessor
+        10 = Connetation\T3kitElements\DataProcessing\TabItemsProcessor
         10 {
             as = items
         }
