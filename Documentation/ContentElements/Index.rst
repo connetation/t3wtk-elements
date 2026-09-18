@@ -129,7 +129,7 @@ on click, dark variant.
 Feature Grid
 ---------------
 
-:CType: ``conn_bs_feature_grid``
+:CType: ``conn_feature_grid``
 
 Icon-and-text feature grid, also supporting a numbered-steps variant and
 a horizontal layout — each item is a child record with icon, title, body
@@ -141,7 +141,7 @@ and optional link. Key settings: columns (2-4), variant
 Process / Steps
 -------------------
 
-:CType: ``conn_bs_process``
+:CType: ``conn_process``
 
 Numbered step-by-step process (e.g. "How we work"), connected by a
 configurable connector line. Key settings: numbered on/off, connector
@@ -153,7 +153,7 @@ per row before wrapping.
 Stats / Counters
 --------------------
 
-:CType: ``conn_bs_stats``
+:CType: ``conn_stats``
 
 Animated counter grid for key metrics (uses a count-up-on-scroll JS
 animation). Each stat is a child record with value, optional
@@ -165,7 +165,7 @@ prefix/suffix, label and description. Key settings: columns, layout
 Logo Wall
 ------------
 
-:CType: ``conn_bs_logo_wall``
+:CType: ``conn_logo_wall``
 
 Grid or continuously-scrolling marquee strip of partner/client logos —
 entirely image-driven (each item is just alt text, link and an image).
@@ -177,7 +177,7 @@ grayscale filter, columns.
 Testimonials
 ----------------
 
-:CType: ``conn_bs_testimonials``
+:CType: ``conn_testimonials``
 
 Customer reviews in grid or carousel (Swiper-powered) layout with star
 ratings. Each testimonial is a child record: quote, author name/role,
@@ -202,7 +202,7 @@ settings: columns (2-4), style (default/flat/shadow), accent bar.
 Timeline
 -----------
 
-:CType: ``conn_bs_timeline``
+:CType: ``conn_timeline``
 
 A vertical (or horizontal, depending on layout) dated timeline for
 company history, roadmaps, or changelogs — each entry is a child record
@@ -216,7 +216,7 @@ with a date, title and body. Key settings: layout, line style
 Before / After Image Slider
 -------------------------------
 
-:CType: ``conn_bs_before_after``
+:CType: ``conn_before_after``
 
 Drag-to-compare image slider — for redesign or renovation showcases.
 Entirely image-driven (before image, after image, draggable handle).

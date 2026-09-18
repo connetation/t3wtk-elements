@@ -1,5 +1,5 @@
-tt_content.conn_bs_logo_wall =< lib.conn_elements_ce
-tt_content.conn_bs_logo_wall {
+tt_content.conn_logo_wall =< lib.conn_elements_ce
+tt_content.conn_logo_wall {
     templateName = LogoWall
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\LogoItemsProcessor

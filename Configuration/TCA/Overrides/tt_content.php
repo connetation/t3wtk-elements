@@ -211,12 +211,12 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_tabs'] = [
 ];
 
 // ─── Process/Steps ──────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_process'] = 'conn-ce-process';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_process'] = 'conn-ce-process';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_process',
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_process.description',
-    'value' => 'conn_bs_process',
+    'value' => 'conn_process',
     'icon'  => 'conn-ce-process',
     'group' => 'conn_data',
 ]);
@@ -245,7 +245,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_process'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_process'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,tx_conn_elements_process_items,
@@ -260,12 +260,12 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_process'] = [
 ];
 
 // ─── Before/After Image Slider ─────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_before_after'] = 'conn-ce-before-after';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_before_after'] = 'conn-ce-before-after';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_before_after',
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_before_after.description',
-    'value' => 'conn_bs_before_after',
+    'value' => 'conn_before_after',
     'icon'  => 'conn-ce-before-after',
     'group' => 'conn_sliders',
 ]);
@@ -366,7 +366,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['conn_before_after_settings'] = [
         tx_conn_elements_before_after_handle_color, tx_conn_elements_before_after_handle_border_color',
 ];
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_before_after'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_before_after'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,
@@ -1020,12 +1020,12 @@ $GLOBALS['TCA']['tt_content']['types']['conn_mosaic_gallery'] = [
 ];
 
 // ─── Stats / Counter ─────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_stats'] = 'conn-ce-stats';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_stats'] = 'conn-ce-stats';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats',
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats.description',
-    'value' => 'conn_bs_stats',
+    'value' => 'conn_stats',
     'icon'  => 'conn-ce-stats',
     'group' => 'conn_data',
 ]);
@@ -1054,7 +1054,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_stats'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_stats'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,tx_conn_elements_stats_items,
@@ -1069,12 +1069,12 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_stats'] = [
 ];
 
 // ─── Logo Wall ───────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_logo_wall'] = 'conn-ce-logo-wall';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_logo_wall'] = 'conn-ce-logo-wall';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall',
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall.description',
-    'value' => 'conn_bs_logo_wall',
+    'value' => 'conn_logo_wall',
     'icon'  => 'conn-ce-logo-wall',
     'group' => 'conn_galleries',
 ]);
@@ -1103,7 +1103,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_logo_wall'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_logo_wall'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,tx_conn_elements_logo_wall_items,
@@ -1118,12 +1118,12 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_logo_wall'] = [
 ];
 
 // ─── Testimonials ─────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_testimonials'] = 'conn-ce-testimonials';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_testimonials'] = 'conn-ce-testimonials';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials',
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials.description',
-    'value' => 'conn_bs_testimonials',
+    'value' => 'conn_testimonials',
     'icon'  => 'conn-ce-testimonials',
     'group' => 'conn_data',
 ]);
@@ -1152,7 +1152,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_testimonials'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_testimonials'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,tx_conn_elements_testimonials_items,
@@ -1216,12 +1216,12 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_pricing'] = [
 ];
 
 // ─── Feature Grid ─────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_feature_grid'] = 'conn-ce-feature-grid';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_feature_grid'] = 'conn-ce-feature-grid';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid',
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid.description',
-    'value' => 'conn_bs_feature_grid',
+    'value' => 'conn_feature_grid',
     'icon'  => 'conn-ce-feature-grid',
     'group' => 'conn_data',
 ]);
@@ -1250,7 +1250,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_feature_grid'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_feature_grid'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,tx_conn_elements_feature_grid_items,
@@ -1352,12 +1352,12 @@ $registry->configureContainer(
 
 
 // ─── Timeline ─────────────────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_timeline'] = 'conn-ce-timeline';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_timeline'] = 'conn-ce-timeline';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline',
     'description' => 'LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline.description',
-    'value' => 'conn_bs_timeline',
+    'value' => 'conn_timeline',
     'icon'  => 'conn-ce-timeline',
     'group' => 'conn_data',
 ]);
@@ -1386,7 +1386,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_bs_timeline'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_timeline'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,--palette--;;header,tx_conn_elements_timeline_items,

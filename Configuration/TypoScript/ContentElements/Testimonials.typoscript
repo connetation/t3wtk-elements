@@ -1,5 +1,5 @@
-tt_content.conn_bs_testimonials =< lib.conn_elements_ce
-tt_content.conn_bs_testimonials {
+tt_content.conn_testimonials =< lib.conn_elements_ce
+tt_content.conn_testimonials {
     templateName = Testimonials
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\TestimonialItemsProcessor

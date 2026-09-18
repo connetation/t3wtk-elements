@@ -2,8 +2,8 @@
 # Process/Steps Content Element – conn_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_bs_process =< lib.conn_elements_ce
-tt_content.conn_bs_process {
+tt_content.conn_process =< lib.conn_elements_ce
+tt_content.conn_process {
     templateName = Process
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\ProcessItemsProcessor

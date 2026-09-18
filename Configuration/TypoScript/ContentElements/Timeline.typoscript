@@ -2,8 +2,8 @@
 # Timeline Content Element – conn_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_bs_timeline =< lib.conn_elements_ce
-tt_content.conn_bs_timeline {
+tt_content.conn_timeline =< lib.conn_elements_ce
+tt_content.conn_timeline {
     templateName = Timeline
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\TimelineItemsProcessor

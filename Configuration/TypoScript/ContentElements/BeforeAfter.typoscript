@@ -2,7 +2,7 @@
 # Before/After Image Slider – conn_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_bs_before_after =< lib.conn_elements_ce
-tt_content.conn_bs_before_after {
+tt_content.conn_before_after =< lib.conn_elements_ce
+tt_content.conn_before_after {
     templateName = BeforeAfter
 }

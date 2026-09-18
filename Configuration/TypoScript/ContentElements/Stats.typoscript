@@ -1,5 +1,5 @@
-tt_content.conn_bs_stats =< lib.conn_elements_ce
-tt_content.conn_bs_stats {
+tt_content.conn_stats =< lib.conn_elements_ce
+tt_content.conn_stats {
     templateName = Stats
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\StatsItemsProcessor

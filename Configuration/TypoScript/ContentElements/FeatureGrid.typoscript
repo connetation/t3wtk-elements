@@ -1,5 +1,5 @@
-tt_content.conn_bs_feature_grid =< lib.conn_elements_ce
-tt_content.conn_bs_feature_grid {
+tt_content.conn_feature_grid =< lib.conn_elements_ce
+tt_content.conn_feature_grid {
     templateName = FeatureGrid
     dataProcessing {
         10 = Connetation\Elements\DataProcessing\FeatureItemsProcessor

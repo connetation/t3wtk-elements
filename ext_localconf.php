@@ -18,7 +18,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000002] = [
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
-    'mod.wizards.newContentElement.wizardItems.conn.show = conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_bs_timeline,conn_bs_stats,conn_bs_logo_wall,conn_bs_testimonials,conn_bs_pricing,conn_bs_feature_grid,conn_people,conn_quote,conn_alert
+    'mod.wizards.newContentElement.wizardItems.conn.show = conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_timeline,conn_stats,conn_logo_wall,conn_testimonials,conn_bs_pricing,conn_feature_grid,conn_process,conn_before_after,conn_people,conn_quote,conn_alert
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_card_stack {
         iconIdentifier = conn-ce-card-stack
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack
@@ -102,7 +102,7 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.grid_8_4.description
         tt_content_defValues.CType = conn_grid_8_4
     }
-     mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion,conn_bs_card_group,conn_bs_carousel,conn_bs_tabs,conn_bs_process,conn_bs_before_after
+     mod.wizards.newContentElement.wizardItems.conn_bootstrap.show = conn_bs_accordion,conn_bs_card_group,conn_bs_carousel,conn_bs_tabs
      mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_accordion {
         iconIdentifier = conn-ce-accordion
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_accordion
@@ -127,41 +127,41 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_tabs.description
         tt_content_defValues.CType = conn_bs_tabs
     }
-     mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_process {
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_process {
         iconIdentifier = conn-ce-process
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_process
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_process.description
-        tt_content_defValues.CType = conn_bs_process
+        tt_content_defValues.CType = conn_process
     }
-     mod.wizards.newContentElement.wizardItems.conn_bootstrap.elements.conn_bs_before_after {
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_before_after {
         iconIdentifier = conn-ce-before-after
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_before_after
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_before_after.description
-        tt_content_defValues.CType = conn_bs_before_after
+        tt_content_defValues.CType = conn_before_after
     }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_timeline {
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_timeline {
         iconIdentifier = conn-ce-timeline
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.timeline.description
-        tt_content_defValues.CType = conn_bs_timeline
+        tt_content_defValues.CType = conn_timeline
     }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_stats {
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_stats {
         iconIdentifier = conn-ce-stats
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_stats.description
-        tt_content_defValues.CType = conn_bs_stats
+        tt_content_defValues.CType = conn_stats
     }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_logo_wall {
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_logo_wall {
         iconIdentifier = conn-ce-logo-wall
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_logo_wall.description
-        tt_content_defValues.CType = conn_bs_logo_wall
+        tt_content_defValues.CType = conn_logo_wall
     }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_testimonials {
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_testimonials {
         iconIdentifier = conn-ce-testimonials
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_testimonials.description
-        tt_content_defValues.CType = conn_bs_testimonials
+        tt_content_defValues.CType = conn_testimonials
     }
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_pricing {
         iconIdentifier = conn-ce-pricing
@@ -169,11 +169,11 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_pricing.description
         tt_content_defValues.CType = conn_bs_pricing
     }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_bs_feature_grid {
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_feature_grid {
         iconIdentifier = conn-ce-feature-grid
         title = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid
         description = LLL:EXT:conn_elements/Resources/Private/Language/locallang_be.xlf:ce.bs_feature_grid.description
-        tt_content_defValues.CType = conn_bs_feature_grid
+        tt_content_defValues.CType = conn_feature_grid
     }
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_people {
         iconIdentifier = conn-ce-people
