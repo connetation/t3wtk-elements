@@ -38,7 +38,7 @@ const entries = readdirSync(COMPONENTS_DIR)
 // lets Shared/_tokens.scss `@use` conn/t3kit-base's token mixins at compile time
 // without creating a runtime dependency (each component's CSS still ships
 // with the values baked in).
-const BASE_SCSS = '../base/Resources/Private/Scss';
+const BASE_SCSS = '../t3kit-base/Resources/Private/Scss';
 
 const pairs = entries.map((e) => `${e.src}:${e.dest}`);
 const args = watch
