@@ -38,6 +38,8 @@
 
     // ── Accordion button (header) ──────────────
     .accordion-button {
+        margin: 0;
+
         background-color: var(--conn-surface);
         color: var(--conn-text);
         font-weight: 600;
