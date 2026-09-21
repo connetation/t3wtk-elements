@@ -8,6 +8,10 @@
 // change there updates every element consistently.
 
 .conn-card-group {
+    // Bootstrap's .row.g-4 gives its direct child a negative margin-top
+    // (gutter compensation); without a block-formatting context here that
+    // margin collapses through the section into the header/subheader above.
+    display: flow-root;
 
     // ── Card ────────────────────────────────────────
     &__card {
