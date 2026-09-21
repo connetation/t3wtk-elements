@@ -19,7 +19,7 @@
         <f:if condition="{data.tx_conn_t3kit_elements_text_icon_style} == 'outline'"><f:variable name="ioSuffix">-outline</f:variable></f:if>
         <f:if condition="{data.tx_conn_t3kit_elements_text_icon_style} == 'sharp'"><f:variable name="ioSuffix">-sharp</f:variable></f:if>
         <f:variable name="iconClass">conn-icon--ionicon</f:variable>
-        <f:variable name="iconMaskUrl"><f:uri.resource path="Icons/Ionicons/{data.tx_conn_t3kit_elements_text_icon_name}{ioSuffix}.svg" extensionName="ConnElements" /></f:variable>
+        <f:variable name="iconMaskUrl"><f:uri.resource path="Icons/Ionicons/{data.tx_conn_t3kit_elements_text_icon_name}{ioSuffix}.svg" extensionName="ConnT3kitElements" /></f:variable>
     </f:case>
     <f:defaultCase>
         <f:variable name="iconClass">bi bi-{data.tx_conn_t3kit_elements_text_icon_name}</f:variable>
