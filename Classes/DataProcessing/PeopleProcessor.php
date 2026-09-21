@@ -76,11 +76,17 @@ final class PeopleProcessor extends AbstractItemsProcessor
         // Mobile-first: always 1-per-row below 576px (col-12, no breakpoint
         // infix), regardless of the configured column count — a cramped
         // multi-column grid on a phone was part of what made cards unreadable.
+        // 3-/4-up configs step the density down gradually instead of jumping
+        // straight to their full column count at 768px (col-md-*), which left
+        // team/reveal cards too narrow — names wrapped onto 2-3 lines on a
+        // tablet. col-sm-6 holds 2-up through 991px, col-lg-4 gives 3-up from
+        // 992px, and (for the 4-column config) col-xl-3 only reaches the full
+        // 4-up at 1200px and wider.
         $colMap  = [
             1 => 'col-12',
             2 => 'col-12 col-sm-6',
-            3 => 'col-12 col-sm-6 col-md-4',
-            4 => 'col-12 col-sm-6 col-md-3',
+            3 => 'col-12 col-sm-6 col-lg-4',
+            4 => 'col-12 col-sm-6 col-lg-4 col-xl-3',
             6 => 'col-12 col-sm-6 col-md-2',
         ];
 
@@ -130,7 +136,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'peopleUids'      => [],
             'style'           => 'reveal-sheet',
             'columns'         => 4,
-            'colClass'        => 'col-12 col-sm-6 col-md-3',
+            'colClass'        => 'col-12 col-sm-6 col-lg-4 col-xl-3',
             'align'           => 'center',
             'cardWidth'       => 'fixed',
             'imageSideMode'   => 'auto',
