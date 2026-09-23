@@ -164,6 +164,15 @@ return [
                 'maxitems' => 1,
             ],
         ],
+        'show_placeholder' => [
+            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.show_placeholder',
+            'config' => [
+                'type'       => 'check',
+                'renderType' => 'checkboxToggle',
+                'items'      => [['label' => '']],
+                'default'    => 1,
+            ],
+        ],
         'link' => [
             'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.link',
             'config' => [
@@ -208,7 +217,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    --palette--;;header, --palette--;;subheader, badge, body, image,
+                    --palette--;;header, --palette--;;subheader, badge, body, image, show_placeholder,
                 --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.tab.link,
                     --palette--;;link,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,

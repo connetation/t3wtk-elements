@@ -298,6 +298,9 @@
             <trans-unit id="card_item.image">
                 <source>Image</source>
             </trans-unit>
+            <trans-unit id="card_item.show_placeholder">
+                <source>Show placeholder image</source>
+            </trans-unit>
             <trans-unit id="card_item.link">
                 <source>Link</source>
             </trans-unit>
