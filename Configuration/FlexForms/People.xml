@@ -272,5 +272,21 @@
                 </el>
             </ROOT>
         </colors_reveal>
+        <colors_visit>
+            <ROOT>
+                <sheetTitle>🎨 Visit Card Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.visitBandColor>
+                        <label>Visit band color (empty = alternates using each person's accent color)</label>
+                        <displayCond>FIELD:display.settings.style:=:visit-card</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.visitBandColor>
+                </el>
+            </ROOT>
+        </colors_visit>
     </sheets>
 </T3DataStructure>

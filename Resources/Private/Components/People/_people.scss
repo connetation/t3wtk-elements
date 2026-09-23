@@ -611,8 +611,8 @@
         bottom: 0;
         width: 44%;
         color: var(--conn-people-accent-text);
-        background: linear-gradient(155deg, var(--conn-people-a), var(--conn-people-a));
-        background: linear-gradient(155deg, var(--conn-people-a), color-mix(in srgb, var(--conn-people-a) 65%, black));
+        background: var(--conn-people-visit-band-bg, linear-gradient(155deg, var(--conn-people-a), var(--conn-people-a)));
+        background: var(--conn-people-visit-band-bg, linear-gradient(155deg, var(--conn-people-a), color-mix(in srgb, var(--conn-people-a) 65%, black)));
     }
 
     &__visit--left &__visit-band { left: 0; }

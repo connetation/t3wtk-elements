@@ -125,6 +125,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'revealTextColor'  => $this->sanitizeColor((string)($raw['revealTextColor'] ?? ''), ''),
             'curtainBg'        => $this->sanitizeColor((string)($raw['curtainBg'] ?? ''), ''),
             'curtainTextColor' => $this->sanitizeColor((string)($raw['curtainTextColor'] ?? ''), ''),
+            'visitBandColor'   => $this->sanitizeColor((string)($raw['visitBandColor'] ?? ''), ''),
         ];
     }
 
@@ -154,6 +155,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'revealTextColor'  => '',
             'curtainBg'        => '',
             'curtainTextColor' => '',
+            'visitBandColor'   => '',
         ];
     }
 

@@ -232,6 +232,15 @@
                             <displayCond>FIELD:sDEF.settings.showInfoPanel:=:1</displayCond>
                         </config>
                     </settings.showDirectionsButton>
+                    <settings.panelColor>
+                        <label>Panel background color</label>
+                        <description>Empty = theme default surface color.</description>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                            <displayCond>FIELD:sDEF.settings.showInfoPanel:=:1</displayCond>
+                        </config>
+                    </settings.panelColor>
                 </el>
             </ROOT>
         </panel>

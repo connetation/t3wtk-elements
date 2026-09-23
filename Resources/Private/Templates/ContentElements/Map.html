@@ -64,7 +64,7 @@
 
     <f:if condition="{settings.showInfoPanel}">
         <div class="col-lg-5 conn-map__panel-col">
-            <div class="conn-map__panel">
+            <div class="conn-map__panel" style="{f:if(condition: settings.panelColor, then: '--conn-map-panel-bg: {settings.panelColor};')}">
                 <f:if condition="{data.header}">
                     <h3 class="conn-map__heading">{data.header}</h3>
                 </f:if>
