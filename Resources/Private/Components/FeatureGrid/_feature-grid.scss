@@ -82,6 +82,18 @@
             height: 24px;
             object-fit: contain;
         }
+
+        // Ionicons (SVG mask, no icon font) — same rule as TextIcon's
+        // .conn-icon--ionicon, duplicated here since that one is scoped
+        // under .conn-text-icon.
+        .conn-icon--ionicon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background-color: currentColor;
+            -webkit-mask: var(--conn-icon-mask) center / contain no-repeat;
+            mask: var(--conn-icon-mask) center / contain no-repeat;
+        }
     }
 
     &__item:hover &__icon {

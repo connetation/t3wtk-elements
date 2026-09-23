@@ -20,7 +20,26 @@
                 </f:then>
                 <f:else>
                     <f:if condition="{feature.icon}">
-                        <i class="{feature.icon}" aria-hidden="true"></i>
+                        <f:variable name="iconMaskUrl"></f:variable>
+                        <f:switch expression="{feature.icon_library}">
+                            <f:case value="font-awesome">
+                                <f:variable name="iconClass">fa-{feature.icon_style} fa-{feature.icon}</f:variable>
+                            </f:case>
+                            <f:case value="ionicons">
+                                <f:variable name="ioSuffix"></f:variable>
+                                <f:if condition="{feature.icon_style} == 'outline'"><f:variable name="ioSuffix">-outline</f:variable></f:if>
+                                <f:if condition="{feature.icon_style} == 'sharp'"><f:variable name="ioSuffix">-sharp</f:variable></f:if>
+                                <f:variable name="iconClass">conn-icon--ionicon</f:variable>
+                                <f:variable name="iconMaskUrl"><f:uri.resource path="Icons/Ionicons/{feature.icon}{ioSuffix}.svg" extensionName="ConnT3kitElements" /></f:variable>
+                            </f:case>
+                            <f:defaultCase>
+                                <f:variable name="iconClass">bi bi-{feature.icon}</f:variable>
+                            </f:defaultCase>
+                        </f:switch>
+                        <f:if condition="{feature.icon_library} == 'font-awesome'">
+                            <f:asset.css identifier="conn-t3kit-elements-font-awesome-css" href="EXT:conn_t3kit_elements/Resources/Public/Css/font-awesome.min.css" />
+                        </f:if>
+                        <i class="{iconClass}" aria-hidden="true" style="--conn-icon-mask:{f:if(condition: iconMaskUrl, then: 'url({iconMaskUrl})')};"></i>
                     </f:if>
                 </f:else>
             </f:if>

@@ -28,17 +28,20 @@ final class IconItemsProcFunc
 
     public function getIconStyleItems(array &$parameters): void
     {
-        $row     = $parameters['row'] ?? [];
-        $library = $this->firstValue($row['tx_conn_t3kit_elements_text_icon_library'] ?? 'bootstrap-icons');
+        $row              = $parameters['row'] ?? [];
+        $libraryFieldName = (string)($parameters['config']['iconLibraryField'] ?? 'tx_conn_t3kit_elements_text_icon_library');
+        $library          = $this->firstValue($row[$libraryFieldName] ?? 'bootstrap-icons');
 
         $parameters['items'] = array_merge($parameters['items'] ?? [], self::STYLE_ITEMS[$library] ?? []);
     }
 
     public function getIconNameItems(array &$parameters): void
     {
-        $row     = $parameters['row'] ?? [];
-        $library = $this->firstValue($row['tx_conn_t3kit_elements_text_icon_library'] ?? 'bootstrap-icons');
-        $style   = $this->normalizeStyle($library, $this->firstValue($row['tx_conn_t3kit_elements_text_icon_style'] ?? 'solid'));
+        $row              = $parameters['row'] ?? [];
+        $libraryFieldName = (string)($parameters['config']['iconLibraryField'] ?? 'tx_conn_t3kit_elements_text_icon_library');
+        $styleFieldName   = (string)($parameters['config']['iconStyleField'] ?? 'tx_conn_t3kit_elements_text_icon_style');
+        $library          = $this->firstValue($row[$libraryFieldName] ?? 'bootstrap-icons');
+        $style            = $this->normalizeStyle($library, $this->firstValue($row[$styleFieldName] ?? 'solid'));
 
         $parameters['items'] = array_merge($parameters['items'] ?? [], $this->nameItemsFor($library, $style));
     }
