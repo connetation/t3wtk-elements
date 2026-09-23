@@ -150,7 +150,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_bs_accordion'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_accordion_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_accordion_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:accordion.tab.config,
             tx_conn_t3kit_elements_accordion_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -199,7 +199,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_bs_tabs'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_tabs_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_tabs_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:tabs.tab.config,
             tx_conn_t3kit_elements_tabs_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -248,7 +248,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_process'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_process_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_process_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:process.tab.config,
             tx_conn_t3kit_elements_process_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -369,7 +369,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['conn_before_after_settings'] = [
 $GLOBALS['TCA']['tt_content']['types']['conn_before_after'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,
+            --palette--;;general,--palette--;;headers,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:before_after.tab.config,
             --palette--;;conn_before_after_before,
             --palette--;;conn_before_after_after,
@@ -443,7 +443,7 @@ $GLOBALS['TCA']['tt_content']['types']['conn_quote'] = [
     ],
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,
+            --palette--;;general,--palette--;;headers,
             bodytext,
             --palette--;;conn_quote_author,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:quote.tab.config,
@@ -512,7 +512,7 @@ $GLOBALS['TCA']['tt_content']['types']['conn_alert'] = [
     ],
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,bodytext,
+            --palette--;;general,--palette--;;headers,bodytext,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:alert.tab.config,
             tx_conn_t3kit_elements_alert_settings,
             --palette--;;conn_alert_custom_icon,
@@ -562,7 +562,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_bs_carousel'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_carousel_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_carousel_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:carousel.tab.config,
             tx_conn_t3kit_elements_carousel_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -611,7 +611,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_swiper_hero_slider'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_hero_slider_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_hero_slider_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:hero_slider.tab.config,
             tx_conn_t3kit_elements_hero_slider_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -660,7 +660,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_swiper_slider'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_slider_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_slider_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:slider.tab.config,
             tx_conn_t3kit_elements_slider_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -709,7 +709,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_swiper_thumbs_slider'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_thumbs_slider_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_thumbs_slider_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:thumbs_slider.tab.config,
             tx_conn_t3kit_elements_thumbs_slider_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -780,7 +780,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_swiper_parallax_slider'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,
+            --palette--;;general,--palette--;;headers,
             tx_conn_t3kit_elements_parallax_slider_bg_image,
             tx_conn_t3kit_elements_parallax_slider_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:parallax_slider.tab.config,
@@ -814,7 +814,7 @@ $GLOBALS['TCA']['tt_content']['types']['conn_text_column'] = [
     ],
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,bodytext,
+            --palette--;;general,--palette--;;headers,bodytext,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,
@@ -861,7 +861,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_card_stack'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_card_stack_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_card_stack_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_stack.tab.config,
             tx_conn_t3kit_elements_card_stack_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -910,7 +910,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_flip_carousel'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_flip_carousel_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_flip_carousel_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.tab.config,
             tx_conn_t3kit_elements_flip_carousel_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -959,7 +959,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_flip_gallery'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_flip_gallery_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_flip_gallery_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.tab.config,
             tx_conn_t3kit_elements_flip_gallery_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1008,7 +1008,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_mosaic_gallery'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_mosaic_gallery_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_mosaic_gallery_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:mosaic_gallery.tab.config,
             tx_conn_t3kit_elements_mosaic_gallery_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1057,7 +1057,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_stats'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_stats_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_stats_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stats.tab.config,
             tx_conn_t3kit_elements_stats_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1106,7 +1106,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_logo_wall'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_logo_wall_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_logo_wall_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:logo_wall.tab.config,
             tx_conn_t3kit_elements_logo_wall_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1155,7 +1155,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_testimonials'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_testimonials_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_testimonials_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:testimonials.tab.config,
             tx_conn_t3kit_elements_testimonials_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1204,7 +1204,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_bs_pricing'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_pricing_tiers,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_pricing_tiers,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:pricing.tab.config,
             tx_conn_t3kit_elements_pricing_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1253,7 +1253,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_feature_grid'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_feature_grid_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_feature_grid_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:feature_grid.tab.config,
             tx_conn_t3kit_elements_feature_grid_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1389,7 +1389,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_timeline'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,tx_conn_t3kit_elements_timeline_items,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_timeline_items,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:timeline.tab.config,
             tx_conn_t3kit_elements_timeline_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1424,7 +1424,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_people'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,
+            --palette--;;general,--palette--;;headers,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:people.tab.config,
             tx_conn_t3kit_elements_people_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
@@ -1608,7 +1608,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
 $GLOBALS['TCA']['tt_content']['types']['conn_map'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,
+            --palette--;;general,--palette--;;headers,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:media,
             tx_conn_t3kit_elements_map_illustration_image,
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:map.tab.config,
