@@ -79,6 +79,13 @@
         border-radius: var(--conn-radius);
         padding: 1.75rem;
         height: 100%;
+        // Column so the contact list can fill the panel and push the
+        // "Get directions" button to the bottom (see below).
+        display: flex;
+        flex-direction: column;
+
+        .conn-contact-info { flex: 1 1 auto; }
+        .conn-contact-info__directions { margin-top: auto; }
     }
 
     &__heading {

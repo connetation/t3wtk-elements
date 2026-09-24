@@ -93,7 +93,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
         $style = in_array($raw['style'] ?? '', self::STYLES, true) ? $raw['style'] : 'reveal-sheet';
 
         // Visit Card is a fixed 16:9 business-card shape — past 2-up it gets
-        // squeezed so narrow the band/monogram/contact lines feel cramped.
+        // squeezed so narrow the band/contact lines feel cramped.
         if ($style === 'visit-card' && $columns > 2) {
             $columns = 2;
         }

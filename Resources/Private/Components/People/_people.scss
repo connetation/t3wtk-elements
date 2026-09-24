@@ -618,37 +618,6 @@
     &__visit--left &__visit-band { left: 0; }
     &__visit--right &__visit-band { right: 0; }
 
-    &__visit-watermark {
-        position: absolute;
-        width: 150%;
-        height: 150%;
-        top: -25%;
-        opacity: 0.14;
-    }
-
-    &__visit--left &__visit-watermark { left: -35%; }
-    &__visit--right &__visit-watermark { right: -35%; }
-
-    &__visit-monogram {
-        position: absolute;
-        top: 0.9rem;
-        width: 2.1rem;
-        height: 2.4rem;
-        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-        background: rgba(255, 255, 255, 0.16);
-        color: var(--conn-people-accent-text);
-        font-weight: 800;
-        font-size: 0.72rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        letter-spacing: 0.02em;
-        z-index: 10;
-        background: var(--conn-border)
-    }
-
-    &__visit--left &__visit-monogram { left: 0.9rem; }
-    &__visit--right &__visit-monogram { right: 0.9rem; }
 
     &__visit-photo {
         position: absolute;
@@ -663,6 +632,28 @@
 
     &__visit--left &__visit-photo { left: 2%; }
     &__visit--right &__visit-photo { right: 2%; }
+
+    &__visit-photo.conn-people__photo-placeholder {
+        max-width: none;
+        margin: 0;
+        aspect-ratio: auto;
+        background: none;
+        border-radius: 0;
+        filter: none;
+
+        .conn-people__initials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: min(6rem, 70%);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.16);
+            color: var(--conn-people-accent-text);
+            font-size: 1.6rem;
+            letter-spacing: 0.02em;
+        }
+    }
 
     &__visit-info {
         position: absolute;
@@ -712,12 +703,6 @@
 
     @container (max-width: 400px) {
         &__visit-band { width: 38%; }
-
-        &__visit-monogram {
-            width: 1.7rem;
-            height: 2rem;
-            font-size: 0.6rem;
-        }
 
         &__visit-photo { width: 36%; height: 88%; bottom: 4%; }
 
