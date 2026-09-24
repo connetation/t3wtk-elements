@@ -5,6 +5,9 @@
 tt_content.conn_map =< lib.conn_t3kit_elements_ce
 tt_content.conn_map {
     templateName = Map
+    # Default for elements saved before the "Show map" toggle existed —
+    # their FlexForm has no showMap value, which would otherwise hide the map.
+    settings.showMap = 1
     dataProcessing {
         # ContactAwareSettingsProcessor = FlexFormSettingsProcessor plus
         # settings.contact.* (for Partials/ContactInfo/Panel.html), read

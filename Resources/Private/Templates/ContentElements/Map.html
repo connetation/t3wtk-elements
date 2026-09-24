@@ -12,10 +12,12 @@
     href="EXT:conn_t3kit_elements/Resources/Public/Css/map.css" />
 <f:asset.css identifier="conn-t3kit-elements-contact-info-css"
     href="EXT:conn_t3kit_elements/Resources/Public/Css/contact-info.css" />
-<f:asset.script identifier="conn-t3kit-elements-map-js"
-    src="EXT:conn_t3kit_elements/Resources/Public/Js/components/map.js"
-    type="module"
-    priority="false" />
+<f:if condition="{settings.showMap}">
+    <f:asset.script identifier="conn-t3kit-elements-map-js"
+        src="EXT:conn_t3kit_elements/Resources/Public/Js/components/map.js"
+        type="module"
+        priority="false" />
+</f:if>
 
 <f:variable name="addressText">{settings.contact.address.street}, {settings.contact.address.zip} {settings.contact.address.city}, {settings.contact.address.country}</f:variable>
 
@@ -40,32 +42,37 @@
 
 <div class="conn-map row conn-map--panel-{settings.panelPosition} conn-map--radius-{settings.borderRadius}"
      style="--bs-gutter-x: {gapValue}; --bs-gutter-y: {gapValue};">
-    <div class="{f:if(condition: settings.showInfoPanel, then: 'col-lg-7', else: 'col-12')} conn-map__canvas-col">
-        <div class="conn-map__canvas conn-map__canvas--{settings.height}"
-             data-provider="{settings.provider}"
-             data-auto-load="{f:if(condition: settings.privacyMode, then: '0', else: '1')}"
-             data-address="{addressText}"
-             data-zoom="{settings.zoom}">
-            <f:if condition="{hasIllustrationImage}">
-                <conn:responsiveImage image="{illustrationImage}" class="conn-map__illustration-img" alt="{illustrationImage.alternative}" widths="600,900,1200" sizes="(min-width: 992px) 58vw, 100vw" />
-            </f:if>
-            <f:if condition="{showGrid}">
-                <div class="conn-map__decorative" aria-hidden="true">
-                    <div class="conn-map__grid" style="{f:if(condition: settings.gridColor, then: '--conn-map-grid-color: {settings.gridColor};')}"></div>
-                    <f:if condition="{settings.provider} == 'google' && {settings.privacyMode}">
-                        <button type="button" class="btn btn-light conn-map__load-button">
-                            <f:translate key="map.load" extensionName="conn_t3kit_elements" />
-                        </button>
-                    </f:if>
-                </div>
-            </f:if>
+    <f:if condition="{settings.showMap}">
+        <div class="{f:if(condition: settings.showInfoPanel, then: 'col-lg-7', else: 'col-12')} conn-map__canvas-col">
+            <div class="conn-map__canvas conn-map__canvas--{settings.height}"
+                 data-provider="{settings.provider}"
+                 data-auto-load="{f:if(condition: settings.privacyMode, then: '0', else: '1')}"
+                 data-address="{addressText}"
+                 data-zoom="{settings.zoom}">
+                <f:if condition="{hasIllustrationImage}">
+                    <conn:responsiveImage image="{illustrationImage}" class="conn-map__illustration-img" alt="{illustrationImage.alternative}" widths="600,900,1200" sizes="(min-width: 992px) 58vw, 100vw" />
+                </f:if>
+                <f:if condition="{showGrid}">
+                    <div class="conn-map__decorative" aria-hidden="true">
+                        <div class="conn-map__grid" style="{f:if(condition: settings.gridColor, then: '--conn-map-grid-color: {settings.gridColor};')}"></div>
+                        <f:if condition="{settings.provider} == 'google' && {settings.privacyMode}">
+                            <button type="button" class="btn btn-primary conn-map__load-button">
+                                <f:if condition="{settings.loadLabel}">
+                                    <f:then>{settings.loadLabel}</f:then>
+                                    <f:else><f:translate key="map.load" extensionName="conn_t3kit_elements" /></f:else>
+                                </f:if>
+                            </button>
+                        </f:if>
+                    </div>
+                </f:if>
+            </div>
         </div>
-    </div>
+    </f:if>
 
     <f:if condition="{settings.showInfoPanel}">
-        <div class="col-lg-5 conn-map__panel-col">
+        <div class="{f:if(condition: settings.showMap, then: 'col-lg-5', else: 'col-12')} conn-map__panel-col">
             <div class="conn-map__panel" style="{f:if(condition: settings.panelColor, then: '--conn-map-panel-bg: {settings.panelColor};')}">
-                <f:if condition="{data.header}">
+                <f:if condition="{data.header} && {data.header_layout} != 100">
                     <h3 class="conn-map__heading">{data.header}</h3>
                 </f:if>
                 <f:render partial="ContactInfo/Panel" arguments="{settings: settings}" />
