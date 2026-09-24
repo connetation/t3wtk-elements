@@ -24,6 +24,11 @@
         }
     }
 
+    // One stat per row — also below the 2-column tablet breakpoint above.
+    &[data-columns="1"] .conn-stats__grid {
+        grid-template-columns: 1fr;
+    }
+
     // ── Item ──────────────────────────────────
     &__item {
         text-align: center;
@@ -87,6 +92,38 @@
         font-variant-numeric: tabular-nums;
     }
 
+    // ── Custom colors (Colors sheet) ──────────
+    // Classes are only present when a colour is set, so the theme defaults
+    // (accent numbers, heading-coloured label, text-coloured description)
+    // stay untouched otherwise.
+    &--value-color {
+        .conn-stats__prefix,
+        .conn-stats__value,
+        .conn-stats__suffix { color: var(--conn-stats-value-color); }
+    }
+
+    &--label-color .conn-stats__label { color: var(--conn-stats-label-color); }
+
+    &--description-color .conn-stats__description { color: var(--conn-stats-description-color); }
+
+    // ── Text shadows (Colors & Shadows sheet) ─
+    // For readability on background images. Each part has its own colour
+    // (--conn-stats-<part>-shadow-color, set inline); the class is only
+    // present when a colour is picked, so empty = no shadow.
+    $shadow-parts: (
+        value:       '.conn-stats__prefix, .conn-stats__value, .conn-stats__suffix',
+        label:       '.conn-stats__label',
+        description: '.conn-stats__description',
+    );
+
+    @each $part, $selector in $shadow-parts {
+        &--#{$part}-shadow {
+            #{$selector} {
+                text-shadow: 1px 1px 1px var(--conn-stats-#{$part}-shadow-color);
+            }
+        }
+    }
+
     // ═════════════════════════════════════════
     // ROW VARIANT — borderless with dividers
     // ═════════════════════════════════════════
@@ -107,7 +144,7 @@
         .conn-stats__item {
             background: transparent;
             border: none;
-            border-right: 1px solid var(--conn-border);
+            border-right: 1px solid var(--conn-stats-divider-color, var(--conn-border));
             border-radius: 0;
             box-shadow: none;
             padding: 1.25rem 3rem;
@@ -125,11 +162,25 @@
         @media (max-width: 575.98px) {
             .conn-stats__item {
                 border-right: none;
-                border-bottom: 1px solid var(--conn-border);
+                border-bottom: 1px solid var(--conn-stats-divider-color, var(--conn-border));
                 padding: 1.25rem 1rem;
 
                 &:last-child { border-bottom: none; }
             }
+        }
+
+        // Stacked like mobile at every width: dividers between rows.
+        &[data-columns="1"] .conn-stats__item {
+            border-right: none;
+            border-bottom: 1px solid var(--conn-stats-divider-color, var(--conn-border));
+
+            &:last-child { border-bottom: none; }
+        }
+
+        // "Show dividers" off — last in the block so it wins over all of the above.
+        &.conn-stats--no-divider .conn-stats__item {
+            border-right: none;
+            border-bottom: none;
         }
     }
 }

@@ -13,14 +13,16 @@
                             <renderType>selectSingle</renderType>
                             <default>4</default>
                             <items>
-                                <numIndex index="0"><label>2 columns</label><value>2</value></numIndex>
-                                <numIndex index="1"><label>3 columns</label><value>3</value></numIndex>
-                                <numIndex index="2"><label>4 columns (default)</label><value>4</value></numIndex>
+                                <numIndex index="0"><label>1 column</label><value>1</value></numIndex>
+                                <numIndex index="1"><label>2 columns</label><value>2</value></numIndex>
+                                <numIndex index="2"><label>3 columns</label><value>3</value></numIndex>
+                                <numIndex index="3"><label>4 columns (default)</label><value>4</value></numIndex>
                             </items>
                         </config>
                     </settings.columns>
                     <settings.layout>
                         <label>Layout</label>
+                        <onChange>reload</onChange>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
@@ -31,6 +33,16 @@
                             </items>
                         </config>
                     </settings.layout>
+                    <settings.showDivider>
+                        <label>Show dividers between stats</label>
+                        <displayCond>FIELD:settings.layout:=:row</displayCond>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.showDivider>
                     <settings.accentBar>
                         <label>Accent bar on hover</label>
                         <config>
@@ -62,5 +74,68 @@
                 </el>
             </ROOT>
         </sDEF>
+        <colors>
+            <ROOT>
+                <sheetTitle>Colors &amp; Shadows</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.valueColor>
+                        <label>Number color — value, prefix and suffix (empty = theme accent)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.valueColor>
+                    <settings.valueShadowColor>
+                        <label>Number text shadow color — value, prefix and suffix (empty = no shadow)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.valueShadowColor>
+                    <settings.labelColor>
+                        <label>Label color (empty = theme heading color)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.labelColor>
+                    <settings.labelShadowColor>
+                        <label>Label text shadow color (empty = no shadow)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.labelShadowColor>
+                    <settings.descriptionColor>
+                        <label>Description color (empty = theme text color)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.descriptionColor>
+                    <settings.descriptionShadowColor>
+                        <label>Description text shadow color (empty = no shadow)</label>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.descriptionShadowColor>
+                    <settings.dividerColor>
+                        <label>Divider color — lines between stats in the Row layout (empty = theme border color)</label>
+                        <displayCond>
+                            <AND>
+                                <numIndex index="0">FIELD:sDEF.settings.layout:=:row</numIndex>
+                                <numIndex index="1">FIELD:sDEF.settings.showDivider:!=:0</numIndex>
+                            </AND>
+                        </displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.dividerColor>
+                </el>
+            </ROOT>
+        </colors>
     </sheets>
 </T3DataStructure>
