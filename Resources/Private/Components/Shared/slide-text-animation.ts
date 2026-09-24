@@ -43,16 +43,55 @@ function clearSplits(slideEl: HTMLElement): void {
     }
 }
 
-export function animateSlide(slideEl: HTMLElement): void {
+interface SlideTargets {
+    container: HTMLElement;
+    type:     string;
+    headings: HTMLElement[];
+    body:     HTMLElement[];
+    all:      HTMLElement[];
+    wrappers: HTMLElement[];
+}
+
+/** The animated text of a slide, or null when it has no text animation. */
+function getTargets(slideEl: HTMLElement): SlideTargets | null {
     const container = slideEl.querySelector<HTMLElement>('[data-slide-animation]');
-    if (!container) return;
+    if (!container) return null;
     const type = container.dataset.slideAnimation;
-    if (!type) return;
+    if (!type) return null;
 
     const headings = [...container.querySelectorAll<HTMLElement>(HEADING_SEL)];
     const body     = [...container.querySelectorAll<HTMLElement>(BODY_SEL)];
     const all      = [...headings, ...body];
-    if (!all.length) return;
+    if (!all.length) return null;
+
+    const wrappers = [...container.querySelectorAll<HTMLElement>(BODY_WRAPPER_SEL)];
+    return { container, type, headings, body, all, wrappers };
+}
+
+/**
+ * Hide the incoming slide's animated text while the slide transition runs
+ * (call from slideChangeTransitionStart). Without this, a slide seen before
+ * still carries the inline opacity:1 animateSlide() left on it, so its text
+ * shows during the transition, then vanishes when GSAP's from() starts at
+ * slideChangeTransitionEnd, then animates back in. Done inline rather than
+ * in CSS so it works the same for every slider, with or without a
+ * --gsap stylesheet rule. animateSlide() reveals the elements again.
+ */
+export function prepareSlide(slideEl: HTMLElement): void {
+    const targets = getTargets(slideEl);
+    if (!targets) return;
+
+    clearSplits(slideEl);
+    [...targets.all, ...targets.wrappers].forEach(el => {
+        el.style.transition = 'none';
+        el.style.opacity    = '0';
+    });
+}
+
+export function animateSlide(slideEl: HTMLElement): void {
+    const targets = getTargets(slideEl);
+    if (!targets) return;
+    const { container, type, headings, body, all, wrappers } = targets;
 
     clearSplits(slideEl);
 
@@ -71,7 +110,7 @@ export function animateSlide(slideEl: HTMLElement): void {
     });
 
     // Also reveal the body wrapper(s) themselves — see BODY_WRAPPER_SEL above.
-    [...container.querySelectorAll<HTMLElement>(BODY_WRAPPER_SEL)].forEach(el => {
+    wrappers.forEach(el => {
         el.style.opacity    = '1';
         el.style.transform  = '';
         el.style.transition = 'none';

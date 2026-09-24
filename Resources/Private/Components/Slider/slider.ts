@@ -5,7 +5,7 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
-import { animateSlide, resetSlide } from '../Shared/slide-text-animation';
+import { animateSlide, prepareSlide } from '../Shared/slide-text-animation';
 import { registry } from '../Shared/registry';
 
 interface SliderOptions {
@@ -97,6 +97,10 @@ class Slider {
                 afterInit(swiper) {
                     lastRealIndex = swiper.realIndex;
                     animateSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
+                },
+                slideChangeTransitionStart(swiper) {
+                    if (swiper.realIndex === lastRealIndex) return;
+                    prepareSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
                 },
                 slideChangeTransitionEnd(swiper) {
                     if (swiper.realIndex === lastRealIndex) return;

@@ -6,7 +6,7 @@ import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, Parallax } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types';
 import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
-import { animateSlide, resetSlide } from '../Shared/slide-text-animation';
+import { animateSlide, prepareSlide } from '../Shared/slide-text-animation';
 import { registry } from '../Shared/registry';
 
 class ParallaxSlider {
@@ -81,6 +81,10 @@ class ParallaxSlider {
                 afterInit(swiper) {
                     lastRealIndex = swiper.realIndex;
                     animateSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
+                },
+                slideChangeTransitionStart(swiper) {
+                    if (swiper.realIndex === lastRealIndex) return;
+                    prepareSlide(swiper.slides[swiper.activeIndex] as HTMLElement);
                 },
                 slideChangeTransitionEnd(swiper) {
                     if (swiper.realIndex === lastRealIndex) return;
