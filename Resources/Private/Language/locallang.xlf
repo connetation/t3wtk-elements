@@ -74,6 +74,10 @@
             <trans-unit id="map.load">
                 <source>Load map</source>
             </trans-unit>
+            <!-- Subpage Cards frontend -->
+            <trans-unit id="subpage_cards.more">
+                <source>More</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

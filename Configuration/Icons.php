@@ -19,6 +19,10 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/card-group-ce.svg',
     ],
+    'conn-ce-subpage-cards' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/subpage-cards-ce.svg',
+    ],
     'conn-ce-hero-slider' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/hero-slider-ce.svg',

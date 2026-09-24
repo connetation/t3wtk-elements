@@ -1,0 +1,26 @@
+// ─────────────────────────────────────────────
+// Subpage Cards Content Element
+// ─────────────────────────────────────────────
+// Renders with Card Group's markup and classes (.conn-card-group*) and loads
+// card-group.css for the card shell, style variants, accent bar and body
+// text. Only the differences live here.
+
+.conn-subpage-cards {
+    // Card radius follows conn_t3kit_base's --conn-card-radius token (same as
+    // the News/Event cards) so the element's "Card border radius" setting can
+    // override it; Card Group itself uses the plain --conn-radius.
+    .conn-card-group__card {
+        border-radius: var(--conn-card-radius, var(--conn-radius)) !important;
+    }
+
+    // The title link is stretched over the whole card — show the focus ring
+    // on the card instead of around the title text.
+    .card-title a:focus-visible {
+        outline: none;
+    }
+
+    .conn-subpage-cards__card:has(.card-title a:focus-visible) {
+        outline: 2px solid var(--conn-accent);
+        outline-offset: 2px;
+    }
+}

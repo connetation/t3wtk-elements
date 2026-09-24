@@ -110,6 +110,26 @@ Responsive grid of Bootstrap cards with optional images, badges and
 links — a general-purpose "services/features as cards" element. Key
 settings: columns (1-4), style (default/flat/shadow), accent bar.
 
+.. _ce-subpage-cards:
+
+Subpage Cards
+-------------
+
+:CType: ``conn_subpage_cards``
+
+Card grid built from page records — one card per page, rendered with the
+Card Group markup and styles. Pages to show: subpages of the current page
+(default), subpages of the pages selected in the element, or exactly the
+selected pages (in selection order). The card title is the page title;
+teaser, link and image come from the new **Card** tab in the page
+properties and fall back to the page abstract, the page itself and the
+first image of the page's *Resources* tab. Key settings: columns (1-4),
+style (default/shadow/flat), accent bar, card border color/radius
+(override the theme's card tokens), title heading level, alignments,
+image/placeholder/teaser/link toggles, teaser crop length, link label,
+order (page tree/selection, title, newest, last updated), max items and
+"include pages hidden in menus".
+
 .. _ce-bs-carousel:
 
 Bootstrap Carousel

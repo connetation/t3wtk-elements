@@ -8,6 +8,8 @@ CREATE TABLE tt_content (
     tx_conn_t3kit_elements_accordion_settings   mediumtext,
     tx_conn_t3kit_elements_card_group_items     int(11) DEFAULT '0' NOT NULL,
     tx_conn_t3kit_elements_card_group_settings  mediumtext,
+    tx_conn_t3kit_elements_subpage_cards_source   varchar(20) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_subpage_cards_settings mediumtext,
     tx_conn_t3kit_elements_hero_slider_items    int(11) DEFAULT '0' NOT NULL,
     tx_conn_t3kit_elements_hero_slider_settings mediumtext,
     tx_conn_t3kit_elements_slider_items              int(11) DEFAULT '0' NOT NULL,
@@ -481,4 +483,12 @@ CREATE TABLE tx_conn_t3kit_elements_domain_model_process_step (
     PRIMARY KEY (uid),
     KEY parent (pid),
     KEY content_element (content_element)
+);
+
+-- ─── Page card fields (Subpage Cards element) ───────────────────────────────
+
+CREATE TABLE pages (
+    tx_conn_t3kit_elements_card_teaser text,
+    tx_conn_t3kit_elements_card_link   varchar(2048) DEFAULT '' NOT NULL,
+    tx_conn_t3kit_elements_card_media  int(11) unsigned DEFAULT '0' NOT NULL
 );

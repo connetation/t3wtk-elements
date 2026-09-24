@@ -1,6 +1,7 @@
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/Base/GlobalAssets.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/Accordion.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/CardGroup.typoscript'
+@import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/SubpageCards.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/CardStack.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/Carousel.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/FlipCarousel.typoscript'

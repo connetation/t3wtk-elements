@@ -1144,6 +1144,58 @@
             <trans-unit id="sys_file_reference.muted.description">
                 <source>Used by Video Hero's Background loop mode. Most browsers block autoplay with sound, so leaving this unchecked while Autoplay is checked will likely prevent the video from autoplaying at all.</source>
             </trans-unit>
+            <!-- Subpage Cards -->
+            <trans-unit id="ce.subpage_cards">
+                <source>Subpage Cards</source>
+            </trans-unit>
+            <trans-unit id="ce.subpage_cards.description">
+                <source>Card grid of pages: subpages of the current page, subpages of selected pages, or selected pages. Teaser, link and image come from the page's "Card" tab</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.tab.config">
+                <source>Subpage Cards Settings</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.source">
+                <source>Pages to show</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.source.current">
+                <source>Subpages of the current page</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.source.subpages">
+                <source>Subpages of the selected pages</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.source.selected">
+                <source>Selected pages</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.pages">
+                <source>Pages</source>
+            </trans-unit>
+            <trans-unit id="subpage_cards.pages.description">
+                <source>"Subpages of the selected pages": the subpages of these pages are shown (empty = current page). "Selected pages": exactly these pages are shown.</source>
+            </trans-unit>
+            <trans-unit id="pages.tab.card">
+                <source>Card</source>
+            </trans-unit>
+            <trans-unit id="pages.card_teaser">
+                <source>Card teaser text</source>
+            </trans-unit>
+            <trans-unit id="pages.card_teaser.description">
+                <source>Shown on "Subpage Cards" elements. Empty = the page abstract is used.</source>
+            </trans-unit>
+            <trans-unit id="pages.card_link">
+                <source>Card link</source>
+            </trans-unit>
+            <trans-unit id="pages.card_link.description">
+                <source>Empty = the card links to this page.</source>
+            </trans-unit>
+            <trans-unit id="pages.card_media">
+                <source>Card image</source>
+            </trans-unit>
+            <trans-unit id="pages.card_media.description">
+                <source>Empty = the first image of the page's "Resources" tab is used.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,0 +1,10 @@
+tt_content.conn_subpage_cards =< lib.conn_t3kit_elements_ce
+tt_content.conn_subpage_cards {
+    templateName = SubpageCards
+    dataProcessing {
+        10 = Connetation\T3kitElements\DataProcessing\SubpageCardsProcessor
+        10 {
+            as = cards
+        }
+    }
+}

@@ -112,6 +112,66 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_card_group'] = [
     ',
 ];
 
+// ─── Subpage Cards ────────────────────────────────────────────────
+// Card grid built from page records: title = page title, teaser/link/media
+// from the page's "Card" tab (Configuration/TCA/Overrides/pages.php).
+// Page selection reuses the core `pages` field, like fsc's menu elements.
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_subpage_cards'] = 'conn-ce-subpage-cards';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.subpage_cards',
+    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.subpage_cards.description',
+    'value' => 'conn_subpage_cards',
+    'icon'  => 'conn-ce-subpage-cards',
+    'group' => 'menu',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_t3kit_elements_subpage_cards_source' => [
+        'label'    => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.source',
+        'onChange' => 'reload',
+        'config'   => [
+            'type'       => 'select',
+            'renderType' => 'selectSingle',
+            'default'    => '',
+            'items'      => [
+                ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.source.current',  'value' => ''],
+                ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.source.subpages', 'value' => 'subpages'],
+                ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.source.selected', 'value' => 'selected'],
+            ],
+        ],
+    ],
+    'tx_conn_t3kit_elements_subpage_cards_settings' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/SubpageCards.xml',
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_subpage_cards'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;headers,
+            tx_conn_t3kit_elements_subpage_cards_source,pages,
+        --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.tab.config,
+            tx_conn_t3kit_elements_subpage_cards_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+    'columnsOverrides' => [
+        'pages' => [
+            'label'       => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.pages',
+            'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:subpage_cards.pages.description',
+            'displayCond' => 'FIELD:tx_conn_t3kit_elements_subpage_cards_source:!=:',
+        ],
+    ],
+];
+
 // ─── Bootstrap Accordion ──────────────────────────────────────────
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_bs_accordion'] = 'conn-ce-accordion';
 
