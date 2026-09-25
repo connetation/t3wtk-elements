@@ -12,67 +12,59 @@
     type="module"
     priority="false" />
 
-<section class="conn-logo-wall conn-logo-wall--{settings.layout} {f:if(condition: settings.grayscale, then: 'conn-logo-wall--grayscale')}{f:if(condition: settings.accentBar, then: ' conn-logo-wall--accent-bar')}"
+<f:variable name="modifiers">conn-logo-wall--{settings.layout}{f:if(condition: settings.grayscale, then: ' conn-logo-wall--grayscale')}</f:variable>
+<f:if condition="{settings.layout} != 'marquee'">
+    <f:if condition="{settings.itemStyle} == 'plain'">
+        <f:then><f:variable name="modifiers">{modifiers} conn-logo-wall--plain</f:variable></f:then>
+        <f:else><f:variable name="modifiers">{modifiers}{f:if(condition: settings.accentBar, then: ' conn-logo-wall--accent-bar')}</f:variable></f:else>
+    </f:if>
+</f:if>
+<f:if condition="{settings.layout} == 'flex'">
+    <f:variable name="modifiers">{modifiers} conn-logo-wall--justify-{settings.justify} conn-logo-wall--align-{settings.alignItems} conn-logo-wall--gap-{settings.gap}</f:variable>
+    <f:if condition="{settings.wrap}">
+        <f:then>
+            <f:if condition="{settings.flexColumns} != 'auto'">
+                <f:variable name="modifiers">{modifiers} conn-logo-wall--per-row</f:variable>
+            </f:if>
+        </f:then>
+        <f:else>
+            <f:variable name="modifiers">{modifiers} conn-logo-wall--nowrap</f:variable>
+        </f:else>
+    </f:if>
+</f:if>
+
+<section class="conn-logo-wall {modifiers}"
          id="conn-logo-wall-{data.uid}"
          data-layout="{settings.layout}"
          data-speed="{settings.speed}"
          data-direction="{settings.direction}"
-         style="--conn-logo-cols: {settings.columns}">
+         style="--conn-logo-cols: {settings.columns}; --conn-logo-flex-cols: {settings.flexColumns}">
 
         <f:if condition="{logos}">
             <f:then>
-                <f:if condition="{settings.layout} == 'marquee'">
-                    <f:then>
-                        <div class="conn-logo-wall__track">
-                            <f:for each="{logos}" as="logo">
-                                <div class="conn-logo-wall__item">
-                                    <f:if condition="{logo.link}">
-                                        <f:then>
-                                            <f:link.typolink parameter="{logo.link}"
-                                                class="conn-logo-wall__link"
-                                                target="_blank"
-                                                additionalAttributes="{rel: 'noopener'}">
-                                                <f:if condition="{logo.imageFile}">
-                                                    <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
-                                                </f:if>
-                                            </f:link.typolink>
-                                        </f:then>
-                                        <f:else>
-                                            <f:if condition="{logo.imageFile}">
-                                                <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
-                                            </f:if>
-                                        </f:else>
+                <div class="conn-logo-wall__track">
+                    <f:for each="{logos}" as="logo">
+                        <div class="conn-logo-wall__item">
+                            <f:if condition="{logo.link}">
+                                <f:then>
+                                    <f:link.typolink parameter="{logo.link}"
+                                        class="conn-logo-wall__link"
+                                        target="_blank"
+                                        additionalAttributes="{rel: 'noopener'}">
+                                        <f:if condition="{logo.imageFile}">
+                                            <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
+                                        </f:if>
+                                    </f:link.typolink>
+                                </f:then>
+                                <f:else>
+                                    <f:if condition="{logo.imageFile}">
+                                        <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
                                     </f:if>
-                                </div>
-                            </f:for>
+                                </f:else>
+                            </f:if>
                         </div>
-                    </f:then>
-                    <f:else>
-                        <div class="conn-logo-wall__track">
-                            <f:for each="{logos}" as="logo">
-                                <div class="conn-logo-wall__item">
-                                    <f:if condition="{logo.link}">
-                                        <f:then>
-                                            <f:link.typolink parameter="{logo.link}"
-                                                class="conn-logo-wall__link"
-                                                target="_blank"
-                                                additionalAttributes="{rel: 'noopener'}">
-                                                <f:if condition="{logo.imageFile}">
-                                                    <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
-                                                </f:if>
-                                            </f:link.typolink>
-                                        </f:then>
-                                        <f:else>
-                                            <f:if condition="{logo.imageFile}">
-                                                <f:image image="{logo.imageFile}" class="conn-logo-wall__logo" alt="{logo.alt}" />
-                                            </f:if>
-                                        </f:else>
-                                    </f:if>
-                                </div>
-                            </f:for>
-                        </div>
-                    </f:else>
-                </f:if>
+                    </f:for>
+                </div>
             </f:then>
             <f:else>
                 <p class="text-muted fst-italic">No logos added yet.</p>

@@ -49,7 +49,70 @@
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             }
         }
+    }
 
+    // ═════════════════════════════════════════
+    // FLEX LAYOUT — items sized by their logo
+    // ═════════════════════════════════════════
+
+    &--flex {
+        .conn-logo-wall__track {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: var(--conn-logo-gap, var(--conn-space-md));
+        }
+
+        .conn-logo-wall__item {
+            flex: 0 0 auto;
+        }
+
+        // Fixed logos per row: equal widths that account for the gaps. The
+        // 140px floor lets narrow screens drop to fewer per row, like the
+        // grid's auto-fit fallback.
+        &.conn-logo-wall--per-row .conn-logo-wall__item {
+            flex-basis: max(
+                140px,
+                calc((100% - (var(--conn-logo-flex-cols) - 1) * var(--conn-logo-gap, var(--conn-space-md))) / var(--conn-logo-flex-cols))
+            );
+        }
+
+        // f:image renders width/height attributes; without this the logo
+        // keeps its full attribute width while max-height squashes it, so
+        // each flex item would be far wider than the visible logo.
+        .conn-logo-wall__logo {
+            width: auto;
+        }
+
+        &.conn-logo-wall--justify-start   .conn-logo-wall__track { justify-content: flex-start; }
+        &.conn-logo-wall--justify-end     .conn-logo-wall__track { justify-content: flex-end; }
+        &.conn-logo-wall--justify-between .conn-logo-wall__track { justify-content: space-between; }
+        &.conn-logo-wall--justify-around  .conn-logo-wall__track { justify-content: space-around; }
+        &.conn-logo-wall--justify-evenly  .conn-logo-wall__track { justify-content: space-evenly; }
+
+        &.conn-logo-wall--align-start   .conn-logo-wall__track { align-items: flex-start; }
+        &.conn-logo-wall--align-end     .conn-logo-wall__track { align-items: flex-end; }
+        &.conn-logo-wall--align-stretch .conn-logo-wall__track { align-items: stretch; }
+
+        &.conn-logo-wall--gap-none { --conn-logo-gap: 0px; }
+        &.conn-logo-wall--gap-sm   { --conn-logo-gap: var(--conn-space-sm); }
+        &.conn-logo-wall--gap-lg   { --conn-logo-gap: var(--conn-space-lg); }
+
+        // Single row: let items shrink below their logo width to fit.
+        &.conn-logo-wall--nowrap {
+            .conn-logo-wall__track { flex-wrap: nowrap; }
+            .conn-logo-wall__item { flex: 0 1 auto; min-width: 0; }
+        }
+
+        &.conn-logo-wall--plain .conn-logo-wall__item {
+            padding: 0;
+        }
+    }
+
+    // ── Card look (grid + flex, unless "Logos only") ──
+    &--grid:not(.conn-logo-wall--plain),
+    &--flex:not(.conn-logo-wall--plain) {
         .conn-logo-wall__item {
             background: var(--conn-surface);
             border: 1px solid var(--conn-border);
@@ -84,7 +147,7 @@
         }
     }
 
-    // ── Accent bar toggle (grid only) ─────────
+    // ── Accent bar toggle (cards only) ────────
     &--accent-bar {
         .conn-logo-wall__item:hover::after,
         .conn-logo-wall__item:focus::after { opacity: 1; }

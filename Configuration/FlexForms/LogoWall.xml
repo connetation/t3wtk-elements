@@ -8,18 +8,36 @@
                 <el>
                     <settings.layout>
                         <label>Layout</label>
+                        <onChange>reload</onChange>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
                             <default>grid</default>
                             <items>
                                 <numIndex index="0"><label>Grid</label><value>grid</value></numIndex>
-                                <numIndex index="1"><label>Marquee (scrolling strip)</label><value>marquee</value></numIndex>
+                                <numIndex index="1"><label>Flex (logos sized by their own width)</label><value>flex</value></numIndex>
+                                <numIndex index="2"><label>Marquee (scrolling strip)</label><value>marquee</value></numIndex>
                             </items>
                         </config>
                     </settings.layout>
+                    <settings.itemStyle>
+                        <label>Logo style</label>
+                        <description>"Logos only" drops the card background, border, shadow and hover lift.</description>
+                        <displayCond>FIELD:settings.layout:!=:marquee</displayCond>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>card</default>
+                            <items>
+                                <numIndex index="0"><label>Cards (default)</label><value>card</value></numIndex>
+                                <numIndex index="1"><label>Logos only</label><value>plain</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.itemStyle>
                     <settings.columns>
-                        <label>Logos per row (Grid only)</label>
+                        <label>Logos per row</label>
+                        <displayCond>FIELD:settings.layout:=:grid</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
@@ -32,8 +50,91 @@
                             </items>
                         </config>
                     </settings.columns>
+                    <settings.justify>
+                        <label>Horizontal alignment</label>
+                        <displayCond>FIELD:settings.layout:=:flex</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>center</default>
+                            <items>
+                                <numIndex index="0"><label>Start</label><value>start</value></numIndex>
+                                <numIndex index="1"><label>Center (default)</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>End</label><value>end</value></numIndex>
+                                <numIndex index="3"><label>Space between</label><value>between</value></numIndex>
+                                <numIndex index="4"><label>Space around</label><value>around</value></numIndex>
+                                <numIndex index="5"><label>Space evenly</label><value>evenly</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.justify>
+                    <settings.alignItems>
+                        <label>Vertical alignment</label>
+                        <description>How logos of different heights line up within a row.</description>
+                        <displayCond>FIELD:settings.layout:=:flex</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>center</default>
+                            <items>
+                                <numIndex index="0"><label>Top</label><value>start</value></numIndex>
+                                <numIndex index="1"><label>Center (default)</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Bottom</label><value>end</value></numIndex>
+                                <numIndex index="3"><label>Stretch (equal-height cards)</label><value>stretch</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.alignItems>
+                    <settings.wrap>
+                        <label>Wrap onto multiple rows</label>
+                        <description>Off keeps all logos on a single row and shrinks them to fit.</description>
+                        <displayCond>FIELD:settings.layout:=:flex</displayCond>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.wrap>
+                    <settings.flexColumns>
+                        <label>Logos per row</label>
+                        <description>Auto sizes each logo by its own width. A fixed number gives every logo the same width; a shorter last row follows the horizontal alignment. On narrow screens logos never get narrower than 140px, so fewer fit per row.</description>
+                        <displayCond>
+                            <AND>
+                                <numIndex index="0">FIELD:settings.layout:=:flex</numIndex>
+                                <numIndex index="1">FIELD:settings.wrap:!=:0</numIndex>
+                            </AND>
+                        </displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>auto</default>
+                            <items>
+                                <numIndex index="0"><label>Auto (default)</label><value>auto</value></numIndex>
+                                <numIndex index="1"><label>2 per row</label><value>2</value></numIndex>
+                                <numIndex index="2"><label>3 per row</label><value>3</value></numIndex>
+                                <numIndex index="3"><label>4 per row</label><value>4</value></numIndex>
+                                <numIndex index="4"><label>5 per row</label><value>5</value></numIndex>
+                                <numIndex index="5"><label>6 per row</label><value>6</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.flexColumns>
+                    <settings.gap>
+                        <label>Spacing between logos</label>
+                        <displayCond>FIELD:settings.layout:=:flex</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>md</default>
+                            <items>
+                                <numIndex index="0"><label>None</label><value>none</value></numIndex>
+                                <numIndex index="1"><label>Small</label><value>sm</value></numIndex>
+                                <numIndex index="2"><label>Medium (default)</label><value>md</value></numIndex>
+                                <numIndex index="3"><label>Large</label><value>lg</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.gap>
                     <settings.speed>
                         <label>Marquee speed (seconds per cycle)</label>
+                        <displayCond>FIELD:settings.layout:=:marquee</displayCond>
                         <config>
                             <type>input</type>
                             <size>5</size>
@@ -42,7 +143,8 @@
                         </config>
                     </settings.speed>
                     <settings.direction>
-                        <label>Marquee scroll direction (Marquee only)</label>
+                        <label>Marquee scroll direction</label>
+                        <displayCond>FIELD:settings.layout:=:marquee</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
@@ -54,7 +156,13 @@
                         </config>
                     </settings.direction>
                     <settings.accentBar>
-                        <label>Accent bar on hover (Grid only)</label>
+                        <label>Accent bar on hover</label>
+                        <displayCond>
+                            <AND>
+                                <numIndex index="0">FIELD:settings.layout:!=:marquee</numIndex>
+                                <numIndex index="1">FIELD:settings.itemStyle:!=:plain</numIndex>
+                            </AND>
+                        </displayCond>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
