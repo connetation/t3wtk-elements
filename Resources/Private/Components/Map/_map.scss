@@ -1,7 +1,7 @@
 .conn-map {
     &--panel-left {
         .conn-map__panel-col {
-            @media (min-width: 992px) { order: -1; }
+            @media (min-width: 768px) { order: -1; }
         }
     }
 
@@ -13,12 +13,6 @@
     &--radius-pill { .conn-map__canvas, .conn-map__panel { border-radius: 999px; } }
 
     &__canvas-col {
-        // Bootstrap's .row already stretches columns to equal height by
-        // default (align-items: stretch) — this just lets the canvas fill
-        // that stretched height instead of only respecting min-height, so
-        // it's never shorter than a taller info panel next to it. On mobile
-        // (stacked, no sibling on the same line) this has no effect and the
-        // per-size min-height below is what's actually visible.
         display: flex;
     }
 
@@ -90,5 +84,23 @@
 
     &__heading {
         margin-bottom: 1rem;
+    }
+
+    &--stacked {
+        @media (max-width: 767.98px) {
+            --bs-gutter-y: 0 !important;
+
+            .conn-map__canvas {
+                border-bottom: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            .conn-map__panel {
+                border-top: 0;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
     }
 }
