@@ -37,9 +37,26 @@
         object-fit: cover;
     }
 
+    // Illustration linked to the directions URL (static provider only).
+    // Negative outline offset because the canvas clips overflow.
+    &__illustration-link {
+        position: absolute;
+        inset: 0;
+
+        &:focus-visible {
+            outline: 3px solid var(--conn-accent);
+            outline-offset: -3px;
+        }
+    }
+
     &__decorative {
         position: absolute;
         inset: 0;
+    }
+
+    // Grid drawn over a linked illustration must let clicks through to it.
+    &__illustration-link ~ &__decorative {
+        pointer-events: none;
     }
 
     &__grid {

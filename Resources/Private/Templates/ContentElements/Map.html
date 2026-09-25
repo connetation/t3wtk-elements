@@ -50,7 +50,17 @@
                  data-address="{addressText}"
                  data-zoom="{settings.zoom}">
                 <f:if condition="{hasIllustrationImage}">
-                    <conn:responsiveImage image="{illustrationImage}" class="conn-map__illustration-img" alt="{illustrationImage.alternative}" widths="600,900,1200" sizes="(min-width: 768px) 58vw, 100vw" />
+                    <f:if condition="{settings.contact.address.url}">
+                        <f:then>
+                            <f:variable name="directionsLabel"><f:if condition="{settings.directionsLabel}"><f:then>{settings.directionsLabel}</f:then><f:else><f:translate key="contact_info.directions" extensionName="conn_t3kit_elements" /></f:else></f:if></f:variable>
+                            <f:link.typolink parameter="{settings.contact.address.url}" target="_blank" class="conn-map__illustration-link" additionalAttributes="{'aria-label': directionsLabel}">
+                                <conn:responsiveImage image="{illustrationImage}" class="conn-map__illustration-img" alt="{illustrationImage.alternative}" widths="600,900,1200" sizes="(min-width: 768px) 58vw, 100vw" />
+                            </f:link.typolink>
+                        </f:then>
+                        <f:else>
+                            <conn:responsiveImage image="{illustrationImage}" class="conn-map__illustration-img" alt="{illustrationImage.alternative}" widths="600,900,1200" sizes="(min-width: 768px) 58vw, 100vw" />
+                        </f:else>
+                    </f:if>
                 </f:if>
                 <f:if condition="{showGrid}">
                     <div class="conn-map__decorative" aria-hidden="true">
