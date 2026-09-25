@@ -119,8 +119,9 @@
         transform-style: preserve-3d;
     }
 
-    &__team-flip:hover &__team-flip-inner,
-    &__team-flip:focus-within &__team-flip-inner,
+    &__team-flip:hover:not(.is-dismissed) &__team-flip-inner,
+    &__team-flip:focus-visible:not(.is-dismissed) &__team-flip-inner,
+    &__team-flip:has(:focus-visible):not(.is-dismissed) &__team-flip-inner,
     &__team-flip.is-flipped &__team-flip-inner {
         transform: rotateY(180deg);
     }
@@ -300,8 +301,9 @@
         transform-style: preserve-3d;
     }
 
-    &__flip-card:hover &__flip-inner,
-    &__flip-card:focus-within &__flip-inner,
+    &__flip-card:hover:not(.is-dismissed) &__flip-inner,
+    &__flip-card:focus-visible:not(.is-dismissed) &__flip-inner,
+    &__flip-card:has(:focus-visible):not(.is-dismissed) &__flip-inner,
     &__flip-card.is-flipped &__flip-inner {
         transform: rotateY(180deg);
     }
@@ -453,21 +455,24 @@
         .conn-people__contact { margin-top: 0.75rem; }
     }
 
-    &__reveal--sheet:hover &__reveal-photo,
-    &__reveal--sheet:focus-within &__reveal-photo,
+    &__reveal--sheet:hover:not(.is-dismissed) &__reveal-photo,
+    &__reveal--sheet:focus-visible:not(.is-dismissed) &__reveal-photo,
+    &__reveal--sheet:has(:focus-visible):not(.is-dismissed) &__reveal-photo,
     &__reveal--sheet.is-flipped &__reveal-photo {
         transform: scale(1.03);
         filter: brightness(0.55);
     }
 
-    &__reveal--sheet:hover &__reveal-nametag,
-    &__reveal--sheet:focus-within &__reveal-nametag,
+    &__reveal--sheet:hover:not(.is-dismissed) &__reveal-nametag,
+    &__reveal--sheet:focus-visible:not(.is-dismissed) &__reveal-nametag,
+    &__reveal--sheet:has(:focus-visible):not(.is-dismissed) &__reveal-nametag,
     &__reveal--sheet.is-flipped &__reveal-nametag {
         opacity: 0;
     }
 
-    &__reveal--sheet:hover &__reveal-panel,
-    &__reveal--sheet:focus-within &__reveal-panel,
+    &__reveal--sheet:hover:not(.is-dismissed) &__reveal-panel,
+    &__reveal--sheet:focus-visible:not(.is-dismissed) &__reveal-panel,
+    &__reveal--sheet:has(:focus-visible):not(.is-dismissed) &__reveal-panel,
     &__reveal--sheet.is-flipped &__reveal-panel {
         transform: translateY(0);
     }
@@ -514,27 +519,31 @@
     &__curtain--a { background: var(--conn-people-curtain-bg, var(--conn-people-a)); }
     &__curtain--b { background: var(--conn-people-curtain-bg, var(--conn-people-b)); }
 
-    &__reveal--curtain:hover &__reveal-photo,
-    &__reveal--curtain:focus-within &__reveal-photo,
+    &__reveal--curtain:hover:not(.is-dismissed) &__reveal-photo,
+    &__reveal--curtain:focus-visible:not(.is-dismissed) &__reveal-photo,
+    &__reveal--curtain:has(:focus-visible):not(.is-dismissed) &__reveal-photo,
     &__reveal--curtain.is-flipped &__reveal-photo {
         transform: translateX(-10%) scale(1.02);
     }
 
-    &__reveal--curtain:hover &__curtain,
-    &__reveal--curtain:focus-within &__curtain,
+    &__reveal--curtain:hover:not(.is-dismissed) &__curtain,
+    &__reveal--curtain:focus-visible:not(.is-dismissed) &__curtain,
+    &__reveal--curtain:has(:focus-visible):not(.is-dismissed) &__curtain,
     &__reveal--curtain.is-flipped &__curtain {
         transform: translateX(0);
     }
 
-    &__reveal--curtain:hover &__reveal-nametag,
-    &__reveal--curtain:focus-within &__reveal-nametag,
+    &__reveal--curtain:hover:not(.is-dismissed) &__reveal-nametag,
+    &__reveal--curtain:focus-visible:not(.is-dismissed) &__reveal-nametag,
+    &__reveal--curtain:has(:focus-visible):not(.is-dismissed) &__reveal-nametag,
     &__reveal--curtain.is-flipped &__reveal-nametag {
         opacity: 0;
     }
 
     // ── Reveal — center spotlight variant ────────
-    &__reveal--spotlight:hover &__reveal-photo,
-    &__reveal--spotlight:focus-within &__reveal-photo,
+    &__reveal--spotlight:hover:not(.is-dismissed) &__reveal-photo,
+    &__reveal--spotlight:focus-visible:not(.is-dismissed) &__reveal-photo,
+    &__reveal--spotlight:has(:focus-visible):not(.is-dismissed) &__reveal-photo,
     &__reveal--spotlight.is-flipped &__reveal-photo {
         filter: blur(3px) brightness(0.4);
         transform: scale(1.07);
@@ -573,15 +582,17 @@
         .conn-people__contact { margin-top: var(--conn-space-xs); }
     }
 
-    &__reveal--spotlight:hover &__spotlight-info,
-    &__reveal--spotlight:focus-within &__spotlight-info,
+    &__reveal--spotlight:hover:not(.is-dismissed) &__spotlight-info,
+    &__reveal--spotlight:focus-visible:not(.is-dismissed) &__spotlight-info,
+    &__reveal--spotlight:has(:focus-visible):not(.is-dismissed) &__spotlight-info,
     &__reveal--spotlight.is-flipped &__spotlight-info {
         opacity: 1;
         transform: scale(1);
     }
 
-    &__reveal--spotlight:hover &__reveal-nametag,
-    &__reveal--spotlight:focus-within &__reveal-nametag,
+    &__reveal--spotlight:hover:not(.is-dismissed) &__reveal-nametag,
+    &__reveal--spotlight:focus-visible:not(.is-dismissed) &__reveal-nametag,
+    &__reveal--spotlight:has(:focus-visible):not(.is-dismissed) &__reveal-nametag,
     &__reveal--spotlight.is-flipped &__reveal-nametag {
         opacity: 0;
     }
