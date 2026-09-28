@@ -31,8 +31,8 @@
                 </div>
 
                 <f:if condition="{settings.show_navigation}">
-                    <div class="swiper-button-prev conn-thumbs-slider__btn-prev"></div>
-                    <div class="swiper-button-next conn-thumbs-slider__btn-next"></div>
+                    <div class="swiper-button-prev conn-thumbs-slider__btn-prev{f:if(condition: settings.hide_navigation_mobile, then: ' conn-hide-mobile')}"></div>
+                    <div class="swiper-button-next conn-thumbs-slider__btn-next{f:if(condition: settings.hide_navigation_mobile, then: ' conn-hide-mobile')}"></div>
                 </f:if>
             </div>
 

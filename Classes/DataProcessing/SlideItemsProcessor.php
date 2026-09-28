@@ -61,7 +61,9 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'autoplay'        => (bool)($raw['autoplay'] ?? true),
                 'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
+                'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
                 'show_pagination' => (bool)($raw['show_pagination'] ?? true),
+                'hide_pagination_mobile' => (bool)($raw['hide_pagination_mobile'] ?? false),
             ];
         }
 
@@ -73,6 +75,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                                         ? ($raw['height'] ?? 'large') : 'large',
                 'thumbs_per_view' => in_array($thumbsPerView, [4, 5, 6], true) ? $thumbsPerView : 4,
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
+                'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
                 'autoplay'        => (bool)($raw['autoplay'] ?? false),
                 'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
                 'openInLightbox'  => (bool)($raw['openInLightbox'] ?? false),
@@ -85,7 +88,9 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'height'          => in_array($raw['height'] ?? 'large', ['medium', 'large', 'fullscreen'], true)
                                         ? ($raw['height'] ?? 'large') : 'large',
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
+                'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
                 'show_pagination' => (bool)($raw['show_pagination'] ?? true),
+                'hide_pagination_mobile' => (bool)($raw['hide_pagination_mobile'] ?? false),
                 'autoplay'        => (bool)($raw['autoplay'] ?? false),
                 'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
             ];
@@ -100,7 +105,9 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             'autoplay'        => (bool)($raw['autoplay'] ?? false),
             'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
             'show_navigation' => (bool)($raw['show_navigation'] ?? true),
+            'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
             'show_pagination' => (bool)($raw['show_pagination'] ?? true),
+            'hide_pagination_mobile' => (bool)($raw['hide_pagination_mobile'] ?? false),
         ];
     }
 
@@ -128,7 +135,9 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'autoplay'        => true,
                 'autoplay_delay'  => 4000,
                 'show_navigation' => true,
+                'hide_navigation_mobile' => false,
                 'show_pagination' => true,
+                'hide_pagination_mobile' => false,
             ];
         }
 
@@ -137,6 +146,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'height'          => 'large',
                 'thumbs_per_view' => 4,
                 'show_navigation' => true,
+                'hide_navigation_mobile' => false,
                 'autoplay'        => false,
                 'autoplay_delay'  => 4000,
                 'openInLightbox'  => false,
@@ -147,7 +157,9 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             return [
                 'height'          => 'large',
                 'show_navigation' => true,
+                'hide_navigation_mobile' => false,
                 'show_pagination' => true,
+                'hide_pagination_mobile' => false,
                 'autoplay'        => false,
                 'autoplay_delay'  => 4000,
             ];
@@ -159,7 +171,9 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             'autoplay'        => false,
             'autoplay_delay'  => 4000,
             'show_navigation' => true,
+            'hide_navigation_mobile' => false,
             'show_pagination' => true,
+            'hide_pagination_mobile' => false,
         ];
     }
 }

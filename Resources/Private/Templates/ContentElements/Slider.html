@@ -34,12 +34,12 @@
                     </div>
 
                     <f:if condition="{settings.show_pagination}">
-                        <div class="swiper-pagination conn-slider__pagination"></div>
+                        <div class="swiper-pagination conn-slider__pagination{f:if(condition: settings.hide_pagination_mobile, then: ' conn-hide-mobile')}"></div>
                     </f:if>
 
                     <f:if condition="{settings.show_navigation}">
-                        <div class="swiper-button-prev conn-slider__btn-prev"></div>
-                        <div class="swiper-button-next conn-slider__btn-next"></div>
+                        <div class="swiper-button-prev conn-slider__btn-prev{f:if(condition: settings.hide_navigation_mobile, then: ' conn-hide-mobile')}"></div>
+                        <div class="swiper-button-next conn-slider__btn-next{f:if(condition: settings.hide_navigation_mobile, then: ' conn-hide-mobile')}"></div>
                     </f:if>
                 </div>
             </f:then>

@@ -1,0 +1,12 @@
+// ─────────────────────────────────────────────
+// Connetation Elements – Responsive visibility
+// Slider "hide on mobile" options (arrows / pagination). Only applies below
+// sm, so Swiper's own display:none (lock / disabled states) keeps working
+// on desktop — unlike Bootstrap's d-none d-sm-flex, which would override it.
+// ─────────────────────────────────────────────
+
+@media (max-width: 575.98px) {
+    .conn-hide-mobile {
+        display: none !important;
+    }
+}

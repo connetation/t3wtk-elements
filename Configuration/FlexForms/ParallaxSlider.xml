@@ -21,20 +21,40 @@
                     </settings.height>
                     <settings.show_navigation>
                         <label>Show prev/next arrows</label>
+                        <onChange>reload</onChange>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
                             <default>1</default>
                         </config>
                     </settings.show_navigation>
+                    <settings.hide_navigation_mobile>
+                        <label>Hide arrows on mobile</label>
+                        <displayCond>FIELD:settings.show_navigation:=:1</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.hide_navigation_mobile>
                     <settings.show_pagination>
                         <label>Show pagination dots</label>
+                        <onChange>reload</onChange>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
                             <default>1</default>
                         </config>
                     </settings.show_pagination>
+                    <settings.hide_pagination_mobile>
+                        <label>Hide pagination dots on mobile</label>
+                        <displayCond>FIELD:settings.show_pagination:=:1</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.hide_pagination_mobile>
                     <settings.autoplay>
                         <label>Autoplay</label>
                         <config>
