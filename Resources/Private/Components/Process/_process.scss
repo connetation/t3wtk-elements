@@ -18,6 +18,10 @@ $conn-process-gap: 2rem;
         position: relative;
         display: flex;
         flex-wrap: wrap;
+        // Capped layouts (--max-N) disable flex-grow, so once steps wrap
+        // (single column on mobile, or a trailing partial row) they'd
+        // otherwise hug the left edge instead of sitting centered.
+        justify-content: center;
         gap: $conn-process-gap;
         // Room for the connector's rounded gutter loop (process.ts: GUTTER +
         // CORNER_RADIUS = 44px) — without it the loop clips against the
