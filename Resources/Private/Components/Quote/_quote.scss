@@ -169,14 +169,42 @@
         }
     }
 
-    // ── Container: framed box, name label cut into the top border ──
     &--container {
+        --conn-quote-frame: var(--conn-quote-accent, var(--conn-accent));
+        --conn-quote-notch: 0.875rem; // corner arc radius = half of .conn-quote__corner
         text-align: center;
 
         .conn-quote__blockquote {
-            border: 1px solid var(--conn-quote-accent, var(--conn-accent));
-            border-radius: var(--conn-radius);
+            border: 0;
             padding: 2rem 2rem 1.75rem;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                border: 1px solid var(--conn-quote-frame);
+                border-radius: var(--conn-radius);
+                pointer-events: none;
+                $notch: transparent var(--conn-quote-notch), #000 calc(var(--conn-quote-notch) + 0.5px);
+                -webkit-mask:
+                    radial-gradient(circle at 0 0, $notch),
+                    radial-gradient(circle at 100% 0, $notch),
+                    radial-gradient(circle at 0 100%, $notch),
+                    radial-gradient(circle at 100% 100%, $notch);
+                -webkit-mask-composite: source-in;
+                mask:
+                    radial-gradient(circle at 0 0, $notch),
+                    radial-gradient(circle at 100% 0, $notch),
+                    radial-gradient(circle at 0 100%, $notch),
+                    radial-gradient(circle at 100% 100%, $notch);
+                mask-composite: intersect;
+            }
+
+            // With an author label the label draws the top border itself.
+            &:has(> .conn-quote__author)::before {
+                border-top-color: transparent;
+            }
         }
 
         .conn-quote__text {
@@ -187,21 +215,33 @@
             position: absolute;
             z-index: 3;
             top: 0;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: var(--conn-quote-notch);
+            right: var(--conn-quote-notch);
+            transform: translateY(-50%);
             margin-top: 0;
             justify-content: center;
-            // Punches a hole in the frame border behind the label — must stay
-            // opaque (a fully transparent value lets the border paint straight
-            // through the text). --conn-bg is the actual page background
-            // (not --conn-surface, which is the lighter "card" tone and visibly
-            // mismatches the page in most contexts).
-            background-color: var(--conn-bg);
+            gap: 0;
+
+            // Top border segments left/right of the label (end at the corner notches).
+            &::before,
+            &::after {
+                content: '';
+                flex: 1 1 0;
+                min-width: 1rem;
+                border-top: 1px solid var(--conn-quote-frame);
+            }
+        }
+
+        .conn-quote__author-image {
+            margin-left: 1rem;
+        }
+
+        .conn-quote__author-info {
             padding: 0 1rem;
         }
 
         .conn-quote__author-name {
-            color: var(--conn-quote-accent, var(--conn-accent));
+            color: var(--conn-quote-frame);
         }
     }
 
@@ -210,34 +250,35 @@
         z-index: 2;
         width: 1.75rem;
         height: 1.75rem;
+        // Only one side is colored: rotated -45deg it becomes the inward quarter
+        // arc of the notch. Transparent background — no page-color fill.
         border: 1px solid transparent;
         border-radius: 50%;
-        // Same hole-punch reasoning as .conn-quote__author above.
-        background-color: var(--conn-bg);
+        background: transparent;
         transform: rotate(-45deg);
 
         &--tl {
-            top: -0.9rem;
-            left: -0.9rem;
-            border-bottom-color: var(--conn-quote-accent, var(--conn-accent));
+            top: calc(var(--conn-quote-notch) * -1);
+            left: calc(var(--conn-quote-notch) * -1);
+            border-bottom-color: var(--conn-quote-frame);
         }
 
         &--tr {
-            top: -0.9rem;
-            right: -0.9rem;
-            border-left-color: var(--conn-quote-accent, var(--conn-accent));
+            top: calc(var(--conn-quote-notch) * -1);
+            right: calc(var(--conn-quote-notch) * -1);
+            border-left-color: var(--conn-quote-frame);
         }
 
         &--bl {
-            bottom: -0.9rem;
-            left: -0.9rem;
-            border-right-color: var(--conn-quote-accent, var(--conn-accent));
+            bottom: calc(var(--conn-quote-notch) * -1);
+            left: calc(var(--conn-quote-notch) * -1);
+            border-right-color: var(--conn-quote-frame);
         }
 
         &--br {
-            bottom: -0.9rem;
-            right: -0.9rem;
-            border-top-color: var(--conn-quote-accent, var(--conn-accent));
+            bottom: calc(var(--conn-quote-notch) * -1);
+            right: calc(var(--conn-quote-notch) * -1);
+            border-top-color: var(--conn-quote-frame);
         }
     }
 
