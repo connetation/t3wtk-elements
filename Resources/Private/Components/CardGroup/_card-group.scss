@@ -14,8 +14,9 @@
     display: flow-root;
 
     // ── Card ────────────────────────────────────────
+    // No cursor: pointer — the card itself isn't a link, only its optional
+    // "More" button is (Subpage Cards' stretched-link brings its own).
     &__card {
-        cursor: pointer;
         background: var(--conn-surface) !important;
         border: 1px solid var(--conn-border) !important;
         border-radius: var(--conn-radius) !important;
