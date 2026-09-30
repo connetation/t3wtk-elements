@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
+use Connetation\T3kitBase\Utility\RadiusOptions;
 use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
 
 final class TabItemsProcessor extends AbstractItemsProcessor
@@ -42,7 +43,11 @@ final class TabItemsProcessor extends AbstractItemsProcessor
             'style'          => $style,
             'fade'           => !empty($raw['fade'] ?? true),
             'justified'      => !empty($raw['justified']),
-            'roundedCorners' => !empty($raw['roundedCorners']),
+            // Legacy records only have the former on/off "roundedCorners" toggle.
+            'borderRadius'   => RadiusOptions::resolve(
+                $raw['borderRadius'] ?? null,
+                !empty($raw['roundedCorners']) ? RadiusOptions::THEME_DEFAULT : 'none'
+            ),
             'navClass'       => 'nav-' . $style . (!empty($raw['justified']) ? ' nav-justified' : ''),
             'paneClass'      => !empty($raw['fade'] ?? true) ? 'fade' : '',
         ];
@@ -54,7 +59,7 @@ final class TabItemsProcessor extends AbstractItemsProcessor
             'style'          => 'tabs',
             'fade'           => true,
             'justified'      => false,
-            'roundedCorners' => false,
+            'borderRadius'   => RadiusOptions::THEME_DEFAULT,
             'navClass'       => 'nav-tabs',
             'paneClass'      => 'fade',
         ];

@@ -12,7 +12,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-lightbox-gallery conn-lightbox-gallery--pos-{settings.textPosition} conn-lightbox-gallery--align-{settings.textAlign} conn-lightbox-gallery--fit-{settings.fit} conn-lightbox-gallery--border-{settings.borderStyle} conn-lightbox-gallery--radius-{settings.borderRadius} {f:if(condition: settings.captionInLightboxOnly, then: 'conn-lightbox-gallery--caption-lightbox-only')}"
+<section class="conn-lightbox-gallery conn-lightbox-gallery--pos-{settings.textPosition} conn-lightbox-gallery--align-{settings.textAlign} conn-lightbox-gallery--fit-{settings.fit} conn-lightbox-gallery--border-{settings.borderStyle} {f:if(condition: settings.captionInLightboxOnly, then: 'conn-lightbox-gallery--caption-lightbox-only')}" data-radius="{settings.borderRadius}"
          id="conn-lightbox-gallery-{data.uid}"
          style="{f:if(condition: settings.borderColor, then: '--conn-lightbox-gallery-border-color: {settings.borderColor};')}{f:if(condition: settings.backgroundColor, then: '--conn-lightbox-gallery-bg-color: {settings.backgroundColor};')}">
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
+use Connetation\T3kitBase\Utility\RadiusOptions;
 use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
 
 final class MosaicGalleryProcessor extends AbstractItemsProcessor
@@ -36,7 +37,6 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
         $allowedGaps     = ['none', 'small', 'medium', 'large'];
         $allowedHover    = ['none', 'zoom', 'dim', 'overlay'];
         $allowedCaption  = ['overlay', 'below'];
-        $allowedRadius   = ['none', 'small', 'medium', 'large', 'pill'];
         $allowedAspects  = ['none', '1/1', '4/3', '16/9', '3/4'];
         $allowedScrim    = ['none', 'light', 'medium', 'strong', 'solid'];
 
@@ -58,8 +58,7 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             ? ($raw['hoverEffect'] ?? 'zoom') : 'zoom';
         $captionStyle  = in_array($raw['captionStyle'] ?? 'overlay', $allowedCaption, true)
             ? ($raw['captionStyle'] ?? 'overlay') : 'overlay';
-        $borderRadius  = in_array($raw['borderRadius'] ?? 'medium', $allowedRadius, true)
-            ? ($raw['borderRadius'] ?? 'medium') : 'medium';
+        $borderRadius  = RadiusOptions::resolve($raw['borderRadius'] ?? null);
         $aspectRatio   = in_array($raw['aspectRatio'] ?? 'none', $allowedAspects, true)
             ? ($raw['aspectRatio'] ?? 'none') : 'none';
         $captionScrim  = in_array($raw['captionScrim'] ?? 'medium', $allowedScrim, true)
@@ -95,7 +94,7 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             'captionStyle'      => 'overlay',
             'openInLightbox'    => true,
             'showCaptions'      => true,
-            'borderRadius'      => 'medium',
+            'borderRadius'      => RadiusOptions::THEME_DEFAULT,
             'aspectRatio'       => 'none',
             'captionScrim'      => 'medium',
             'captionTitleColor' => '#ffffff',

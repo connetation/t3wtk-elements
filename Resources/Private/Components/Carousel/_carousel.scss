@@ -1,8 +1,13 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // Bootstrap Carousel Content Element
 // ─────────────────────────────────────────────
 
 .conn-bs-carousel {
+    // "Border radius" option (data-radius)
+    --conn-carousel-radius: var(--conn-radius);
+    @include base.conn-radius-option(--conn-carousel-radius);
 
     // ── Aspect ratio modifiers — default 16:9 ────────────────────────
     &--ratio-21x9 .carousel-item { aspect-ratio: 21 / 9; }
@@ -12,7 +17,7 @@
 
     .carousel,
     .carousel-item {
-        border-radius: var(--conn-carousel-radius, 0);
+        border-radius: var(--conn-carousel-radius);
     }
 
     // ── Consistent aspect ratio, prevents height jumps between slides ──

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
+use Connetation\T3kitBase\Utility\RadiusOptions;
 use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
 
 use Doctrine\DBAL\ArrayParameterType;
@@ -115,7 +116,11 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'textAlign'       => in_array($raw['textAlign'] ?? '', ['left', 'center', 'right'], true) ? $raw['textAlign'] : 'center',
             'showRole'        => (bool)($raw['showRole'] ?? true),
             'showBio'         => (bool)($raw['showBio'] ?? true),
-            'roundedCorners'  => (bool)($raw['roundedCorners'] ?? true),
+            // Legacy records only have the former on/off "roundedCorners" toggle.
+            'borderRadius'    => RadiusOptions::resolve(
+                $raw['borderRadius'] ?? null,
+                ($raw['roundedCorners'] ?? true) ? RadiusOptions::THEME_DEFAULT : 'none'
+            ),
             'showBorder'      => (bool)($raw['showBorder'] ?? true),
             'showShadow'      => (bool)($raw['showShadow'] ?? true),
             'shadowValue'     => $shadowValue,
@@ -145,7 +150,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'textAlign'       => 'center',
             'showRole'        => true,
             'showBio'         => true,
-            'roundedCorners'  => true,
+            'borderRadius'    => RadiusOptions::THEME_DEFAULT,
             'showBorder'      => true,
             'showShadow'      => true,
             'shadowValue'     => 'var(--conn-shadow-card)',

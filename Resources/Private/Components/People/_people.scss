@@ -1,7 +1,10 @@
+@use 'theme/tokens' as base;
+
 .conn-people {
 
     --conn-people-bg:           var(--conn-surface);
     --conn-people-radius:       var(--conn-radius);
+    @include base.conn-radius-option(--conn-people-radius);
     --conn-people-border-w:     1px;
     --conn-people-border-color: var(--conn-accent, #6366f1);
     --conn-people-shadow:       var(--conn-shadow-card);

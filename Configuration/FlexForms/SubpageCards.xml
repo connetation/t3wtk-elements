@@ -50,12 +50,12 @@
                         </config>
                     </settings.cardBorderColor>
                     <settings.cardBorderRadius>
-                        <label>Card border radius (empty = theme default)</label>
+                        <label>Card border radius</label>
                         <config>
-                            <type>input</type>
-                            <size>10</size>
-                            <default></default>
-                            <placeholder>e.g. 12px</placeholder>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>theme</default>
+                            <itemsProcFunc>Connetation\T3kitBase\Utility\RadiusOptions->addItems</itemsProcFunc>
                         </config>
                     </settings.cardBorderRadius>
                     <settings.titleTag>

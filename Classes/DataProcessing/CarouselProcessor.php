@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
+use Connetation\T3kitBase\Utility\RadiusOptions;
 use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
 
 final class CarouselProcessor extends AbstractItemsProcessor
@@ -43,16 +44,8 @@ final class CarouselProcessor extends AbstractItemsProcessor
         $styleRaw = $raw['style'] ?? 'none';
         $style = in_array($styleRaw, $allowedStyles, true) ? $styleRaw : 'none';
 
-        // Same values as conn/t3kit-base's $conn-radius-options (theme/_tokens.scss):
-        // "medium" follows the site's Corner radius, the others are fixed overrides.
-        $borderRadiusMap = [
-            'none'   => '0',
-            'small'  => '0.25rem',
-            'medium' => 'var(--conn-radius)',
-            'large'  => '1.5rem',
-        ];
-        $borderRadiusKey = $raw['borderRadius'] ?? 'none';
-        $borderRadius = $borderRadiusMap[$borderRadiusKey] ?? $borderRadiusMap['none'];
+        // Output as data-radius; sizes come from conn/t3kit-base's conn-radius-option() mixin.
+        $borderRadius = RadiusOptions::resolve($raw['borderRadius'] ?? null);
 
         return [
             'aspectRatio'       => $aspectRatio,
@@ -78,7 +71,7 @@ final class CarouselProcessor extends AbstractItemsProcessor
             'aspectRatio'       => '16x9',
             'originalHeight'    => 'auto',
             'style'             => 'none',
-            'borderRadius'      => '0',
+            'borderRadius'      => RadiusOptions::THEME_DEFAULT,
             'controls'          => true,
             'indicators'        => true,
             'autoplay'          => false,

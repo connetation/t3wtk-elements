@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
+use Connetation\T3kitBase\Utility\RadiusOptions;
 use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
 
 final class LightboxGalleryProcessor extends AbstractItemsProcessor
@@ -50,7 +51,6 @@ final class LightboxGalleryProcessor extends AbstractItemsProcessor
         $allowedFits      = ['cover', 'contain'];
         $allowedGaps      = ['none', 'small', 'medium', 'large'];
         $allowedBorders   = ['none', 'solid', 'dashed', 'dotted'];
-        $allowedRadii     = ['none', 'small', 'medium', 'large', 'pill'];
 
         $textPosition = in_array($raw['textPosition'] ?? '', $allowedPositions, true)
             ? $raw['textPosition']
@@ -67,9 +67,7 @@ final class LightboxGalleryProcessor extends AbstractItemsProcessor
         $borderStyle = in_array($raw['borderStyle'] ?? '', $allowedBorders, true)
             ? $raw['borderStyle']
             : 'dashed';
-        $borderRadius = in_array($raw['borderRadius'] ?? '', $allowedRadii, true)
-            ? $raw['borderRadius']
-            : 'medium';
+        $borderRadius = RadiusOptions::resolve($raw['borderRadius'] ?? null);
 
         // Native color-with-opacity FlexForm fields; empty just means "use
         // the theme default", so this only guards against garbage — no
@@ -103,7 +101,7 @@ final class LightboxGalleryProcessor extends AbstractItemsProcessor
             'fit'                    => 'cover',
             'borderStyle'            => 'dashed',
             'borderColor'            => '',
-            'borderRadius'           => 'medium',
+            'borderRadius'           => RadiusOptions::THEME_DEFAULT,
             'backgroundColor'        => '',
             'captionInLightboxOnly'  => false,
         ];

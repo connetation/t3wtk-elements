@@ -173,14 +173,15 @@
                 <sheetTitle>Appearance</sheetTitle>
                 <type>array</type>
                 <el>
-                    <settings.roundedCorners>
-                        <label>Rounded corners</label>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
                         <config>
-                            <type>check</type>
-                            <renderType>checkboxToggle</renderType>
-                            <default>0</default>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>theme</default>
+                            <itemsProcFunc>Connetation\T3kitBase\Utility\RadiusOptions->addItems</itemsProcFunc>
                         </config>
-                    </settings.roundedCorners>
+                    </settings.borderRadius>
                     <settings.showBorder>
                         <label>Show card border</label>
                         <config>

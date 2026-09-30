@@ -7,10 +7,13 @@
         }
     }
 
-    // Border radius (applies to both the canvas and the panel)
-    // "Border radius" option — shared values, see base.$conn-radius-options.
-    @each $name, $radius in base.$conn-radius-options {
-        &--radius-#{$name} { .conn-map__canvas, .conn-map__panel { border-radius: #{$radius}; } }
+    // "Border radius" option (data-radius) — applies to both the canvas and the panel
+    --conn-map-radius: var(--conn-radius);
+    @include base.conn-radius-option(--conn-map-radius);
+
+    .conn-map__canvas,
+    .conn-map__panel {
+        border-radius: var(--conn-map-radius);
     }
 
     &__canvas-col {

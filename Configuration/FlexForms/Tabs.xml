@@ -34,15 +34,16 @@
                             <default>0</default>
                         </config>
                     </settings.justified>
-                    <settings.roundedCorners>
-                        <label>Rounded corners</label>
-                        <description>Rounds the nav bar's tabs/pills and the content pane's outer corners. With Tabs style only the top corners of each tab round off (the pane sits flush below); with Pills style every pill button rounds on all sides. Off (default) keeps them square.</description>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
+                        <description>Rounds the nav bar's tabs/pills and the content pane's outer corners. With Tabs style only the top corners of each tab round off (the pane sits flush below); with Pills style every pill button rounds on all sides.</description>
                         <config>
-                            <type>check</type>
-                            <renderType>checkboxToggle</renderType>
-                            <default>0</default>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>theme</default>
+                            <itemsProcFunc>Connetation\T3kitBase\Utility\RadiusOptions->addItems</itemsProcFunc>
                         </config>
-                    </settings.roundedCorners>
+                    </settings.borderRadius>
                 </el>
             </ROOT>
         </sDEF>

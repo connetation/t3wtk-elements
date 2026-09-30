@@ -43,10 +43,8 @@
     &--border-dotted &__box { border-style: dotted; }
 
     // ── Border radius modifiers (same scale as Mosaic Gallery) ──────────
-    // "Border radius" option — shared values, see base.$conn-radius-options.
-    @each $name, $radius in base.$conn-radius-options {
-        &--radius-#{$name} { --conn-lightbox-gallery-radius: #{$radius}; }
-    }
+    // "Border radius" option (data-radius)
+    @include base.conn-radius-option(--conn-lightbox-gallery-radius);
 
     // ── Title/caption overlay (default: bottom) ──
     &__box-info {

@@ -18,7 +18,8 @@
 
     <section class="conn-card-group conn-card-group--{settings.style}{f:if(condition: settings.accentBar, then: ' conn-card-group--accent-bar')} conn-subpage-cards"
              id="conn-subpage-cards-{data.uid}"
-             style="{settings.styleVars}">
+             style="{settings.styleVars}"
+             data-radius="{settings.cardBorderRadius}">
         <div class="row g-4">
             <f:for each="{cards}" as="card">
                 <f:render partial="SubpageCards/Card" arguments="{card: card, settings: settings}" />

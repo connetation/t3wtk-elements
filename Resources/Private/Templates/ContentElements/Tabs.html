@@ -12,7 +12,7 @@
     type="module"
     priority="false" />
 
-<section class="conn-tabs row{f:if(condition: settings.roundedCorners, then: ' conn-tabs--rounded')}" id="conn-tabs-section-{data.uid}">
+<section class="conn-tabs row" data-radius="{settings.borderRadius}" id="conn-tabs-section-{data.uid}">
 
         <f:if condition="{items}">
             <f:then>

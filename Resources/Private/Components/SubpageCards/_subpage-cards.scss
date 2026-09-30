@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // Subpage Cards Content Element
 // ─────────────────────────────────────────────
@@ -7,8 +9,10 @@
 
 .conn-subpage-cards {
     // Card radius follows conn_t3kit_base's --conn-card-radius token (same as
-    // the News/Event cards) so the element's "Card border radius" setting can
-    // override it; Card Group itself uses the plain --conn-radius.
+    // the News/Event cards) so the element's "Card border radius" option
+    // (data-radius) can override it; Card Group itself uses the plain --conn-radius.
+    @include base.conn-radius-option(--conn-card-radius);
+
     .conn-card-group__card {
         border-radius: var(--conn-card-radius, var(--conn-radius)) !important;
     }

@@ -18,10 +18,7 @@
     --conn-mosaic-gallery-h: 280px;
 
     // ── Border radius mapping ────────────────────────────────────
-    // Shared values, see base.$conn-radius-options.
-    @each $name, $radius in base.$conn-radius-options {
-        &[data-radius="#{$name}"] { --conn-mosaic-gallery-radius: #{$radius}; }
-    }
+    @include base.conn-radius-option(--conn-mosaic-gallery-radius);
 
     // ── Gap mapping ──────────────────────────────────────────────
     &[data-gap="none"]   { --conn-mosaic-gallery-gap: 0px; }
@@ -151,11 +148,12 @@
             height: auto !important;
         }
 
+        // The tile clips its content, so the radius sits on it (not the inner).
         .conn-mosaic-gallery__item {
             position: static;
             width: auto;
             overflow: hidden;
-            border-radius: 0;
+            border-radius: var(--conn-mosaic-gallery-radius);
         }
 
         .conn-mosaic-gallery__item-inner {

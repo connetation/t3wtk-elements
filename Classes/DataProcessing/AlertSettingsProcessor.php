@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
+use Connetation\T3kitBase\Utility\RadiusOptions;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -18,7 +19,6 @@ final class AlertSettingsProcessor implements DataProcessorInterface
     private const VERTICAL_ALIGNS = ['top', 'center', 'bottom'];
     private const BUTTON_SHAPES = ['circle', 'square'];
     private const CONTENT_ALIGNS = ['start', 'center', 'end'];
-    private const BORDER_RADII = ['none', 'small', 'medium', 'large', 'pill'];
     // Left/right edge positions are always a small button that expands on
     // click (there's no full-width bar variant for them); top/bottom are
     // always the full-width bar
@@ -46,8 +46,7 @@ final class AlertSettingsProcessor implements DataProcessorInterface
         $isEdgeButton = in_array($position, self::EDGE_POSITIONS, true);
         $contentAlign = $raw['contentAlign'] ?? 'start';
         $contentAlign = in_array($contentAlign, self::CONTENT_ALIGNS, true) ? $contentAlign : 'start';
-        $borderRadius = $raw['borderRadius'] ?? 'medium';
-        $borderRadius = in_array($borderRadius, self::BORDER_RADII, true) ? $borderRadius : 'medium';
+        $borderRadius = RadiusOptions::resolve($raw['borderRadius'] ?? null);
 
         $settings = [
             'style'               => in_array($style, self::STYLES, true) ? $style : 'info',

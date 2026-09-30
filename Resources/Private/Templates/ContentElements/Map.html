@@ -40,7 +40,7 @@
     <f:case value="lg"><f:variable name="gapValue">3rem</f:variable></f:case>
 </f:switch>
 
-<div class="conn-map row conn-map--panel-{settings.panelPosition} conn-map--radius-{settings.borderRadius}{f:if(condition: '{settings.showMap} && {settings.showInfoPanel}', then: ' conn-map--stacked')}"
+<div data-radius="{settings.borderRadius}" class="conn-map row conn-map--panel-{settings.panelPosition}{f:if(condition: '{settings.showMap} && {settings.showInfoPanel}', then: ' conn-map--stacked')}"
      style="--bs-gutter-x: {gapValue}; --bs-gutter-y: {gapValue};">
     <f:if condition="{settings.showMap}">
         <div class="{f:if(condition: settings.showInfoPanel, then: 'col-md-7', else: 'col-12')} conn-map__canvas-col">

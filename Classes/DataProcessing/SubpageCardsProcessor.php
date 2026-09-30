@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3kitElements\DataProcessing;
 
+use Connetation\T3kitBase\Utility\RadiusOptions;
 use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Context\Context;
@@ -114,16 +115,15 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
         }
 
         $borderColor  = $this->sanitizeHexColor((string)($raw['cardBorderColor'] ?? ''), '');
-        $borderRadius = $this->sanitizeCssLength((string)($raw['cardBorderRadius'] ?? ''));
+        // Former free-text lengths (e.g. "8px") are not an option any more and
+        // fall back to the theme radius.
+        $borderRadius = RadiusOptions::resolve($raw['cardBorderRadius'] ?? null);
 
         // CSS custom properties consumed by conn_t3kit_base's card tokens and
         // the Card Group styles — empty values keep the theme defaults.
         $styleVars = '';
         if ($borderColor !== '') {
             $styleVars .= '--conn-card-border-color:' . $borderColor . ';';
-        }
-        if ($borderRadius !== '') {
-            $styleVars .= '--conn-card-radius:' . $borderRadius . ';';
         }
 
         return [
@@ -158,7 +158,7 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             'style'             => 'default',
             'accentBar'         => true,
             'cardBorderColor'   => '',
-            'cardBorderRadius'  => '',
+            'cardBorderRadius'  => RadiusOptions::THEME_DEFAULT,
             'styleVars'         => '',
             'titleTag'          => 'h3',
             'titleAlign'        => 'start',
@@ -325,13 +325,5 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
     private function allow(mixed $value, array $allowed, string|int $default): string|int
     {
         return in_array($value, $allowed, true) ? $value : $default;
-    }
-
-    /** Only plain lengths like "12px", "0.75rem", "50%" or "0" reach the style attribute. */
-    private function sanitizeCssLength(string $value): string
-    {
-        $value = trim($value);
-
-        return preg_match('/^(0|\d+(\.\d+)?(px|rem|em|%))$/', $value) ? $value : '';
     }
 }

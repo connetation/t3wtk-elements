@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // Bootstrap Tabs – conn theme layer
 // Structural styles come from Bootstrap 5.
@@ -9,6 +11,10 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-tabs {
+    // "Border radius" option (data-radius)
+    --conn-tabs-radius: var(--conn-radius);
+    @include base.conn-radius-option(--conn-tabs-radius);
+
     &__footer {
         color: var(--conn-text-muted);
         font-size: 0.9rem;
@@ -22,8 +28,6 @@
             color: var(--conn-text-muted);
             font-weight: 600;
             transition: color var(--conn-transition), background-color var(--conn-transition), border-color var(--conn-transition);
-
-            border-radius: 0 !important;
 
             &:hover:not(.active) {
                 color: var(--conn-text);
@@ -59,7 +63,6 @@
         color: var(--conn-text);
         border: 1px solid var(--conn-border);
         border-top: none;
-        border-radius: 0 !important;
         padding: 1.25rem;
 
         // Pills style has no attached nav bar to visually continue from
@@ -71,22 +74,22 @@
         p:last-child { margin-bottom: 0; }
     }
 
-    // ── Opt-in rounded corners (settings.roundedCorners) ──────────────
-    &--rounded {
-        .conn-tabs__nav:not(.nav-pills) .nav-link {
-            border-radius: var(--conn-radius) var(--conn-radius) 0 0 !important;
-        }
+    // ── Corners (settings.borderRadius → --conn-tabs-radius) ──────────
+    // Tabs style: only the top corners of each tab round off (the pane sits
+    // flush below); Pills style: every pill and the pane round on all sides.
+    .conn-tabs__nav:not(.nav-pills) .nav-link {
+        border-radius: var(--conn-tabs-radius) var(--conn-tabs-radius) 0 0 !important;
+    }
 
-        .conn-tabs__nav.nav-pills .nav-link {
-            border-radius: var(--conn-radius) !important;
-        }
+    .conn-tabs__nav.nav-pills .nav-link {
+        border-radius: var(--conn-tabs-radius) !important;
+    }
 
-        .conn-tabs__content {
-            border-radius: 0 0 var(--conn-radius) var(--conn-radius) !important;
+    .conn-tabs__content {
+        border-radius: 0 0 var(--conn-tabs-radius) var(--conn-tabs-radius) !important;
 
-            &.conn-tabs__content--pills {
-                border-radius: var(--conn-radius) !important;
-            }
+        &.conn-tabs__content--pills {
+            border-radius: var(--conn-tabs-radius) !important;
         }
     }
 }
