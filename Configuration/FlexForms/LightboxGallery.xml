@@ -131,7 +131,7 @@
                             <items>
                                 <numIndex index="0"><label>None</label><value>none</value></numIndex>
                                 <numIndex index="1"><label>Small (4 px)</label><value>small</value></numIndex>
-                                <numIndex index="2"><label>Medium (12 px, default)</label><value>medium</value></numIndex>
+                                <numIndex index="2"><label>Theme default (site "Corner radius" setting)</label><value>medium</value></numIndex>
                                 <numIndex index="3"><label>Large (24 px)</label><value>large</value></numIndex>
                                 <numIndex index="4"><label>Pill (fully rounded)</label><value>pill</value></numIndex>
                             </items>

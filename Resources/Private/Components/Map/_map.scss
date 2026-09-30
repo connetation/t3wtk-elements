@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 .conn-map {
     &--panel-left {
         .conn-map__panel-col {
@@ -6,11 +8,10 @@
     }
 
     // Border radius (applies to both the canvas and the panel)
-    &--radius-none { .conn-map__canvas, .conn-map__panel { border-radius: 0; } }
-    &--radius-small { .conn-map__canvas, .conn-map__panel { border-radius: 4px; } }
-    &--radius-medium { .conn-map__canvas, .conn-map__panel { border-radius: var(--conn-radius); } }
-    &--radius-large { .conn-map__canvas, .conn-map__panel { border-radius: 24px; } }
-    &--radius-pill { .conn-map__canvas, .conn-map__panel { border-radius: 999px; } }
+    // "Border radius" option — shared values, see base.$conn-radius-options.
+    @each $name, $radius in base.$conn-radius-options {
+        &--radius-#{$name} { .conn-map__canvas, .conn-map__panel { border-radius: #{$radius}; } }
+    }
 
     &__canvas-col {
         display: flex;

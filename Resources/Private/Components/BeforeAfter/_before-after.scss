@@ -173,7 +173,7 @@
         padding: var(--conn-space-2xs) 0.75rem;
         background: rgba(0, 0, 0, 0.6);
         color: #fff;
-        border-radius: 50rem;
+        border-radius: var(--conn-radius-pill);
         font-size: 0.8rem;
         font-weight: 600;
         pointer-events: none;

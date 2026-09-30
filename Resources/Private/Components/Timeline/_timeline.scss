@@ -340,7 +340,7 @@
             background: var(--conn-accent-soft);
             color: var(--conn-accent);
             border: 1px solid var(--conn-border);
-            border-radius: 2rem;
+            border-radius: var(--conn-radius-pill);
             padding: 0.2rem 0.8rem;
             font-size: 0.76rem;
             font-weight: 700;

@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // GSAP Lightbox Gallery Modal Content Element
 // ─────────────────────────────────────────────
@@ -18,14 +20,14 @@
         border-width: 2px;
         border-style: var(--conn-lightbox-gallery-border-style, dashed);
         border-color: var(--conn-lightbox-gallery-border-color, var(--conn-border));
-        border-radius: var(--conn-lightbox-gallery-radius, 12px);
+        border-radius: var(--conn-lightbox-gallery-radius, var(--conn-radius));
     }
 
     // ── Box content (moves to modal via Flip) ────
     &__box-content {
         position: absolute;
         inset: 0;
-        border-radius: var(--conn-lightbox-gallery-radius, 12px);
+        border-radius: var(--conn-lightbox-gallery-radius, var(--conn-radius));
         background-color: var(--conn-lightbox-gallery-bg-color, color-mix(in srgb, var(--conn-surface-alt) 70%, transparent));
         background-position: center;
         background-size: cover;
@@ -41,11 +43,10 @@
     &--border-dotted &__box { border-style: dotted; }
 
     // ── Border radius modifiers (same scale as Mosaic Gallery) ──────────
-    &--radius-none   { --conn-lightbox-gallery-radius: 0px; }
-    &--radius-small  { --conn-lightbox-gallery-radius: 4px; }
-    &--radius-medium { --conn-lightbox-gallery-radius: 12px; }
-    &--radius-large  { --conn-lightbox-gallery-radius: 24px; }
-    &--radius-pill   { --conn-lightbox-gallery-radius: 9999px; }
+    // "Border radius" option — shared values, see base.$conn-radius-options.
+    @each $name, $radius in base.$conn-radius-options {
+        &--radius-#{$name} { --conn-lightbox-gallery-radius: #{$radius}; }
+    }
 
     // ── Title/caption overlay (default: bottom) ──
     &__box-info {
@@ -128,7 +129,7 @@
     &__modal &__content .conn-lightbox-gallery__box-content {
         width: 100%;
         height: 100%;
-        border-radius: 1rem;
+        border-radius: base.conn-radius(1rem);
         border: none;
         background-size: contain;
         background-color: transparent;

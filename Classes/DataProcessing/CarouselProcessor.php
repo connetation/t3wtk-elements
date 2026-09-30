@@ -43,9 +43,11 @@ final class CarouselProcessor extends AbstractItemsProcessor
         $styleRaw = $raw['style'] ?? 'none';
         $style = in_array($styleRaw, $allowedStyles, true) ? $styleRaw : 'none';
 
+        // Same values as conn/t3kit-base's $conn-radius-options (theme/_tokens.scss):
+        // "medium" follows the site's Corner radius, the others are fixed overrides.
         $borderRadiusMap = [
             'none'   => '0',
-            'small'  => '4px',
+            'small'  => '0.25rem',
             'medium' => 'var(--conn-radius)',
             'large'  => '1.5rem',
         ];

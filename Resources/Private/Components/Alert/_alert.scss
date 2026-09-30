@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // Alert/Notice Banner – conn theme layer
 // Bootstrap's own .alert-{style} variants already handle color; this only
@@ -9,11 +11,10 @@
     border-radius: var(--conn-alert-radius);
 
     // ── Border radius mapping ────────────────────────────────────
-    &[data-radius="none"]   { --conn-alert-radius: 0; }
-    &[data-radius="small"]  { --conn-alert-radius: 4px; }
-    &[data-radius="medium"] { --conn-alert-radius: var(--conn-radius); }
-    &[data-radius="large"]  { --conn-alert-radius: 1.5rem; }
-    &[data-radius="pill"]   { --conn-alert-radius: 9999px; }
+    // Shared values, see base.$conn-radius-options.
+    @each $name, $radius in base.$conn-radius-options {
+        &[data-radius="#{$name}"] { --conn-alert-radius: #{$radius}; }
+    }
 
     &__icon {
         flex: 0 0 auto;

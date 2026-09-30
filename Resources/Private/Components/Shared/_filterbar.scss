@@ -71,7 +71,7 @@
         display: inline-flex;
         align-items: center;
         padding: 0.2em 0.65em;
-        border-radius: 50rem;
+        border-radius: var(--conn-radius-pill);
         font-size: 0.6875rem;
         font-weight: 600;
         cursor: pointer;

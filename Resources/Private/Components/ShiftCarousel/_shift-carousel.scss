@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // GSAP Shift Carousel (Caterpillar) Content Element
 // ─────────────────────────────────────────────
@@ -43,7 +45,7 @@
         width: 100%;
         padding-top: 150%;
         overflow: hidden;
-        border-radius: 0.5rem;
+        border-radius: base.conn-radius(0.5rem);
         background: var(--conn-surface);
         border: 1px solid var(--conn-border);
     }

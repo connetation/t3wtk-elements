@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // Connetation Elements – Mosaic Gallery
 //
@@ -16,11 +18,10 @@
     --conn-mosaic-gallery-h: 280px;
 
     // ── Border radius mapping ────────────────────────────────────
-    &[data-radius="none"]   { --conn-mosaic-gallery-radius: 0; }
-    &[data-radius="small"]  { --conn-mosaic-gallery-radius: 4px; }
-    &[data-radius="medium"] { --conn-mosaic-gallery-radius: var(--conn-radius); }
-    &[data-radius="large"]  { --conn-mosaic-gallery-radius: 1.5rem; }
-    &[data-radius="pill"]   { --conn-mosaic-gallery-radius: 9999px; }
+    // Shared values, see base.$conn-radius-options.
+    @each $name, $radius in base.$conn-radius-options {
+        &[data-radius="#{$name}"] { --conn-mosaic-gallery-radius: #{$radius}; }
+    }
 
     // ── Gap mapping ──────────────────────────────────────────────
     &[data-gap="none"]   { --conn-mosaic-gallery-gap: 0px; }

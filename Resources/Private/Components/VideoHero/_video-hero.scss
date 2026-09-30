@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 .conn-video-hero {
     position: relative;
     // Same convention as Hero Slider (Components/HeroSlider/_hero-slider.scss)
@@ -160,7 +162,7 @@
         text-transform: uppercase;
         background: rgba(255, 255, 255, 0.14);
         padding: 0.3rem 0.6rem;
-        border-radius: 0.3rem;
+        border-radius: base.conn-radius(0.3rem);
         font-variant-numeric: tabular-nums;
     }
 

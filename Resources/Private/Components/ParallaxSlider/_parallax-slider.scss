@@ -199,7 +199,7 @@
     &__cta {
         font-weight: 600;
         padding: 0.625rem 1.5rem;
-        border-radius: 50rem;
+        border-radius: var(--conn-radius-pill);
         background: var(--conn-accent);
         border-color: var(--conn-accent);
         color: #fff;

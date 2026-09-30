@@ -78,7 +78,7 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
         padding: 0.25em 0.75em;
-        border-radius: 50rem;
+        border-radius: var(--conn-radius-pill);
     }
 
     // ── Header block ──────────────────────────

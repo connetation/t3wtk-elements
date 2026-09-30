@@ -176,13 +176,26 @@ class AlertFloat {
             return;
         }
 
-        const radius = getComputedStyle(document.documentElement).getPropertyValue('--conn-radius').trim() || '0px';
-
         gsap.to(this.toggle, {
-            borderRadius: opening ? radius : '50%',
+            borderRadius: opening ? this.resolveRadius(this.toggle.parentElement ?? this.el) : '50%',
             duration: 0.3,
             ease: 'power2.out',
         });
+    }
+
+    /**
+     * The radius tokens are calc() expressions (scaled by the site's "Corner
+     * radius" setting), which GSAP can't tween — let the browser resolve the
+     * alert's radius (its own option, else the theme radius) to px on a probe.
+     */
+    private resolveRadius(context: HTMLElement): string {
+        const probe = document.createElement('span');
+        probe.style.cssText = 'position:absolute;visibility:hidden;border-radius:var(--conn-alert-radius, var(--conn-radius, 0px));';
+        context.appendChild(probe);
+        const radius = getComputedStyle(probe).borderTopLeftRadius || '0px';
+        probe.remove();
+
+        return radius;
     }
 
 }

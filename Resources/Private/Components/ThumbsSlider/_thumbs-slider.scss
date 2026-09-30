@@ -209,7 +209,7 @@
         transition: opacity 0.4s ease 0.6s, transform 0.4s ease 0.6s;
         font-weight: 600;
         padding: var(--conn-space-xs) 1.375rem;
-        border-radius: 50rem;
+        border-radius: var(--conn-radius-pill);
         background: var(--conn-accent);
         border-color: var(--conn-accent);
         color: #fff;
