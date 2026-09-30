@@ -1,0 +1,47 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="{colClass} conn-flip-card__item">
+    <div class="conn-flip-card__card" tabindex="0">
+        <div class="conn-flip-card__inner">
+
+            <f:render partial="FlipCard/Face" arguments="{
+                side:           'front',
+                title:          card.title,
+                titleLayout:    card.title_layout,
+                titleClass:     card.title_class,
+                titleAlign:     card.title_align,
+                subtitle:       card.subtitle,
+                subtitleLayout: card.subtitle_layout,
+                subtitleClass:  card.subtitle_class,
+                subtitleAlign:  card.subtitle_align,
+                eyebrow:        card.subtitle_eyebrow,
+                style:          card.faceStyle,
+                body:           card.body,
+                image:          card.imageFile
+            }" />
+
+            <f:render partial="FlipCard/Face" arguments="{
+                side:           'back',
+                title:          card.back_title,
+                titleLayout:    card.back_title_layout,
+                titleClass:     card.back_title_class,
+                titleAlign:     card.back_title_align,
+                subtitle:       card.back_subtitle,
+                subtitleLayout: card.back_subtitle_layout,
+                subtitleClass:  card.back_subtitle_class,
+                subtitleAlign:  card.back_subtitle_align,
+                eyebrow:        card.back_subtitle_eyebrow,
+                style:          card.backFaceStyle,
+                body:           card.back_body,
+                image:          card.backImageFile,
+                link:           card.back_link,
+                linkLabel:      card.back_link_label,
+                linkAlign:      card.back_link_align
+            }" />
+
+        </div>
+    </div>
+</div>
+
+</html>

@@ -43,13 +43,13 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/card-stack-ce.svg',
     ],
-    'conn-ce-flip-carousel' => [
+    'conn-ce-shift-carousel' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/flip-carousel-ce.svg',
+        'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/shift-carousel-ce.svg',
     ],
-    'conn-ce-flip-gallery' => [
+    'conn-ce-lightbox-gallery' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/flip-gallery-ce.svg',
+        'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/lightbox-gallery-ce.svg',
     ],
     'conn-ce-bs-carousel' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
@@ -118,5 +118,9 @@ return [
     'conn-ce-map' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/map-ce.svg',
+    ],
+    'conn-ce-flip-card' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source'   => 'EXT:conn_t3kit_elements/Resources/Public/Icons/flip-card-ce.svg',
     ],
 ];

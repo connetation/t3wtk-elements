@@ -932,23 +932,23 @@ $GLOBALS['TCA']['tt_content']['types']['conn_card_stack'] = [
     ',
 ];
 
-// ─── GSAP Flip Carousel ───────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_flip_carousel'] = 'conn-ce-flip-carousel';
+// ─── GSAP Shift Carousel ───────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_shift_carousel'] = 'conn-ce-shift-carousel';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
-    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel',
-    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel.description',
-    'value' => 'conn_flip_carousel',
-    'icon'  => 'conn-ce-flip-carousel',
+    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.shift_carousel',
+    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.shift_carousel.description',
+    'value' => 'conn_shift_carousel',
+    'icon'  => 'conn-ce-shift-carousel',
     'group' => 'conn_galleries',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
-    'tx_conn_t3kit_elements_flip_carousel_items' => [
-        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.items',
+    'tx_conn_t3kit_elements_shift_carousel_items' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:shift_carousel.items',
         'config' => [
             'type'          => 'inline',
-            'foreign_table' => 'tx_conn_t3kit_elements_domain_model_flip_carousel_item',
+            'foreign_table' => 'tx_conn_t3kit_elements_domain_model_shift_carousel_item',
             'foreign_field' => 'content_element',
             'maxitems'      => 100,
             'appearance'    => [
@@ -958,21 +958,21 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             ],
         ],
     ],
-    'tx_conn_t3kit_elements_flip_carousel_settings' => [
-        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.settings',
+    'tx_conn_t3kit_elements_shift_carousel_settings' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:shift_carousel.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/FlipCarousel.xml',
+            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/ShiftCarousel.xml',
         ],
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_flip_carousel'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_shift_carousel'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_flip_carousel_items,
-        --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_carousel.tab.config,
-            tx_conn_t3kit_elements_flip_carousel_settings,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_shift_carousel_items,
+        --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:shift_carousel.tab.config,
+            tx_conn_t3kit_elements_shift_carousel_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,
@@ -981,20 +981,20 @@ $GLOBALS['TCA']['tt_content']['types']['conn_flip_carousel'] = [
     ',
 ];
 
-// ─── GSAP Flip Gallery ────────────────────────────────────────────
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_flip_gallery'] = 'conn-ce-flip-gallery';
+// ─── GSAP Lightbox Gallery ────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_lightbox_gallery'] = 'conn-ce-lightbox-gallery';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
-    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery',
-    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery.description',
-    'value' => 'conn_flip_gallery',
-    'icon'  => 'conn-ce-flip-gallery',
+    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.lightbox_gallery',
+    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.lightbox_gallery.description',
+    'value' => 'conn_lightbox_gallery',
+    'icon'  => 'conn-ce-lightbox-gallery',
     'group' => 'conn_galleries',
 ]);
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', [
-    'tx_conn_t3kit_elements_flip_gallery_items' => [
-        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.items',
+    'tx_conn_t3kit_elements_lightbox_gallery_items' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:lightbox_gallery.items',
         'config' => [
             'type'          => 'inline',
             'foreign_table' => 'tx_conn_t3kit_elements_domain_model_gallery_item',
@@ -1007,21 +1007,21 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             ],
         ],
     ],
-    'tx_conn_t3kit_elements_flip_gallery_settings' => [
-        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.settings',
+    'tx_conn_t3kit_elements_lightbox_gallery_settings' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:lightbox_gallery.settings',
         'config' => [
             'type' => 'flex',
-            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/FlipGallery.xml',
+            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/LightboxGallery.xml',
         ],
     ],
 ]);
 
-$GLOBALS['TCA']['tt_content']['types']['conn_flip_gallery'] = [
+$GLOBALS['TCA']['tt_content']['types']['conn_lightbox_gallery'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_flip_gallery_items,
-        --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_gallery.tab.config,
-            tx_conn_t3kit_elements_flip_gallery_settings,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_lightbox_gallery_items,
+        --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:lightbox_gallery.tab.config,
+            tx_conn_t3kit_elements_lightbox_gallery_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,
@@ -1743,3 +1743,52 @@ $GLOBALS['TCA']['tt_content']['types']['conn_video_hero'] = [
     ',
 ];
 
+
+// ─── FlipCard ─────────────────────────────────────────────────────────
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_flip_card'] = 'conn-ce-flip-card';
+
+ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
+    'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_card',
+    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_card.description',
+    'value' => 'conn_flip_card',
+    'icon'  => 'conn-ce-flip-card',
+    'group' => 'conn_interactive',
+]);
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    'tx_conn_t3kit_elements_flip_card_items' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_card.items',
+        'config' => [
+            'type'          => 'inline',
+            'foreign_table' => 'tx_conn_t3kit_elements_domain_model_flip_card_item',
+            'foreign_field' => 'content_element',
+            'maxitems'      => 200,
+            'appearance'    => [
+                'collapseAll'        => true,
+                'levelLinksPosition' => 'top',
+                'enabledControls'    => ['dragdrop' => true],
+            ],
+        ],
+    ],
+    'tx_conn_t3kit_elements_flip_card_settings' => [
+        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_card.settings',
+        'config' => [
+            'type' => 'flex',
+            'ds'   => 'FILE:EXT:conn_t3kit_elements/Configuration/FlexForms/FlipCard.xml',
+        ],
+    ],
+]);
+
+$GLOBALS['TCA']['tt_content']['types']['conn_flip_card'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,--palette--;;headers,tx_conn_t3kit_elements_flip_card_items,
+        --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_card.tab.config,
+            tx_conn_t3kit_elements_flip_card_settings,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,--palette--;;access,
+    ',
+];

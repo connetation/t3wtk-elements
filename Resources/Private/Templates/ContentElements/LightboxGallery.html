@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-t3kit-elements-lightbox-gallery-css"
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/lightbox-gallery.css" />
+<f:asset.script identifier="conn-t3kit-elements-lightbox-gallery-js"
+    src="EXT:conn_t3kit_elements/Resources/Public/Js/components/lightbox-gallery.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-lightbox-gallery conn-lightbox-gallery--pos-{settings.textPosition} conn-lightbox-gallery--align-{settings.textAlign} conn-lightbox-gallery--fit-{settings.fit} conn-lightbox-gallery--border-{settings.borderStyle} conn-lightbox-gallery--radius-{settings.borderRadius} {f:if(condition: settings.captionInLightboxOnly, then: 'conn-lightbox-gallery--caption-lightbox-only')}"
+         id="conn-lightbox-gallery-{data.uid}"
+         style="{f:if(condition: settings.borderColor, then: '--conn-lightbox-gallery-border-color: {settings.borderColor};')}{f:if(condition: settings.backgroundColor, then: '--conn-lightbox-gallery-bg-color: {settings.backgroundColor};')}">
+
+        <f:if condition="{items}">
+            <f:then>
+                <div class="conn-lightbox-gallery__boxes-container row {settings.gapClass}">
+                    <f:for each="{items}" as="item">
+                        <f:render partial="LightboxGallery/Item" arguments="{item: item, colClass: settings.colClass}" />
+                    </f:for>
+                </div>
+                <div class="conn-lightbox-gallery__modal" role="dialog" aria-modal="true">
+                    <div class="conn-lightbox-gallery__overlay"></div>
+                    <button class="conn-lightbox-gallery__modal-prev" type="button" aria-label="Previous image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                    </button>
+                    <div class="conn-lightbox-gallery__content"></div>
+                    <button class="conn-lightbox-gallery__modal-next" type="button" aria-label="Next image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No images added yet.</p>
+            </f:else>
+        </f:if>
+
+</section>
+
+</f:section>
+
+</html>

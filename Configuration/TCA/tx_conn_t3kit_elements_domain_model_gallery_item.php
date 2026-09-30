@@ -38,7 +38,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/flip-gallery-ce.svg',
+        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/lightbox-gallery-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],

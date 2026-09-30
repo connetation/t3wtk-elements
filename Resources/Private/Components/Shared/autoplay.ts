@@ -1,7 +1,7 @@
 /**
  * Shared autoplay utilities used by all components that support autoplay.
  *
- * - AutoplayController  — setInterval-based autoplay for CardStack / FlipCarousel
+ * - AutoplayController  — setInterval-based autoplay for CardStack / ShiftCarousel
  * - buildSwiperAutoplay — Swiper autoplay config object (HeroSlider / Slider / Parallax / Thumbs)
  * - readAutoplay        — reads data-autoplay / data-autoplay-delay from any element
  */

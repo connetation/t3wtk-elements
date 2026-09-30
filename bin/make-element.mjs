@@ -417,6 +417,8 @@ declare(strict_types=1);
 
 namespace Connetation\\T3kitElements\\DataProcessing;
 
+use Connetation\\T3kitBase\\DataProcessing\\AbstractItemsProcessor;
+
 final class ${pascal}ItemsProcessor extends AbstractItemsProcessor
 {
     protected function getTable(): string
@@ -612,6 +614,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['${ctype}'] = 'conn-ce
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
     'label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}',
+    'description' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.${snake}.description',
     'value' => '${ctype}',
     'icon'  => 'conn-ce-${kebab}',
     'group' => '${group}',
@@ -621,7 +624,7 @@ ${colsBlock}
 $GLOBALS['TCA']['tt_content']['types']['${ctype}'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-            --palette--;;general,--palette--;;header,${mainField}
+            --palette--;;general,--palette--;;headers,${mainField}
         --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:${snake}.tab.config,
             tx_conn_t3kit_elements_${snake}_settings,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,

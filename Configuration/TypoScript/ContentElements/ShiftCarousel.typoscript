@@ -1,0 +1,10 @@
+tt_content.conn_shift_carousel =< lib.conn_t3kit_elements_ce
+tt_content.conn_shift_carousel {
+    templateName = ShiftCarousel
+    dataProcessing {
+        10 = Connetation\T3kitElements\DataProcessing\ShiftCarouselProcessor
+        10 {
+            as = items
+        }
+    }
+}

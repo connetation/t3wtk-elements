@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+<f:asset.css identifier="conn-t3kit-elements-shift-carousel-css"
+    href="EXT:conn_t3kit_elements/Resources/Public/Css/shift-carousel.css" />
+<f:asset.script identifier="conn-t3kit-elements-shift-carousel-js"
+    src="EXT:conn_t3kit_elements/Resources/Public/Js/components/shift-carousel.js"
+    type="module"
+    priority="false" />
+
+<section class="conn-shift-carousel conn-shift-carousel--pos-{settings.textPosition} conn-shift-carousel--align-{settings.textAlign} conn-shift-carousel--nav-{settings.navPosition}"
+        id="conn-shift-carousel-{data.uid}"
+        data-autoplay="{f:if(condition: settings.autoplay, then: '1', else: '0')}"
+        data-autoplay-delay="{settings.autoplay_delay}">
+
+        <f:if condition="{items}">
+            <f:then>
+                <div class="conn-shift-carousel__viewport">
+                    <div class="conn-shift-carousel__track" data-items="{settings.columns}">
+                        <f:for each="{items}" as="item">
+                            <f:render partial="ShiftCarousel/Item" arguments="{item: item}" />
+                        </f:for>
+                    </div>
+                    <div class="conn-shift-carousel__nav">
+                        <button class="conn-shift-carousel__btn conn-shift-carousel__btn--prev" type="button" aria-label="Previous">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <button class="conn-shift-carousel__btn conn-shift-carousel__btn--next" type="button" aria-label="Next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="text-muted fst-italic">No items added yet.</p>
+            </f:else>
+        </f:if>
+
+</section>
+
+</f:section>
+
+</html>

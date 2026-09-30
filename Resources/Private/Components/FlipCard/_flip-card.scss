@@ -1,0 +1,272 @@
+// ─────────────────────────────────────────────
+// Flip Card Content Element
+// ─────────────────────────────────────────────
+// 3D card flip (CSS transform, no GSAP) — front shows title/subtitle over an
+// optional image, back shows text + link. Headings intentionally have no
+// font-size/weight rules here — they inherit conn/t3kit-base's shared heading
+// system, same as Card Group.
+
+.conn-flip-card {
+    --conn-flip-card-duration: 0.6s;
+    --conn-flip-card-ease:     cubic-bezier(0.4, 0.2, 0.2, 1);
+
+    // Bootstrap's .row.g-4 gives its direct child a negative margin-top
+    // (gutter compensation); without a block-formatting context here that
+    // margin collapses through the section into the header/subheader above.
+    display: flow-root;
+
+    // ── Card (perspective root + focus target) ──────
+    &__card {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        perspective: 1200px;
+        cursor: pointer;
+        border-radius: var(--conn-radius);
+        outline: none;
+
+        &:focus-visible {
+            outline: 2px solid var(--conn-accent);
+            outline-offset: 4px;
+        }
+    }
+
+    &--square    &__card { aspect-ratio: 1 / 1; }
+    &--landscape &__card { aspect-ratio: 4 / 3; }
+
+    &__inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform var(--conn-flip-card-duration) var(--conn-flip-card-ease);
+    }
+
+    // ── Flip triggers ───────────────────────────────
+    // .is-flipped is the click/tap pin (see flip-card.ts); keyboard focus on
+    // a link inside the back face also flips so it is never tabbed to blind.
+    // Hover is limited to real hover devices — on touch, :hover sticks after
+    // a tap and would fight the tap toggle.
+    &__card.is-flipped &__inner,
+    &__card:has(&__face--back a:focus-visible) &__inner {
+        transform: rotateY(180deg);
+    }
+
+    @media (hover: hover) {
+        &--trigger-hover &__card:hover:not(.is-dismissed) &__inner {
+            transform: rotateY(180deg);
+        }
+    }
+
+    &--trigger-hover &__card:focus-visible:not(.is-dismissed) &__inner {
+        transform: rotateY(180deg);
+    }
+
+    &--vertical {
+        .conn-flip-card__card.is-flipped .conn-flip-card__inner,
+        .conn-flip-card__card:has(.conn-flip-card__face--back a:focus-visible) .conn-flip-card__inner {
+            transform: rotateX(180deg);
+        }
+
+        .conn-flip-card__face--back { transform: rotateX(180deg); }
+    }
+
+    @media (hover: hover) {
+        &--vertical#{&}--trigger-hover &__card:hover:not(.is-dismissed) &__inner {
+            transform: rotateX(180deg);
+        }
+    }
+
+    &--vertical#{&}--trigger-hover &__card:focus-visible:not(.is-dismissed) &__inner {
+        transform: rotateX(180deg);
+    }
+
+    // ── Faces (front and back share one layout) ─────
+    &__face {
+        position: absolute;
+        inset: 0;
+        // Own stacking context: without it the scrim/content z-indexes below
+        // join the parent's context, paint above the other face and escape
+        // this face's backface-visibility — the front showed through mirrored.
+        isolation: isolate;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.5rem;
+        overflow: hidden;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        // --conn-flip-card-* are the editor's per-face color overrides, set
+        // inline by FlipCardItemsProcessor::buildFaceStyle(); each falls back
+        // to the built-in look when unset.
+        background: var(--conn-flip-card-bg, var(--conn-surface));
+        border: 1px solid var(--conn-border);
+        border-radius: var(--conn-radius);
+        box-shadow: var(--conn-shadow-card);
+        color: var(--conn-text);
+        text-align: center;
+        transition:
+            box-shadow 0.25s ease,
+            background-color var(--conn-transition),
+            border-color var(--conn-transition),
+            color var(--conn-transition);
+    }
+
+    &__face--back {
+        transform: rotateY(180deg);
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    // ── Background image variant ───────────────────
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Content position setting (bottom is the default above).
+    &--content-center &__face { justify-content: center; }
+    &--content-top    &__face { justify-content: flex-start; }
+
+    &__face--has-image {
+        color: #fff;
+
+        // Legibility scrim behind the text — the image is the editor's
+        // choice, so the text can't rely on its contrast. A background color
+        // set by the editor replaces it (its opacity lets the image through).
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: var(--conn-flip-card-bg, linear-gradient(to top, rgb(0 0 0 / 80%) 0%, rgb(0 0 0 / 55%) 50%, rgb(0 0 0 / 15%) 100%));
+            pointer-events: none;
+        }
+    }
+
+    // ── Text ────────────────────────────────────────
+    &__title {
+        margin-bottom: 0;
+        color: var(--conn-flip-card-title, var(--bs-heading-color, inherit));
+    }
+
+    &__subtitle {
+        margin: 0.5rem 0 0;
+        color: var(--conn-flip-card-subtitle, var(--conn-text-muted));
+    }
+
+    // Subtitle above the title as a small label — same look as conn/t3kit-base's
+    // .ce-eyebrow, restated here so this CSS doesn't depend on the base CSS.
+    &__subtitle--eyebrow {
+        margin: 0 0 var(--conn-space-2xs);
+        font-size: var(--conn-font-size-sm);
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--conn-flip-card-subtitle, var(--conn-accent));
+    }
+
+    // Starts left (the RTE's default alignment emits no class) so the editor's
+    // alignment classes, not the face's centering, decide.
+    &__body {
+        margin-top: 0.75rem;
+        font-size: var(--conn-font-size-body);
+        line-height: var(--conn-line-height-normal);
+        color: var(--conn-flip-card-text, var(--conn-text));
+        text-align: start;
+
+        a:not(.btn) { color: var(--conn-flip-card-text, var(--bs-link-color)); }
+
+        // Offered by the RTE (Conn.yaml) but not a Bootstrap utility.
+        .text-justify { text-align: justify; }
+
+        p:last-child { margin-bottom: 0; }
+    }
+
+    &__face--has-image {
+        .conn-flip-card__title             { color: var(--conn-flip-card-title, #fff); }
+        .conn-flip-card__subtitle          { color: var(--conn-flip-card-subtitle, #fff); }
+        .conn-flip-card__body,
+        .conn-flip-card__body a:not(.btn) { color: var(--conn-flip-card-text, #fff); }
+    }
+
+    &__footer {
+        margin-top: 1rem;
+    }
+
+    // ── Flip hint (front corner icon) ───────────────
+    &__hint {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: var(--conn-accent-soft);
+        color: var(--conn-accent);
+    }
+
+    &__face--has-image &__hint {
+        background: rgb(0 0 0 / 40%);
+        color: #fff;
+    }
+
+    &__link {
+        font-size: 0.8125rem;
+        font-weight: 600;
+    }
+
+    // ── Style variants ───────────────────────────────
+    // Always visible at rest, intensified on hover — same tokens as Card
+    // Group; --conn-card-border-color / --conn-card-shadow-color can be
+    // overridden per element via site styles.
+
+    &--default {
+        .conn-flip-card__face {
+            border: 1px solid var(--conn-card-border-color, var(--conn-accent));
+            box-shadow: none;
+        }
+
+        .conn-flip-card__card:hover .conn-flip-card__face {
+            box-shadow: 0 0 0 1px var(--conn-card-border-color, var(--conn-accent));
+        }
+    }
+
+    &--shadow {
+        .conn-flip-card__face {
+            border: none;
+            box-shadow: 0 4px 20px var(--conn-card-shadow-color, var(--conn-accent-glow));
+        }
+
+        .conn-flip-card__card:hover .conn-flip-card__face {
+            box-shadow: var(--conn-sh-x) var(--conn-sh-y) var(--conn-sh-blur) var(--conn-sh-spread) var(--conn-card-shadow-color, var(--conn-sh-color));
+        }
+    }
+
+    &--flat {
+        .conn-flip-card__face {
+            border: none;
+            box-shadow: none;
+            background: var(--conn-flip-card-bg, var(--conn-surface-alt));
+        }
+    }
+
+    // ── Reduced motion: swap faces without the 3D turn ──
+    @media (prefers-reduced-motion: reduce) {
+        &__inner {
+            transition: none;
+        }
+    }
+}

@@ -18,24 +18,24 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000002] = [
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
-    'mod.wizards.newContentElement.wizardItems.conn.show = conn_card_stack,conn_flip_carousel,conn_flip_gallery,conn_mosaic_gallery,conn_timeline,conn_stats,conn_logo_wall,conn_testimonials,conn_bs_pricing,conn_feature_grid,conn_process,conn_before_after,conn_people,conn_quote,conn_alert
+    'mod.wizards.newContentElement.wizardItems.conn.show = conn_card_stack,conn_shift_carousel,conn_lightbox_gallery,conn_mosaic_gallery,conn_timeline,conn_stats,conn_logo_wall,conn_testimonials,conn_bs_pricing,conn_feature_grid,conn_process,conn_before_after,conn_people,conn_quote,conn_alert
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_card_stack {
         iconIdentifier = conn-ce-card-stack
         title = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack
         description = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.card_stack.description
         tt_content_defValues.CType = conn_card_stack
     }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_flip_carousel {
-        iconIdentifier = conn-ce-flip-carousel
-        title = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel
-        description = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_carousel.description
-        tt_content_defValues.CType = conn_flip_carousel
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_shift_carousel {
+        iconIdentifier = conn-ce-shift-carousel
+        title = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.shift_carousel
+        description = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.shift_carousel.description
+        tt_content_defValues.CType = conn_shift_carousel
     }
-     mod.wizards.newContentElement.wizardItems.conn.elements.conn_flip_gallery {
-        iconIdentifier = conn-ce-flip-gallery
-        title = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery
-        description = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.flip_gallery.description
-        tt_content_defValues.CType = conn_flip_gallery
+     mod.wizards.newContentElement.wizardItems.conn.elements.conn_lightbox_gallery {
+        iconIdentifier = conn-ce-lightbox-gallery
+        title = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.lightbox_gallery
+        description = LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:ce.lightbox_gallery.description
+        tt_content_defValues.CType = conn_lightbox_gallery
     }
      mod.wizards.newContentElement.wizardItems.conn.elements.conn_mosaic_gallery {
         iconIdentifier = conn-ce-mosaic-gallery

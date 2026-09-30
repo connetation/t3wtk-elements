@@ -324,12 +324,12 @@ GSAP-animated stacked deck of cards with prev/next navigation — cards
 animate in a stacked, layered transition rather than sliding. Key
 settings: autoplay + delay, nav position, text alignment/position.
 
-.. _ce-flip-carousel:
+.. _ce-shift-carousel:
 
-Flip Carousel
+Shift Carousel
 ----------------
 
-:CType: ``conn_flip_carousel``
+:CType: ``conn_shift_carousel``
 
 Filterable grid of cards (each with title, subtitle, category, body,
 link) that re-flows with a GSAP Flip animation when a category filter is
@@ -337,12 +337,12 @@ applied — the layout change itself is animated, not just the content.
 Key settings: columns, autoplay + delay, nav position, text
 alignment/position.
 
-.. _ce-flip-gallery:
+.. _ce-lightbox-gallery:
 
-Flip Gallery
+Lightbox Gallery
 ---------------
 
-:CType: ``conn_flip_gallery``
+:CType: ``conn_lightbox_gallery``
 
 Image grid with a GSAP Flip animation that expands a clicked image into
 a lightbox view — entirely image-driven. Key settings: columns, gap,

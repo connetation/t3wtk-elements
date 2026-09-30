@@ -22,10 +22,10 @@ CREATE TABLE tt_content (
     tx_conn_t3kit_elements_text_animation            varchar(30) DEFAULT '' NOT NULL,
     tx_conn_t3kit_elements_card_stack_items          int(11) DEFAULT '0' NOT NULL,
     tx_conn_t3kit_elements_card_stack_settings       mediumtext,
-    tx_conn_t3kit_elements_flip_carousel_items       int(11) DEFAULT '0' NOT NULL,
-    tx_conn_t3kit_elements_flip_carousel_settings    mediumtext,
-    tx_conn_t3kit_elements_flip_gallery_items          int(11) DEFAULT '0' NOT NULL,
-    tx_conn_t3kit_elements_flip_gallery_settings       mediumtext,
+    tx_conn_t3kit_elements_shift_carousel_items       int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_shift_carousel_settings    mediumtext,
+    tx_conn_t3kit_elements_lightbox_gallery_items          int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_lightbox_gallery_settings       mediumtext,
     tx_conn_t3kit_elements_mosaic_gallery_items       int(11) DEFAULT '0' NOT NULL,
     tx_conn_t3kit_elements_mosaic_gallery_settings    mediumtext,
     tx_conn_t3kit_elements_carousel_items    int(11) DEFAULT '0' NOT NULL,
@@ -75,7 +75,9 @@ CREATE TABLE tt_content (
     tx_conn_t3kit_elements_video_hero_poster       int(11) DEFAULT '0' NOT NULL,
     tx_conn_t3kit_elements_video_hero_settings     mediumtext,
     tx_conn_t3kit_elements_map_illustration_image  int(11) DEFAULT '0' NOT NULL,
-    tx_conn_t3kit_elements_map_settings            mediumtext
+    tx_conn_t3kit_elements_map_settings            mediumtext,
+    tx_conn_t3kit_elements_flip_card_items         int(11) DEFAULT '0' NOT NULL,
+    tx_conn_t3kit_elements_flip_card_settings      mediumtext
 );
 
 -- ─── Video Hero: per-media "Muted" (core sys_file_reference) ────────────────
@@ -122,7 +124,15 @@ CREATE TABLE tx_conn_t3kit_elements_domain_model_accordion_item (
     content_element int(11) DEFAULT '0' NOT NULL,
 
     title           varchar(255) DEFAULT '' NOT NULL,
+    title_layout    int(11) DEFAULT '0' NOT NULL,
+    title_class     varchar(30) DEFAULT '' NOT NULL,
+    subtitle        varchar(255) DEFAULT '' NOT NULL,
+    image           int(11) unsigned DEFAULT '0' NOT NULL,
+    back_title      varchar(255) DEFAULT '' NOT NULL,
+    back_title_layout int(11) DEFAULT '0' NOT NULL,
     body            mediumtext,
+    link            varchar(2048) DEFAULT '' NOT NULL,
+    link_label      varchar(100) DEFAULT '' NOT NULL,
 
     PRIMARY KEY (uid),
     KEY parent (pid),
@@ -204,9 +214,9 @@ CREATE TABLE tx_conn_t3kit_elements_domain_model_stack_card (
     KEY content_element (content_element)
 );
 
--- ─── GSAP Flip Carousel ───────────────────────────────────────────────────────
+-- ─── GSAP Shift Carousel ───────────────────────────────────────────────────────
 
-CREATE TABLE tx_conn_t3kit_elements_domain_model_flip_carousel_item (
+CREATE TABLE tx_conn_t3kit_elements_domain_model_shift_carousel_item (
     uid             int(11) NOT NULL auto_increment,
     pid             int(11) DEFAULT '0' NOT NULL,
     tstamp          int(11) DEFAULT '0' NOT NULL,
@@ -252,7 +262,7 @@ CREATE TABLE tx_conn_t3kit_elements_domain_model_carousel_slide (
     KEY content_element (content_element)
 );
 
--- ─── GSAP Flip Gallery ────────────────────────────────────────────────────────
+-- ─── GSAP Lightbox Gallery ────────────────────────────────────────────────────────
 
 CREATE TABLE tx_conn_t3kit_elements_domain_model_gallery_item (
     uid             int(11) NOT NULL auto_increment,
@@ -491,4 +501,33 @@ CREATE TABLE pages (
     tx_conn_t3kit_elements_card_teaser text,
     tx_conn_t3kit_elements_card_link   varchar(2048) DEFAULT '' NOT NULL,
     tx_conn_t3kit_elements_card_media  int(11) unsigned DEFAULT '0' NOT NULL
+);
+
+-- ─── Flip Card ────────────────────────────────────────────────────────────────
+
+CREATE TABLE tx_conn_t3kit_elements_domain_model_flip_card_item (
+    uid             int(11) NOT NULL auto_increment,
+    pid             int(11) DEFAULT '0' NOT NULL,
+    tstamp          int(11) DEFAULT '0' NOT NULL,
+    crdate          int(11) DEFAULT '0' NOT NULL,
+    deleted         tinyint(4) DEFAULT '0' NOT NULL,
+    hidden          tinyint(4) DEFAULT '0' NOT NULL,
+    sorting         int(11) DEFAULT '0' NOT NULL,
+    content_element int(11) DEFAULT '0' NOT NULL,
+
+    title           varchar(255) DEFAULT '' NOT NULL,
+    subtitle        varchar(255) DEFAULT '' NOT NULL,
+    body            mediumtext,
+    image           int(11) unsigned DEFAULT '0' NOT NULL,
+
+    back_title      varchar(255) DEFAULT '' NOT NULL,
+    back_subtitle   varchar(255) DEFAULT '' NOT NULL,
+    back_body       mediumtext,
+    back_image      int(11) unsigned DEFAULT '0' NOT NULL,
+    back_link       varchar(2048) DEFAULT '' NOT NULL,
+    back_link_label varchar(100) DEFAULT '' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY content_element (content_element)
 );

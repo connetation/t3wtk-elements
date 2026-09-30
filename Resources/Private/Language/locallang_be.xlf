@@ -389,48 +389,48 @@
             <trans-unit id="stack_card.image">
                 <source>Image</source>
             </trans-unit>
-            <!-- GSAP Flip Carousel content element -->
-            <trans-unit id="ce.flip_carousel">
-                <source>Flip Carousel</source>
+            <!-- GSAP Shift Carousel content element -->
+            <trans-unit id="ce.shift_carousel">
+                <source>Shift Carousel</source>
             </trans-unit>
-            <trans-unit id="ce.flip_carousel.description">
-                <source>Filterable grid of cards with GSAP Flip animation on category filter</source>
+            <trans-unit id="ce.shift_carousel.description">
+                <source>Row of cards that shifts one step per click, swipe or autoplay tick, scaling cards in and out at the edges</source>
             </trans-unit>
-            <trans-unit id="flip_carousel.tab.config">
-                <source>Flip Carousel Settings</source>
+            <trans-unit id="shift_carousel.tab.config">
+                <source>Shift Carousel Settings</source>
             </trans-unit>
-            <trans-unit id="flip_carousel.items">
+            <trans-unit id="shift_carousel.items">
                 <source>Carousel Items</source>
             </trans-unit>
-            <trans-unit id="flip_carousel.settings">
+            <trans-unit id="shift_carousel.settings">
                 <source>Display Settings</source>
             </trans-unit>
-            <!-- Flip carousel item model -->
-            <trans-unit id="model.flip_carousel_item">
+            <!-- Shift carousel item model -->
+            <trans-unit id="model.shift_carousel_item">
                 <source>Carousel Item</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.title">
+            <trans-unit id="shift_carousel_item.title">
                 <source>Title</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.subtitle">
+            <trans-unit id="shift_carousel_item.subtitle">
                 <source>Subtitle</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.category">
+            <trans-unit id="shift_carousel_item.category">
                 <source>Category (for filter)</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.body">
+            <trans-unit id="shift_carousel_item.body">
                 <source>Body Text</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.image">
+            <trans-unit id="shift_carousel_item.image">
                 <source>Image</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.link">
+            <trans-unit id="shift_carousel_item.link">
                 <source>Link</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.link_label">
+            <trans-unit id="shift_carousel_item.link_label">
                 <source>Link Label</source>
             </trans-unit>
-            <trans-unit id="flip_carousel_item.tab.link">
+            <trans-unit id="shift_carousel_item.tab.link">
                 <source>Link</source>
             </trans-unit>
             <!-- Mosaic Gallery content element -->
@@ -462,20 +462,20 @@
             <trans-unit id="mosaic_item.image">
                 <source>Image</source>
             </trans-unit>
-            <!-- GSAP Flip Gallery content element -->
-            <trans-unit id="ce.flip_gallery">
-                <source>Flip Gallery</source>
+            <!-- GSAP Lightbox Gallery content element -->
+            <trans-unit id="ce.lightbox_gallery">
+                <source>Lightbox Gallery</source>
             </trans-unit>
-            <trans-unit id="ce.flip_gallery.description">
+            <trans-unit id="ce.lightbox_gallery.description">
                 <source>Image grid with GSAP Flip lightbox expansion on click</source>
             </trans-unit>
-            <trans-unit id="flip_gallery.tab.config">
-                <source>Flip Gallery Settings</source>
+            <trans-unit id="lightbox_gallery.tab.config">
+                <source>Lightbox Gallery Settings</source>
             </trans-unit>
-            <trans-unit id="flip_gallery.items">
+            <trans-unit id="lightbox_gallery.items">
                 <source>Gallery Images</source>
             </trans-unit>
-            <trans-unit id="flip_gallery.settings">
+            <trans-unit id="lightbox_gallery.settings">
                 <source>Display Settings</source>
             </trans-unit>
             <!-- Gallery item model -->
@@ -1195,6 +1195,59 @@
             </trans-unit>
             <trans-unit id="pages.card_media.description">
                 <source>Empty = the first image of the page's "Resources" tab is used.</source>
+            </trans-unit>
+
+            <!-- Flip Card content element -->
+            <trans-unit id="ce.flip_card">
+                <source>Flip Card</source>
+            </trans-unit>
+            <trans-unit id="ce.flip_card.description">
+                <source>Grid of cards that turn over in 3D on hover or click to reveal text and a link on the back</source>
+            </trans-unit>
+            <trans-unit id="flip_card.tab.config">
+                <source>Flip Card Settings</source>
+            </trans-unit>
+            <trans-unit id="flip_card.items">
+                <source>Cards</source>
+            </trans-unit>
+            <trans-unit id="flip_card.settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="model.flip_card_item">
+                <source>Flip Card</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.tab.front">
+                <source>Front</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.tab.back">
+                <source>Back</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.image">
+                <source>Background image</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.palette.colors">
+                <source>Colors</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.bg_color">
+                <source>Background color</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.bg_color.description">
+                <source>With a background image this tints the image instead of the default dark gradient; lower the opacity to let the image show through.</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.title_color">
+                <source>Header color</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.subtitle_color">
+                <source>Subheader color</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.text_color">
+                <source>Text color</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.text_color.description">
+                <source>Body text and its links. A font color set in the text editor still wins.</source>
+            </trans-unit>
+            <trans-unit id="flip_card_item.image.description">
+                <source>Fills this side of the card; the text is shown over it on a dark gradient.</source>
             </trans-unit>
         </body>
     </file>

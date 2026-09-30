@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.columns>
+                        <label>Cards per row</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>3</default>
+                            <items>
+                                <numIndex index="0"><label>1 column</label><value>1</value></numIndex>
+                                <numIndex index="1"><label>2 columns</label><value>2</value></numIndex>
+                                <numIndex index="2"><label>3 columns (default)</label><value>3</value></numIndex>
+                                <numIndex index="3"><label>4 columns</label><value>4</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.columns>
+                    <settings.ratio>
+                        <label>Card shape</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>portrait</default>
+                            <items>
+                                <numIndex index="0"><label>Portrait 3:4 (default)</label><value>portrait</value></numIndex>
+                                <numIndex index="1"><label>Square 1:1</label><value>square</value></numIndex>
+                                <numIndex index="2"><label>Landscape 4:3</label><value>landscape</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.ratio>
+                    <settings.contentPosition>
+                        <label>Content position</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>bottom</default>
+                            <items>
+                                <numIndex index="0"><label>Bottom (default)</label><value>bottom</value></numIndex>
+                                <numIndex index="1"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="2"><label>Top</label><value>top</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.contentPosition>
+                    <settings.direction>
+                        <label>Flip direction</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>horizontal</default>
+                            <items>
+                                <numIndex index="0"><label>Horizontal (default)</label><value>horizontal</value></numIndex>
+                                <numIndex index="1"><label>Vertical</label><value>vertical</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.direction>
+                    <settings.trigger>
+                        <label>Flip on</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>hover</default>
+                            <items>
+                                <numIndex index="0"><label>Hover, click pins it (default)</label><value>hover</value></numIndex>
+                                <numIndex index="1"><label>Click only</label><value>click</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.trigger>
+                    <settings.style>
+                        <label>Card style</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>default</default>
+                            <items>
+                                <numIndex index="0"><label>Default (bordered)</label><value>default</value></numIndex>
+                                <numIndex index="1"><label>Shadow</label><value>shadow</value></numIndex>
+                                <numIndex index="2"><label>Flat (no border)</label><value>flat</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.style>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

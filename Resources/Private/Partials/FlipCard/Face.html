@@ -1,0 +1,57 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/T3kitBase/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="conn-flip-card__face conn-flip-card__face--{side}{f:if(condition: image, then: ' conn-flip-card__face--has-image')}" style="{style}">
+
+    <f:if condition="{image}">
+        <f:variable name="imgAlt" value="" />
+        <f:if condition="{image.alternative}"><f:variable name="imgAlt" value="{image.alternative}" /></f:if>
+        <conn:responsiveImage image="{image}"
+                            class="conn-flip-card__image"
+                            alt="{imgAlt}"
+                            title="{image.title}"
+                            widths="480,640,800,1200"
+                            sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" />
+    </f:if>
+
+    <div class="conn-flip-card__content">
+        <f:if condition="{eyebrow}">
+            <f:then>
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: subtitle, layout: subtitleLayout, class: 'conn-flip-card__subtitle conn-flip-card__subtitle--eyebrow text-{subtitleAlign} {subtitleClass}', defaultTag: 'p'}" />
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: title, layout: titleLayout, class: 'conn-flip-card__title text-{titleAlign} {titleClass}', defaultTag: 'h3'}" />
+            </f:then>
+            <f:else>
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: title, layout: titleLayout, class: 'conn-flip-card__title text-{titleAlign} {titleClass}', defaultTag: 'h3'}" />
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: subtitle, layout: subtitleLayout, class: 'conn-flip-card__subtitle text-{subtitleAlign} {subtitleClass}', defaultTag: 'h4'}" />
+            </f:else>
+        </f:if>
+        <f:if condition="{body}">
+            <div class="conn-flip-card__body">
+                {body -> f:format.html()}
+            </div>
+        </f:if>
+        <f:if condition="{link}">
+            <div class="conn-flip-card__footer text-{linkAlign}">
+                <f:link.typolink parameter="{link}" class="btn btn-sm {f:if(condition: image, then: 'btn-outline-light', else: 'btn-outline-primary')} conn-flip-card__link">
+                    <f:if condition="{linkLabel}">
+                        <f:then>{linkLabel}</f:then>
+                        <f:else>More</f:else>
+                    </f:if>
+                </f:link.typolink>
+            </div>
+        </f:if>
+    </div>
+
+    <f:if condition="{side} == 'front'">
+        <span class="conn-flip-card__hint" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+            </svg>
+        </span>
+    </f:if>
+
+</div>
+
+</html>

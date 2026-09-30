@@ -1,0 +1,10 @@
+tt_content.conn_flip_card =< lib.conn_t3kit_elements_ce
+tt_content.conn_flip_card {
+    templateName = FlipCard
+    dataProcessing {
+        10 = Connetation\T3kitElements\DataProcessing\FlipCardItemsProcessor
+        10 {
+            as = cards
+        }
+    }
+}

@@ -4,8 +4,8 @@
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/SubpageCards.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/CardStack.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/Carousel.typoscript'
-@import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/FlipCarousel.typoscript'
-@import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/FlipGallery.typoscript'
+@import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/ShiftCarousel.typoscript'
+@import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/LightboxGallery.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/Grid.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/HeroSlider.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/MosaicGallery.typoscript'
@@ -30,3 +30,5 @@
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/TextIcon.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/VideoHero.typoscript'
 @import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/Map.typoscript'
+
+@import 'EXT:conn_t3kit_elements/Configuration/TypoScript/ContentElements/FlipCard.typoscript'

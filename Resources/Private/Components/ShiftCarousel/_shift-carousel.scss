@@ -1,0 +1,179 @@
+// ─────────────────────────────────────────────
+// GSAP Shift Carousel (Caterpillar) Content Element
+// ─────────────────────────────────────────────
+
+// Real headings elsewhere inherit conn/t3kit-base's shared heading system
+// (components/_typography.scss for h1-h3, Bootstrap defaults for h4-h6,
+// global $headings-font-weight/--bs-heading-color). &__item-title and
+// &__item-subtitle below are exceptions: title_layout/subtitle_layout both
+// default to a plain <p> (not a heading), so they keep their own compact
+// caption sizes — see comment at those rules.
+
+.conn-shift-carousel {
+
+    // ── Viewport (track + nav wrapper; provides positioning context for sides mode)
+    &__viewport {
+        position: relative;
+    }
+
+    // ── Flex track ───────────────────────────────
+    &__track {
+        --conn-items: 4;
+        position: relative; // required by GSAP Flip absoluteOnLeave
+        display: flex;
+        gap: 8px;
+        overflow: hidden;
+        touch-action: pan-y; // allow vertical scroll, handle horizontal in JS
+        cursor: grab;
+        user-select: none;
+    }
+
+    // ── Individual item ──────────────────────────
+    &__item {
+        flex: 0 0 calc((100% - (var(--conn-items) - 1) * 8px) / var(--conn-items));
+        min-width: 0;
+        position: relative;
+
+        &.hide { display: none; }
+    }
+
+    // ── Image aspect-ratio wrapper ───────────────
+    &__img-wrap {
+        position: relative;
+        width: 100%;
+        padding-top: 150%;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+    }
+
+    &__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    // ── Text overlay (default: bottom) ──────────
+    &__item-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.875rem 1rem 0.75rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, transparent 100%);
+        color: #fff;
+        pointer-events: none;
+    }
+
+    // title_layout/subtitle_layout both default to <p>, so these can't rely on
+    // the shared h1-h3 scale for the common case; kept as their own compact
+    // overlay-caption sizes regardless of which tag (p or h1-h5) is rendered.
+    &__item-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    &__item-subtitle {
+        font-size: 0.75rem;
+        opacity: 0.8;
+        margin: 0 0 0.2rem;
+        line-height: 1.3;
+    }
+
+    // ── Position modifiers ───────────────────────
+    &--pos-top &__item-body {
+        top: 0;
+        bottom: auto;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, transparent 100%);
+    }
+
+    &--pos-center &__item-body {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.55);
+        padding: var(--conn-space-sm);
+    }
+
+    // ── Alignment modifiers ──────────────────────
+    &--align-center &__item-body { text-align: center; }
+    &--align-right  &__item-body { text-align: right; }
+
+    // ── Navigation row ───────────────────────────
+    &__nav {
+        display: flex;
+        justify-content: center;
+        gap: var(--conn-space-sm);
+        margin-top: 1.5rem;
+    }
+
+    // ── Nav position modifiers ───────────────────
+    // none: hide buttons entirely (drag/swipe only)
+    &--nav-none &__nav { display: none; }
+
+    // sides: grid-stack track and nav in the same cell so the nav
+    // inherits the exact height of the track without needing an explicit
+    // height on the viewport (position:absolute + bottom:0 fails when
+    // the containing block has height:auto).
+    &--nav-sides &__viewport {
+        display: grid;
+    }
+
+    &--nav-sides &__track,
+    &--nav-sides &__nav {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    &--nav-sides &__nav {
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+        margin: 0;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    &--nav-sides &__btn {
+        pointer-events: all;
+        background: var(--conn-surface);
+        box-shadow: var(--conn-shadow-card);
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50rem;
+        background: var(--conn-surface);
+        border: 1px solid var(--conn-border);
+        color: var(--conn-text-muted);
+        cursor: pointer;
+        transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease,
+            box-shadow 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--conn-surface-hover);
+            border-color: var(--conn-border-strong);
+            color: var(--conn-accent);
+            box-shadow: var(--conn-shadow-card);
+            outline: none;
+        }
+
+        svg { display: block; }
+    }
+}
