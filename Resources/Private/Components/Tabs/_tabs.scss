@@ -41,6 +41,13 @@
             }
         }
 
+        // Connected style: the active tab shares the pane's surface and its
+        // bottom border is coloured to match, so tab and pane read as one.
+        &.conn-tabs__nav--connected .nav-link.active {
+            background-color: var(--conn-surface);
+            border-color: var(--conn-border) var(--conn-border) var(--conn-surface);
+        }
+
         // Pills style: solid accent background instead of an underline/border
         &.nav-pills .nav-link.active {
             color: var(--conn-btn-color);
@@ -72,6 +79,50 @@
         }
 
         p:last-child { margin-bottom: 0; }
+    }
+
+    // ── Mobile: one horizontally scrollable row instead of wrapping ───
+    // Wrapped rows break the tab/pane connection, so below md the nav keeps
+    // all tabs on one line; tabs.ts toggles the is-overflow-* classes that
+    // fade out whichever edge still has hidden tabs behind it (plus a one-time
+    // nudge animation on first view, also in tabs.ts).
+    @media (max-width: 767.98px) {
+        .conn-tabs__nav {
+            --conn-tabs-fade: 2.5rem;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar { display: none; }
+
+            .nav-item { flex: 0 0 auto; }
+            &.nav-justified .nav-item { flex: 1 0 auto; }
+            .nav-link { white-space: nowrap; }
+
+            &.is-overflow-start,
+            &.is-overflow-end {
+                --conn-tabs-fade-start: #000;
+                --conn-tabs-fade-end: #000;
+                -webkit-mask-image: linear-gradient(to right, var(--conn-tabs-fade-start), #000 var(--conn-tabs-fade), #000 calc(100% - var(--conn-tabs-fade)), var(--conn-tabs-fade-end));
+                mask-image: linear-gradient(to right, var(--conn-tabs-fade-start), #000 var(--conn-tabs-fade), #000 calc(100% - var(--conn-tabs-fade)), var(--conn-tabs-fade-end));
+            }
+
+            &.is-overflow-start { --conn-tabs-fade-start: transparent; }
+            &.is-overflow-end { --conn-tabs-fade-end: transparent; }
+        }
+
+        // Tabs styles: the scroll container clips its own border-bottom (and
+        // the tabs' -1px overlap onto it), so draw the baseline as a
+        // background line the active tab can sit on top of instead.
+        .conn-tabs__nav:not(.nav-pills) {
+            border-bottom: 0;
+            background: linear-gradient(var(--conn-border), var(--conn-border)) left bottom / 100% 1px no-repeat;
+
+            .nav-link { margin-bottom: 0; }
+        }
+
+        .conn-tabs__indicator { bottom: 0; }
     }
 
     // ── Corners (settings.borderRadius → --conn-tabs-radius) ──────────

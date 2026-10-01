@@ -37,7 +37,9 @@ final class TabItemsProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $style = ($raw['style'] ?? 'tabs') === 'pills' ? 'pills' : 'tabs';
+        $style = in_array($raw['style'] ?? 'tabs', ['tabs', 'connected', 'pills'], true) ? $raw['style'] : 'tabs';
+        // "connected" is a nav-tabs variant whose active tab merges into the pane
+        $navClass = $style === 'connected' ? 'nav-tabs conn-tabs__nav--connected' : 'nav-' . $style;
 
         return [
             'style'          => $style,
@@ -48,7 +50,7 @@ final class TabItemsProcessor extends AbstractItemsProcessor
                 $raw['borderRadius'] ?? null,
                 !empty($raw['roundedCorners']) ? RadiusOptions::THEME_DEFAULT : 'none'
             ),
-            'navClass'       => 'nav-' . $style . (!empty($raw['justified']) ? ' nav-justified' : ''),
+            'navClass'       => $navClass . (!empty($raw['justified']) ? ' nav-justified' : ''),
             'paneClass'      => !empty($raw['fade'] ?? true) ? 'fade' : '',
         ];
     }
