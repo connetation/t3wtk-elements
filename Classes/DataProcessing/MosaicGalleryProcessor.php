@@ -39,6 +39,7 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
         $allowedCaption  = ['overlay', 'below'];
         $allowedAspects  = ['none', '1/1', '4/3', '16/9', '3/4'];
         $allowedScrim    = ['none', 'light', 'medium', 'strong', 'solid'];
+        $allowedPatterns = ['repeat', 'alternate'];
 
         // Backward compat: old instances without layoutType derive it from aspectRatio
         $layoutType = $raw['layoutType'] ?? '';
@@ -63,9 +64,12 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
             ? ($raw['aspectRatio'] ?? 'none') : 'none';
         $captionScrim  = in_array($raw['captionScrim'] ?? 'medium', $allowedScrim, true)
             ? ($raw['captionScrim'] ?? 'medium') : 'medium';
+        $metroPattern  = in_array($raw['metroPattern'] ?? 'repeat', $allowedPatterns, true)
+            ? ($raw['metroPattern'] ?? 'repeat') : 'repeat';
 
         return [
             'layoutType'        => $layoutType,
+            'metroPattern'      => $metroPattern,
             'columns'           => $columns,
             'galleryHeight'     => $galleryHeight,
             'gap'               => $gap,
@@ -87,6 +91,7 @@ final class MosaicGalleryProcessor extends AbstractItemsProcessor
     {
         return [
             'layoutType'        => 'masonry',
+            'metroPattern'      => 'repeat',
             'columns'           => 3,
             'galleryHeight'     => 280,
             'gap'               => 'medium',

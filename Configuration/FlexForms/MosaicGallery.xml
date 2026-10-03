@@ -21,6 +21,20 @@
                             </items>
                         </config>
                     </settings.layoutType>
+                    <settings.metroPattern>
+                        <label>Metro pattern</label>
+                        <description>Repeat: the large tile is always on the left. Alternate: the large tile switches between left and right on every group of five images.</description>
+                        <displayCond>FIELD:settings.layoutType:=:metro</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>repeat</default>
+                            <items>
+                                <numIndex index="0"><label>Repeat (large tile always left)</label><value>repeat</value></numIndex>
+                                <numIndex index="1"><label>Alternate (large tile left / right)</label><value>alternate</value></numIndex>
+                            </items>
+                        </config>
+                    </settings.metroPattern>
                     <settings.columns>
                         <label>Columns (desktop)</label>
                         <displayCond>FIELD:settings.layoutType:IN:masonry,grid</displayCond>

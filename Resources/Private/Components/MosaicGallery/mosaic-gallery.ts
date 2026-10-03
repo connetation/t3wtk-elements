@@ -3,6 +3,7 @@
  *
  * Layout types handled by JS: masonry, justified.
  * Layout types handled by pure CSS: grid, metro, fisheye.
+ * Metro closes an incomplete last group via CSS spans — no cloned items.
  *
  * Lightbox ("Open in lightbox" setting) is real GLightbox — it self-binds
  * to the `.glightbox` anchors rendered in Partials/MosaicGallery/Item.html
@@ -31,29 +32,8 @@ class MosaicGallery {
         this.initLayout();
     }
 
-    // ─── Metro: pad to next multiple of 5 by cycling from start ──
-    private initMetro(): void {
-        const items  = Array.from(this.grid.querySelectorAll<HTMLElement>('.conn-mosaic-gallery__item'));
-        if (items.length === 0) return;
-
-        const needed = (5 - (items.length % 5)) % 5;
-        for (let i = 0; i < needed; i++) {
-            const srcIndex = i % items.length;
-            const clone    = items[srcIndex].cloneNode(true) as HTMLElement;
-            clone.setAttribute('aria-hidden', 'true');
-
-            // Decorative padding only — unwrap any lightbox link so the
-            // clone isn't a second, redundant trigger for the same image.
-            const link = clone.querySelector('a.glightbox');
-            if (link) link.replaceWith(...Array.from(link.childNodes));
-
-            this.grid.appendChild(clone);
-        }
-    }
-
     // ─── Layout init (masonry + justified require JS recalculation) ─
     private initLayout(): void {
-        if (this.layoutType === 'metro') { this.initMetro(); return; }
         if (this.layoutType !== 'masonry' && this.layoutType !== 'justified') return;
 
         this.layoutItems = Array.from(
