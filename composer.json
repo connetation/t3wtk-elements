@@ -1,24 +1,34 @@
 {
-    "name": "conn/t3kit-elements",
-    "version": "2.0.2",
+    "name": "connetation/t3wtk-elements",
+    "version": "3.0.0",
     "description": "Connetation Content Elements for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Connetation Web Engineering GmbH",
+            "email": "office@connetation.at",
+            "homepage": "https://www.connetation.at/"
+        }
+    ],
     "require": {
         "b13/container": "^3.2",
         "typo3/cms-core": "^14.0",
         "typo3/cms-fluid": "^14.0",
         "typo3/cms-frontend": "^14.0",
-        "conn/t3kit-base": "^2.0.0"
+        "connetation/t3wtk-base": "^3.0.0"
+    },
+    "replace": {
+        "conn/t3kit-elements": "self.version"
     },
     "autoload": {
         "psr-4": {
-            "Connetation\\T3kitElements\\": "Classes/"
+            "Connetation\\T3wtkElements\\": "Classes/"
         }
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "conn_t3kit_elements"
+            "extension-key": "conn_t3wtk_elements"
         }
     }
 }

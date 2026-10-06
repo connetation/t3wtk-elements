@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\DataProcessing;
+namespace Connetation\T3wtkElements\DataProcessing;
 
-use Connetation\T3kitBase\Utility\RadiusOptions;
+use Connetation\T3wtkBase\Utility\RadiusOptions;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -13,7 +13,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 final class AlertSettingsProcessor implements DataProcessorInterface
 {
-    private const SETTINGS_FIELD = 'tx_conn_t3kit_elements_alert_settings';
+    private const SETTINGS_FIELD = 'tx_conn_t3wtk_elements_alert_settings';
     private const STYLES = ['info', 'success', 'warning', 'danger', 'custom'];
     private const POSITIONS = ['static', 'fixed-top', 'fixed-bottom', 'edge-left', 'edge-right'];
     private const VERTICAL_ALIGNS = ['top', 'center', 'bottom'];

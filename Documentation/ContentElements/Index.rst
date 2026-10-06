@@ -6,7 +6,7 @@
 Content Elements Catalog
 =========================
 
-Every content element shipped by ``conn/t3kit-elements``, with what it's for,
+Every content element shipped by ``connetation/t3wtk-elements``, with what it's for,
 what it's technically built on, and its key configurable settings
 (available as FlexForm fields in the backend "Display" tab of each
 element, unless noted otherwise).
@@ -250,7 +250,7 @@ Sliders (Swiper.js)
 ======================
 
 Four elements share the same underlying slide/child-record table
-(``tx_conn_t3kit_elements_domain_model_slide_item``) and are all built on the
+(``tx_conn_t3wtk_elements_domain_model_slide_item``) and are all built on the
 `Swiper <https://swiperjs.com/>`__ JavaScript library — they differ in
 layout/navigation style, not in their underlying data model.
 
@@ -452,7 +452,7 @@ pages grouped by category, full-text search, tag filtering, and each
 page built from ordered content "blocks" (text or code, with syntax
 language). Unlike every other element here, the actual content (pages,
 categories, tags, blocks) lives in its own dedicated tables pointed to
-by a single ``tx_conn_t3kit_elements_wiki_id`` field on the content element —
+by a single ``tx_conn_t3wtk_elements_wiki_id`` field on the content element —
 not inline child records directly on ``tt_content`` — so one wiki
 "directory" record can in principle be reused, and the backend also
 ships a dedicated Wiki administration module

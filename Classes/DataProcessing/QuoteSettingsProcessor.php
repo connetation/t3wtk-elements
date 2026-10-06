@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\DataProcessing;
+namespace Connetation\T3wtkElements\DataProcessing;
 
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -12,7 +12,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 final class QuoteSettingsProcessor implements DataProcessorInterface
 {
-    private const SETTINGS_FIELD = 'tx_conn_t3kit_elements_quote_settings';
+    private const SETTINGS_FIELD = 'tx_conn_t3wtk_elements_quote_settings';
     private const STYLES = ['mark', 'minimal', 'simple', 'container', 'sketch'];
     private const ALIGNMENTS = ['left', 'center', 'right'];
     private const TEXT_SIZES = ['small' => '1.1rem', 'large' => '1.6rem', 'xlarge' => '2rem'];

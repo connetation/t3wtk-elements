@@ -1,8 +1,8 @@
-tt_content.conn_lightbox_gallery =< lib.conn_t3kit_elements_ce
+tt_content.conn_lightbox_gallery =< lib.conn_t3wtk_elements_ce
 tt_content.conn_lightbox_gallery {
     templateName = LightboxGallery
     dataProcessing {
-        10 = Connetation\T3kitElements\DataProcessing\LightboxGalleryProcessor
+        10 = Connetation\T3wtkElements\DataProcessing\LightboxGalleryProcessor
         10 {
             as = items
         }

@@ -1,4 +1,4 @@
-# conn/t3kit-elements
+# connetation/t3wtk-elements
 
 TYPO3 14 content elements package for Connetation.
 
@@ -14,7 +14,7 @@ All image-rendering elements use `<ce:responsiveImage>` (`Classes/ViewHelpers/Re
 
 ## Build
 
-**Local** — run from `vendor/conn/t3kit-elements/`:
+**Local** — run from `vendor/connetation/t3wtk-elements/`:
 ```bash
 npm install
 npm run build        # production build (SCSS + JS)
@@ -25,7 +25,7 @@ npm run build:js     # JS only
 
 **DDEV:**
 ```bash
-ddev exec "cd /var/www/html/vendor/conn/t3kit-elements && npm run build"
+ddev exec "cd /var/www/html/vendor/connetation/t3wtk-elements && npm run build"
 ```
 
 ## Adding a new content element
@@ -34,7 +34,7 @@ Use the scaffold CLI — it generates every required file and patches all regist
 
 **Local (Node.js installed on host):**
 ```bash
-cd vendor/conn/t3kit-elements
+cd vendor/connetation/t3wtk-elements
 npm run make-element
 ```
 
@@ -62,7 +62,7 @@ It asks three questions:
 |------|---------|
 | `Configuration/FlexForms/<Name>.xml` | Display settings form |
 | `Configuration/TypoScript/ContentElements/<Name>.typoscript` | Frontend rendering setup |
-| `Configuration/TCA/tx_conn_t3kit_elements_domain_model_<name>_item.php` | Child record TCA (with-items only) |
+| `Configuration/TCA/tx_conn_t3wtk_elements_domain_model_<name>_item.php` | Child record TCA (with-items only) |
 | `Classes/DataProcessing/<Name>ItemsProcessor.php` | DB query + FlexForm resolver (with-items only) |
 | `Resources/Private/Templates/ContentElements/<Name>.html` | Main Fluid template |
 | `Resources/Private/Partials/<Name>/Item.html` | Item partial (with-items only) |
@@ -87,11 +87,11 @@ These steps must be done **in order** — skipping or reordering them causes the
 
 Local:
 ```bash
-cd vendor/conn/t3kit-elements && npm run build
+cd vendor/connetation/t3wtk-elements && npm run build
 ```
 DDEV:
 ```bash
-ddev exec "cd /var/www/html/vendor/conn/t3kit-elements && npm run build"
+ddev exec "cd /var/www/html/vendor/connetation/t3wtk-elements && npm run build"
 ```
 
 **2. Flush TYPO3 caches** — so TYPO3 picks up the new TCA and SQL definitions
@@ -109,7 +109,7 @@ Skipping step 3 leaves the new column missing from the database, which causes `S
 ### Customising the generated element
 
 - **FlexForm** — edit `Configuration/FlexForms/<Name>.xml` to add/change display settings
-- **Child record fields** — extend `Configuration/TCA/tx_conn_t3kit_elements_domain_model_<name>_item.php` and `ext_tables.sql`, then re-run DB analysis
+- **Child record fields** — extend `Configuration/TCA/tx_conn_t3wtk_elements_domain_model_<name>_item.php` and `ext_tables.sql`, then re-run DB analysis
 - **Data Processor** — extend `resolveSettings()` and `$rows` enrichment in the generated processor
 - **Template** — edit the Fluid template and partial freely
 - **SCSS** — edit `_<name>.scss`; uses `var(--conn-*)` design tokens for consistent theming

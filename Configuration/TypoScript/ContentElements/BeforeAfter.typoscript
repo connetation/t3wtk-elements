@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────
-# Before/After Image Slider – conn_t3kit_elements
+# Before/After Image Slider – conn_t3wtk_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_before_after =< lib.conn_t3kit_elements_ce
+tt_content.conn_before_after =< lib.conn_t3wtk_elements_ce
 tt_content.conn_before_after {
     templateName = BeforeAfter
 }

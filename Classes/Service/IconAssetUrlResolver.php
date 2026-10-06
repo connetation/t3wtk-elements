@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\Service;
+namespace Connetation\T3wtkElements\Service;
 
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\SystemResource\Publishing\SystemResourcePublisherInterface;

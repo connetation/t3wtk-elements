@@ -2,7 +2,7 @@
 // Connetation Elements – Testimonials
 // ─────────────────────────────────────────────
 
-// Headings inherit conn/t3kit-base's shared heading system (components/_typography.scss
+// Headings inherit connetation/t3wtk-base's shared heading system (components/_typography.scss
 // for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
@@ -124,7 +124,7 @@
     }
 
     // &__author-name: no font-size/weight/color override — inherits the tag
-    // chosen via author_name_layout (conn/t3kit-base's shared heading system).
+    // chosen via author_name_layout (connetation/t3wtk-base's shared heading system).
     // margin: 0 on both — &__author-info is a flex column with its own `gap`,
     // so a heading tag's own default margin-bottom would add on top of that
     // gap whenever author_name_layout/author_role_layout renders a real

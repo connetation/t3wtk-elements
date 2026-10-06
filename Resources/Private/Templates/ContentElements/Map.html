@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:conn="http://typo3.org/ns/Connetation/T3kitBase/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/T3wtkBase/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
@@ -8,20 +8,20 @@
 
 <f:section name="Main">
 
-<f:asset.css identifier="conn-t3kit-elements-map-css"
-    href="EXT:conn_t3kit_elements/Resources/Public/Css/map.css" />
-<f:asset.css identifier="conn-t3kit-elements-contact-info-css"
-    href="EXT:conn_t3kit_elements/Resources/Public/Css/contact-info.css" />
+<f:asset.css identifier="conn-t3wtk-elements-map-css"
+    href="EXT:conn_t3wtk_elements/Resources/Public/Css/map.css" />
+<f:asset.css identifier="conn-t3wtk-elements-contact-info-css"
+    href="EXT:conn_t3wtk_elements/Resources/Public/Css/contact-info.css" />
 <f:if condition="{settings.showMap}">
-    <f:asset.script identifier="conn-t3kit-elements-map-js"
-        src="EXT:conn_t3kit_elements/Resources/Public/Js/components/map.js"
+    <f:asset.script identifier="conn-t3wtk-elements-map-js"
+        src="EXT:conn_t3wtk_elements/Resources/Public/Js/components/map.js"
         type="module"
         priority="false" />
 </f:if>
 
 <f:variable name="addressText">{settings.contact.address.street}, {settings.contact.address.zip} {settings.contact.address.city}, {settings.contact.address.country}</f:variable>
 
-<f:variable name="illustrationImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_map_illustration_image')}" />
+<f:variable name="illustrationImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3wtk_elements_map_illustration_image')}" />
 
 <f:variable name="hasIllustrationImage" value="0" />
 <f:if condition="{settings.provider} == 'static' && {illustrationImage}">
@@ -52,7 +52,7 @@
                 <f:if condition="{hasIllustrationImage}">
                     <f:if condition="{settings.contact.address.url}">
                         <f:then>
-                            <f:variable name="directionsLabel"><f:if condition="{settings.directionsLabel}"><f:then>{settings.directionsLabel}</f:then><f:else><f:translate key="contact_info.directions" extensionName="conn_t3kit_elements" /></f:else></f:if></f:variable>
+                            <f:variable name="directionsLabel"><f:if condition="{settings.directionsLabel}"><f:then>{settings.directionsLabel}</f:then><f:else><f:translate key="contact_info.directions" extensionName="conn_t3wtk_elements" /></f:else></f:if></f:variable>
                             <f:link.typolink parameter="{settings.contact.address.url}" target="_blank" class="conn-map__illustration-link" additionalAttributes="{'aria-label': directionsLabel}">
                                 <conn:responsiveImage image="{illustrationImage}" class="conn-map__illustration-img" alt="{illustrationImage.alternative}" widths="600,900,1200" sizes="(min-width: 768px) 58vw, 100vw" />
                             </f:link.typolink>
@@ -69,7 +69,7 @@
                             <button type="button" class="btn btn-primary conn-map__load-button">
                                 <f:if condition="{settings.loadLabel}">
                                     <f:then>{settings.loadLabel}</f:then>
-                                    <f:else><f:translate key="map.load" extensionName="conn_t3kit_elements" /></f:else>
+                                    <f:else><f:translate key="map.load" extensionName="conn_t3wtk_elements" /></f:else>
                                 </f:if>
                             </button>
                         </f:if>

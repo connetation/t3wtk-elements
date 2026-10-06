@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\DataProcessing;
+namespace Connetation\T3wtkElements\DataProcessing;
 
-use Connetation\T3kitBase\Utility\RadiusOptions;
-use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\RadiusOptions;
+use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
@@ -15,7 +15,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 /**
  * Subpage Cards: one card per page record instead of per child record.
  *
- * Page source (tt_content.tx_conn_t3kit_elements_subpage_cards_source):
+ * Page source (tt_content.tx_conn_t3wtk_elements_subpage_cards_source):
  *   ''         → subpages of the current page (default)
  *   'subpages' → subpages of the pages selected in tt_content.pages
  *                (falls back to the current page when nothing is selected)
@@ -32,7 +32,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 final class SubpageCardsProcessor extends AbstractItemsProcessor
 {
-    private const SOURCE_FIELD = 'tx_conn_t3kit_elements_subpage_cards_source';
+    private const SOURCE_FIELD = 'tx_conn_t3wtk_elements_subpage_cards_source';
 
     /** Doktypes rendered as cards: standard, external link, shortcut. */
     private const DOKTYPES = [
@@ -102,7 +102,7 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return $processorConfiguration['settingsField'] ?? 'tx_conn_t3kit_elements_subpage_cards_settings';
+        return $processorConfiguration['settingsField'] ?? 'tx_conn_t3wtk_elements_subpage_cards_settings';
     }
 
     protected function resolveSettings(array $raw, string $settingsField): array
@@ -119,7 +119,7 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
         // fall back to the theme radius.
         $borderRadius = RadiusOptions::resolve($raw['cardBorderRadius'] ?? null);
 
-        // CSS custom properties consumed by conn_t3kit_base's card tokens and
+        // CSS custom properties consumed by conn_t3wtk_base's card tokens and
         // the Card Group styles — empty values keep the theme defaults.
         $styleVars = '';
         if ($borderColor !== '') {
@@ -277,15 +277,15 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
         foreach ($pages as $page) {
             $referenceUids[] = (int)($page['_LOCALIZED_UID'] ?? $page['uid']);
         }
-        $cardMedia = $this->resolveFileReferences('pages', 'tx_conn_t3kit_elements_card_media', $referenceUids);
+        $cardMedia = $this->resolveFileReferences('pages', 'tx_conn_t3wtk_elements_card_media', $referenceUids);
         $pageMedia = $this->resolveFileReferences('pages', 'media', $referenceUids);
 
         $cards = [];
         foreach ($pages as $page) {
             $uid          = (int)$page['uid'];
             $referenceUid = (int)($page['_LOCALIZED_UID'] ?? $uid);
-            $teaser       = trim((string)($page['tx_conn_t3kit_elements_card_teaser'] ?? ''));
-            $link         = trim((string)($page['tx_conn_t3kit_elements_card_link'] ?? ''));
+            $teaser       = trim((string)($page['tx_conn_t3wtk_elements_card_teaser'] ?? ''));
+            $link         = trim((string)($page['tx_conn_t3wtk_elements_card_link'] ?? ''));
 
             $cards[] = [
                 'uid'       => $uid,

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\Upgrades;
+namespace Connetation\T3wtkElements\Upgrades;
 
 use TYPO3\CMS\Core\Attribute\UpgradeWizard;
 use TYPO3\CMS\Core\Database\Connection;
@@ -24,16 +24,17 @@ use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
  * The gallery's child table (…_domain_model_gallery_item) never carried "flip" in its
  * name and is unchanged.
  *
- * Accepts both the current "tx_conn_t3kit_elements_*" and the pre-extension-key-rename
- * "tx_conn_elements_*" source names, so it gives the same result whether it runs before
- * or after RenameExtensionKeySchemaUpdate.
+ * Accepts the current "tx_conn_t3wtk_elements_*", the pre-t3wtk "tx_conn_t3kit_elements_*"
+ * and the pre-extension-key-rename "tx_conn_elements_*" source names, so it gives the same
+ * result whether it runs before or after RenameExtensionKeySchemaUpdate /
+ * MigrateFromT3kitUpdate (EXT:conn_t3wtk_base).
  *
  * Same "clean rename vs. merge" handling as RenameExtensionKeySchemaUpdate, and for the
  * same reason: ext_tables.sql already declares the NEW names, so a schema sync that runs
  * first creates them empty alongside the old ones that still hold the data. Declares NO
  * prerequisites so it never triggers that sync itself.
  */
-#[UpgradeWizard('connT3kitElementsRenameFlipElements')]
+#[UpgradeWizard('connT3wtkElementsRenameFlipElements')]
 readonly class RenameFlipElementsUpdate implements UpgradeWizardInterface
 {
     private const CTYPE_MAPPING = [
@@ -41,8 +42,8 @@ readonly class RenameFlipElementsUpdate implements UpgradeWizardInterface
         'conn_flip_carousel' => 'conn_shift_carousel',
     ];
 
-    private const OLD_PREFIXES = ['tx_conn_t3kit_elements_', 'tx_conn_elements_'];
-    private const NEW_PREFIX   = 'tx_conn_t3kit_elements_';
+    private const OLD_PREFIXES = ['tx_conn_t3wtk_elements_', 'tx_conn_t3kit_elements_', 'tx_conn_elements_'];
+    private const NEW_PREFIX   = 'tx_conn_t3wtk_elements_';
 
     /** Child tables, old suffix => new suffix. */
     private const TABLE_SUFFIX_MAPPING = [
@@ -66,7 +67,7 @@ readonly class RenameFlipElementsUpdate implements UpgradeWizardInterface
 
     public function getTitle(): string
     {
-        return 'EXT:conn_t3kit_elements: Rename "Flip Gallery"/"Flip Carousel" to "Lightbox Gallery"/"Shift Carousel"';
+        return 'EXT:conn_t3wtk_elements: Rename "Flip Gallery"/"Flip Carousel" to "Lightbox Gallery"/"Shift Carousel"';
     }
 
     public function getDescription(): string

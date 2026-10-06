@@ -1,10 +1,10 @@
-tt_content.conn_swiper_parallax_slider =< lib.conn_t3kit_elements_ce
+tt_content.conn_swiper_parallax_slider =< lib.conn_t3wtk_elements_ce
 tt_content.conn_swiper_parallax_slider {
     templateName = ParallaxSlider
     dataProcessing {
-        10 = Connetation\T3kitElements\DataProcessing\SlideItemsProcessor
+        10 = Connetation\T3wtkElements\DataProcessing\SlideItemsProcessor
         10 {
-            settingsField = tx_conn_t3kit_elements_parallax_slider_settings
+            settingsField = tx_conn_t3wtk_elements_parallax_slider_settings
             as = slides
         }
     }

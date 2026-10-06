@@ -1,11 +1,11 @@
 # ─────────────────────────────────────────────
-# Alert/Notice Banner Content Element – conn_t3kit_elements
+# Alert/Notice Banner Content Element – conn_t3wtk_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_alert =< lib.conn_t3kit_elements_ce
+tt_content.conn_alert =< lib.conn_t3wtk_elements_ce
 tt_content.conn_alert {
     templateName = Alert
     dataProcessing {
-        10 = Connetation\T3kitElements\DataProcessing\AlertSettingsProcessor
+        10 = Connetation\T3wtkElements\DataProcessing\AlertSettingsProcessor
     }
 }

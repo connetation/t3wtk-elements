@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\DataProcessing;
+namespace Connetation\T3wtkElements\DataProcessing;
 
-use Connetation\T3kitBase\Utility\RadiusOptions;
-use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\RadiusOptions;
+use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 
 final class TabItemsProcessor extends AbstractItemsProcessor
 {
     protected function getTable(): string
     {
-        return 'tx_conn_t3kit_elements_domain_model_tab_item';
+        return 'tx_conn_t3wtk_elements_domain_model_tab_item';
     }
 
     protected function getDefaultTargetVariable(): string
@@ -21,7 +21,7 @@ final class TabItemsProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return 'tx_conn_t3kit_elements_tabs_settings';
+        return 'tx_conn_t3wtk_elements_tabs_settings';
     }
 
     protected function postProcessRows(array $rows, array $settings): array

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\DataProcessing;
+namespace Connetation\T3wtkElements\DataProcessing;
 
-use Connetation\T3kitBase\Utility\RadiusOptions;
-use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\RadiusOptions;
+use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
@@ -16,7 +16,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 final class PeopleProcessor extends AbstractItemsProcessor
 {
-    private const TABLE = 'tx_conn_t3kit_elements_domain_model_person';
+    private const TABLE = 'tx_conn_t3wtk_elements_domain_model_person';
 
     private const STYLES = [
         'reveal-sheet',
@@ -68,7 +68,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return $processorConfiguration['settingsField'] ?? 'tx_conn_t3kit_elements_people_settings';
+        return $processorConfiguration['settingsField'] ?? 'tx_conn_t3wtk_elements_people_settings';
     }
 
     protected function resolveSettings(array $raw, string $settingsField): array

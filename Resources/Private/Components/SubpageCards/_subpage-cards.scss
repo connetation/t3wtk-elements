@@ -8,7 +8,7 @@
 // text. Only the differences live here.
 
 .conn-subpage-cards {
-    // Card radius follows conn_t3kit_base's --conn-card-radius token (same as
+    // Card radius follows conn_t3wtk_base's --conn-card-radius token (same as
     // the News/Event cards) so the element's "Card border radius" option
     // (data-radius) can override it; Card Group itself uses the plain --conn-radius.
     @include base.conn-radius-option(--conn-card-radius);

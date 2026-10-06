@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\Controller\Backend;
+namespace Connetation\T3wtkElements\Controller\Backend;
 
-use Connetation\T3kitElements\Service\IconItemsProcFunc;
+use Connetation\T3wtkElements\Service\IconItemsProcFunc;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;

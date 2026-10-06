@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────
-# Map & Location Content Element – conn_t3kit_elements
+# Map & Location Content Element – conn_t3wtk_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_map =< lib.conn_t3kit_elements_ce
+tt_content.conn_map =< lib.conn_t3wtk_elements_ce
 tt_content.conn_map {
     templateName = Map
     # Default for elements saved before the "Show map" toggle existed —
@@ -12,9 +12,9 @@ tt_content.conn_map {
         # ContactAwareSettingsProcessor = FlexFormSettingsProcessor plus
         # settings.contact.* (for Partials/ContactInfo/Panel.html), read
         # directly from Site Settings — see the processor's docblock.
-        10 = Connetation\T3kitElements\DataProcessing\ContactAwareSettingsProcessor
+        10 = Connetation\T3wtkElements\DataProcessing\ContactAwareSettingsProcessor
         10 {
-            fieldName = tx_conn_t3kit_elements_map_settings
+            fieldName = tx_conn_t3wtk_elements_map_settings
         }
     }
 }

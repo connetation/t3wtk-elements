@@ -76,7 +76,7 @@ async function fetchIconList(library, style) {
     if (listCache.has(cacheKey)) {
         return listCache.get(cacheKey);
     }
-    const response = await new AjaxRequest(TYPO3.settings.ajaxUrls.conn_t3kit_elements_icon_list)
+    const response = await new AjaxRequest(TYPO3.settings.ajaxUrls.conn_t3wtk_elements_icon_list)
         .withQueryArguments({ library, style })
         .get();
     const items = await response.resolve();
@@ -146,7 +146,7 @@ document.addEventListener('click', async (event) => {
                 renderGrid(picker, state.items, state.library, state.style);
                 search.focus();
             } catch (error) {
-                console.error('conn_t3kit_elements: could not load icon list', error);
+                console.error('conn_t3wtk_elements: could not load icon list', error);
                 const detail = error?.response ? `${error.response.status} ${error.response.statusText}` : (error?.message || error);
                 status.textContent = `Could not load icons: ${detail}`;
             }
@@ -182,7 +182,7 @@ document.addEventListener('input', async (event) => {
             : state.items.filter((item) => item.name.toLowerCase().includes(term) || item.label.toLowerCase().includes(term));
         renderGrid(picker, filtered, state.library, state.style);
     } catch (error) {
-        console.error('conn_t3kit_elements: could not filter icon list', error);
+        console.error('conn_t3wtk_elements: could not filter icon list', error);
         const detail = error?.response ? `${error.response.status} ${error.response.statusText}` : (error?.message || error);
         status.textContent = `Could not load icons: ${detail}`;
     }

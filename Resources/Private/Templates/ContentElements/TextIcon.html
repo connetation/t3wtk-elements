@@ -10,39 +10,39 @@
 <f:variable name="positionClass"><f:if condition="{data.header_position}">ce-headline-{data.header_position}</f:if></f:variable>
 
 <f:variable name="iconMaskUrl"></f:variable>
-<f:switch expression="{data.tx_conn_t3kit_elements_text_icon_library}">
+<f:switch expression="{data.tx_conn_t3wtk_elements_text_icon_library}">
     <f:case value="font-awesome">
-        <f:variable name="iconClass">fa-{data.tx_conn_t3kit_elements_text_icon_style} fa-{data.tx_conn_t3kit_elements_text_icon_name}</f:variable>
+        <f:variable name="iconClass">fa-{data.tx_conn_t3wtk_elements_text_icon_style} fa-{data.tx_conn_t3wtk_elements_text_icon_name}</f:variable>
     </f:case>
     <f:case value="ionicons">
         <f:variable name="ioSuffix"></f:variable>
-        <f:if condition="{data.tx_conn_t3kit_elements_text_icon_style} == 'outline'"><f:variable name="ioSuffix">-outline</f:variable></f:if>
-        <f:if condition="{data.tx_conn_t3kit_elements_text_icon_style} == 'sharp'"><f:variable name="ioSuffix">-sharp</f:variable></f:if>
+        <f:if condition="{data.tx_conn_t3wtk_elements_text_icon_style} == 'outline'"><f:variable name="ioSuffix">-outline</f:variable></f:if>
+        <f:if condition="{data.tx_conn_t3wtk_elements_text_icon_style} == 'sharp'"><f:variable name="ioSuffix">-sharp</f:variable></f:if>
         <f:variable name="iconClass">conn-icon--ionicon</f:variable>
-        <f:variable name="iconMaskUrl"><f:uri.resource path="Icons/Ionicons/{data.tx_conn_t3kit_elements_text_icon_name}{ioSuffix}.svg" extensionName="ConnT3kitElements" /></f:variable>
+        <f:variable name="iconMaskUrl"><f:uri.resource path="Icons/Ionicons/{data.tx_conn_t3wtk_elements_text_icon_name}{ioSuffix}.svg" extensionName="ConnT3wtkElements" /></f:variable>
     </f:case>
     <f:defaultCase>
-        <f:variable name="iconClass">bi bi-{data.tx_conn_t3kit_elements_text_icon_name}</f:variable>
+        <f:variable name="iconClass">bi bi-{data.tx_conn_t3wtk_elements_text_icon_name}</f:variable>
     </f:defaultCase>
 </f:switch>
 
-<f:if condition="{data.tx_conn_t3kit_elements_text_icon_library} == 'font-awesome'">
+<f:if condition="{data.tx_conn_t3wtk_elements_text_icon_library} == 'font-awesome'">
     <f:then>
-        <f:asset.css identifier="conn-t3kit-elements-font-awesome-css" href="EXT:conn_t3kit_elements/Resources/Public/Css/font-awesome.min.css" />
+        <f:asset.css identifier="conn-t3wtk-elements-font-awesome-css" href="EXT:conn_t3wtk_elements/Resources/Public/Css/font-awesome.min.css" />
     </f:then>
 </f:if>
-<f:if condition="{data.tx_conn_t3kit_elements_text_icon_library} == 'bootstrap-icons'">
+<f:if condition="{data.tx_conn_t3wtk_elements_text_icon_library} == 'bootstrap-icons'">
     <f:then>
-        <f:asset.css identifier="conn-t3kit-elements-bootstrap-icons-css" href="EXT:conn_t3kit_elements/Resources/Public/Css/bootstrap-icons.css" />
+        <f:asset.css identifier="conn-t3wtk-elements-bootstrap-icons-css" href="EXT:conn_t3wtk_elements/Resources/Public/Css/bootstrap-icons.css" />
     </f:then>
 </f:if>
-<f:asset.css identifier="conn-t3kit-elements-text-icon-css" href="EXT:conn_t3kit_elements/Resources/Public/Css/text-icon.css" />
+<f:asset.css identifier="conn-t3wtk-elements-text-icon-css" href="EXT:conn_t3wtk_elements/Resources/Public/Css/text-icon.css" />
 
-<section class="conn-text-icon conn-text-icon--pos-{data.tx_conn_t3kit_elements_text_icon_position} conn-text-icon--shape-{data.tx_conn_t3kit_elements_text_icon_shape} conn-text-icon--size-{data.tx_conn_t3kit_elements_text_icon_size}"
+<section class="conn-text-icon conn-text-icon--pos-{data.tx_conn_t3wtk_elements_text_icon_position} conn-text-icon--shape-{data.tx_conn_t3wtk_elements_text_icon_shape} conn-text-icon--size-{data.tx_conn_t3wtk_elements_text_icon_size}"
          id="conn-text-icon-{data.uid}"
-         style="--conn-text-icon-color:{f:if(condition: data.tx_conn_t3kit_elements_text_icon_color, then: data.tx_conn_t3kit_elements_text_icon_color, else: 'var(--conn-accent, #6366f1)')};--conn-text-icon-bg:{f:if(condition: data.tx_conn_t3kit_elements_text_icon_bg, then: data.tx_conn_t3kit_elements_text_icon_bg, else: 'var(--conn-accent-soft, rgba(99, 102, 241, .12))')};">
+         style="--conn-text-icon-color:{f:if(condition: data.tx_conn_t3wtk_elements_text_icon_color, then: data.tx_conn_t3wtk_elements_text_icon_color, else: 'var(--conn-accent, #6366f1)')};--conn-text-icon-bg:{f:if(condition: data.tx_conn_t3wtk_elements_text_icon_bg, then: data.tx_conn_t3wtk_elements_text_icon_bg, else: 'var(--conn-accent-soft, rgba(99, 102, 241, .12))')};">
         <div class="conn-text-icon__inner">
-            <f:if condition="{data.tx_conn_t3kit_elements_text_icon_name}">
+            <f:if condition="{data.tx_conn_t3wtk_elements_text_icon_name}">
                 <div class="conn-text-icon__badge">
                     <i class="{iconClass}" aria-hidden="true" style="--conn-icon-mask:{f:if(condition: iconMaskUrl, then: 'url({iconMaskUrl})')};"></i>
                 </div>

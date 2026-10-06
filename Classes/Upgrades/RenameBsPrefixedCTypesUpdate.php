@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\Upgrades;
+namespace Connetation\T3wtkElements\Upgrades;
 
 use TYPO3\CMS\Core\Attribute\UpgradeWizard;
 use TYPO3\CMS\Core\Database\Connection;
@@ -42,7 +42,7 @@ readonly class RenameBsPrefixedCTypesUpdate implements UpgradeWizardInterface
 
     public function getTitle(): string
     {
-        return 'EXT:conn_t3kit_elements: Rename misleading "conn_bs_*" CTypes to "conn_*"';
+        return 'EXT:conn_t3wtk_elements: Rename misleading "conn_bs_*" CTypes to "conn_*"';
     }
 
     public function getDescription(): string

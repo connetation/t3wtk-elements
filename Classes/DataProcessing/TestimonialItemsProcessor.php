@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\DataProcessing;
+namespace Connetation\T3wtkElements\DataProcessing;
 
-use Connetation\T3kitBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 
 final class TestimonialItemsProcessor extends AbstractItemsProcessor
 {
     protected function getTable(): string
     {
-        return 'tx_conn_t3kit_elements_domain_model_testimonial_item';
+        return 'tx_conn_t3wtk_elements_domain_model_testimonial_item';
     }
 
     protected function getDefaultTargetVariable(): string
@@ -20,7 +20,7 @@ final class TestimonialItemsProcessor extends AbstractItemsProcessor
 
     protected function getSettingsField(array $processorConfiguration): string
     {
-        return 'tx_conn_t3kit_elements_testimonials_settings';
+        return 'tx_conn_t3wtk_elements_testimonials_settings';
     }
 
     protected function getFalFields(): array

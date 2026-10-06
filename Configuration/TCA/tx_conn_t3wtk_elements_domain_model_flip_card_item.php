@@ -5,32 +5,32 @@ declare(strict_types=1);
 // Same value set as TYPO3 core's native tt_content.header_layout: 0=default,
 // 1-5=H1-H5, 100=hidden. Reused for every heading/subheading layout column.
 $headingLayoutItems = [
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.default', 'value' => 0],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h1', 'value' => 1],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h2', 'value' => 2],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h3', 'value' => 3],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h4', 'value' => 4],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h5', 'value' => 5],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.default', 'value' => 0],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h1', 'value' => 1],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h2', 'value' => 2],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h3', 'value' => 3],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h4', 'value' => 4],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h5', 'value' => 5],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
 // Visual size, independent of the tag *_layout picks — same pattern/labels as
-// conn_t3kit_base's tt_content header_class/subheader_class.
+// conn_t3wtk_base's tt_content header_class/subheader_class.
 $headingClassItems = [
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.hidden', 'value' => 'visually-hidden'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.hidden', 'value' => 'visually-hidden'],
 ];
 
 // Bootstrap 5 text-align suffixes ('text-' + this value).
 $alignItems = [
-    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:align.left', 'value' => 'start'],
-    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:align.center', 'value' => 'center'],
-    ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:align.right', 'value' => 'end'],
+    ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.left', 'value' => 'start'],
+    ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.center', 'value' => 'center'],
+    ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.right', 'value' => 'end'],
 ];
 
 $select = static fn (string $label, array $items, int|string $default): array => [
@@ -49,7 +49,7 @@ $select = static fn (string $label, array $items, int|string $default): array =>
 // front title is required (it is the record label and what the card shows
 // before it flips).
 $faceColumns = static function (string $prefix, bool $titleRequired) use ($headingLayoutItems, $headingClassItems, $alignItems, $select): array {
-    $ll = 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:';
+    $ll = 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:';
 
     return [
         $prefix . 'title' => [
@@ -63,7 +63,7 @@ $faceColumns = static function (string $prefix, bool $titleRequired) use ($headi
             ],
         ],
         $prefix . 'title_layout'    => $select($ll . 'layout.heading', $headingLayoutItems, 0),
-        $prefix . 'title_class'     => $select('LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class', $headingClassItems, ''),
+        $prefix . 'title_class'     => $select('LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class', $headingClassItems, ''),
         $prefix . 'title_align'     => $select($ll . 'layout.align', $alignItems, 'center'),
         $prefix . 'subtitle' => [
             'label'  => $ll . 'card_item.subtitle',
@@ -75,12 +75,12 @@ $faceColumns = static function (string $prefix, bool $titleRequired) use ($headi
             ],
         ],
         $prefix . 'subtitle_layout' => $select($ll . 'layout.subheading', $headingLayoutItems, 0),
-        $prefix . 'subtitle_class'  => $select('LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:subheader_class', $headingClassItems, ''),
+        $prefix . 'subtitle_class'  => $select('LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_class', $headingClassItems, ''),
         $prefix . 'subtitle_align'  => $select($ll . 'layout.align', $alignItems, 'center'),
-        // Same idea as conn_t3kit_base's tt_content "Subheader as Eyebrow":
+        // Same idea as conn_t3wtk_base's tt_content "Subheader as Eyebrow":
         // the subtitle moves above the title as a small uppercase label.
         $prefix . 'subtitle_eyebrow' => [
-            'label'  => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:subheader_eyebrow',
+            'label'  => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_eyebrow',
             'config' => [
                 'type'       => 'check',
                 'renderType' => 'checkboxToggle',
@@ -130,14 +130,14 @@ $faceColumns = static function (string $prefix, bool $titleRequired) use ($headi
 // Back only — see $faceColumns.
 $backLinkColumns = [
     'back_link' => [
-        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.link',
+        'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:card_item.link',
         'config' => [
             'type'         => 'link',
             'allowedTypes' => ['page', 'url', 'email', 'telephone'],
         ],
     ],
     'back_link_label' => [
-        'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.link_label',
+        'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:card_item.link_label',
         'config' => [
             'type' => 'input',
             'size' => 30,
@@ -145,11 +145,11 @@ $backLinkColumns = [
             'eval' => 'trim',
         ],
     ],
-    'back_link_align' => $select('LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.align', $alignItems, 'center'),
+    'back_link_align' => $select('LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:layout.align', $alignItems, 'center'),
 ];
 
 $facePalettes = static function (string $prefix): array {
-    $ll = 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:';
+    $ll = 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:';
 
     return [
         $prefix . 'header' => [
@@ -172,7 +172,7 @@ $faceShowitem = static fn (string $prefix): string =>
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.flip_card_item',
+        'title'         => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:model.flip_card_item',
         'label'         => 'title',
         'label_alt'     => 'back_title',
         'sortby'        => 'sorting',
@@ -181,7 +181,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'  => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/flip-card-ce.svg',
+        'iconfile'      => 'EXT:conn_t3wtk_elements/Resources/Public/Icons/flip-card-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -209,16 +209,16 @@ return [
         ...$facePalettes(''),
         ...$facePalettes('back_'),
         'back_link' => [
-            'label'    => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.link',
+            'label'    => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.link',
             'showitem' => 'back_link, back_link_label, back_link_align',
         ],
     ],
     'types' => [
         '1' => [
             'showitem' => '
-                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_card_item.tab.front,
+                --div--;LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:flip_card_item.tab.front,
                     ' . $faceShowitem('') . '
-                --div--;LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:flip_card_item.tab.back,
+                --div--;LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:flip_card_item.tab.back,
                     ' . $faceShowitem('back_') . ' --palette--;;back_link,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     hidden,

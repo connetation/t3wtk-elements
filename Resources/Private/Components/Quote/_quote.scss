@@ -7,7 +7,7 @@
         position: relative;
         margin: 0;
         max-width: 760px;
-        // Prevent conn_t3kit_base's global `blockquote { border-left; padding-left; color }`
+        // Prevent conn_t3wtk_base's global `blockquote { border-left; padding-left; color }`
         // RTE-content reset (this element IS a <blockquote>) so every style variant
         border-left: 0;
         padding-left: 0;

@@ -1,14 +1,14 @@
 # ─────────────────────────────────────────────
-# People Content Element – conn_t3kit_elements
+# People Content Element – conn_t3wtk_elements
 # ─────────────────────────────────────────────
 
-tt_content.conn_people =< lib.conn_t3kit_elements_ce
+tt_content.conn_people =< lib.conn_t3wtk_elements_ce
 tt_content.conn_people {
     templateName = People
     dataProcessing {
-        10 = Connetation\T3kitElements\DataProcessing\PeopleProcessor
+        10 = Connetation\T3wtkElements\DataProcessing\PeopleProcessor
         10 {
-            settingsField = tx_conn_t3kit_elements_people_settings
+            settingsField = tx_conn_t3wtk_elements_people_settings
             as = people
         }
     }

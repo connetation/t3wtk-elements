@@ -86,7 +86,7 @@
                             <type>select</type>
                             <renderType>selectSingle</renderType>
                             <default>theme</default>
-                            <itemsProcFunc>Connetation\T3kitBase\Utility\RadiusOptions->addItems</itemsProcFunc>
+                            <itemsProcFunc>Connetation\T3wtkBase\Utility\RadiusOptions->addItems</itemsProcFunc>
                         </config>
                     </settings.borderRadius>
                     <settings.aspectRatio>

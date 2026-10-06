@@ -7,10 +7,10 @@ Connetation Elements
 =====================
 
 :Extension key:
-   conn_t3kit_elements
+   conn_t3wtk_elements
 
 :Package name:
-   conn/t3kit-elements
+   connetation/t3wtk-elements
 
 :Version:
    |release|
@@ -29,7 +29,7 @@ Connetation Elements
 ----
 
 Connetation Elements is a TYPO3 v14 content elements package built on top
-of `conn/t3kit-base <https://packagist.org/packages/conn/t3kit-base>`__ and
+of `connetation/t3wtk-base <https://packagist.org/packages/connetation/t3wtk-base>`__ and
 `b13/container <https://packagist.org/packages/b13/container>`__. It
 provides a set of Bootstrap-based content elements together with a
 scaffold CLI for adding new ones consistently.

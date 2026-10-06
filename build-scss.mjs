@@ -33,12 +33,12 @@ const entries = readdirSync(COMPONENTS_DIR)
         dest: `${OUT_DIR}/${toKebab(name)}.css`,
     }));
 
-// conn/t3kit-elements requires conn/t3kit-base (see composer.json), so vendor/conn/t3kit-base is
-// always a sibling directory of this package under vendor/conn/ — load-path
-// lets Shared/_tokens.scss `@use` conn/t3kit-base's token mixins at compile time
+// connetation/t3wtk-elements requires connetation/t3wtk-base (see composer.json), so vendor/connetation/t3wtk-base is
+// always a sibling directory of this package under vendor/connetation/ — load-path
+// lets Shared/_tokens.scss `@use` connetation/t3wtk-base's token mixins at compile time
 // without creating a runtime dependency (each component's CSS still ships
 // with the values baked in).
-const BASE_SCSS = '../t3kit-base/Resources/Private/Scss';
+const BASE_SCSS = '../t3wtk-base/Resources/Private/Scss';
 
 const pairs = entries.map((e) => `${e.src}:${e.dest}`);
 const args = watch

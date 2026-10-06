@@ -4,10 +4,10 @@ services:
     autoconfigure: true
     public: false
 
-  Connetation\T3kitElements\:
+  Connetation\T3wtkElements\:
     resource: '../Classes/*'
 
   # Ajax route targets are instantiated by class name outside the container's
   # own dependency graph, so they must be public to be resolvable there.
-  Connetation\T3kitElements\Controller\Backend\IconListAjaxController:
+  Connetation\T3wtkElements\Controller\Backend\IconListAjaxController:
     public: true

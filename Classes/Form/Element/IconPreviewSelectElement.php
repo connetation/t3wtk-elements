@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\Form\Element;
+namespace Connetation\T3wtkElements\Form\Element;
 
-use Connetation\T3kitElements\Service\IconAssetUrlResolver;
-use Connetation\T3kitElements\Service\IconItemsProcFunc;
+use Connetation\T3wtkElements\Service\IconAssetUrlResolver;
+use Connetation\T3wtkElements\Service\IconItemsProcFunc;
 use TYPO3\CMS\Backend\Form\Element\SelectSingleElement;
 use TYPO3\CMS\Backend\Form\InlineStackProcessor;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
@@ -39,9 +39,9 @@ final class IconPreviewSelectElement extends SelectSingleElement
         // The "name" field, in contrast, is always THIS field — its real TCA
         // column, whatever it's called on whichever table — never a
         // hardcoded assumption, so this element is reusable outside TextIcon.
-        $libraryFieldName = (string)($config['iconLibraryField'] ?? 'tx_conn_t3kit_elements_text_icon_library');
-        $styleFieldName   = (string)($config['iconStyleField'] ?? 'tx_conn_t3kit_elements_text_icon_style');
-        $nameFieldName    = (string)($this->data['fieldName'] ?? 'tx_conn_t3kit_elements_text_icon_name');
+        $libraryFieldName = (string)($config['iconLibraryField'] ?? 'tx_conn_t3wtk_elements_text_icon_library');
+        $styleFieldName   = (string)($config['iconStyleField'] ?? 'tx_conn_t3wtk_elements_text_icon_style');
+        $nameFieldName    = (string)($this->data['fieldName'] ?? 'tx_conn_t3wtk_elements_text_icon_name');
 
         $library = $this->firstValue($row[$libraryFieldName] ?? 'bootstrap-icons');
         $style   = $this->iconItemsProcFunc->normalizeStyle($library, $this->firstValue($row[$styleFieldName] ?? 'solid'));
@@ -73,14 +73,14 @@ final class IconPreviewSelectElement extends SelectSingleElement
 
         $iconMarkup = $this->buildIconMarkup($library, $style, $name, $request);
         $ioniconsBaseUrl = $this->iconAssetUrlResolver->resolve(
-            'EXT:conn_t3kit_elements/Resources/Public/Icons/Ionicons/accessibility.svg',
+            'EXT:conn_t3wtk_elements/Resources/Public/Icons/Ionicons/accessibility.svg',
             $request
         );
         $ioniconsBaseUrl = substr($ioniconsBaseUrl, 0, -strlen('accessibility.svg'));
 
-        $resultArray['stylesheetFiles'][] = 'EXT:conn_t3kit_elements/Resources/Public/Css/bootstrap-icons.css';
-        $resultArray['stylesheetFiles'][] = 'EXT:conn_t3kit_elements/Resources/Public/Css/font-awesome.min.css';
-        $resultArray['stylesheetFiles'][] = 'EXT:conn_t3kit_elements/Resources/Public/Css/icon-preview.css';
+        $resultArray['stylesheetFiles'][] = 'EXT:conn_t3wtk_elements/Resources/Public/Css/bootstrap-icons.css';
+        $resultArray['stylesheetFiles'][] = 'EXT:conn_t3wtk_elements/Resources/Public/Css/font-awesome.min.css';
+        $resultArray['stylesheetFiles'][] = 'EXT:conn_t3wtk_elements/Resources/Public/Css/icon-preview.css';
 
         $resultArray['html'] .= '<div class="conn-icon-picker"'
             . ' data-ionicons-base="' . htmlspecialchars($ioniconsBaseUrl) . '"'
@@ -96,7 +96,7 @@ final class IconPreviewSelectElement extends SelectSingleElement
                 . '<p class="conn-icon-picker__status"></p>'
             . '</div>'
             . '</div>';
-        $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@conn/t3kit-elements/icon-preview.js');
+        $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@connetation/t3wtk-elements/icon-preview.js');
 
         return $resultArray;
     }
@@ -114,7 +114,7 @@ final class IconPreviewSelectElement extends SelectSingleElement
         if ($library === 'ionicons') {
             $suffix = self::IONICON_STYLE_SUFFIXES[$style] ?? '';
             $url    = $this->iconAssetUrlResolver->resolve(
-                'EXT:conn_t3kit_elements/Resources/Public/Icons/Ionicons/' . $name . $suffix . '.svg',
+                'EXT:conn_t3wtk_elements/Resources/Public/Icons/Ionicons/' . $name . $suffix . '.svg',
                 $request
             );
 

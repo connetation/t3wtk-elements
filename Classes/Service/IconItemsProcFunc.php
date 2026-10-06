@@ -2,34 +2,34 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\Service;
+namespace Connetation\T3wtkElements\Service;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class IconItemsProcFunc
 {
     private const MANIFESTS = [
-        'bootstrap-icons' => 'EXT:conn_t3kit_elements/Resources/Private/IconManifests/bootstrap-icons.json',
-        'font-awesome'    => 'EXT:conn_t3kit_elements/Resources/Private/IconManifests/font-awesome.json',
-        'ionicons'        => 'EXT:conn_t3kit_elements/Resources/Private/IconManifests/ionicons.json',
+        'bootstrap-icons' => 'EXT:conn_t3wtk_elements/Resources/Private/IconManifests/bootstrap-icons.json',
+        'font-awesome'    => 'EXT:conn_t3wtk_elements/Resources/Private/IconManifests/font-awesome.json',
+        'ionicons'        => 'EXT:conn_t3wtk_elements/Resources/Private/IconManifests/ionicons.json',
     ];
 
     private const STYLE_ITEMS = [
         'font-awesome' => [
-            ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.solid', 'value' => 'solid'],
-            ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.regular', 'value' => 'regular'],
+            ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.solid', 'value' => 'solid'],
+            ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.regular', 'value' => 'regular'],
         ],
         'ionicons' => [
-            ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.filled', 'value' => 'filled'],
-            ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.outline', 'value' => 'outline'],
-            ['label' => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.sharp', 'value' => 'sharp'],
+            ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.filled', 'value' => 'filled'],
+            ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.outline', 'value' => 'outline'],
+            ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:text_icon.style.sharp', 'value' => 'sharp'],
         ],
     ];
 
     public function getIconStyleItems(array &$parameters): void
     {
         $row              = $parameters['row'] ?? [];
-        $libraryFieldName = (string)($parameters['config']['iconLibraryField'] ?? 'tx_conn_t3kit_elements_text_icon_library');
+        $libraryFieldName = (string)($parameters['config']['iconLibraryField'] ?? 'tx_conn_t3wtk_elements_text_icon_library');
         $library          = $this->firstValue($row[$libraryFieldName] ?? 'bootstrap-icons');
 
         $parameters['items'] = array_merge($parameters['items'] ?? [], self::STYLE_ITEMS[$library] ?? []);
@@ -38,8 +38,8 @@ final class IconItemsProcFunc
     public function getIconNameItems(array &$parameters): void
     {
         $row              = $parameters['row'] ?? [];
-        $libraryFieldName = (string)($parameters['config']['iconLibraryField'] ?? 'tx_conn_t3kit_elements_text_icon_library');
-        $styleFieldName   = (string)($parameters['config']['iconStyleField'] ?? 'tx_conn_t3kit_elements_text_icon_style');
+        $libraryFieldName = (string)($parameters['config']['iconLibraryField'] ?? 'tx_conn_t3wtk_elements_text_icon_library');
+        $styleFieldName   = (string)($parameters['config']['iconStyleField'] ?? 'tx_conn_t3wtk_elements_text_icon_style');
         $library          = $this->firstValue($row[$libraryFieldName] ?? 'bootstrap-icons');
         $style            = $this->normalizeStyle($library, $this->firstValue($row[$styleFieldName] ?? 'solid'));
 

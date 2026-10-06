@@ -1,16 +1,16 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:conn="http://typo3.org/ns/Connetation/T3kitBase/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/T3wtkBase/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
 
 <f:section name="Main">
 
-<f:asset.css identifier="conn-t3kit-elements-quote-css"
-    href="EXT:conn_t3kit_elements/Resources/Public/Css/quote.css" />
+<f:asset.css identifier="conn-t3wtk-elements-quote-css"
+    href="EXT:conn_t3wtk_elements/Resources/Public/Css/quote.css" />
 
-<f:variable name="authorImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_quote_image')}" />
-<f:variable name="authorImageAlt" value="{data.tx_conn_t3kit_elements_quote_author}" />
+<f:variable name="authorImage" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3wtk_elements_quote_image')}" />
+<f:variable name="authorImageAlt" value="{data.tx_conn_t3wtk_elements_quote_author}" />
 <f:if condition="{authorImage.alternative}"><f:variable name="authorImageAlt" value="{authorImage.alternative}" /></f:if>
 
 <section class="conn-quote conn-quote--{settings.style} conn-quote--align-{settings.align} row" id="conn-quote-{data.uid}"
@@ -30,15 +30,15 @@
                 </div>
             </f:if>
 
-            <f:if condition="{data.tx_conn_t3kit_elements_quote_author}">
+            <f:if condition="{data.tx_conn_t3wtk_elements_quote_author}">
                 <footer class="conn-quote__author">
                     <f:if condition="{authorImage}">
                         <f:image image="{authorImage}" class="conn-quote__author-image" alt="{authorImageAlt}" title="{authorImage.title}" />
                     </f:if>
                     <span class="conn-quote__author-info">
-                        <cite class="conn-quote__author-name">{f:if(condition: authorImage, then: '', else: '— ')}{data.tx_conn_t3kit_elements_quote_author}</cite>
-                        <f:if condition="{data.tx_conn_t3kit_elements_quote_role}">
-                            <span class="conn-quote__author-role">{data.tx_conn_t3kit_elements_quote_role}</span>
+                        <cite class="conn-quote__author-name">{f:if(condition: authorImage, then: '', else: '— ')}{data.tx_conn_t3wtk_elements_quote_author}</cite>
+                        <f:if condition="{data.tx_conn_t3wtk_elements_quote_role}">
+                            <span class="conn-quote__author-role">{data.tx_conn_t3wtk_elements_quote_role}</span>
                         </f:if>
                     </span>
                 </footer>

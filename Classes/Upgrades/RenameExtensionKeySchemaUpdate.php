@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitElements\Upgrades;
+namespace Connetation\T3wtkElements\Upgrades;
 
 use TYPO3\CMS\Core\Attribute\UpgradeWizard;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
 
 /**
- * The extension key changed from "conn_elements" to "conn_t3kit_elements", which moves
+ * The extension key changed from "conn_elements" to "conn_t3wtk_elements", which moves
  * every "tx_conn_elements_*" table and tt_content column this package owns to
- * "tx_conn_t3kit_elements_*". This wizard migrates the physical tables/columns in place so
+ * "tx_conn_t3wtk_elements_*". This wizard migrates the physical tables/columns in place so
  * existing content keeps working.
  *
  * Handles BOTH of these situations, because in practice a schema sync ("Analyze Database
@@ -43,11 +43,11 @@ use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
  * would silently stop resolving — the file exists, but TYPO3 looks it up under a
  * (tablenames, fieldname) pair that no longer matches anything.
  */
-#[UpgradeWizard('connT3kitElementsRenameExtensionKeySchema')]
+#[UpgradeWizard('connT3wtkElementsRenameExtensionKeySchema')]
 readonly class RenameExtensionKeySchemaUpdate implements UpgradeWizardInterface
 {
     private const OLD_PREFIX = 'tx_conn_elements_';
-    private const NEW_PREFIX = 'tx_conn_t3kit_elements_';
+    private const NEW_PREFIX = 'tx_conn_t3wtk_elements_';
 
     private const TABLE_SUFFIXES = [
         'domain_model_mosaic_item',
@@ -128,15 +128,15 @@ readonly class RenameExtensionKeySchemaUpdate implements UpgradeWizardInterface
 
     public function getTitle(): string
     {
-        return 'EXT:conn_t3kit_elements: Rename "tx_conn_elements_*" tables/columns to "tx_conn_t3kit_elements_*"';
+        return 'EXT:conn_t3wtk_elements: Rename "tx_conn_elements_*" tables/columns to "tx_conn_t3wtk_elements_*"';
     }
 
     public function getDescription(): string
     {
         return sprintf(
-            'The extension key changed from "conn_elements" to "conn_t3kit_elements". This migrates '
+            'The extension key changed from "conn_elements" to "conn_t3wtk_elements". This migrates '
             . 'the %d "tx_conn_elements_domain_model_*" tables and the %d "tx_conn_elements_*" columns '
-            . 'on tt_content that this package owns to their "tx_conn_t3kit_elements_*" equivalent, '
+            . 'on tt_content that this package owns to their "tx_conn_t3wtk_elements_*" equivalent, '
             . 'preserving all data — including merging in tables/columns a prior schema sync may '
             . 'already have created empty under the new name.',
             count(self::TABLE_SUFFIXES),

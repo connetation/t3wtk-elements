@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────
 // 3D card flip (CSS transform, no GSAP) — front shows title/subtitle over an
 // optional image, back shows text + link. Headings intentionally have no
-// font-size/weight rules here — they inherit conn/t3kit-base's shared heading
+// font-size/weight rules here — they inherit connetation/t3wtk-base's shared heading
 // system, same as Card Group.
 
 .conn-flip-card {
@@ -163,7 +163,7 @@
         color: var(--conn-flip-card-subtitle, var(--conn-text-muted));
     }
 
-    // Subtitle above the title as a small label — same look as conn/t3kit-base's
+    // Subtitle above the title as a small label — same look as connetation/t3wtk-base's
     // .ce-eyebrow, restated here so this CSS doesn't depend on the base CSS.
     &__subtitle--eyebrow {
         margin: 0 0 var(--conn-space-2xs);

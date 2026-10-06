@@ -1,8 +1,8 @@
-tt_content.conn_feature_grid =< lib.conn_t3kit_elements_ce
+tt_content.conn_feature_grid =< lib.conn_t3wtk_elements_ce
 tt_content.conn_feature_grid {
     templateName = FeatureGrid
     dataProcessing {
-        10 = Connetation\T3kitElements\DataProcessing\FeatureItemsProcessor
+        10 = Connetation\T3wtkElements\DataProcessing\FeatureItemsProcessor
         10 {
             as = features
         }

@@ -8,9 +8,9 @@ Installation
 
 Install via Composer::
 
-   composer require conn/t3kit-elements
+   composer require connetation/t3wtk-elements
 
-This requires ``conn/t3kit-base`` and ``b13/container`` as dependencies; Composer
+This requires ``connetation/t3wtk-base`` and ``b13/container`` as dependencies; Composer
 resolves both automatically.
 
 .. _installation-site-set:
@@ -18,20 +18,20 @@ resolves both automatically.
 Activating the Set
 ====================
 
-Add ``conn/t3kit-elements`` as a Set dependency in your site configuration
+Add ``connetation/t3wtk-elements`` as a Set dependency in your site configuration
 (:file:`config/sites/<site>/config.yaml`), or depend on it from a project
 sitepackage::
 
    dependencies:
-     - conn/t3kit-base
-     - conn/t3kit-elements
+     - connetation/t3wtk-base
+     - connetation/t3wtk-elements
 
 .. _installation-build:
 
 Build assets
 ============
 
-From :file:`vendor/conn/t3kit-elements`::
+From :file:`vendor/connetation/t3wtk-elements`::
 
    npm install
    npm run build        # production build (SCSS + JS)
@@ -41,4 +41,4 @@ From :file:`vendor/conn/t3kit-elements`::
 
 Under DDEV::
 
-   ddev exec "cd /var/www/html/vendor/conn/t3kit-elements && npm run build"
+   ddev exec "cd /var/www/html/vendor/connetation/t3wtk-elements && npm run build"

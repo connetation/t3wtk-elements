@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:conn="http://typo3.org/ns/Connetation/T3kitBase/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/T3wtkBase/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
@@ -8,15 +8,15 @@
 
 <f:section name="Main">
 
-<f:asset.css identifier="conn-t3kit-elements-video-hero-css"
-    href="EXT:conn_t3kit_elements/Resources/Public/Css/video-hero.css" />
-<f:asset.script identifier="conn-t3kit-elements-video-hero-js"
-    src="EXT:conn_t3kit_elements/Resources/Public/Js/components/video-hero.js"
+<f:asset.css identifier="conn-t3wtk-elements-video-hero-css"
+    href="EXT:conn_t3wtk_elements/Resources/Public/Css/video-hero.css" />
+<f:asset.script identifier="conn-t3wtk-elements-video-hero-js"
+    src="EXT:conn_t3wtk_elements/Resources/Public/Js/components/video-hero.js"
     type="module"
     priority="false" />
 
-<f:variable name="media" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_video_hero_media')}" />
-<f:variable name="poster" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3kit_elements_video_hero_poster')}" />
+<f:variable name="media" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3wtk_elements_video_hero_media')}" />
+<f:variable name="poster" value="{conn:firstFile(uid: data.uid, field: 'tx_conn_t3wtk_elements_video_hero_poster')}" />
 <f:variable name="isOnlineMedia" value="0" />
 <f:variable name="videoId" value="" />
 <f:if condition="{media.originalFile.extension} == 'youtube' || {media.originalFile.extension} == 'vimeo'">
@@ -110,7 +110,7 @@
 
     <div class="conn-video-hero__inner">
         <f:if condition="{settings.mode} == 'click-to-play' && {media}">
-            <button type="button" class="conn-video-hero__play" aria-label="{f:translate(key: 'video_hero.play', extensionName: 'conn_t3kit_elements')}">
+            <button type="button" class="conn-video-hero__play" aria-label="{f:translate(key: 'video_hero.play', extensionName: 'conn_t3wtk_elements')}">
                 <svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" /></svg>
             </button>
         </f:if>

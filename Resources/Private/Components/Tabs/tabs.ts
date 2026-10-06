@@ -141,9 +141,9 @@ class Tabs {
 
         const btn = this.nav?.querySelector<HTMLElement>(`[data-bs-target="${CSS.escape(targetId)}"]`);
         if (btn && !btn.classList.contains('active')) {
-            // Bootstrap's Tab data-API is attached globally (conn_t3kit_base's
+            // Bootstrap's Tab data-API is attached globally (conn_t3wtk_base's
             // main.js does `import 'bootstrap'` once for the whole page) and
-            // listens for real click events — conn_t3kit_elements has no direct
+            // listens for real click events — conn_t3wtk_elements has no direct
             // access to the Tab class itself, so a synthesized click is the
             // simplest way to trigger it with full ARIA/pane sync included.
             btn.click();

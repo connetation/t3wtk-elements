@@ -5,32 +5,32 @@ declare(strict_types=1);
 // Same value set as TYPO3 core's native tt_content.header_layout: 0=default,
 // 1-5=H1-H5, 100=hidden. Reused for every heading/subheading layout column.
 $headingLayoutItems = [
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.default', 'value' => 0],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h1', 'value' => 1],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h2', 'value' => 2],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h3', 'value' => 3],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h4', 'value' => 4],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.h5', 'value' => 5],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.default', 'value' => 0],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h1', 'value' => 1],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h2', 'value' => 2],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h3', 'value' => 3],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h4', 'value' => 4],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.h5', 'value' => 5],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_layout.hidden', 'value' => 100],
 ];
 
 // Visual size, independent of the tag *_layout picks — lets an editor keep
 // the SEO-correct heading level while styling it like a different size
-// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_t3kit_base's
+// (e.g. an <h3> that looks like an .h5). Same pattern/labels as conn_t3wtk_base's
 // tt_content header_class/subheader_class. Reused for every *_class column.
 $headingClassItems = [
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
-    ['label' => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class.hidden', 'value' => 'visually-hidden'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.none', 'value' => ''],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h1', 'value' => 'h1'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h2', 'value' => 'h2'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h3', 'value' => 'h3'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h4', 'value' => 'h4'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.h5', 'value' => 'h5'],
+    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class.hidden', 'value' => 'visually-hidden'],
 ];
 
 return [
     'ctrl' => [
-        'title'         => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:model.stack_card',
+        'title'         => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:model.stack_card',
         'label'         => 'title',
         'sortby'        => 'sorting',
         'tstamp'        => 'tstamp',
@@ -38,7 +38,7 @@ return [
         'delete'        => 'deleted',
         'versioningWS'        => true,
         'enablecolumns' => ['disabled' => 'hidden'],
-        'iconfile'      => 'EXT:conn_t3kit_elements/Resources/Public/Icons/card-stack-ce.svg',
+        'iconfile'      => 'EXT:conn_t3wtk_elements/Resources/Public/Icons/card-stack-ce.svg',
         'rootLevel'     => -1,
         'security'      => ['ignorePageTypeRestriction' => true],
     ],
@@ -59,7 +59,7 @@ return [
             'config' => ['type' => 'passthrough'],
         ],
         'title' => [
-            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.title',
+            'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:stack_card.title',
             'config' => [
                 'type'     => 'input',
                 'size'     => 60,
@@ -69,7 +69,7 @@ return [
             ],
         ],
         'title_layout' => [
-            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
+            'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:layout.heading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -78,7 +78,7 @@ return [
             ],
         ],
         'title_class' => [
-            'label'  => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:header_class',
+            'label'  => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:header_class',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -87,7 +87,7 @@ return [
             ],
         ],
         'subtitle' => [
-            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.subtitle',
+            'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:stack_card.subtitle',
             'config' => [
                 'type' => 'input',
                 'size' => 60,
@@ -96,7 +96,7 @@ return [
             ],
         ],
         'subtitle_layout' => [
-            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
+            'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:layout.subheading',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -105,7 +105,7 @@ return [
             ],
         ],
         'subtitle_class' => [
-            'label'  => 'LLL:EXT:conn_t3kit_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
+            'label'  => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_class',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
@@ -114,7 +114,7 @@ return [
             ],
         ],
         'body' => [
-            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.body',
+            'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:stack_card.body',
             'config' => [
                 'type'           => 'text',
                 'enableRichtext' => true,
@@ -122,7 +122,7 @@ return [
             ],
         ],
         'image' => [
-            'label'  => 'LLL:EXT:conn_t3kit_elements/Resources/Private/Language/locallang_be.xlf:stack_card.image',
+            'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:stack_card.image',
             'config' => [
                 'type'     => 'file',
                 'allowed'  => 'jpg,jpeg,png,gif,webp,svg',
