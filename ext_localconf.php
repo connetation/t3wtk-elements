@@ -16,6 +16,12 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000002] = [
     'class'     => \Connetation\T3wtkElements\Form\Element\IconStyleSelectElement::class,
 ];
 
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1752000003] = [
+    'nodeName' => 'connResponsiveRange',
+    'priority'  => 40,
+    'class'     => \Connetation\T3wtkElements\Form\Element\ResponsiveRangeElement::class,
+];
+
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
     'mod.wizards.newContentElement.wizardItems.conn.show = conn_card_stack,conn_shift_carousel,conn_lightbox_gallery,conn_mosaic_gallery,conn_timeline,conn_stats,conn_logo_wall,conn_testimonials,conn_bs_pricing,conn_feature_grid,conn_process,conn_before_after,conn_people,conn_quote,conn_alert

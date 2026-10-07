@@ -7,18 +7,16 @@
                 <type>array</type>
                 <el>
                     <settings.height>
-                        <label>Slider height (vh)</label>
+                        <label>Slider height (vh) — Desktop ≥ 1200px, Tablet 768–1199px, Mobile &lt; 768px</label>
                         <config>
-                            <type>number</type>
-                            <format>integer</format>
-                            <range>
+                            <type>input</type>
+                            <renderType>connResponsiveRange</renderType>
+                            <responsive>
                                 <lower>20</lower>
                                 <upper>100</upper>
-                            </range>
-                            <slider>
                                 <step>5</step>
-                                <width>400</width>
-                            </slider>
+                                <unit>vh</unit>
+                            </responsive>
                             <default>50</default>
                         </config>
                     </settings.height>

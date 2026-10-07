@@ -1,0 +1,105 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Connetation\T3wtkElements\Form\Element;
+
+use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
+use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Utility\StringUtility;
+
+/**
+ * One slider with Desktop / Tablet / Mobile device tabs (renderType
+ * "connResponsiveRange") — per-device values without three separate fields.
+ *
+ * The field stores "desktop,tablet,mobile" (e.g. "70,,45"); an empty
+ * tablet/mobile value inherits from the next larger device, and a plain
+ * single value (e.g. "70", as saved by a former number field) is desktop
+ * only — so switching an existing field to this renderType needs no data
+ * migration. Frontend parsing: SlideItemsProcessor::resolveHeroHeights().
+ *
+ * Field config (type "input"):
+ *   <renderType>connResponsiveRange</renderType>
+ *   <responsive><lower>20</lower><upper>100</upper><step>5</step><unit>vh</unit></responsive>
+ *   <default>50</default>
+ */
+final class ResponsiveRangeElement extends AbstractFormElement
+{
+    private const DEVICES = [
+        'desktop' => 'actions-device-desktop',
+        'tablet'  => 'actions-device-tablet',
+        'mobile'  => 'actions-device-mobile',
+    ];
+
+    private const LLL = 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:responsive_range.';
+
+    public function __construct(
+        private readonly IconFactory $iconFactory,
+    ) {}
+
+    public function render(): array
+    {
+        $resultArray    = $this->initializeResultArray();
+        $parameterArray = $this->data['parameterArray'];
+        $config         = $parameterArray['fieldConf']['config'] ?? [];
+        $responsive     = $config['responsive'] ?? [];
+
+        $lower   = (int)($responsive['lower'] ?? 0);
+        $upper   = (int)($responsive['upper'] ?? 100);
+        $step    = max(1, (int)($responsive['step'] ?? 1));
+        $unit    = (string)($responsive['unit'] ?? '');
+        $default = (string)($config['default'] ?? $lower);
+        $value   = (string)($parameterArray['itemFormElValue'] ?? '');
+        $fieldId = StringUtility::getUniqueId('formengine-responsive-range-');
+        $lang    = $this->getLanguageService();
+
+        $fieldInformationResult = $this->renderFieldInformation();
+        $resultArray = $this->mergeChildReturnIntoExistingResult($resultArray, $fieldInformationResult, false);
+
+        $tabs = '';
+        foreach (self::DEVICES as $device => $iconIdentifier) {
+            $label = htmlspecialchars($lang->sL(self::LLL . $device));
+            $tabs .= '<button type="button" class="btn btn-default btn-sm conn-responsive-range__tab"'
+                . ' data-device="' . $device . '" role="tab" aria-selected="false" title="' . $label . '">'
+                . $this->iconFactory->getIcon($iconIdentifier, IconSize::SMALL)->render()
+                . '<span class="conn-responsive-range__tab-label">' . $label . '</span>'
+                . '<span class="conn-responsive-range__badge"></span>'
+                . '</button>';
+        }
+
+        $html = [];
+        // Not a single input — fieldset + legend (wrapWithFieldsetAndLegend) instead of <label for>.
+        $html[] = '<div class="formengine-field-item t3js-formengine-field-item">';
+        $html[] =   $fieldInformationResult['html'];
+        $html[] =   '<div class="form-control-wrap conn-responsive-range" id="' . htmlspecialchars($fieldId) . '"'
+            . ' data-default="' . htmlspecialchars($default) . '"'
+            . ' data-unit="' . htmlspecialchars($unit) . '"'
+            . ' data-label-inherit-desktop="' . htmlspecialchars($lang->sL(self::LLL . 'inherit.desktop')) . '"'
+            . ' data-label-inherit-tablet="' . htmlspecialchars($lang->sL(self::LLL . 'inherit.tablet')) . '">';
+        $html[] =     '<input type="hidden" class="conn-responsive-range__value" name="' . htmlspecialchars($parameterArray['itemFormElName']) . '" value="' . htmlspecialchars($value) . '">';
+        $html[] =     '<div class="btn-group conn-responsive-range__tabs" role="tablist">' . $tabs . '</div>';
+        $html[] =     '<div class="conn-responsive-range__controls">';
+        $html[] =       '<input type="range" class="form-range conn-responsive-range__slider" min="' . $lower . '" max="' . $upper . '" step="' . $step . '">';
+        $html[] =       '<div class="input-group input-group-sm conn-responsive-range__number">';
+        $html[] =         '<input type="number" class="form-control" min="' . $lower . '" max="' . $upper . '" step="' . $step . '">';
+        $html[] =         $unit !== '' ? '<span class="input-group-text">' . htmlspecialchars($unit) . '</span>' : '';
+        $html[] =       '</div>';
+        $html[] =     '</div>';
+        $html[] =     '<div class="conn-responsive-range__meta">';
+        $html[] =       '<span class="conn-responsive-range__hint"></span>';
+        $html[] =       '<button type="button" class="btn btn-link btn-sm conn-responsive-range__reset" hidden>'
+            . htmlspecialchars($lang->sL(self::LLL . 'reset')) . '</button>';
+        $html[] =     '</div>';
+        $html[] =   '</div>';
+        $html[] = '</div>';
+
+        $resultArray['html'] = $this->wrapWithFieldsetAndLegend(implode(LF, $html));
+        $resultArray['stylesheetFiles'][] = 'EXT:conn_t3wtk_elements/Resources/Public/Css/responsive-range.css';
+        $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@connetation/t3wtk-elements/responsive-range.js')
+            ->instance($fieldId);
+
+        return $resultArray;
+    }
+}

@@ -1,0 +1,53 @@
+/* Backend: renderType "connResponsiveRange" (ResponsiveRangeElement.php) */
+.conn-responsive-range {
+    max-width: 480px;
+}
+
+.conn-responsive-range__tabs {
+    margin-bottom: 0.75rem;
+}
+
+.conn-responsive-range__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.conn-responsive-range__badge {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.75;
+}
+
+/* Inherited value: shown, but visibly "not set here" */
+.conn-responsive-range__tab.is-inherited .conn-responsive-range__badge {
+    font-style: italic;
+    opacity: 0.5;
+}
+
+.conn-responsive-range__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.conn-responsive-range__slider {
+    flex: 1;
+}
+
+.conn-responsive-range__number {
+    width: 7rem;
+    flex: none;
+}
+
+.conn-responsive-range__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 1.75rem;
+    font-size: 0.8125rem;
+    opacity: 0.8;
+}
+
+.conn-responsive-range__reset {
+    padding: 0;
+}
