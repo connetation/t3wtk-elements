@@ -210,9 +210,8 @@
                         <label>Nametag overlay color (the bar shown before hover/tap)</label>
                         <displayCond>FIELD:display.settings.style:IN:reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
                         <config>
-                            <type>input</type>
-                            <renderType>color</renderType>
-                            <size>10</size>
+                            <type>color</type>
+                            <opacity>1</opacity>
                             <default>#000000</default>
                         </config>
                     </settings.nametagBg>
@@ -238,9 +237,8 @@
                         <label>Reveal panel background (the sliding sheet — empty = same as card background)</label>
                         <displayCond>FIELD:display.settings.style:=:reveal-sheet</displayCond>
                         <config>
-                            <type>input</type>
-                            <renderType>color</renderType>
-                            <size>10</size>
+                            <type>color</type>
+                            <opacity>1</opacity>
                         </config>
                     </settings.revealBg>
                     <settings.revealTextColor>
@@ -256,9 +254,8 @@
                         <label>Curtain background color (empty = alternates using each person's accent color)</label>
                         <displayCond>FIELD:display.settings.style:=:reveal-curtain</displayCond>
                         <config>
-                            <type>input</type>
-                            <renderType>color</renderType>
-                            <size>10</size>
+                            <type>color</type>
+                            <opacity>1</opacity>
                         </config>
                     </settings.curtainBg>
                     <settings.curtainTextColor>
@@ -273,6 +270,31 @@
                 </el>
             </ROOT>
         </colors_reveal>
+        <colors_spotlight>
+            <ROOT>
+                <sheetTitle>🎨 Spotlight Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.spotlightBg>
+                        <label>Spotlight overlay color (behind the revealed text — empty = dark gradient). Lower the opacity to let the photo show through</label>
+                        <displayCond>FIELD:display.settings.style:=:reveal-spotlight</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.spotlightBg>
+                    <settings.spotlightTextColor>
+                        <label>Spotlight text color (name/role/bio/contact — empty = "Text color over the photo", role and contact links keep each person's accent color)</label>
+                        <displayCond>FIELD:display.settings.style:=:reveal-spotlight</displayCond>
+                        <config>
+                            <type>input</type>
+                            <renderType>color</renderType>
+                            <size>10</size>
+                        </config>
+                    </settings.spotlightTextColor>
+                </el>
+            </ROOT>
+        </colors_spotlight>
         <colors_visit>
             <ROOT>
                 <sheetTitle>🎨 Visit Card Colors</sheetTitle>
