@@ -1,3 +1,4 @@
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Bootstrap Card Group Content Element
 // ─────────────────────────────────────────────
@@ -8,6 +9,9 @@
 // change there updates every element consistently.
 
 .conn-card-group {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
     // Bootstrap's .row.g-4 gives its direct child a negative margin-top
     // (gutter compensation); without a block-formatting context here that
     // margin collapses through the section into the header/subheader above.
@@ -83,7 +87,7 @@
         background: var(--conn-accent-soft);
         color: var(--conn-accent);
         border: 1px solid var(--conn-border-strong);
-        font-size: 0.6875rem;
+        font-size: base.card-fs(0.6875rem);
         font-weight: 700;
         letter-spacing: 0.05em;
         padding: 0.25em 0.65em;
@@ -92,7 +96,7 @@
 
     // ── Body text ───────────────────────────────────
     &__body {
-        font-size: var(--conn-font-size-body);
+        font-size: base.card-fs(var(--conn-font-size-body));
         color: var(--conn-text);
         line-height: var(--conn-line-height-normal);
 

@@ -1,3 +1,4 @@
+@use 'theme/tokens' as base;
 // Headings inherit connetation/t3wtk-base's shared heading system (components/_typography.scss
 // for h1-h3, Bootstrap defaults for h4-h6, global $headings-font-weight/
 // --bs-heading-color) — no per-element font-size/weight/color override here.
@@ -5,6 +6,9 @@
 // ── Shared ────────────────────────────────────────────────────────────────────
 
 .conn-timeline {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
     padding: 3rem 0;
 
     // No font-size/weight/color override — inherits the tag chosen via
@@ -16,7 +20,7 @@
 
     &__body {
         color: var(--conn-text);
-        font-size: var(--conn-font-size-body);
+        font-size: base.card-fs(var(--conn-font-size-body));
         line-height: var(--conn-line-height-normal);
 
         p:last-child { margin-bottom: 0; }
@@ -122,7 +126,7 @@
         }
 
         .conn-timeline__date {
-            font-size: 0.72rem;
+            font-size: base.card-fs(0.72rem);
             font-weight: 700;
             color: var(--conn-text-muted);
             letter-spacing: 0.05em;
@@ -342,7 +346,7 @@
             border: 1px solid var(--conn-border);
             border-radius: var(--conn-radius-pill);
             padding: 0.2rem 0.8rem;
-            font-size: 0.76rem;
+            font-size: base.card-fs(0.76rem);
             font-weight: 700;
             letter-spacing: 0.03em;
             margin-bottom: 0.65rem;
@@ -494,7 +498,7 @@
                 margin: 0;
                 color: var(--conn-accent);
                 font-weight: 700;
-                font-size: 1.1rem;
+                font-size: base.card-fs(1.1rem);
                 line-height: 1;
                 text-align: center;
             }
@@ -575,7 +579,7 @@
 
         .conn-timeline__item-date {
             display: block;
-            font-size: 0.72rem;
+            font-size: base.card-fs(0.72rem);
             font-weight: 700;
             color: var(--conn-text-muted);
             letter-spacing: 0.04em;
@@ -644,7 +648,7 @@
 
             .conn-timeline__year-row { justify-content: flex-start; padding-left: 2.5rem; }
 
-            .conn-timeline__year-badge { width: 60px; height: 60px; p { font-size: 0.85rem; } }
+            .conn-timeline__year-badge { width: 60px; height: 60px; p { font-size: base.card-fs(0.85rem); } }
 
             .conn-timeline__item--left,
             .conn-timeline__item--right {

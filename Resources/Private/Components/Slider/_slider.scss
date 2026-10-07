@@ -1,3 +1,4 @@
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Connetation Elements – Card Slider
 // ─────────────────────────────────────────────
@@ -8,6 +9,9 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-slider {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
 
     // ── Swiper wrapper ───────────────────────
     &__swiper {
@@ -68,7 +72,7 @@
 
     // ── Body text ────────────────────────────
     &__body {
-        font-size: var(--conn-font-size-body);
+        font-size: base.card-fs(var(--conn-font-size-body));
         color: var(--conn-text);
         line-height: var(--conn-line-height-normal);
 

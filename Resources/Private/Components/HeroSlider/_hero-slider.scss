@@ -211,7 +211,7 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--conn-hero-slide-subtitle-light, var(--conn-accent));
+        color: var(--conn-hero-slide-subtitle-light, var(--conn-eyebrow-color, var(--conn-accent)));
         margin-bottom: var(--conn-space-xs);
         opacity: 0;
         transform: translateY(12px);
@@ -223,7 +223,7 @@
         }
 
         [data-bs-theme="dark"] & {
-            color: var(--conn-hero-slide-subtitle-dark, var(--conn-hero-slide-subtitle-light, var(--conn-accent)));
+            color: var(--conn-hero-slide-subtitle-dark, var(--conn-hero-slide-subtitle-light, var(--conn-eyebrow-color, var(--conn-accent))));
         }
     }
 

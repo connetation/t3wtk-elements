@@ -9,6 +9,9 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-card-stack {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
 
     // ── Viewport (deck + nav wrapper; provides positioning context for sides mode)
     &__viewport {
@@ -67,14 +70,14 @@
     }
 
     &__item-title {
-        font-size: 0.875rem;
+        font-size: base.card-heading-fs(0.875rem);
         font-weight: 600;
         margin: 0;
         line-height: 1.3;
     }
 
     &__item-subtitle {
-        font-size: 0.75rem;
+        font-size: base.card-heading-fs(0.75rem);
         opacity: 0.8;
         margin: 0 0 0.2rem;
         line-height: 1.3;
@@ -173,7 +176,7 @@
     }
 
     &__counter {
-        font-size: 0.875rem;
+        font-size: base.card-fs(0.875rem);
         color: var(--conn-text-muted);
         min-width: 3rem;
         text-align: center;

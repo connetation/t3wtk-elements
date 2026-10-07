@@ -1,3 +1,4 @@
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Process/Steps – conn theme layer
 // ─────────────────────────────────────────────
@@ -9,9 +10,12 @@ $conn-process-gap: 2rem;
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-process {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
     &__footer {
         color: var(--conn-text-muted);
-        font-size: 0.9rem;
+        font-size: base.card-fs(0.9rem);
     }
 
     &__list {
@@ -109,12 +113,12 @@ $conn-process-gap: 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.25rem;
+        font-size: base.card-fs(1.25rem);
     }
 
     &__number {
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: base.card-fs(1.1rem);
     }
 
     &__title {
@@ -127,7 +131,7 @@ $conn-process-gap: 2rem;
 
     &__text {
         color: var(--conn-text-muted);
-        font-size: var(--conn-font-size-body);
+        font-size: base.card-fs(var(--conn-font-size-body));
         line-height: var(--conn-line-height-normal);
 
         p:last-child { margin-bottom: 0; }

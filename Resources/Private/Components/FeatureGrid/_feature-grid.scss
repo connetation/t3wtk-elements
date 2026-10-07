@@ -1,4 +1,5 @@
 @use '../Shared/devices' as *;
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Connetation Elements – Feature Grid
 // ─────────────────────────────────────────────
@@ -8,6 +9,9 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-feature-grid {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
 
     // Per-device columns (settings.columns = "desktop,tablet,mobile")
     @include device-columns('.conn-feature-grid__grid', --conn-fg-cols);
@@ -78,7 +82,7 @@
         justify-content: center;
         flex-shrink: 0;
         color: var(--conn-accent);
-        font-size: 1.375rem;
+        font-size: base.card-fs(1.375rem);
         transition: background var(--conn-transition), border-color var(--conn-transition);
 
         img, svg {
@@ -125,7 +129,7 @@
 
     // ── Body text ─────────────────────────────
     &__body {
-        font-size: var(--conn-font-size-body);
+        font-size: base.card-fs(var(--conn-font-size-body));
         color: var(--conn-text-muted);
         line-height: var(--conn-line-height-normal);
         flex: 1;
@@ -135,7 +139,7 @@
 
     // ── Optional link ─────────────────────────
     &__link {
-        font-size: 0.8125rem;
+        font-size: base.card-fs(0.8125rem);
         font-weight: 600;
         color: var(--conn-accent);
         text-decoration: none;
@@ -166,7 +170,7 @@
             background: var(--conn-accent);
             border-color: var(--conn-accent);
             color: #fff;
-            font-size: 1.125rem;
+            font-size: base.card-fs(1.125rem);
             font-weight: 700;
         }
 

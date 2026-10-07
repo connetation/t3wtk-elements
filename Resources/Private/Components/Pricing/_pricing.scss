@@ -1,4 +1,5 @@
 @use '../Shared/devices' as *;
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Connetation Elements – Pricing Table
 // ─────────────────────────────────────────────
@@ -8,6 +9,9 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-pricing {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
 
     // Per-device columns (settings.columns = "desktop,tablet,mobile")
     @include device-columns('.conn-pricing__grid', --conn-pricing-cols);
@@ -77,7 +81,7 @@
         right: 1.25rem;
         background: var(--conn-accent);
         color: #fff;
-        font-size: 0.6875rem;
+        font-size: base.card-fs(0.6875rem);
         font-weight: 700;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -115,7 +119,7 @@
     }
 
     &__currency {
-        font-size: 1.375rem;
+        font-size: base.card-fs(1.375rem);
         font-weight: 700;
         color: var(--conn-text-muted);
         align-self: flex-start;
@@ -123,19 +127,19 @@
     }
 
     &__amount {
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-size: base.card-fs(clamp(2.5rem, 5vw, 3.5rem));
         font-weight: 700;
         color: var(--conn-heading);
         line-height: 1;
     }
 
     &__period {
-        font-size: 0.875rem;
+        font-size: base.card-fs(0.875rem);
         color: var(--conn-text-muted);
     }
 
     &__price-note {
-        font-size: 0.8125rem;
+        font-size: base.card-fs(0.8125rem);
         color: var(--conn-text-muted);
         margin-top: -0.75rem;
     }
@@ -155,7 +159,7 @@
         display: flex;
         align-items: flex-start;
         gap: 0.625rem;
-        font-size: 0.9rem;
+        font-size: base.card-fs(0.9rem);
         color: var(--conn-text);
         line-height: 1.4;
 
@@ -167,7 +171,7 @@
             border-radius: 50%;
             background: var(--conn-accent-soft);
             color: var(--conn-accent);
-            font-size: 0.7rem;
+            font-size: base.card-fs(0.7rem);
             font-weight: 700;
             display: flex;
             align-items: center;

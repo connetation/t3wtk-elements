@@ -1,3 +1,4 @@
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Flip Card Content Element
 // ─────────────────────────────────────────────
@@ -7,6 +8,9 @@
 // system, same as Card Group.
 
 .conn-flip-card {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
     --conn-flip-card-duration: 0.6s;
     --conn-flip-card-ease:     cubic-bezier(0.4, 0.2, 0.2, 1);
 
@@ -167,18 +171,18 @@
     // .ce-eyebrow, restated here so this CSS doesn't depend on the base CSS.
     &__subtitle--eyebrow {
         margin: 0 0 var(--conn-space-2xs);
-        font-size: var(--conn-font-size-sm);
+        font-size: base.card-heading-fs(var(--conn-font-size-sm));
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--conn-flip-card-subtitle, var(--conn-accent));
+        color: var(--conn-flip-card-subtitle, var(--conn-eyebrow-color, var(--conn-accent)));
     }
 
     // Starts left (the RTE's default alignment emits no class) so the editor's
     // alignment classes, not the face's centering, decide.
     &__body {
         margin-top: 0.75rem;
-        font-size: var(--conn-font-size-body);
+        font-size: base.card-fs(var(--conn-font-size-body));
         line-height: var(--conn-line-height-normal);
         color: var(--conn-flip-card-text, var(--conn-text));
         text-align: start;

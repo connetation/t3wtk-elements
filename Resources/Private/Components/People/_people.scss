@@ -1,6 +1,9 @@
 @use 'theme/tokens' as base;
 
 .conn-people {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
 
     --conn-people-bg:           var(--conn-surface);
     --conn-people-radius:       var(--conn-radius);
@@ -33,12 +36,12 @@
         text-transform: uppercase;
         letter-spacing: 0.02em;
         color: var(--conn-people-name);
-        font-size: 0.95rem;
+        font-size: base.card-heading-fs(0.95rem);
     }
 
     &__role {
         color: var(--conn-people-text);
-        font-size: 0.8rem;
+        font-size: base.card-heading-fs(0.8rem);
         margin-bottom: var(--conn-space-xs);
     }
 
@@ -47,7 +50,7 @@
 
     &__bio {
         color: var(--conn-people-text);
-        font-size: 0.85rem;
+        font-size: base.card-fs(0.85rem);
         line-height: 1.5;
 
         p:last-child { margin-bottom: 0; }
@@ -76,7 +79,7 @@
 
     &__initials {
         font-weight: 800;
-        font-size: 1.5rem;
+        font-size: base.card-fs(1.5rem);
         color: var(--conn-text-muted);
     }
 
@@ -172,7 +175,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.35rem;
-            font-size: 0.8rem;
+            font-size: base.card-fs(0.8rem);
             color: var(--conn-people-text);
             text-decoration: none;
         }
@@ -256,7 +259,7 @@
         justify-content: center;
         background: var(--conn-surface-alt);
 
-        .conn-people__initials { font-size: 0.9rem; }
+        .conn-people__initials { font-size: base.card-fs(0.9rem); }
     }
 
     &__who {
@@ -383,7 +386,7 @@
         padding: 1.1rem 1rem 0.8rem;
         text-align: center;
         font-weight: 700;
-        font-size: 0.85rem;
+        font-size: base.card-heading-fs(0.85rem);
         letter-spacing: 0.05em;
         text-transform: uppercase;
         color: var(--conn-people-nametag-text);
@@ -688,7 +691,7 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.16);
             color: var(--conn-people-accent-text);
-            font-size: 1.6rem;
+            font-size: base.card-fs(1.6rem);
             letter-spacing: 0.02em;
         }
     }
@@ -716,7 +719,7 @@
     &__visit--right &__visit-divider { align-self: flex-end; }
 
     &__visit-line {
-        font-size: 0.76rem;
+        font-size: base.card-fs(0.76rem);
         color: var(--conn-people-link);
         text-decoration: none;
         display: flex;
@@ -734,7 +737,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.68rem;
+        font-size: base.card-fs(0.68rem);
         flex-shrink: 0;
         background: var(--conn-people-a);
     }
@@ -755,20 +758,20 @@
         &__visit--left &__visit-info { padding-left: 40%; }
         &__visit--right &__visit-info { padding-right: 40%; }
 
-        .conn-people__name { font-size: 0.8rem; }
-        .conn-people__role { font-size: 0.7rem; margin-bottom: 0.3rem; }
+        .conn-people__name { font-size: base.card-heading-fs(0.8rem); }
+        .conn-people__role { font-size: base.card-heading-fs(0.7rem); margin-bottom: 0.3rem; }
 
         &__visit-divider { width: 1.8rem; margin: var(--conn-space-2xs) 0 0.35rem; }
 
         &__visit-line {
-            font-size: 0.66rem;
+            font-size: base.card-fs(0.66rem);
             gap: 0.3rem;
         }
 
         &__visit-ico {
             width: 1.1rem;
             height: 1.1rem;
-            font-size: 0.58rem;
+            font-size: base.card-fs(0.58rem);
         }
     }
 }

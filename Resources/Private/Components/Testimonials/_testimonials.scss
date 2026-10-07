@@ -1,4 +1,5 @@
 @use '../Shared/devices' as *;
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Connetation Elements – Testimonials
 // ─────────────────────────────────────────────
@@ -8,6 +9,9 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-testimonials {
+    // Card font-size scale (site setting theme.cardFontSizeScale)
+    @include base.card-text-scale;
+
 
     // Per-device columns (settings.columns = "desktop,tablet,mobile") — grid layout
     &--grid {
@@ -61,7 +65,7 @@
         display: flex;
         gap: 0.2rem;
         color: #f59e0b;
-        font-size: 1rem;
+        font-size: base.card-fs(1rem);
         line-height: 1;
     }
 
@@ -72,7 +76,7 @@
 
         &::before {
             content: '\201C';
-            font-size: 3rem;
+            font-size: base.card-fs(3rem);
             line-height: 0;
             vertical-align: -0.65em;
             color: var(--conn-accent);
@@ -116,7 +120,7 @@
     &__avatar--placeholder {
         background: var(--conn-accent-soft);
         color: var(--conn-accent);
-        font-size: 1.125rem;
+        font-size: base.card-fs(1.125rem);
         font-weight: 700;
         text-transform: uppercase;
         line-height: 1;
@@ -145,7 +149,7 @@
 
     &__author-role {
         margin: 0;
-        font-size: 0.8125rem;
+        font-size: base.card-fs(0.8125rem);
         color: var(--conn-text-muted);
         line-height: 1.3;
         white-space: nowrap;

@@ -177,7 +177,7 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--conn-accent);
+        color: var(--conn-eyebrow-color, var(--conn-accent));
         margin-bottom: var(--conn-space-xs);
         opacity: 0;
         transform: translateY(10px);

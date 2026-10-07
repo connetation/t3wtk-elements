@@ -1,3 +1,5 @@
+@use 'theme/tokens' as base;
+
 // ─────────────────────────────────────────────
 // Card eyebrow — a card's subtitle shown above its title as a small uppercase
 // label (per-item "Subheader as Eyebrow" toggle). Same look as connetation/
@@ -7,11 +9,11 @@
 // ─────────────────────────────────────────────
 .conn-card-eyebrow {
     margin: 0 0 var(--conn-space-2xs);
-    font-size: var(--conn-font-size-sm);
+    font-size: base.card-heading-fs(var(--conn-font-size-sm));
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     // Overridable per component — e.g. text over a dark image overlay sets
     // it to its own text color so a dark accent can't vanish.
-    color: var(--conn-card-eyebrow-color, var(--conn-accent));
+    color: var(--conn-card-eyebrow-color, var(--conn-eyebrow-color, var(--conn-accent)));
 }
