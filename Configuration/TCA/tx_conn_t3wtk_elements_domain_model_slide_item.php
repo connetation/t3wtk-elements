@@ -114,6 +114,33 @@ return [
                 'default'    => '',
             ],
         ],
+        // Same idea as conn_t3wtk_base's tt_content "Subheader as Eyebrow":
+        // the subtitle moves above the title as a small uppercase label.
+        'subtitle_eyebrow' => [
+            'label'  => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_eyebrow',
+            'config' => [
+                'type'       => 'check',
+                'renderType' => 'checkboxToggle',
+                'items'      => [['label' => '']],
+                'default'    => 0,
+            ],
+        ],
+        'subtitle_eyebrow_position' => [
+            'label'       => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_eyebrow_position',
+            'displayCond' => 'FIELD:subtitle_eyebrow:=:1',
+            'config'      => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'default'    => 'auto',
+                'items'      => [
+                    // Auto = follow the card's title alignment (tt_content: header_position).
+                    ['label' => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_eyebrow_position.auto', 'value' => 'auto'],
+                    ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.left', 'value' => 'start'],
+                    ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.center', 'value' => 'center'],
+                    ['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.right', 'value' => 'end'],
+                ],
+            ],
+        ],
         'body' => [
             'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:slide_item.body',
             'config' => [
@@ -342,7 +369,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, body, image, show_placeholder,
+                    title, title_layout, title_class, subtitle, subtitle_layout, subtitle_class, subtitle_eyebrow, subtitle_eyebrow_position, body, image, show_placeholder,
                 --div--;LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:slide_item.tab.link,
                     link, link_label,
                     --linebreak--,

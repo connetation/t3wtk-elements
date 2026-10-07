@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class SlideItemsProcessor extends AbstractItemsProcessor
 {
@@ -108,7 +109,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
             'show_pagination' => (bool)($raw['show_pagination'] ?? true),
             'hide_pagination_mobile' => (bool)($raw['hide_pagination_mobile'] ?? false),
-        ];
+        ] + FontWeightOptions::resolveCard($raw);
     }
 
     // settings.height used to be a medium/large/fullscreen select; it is now a
@@ -174,6 +175,17 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             'hide_navigation_mobile' => false,
             'show_pagination' => true,
             'hide_pagination_mobile' => false,
-        ];
+        ] + FontWeightOptions::CARD_DEFAULTS;
+    }
+
+    protected function postProcessRows(array $rows, array $settings): array
+    {
+        foreach ($rows as &$row) {
+            // No per-item title alignment: 'auto' keeps the card's alignment.
+            $row['eyebrowAlignClass'] = $this->resolveAlignClass($row['subtitle_eyebrow_position'] ?? null);
+        }
+        unset($row);
+
+        return $rows;
     }
 }

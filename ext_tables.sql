@@ -498,6 +498,7 @@ CREATE TABLE tx_conn_t3wtk_elements_domain_model_process_step (
 -- ─── Page card fields (Subpage Cards element) ───────────────────────────────
 
 CREATE TABLE pages (
+    tx_conn_t3wtk_elements_card_subtitle varchar(255) DEFAULT '' NOT NULL,
     tx_conn_t3wtk_elements_card_teaser text,
     tx_conn_t3wtk_elements_card_link   varchar(2048) DEFAULT '' NOT NULL,
     tx_conn_t3wtk_elements_card_media  int(11) unsigned DEFAULT '0' NOT NULL

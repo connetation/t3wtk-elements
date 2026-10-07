@@ -24,7 +24,8 @@
                     <f:for each="{features}" as="feature">
                         <f:render partial="FeatureGrid/Item" arguments="{
                             feature: feature,
-                            variant: settings.variant
+                            variant: settings.variant,
+                            settings: settings
                         }" />
                     </f:for>
                 </div>

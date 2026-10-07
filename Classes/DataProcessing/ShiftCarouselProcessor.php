@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class ShiftCarouselProcessor extends AbstractItemsProcessor
 {
@@ -80,7 +81,7 @@ final class ShiftCarouselProcessor extends AbstractItemsProcessor
             'navPosition'   => $navPosition,
             'autoplay'      => $autoplay,
             'autoplay_delay' => $autoplayDelay,
-        ];
+        ] + FontWeightOptions::resolveCard($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -92,6 +93,17 @@ final class ShiftCarouselProcessor extends AbstractItemsProcessor
             'navPosition'   => 'bottom',
             'autoplay'      => false,
             'autoplay_delay' => 4000,
-        ];
+        ] + FontWeightOptions::CARD_DEFAULTS;
+    }
+
+    protected function postProcessRows(array $rows, array $settings): array
+    {
+        foreach ($rows as &$row) {
+            // No per-item title alignment: 'auto' keeps the element's text alignment.
+            $row['eyebrowAlignClass'] = $this->resolveAlignClass($row['subtitle_eyebrow_position'] ?? null);
+        }
+        unset($row);
+
+        return $rows;
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class CardStackProcessor extends AbstractItemsProcessor
 {
@@ -30,6 +31,12 @@ final class CardStackProcessor extends AbstractItemsProcessor
 
     protected function postProcessRows(array $rows, array $settings): array
     {
+        foreach ($rows as &$row) {
+            // No per-card title alignment: 'auto' keeps the element's text alignment.
+            $row['eyebrowAlignClass'] = $this->resolveAlignClass($row['subtitle_eyebrow_position'] ?? null);
+        }
+        unset($row);
+
         // Reverse so that CMS item #1 (sorting=1) becomes last-child = front card
         return array_reverse($rows);
     }
@@ -62,7 +69,7 @@ final class CardStackProcessor extends AbstractItemsProcessor
             'navPosition'   => $navPosition,
             'autoplay'      => $autoplay,
             'autoplay_delay' => $autoplayDelay,
-        ];
+        ] + FontWeightOptions::resolveCard($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -73,6 +80,6 @@ final class CardStackProcessor extends AbstractItemsProcessor
             'navPosition'   => 'bottom',
             'autoplay'      => false,
             'autoplay_delay' => 4000,
-        ];
+        ] + FontWeightOptions::CARD_DEFAULTS;
     }
 }

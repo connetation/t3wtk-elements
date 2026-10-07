@@ -1249,6 +1249,15 @@
             <trans-unit id="flip_card_item.image.description">
                 <source>Fills this side of the card; the text is shown over it on a dark gradient.</source>
             </trans-unit>
+            <trans-unit id="pages.card_subtitle">
+                <source>Card subtitle</source>
+            </trans-unit>
+            <trans-unit id="pages.card_subtitle.description">
+                <source>Shown on "Subpage Cards" elements. Empty = the page subtitle is used.</source>
+            </trans-unit>
+            <trans-unit id="align.auto">
+                <source>Auto (same as title)</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -76,7 +76,8 @@ $faceColumns = static function (string $prefix, bool $titleRequired) use ($headi
         ],
         $prefix . 'subtitle_layout' => $select($ll . 'layout.subheading', $headingLayoutItems, 0),
         $prefix . 'subtitle_class'  => $select('LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_class', $headingClassItems, ''),
-        $prefix . 'subtitle_align'  => $select($ll . 'layout.align', $alignItems, 'center'),
+        // Positions the subtitle — also when shown as eyebrow. Auto = title alignment.
+        $prefix . 'subtitle_align'  => $select($ll . 'layout.align', [['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.auto', 'value' => 'auto'], ...$alignItems], 'auto'),
         // Same idea as conn_t3wtk_base's tt_content "Subheader as Eyebrow":
         // the subtitle moves above the title as a small uppercase label.
         $prefix . 'subtitle_eyebrow' => [

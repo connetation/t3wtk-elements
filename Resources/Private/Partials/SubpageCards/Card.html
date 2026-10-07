@@ -34,7 +34,11 @@
         </f:if>
 
         <div class="card-body p-3">
-            <f:variable name="titleClass" value="card-title mb-2 text-{settings.titleAlign}" />
+            <f:variable name="showSubtitle" value="{f:if(condition: '{settings.showSubtitle} && {card.subtitle}', then: 1, else: 0)}" />
+            <f:if condition="{showSubtitle} && {settings.subtitleEyebrow}">
+                <p class="conn-card-eyebrow {settings.eyebrowAlignClass}">{card.subtitle}</p>
+            </f:if>
+            <f:variable name="titleClass" value="card-title mb-2 {settings.titleWeight} text-{settings.titleAlign}" />
             <f:switch expression="{settings.titleTag}">
                 <f:case value="h2"><h2 class="{titleClass}"><f:render section="TitleLink" arguments="{card: card}" /></h2></f:case>
                 <f:case value="h4"><h4 class="{titleClass}"><f:render section="TitleLink" arguments="{card: card}" /></h4></f:case>
@@ -43,8 +47,12 @@
                 <f:defaultCase><h3 class="{titleClass}"><f:render section="TitleLink" arguments="{card: card}" /></h3></f:defaultCase>
             </f:switch>
 
+            <f:if condition="{showSubtitle} && !{settings.subtitleEyebrow}">
+                <p class="card-text mb-2 {settings.subtitleWeight} text-{settings.titleAlign}">{card.subtitle}</p>
+            </f:if>
+
             <f:if condition="{settings.showTeaser} && {card.teaser}">
-                <div class="conn-card-group__body small text-{settings.bodyAlign}">
+                <div class="conn-card-group__body small {settings.textWeight} text-{settings.bodyAlign}">
                     <f:if condition="{settings.cropMaxCharacters} > 0">
                         <f:then>{card.teaser -> f:format.html() -> f:format.crop(maxCharacters: settings.cropMaxCharacters, respectWordBoundaries: 1)}</f:then>
                         <f:else>{card.teaser -> f:format.html()}</f:else>

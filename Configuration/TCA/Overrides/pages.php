@@ -12,6 +12,17 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 // the page's own "abstract" and "media" fields, the link falls back to the
 // page itself (SubpageCardsProcessor).
 ExtensionManagementUtility::addTCAcolumns('pages', [
+    'tx_conn_t3wtk_elements_card_subtitle' => [
+        'exclude'     => true,
+        'label'       => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:pages.card_subtitle',
+        'description' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:pages.card_subtitle.description',
+        'config'      => [
+            'type' => 'input',
+            'size' => 50,
+            'max'  => 255,
+            'eval' => 'trim',
+        ],
+    ],
     'tx_conn_t3wtk_elements_card_teaser' => [
         'exclude'     => true,
         'label'       => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:pages.card_teaser',
@@ -45,7 +56,7 @@ ExtensionManagementUtility::addTCAcolumns('pages', [
 ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     '--div--;LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:pages.tab.card,
-        tx_conn_t3wtk_elements_card_teaser,tx_conn_t3wtk_elements_card_link,tx_conn_t3wtk_elements_card_media',
+        tx_conn_t3wtk_elements_card_subtitle,tx_conn_t3wtk_elements_card_teaser,tx_conn_t3wtk_elements_card_link,tx_conn_t3wtk_elements_card_media',
     // Only the doktypes the element renders as cards
     implode(',', [
         PageRepository::DOKTYPE_DEFAULT,

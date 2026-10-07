@@ -20,7 +20,8 @@
                     <f:for each="{cards}" as="card">
                         <f:render partial="FlipCard/Card" arguments="{
                             card:     card,
-                            colClass: settings.colClass
+                            colClass: settings.colClass,
+                            settings: settings
                         }" />
                     </f:for>
                 </div>

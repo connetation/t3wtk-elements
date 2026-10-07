@@ -22,7 +22,7 @@
                 <div class="conn-shift-carousel__viewport">
                     <div class="conn-shift-carousel__track" data-items="{settings.columns}">
                         <f:for each="{items}" as="item">
-                            <f:render partial="ShiftCarousel/Item" arguments="{item: item}" />
+                            <f:render partial="ShiftCarousel/Item" arguments="{item: item, settings: settings}" />
                         </f:for>
                     </div>
                     <div class="conn-shift-carousel__nav">

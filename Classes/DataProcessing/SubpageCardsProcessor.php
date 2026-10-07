@@ -6,6 +6,7 @@ namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\Utility\RadiusOptions;
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\FontWeightOptions;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
@@ -126,6 +127,8 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             $styleVars .= '--conn-card-border-color:' . $borderColor . ';';
         }
 
+        $titleAlign = $this->allow($raw['titleAlign'] ?? null, ['start', 'center', 'end'], 'start');
+
         return [
             'columns'           => $columns,
             'colClass'          => self::COL_MAP[$columns],
@@ -135,11 +138,14 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             'cardBorderRadius'  => $borderRadius,
             'styleVars'         => $styleVars,
             'titleTag'          => $this->allow($raw['titleTag'] ?? null, ['h2', 'h3', 'h4', 'h5', 'p'], $defaults['titleTag']),
-            'titleAlign'        => $this->allow($raw['titleAlign'] ?? null, ['start', 'center', 'end'], 'start'),
+            'titleAlign'        => $titleAlign,
             'bodyAlign'         => $this->allow($raw['bodyAlign'] ?? null, ['start', 'center', 'end'], 'start'),
             'linkAlign'         => $this->allow($raw['linkAlign'] ?? null, ['start', 'center', 'end'], 'start'),
             'showImage'         => (bool)($raw['showImage'] ?? $defaults['showImage']),
             'showPlaceholder'   => (bool)($raw['showPlaceholder'] ?? $defaults['showPlaceholder']),
+            'showSubtitle'      => (bool)($raw['showSubtitle'] ?? $defaults['showSubtitle']),
+            'subtitleEyebrow'   => (bool)($raw['subtitleEyebrow'] ?? $defaults['subtitleEyebrow']),
+            'eyebrowAlignClass' => $this->resolveAlignClass($raw['eyebrowPosition'] ?? null, $titleAlign),
             'showTeaser'        => (bool)($raw['showTeaser'] ?? $defaults['showTeaser']),
             'cropMaxCharacters' => max(0, (int)($raw['cropMaxCharacters'] ?? 0)),
             'showLink'          => (bool)($raw['showLink'] ?? $defaults['showLink']),
@@ -147,7 +153,7 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             'orderBy'           => $this->allow($raw['orderBy'] ?? null, array_keys(self::ORDER_BY), 'sorting'),
             'maxItems'          => max(0, (int)($raw['maxItems'] ?? 0)),
             'includeNavHide'    => (bool)($raw['includeNavHide'] ?? false),
-        ];
+        ] + FontWeightOptions::resolveCard($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -166,6 +172,9 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             'linkAlign'         => 'start',
             'showImage'         => true,
             'showPlaceholder'   => false,
+            'showSubtitle'      => true,
+            'subtitleEyebrow'   => false,
+            'eyebrowAlignClass' => 'text-start',
             'showTeaser'        => true,
             'cropMaxCharacters' => 0,
             'showLink'          => true,
@@ -173,7 +182,7 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             'orderBy'           => 'sorting',
             'maxItems'          => 0,
             'includeNavHide'    => false,
-        ];
+        ] + FontWeightOptions::CARD_DEFAULTS;
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -284,12 +293,14 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
         foreach ($pages as $page) {
             $uid          = (int)$page['uid'];
             $referenceUid = (int)($page['_LOCALIZED_UID'] ?? $uid);
+            $subtitle     = trim((string)($page['tx_conn_t3wtk_elements_card_subtitle'] ?? ''));
             $teaser       = trim((string)($page['tx_conn_t3wtk_elements_card_teaser'] ?? ''));
             $link         = trim((string)($page['tx_conn_t3wtk_elements_card_link'] ?? ''));
 
             $cards[] = [
                 'uid'       => $uid,
                 'title'     => (string)$page['title'],
+                'subtitle'  => $subtitle !== '' ? $subtitle : trim((string)($page['subtitle'] ?? '')),
                 'teaser'    => $teaser !== '' ? $teaser : trim((string)($page['abstract'] ?? '')),
                 'link'      => $link !== '' ? $link : 't3://page?uid=' . $uid,
                 'imageFile' => $cardMedia[$referenceUid][0] ?? $pageMedia[$referenceUid][0] ?? null,

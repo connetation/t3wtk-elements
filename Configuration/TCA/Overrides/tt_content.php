@@ -657,6 +657,14 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
                 'levelLinksPosition'              => 'top',
                 'enabledControls'                 => ['dragdrop' => true],
             ],
+            // This slider always renders the subtitle as its eyebrow, so the
+            // shared slide_item "Subheader as Eyebrow" toggle has no effect here.
+            'overrideChildTca' => [
+                'columns' => [
+                    'subtitle_eyebrow'          => ['config' => ['type' => 'passthrough']],
+                    'subtitle_eyebrow_position' => ['config' => ['type' => 'passthrough']],
+                ],
+            ],
         ],
     ],
     'tx_conn_t3wtk_elements_hero_slider_settings' => [
@@ -754,6 +762,14 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
                 'collapseAll'                     => true,
                 'levelLinksPosition'              => 'top',
                 'enabledControls'                 => ['dragdrop' => true],
+            ],
+            // This slider always renders the subtitle as its eyebrow, so the
+            // shared slide_item "Subheader as Eyebrow" toggle has no effect here.
+            'overrideChildTca' => [
+                'columns' => [
+                    'subtitle_eyebrow'          => ['config' => ['type' => 'passthrough']],
+                    'subtitle_eyebrow_position' => ['config' => ['type' => 'passthrough']],
+                ],
             ],
         ],
     ],

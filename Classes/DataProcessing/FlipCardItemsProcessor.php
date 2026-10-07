@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class FlipCardItemsProcessor extends AbstractItemsProcessor
 {
@@ -54,7 +55,7 @@ final class FlipCardItemsProcessor extends AbstractItemsProcessor
             'direction' => $this->resolveChoice($raw['direction'] ?? null, ['horizontal', 'vertical']),
             'trigger'   => $this->resolveChoice($raw['trigger'] ?? null, ['hover', 'click']),
             'style'     => $this->resolveChoice($raw['style'] ?? null, ['default', 'shadow', 'flat']),
-        ];
+        ] + FontWeightOptions::resolveCard($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -67,7 +68,7 @@ final class FlipCardItemsProcessor extends AbstractItemsProcessor
             'direction' => 'horizontal',
             'trigger'   => 'hover',
             'style'     => 'default',
-        ];
+        ] + FontWeightOptions::CARD_DEFAULTS;
     }
 
     // Front and back share the same field set (the back one "back_"-prefixed,
@@ -76,11 +77,14 @@ final class FlipCardItemsProcessor extends AbstractItemsProcessor
     // "text-" class.
     protected function postProcessRows(array $rows, array $settings): array
     {
-        $alignFields = ['title_align', 'subtitle_align', 'back_title_align', 'back_subtitle_align', 'back_link_align'];
+        $alignFields = ['title_align', 'back_title_align', 'back_link_align'];
         foreach ($rows as &$row) {
             foreach ($alignFields as $field) {
                 $row[$field] = $this->resolveChoice($row[$field] ?? null, ['center', 'start', 'end']);
             }
+            // Subtitle (and eyebrow) alignment: 'auto' follows the face's title.
+            $row['subtitleAlignClass']     = $this->resolveAlignClass($row['subtitle_align'] ?? null, $row['title_align']);
+            $row['backSubtitleAlignClass'] = $this->resolveAlignClass($row['back_subtitle_align'] ?? null, $row['back_title_align']);
             $row['faceStyle']     = $this->buildFaceStyle($row, '');
             $row['backFaceStyle'] = $this->buildFaceStyle($row, 'back_');
         }

@@ -121,6 +121,17 @@ return [
                 'default'    => '',
             ],
         ],
+        // Same idea as conn_t3wtk_base's tt_content "Subheader as Eyebrow":
+        // the subtitle moves above the title as a small uppercase label.
+        'subtitle_eyebrow' => [
+            'label'  => 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:subheader_eyebrow',
+            'config' => [
+                'type'       => 'check',
+                'renderType' => 'checkboxToggle',
+                'items'      => [['label' => '']],
+                'default'    => 0,
+            ],
+        ],
         'title_align' => [
             'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
             'config' => [
@@ -130,13 +141,14 @@ return [
                 'default'    => 'start',
             ],
         ],
+        // Positions the subtitle — also when shown as eyebrow. Auto = title alignment.
         'subtitle_align' => [
             'label'  => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:layout.align',
             'config' => [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
-                'items'      => $alignItems,
-                'default'    => 'start',
+                'items'      => [['label' => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:align.auto', 'value' => 'auto'], ...$alignItems],
+                'default'    => 'auto',
             ],
         ],
         'badge' => [
@@ -206,7 +218,7 @@ return [
         ],
         'subheader' => [
             'label'    => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.subheader',
-            'showitem' => 'subtitle, subtitle_layout, subtitle_class, subtitle_align',
+            'showitem' => 'subtitle, subtitle_layout, subtitle_class, subtitle_align, --linebreak--, subtitle_eyebrow',
         ],
         'link' => [
             'label'    => 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:card_item.palette.link',

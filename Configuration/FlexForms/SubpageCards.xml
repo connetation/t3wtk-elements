@@ -136,6 +136,38 @@
                             <default>0</default>
                         </config>
                     </settings.showPlaceholder>
+                    <settings.showSubtitle>
+                        <label>Show subtitle (page "Card subtitle", else the page subtitle)</label>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.showSubtitle>
+                    <settings.subtitleEyebrow>
+                        <label>Subtitle as eyebrow (small uppercase label above the title)</label>
+                        <displayCond>FIELD:settings.showSubtitle:REQ:true</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.subtitleEyebrow>
+                    <settings.eyebrowPosition>
+                        <label>Eyebrow position</label>
+                        <displayCond>FIELD:settings.subtitleEyebrow:REQ:true</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0"><label>Auto (same as title alignment)</label><value>auto</value></numIndex>
+                                <numIndex index="1"><label>Left</label><value>start</value></numIndex>
+                                <numIndex index="2"><label>Center</label><value>center</value></numIndex>
+                                <numIndex index="3"><label>Right</label><value>end</value></numIndex>
+                            </items>
+                            <default>auto</default>
+                        </config>
+                    </settings.eyebrowPosition>
                     <settings.showTeaser>
                         <label>Show teaser text</label>
                         <config>
@@ -215,5 +247,6 @@
                 </el>
             </ROOT>
         </sPages>
+        <typography>FILE:EXT:conn_t3wtk_elements/Configuration/FlexForms/Shared/CardTypography.xml</typography>
     </sheets>
 </T3DataStructure>

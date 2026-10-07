@@ -70,5 +70,6 @@
                 </el>
             </ROOT>
         </sDEF>
+        <typography>FILE:EXT:conn_t3wtk_elements/Configuration/FlexForms/Shared/CardTypographyNoText.xml</typography>
     </sheets>
 </T3DataStructure>

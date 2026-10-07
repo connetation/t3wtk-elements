@@ -47,9 +47,9 @@
     </f:if>
 
     <div class="conn-feature-grid__content">
-        <f:render partial="Shared/HeadingSwitch" arguments="{text: feature.title, layout: feature.title_layout, class: 'conn-feature-grid__title {feature.title_class}', defaultTag: 'h3'}" />
+        <f:render partial="Shared/HeadingSwitch" arguments="{text: feature.title, layout: feature.title_layout, class: 'conn-feature-grid__title {settings.titleWeight} {feature.title_class}', defaultTag: 'h3'}" />
         <f:if condition="{feature.body}">
-            <div class="conn-feature-grid__body">{feature.body -> f:format.html()}</div>
+            <div class="conn-feature-grid__body {settings.textWeight}">{feature.body -> f:format.html()}</div>
         </f:if>
         <f:if condition="{feature.link}">
             <f:link.typolink parameter="{feature.link}" class="conn-feature-grid__link">

@@ -18,16 +18,16 @@
     <div class="conn-flip-card__content">
         <f:if condition="{eyebrow}">
             <f:then>
-                <f:render partial="Shared/HeadingSwitch" arguments="{text: subtitle, layout: subtitleLayout, class: 'conn-flip-card__subtitle conn-flip-card__subtitle--eyebrow text-{subtitleAlign} {subtitleClass}', defaultTag: 'p'}" />
-                <f:render partial="Shared/HeadingSwitch" arguments="{text: title, layout: titleLayout, class: 'conn-flip-card__title text-{titleAlign} {titleClass}', defaultTag: 'h3'}" />
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: subtitle, layout: subtitleLayout, class: 'conn-flip-card__subtitle conn-flip-card__subtitle--eyebrow {subtitleAlignClass} {subtitleClass}', defaultTag: 'p'}" />
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: title, layout: titleLayout, class: 'conn-flip-card__title {settings.titleWeight} text-{titleAlign} {titleClass}', defaultTag: 'h3'}" />
             </f:then>
             <f:else>
-                <f:render partial="Shared/HeadingSwitch" arguments="{text: title, layout: titleLayout, class: 'conn-flip-card__title text-{titleAlign} {titleClass}', defaultTag: 'h3'}" />
-                <f:render partial="Shared/HeadingSwitch" arguments="{text: subtitle, layout: subtitleLayout, class: 'conn-flip-card__subtitle text-{subtitleAlign} {subtitleClass}', defaultTag: 'h4'}" />
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: title, layout: titleLayout, class: 'conn-flip-card__title {settings.titleWeight} text-{titleAlign} {titleClass}', defaultTag: 'h3'}" />
+                <f:render partial="Shared/HeadingSwitch" arguments="{text: subtitle, layout: subtitleLayout, class: 'conn-flip-card__subtitle {settings.subtitleWeight} {subtitleAlignClass} {subtitleClass}', defaultTag: 'h4'}" />
             </f:else>
         </f:if>
         <f:if condition="{body}">
-            <div class="conn-flip-card__body">
+            <div class="conn-flip-card__body {settings.textWeight}">
                 {body -> f:format.html()}
             </div>
         </f:if>

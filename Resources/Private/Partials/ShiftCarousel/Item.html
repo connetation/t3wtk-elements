@@ -15,8 +15,9 @@
                                 sizes="(max-width: 767px) 90vw, 600px" />
         </f:if>
         <div class="conn-shift-carousel__item-body">
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: item.subtitle, layout: item.subtitle_layout, class: 'conn-shift-carousel__item-subtitle {item.subtitle_class}', defaultTag: 'p'}" />
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-shift-carousel__item-title {item.title_class}', defaultTag: 'p'}" />
+            <f:variable name="subtitleWeightClass"><f:if condition="{item.subtitle_eyebrow}"><f:then>conn-card-eyebrow {item.eyebrowAlignClass}</f:then><f:else>{settings.subtitleWeight}</f:else></f:if></f:variable>
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: item.subtitle, layout: item.subtitle_layout, class: 'conn-shift-carousel__item-subtitle {subtitleWeightClass} {item.subtitle_class}', defaultTag: 'p'}" />
+            <f:render partial="Shared/HeadingSwitch" arguments="{text: item.title, layout: item.title_layout, class: 'conn-shift-carousel__item-title {settings.titleWeight} {item.title_class}', defaultTag: 'p'}" />
         </div>
     </div>
 </div>

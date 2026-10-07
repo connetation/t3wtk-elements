@@ -7,6 +7,18 @@
                 <source>Connetation Elements</source>
                 <target>Connetation Elemente</target>
             </trans-unit>
+            <trans-unit id="pages.card_subtitle">
+                <source>Card subtitle</source>
+                <target>Karten-Untertitel</target>
+            </trans-unit>
+            <trans-unit id="pages.card_subtitle.description">
+                <source>Shown on "Subpage Cards" elements. Empty = the page subtitle is used.</source>
+                <target>Wird in „Subpage Cards“-Elementen angezeigt. Leer = Untertitel der Seite wird verwendet.</target>
+            </trans-unit>
+            <trans-unit id="align.auto">
+                <source>Auto (same as title)</source>
+                <target>Automatisch (wie Titel)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

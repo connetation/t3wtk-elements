@@ -54,6 +54,8 @@
 
     // ── Text overlay (default: bottom) ──────────
     &__card-body {
+        // Eyebrow sits on the dark overlay: use the overlay's text color, not the accent.
+        --conn-card-eyebrow-color: currentColor;
         position: absolute;
         bottom: 0;
         left: 0;

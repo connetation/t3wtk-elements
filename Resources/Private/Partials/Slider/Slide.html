@@ -32,10 +32,18 @@
         </f:if>
 
         <div class="card-body p-3" data-slide-animation="{slide.text_animation}" data-slide-duration="{slide.animation_duration}">
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.title, layout: slide.title_layout, class: 'card-title mb-1 {slide.title_class}', defaultTag: 'h3'}" />
-            <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.subtitle, layout: slide.subtitle_layout, class: 'card-text mb-2 {slide.subtitle_class}', defaultTag: 'h4'}" />
+            <f:if condition="{slide.subtitle_eyebrow}">
+                <f:then>
+                    <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.subtitle, layout: slide.subtitle_layout, class: 'conn-card-eyebrow {slide.eyebrowAlignClass} {slide.subtitle_class}', defaultTag: 'p'}" />
+                    <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.title, layout: slide.title_layout, class: 'card-title mb-2 {settings.titleWeight} {slide.title_class}', defaultTag: 'h3'}" />
+                </f:then>
+                <f:else>
+                    <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.title, layout: slide.title_layout, class: 'card-title mb-1 {settings.titleWeight} {slide.title_class}', defaultTag: 'h3'}" />
+                    <f:render partial="Shared/HeadingSwitch" arguments="{text: slide.subtitle, layout: slide.subtitle_layout, class: 'card-text mb-2 {settings.subtitleWeight} {slide.subtitle_class}', defaultTag: 'h4'}" />
+                </f:else>
+            </f:if>
             <f:if condition="{slide.body}">
-                <div class="conn-slider__body small">
+                <div class="conn-slider__body small {settings.textWeight}">
                     {slide.body -> f:format.html()}
                 </div>
             </f:if>

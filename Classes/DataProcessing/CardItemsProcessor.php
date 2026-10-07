@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class CardItemsProcessor extends AbstractItemsProcessor
 {
@@ -50,7 +51,7 @@ final class CardItemsProcessor extends AbstractItemsProcessor
             'style'        => $style,
             'accentBar'    => (bool)($raw['accentBar'] ?? true),
             'bodyPosition' => $bodyPosition,
-        ];
+        ] + FontWeightOptions::resolveCard($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -61,7 +62,7 @@ final class CardItemsProcessor extends AbstractItemsProcessor
             'style'        => 'default',
             'accentBar'    => true,
             'bodyPosition' => 'top',
-        ];
+        ] + FontWeightOptions::CARD_DEFAULTS;
     }
 
     // Records saved before the *_align columns existed have '' rather than
@@ -71,8 +72,9 @@ final class CardItemsProcessor extends AbstractItemsProcessor
     {
         foreach ($rows as &$row) {
             $row['title_align']    = $this->resolveAlign($row['title_align'] ?? null);
-            $row['subtitle_align'] = $this->resolveAlign($row['subtitle_align'] ?? null);
             $row['link_align']     = $this->resolveAlign($row['link_align'] ?? null);
+            // Subtitle (and eyebrow) alignment: 'auto' follows the title.
+            $row['subtitleAlignClass'] = $this->resolveAlignClass($row['subtitle_align'] ?? null, $row['title_align']);
         }
         unset($row);
 

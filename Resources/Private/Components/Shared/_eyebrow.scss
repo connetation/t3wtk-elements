@@ -1,0 +1,17 @@
+// ─────────────────────────────────────────────
+// Card eyebrow — a card's subtitle shown above its title as a small uppercase
+// label (per-item "Subheader as Eyebrow" toggle). Same look as connetation/
+// t3wtk-base's .ce-eyebrow and FlipCard's __subtitle--eyebrow, restated so a
+// component's CSS doesn't depend on the base CSS. @use it AFTER the component
+// partial in index.scss so it wins over the component's own subtitle styles.
+// ─────────────────────────────────────────────
+.conn-card-eyebrow {
+    margin: 0 0 var(--conn-space-2xs);
+    font-size: var(--conn-font-size-sm);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    // Overridable per component — e.g. text over a dark image overlay sets
+    // it to its own text color so a dark accent can't vanish.
+    color: var(--conn-card-eyebrow-color, var(--conn-accent));
+}
