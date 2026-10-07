@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
-use Connetation\T3wtkElements\Utility\ResponsiveValue;
+use Connetation\T3wtkBase\Utility\ResponsiveValue;
 
 final class LogoItemsProcessor extends AbstractItemsProcessor
 {

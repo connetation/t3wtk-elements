@@ -4,41 +4,23 @@ declare(strict_types=1);
 
 namespace Connetation\T3wtkElements\Utility;
 
+use Connetation\T3wtkBase\Utility\Devices as BaseDevices;
+
 /**
- * THE device breakpoints for every per-device setting (renderType
- * connResponsiveRange): Mobile < 768px, Tablet 768–1199px, Desktop ≥ 1200px.
- *
- * Backend labels/descriptions (ResponsiveRangeElement) and the generated
- * Bootstrap classes (ResponsiveValue::rowColsClass()) read them from here.
- * Frontend counterparts — keep them in step when changing a value:
- *   SCSS: Resources/Private/Components/Shared/_devices.scss
- *   TS:   Resources/Private/Components/Shared/devices.ts
+ * @deprecated Moved to EXT:conn_t3wtk_base — use Connetation\T3wtkBase\Utility\Devices.
+ *             Kept as a thin alias for existing code.
  */
 final class Devices
 {
-    /** Order of the stored value "desktop,tablet,mobile". */
-    public const ALL = ['desktop', 'tablet', 'mobile'];
+    public const ALL           = BaseDevices::ALL;
+    public const TABLET_MIN    = BaseDevices::TABLET_MIN;
+    public const DESKTOP_MIN   = BaseDevices::DESKTOP_MIN;
+    public const TABLET_INFIX  = BaseDevices::TABLET_INFIX;
+    public const DESKTOP_INFIX = BaseDevices::DESKTOP_INFIX;
 
-    /** Screen width (px) where Tablet starts — Bootstrap breakpoint "md". */
-    public const TABLET_MIN = 768;
-
-    /** Screen width (px) where Desktop starts — Bootstrap breakpoint "xl". */
-    public const DESKTOP_MIN = 1200;
-
-    public const TABLET_INFIX  = 'md';
-    public const DESKTOP_INFIX = 'xl';
-
-    /**
-     * Screen-width range of a device in px (null = open end).
-     *
-     * @return array{min: ?int, max: ?int}
-     */
+    /** @return array{min: ?int, max: ?int} */
     public static function range(string $device): array
     {
-        return match ($device) {
-            'desktop' => ['min' => self::DESKTOP_MIN, 'max' => null],
-            'tablet'  => ['min' => self::TABLET_MIN, 'max' => self::DESKTOP_MIN - 1],
-            default   => ['min' => null, 'max' => self::TABLET_MIN - 1],
-        };
+        return BaseDevices::range($device);
     }
 }

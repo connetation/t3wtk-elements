@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3wtkElements\Form\Element;
 
-use Connetation\T3wtkElements\Utility\Devices;
+use Connetation\T3wtkBase\Utility\Devices;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
@@ -41,7 +41,8 @@ final class ResponsiveRangeElement extends AbstractFormElement
         'mobile'  => 'actions-device-mobile',
     ];
 
-    private const LLL = 'LLL:EXT:conn_t3wtk_elements/Resources/Private/Language/locallang_be.xlf:responsive_range.';
+    // Device labels live in conn_t3wtk_base (shared with the site setting type connResponsive).
+    private const LLL = 'LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:responsive_range.';
 
     public function __construct(
         private readonly IconFactory $iconFactory,

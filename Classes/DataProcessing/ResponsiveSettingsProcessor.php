@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3wtkElements\DataProcessing;
 
-use Connetation\T3wtkElements\Utility\ResponsiveValue;
+use Connetation\T3wtkBase\Utility\ResponsiveValue;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 

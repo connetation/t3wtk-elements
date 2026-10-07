@@ -11,7 +11,7 @@ use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Connetation\T3wtkElements\Utility\ResponsiveValue;
+use Connetation\T3wtkBase\Utility\ResponsiveValue;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**

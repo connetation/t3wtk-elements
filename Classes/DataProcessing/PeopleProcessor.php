@@ -10,7 +10,7 @@ use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use Connetation\T3wtkElements\Utility\ResponsiveValue;
+use Connetation\T3wtkBase\Utility\ResponsiveValue;
 
 /**
  * People content element 

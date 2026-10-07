@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Connetation\T3wtkElements\Utility;
 
+use Connetation\T3wtkBase\Utility\ResponsiveValue;
+
 /**
  * Hero slider height (settings.height, renderType connResponsiveRange) →
  * one vh value per device. Shared by every processor rendering a hero slider.
