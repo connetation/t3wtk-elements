@@ -51,7 +51,7 @@
          data-video-id="{videoId}"
          data-media-url="{media.publicUrl}"
          data-media-mime="{media.originalFile.mimeType}"
-         style="{f:if(condition: showPosterAsBackground, then: 'background-image: url({posterUrl});')}">
+         style="--conn-video-h-desktop: {settings.height}vh; --conn-video-h-tablet: {settings.heightTablet}vh; --conn-video-h-mobile: {settings.heightMobile}vh;{f:if(condition: showPosterAsBackground, then: ' background-image: url({posterUrl});')}">
 
     <f:if condition="{settings.mode} == 'background' && {media}">
         <f:variable name="bgEmbedUrl" value="" />

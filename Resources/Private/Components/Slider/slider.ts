@@ -7,9 +7,13 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
 import { animateSlide, prepareSlide } from '../Shared/slide-text-animation';
 import { registry } from '../Shared/registry';
+import { DESKTOP_MIN, TABLET_MIN } from '../Shared/devices';
 
 interface SliderOptions {
     slidesPerView: number;
+    /** 0 = automatic (derived from slidesPerView) */
+    slidesPerViewTablet: number;
+    slidesPerViewMobile: number;
     loop: boolean;
     autoplay: boolean;
     autoplayDelay: number;
@@ -39,6 +43,8 @@ class Slider {
         const ap = readAutoplay(this.el);
         const options: SliderOptions = {
             slidesPerView:  parseInt(this.el.dataset[Slider.DATASET_SLIDES_PER_VIEW] || '3', 10),
+            slidesPerViewTablet: parseInt(this.el.dataset.slidesPerViewTablet || '0', 10) || 0,
+            slidesPerViewMobile: parseInt(this.el.dataset.slidesPerViewMobile || '0', 10) || 0,
             loop:           this.el.dataset[Slider.DATASET_LOOP] === ENABLED_VALUE,
             autoplay:       ap.enabled,
             autoplayDelay:  ap.delay,
@@ -58,19 +64,25 @@ class Slider {
             speed: 500,
             grabCursor: true,
 
-            slidesPerView: 1,
+            // Per device (breakpoints: Shared/devices.ts). Values not set by the
+            // editor (0) keep the automatic 1 → 2 → 3 steps.
+            slidesPerView: options.slidesPerViewMobile || 1,
             spaceBetween: 16,
 
             breakpoints: {
                 576: {
-                    slidesPerView: Math.min(options.slidesPerView, 2),
+                    slidesPerView: options.slidesPerViewMobile || Math.min(options.slidesPerView, 2),
+                    spaceBetween: 20,
+                },
+                [TABLET_MIN]: {
+                    slidesPerView: options.slidesPerViewTablet || Math.min(options.slidesPerView, 2),
                     spaceBetween: 20,
                 },
                 992: {
-                    slidesPerView: Math.min(options.slidesPerView, 3),
+                    slidesPerView: options.slidesPerViewTablet || Math.min(options.slidesPerView, 3),
                     spaceBetween: 24,
                 },
-                1200: {
+                [DESKTOP_MIN]: {
                     slidesPerView: options.slidesPerView,
                     spaceBetween: 24,
                 },

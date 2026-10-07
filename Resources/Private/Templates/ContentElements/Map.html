@@ -45,6 +45,7 @@
     <f:if condition="{settings.showMap}">
         <div class="{f:if(condition: settings.showInfoPanel, then: 'col-md-7', else: 'col-12')} conn-map__canvas-col">
             <div class="conn-map__canvas conn-map__canvas--{settings.height}"
+                 style="--conn-map-h-desktop: {settings.height}px; --conn-map-h-tablet: {settings.heightTablet}px; --conn-map-h-mobile: {settings.heightMobile}px;"
                  data-provider="{settings.provider}"
                  data-auto-load="{f:if(condition: settings.privacyMode, then: '0', else: '1')}"
                  data-address="{addressText}"

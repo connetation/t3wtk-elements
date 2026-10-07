@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\Utility\RadiusOptions;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 
 final class LightboxGalleryProcessor extends AbstractItemsProcessor
@@ -31,13 +32,11 @@ final class LightboxGalleryProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $columns = (int)($raw['columns'] ?? 3);
-        $colMap  = [
-            2 => 'col-sm-6',
-            3 => 'col-sm-6 col-lg-4',
-            4 => 'col-sm-6 col-xl-3',
-            6 => 'col-4 col-sm-3 col-md-2',
-        ];
+        // Per device ("desktop,tablet,mobile"); a former single value is desktop only.
+        $columns = ResponsiveValue::parse($raw['columns'] ?? null, 1, 6, 3);
+        // Small thumbnails (5+ per row) stay a grid on smaller screens too
+        // instead of the cards' automatic 2-up / 1-up.
+        $isThumbs = $columns['desktop'] >= 5;
 
         $gapMap = [
             'none'   => 'g-0',
@@ -76,8 +75,9 @@ final class LightboxGalleryProcessor extends AbstractItemsProcessor
         $backgroundColor = $this->sanitizeOptionalHexColor($raw['backgroundColor'] ?? '');
 
         return [
-            'columns'                => $columns,
-            'colClass'               => $colMap[$columns] ?? $colMap[3],
+            'columns'                => $columns['desktop'],
+            'colClass'               => '',
+            'rowColsClass'           => ResponsiveValue::rowColsClass($columns, $isThumbs ? 4 : null, $isThumbs ? 3 : null),
             'gapClass'               => $gapMap[$gap] ?? $gapMap['medium'],
             'textPosition'           => $textPosition,
             'textAlign'              => $textAlign,
@@ -94,7 +94,8 @@ final class LightboxGalleryProcessor extends AbstractItemsProcessor
     {
         return [
             'columns'                => 3,
-            'colClass'               => 'col-sm-6 col-lg-4',
+            'colClass'               => '',
+            'rowColsClass'           => ResponsiveValue::rowColsClass(['desktop' => 3, 'tablet' => null, 'mobile' => null]),
             'gapClass'               => 'g-3',
             'textPosition'           => 'bottom',
             'textAlign'              => 'left',

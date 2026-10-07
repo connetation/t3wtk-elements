@@ -1,4 +1,5 @@
 @use 'theme/tokens' as base;
+@use '../Shared/devices' as *;
 
 .conn-map {
     &--panel-left {
@@ -31,6 +32,13 @@
         &--sm { min-height: 300px; }
         &--md { min-height: 400px; }
         &--lg { min-height: 550px; }
+
+        // Per-device height (settings.height = "desktop,tablet,mobile", inline
+        // --conn-map-h-* from the template). Breakpoints: Shared/_devices.scss.
+        min-height: var(--conn-map-h-desktop, 400px);
+
+        @include device(below-desktop) { min-height: var(--conn-map-h-tablet, var(--conn-map-h-desktop, 400px)); }
+        @include device(mobile) { min-height: var(--conn-map-h-mobile, var(--conn-map-h-tablet, var(--conn-map-h-desktop, 400px))); }
     }
 
     &__illustration-img {

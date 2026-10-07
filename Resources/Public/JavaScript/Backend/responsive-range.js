@@ -2,7 +2,8 @@ import FormEngine from '@typo3/backend/form-engine.js';
 
 // Backend for renderType "connResponsiveRange" (ResponsiveRangeElement.php):
 // one slider, three device tabs. The hidden field holds "desktop,tablet,mobile";
-// an empty tablet/mobile value inherits from the next larger device.
+// an empty tablet/mobile value inherits from the next larger device — or, with
+// data-auto="1", is shown as "Auto" (the element lays it out automatically).
 const DEVICES = ['desktop', 'tablet', 'mobile'];
 
 class ResponsiveRange {
@@ -20,10 +21,12 @@ class ResponsiveRange {
         this.slider = root.querySelector('.conn-responsive-range__slider');
         this.number = root.querySelector('.conn-responsive-range__number input');
         this.hint = root.querySelector('.conn-responsive-range__hint');
+        this.device = root.querySelector('.conn-responsive-range__device');
         this.reset = root.querySelector('.conn-responsive-range__reset');
         this.tabs = [...root.querySelectorAll('.conn-responsive-range__tab')];
         this.unit = root.dataset.unit || '';
         this.fallback = root.dataset.default || this.slider.min;
+        this.auto = root.dataset.auto === '1';
         this.active = 'desktop';
 
         const parts = String(this.hidden.value).split(',').map((part) => part.trim());
@@ -91,8 +94,14 @@ class ResponsiveRange {
             tab.classList.toggle('active', isActive);
             tab.setAttribute('aria-selected', String(isActive));
             tab.classList.toggle('is-inherited', device !== 'desktop' && this.values[device] === '');
-            tab.querySelector('.conn-responsive-range__badge').textContent = this.effective(device) + this.unit;
+            const isAuto = this.auto && device !== 'desktop' && this.values[device] === '';
+            tab.querySelector('.conn-responsive-range__badge').textContent = isAuto
+                ? this.root.dataset.labelAuto
+                : this.effective(device) + this.unit;
         });
+
+        // e.g. "Tablet: 768–1199 px screen width" — ranges come from Devices.php
+        this.device.textContent = this.root.dataset['range' + this.active.charAt(0).toUpperCase() + this.active.slice(1)] || '';
 
         const inherited = this.active !== 'desktop' && this.values[this.active] === '';
         const effective = this.effective(this.active);
@@ -101,7 +110,9 @@ class ResponsiveRange {
         this.number.placeholder = effective;
         this.reset.hidden = this.active === 'desktop' || inherited;
 
-        if (inherited) {
+        if (inherited && this.auto) {
+            this.hint.textContent = this.root.dataset.labelInheritAuto;
+        } else if (inherited) {
             this.hint.textContent = this.active === 'tablet'
                 ? this.root.dataset.labelInheritDesktop
                 : (this.values.tablet !== '' ? this.root.dataset.labelInheritTablet : this.root.dataset.labelInheritDesktop);

@@ -7,6 +7,7 @@ import { Navigation, Autoplay, Thumbs, FreeMode } from 'swiper/modules';
 import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/autoplay';
 import { animateSlide, prepareSlide } from '../Shared/slide-text-animation';
 import { registry } from '../Shared/registry';
+import { DESKTOP_MIN, TABLET_MIN } from '../Shared/devices';
 
 class ThumbsSlider {
 
@@ -27,13 +28,20 @@ class ThumbsSlider {
         if (!mainEl || !thumbsEl) return;
 
         const thumbsPerView = parseInt(this.el.dataset[ThumbsSlider.DATASET_THUMBS_PER_VIEW] || '4', 10);
+        // Per device (breakpoints: Shared/devices.ts)
+        const thumbsTablet  = parseInt(this.el.dataset.thumbsPerViewTablet || '', 10) || thumbsPerView;
+        const thumbsMobile  = parseInt(this.el.dataset.thumbsPerViewMobile || '', 10) || thumbsTablet;
         const ap            = readAutoplay(this.el);
         const withNav       = this.el.dataset[ThumbsSlider.DATASET_NAVIGATION] === ENABLED_VALUE;
 
         const thumbsSwiper = new Swiper(thumbsEl, {
             modules: [FreeMode],
             spaceBetween: 4,
-            slidesPerView: thumbsPerView,
+            slidesPerView: thumbsMobile,
+            breakpoints: {
+                [TABLET_MIN]:  { slidesPerView: thumbsTablet },
+                [DESKTOP_MIN]: { slidesPerView: thumbsPerView },
+            },
             freeMode: true,
             watchSlidesProgress: true,
         });

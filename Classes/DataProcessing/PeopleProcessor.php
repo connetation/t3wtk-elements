@@ -10,6 +10,7 @@ use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 
 /**
  * People content element 
@@ -73,30 +74,18 @@ final class PeopleProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $columns = (int)($raw['columns'] ?? 4);
-        // Mobile-first: always 1-per-row below 576px (col-12, no breakpoint
-        // infix), regardless of the configured column count — a cramped
-        // multi-column grid on a phone was part of what made cards unreadable.
-        // 3-/4-up configs step the density down gradually instead of jumping
-        // straight to their full column count at 768px (col-md-*), which left
-        // team/reveal cards too narrow — names wrapped onto 2-3 lines on a
-        // tablet. col-sm-6 holds 2-up through 991px, col-lg-4 gives 3-up from
-        // 992px, and (for the 4-column config) col-xl-3 only reaches the full
-        // 4-up at 1200px and wider.
-        $colMap  = [
-            1 => 'col-12',
-            2 => 'col-12 col-sm-6',
-            3 => 'col-12 col-sm-6 col-lg-4',
-            4 => 'col-12 col-sm-6 col-lg-4 col-xl-3',
-            6 => 'col-12 col-sm-6 col-md-2',
-        ];
+        // Per device ("desktop,tablet,mobile"); a former single value is desktop
+        // only. Empty tablet/mobile = automatic: at most 2-up on a tablet and
+        // always 1-per-row on a phone (a cramped multi-column grid there made
+        // the cards unreadable — names wrapped onto 2-3 lines).
+        $columns = ResponsiveValue::parse($raw['columns'] ?? null, 1, 6, 4);
 
         $style = in_array($raw['style'] ?? '', self::STYLES, true) ? $raw['style'] : 'reveal-sheet';
 
         // Visit Card is a fixed 16:9 business-card shape — past 2-up it gets
         // squeezed so narrow the band/contact lines feel cramped.
-        if ($style === 'visit-card' && $columns > 2) {
-            $columns = 2;
+        if ($style === 'visit-card') {
+            $columns = array_map(static fn (?int $value): ?int => $value === null ? null : min($value, 2), $columns);
         }
 
         $showShadow  = (bool)($raw['showShadow'] ?? true);
@@ -107,8 +96,9 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'folderUid'       => $this->firstUidFromGroupField((string)($raw['folder'] ?? '')),
             'peopleUids'      => $this->uidsFromGroupField((string)($raw['people'] ?? '')),
             'style'           => $style,
-            'columns'         => $columns,
-            'colClass'        => $colMap[$columns] ?? $colMap[4],
+            'columns'         => $columns['desktop'],
+            'colClass'        => '',
+            'rowColsClass'    => ResponsiveValue::rowColsClass($columns),
             'align'           => in_array($raw['align'] ?? '', ['left', 'center', 'right'], true) ? $raw['align'] : 'center',
             'cardWidth'       => in_array($raw['cardWidth'] ?? '', ['fixed', 'fill'], true) ? $raw['cardWidth'] : 'fixed',
             'imageSideMode'   => in_array($raw['imageSideMode'] ?? '', ['left', 'right'], true) ? $raw['imageSideMode'] : 'auto',
@@ -144,7 +134,8 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'peopleUids'      => [],
             'style'           => 'reveal-sheet',
             'columns'         => 4,
-            'colClass'        => 'col-12 col-sm-6 col-lg-4 col-xl-3',
+            'colClass'        => '',
+            'rowColsClass'    => ResponsiveValue::rowColsClass(['desktop' => 4, 'tablet' => null, 'mobile' => null]),
             'align'           => 'center',
             'cardWidth'       => 'fixed',
             'imageSideMode'   => 'auto',

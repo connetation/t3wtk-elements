@@ -10,5 +10,14 @@ tt_content.conn_video_hero {
         10 {
             fieldName = tx_conn_t3wtk_elements_video_hero_settings
         }
+        # settings.height per device (vh) → height / heightTablet / heightMobile
+        20 = Connetation\T3wtkElements\DataProcessing\ResponsiveSettingsProcessor
+        20 {
+            field = height
+            min = 20
+            max = 100
+            default = 70
+            legacy = medium:55,large:70,fullscreen:100
+        }
     }
 }

@@ -15,8 +15,11 @@
     priority="false" />
 
 <section class="conn-thumbs-slider conn-thumbs-slider--{settings.height}"
+         style="--conn-thumbs-h-desktop: {settings.height}vh; --conn-thumbs-h-tablet: {settings.heightTablet}vh; --conn-thumbs-h-mobile: {settings.heightMobile}vh;"
          id="conn-thumbs-slider-{data.uid}"
          data-thumbs-per-view="{settings.thumbs_per_view}"
+         data-thumbs-per-view-tablet="{settings.thumbs_per_view_tablet}"
+         data-thumbs-per-view-mobile="{settings.thumbs_per_view_mobile}"
          data-autoplay="{f:if(condition: settings.autoplay, then: '1', else: '0')}"
          data-autoplay-delay="{settings.autoplay_delay}"
          data-navigation="{f:if(condition: settings.show_navigation, then: '1', else: '0')}">

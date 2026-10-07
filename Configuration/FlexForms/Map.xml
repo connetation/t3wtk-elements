@@ -82,17 +82,18 @@
                         </config>
                     </settings.zoom>
                     <settings.height>
-                        <label>Map height</label>
+                        <label>Map height (px)</label>
                         <displayCond>FIELD:settings.showMap:!=:0</displayCond>
                         <config>
-                            <type>select</type>
-                            <renderType>selectSingle</renderType>
-                            <default>md</default>
-                            <items>
-                                <numIndex index="0"><label>Small (300px)</label><value>sm</value></numIndex>
-                                <numIndex index="1"><label>Medium (400px)</label><value>md</value></numIndex>
-                                <numIndex index="2"><label>Large (550px)</label><value>lg</value></numIndex>
-                            </items>
+                            <type>input</type>
+                            <renderType>connResponsiveRange</renderType>
+                            <responsive>
+                                <lower>200</lower>
+                                <upper>800</upper>
+                                <step>50</step>
+                                <unit>px</unit>
+                            </responsive>
+                            <default>400</default>
                         </config>
                     </settings.height>
                     <settings.showGridOverImage>

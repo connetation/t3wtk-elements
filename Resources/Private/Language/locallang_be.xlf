@@ -1274,6 +1274,21 @@
             <trans-unit id="responsive_range.inherit.tablet">
                 <source>Same as Tablet</source>
             </trans-unit>
+            <trans-unit id="responsive_range.auto">
+                <source>Auto</source>
+            </trans-unit>
+            <trans-unit id="responsive_range.inherit.auto">
+                <source>Auto — adjusts to the screen size</source>
+            </trans-unit>
+            <trans-unit id="responsive_range.range.from">
+                <source>%d px screen width and wider</source>
+            </trans-unit>
+            <trans-unit id="responsive_range.range.between">
+                <source>%d–%d px screen width</source>
+            </trans-unit>
+            <trans-unit id="responsive_range.range.below">
+                <source>screen width below %d px</source>
+            </trans-unit>
             <trans-unit id="responsive_range.reset">
                 <source>Reset (inherit)</source>
             </trans-unit>

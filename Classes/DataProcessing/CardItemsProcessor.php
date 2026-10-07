@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class CardItemsProcessor extends AbstractItemsProcessor
@@ -31,13 +32,8 @@ final class CardItemsProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $columns = (int)($raw['columns'] ?? 3);
-        $colMap  = [
-            1 => 'col-12',
-            2 => 'col-sm-6',
-            3 => 'col-sm-6 col-lg-4',
-            4 => 'col-sm-6 col-xl-3',
-        ];
+        // Per device ("desktop,tablet,mobile"); a former single value is desktop only.
+        $columns = ResponsiveValue::parse($raw['columns'] ?? null, 1, 4, 3);
         $style = in_array($raw['style'] ?? 'default', ['default', 'shadow', 'flat'], true)
             ? ($raw['style'] ?? 'default')
             : 'default';
@@ -46,8 +42,9 @@ final class CardItemsProcessor extends AbstractItemsProcessor
             : 'top';
 
         return [
-            'columns'      => $columns,
-            'colClass'     => $colMap[$columns] ?? $colMap[3],
+            'columns'      => $columns['desktop'],
+            'colClass'     => '',
+            'rowColsClass' => ResponsiveValue::rowColsClass($columns),
             'style'        => $style,
             'accentBar'    => (bool)($raw['accentBar'] ?? true),
             'bodyPosition' => $bodyPosition,
@@ -58,7 +55,8 @@ final class CardItemsProcessor extends AbstractItemsProcessor
     {
         return [
             'columns'      => 3,
-            'colClass'     => 'col-sm-6 col-lg-4',
+            'colClass'     => '',
+            'rowColsClass' => ResponsiveValue::rowColsClass(['desktop' => 3, 'tablet' => null, 'mobile' => null]),
             'style'        => 'default',
             'accentBar'    => true,
             'bodyPosition' => 'top',

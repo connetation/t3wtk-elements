@@ -14,13 +14,15 @@
     type="module"
     priority="false" />
 
-<section class="conn-testimonials conn-testimonials--{settings.layout}{f:if(condition: settings.accentBar, then: ' conn-testimonials--accent-bar')}"
+<section class="conn-testimonials conn-testimonials--{settings.layout}{f:if(condition: settings.accentBar, then: ' conn-testimonials--accent-bar')}{f:if(condition: settings.columnsTablet, then: ' has-cols-tablet')}{f:if(condition: settings.columnsMobile, then: ' has-cols-mobile')}"
          id="conn-testimonials-{data.uid}"
          data-layout="{settings.layout}"
          data-columns="{settings.columns}"
+         data-columns-tablet="{settings.columnsTablet}"
+         data-columns-mobile="{settings.columnsMobile}"
          data-autoplay="{f:if(condition: settings.autoplay, then: '1', else: '0')}"
          data-autoplay-delay="{settings.autoplayDelay}"
-         style="--conn-testimonials-cols: {settings.columns}">
+         style="--conn-testimonials-cols: {settings.columns}; --conn-testimonials-cols-tablet: {settings.columnsTablet}; --conn-testimonials-cols-mobile: {settings.columnsMobile};">
 
         <f:if condition="{testimonials}">
             <f:then>

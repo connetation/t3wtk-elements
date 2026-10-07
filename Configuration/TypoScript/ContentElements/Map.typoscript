@@ -16,5 +16,14 @@ tt_content.conn_map {
         10 {
             fieldName = tx_conn_t3wtk_elements_map_settings
         }
+        # settings.height per device (px) → height / heightTablet / heightMobile
+        20 = Connetation\T3wtkElements\DataProcessing\ResponsiveSettingsProcessor
+        20 {
+            field = height
+            min = 200
+            max = 800
+            default = 400
+            legacy = sm:300,md:400,lg:550
+        }
     }
 }

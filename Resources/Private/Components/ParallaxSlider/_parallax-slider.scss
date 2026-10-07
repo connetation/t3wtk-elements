@@ -1,3 +1,4 @@
+@use '../Shared/devices' as *;
 // ─────────────────────────────────────────────
 // Connetation Elements – Parallax Slider
 // Full-height slides with Swiper parallax depth
@@ -13,6 +14,13 @@
     &--medium     { --conn-parallax-height: 55vh; }
     &--large      { --conn-parallax-height: 70vh; }
     &--fullscreen { --conn-parallax-height: 100vh; }
+
+    // Per-device height (settings.height = "desktop,tablet,mobile", inline
+    // --conn-parallax-h-* from the template). Breakpoints: Shared/_devices.scss.
+    --conn-parallax-height: var(--conn-parallax-h-desktop, 70vh);
+
+    @include device(below-desktop) { --conn-parallax-height: var(--conn-parallax-h-tablet, var(--conn-parallax-h-desktop, 70vh)); }
+    @include device(mobile) { --conn-parallax-height: var(--conn-parallax-h-mobile, var(--conn-parallax-h-tablet, var(--conn-parallax-h-desktop, 70vh))); }
 
     position: relative;
     width: 100%;

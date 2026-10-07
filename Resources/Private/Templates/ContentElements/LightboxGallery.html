@@ -18,7 +18,7 @@
 
         <f:if condition="{items}">
             <f:then>
-                <div class="conn-lightbox-gallery__boxes-container row {settings.gapClass}">
+                <div class="conn-lightbox-gallery__boxes-container row {settings.rowColsClass} {settings.gapClass}">
                     <f:for each="{items}" as="item">
                         <f:render partial="LightboxGallery/Item" arguments="{item: item, colClass: settings.colClass}" />
                     </f:for>

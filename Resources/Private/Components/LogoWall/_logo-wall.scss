@@ -1,3 +1,4 @@
+@use '../Shared/devices' as *;
 // ─────────────────────────────────────────────
 // Connetation Elements – Logo Wall
 // ─────────────────────────────────────────────
@@ -7,6 +8,11 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-logo-wall {
+
+    // Per-device columns (settings.columns = "desktop,tablet,mobile") — grid layout
+    &--grid {
+        @include device-columns('.conn-logo-wall__track', --conn-logo-cols);
+    }
 
     // ── Logo item (shared) ────────────────────
     &__item {

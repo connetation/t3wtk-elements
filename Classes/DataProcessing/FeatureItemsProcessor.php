@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class FeatureItemsProcessor extends AbstractItemsProcessor
@@ -31,7 +32,10 @@ final class FeatureItemsProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $columns = (int)($raw['columns'] ?? 3);
+        // Per device ("desktop,tablet,mobile"); empty tablet/mobile (0) keeps
+        // the element's automatic layout for that screen size.
+        $columnsByDevice = ResponsiveValue::parse($raw['columns'] ?? null, 1, 4, 3);
+        $columns         = $columnsByDevice['desktop'];
         $colMap  = [
             2 => 'col-sm-6',
             3 => 'col-sm-6 col-lg-4',
@@ -46,6 +50,8 @@ final class FeatureItemsProcessor extends AbstractItemsProcessor
 
         return [
             'columns'   => $columns,
+            'columnsTablet'=> $columnsByDevice['tablet'] ?? 0,
+            'columnsMobile'=> $columnsByDevice['mobile'] ?? 0,
             'colClass'  => $colMap[$columns] ?? $colMap[3],
             'variant'   => $variant,
             'iconStyle' => $iconStyle,
@@ -57,6 +63,8 @@ final class FeatureItemsProcessor extends AbstractItemsProcessor
     {
         return [
             'columns'   => 3,
+            'columnsTablet'=> 0,
+            'columnsMobile'=> 0,
             'colClass'  => 'col-sm-6 col-lg-4',
             'variant'   => 'default',
             'iconStyle' => 'soft',

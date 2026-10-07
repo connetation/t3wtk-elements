@@ -1,3 +1,4 @@
+@use '../Shared/devices' as *;
 // ─────────────────────────────────────────────
 // Connetation Elements – Feature Grid
 // ─────────────────────────────────────────────
@@ -7,6 +8,9 @@
 // --bs-heading-color) — no per-element font-size/weight/color override here.
 
 .conn-feature-grid {
+
+    // Per-device columns (settings.columns = "desktop,tablet,mobile")
+    @include device-columns('.conn-feature-grid__grid', --conn-fg-cols);
 
     // ── Grid ──────────────────────────────────
     &__grid {

@@ -11,6 +11,7 @@ use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -47,13 +48,6 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
         'title'       => 'title',
         'crdate'      => 'crdate DESC',
         'lastUpdated' => 'lastUpdated DESC, tstamp DESC',
-    ];
-
-    private const COL_MAP = [
-        1 => 'col-12',
-        2 => 'col-sm-6',
-        3 => 'col-sm-6 col-lg-4',
-        4 => 'col-sm-6 col-xl-3',
     ];
 
     public function process(
@@ -110,10 +104,8 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
     {
         $defaults = $this->defaultSettings($settingsField);
 
-        $columns = (int)($raw['columns'] ?? $defaults['columns']);
-        if (!isset(self::COL_MAP[$columns])) {
-            $columns = $defaults['columns'];
-        }
+        // Per device ("desktop,tablet,mobile"); a former single value is desktop only.
+        $columns = ResponsiveValue::parse($raw['columns'] ?? null, 1, 4, $defaults['columns']);
 
         $borderColor  = $this->sanitizeHexColor((string)($raw['cardBorderColor'] ?? ''), '');
         // Former free-text lengths (e.g. "8px") are not an option any more and
@@ -130,8 +122,9 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
         $titleAlign = $this->allow($raw['titleAlign'] ?? null, ['start', 'center', 'end'], 'start');
 
         return [
-            'columns'           => $columns,
-            'colClass'          => self::COL_MAP[$columns],
+            'columns'           => $columns['desktop'],
+            'colClass'          => '',
+            'rowColsClass'      => ResponsiveValue::rowColsClass($columns),
             'style'             => $this->allow($raw['style'] ?? null, ['default', 'shadow', 'flat'], $defaults['style']),
             'accentBar'         => (bool)($raw['accentBar'] ?? $defaults['accentBar']),
             'cardBorderColor'   => $borderColor,
@@ -160,7 +153,8 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
     {
         return [
             'columns'           => 3,
-            'colClass'          => self::COL_MAP[3],
+            'colClass'          => '',
+            'rowColsClass'      => ResponsiveValue::rowColsClass(['desktop' => 3, 'tablet' => null, 'mobile' => null]),
             'style'             => 'default',
             'accentBar'         => true,
             'cardBorderColor'   => '',

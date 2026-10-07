@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3wtkElements\Form\Element;
 
+use Connetation\T3wtkElements\Utility\Devices;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
@@ -20,10 +21,17 @@ use TYPO3\CMS\Core\Utility\StringUtility;
  * only — so switching an existing field to this renderType needs no data
  * migration. Frontend parsing: SlideItemsProcessor::resolveHeroHeights().
  *
+ * Device names and breakpoints (shown on the tabs and below them) come from
+ * Devices — the single source for every per-device setting.
+ *
  * Field config (type "input"):
  *   <renderType>connResponsiveRange</renderType>
  *   <responsive><lower>20</lower><upper>100</upper><step>5</step><unit>vh</unit></responsive>
  *   <default>50</default>
+ *
+ * <responsive><auto>1</auto></responsive> — an empty tablet/mobile value is
+ * shown as "Auto" (the element decides, e.g. a fluid grid) instead of
+ * "Same as Desktop/Tablet".
  */
 final class ResponsiveRangeElement extends AbstractFormElement
 {
@@ -51,6 +59,7 @@ final class ResponsiveRangeElement extends AbstractFormElement
         $step    = max(1, (int)($responsive['step'] ?? 1));
         $unit    = (string)($responsive['unit'] ?? '');
         $default = (string)($config['default'] ?? $lower);
+        $auto    = (bool)($responsive['auto'] ?? false);
         $value   = (string)($parameterArray['itemFormElValue'] ?? '');
         $fieldId = StringUtility::getUniqueId('formengine-responsive-range-');
         $lang    = $this->getLanguageService();
@@ -58,11 +67,16 @@ final class ResponsiveRangeElement extends AbstractFormElement
         $fieldInformationResult = $this->renderFieldInformation();
         $resultArray = $this->mergeChildReturnIntoExistingResult($resultArray, $fieldInformationResult, false);
 
+        // Device names + screen-width ranges, from Devices (the single source).
         $tabs = '';
+        $rangeAttributes = '';
         foreach (self::DEVICES as $device => $iconIdentifier) {
+            $range = $this->rangeLabel($device);
             $label = htmlspecialchars($lang->sL(self::LLL . $device));
+            $rangeAttributes .= ' data-range-' . $device . '="' . htmlspecialchars($lang->sL(self::LLL . $device) . ': ' . $range) . '"';
             $tabs .= '<button type="button" class="btn btn-default btn-sm conn-responsive-range__tab"'
-                . ' data-device="' . $device . '" role="tab" aria-selected="false" title="' . $label . '">'
+                . ' data-device="' . $device . '" role="tab" aria-selected="false"'
+                . ' title="' . $label . ': ' . htmlspecialchars($range) . '">'
                 . $this->iconFactory->getIcon($iconIdentifier, IconSize::SMALL)->render()
                 . '<span class="conn-responsive-range__tab-label">' . $label . '</span>'
                 . '<span class="conn-responsive-range__badge"></span>'
@@ -76,10 +90,15 @@ final class ResponsiveRangeElement extends AbstractFormElement
         $html[] =   '<div class="form-control-wrap conn-responsive-range" id="' . htmlspecialchars($fieldId) . '"'
             . ' data-default="' . htmlspecialchars($default) . '"'
             . ' data-unit="' . htmlspecialchars($unit) . '"'
+            . $rangeAttributes
+            . ' data-auto="' . ($auto ? '1' : '0') . '"'
+            . ' data-label-auto="' . htmlspecialchars($lang->sL(self::LLL . 'auto')) . '"'
+            . ' data-label-inherit-auto="' . htmlspecialchars($lang->sL(self::LLL . 'inherit.auto')) . '"'
             . ' data-label-inherit-desktop="' . htmlspecialchars($lang->sL(self::LLL . 'inherit.desktop')) . '"'
             . ' data-label-inherit-tablet="' . htmlspecialchars($lang->sL(self::LLL . 'inherit.tablet')) . '">';
         $html[] =     '<input type="hidden" class="conn-responsive-range__value" name="' . htmlspecialchars($parameterArray['itemFormElName']) . '" value="' . htmlspecialchars($value) . '">';
         $html[] =     '<div class="btn-group conn-responsive-range__tabs" role="tablist">' . $tabs . '</div>';
+        $html[] =     '<p class="conn-responsive-range__device"></p>';
         $html[] =     '<div class="conn-responsive-range__controls">';
         $html[] =       '<input type="range" class="form-range conn-responsive-range__slider" min="' . $lower . '" max="' . $upper . '" step="' . $step . '">';
         $html[] =       '<div class="input-group input-group-sm conn-responsive-range__number">';
@@ -101,5 +120,21 @@ final class ResponsiveRangeElement extends AbstractFormElement
             ->instance($fieldId);
 
         return $resultArray;
+    }
+
+    /** "1200 px and wider" / "768–1199 px" / "below 768 px" (screen width). */
+    private function rangeLabel(string $device): string
+    {
+        $range = Devices::range($device);
+        $lang  = $this->getLanguageService();
+
+        if ($range['max'] === null) {
+            return sprintf($lang->sL(self::LLL . 'range.from'), $range['min']);
+        }
+        if ($range['min'] === null) {
+            return sprintf($lang->sL(self::LLL . 'range.below'), $range['max'] + 1);
+        }
+
+        return sprintf($lang->sL(self::LLL . 'range.between'), $range['min'], $range['max']);
     }
 }

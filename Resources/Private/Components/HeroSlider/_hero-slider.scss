@@ -1,3 +1,4 @@
+@use '../Shared/devices' as *;
 // ─────────────────────────────────────────────
 // Connetation Elements – Hero Slider
 // Full-width image slider with text overlay
@@ -42,11 +43,11 @@
         // Per-device heights (settings.height = "desktop,tablet,mobile"); the
         // processor fills in inherited values, the fallbacks only cover
         // markup without them.
-        @media (max-width: 1199.98px) {
+        @include device(below-desktop) {
             height: var(--conn-hero-height-tablet, var(--conn-hero-height));
         }
 
-        @media (max-width: 767.98px) {
+        @include device(mobile) {
             height: var(--conn-hero-height-mobile, var(--conn-hero-height-tablet, var(--conn-hero-height)));
         }
     }

@@ -7,6 +7,7 @@ namespace Connetation\T3wtkElements\DataProcessing;
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 use Connetation\T3wtkElements\Utility\HeroHeight;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 
 final class SlideItemsProcessor extends AbstractItemsProcessor
 {
@@ -70,12 +71,15 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
         }
 
         if (str_contains($settingsField, 'thumbs')) {
-            $thumbsPerView = (int)($raw['thumbs_per_view'] ?? 4);
+            // Per device ("desktop,tablet,mobile"); empty = same as the next larger device.
+            $thumbsPerView = ResponsiveValue::inherited(ResponsiveValue::parse($raw['thumbs_per_view'] ?? null, 2, 8, 4));
             $delay = (int)($raw['autoplay_delay'] ?? 4000);
             return [
-                'height'          => in_array($raw['height'] ?? 'large', ['medium', 'large'], true)
-                                        ? ($raw['height'] ?? 'large') : 'large',
-                'thumbs_per_view' => in_array($thumbsPerView, [4, 5, 6], true) ? $thumbsPerView : 4,
+                // Per device (vh); former medium/large keywords still work.
+                ...HeroHeight::resolve($raw['height'] ?? null, 70),
+                'thumbs_per_view' => $thumbsPerView['desktop'],
+                'thumbs_per_view_tablet' => $thumbsPerView['tablet'],
+                'thumbs_per_view_mobile' => $thumbsPerView['mobile'],
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
                 'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
                 'autoplay'        => (bool)($raw['autoplay'] ?? false),
@@ -87,8 +91,8 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
         if (str_contains($settingsField, 'parallax')) {
             $delay = (int)($raw['autoplay_delay'] ?? 4000);
             return [
-                'height'          => in_array($raw['height'] ?? 'large', ['medium', 'large', 'fullscreen'], true)
-                                        ? ($raw['height'] ?? 'large') : 'large',
+                // Per device (vh); former medium/large/fullscreen keywords still work.
+                ...HeroHeight::resolve($raw['height'] ?? null, 70),
                 'show_navigation' => (bool)($raw['show_navigation'] ?? true),
                 'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
                 'show_pagination' => (bool)($raw['show_pagination'] ?? true),
@@ -98,11 +102,14 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             ];
         }
 
-        $slidesPerView = (int)($raw['slides_per_view'] ?? 3);
+        // Per device ("desktop,tablet,mobile"); empty tablet/mobile (0) = automatic.
+        $slidesPerView = ResponsiveValue::parse($raw['slides_per_view'] ?? null, 1, 4, 3);
         $delay = (int)($raw['autoplay_delay'] ?? 4000);
 
         return [
-            'slides_per_view' => in_array($slidesPerView, [1, 2, 3, 4], true) ? $slidesPerView : 3,
+            'slides_per_view' => $slidesPerView['desktop'],
+            'slides_per_view_tablet' => $slidesPerView['tablet'] ?? 0,
+            'slides_per_view_mobile' => $slidesPerView['mobile'] ?? 0,
             'loop'            => (bool)($raw['loop'] ?? true),
             'autoplay'        => (bool)($raw['autoplay'] ?? false),
             'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
@@ -132,8 +139,10 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
 
         if (str_contains($settingsField, 'thumbs')) {
             return [
-                'height'          => 'large',
+                ...HeroHeight::defaults(70),
                 'thumbs_per_view' => 4,
+                'thumbs_per_view_tablet' => 4,
+                'thumbs_per_view_mobile' => 4,
                 'show_navigation' => true,
                 'hide_navigation_mobile' => false,
                 'autoplay'        => false,
@@ -144,7 +153,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
 
         if (str_contains($settingsField, 'parallax')) {
             return [
-                'height'          => 'large',
+                ...HeroHeight::defaults(70),
                 'show_navigation' => true,
                 'hide_navigation_mobile' => false,
                 'show_pagination' => true,
@@ -156,6 +165,8 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
 
         return [
             'slides_per_view' => 3,
+            'slides_per_view_tablet' => 0,
+            'slides_per_view_mobile' => 0,
             'loop'            => true,
             'autoplay'        => false,
             'autoplay_delay'  => 4000,

@@ -1,4 +1,5 @@
 @use 'theme/tokens' as base;
+@use '../Shared/devices' as *;
 
 .conn-video-hero {
     position: relative;
@@ -21,6 +22,13 @@
     &--medium     { --conn-hero-height: 55vh; }
     &--large      { --conn-hero-height: 70vh; }
     &--fullscreen { --conn-hero-height: 100vh; }
+
+    // Per-device height (settings.height = "desktop,tablet,mobile", inline
+    // --conn-video-h-* from the template). Breakpoints: Shared/_devices.scss.
+    --conn-hero-height: var(--conn-video-h-desktop, 70vh);
+
+    @include device(below-desktop) { --conn-hero-height: var(--conn-video-h-tablet, var(--conn-video-h-desktop, 70vh)); }
+    @include device(mobile) { --conn-hero-height: var(--conn-video-h-mobile, var(--conn-video-h-tablet, var(--conn-video-h-desktop, 70vh))); }
 
     &__bg {
         position: absolute;

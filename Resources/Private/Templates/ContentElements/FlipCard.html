@@ -16,7 +16,7 @@
 
         <f:if condition="{cards}">
             <f:then>
-                <div class="row g-4">
+                <div class="row g-4 {settings.rowColsClass}">
                     <f:for each="{cards}" as="card">
                         <f:render partial="FlipCard/Card" arguments="{
                             card:     card,

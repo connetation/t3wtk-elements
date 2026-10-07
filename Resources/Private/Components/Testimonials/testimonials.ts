@@ -10,6 +10,7 @@ import { readAutoplay, buildSwiperAutoplay, ENABLED_VALUE } from '../Shared/auto
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { registry } from '../Shared/registry';
+import { DESKTOP_MIN, TABLET_MIN } from '../Shared/devices';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +56,9 @@ class Testimonials {
 
         const ap      = readAutoplay(this.el);
         const columns = parseInt(this.el.dataset.columns || '2', 10);
+        // Per device (settings.columns "desktop,tablet,mobile"); 0 = automatic.
+        const tablet  = parseInt(this.el.dataset.columnsTablet || '0', 10) || Math.min(columns, 2);
+        const mobile  = parseInt(this.el.dataset.columnsMobile || '0', 10) || 1;
         const withNav = this.el.dataset.navigation === ENABLED_VALUE;
         const withPag = this.el.dataset.pagination !== 'false';
 
@@ -68,15 +72,15 @@ class Testimonials {
             loop: true,
             speed: 500,
             grabCursor: true,
-            slidesPerView: 1,
+            slidesPerView: mobile,
             spaceBetween: 16,
 
             breakpoints: {
-                768: {
-                    slidesPerView: Math.min(columns, 2),
+                [TABLET_MIN]: {
+                    slidesPerView: tablet,
                     spaceBetween: 20,
                 },
-                1200: {
+                [DESKTOP_MIN]: {
                     slidesPerView: columns,
                     spaceBetween: 24,
                 },

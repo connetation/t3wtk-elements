@@ -17,38 +17,19 @@ final class HeroHeight
 {
     public const DEFAULT = 50;
 
-    private const MIN = 20;
-    private const MAX = 100;
-    private const LEGACY = ['medium' => 55, 'large' => 70, 'fullscreen' => 100];
+    public const LEGACY = ['medium' => 55, 'large' => 70, 'fullscreen' => 100];
 
     /** @return array{height: int, heightTablet: int, heightMobile: int} */
-    public static function resolve(mixed $raw): array
+    public static function resolve(mixed $raw, int $default = self::DEFAULT): array
     {
-        $parts   = \is_string($raw) ? array_map('trim', explode(',', $raw)) : [$raw];
-        $desktop = self::single($parts[0] ?? null) ?? self::DEFAULT;
-        $tablet  = self::single($parts[1] ?? null) ?? $desktop;
-        $mobile  = self::single($parts[2] ?? null) ?? $tablet;
+        $values = ResponsiveValue::inherited(ResponsiveValue::parse($raw, 20, 100, $default, self::LEGACY));
 
-        return ['height' => $desktop, 'heightTablet' => $tablet, 'heightMobile' => $mobile];
+        return ['height' => $values['desktop'], 'heightTablet' => $values['tablet'], 'heightMobile' => $values['mobile']];
     }
 
     /** @return array{height: int, heightTablet: int, heightMobile: int} */
-    public static function defaults(): array
+    public static function defaults(int $default = self::DEFAULT): array
     {
-        return ['height' => self::DEFAULT, 'heightTablet' => self::DEFAULT, 'heightMobile' => self::DEFAULT];
-    }
-
-    /** A valid vh value, or null when unset/invalid. */
-    private static function single(mixed $value): ?int
-    {
-        if (\is_string($value) && isset(self::LEGACY[$value])) {
-            return self::LEGACY[$value];
-        }
-        if ($value === null || $value === '' || !is_numeric($value)) {
-            return null;
-        }
-        $height = (int)$value;
-
-        return ($height >= self::MIN && $height <= self::MAX) ? $height : null;
+        return ['height' => $default, 'heightTablet' => $default, 'heightMobile' => $default];
     }
 }

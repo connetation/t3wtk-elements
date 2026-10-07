@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class ShiftCarouselProcessor extends AbstractItemsProcessor
@@ -52,7 +53,8 @@ final class ShiftCarouselProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $columns = (int)($raw['columns'] ?? 4);
+        // Per device ("desktop,tablet,mobile"); empty tablet/mobile (0) = automatic.
+        $columns = ResponsiveValue::parse($raw['columns'] ?? null, 1, 4, 4);
 
         $allowedPositions    = ['bottom', 'center', 'top'];
         $allowedAligns       = ['left', 'center', 'right'];
@@ -75,7 +77,9 @@ final class ShiftCarouselProcessor extends AbstractItemsProcessor
         }
 
         return [
-            'columns'       => max(2, min(4, $columns)),
+            'columns'       => $columns['desktop'],
+            'columnsTablet' => $columns['tablet'] ?? 0,
+            'columnsMobile' => $columns['mobile'] ?? 0,
             'textPosition'  => $textPosition,
             'textAlign'     => $textAlign,
             'navPosition'   => $navPosition,
@@ -88,6 +92,8 @@ final class ShiftCarouselProcessor extends AbstractItemsProcessor
     {
         return [
             'columns'       => 4,
+            'columnsTablet' => 0,
+            'columnsMobile' => 0,
             'textPosition'  => 'bottom',
             'textAlign'     => 'left',
             'navPosition'   => 'bottom',

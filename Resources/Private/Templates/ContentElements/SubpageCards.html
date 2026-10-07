@@ -20,7 +20,7 @@
              id="conn-subpage-cards-{data.uid}"
              style="{settings.styleVars}"
              data-radius="{settings.cardBorderRadius}">
-        <div class="row g-4">
+        <div class="row g-4 {settings.rowColsClass}">
             <f:for each="{cards}" as="card">
                 <f:render partial="SubpageCards/Card" arguments="{card: card, settings: settings}" />
             </f:for>

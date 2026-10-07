@@ -8,6 +8,7 @@ import { Flip } from 'gsap/Flip';
 import { attachSwipeHandler } from '../Shared/swipe';
 import { AutoplayController } from '../Shared/autoplay';
 import { registry } from '../Shared/registry';
+import { MQ_BELOW_DESKTOP, MQ_MOBILE } from '../Shared/devices';
 
 gsap.registerPlugin(Flip);
 
@@ -38,27 +39,44 @@ class ShiftCarousel {
 
         if (!this.track) return;
 
-        const cols = parseInt(this.track.dataset.items ?? '4', 10) || 4;
-        this.track.style.setProperty('--conn-items', String(cols));
-
         // Snapshot all item HTML; DOM is rebuilt from this for circular reuse
         this.allItems = Array.from(this.track.querySelectorAll(ShiftCarousel.ITEM_SEL))
             .map(item => item.innerHTML);
-        this.total        = this.allItems.length;
-        this.visibleCount = this.total < 2 ? 0 : Math.min(cols, this.total);
+        this.total = this.allItems.length;
 
+        this.layout(this.itemsForViewport());
         if (this.total < 2) return;
 
-        // Rebuild track with initial visible window
+        this.init();
+
+        // Visible items per device: re-layout when the viewport crosses a breakpoint.
+        [MQ_MOBILE, MQ_BELOW_DESKTOP].forEach((query) => {
+            window.matchMedia(query).addEventListener('change', () => {
+                if (!this.isAnimating) this.layout(this.itemsForViewport());
+            });
+        });
+    }
+
+    /** Items visible at once for the current viewport (data-items / -tablet / -mobile, 0 = automatic). */
+    private itemsForViewport(): number {
+        const desktop = parseInt(this.track.dataset.items ?? '4', 10) || 4;
+        const tablet  = parseInt(this.track.dataset.itemsTablet ?? '0', 10) || desktop;
+        const mobile  = parseInt(this.track.dataset.itemsMobile ?? '0', 10) || tablet;
+        if (window.matchMedia(MQ_MOBILE).matches) return mobile;
+        if (window.matchMedia(MQ_BELOW_DESKTOP).matches) return tablet;
+        return desktop;
+    }
+
+    /** (Re)builds the visible window, starting at the current startIndex. */
+    private layout(cols: number): void {
+        this.track.style.setProperty('--conn-items', String(cols));
+        this.visibleCount = this.total < 2 ? 0 : Math.min(cols, this.total);
+        if (this.total < 2) return;
+
         this.track.innerHTML = '';
         for (let i = 0; i < this.visibleCount; i++) {
-            const item = document.createElement('div');
-            item.className = ShiftCarousel.CLASS_ITEM;
-            item.innerHTML = this.allItems[i];
-            this.track.appendChild(item);
+            this.track.appendChild(this.makeItem(this.startIndex + i));
         }
-
-        this.init();
     }
 
     private makeItem(index: number): HTMLElement {

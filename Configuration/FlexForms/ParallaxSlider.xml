@@ -7,16 +7,17 @@
                 <type>array</type>
                 <el>
                     <settings.height>
-                        <label>Slider height</label>
+                        <label>Slider height (vh)</label>
                         <config>
-                            <type>select</type>
-                            <renderType>selectSingle</renderType>
-                            <default>large</default>
-                            <items>
-                                <numIndex index="0"><label>Medium (55vh)</label><value>medium</value></numIndex>
-                                <numIndex index="1"><label>Large (70vh, default)</label><value>large</value></numIndex>
-                                <numIndex index="2"><label>Fullscreen (100vh)</label><value>fullscreen</value></numIndex>
-                            </items>
+                            <type>input</type>
+                            <renderType>connResponsiveRange</renderType>
+                            <responsive>
+                                <lower>20</lower>
+                                <upper>100</upper>
+                                <step>5</step>
+                                <unit>vh</unit>
+                            </responsive>
+                            <default>70</default>
                         </config>
                     </settings.height>
                     <settings.show_navigation>

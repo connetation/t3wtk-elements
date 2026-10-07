@@ -1,3 +1,4 @@
+@use '../Shared/devices' as *;
 // ─────────────────────────────────────────────
 // Connetation Elements – Thumbnails Slider
 // Full-height main view + thumbnail strip
@@ -13,6 +14,13 @@
 
     &--medium { --conn-thumbs-height: 55vh; }
     &--large  { --conn-thumbs-height: 70vh; }
+
+    // Per-device height (settings.height = "desktop,tablet,mobile", inline
+    // --conn-thumbs-h-* from the template). Breakpoints: Shared/_devices.scss.
+    --conn-thumbs-height: var(--conn-thumbs-h-desktop, 70vh);
+
+    @include device(below-desktop) { --conn-thumbs-height: var(--conn-thumbs-h-tablet, var(--conn-thumbs-h-desktop, 70vh)); }
+    @include device(mobile) { --conn-thumbs-height: var(--conn-thumbs-h-mobile, var(--conn-thumbs-h-tablet, var(--conn-thumbs-h-desktop, 70vh))); }
 
     position: relative;
     width: 100%;

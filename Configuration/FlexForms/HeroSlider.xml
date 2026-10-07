@@ -7,7 +7,7 @@
                 <type>array</type>
                 <el>
                     <settings.height>
-                        <label>Slider height (vh) — Desktop ≥ 1200px, Tablet 768–1199px, Mobile &lt; 768px</label>
+                        <label>Slider height (vh)</label>
                         <config>
                             <type>input</type>
                             <renderType>connResponsiveRange</renderType>

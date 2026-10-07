@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkElements\Utility\ResponsiveValue;
 
 final class StatsItemsProcessor extends AbstractItemsProcessor
 {
@@ -25,7 +26,10 @@ final class StatsItemsProcessor extends AbstractItemsProcessor
 
     protected function resolveSettings(array $raw, string $settingsField): array
     {
-        $columns = (int)($raw['columns'] ?? 4);
+        // Per device ("desktop,tablet,mobile"); empty tablet/mobile (0) keeps
+        // the element's automatic layout for that screen size.
+        $columnsByDevice = ResponsiveValue::parse($raw['columns'] ?? null, 1, 4, 4);
+        $columns         = $columnsByDevice['desktop'];
         $colMap  = [
             1 => 'col-12',
             2 => 'col-sm-6',
@@ -38,6 +42,8 @@ final class StatsItemsProcessor extends AbstractItemsProcessor
 
         return [
             'columns'   => isset($colMap[$columns]) ? $columns : 4,
+            'columnsTablet'=> $columnsByDevice['tablet'] ?? 0,
+            'columnsMobile'=> $columnsByDevice['mobile'] ?? 0,
             'colClass'  => $colMap[$columns] ?? $colMap[4],
             'layout'    => $layout,
             'countup'   => (bool)($raw['countup'] ?? true),
@@ -58,6 +64,8 @@ final class StatsItemsProcessor extends AbstractItemsProcessor
     {
         return [
             'columns'   => 4,
+            'columnsTablet'=> 0,
+            'columnsMobile'=> 0,
             'colClass'  => 'col-sm-6 col-xl-3',
             'layout'    => 'default',
             'countup'   => true,
