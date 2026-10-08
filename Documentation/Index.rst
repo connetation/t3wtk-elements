@@ -28,6 +28,14 @@ Connetation Elements
 
 ----
 
+.. tip::
+
+   **Quickstart:** the fastest way to start a new TYPO3 14 project with
+   ``connetation/t3wtk-base``, ``connetation/t3wtk-elements`` and
+   ``connetation/t3wtk-sitepackage`` is
+   `t3wtk-quickstart-shell <https://github.com/connetation/t3wtk-quickstart-shell>`__ — a ready-to-use DDEV project
+   template. Clone it and run ``ddev setup-project``.
+
 Connetation Elements is a TYPO3 v14 content elements package built on top
 of `connetation/t3wtk-base <https://packagist.org/packages/connetation/t3wtk-base>`__ and
 `b13/container <https://packagist.org/packages/b13/container>`__. It
