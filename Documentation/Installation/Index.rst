@@ -13,6 +13,11 @@ Install via Composer::
 This requires ``connetation/t3wtk-base`` and ``b13/container`` as dependencies; Composer
 resolves both automatically.
 
+Classic mode (non-Composer) installations can install the extension
+``conn_t3wtk_elements`` from the
+`TYPO3 Extension Repository <https://extensions.typo3.org/extension/conn_t3wtk_elements>`__,
+together with ``conn_t3wtk_base`` and ``container``.
+
 .. _installation-site-set:
 
 Activating the Set

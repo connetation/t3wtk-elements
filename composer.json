@@ -1,9 +1,13 @@
 {
     "name": "connetation/t3wtk-elements",
-    "version": "3.0.0",
     "description": "Connetation Content Elements for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/connetation/t3wtk-elements",
+    "support": {
+        "issues": "https://github.com/connetation/t3wtk-elements/issues",
+        "source": "https://github.com/connetation/t3wtk-elements"
+    },
     "authors": [
         {
             "name": "Connetation Web Engineering GmbH",
