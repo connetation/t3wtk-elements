@@ -6,6 +6,7 @@ namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
+use Connetation\T3wtkBase\Utility\RadiusOptions;
 use Connetation\T3wtkElements\Utility\HeroHeight;
 use Connetation\T3wtkBase\Utility\ResponsiveValue;
 
@@ -85,6 +86,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'autoplay'        => (bool)($raw['autoplay'] ?? false),
                 'autoplay_delay'  => in_array($delay, $allowedDelays, true) ? $delay : 4000,
                 'openInLightbox'  => (bool)($raw['openInLightbox'] ?? false),
+                'borderRadius'    => RadiusOptions::resolve($raw['borderRadius'] ?? null),
             ];
         }
 
@@ -148,6 +150,7 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
                 'autoplay'        => false,
                 'autoplay_delay'  => 4000,
                 'openInLightbox'  => false,
+                'borderRadius'    => RadiusOptions::THEME_DEFAULT,
             ];
         }
 

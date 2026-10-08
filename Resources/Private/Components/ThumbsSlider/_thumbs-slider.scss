@@ -1,4 +1,5 @@
 @use '../Shared/devices' as *;
+@use 'theme/tokens' as base;
 // ─────────────────────────────────────────────
 // Connetation Elements – Thumbnails Slider
 // Full-height main view + thumbnail strip
@@ -11,6 +12,13 @@
 .conn-thumbs-slider {
     --conn-thumbs-height: 70vh;
     --conn-thumb-h:       90px;
+
+    // Outer corners of the whole slider (main image + thumbnail strip as one
+    // unit) — settings.borderRadius → data-radius; theme default otherwise.
+    --conn-thumbs-radius: var(--conn-radius);
+    @include base.conn-radius-option(--conn-thumbs-radius);
+    border-radius: var(--conn-thumbs-radius);
+    overflow: hidden;
 
     &--medium { --conn-thumbs-height: 55vh; }
     &--large  { --conn-thumbs-height: 70vh; }

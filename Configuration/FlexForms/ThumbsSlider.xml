@@ -20,6 +20,16 @@
                             <default>70</default>
                         </config>
                     </settings.height>
+                    <settings.borderRadius>
+                        <label>Border radius</label>
+                        <description>Rounds the slider's outer corners (main image + thumbnail strip as one unit). "Theme default" follows the site's Corner radius setting.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>theme</default>
+                            <itemsProcFunc>Connetation\T3wtkBase\Utility\RadiusOptions->addItems</itemsProcFunc>
+                        </config>
+                    </settings.borderRadius>
                     <settings.thumbs_per_view>
                         <label>Thumbnails visible at once</label>
                         <config>
