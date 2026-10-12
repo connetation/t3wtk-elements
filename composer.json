@@ -1,6 +1,7 @@
 {
     "name": "connetation/t3wtk-elements",
-    "description": "Connetation Content Elements for TYPO3 LTS 14",
+    "description": "30+ ready-to-use content elements for TYPO3 14 LTS: sliders, galleries, accordions, tabs, timelines, pricing tables, testimonials, team, maps and more. Part of the Connetation TYPO3 Web Toolkit (T3WTK).",
+    "keywords": ["TYPO3", "TYPO3 CMS", "extension", "t3wtk", "toolkit", "sitepackage", "theme", "design system", "content elements", "bootstrap", "site sets", "dark mode"],
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/connetation/t3wtk-elements",
