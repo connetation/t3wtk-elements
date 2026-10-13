@@ -148,9 +148,14 @@
     .carousel-indicators {
         margin-bottom: 0.75rem;
 
+        // 8px dots inside a 24x24px target (WCAG 2.2 target size):
+        // Bootstrap's content-box sizing + padding, background clipped to the dot
         [data-bs-target] {
             width: 8px;
             height: 8px;
+            padding: 8px;
+            margin-inline: 0;
+            background-clip: content-box;
             border-radius: 50rem;
             border-top: none;
             border-bottom: none;

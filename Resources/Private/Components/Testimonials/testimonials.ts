@@ -65,6 +65,8 @@ class Testimonials {
             starsEl.innerHTML = Array.from({ length: 5 }, (_, i) =>
                 `<span aria-hidden="true">${i < rating ? '★' : '☆'}</span>`,
             ).join('');
+            // aria-label needs a role on a div (aria-prohibited-attr otherwise)
+            starsEl.setAttribute('role', 'img');
             starsEl.setAttribute('aria-label', `${rating} out of 5 stars`);
         });
     }

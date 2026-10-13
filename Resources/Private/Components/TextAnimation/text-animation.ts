@@ -26,6 +26,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { splitAria } from '../Shared/split-aria';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -62,7 +63,7 @@ class TextAnimation {
     // ── Words Fade In ─────────────────────────────────────────────────
     private static animateWords(elements: HTMLElement[]): void {
         elements.forEach((el) => {
-            const split = SplitText.create(el, { type: TextAnimation.ANIM_WORDS });
+            const split = SplitText.create(el, { type: TextAnimation.ANIM_WORDS, aria: splitAria(el) });
             TextAnimation.whenVisible(el, () => {
                 gsap.from(split.words, {
                     opacity: 0,
@@ -79,7 +80,7 @@ class TextAnimation {
     // ── Lines Rise Up ─────────────────────────────────────────────────
     private static animateLines(elements: HTMLElement[]): void {
         elements.forEach((el) => {
-            const split = SplitText.create(el, { type: TextAnimation.ANIM_LINES });
+            const split = SplitText.create(el, { type: TextAnimation.ANIM_LINES, aria: splitAria(el) });
             TextAnimation.whenVisible(el, () => {
                 gsap.from(split.lines, {
                     opacity: 0,
@@ -96,7 +97,7 @@ class TextAnimation {
     // ── Characters Cascade ────────────────────────────────────────────
     private static animateChars(elements: HTMLElement[]): void {
         elements.forEach((el) => {
-            const split = SplitText.create(el, { type: `${TextAnimation.ANIM_CHARS},${TextAnimation.ANIM_WORDS}` });
+            const split = SplitText.create(el, { type: `${TextAnimation.ANIM_CHARS},${TextAnimation.ANIM_WORDS}`, aria: splitAria(el) });
             TextAnimation.whenVisible(el, () => {
                 gsap.from(split.chars, {
                     opacity: 0,
@@ -120,7 +121,7 @@ class TextAnimation {
         const body     = elements.filter(el => !el.matches('h1, h2, h3, h4, .ce-subheader'));
 
         headings.forEach((el) => {
-            const split = SplitText.create(el, { type: 'chars,words' });
+            const split = SplitText.create(el, { type: 'chars,words', aria: splitAria(el) });
             TextAnimation.whenVisible(el, () => {
                 gsap.from(split.chars, {
                     opacity: 0,
@@ -135,7 +136,7 @@ class TextAnimation {
         });
 
         body.forEach((el) => {
-            const split = SplitText.create(el, { type: 'words' });
+            const split = SplitText.create(el, { type: 'words', aria: splitAria(el) });
             TextAnimation.whenVisible(el, () => {
                 gsap.from(split.words, {
                     opacity: 0,
@@ -156,7 +157,7 @@ class TextAnimation {
         const DURATION = 1100;
 
         elements.forEach((el) => {
-            const split     = SplitText.create(el, { type: 'chars,words' });
+            const split     = SplitText.create(el, { type: 'chars,words', aria: splitAria(el) });
             const originals = split.chars.map(c => c.textContent ?? '');
 
             TextAnimation.whenVisible(el, () => {

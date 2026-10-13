@@ -200,9 +200,9 @@
 
         // Unavailable feature — strikethrough style
         &--unavailable {
+            // No opacity: muted text is already at the WCAG AA minimum
             color: var(--conn-text-muted);
             text-decoration: line-through;
-            opacity: 0.55;
 
             &::before {
                 content: '✕';

@@ -25,6 +25,7 @@
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { splitAria } from './split-aria';
 
 gsap.registerPlugin(SplitText);
 
@@ -140,7 +141,7 @@ export function animateSlide(slideEl: HTMLElement): void {
     switch (type) {
         case 'words':
             all.forEach(el => {
-                const s = SplitText.create(el, { type: 'words' });
+                const s = SplitText.create(el, { type: 'words', aria: splitAria(el) });
                 splits.push(s);
                 gsap.from(s.words, {
                     opacity: 0, y: 24, duration: (customMs || 650) / 1000, stagger: 0.055,
@@ -151,7 +152,7 @@ export function animateSlide(slideEl: HTMLElement): void {
 
         case 'lines':
             all.forEach(el => {
-                const s = SplitText.create(el, { type: 'lines' });
+                const s = SplitText.create(el, { type: 'lines', aria: splitAria(el) });
                 splits.push(s);
                 gsap.from(s.lines, {
                     opacity: 0, y: 40, duration: (customMs || 700) / 1000, stagger: 0.12,
@@ -162,7 +163,7 @@ export function animateSlide(slideEl: HTMLElement): void {
 
         case 'chars':
             all.forEach(el => {
-                const s = SplitText.create(el, { type: 'chars,words' });
+                const s = SplitText.create(el, { type: 'chars,words', aria: splitAria(el) });
                 splits.push(s);
                 gsap.from(s.chars, {
                     opacity: 0, y: 16, rotationX: -45, transformOrigin: 'top center',
@@ -174,7 +175,7 @@ export function animateSlide(slideEl: HTMLElement): void {
 
         case 'reveal':
             headings.forEach(el => {
-                const s = SplitText.create(el, { type: 'chars,words' });
+                const s = SplitText.create(el, { type: 'chars,words', aria: splitAria(el) });
                 splits.push(s);
                 gsap.from(s.chars, {
                     opacity: 0, y: 60, scale: 0.8, duration: (customMs || 500) / 1000, stagger: 0.025,
@@ -182,7 +183,7 @@ export function animateSlide(slideEl: HTMLElement): void {
                 });
             });
             body.forEach(el => {
-                const s = SplitText.create(el, { type: 'words' });
+                const s = SplitText.create(el, { type: 'words', aria: splitAria(el) });
                 splits.push(s);
                 gsap.from(s.words, {
                     opacity: 0, y: 30, duration: (customMs || 450) / 1000, stagger: 0.04,
@@ -194,7 +195,7 @@ export function animateSlide(slideEl: HTMLElement): void {
         case 'fuzzy': {
             const DURATION = customMs || 1100;
             all.forEach(el => {
-                const s         = SplitText.create(el, { type: 'chars,words' });
+                const s         = SplitText.create(el, { type: 'chars,words', aria: splitAria(el) });
                 splits.push(s);
                 const originals = s.chars.map(c => c.textContent ?? '');
                 const resolved  = new Set<number>();
