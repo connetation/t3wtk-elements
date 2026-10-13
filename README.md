@@ -1,3 +1,5 @@
+> **🚀 Quickstart:** the fastest way to start a new TYPO3 14 project with `connetation/t3wtk-base`, `connetation/t3wtk-elements` and `connetation/t3wtk-sitepackage` is **[t3wtk-quickstart-shell](https://github.com/connetation/t3wtk-quickstart-shell)** — a ready-to-use DDEV project template. Clone it and run `ddev setup-project`.
+
 # T3WTK – Connetation TYPO3 Web Toolkit
 
 From an empty TYPO3 installation to a complete, themeable website in hours instead of weeks.
@@ -65,8 +67,6 @@ GitHub Issues and Discussions.
 ## This package: `connetation/t3wtk-elements`
 
 30+ ready-to-use content elements for TYPO3 14 LTS: sliders, galleries, accordions, tabs, timelines, pricing tables, testimonials, team, maps and more. Part of the Connetation TYPO3 Web Toolkit (T3WTK).
-
-> **🚀 Quickstart:** the fastest way to start a new TYPO3 14 project with `connetation/t3wtk-base`, `connetation/t3wtk-elements` and `connetation/t3wtk-sitepackage` is **[t3wtk-quickstart-shell](https://github.com/connetation/t3wtk-quickstart-shell)** — a ready-to-use DDEV project template. Clone it and run `ddev setup-project`.
 
 ### Responsive images
 
