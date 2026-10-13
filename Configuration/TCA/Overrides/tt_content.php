@@ -653,6 +653,23 @@ $GLOBALS['TCA']['tt_content']['types']['conn_bs_carousel'] = [
 ];
 
 // ─── Swiper Hero Slider ───────────────────────────────────────────
+// Hero + Thumbs sliders always render the subtitle as an eyebrow, so the
+// shared slide_item "Subheader as Eyebrow" toggle (and its position) is
+// dropped from the child form. Done via the child's showitem: overriding the
+// columns to type=passthrough is not enough, because overrideChildTca merges
+// recursively and the inherited renderType=checkboxToggle still renders.
+$slideItemOverrideWithoutEyebrow = [
+    'types' => [
+        '1' => [
+            'showitem' => preg_replace(
+                '/\\s*\\bsubtitle_eyebrow(?:_position)?\\s*,/',
+                '',
+                $GLOBALS['TCA']['tx_conn_t3wtk_elements_domain_model_slide_item']['types']['1']['showitem']
+            ),
+        ],
+    ],
+];
+
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['conn_swiper_hero_slider'] = 'conn-ce-hero-slider';
 
 ExtensionManagementUtility::addTcaSelectItem('tt_content', 'CType', [
@@ -678,12 +695,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             ],
             // This slider always renders the subtitle as its eyebrow, so the
             // shared slide_item "Subheader as Eyebrow" toggle has no effect here.
-            'overrideChildTca' => [
-                'columns' => [
-                    'subtitle_eyebrow'          => ['config' => ['type' => 'passthrough']],
-                    'subtitle_eyebrow_position' => ['config' => ['type' => 'passthrough']],
-                ],
-            ],
+            'overrideChildTca' => $slideItemOverrideWithoutEyebrow,
         ],
     ],
     'tx_conn_t3wtk_elements_hero_slider_settings' => [
@@ -784,12 +796,7 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', [
             ],
             // This slider always renders the subtitle as its eyebrow, so the
             // shared slide_item "Subheader as Eyebrow" toggle has no effect here.
-            'overrideChildTca' => [
-                'columns' => [
-                    'subtitle_eyebrow'          => ['config' => ['type' => 'passthrough']],
-                    'subtitle_eyebrow_position' => ['config' => ['type' => 'passthrough']],
-                ],
-            ],
+            'overrideChildTca' => $slideItemOverrideWithoutEyebrow,
         ],
     ],
     'tx_conn_t3wtk_elements_thumbs_slider_settings' => [
