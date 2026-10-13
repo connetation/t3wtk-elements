@@ -20,13 +20,13 @@
  */
 
 $EM_CONF[$_EXTKEY] = [
-    'title'       => 'Connetation TYPO3 Web Toolkit: Elements',
+    'title' => 'Connetation TYPO3 Web Toolkit: Elements',
     'description' => '30+ ready-to-use content elements for TYPO3 14 LTS: sliders, galleries, accordions, tabs, timelines, pricing tables, testimonials, team, maps and more. Part of the Connetation TYPO3 Web Toolkit (T3WTK).',
-    'category'    => 'plugin',
-    'author'      => 'Connetation Web Engineering GmbH',
+    'category' => 'plugin',
+    'author' => 'Connetation Web Engineering GmbH',
     'author_email' => 'office@connetation.at',
-    'state'       => 'stable',
-    'version'     => '3.1.3',
+    'state' => 'stable',
+    'version' => '3.1.6',
     'constraints' => [
         'depends' => [
             'typo3'           => '14.0.0-14.99.99',
