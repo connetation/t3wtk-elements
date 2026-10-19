@@ -25,6 +25,7 @@ namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\Utility\RadiusOptions;
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkElements\Service\ButtonStyleItemsProcFunc;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
@@ -46,6 +47,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
         'team-card',
         'contact-card',
         'visit-card',
+        'contact-banner',
     ];
 
     public function process(
@@ -101,9 +103,9 @@ final class PeopleProcessor extends AbstractItemsProcessor
 
         $style = in_array($raw['style'] ?? '', self::STYLES, true) ? $raw['style'] : 'reveal-sheet';
 
-        // Visit Card is a fixed 16:9 business-card shape — past 2-up it gets
-        // squeezed so narrow the band/contact lines feel cramped.
-        if ($style === 'visit-card') {
+        // Visit Card is a fixed 16:9 business-card shape and Contact Banner a
+        // wide photo + text row — past 2-up both get squeezed too narrow.
+        if ($style === 'visit-card' || $style === 'contact-banner') {
             $columns = array_map(static fn (?int $value): ?int => $value === null ? null : min($value, 2), $columns);
         }
 
@@ -142,6 +144,20 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'spotlightBg'      => $this->sanitizeColor((string)($raw['spotlightBg'] ?? ''), ''),
             'spotlightTextColor' => $this->sanitizeColor((string)($raw['spotlightTextColor'] ?? ''), ''),
             'visitBandColor'   => $this->sanitizeColor((string)($raw['visitBandColor'] ?? ''), ''),
+            'bannerIntro'       => trim((string)($raw['bannerIntro'] ?? '')),
+            'bannerButtonLabel' => trim((string)($raw['bannerButtonLabel'] ?? '')),
+            'bannerButtonLink'  => trim((string)($raw['bannerButtonLink'] ?? '')),
+            'bannerBg'          => $this->sanitizeColor((string)($raw['bannerBg'] ?? ''), ''),
+            'bannerBorderColor' => $this->sanitizeColor((string)($raw['bannerBorderColor'] ?? ''), ''),
+            'bannerBorderColorEnd' => $this->sanitizeColor((string)($raw['bannerBorderColorEnd'] ?? ''), ''),
+            'bannerSpin'        => (bool)($raw['bannerSpin'] ?? true),
+            'bannerTextColor'   => $this->sanitizeColor((string)($raw['bannerTextColor'] ?? ''), ''),
+            'bannerButtonStyle' => ButtonStyleItemsProcFunc::isButtonClass(trim((string)($raw['bannerButtonStyle'] ?? '')))
+                ? trim((string)$raw['bannerButtonStyle'])
+                : ButtonStyleItemsProcFunc::DEFAULT,
+            'bannerButtonOutline' => str_contains((string)($raw['bannerButtonStyle'] ?? ''), 'btn-outline-'),
+            'bannerButtonBg'    => $this->sanitizeColor((string)($raw['bannerButtonBg'] ?? ''), ''),
+            'bannerButtonTextColor' => $this->sanitizeColor((string)($raw['bannerButtonTextColor'] ?? ''), ''),
         ];
     }
 
@@ -175,6 +191,18 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'spotlightBg'      => '',
             'spotlightTextColor' => '',
             'visitBandColor'   => '',
+            'bannerIntro'       => '',
+            'bannerButtonLabel' => '',
+            'bannerButtonLink'  => '',
+            'bannerBg'          => '',
+            'bannerBorderColor' => '',
+            'bannerBorderColorEnd' => '',
+            'bannerSpin'        => true,
+            'bannerTextColor'   => '',
+            'bannerButtonStyle' => ButtonStyleItemsProcFunc::DEFAULT,
+            'bannerButtonOutline' => false,
+            'bannerButtonBg'    => '',
+            'bannerButtonTextColor' => '',
         ];
     }
 

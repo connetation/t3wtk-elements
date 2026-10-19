@@ -13,6 +13,12 @@
             <trans-unit id="people.contact.link">
                 <source>Website</source>
             </trans-unit>
+            <trans-unit id="people.banner.intro">
+                <source>Your contact person:</source>
+            </trans-unit>
+            <trans-unit id="people.banner.button">
+                <source>Get in touch</source>
+            </trans-unit>
             <!-- Accordion frontend -->
             <trans-unit id="accordion.empty">
                 <source>No accordion items have been added yet.</source>

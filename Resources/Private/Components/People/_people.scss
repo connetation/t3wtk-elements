@@ -793,4 +793,154 @@
             font-size: base.card-fs(0.58rem);
         }
     }
+
+    // ── Contact banner ────────────────────────────
+    &__banner {
+        --conn-people-banner-border-w: 2px;
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        align-items: center;
+        gap: var(--conn-space-md);
+        max-width: 760px;
+        margin: 0 auto;
+        padding: var(--conn-space-md);
+        background: var(--conn-people-banner-bg, transparent);
+        border-radius: var(--conn-people-radius);
+        color: var(--conn-people-banner-text, var(--conn-text));
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            padding: var(--conn-people-banner-border-w);
+            border-radius: inherit;
+            background: conic-gradient(
+                from var(--conn-people-banner-angle, 0deg),
+                transparent 0%,
+                var(--conn-people-banner-border-a, var(--conn-accent, #6366f1)) 14%,
+                var(--conn-people-banner-border-b, var(--conn-accent-secondary, #06b6d4)) 30%,
+                transparent 40%,
+                transparent 100%
+            );
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+            pointer-events: none;
+        }
+    }
+
+    &__banner--spin::before {
+        animation: conn-people-banner-spin 6s linear infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+
+    &__banner-frame {
+        flex: 0 0 auto;
+        width: min(220px, 38%);
+    }
+
+    &__banner-photo {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 360 / 452;
+        object-fit: contain;
+        object-position: bottom center;
+    }
+
+    &__banner-photo.conn-people__photo-placeholder {
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+        background: none;
+    }
+
+    &__banner-body {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--conn-space-sm);
+    }
+
+    &__banner-text {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        font-size: base.card-fs(1rem);
+        line-height: 1.4;
+        color: inherit;
+    }
+
+    &__banner-name {
+        font-weight: 700;
+        color: inherit;
+    }
+
+    &__banner-role {
+        font-size: base.card-fs(0.85rem);
+        opacity: 0.8;
+    }
+
+    &__banner-btn.btn.conn-people__banner-btn--custom-bg {
+        --bs-btn-bg:                  var(--conn-people-banner-btn-bg);
+        --bs-btn-border-color:        var(--conn-people-banner-btn-bg);
+        --bs-btn-hover-bg:            color-mix(in srgb, var(--conn-people-banner-btn-bg) 85%, #000);
+        --bs-btn-hover-border-color:  color-mix(in srgb, var(--conn-people-banner-btn-bg) 85%, #000);
+        --bs-btn-active-bg:           color-mix(in srgb, var(--conn-people-banner-btn-bg) 85%, #000);
+        --bs-btn-active-border-color: color-mix(in srgb, var(--conn-people-banner-btn-bg) 85%, #000);
+    }
+
+    &__banner-btn.btn.conn-people__banner-btn--outline.conn-people__banner-btn--custom-bg {
+        --bs-btn-bg:                  transparent;
+        --bs-btn-color:               var(--conn-people-banner-btn-bg);
+        --bs-btn-hover-bg:            var(--conn-people-banner-btn-bg);
+        --bs-btn-hover-border-color:  var(--conn-people-banner-btn-bg);
+        --bs-btn-active-bg:           var(--conn-people-banner-btn-bg);
+        --bs-btn-active-border-color: var(--conn-people-banner-btn-bg);
+    }
+
+    &__banner-btn.btn.conn-people__banner-btn--custom-text {
+        --bs-btn-color:        var(--conn-people-banner-btn-text);
+        --bs-btn-hover-color:  var(--conn-people-banner-btn-text);
+        --bs-btn-active-color: var(--conn-people-banner-btn-text);
+    }
+
+    &__banner-btn.btn.conn-people__banner-btn--outline.conn-people__banner-btn--custom-text {
+        --bs-btn-hover-color:  var(--conn-btn-color);
+        --bs-btn-active-color: var(--conn-btn-color);
+    }
+
+    &--align-left &__banner { margin-left: 0; margin-right: auto; }
+    &--align-right &__banner { margin-left: auto; margin-right: 0; }
+    &--width-fill &__banner { max-width: none; }
+
+    @container (max-width: 440px) {
+        &__banner {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        &__banner-frame { width: min(220px, 80%); }
+
+        &__banner-body { align-items: center; }
+
+        &__banner-text { align-items: center; }
+    }
+}
+
+@property --conn-people-banner-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes conn-people-banner-spin {
+    to { --conn-people-banner-angle: 360deg; }
 }

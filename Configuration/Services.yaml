@@ -11,3 +11,7 @@ services:
   # own dependency graph, so they must be public to be resolvable there.
   Connetation\T3wtkElements\Controller\Backend\IconListAjaxController:
     public: true
+
+  # itemsProcFunc targets are instantiated via GeneralUtility::makeInstance().
+  Connetation\T3wtkElements\Service\ButtonStyleItemsProcFunc:
+    public: true

@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:conn="http://typo3.org/ns/Connetation/T3wtkBase/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:variable name="bannerIntro" value="{settings.bannerIntro}" />
+<f:if condition="!{bannerIntro}"><f:variable name="bannerIntro"><f:translate key="people.banner.intro" extensionName="conn_t3wtk_elements" /></f:variable></f:if>
+<f:variable name="bannerButtonLabel" value="{settings.bannerButtonLabel}" />
+<f:if condition="!{bannerButtonLabel}"><f:variable name="bannerButtonLabel"><f:translate key="people.banner.button" extensionName="conn_t3wtk_elements" /></f:variable></f:if>
+<f:variable name="bannerButtonClass" value="{settings.bannerButtonStyle} conn-people__banner-btn" />
+<f:if condition="{settings.bannerButtonOutline}"><f:variable name="bannerButtonClass" value="{bannerButtonClass} conn-people__banner-btn--outline" /></f:if>
+<f:if condition="{settings.bannerButtonBg}"><f:variable name="bannerButtonClass" value="{bannerButtonClass} conn-people__banner-btn--custom-bg" /></f:if>
+<f:if condition="{settings.bannerButtonTextColor}"><f:variable name="bannerButtonClass" value="{bannerButtonClass} conn-people__banner-btn--custom-text" /></f:if>
+
+<div class="row g-4 {settings.rowColsClass}">
+    <f:for each="{people}" as="person">
+        <f:variable name="bannerLink" value="{settings.bannerButtonLink}" />
+        <f:if condition="!{bannerLink} && {person.link}"><f:variable name="bannerLink" value="{person.link}" /></f:if>
+        <f:if condition="!{bannerLink} && {person.email}"><f:variable name="bannerLink" value="mailto:{person.email}" /></f:if>
+        <div class="{settings.colClass} conn-people__col">
+            <div class="conn-people__banner{f:if(condition: settings.bannerSpin, then: ' conn-people__banner--spin')}">
+                <div class="conn-people__banner-frame">
+                    <f:render partial="People/HexPhoto" arguments="{
+                        person:   person,
+                        cssClass: 'conn-people__banner-photo',
+                        widths:   '180,270,360,480',
+                        sizes:    '200px'
+                    }" />
+                </div>
+                <div class="conn-people__banner-body">
+                    <p class="conn-people__banner-text">
+                        <span class="conn-people__banner-intro">{bannerIntro}</span>
+                        <strong class="conn-people__banner-name">{person.name}</strong>
+                        <f:if condition="{settings.showRole}">
+                            <f:if condition="{person.role}">
+                                <span class="conn-people__banner-role">{person.role}</span>
+                            </f:if>
+                        </f:if>
+                    </p>
+                    <f:if condition="{bannerLink}">
+                        <f:link.typolink parameter="{bannerLink}" class="{bannerButtonClass}">{bannerButtonLabel}</f:link.typolink>
+                    </f:if>
+                </div>
+            </div>
+        </div>
+    </f:for>
+</div>
+
+</html>

@@ -16,6 +16,14 @@
                 <source>Website</source>
                 <target>Webseite</target>
             </trans-unit>
+            <trans-unit id="people.banner.intro">
+                <source>Your contact person:</source>
+                <target>Ihr Ansprechpartner bei uns:</target>
+            </trans-unit>
+            <trans-unit id="people.banner.button">
+                <source>Get in touch</source>
+                <target>Jetzt anfragen</target>
+            </trans-unit>
             <!-- Shared filter bar -->
             <trans-unit id="filter.search.placeholder">
                 <source>Search…</source>

@@ -845,7 +845,7 @@
                 <source>People</source>
             </trans-unit>
             <trans-unit id="ce.people.description">
-                <source>Renders Person records — hand-picked or a whole folder — as team cards, contact cards, flip cards, reveal cards or a visit card</source>
+                <source>Renders Person records — hand-picked or a whole folder — as team cards, contact cards, flip cards, reveal cards, a visit card or a contact banner</source>
             </trans-unit>
             <trans-unit id="people.tab.config">
                 <source>People Settings</source>

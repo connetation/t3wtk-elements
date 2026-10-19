@@ -62,6 +62,7 @@
                                 <numIndex index="4"><label>Team Card</label><value>team-card</value></numIndex>
                                 <numIndex index="5"><label>Contact Card</label><value>contact-card</value></numIndex>
                                 <numIndex index="6"><label>Visit Card</label><value>visit-card</value></numIndex>
+                                <numIndex index="7"><label>Contact Banner (photo, animated border + button)</label><value>contact-banner</value></numIndex>
                             </items>
                         </config>
                     </settings.style>
@@ -118,6 +119,32 @@
                             </items>
                         </config>
                     </settings.imageSideMode>
+                    <settings.bannerIntro>
+                        <label>Contact Banner — intro text above the name, same for every person (empty = "Your contact person:")</label>
+                        <displayCond>FIELD:settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>input</type>
+                            <size>40</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.bannerIntro>
+                    <settings.bannerButtonLabel>
+                        <label>Contact Banner — button label, same for every person (empty = "Get in touch")</label>
+                        <displayCond>FIELD:settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.bannerButtonLabel>
+                    <settings.bannerButtonLink>
+                        <label>Contact Banner — one button link for every person, e.g. a contact form. Leave empty to give each person their own: the Link field of their Person record, otherwise an email to them (neither = no button)</label>
+                        <displayCond>FIELD:settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>link</type>
+                            <size>50</size>
+                        </config>
+                    </settings.bannerButtonLink>
                     <settings.textPosition>
                         <label>Nametag position (before hover/tap)</label>
                         <displayCond>FIELD:settings.style:IN:reveal-sheet,reveal-curtain,reveal-spotlight</displayCond>
@@ -182,6 +209,7 @@
                     </settings.borderRadius>
                     <settings.showBorder>
                         <label>Show card border</label>
+                        <displayCond>FIELD:display.settings.style:!=:contact-banner</displayCond>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
@@ -190,6 +218,7 @@
                     </settings.showBorder>
                     <settings.showShadow>
                         <label>Show drop shadow</label>
+                        <displayCond>FIELD:display.settings.style:!=:contact-banner</displayCond>
                         <config>
                             <type>check</type>
                             <renderType>checkboxToggle</renderType>
@@ -309,5 +338,80 @@
                 </el>
             </ROOT>
         </colors_visit>
+        <colors_banner>
+            <ROOT>
+                <sheetTitle>🎨 Contact Banner Colors</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.bannerBg>
+                        <label>Background color (empty = transparent)</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.bannerBg>
+                    <settings.bannerBorderColor>
+                        <label>Border color — gradient start (empty = accent color)</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.bannerBorderColor>
+                    <settings.bannerBorderColorEnd>
+                        <label>Border color — gradient end (empty = secondary accent color)</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.bannerBorderColorEnd>
+                    <settings.bannerSpin>
+                        <label>Spin the border (off = static gradient; always static for visitors who prefer reduced motion)</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.bannerSpin>
+                    <settings.bannerTextColor>
+                        <label>Text color — intro, name and role (empty = theme text color)</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.bannerTextColor>
+                    <settings.bannerButtonStyle>
+                        <label>Button style (the buttons defined for the RTE / link browser)</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>btn btn-primary</default>
+                            <itemsProcFunc>Connetation\T3wtkElements\Service\ButtonStyleItemsProcFunc->addItems</itemsProcFunc>
+                        </config>
+                    </settings.bannerButtonStyle>
+                    <settings.bannerButtonBg>
+                        <label>Button color override — fill, or border + hover fill for outline styles. Empty = keep the button style's color</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.bannerButtonBg>
+                    <settings.bannerButtonTextColor>
+                        <label>Button text color override (empty = keep the button style's text color)</label>
+                        <displayCond>FIELD:display.settings.style:=:contact-banner</displayCond>
+                        <config>
+                            <type>color</type>
+                            <opacity>1</opacity>
+                        </config>
+                    </settings.bannerButtonTextColor>
+                </el>
+            </ROOT>
+        </colors_banner>
     </sheets>
 </T3DataStructure>
