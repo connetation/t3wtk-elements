@@ -16,7 +16,7 @@
 
         <f:if condition="{cards}">
             <f:then>
-                <div class="row g-4 {settings.rowColsClass}">
+                <div class="row g-4 {settings.rowColsClass} justify-content-{settings.cardAlign}">
                     <f:for each="{cards}" as="card">
                         <f:render partial="CardGroup/Card" arguments="{
                             card:     card,

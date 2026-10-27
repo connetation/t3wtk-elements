@@ -35,6 +35,7 @@
     // Per-device columns (settings.columns = "desktop,tablet,mobile") — grid layout
     &--grid {
         @include device-columns('.conn-testimonials__grid', --conn-testimonials-cols);
+        @include card-align('.conn-testimonials__grid', --conn-testimonials-cols, 3);
     }
 
     // ── Card (shared) ─────────────────────────

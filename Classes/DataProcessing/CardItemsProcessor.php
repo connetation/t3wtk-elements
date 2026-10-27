@@ -25,6 +25,7 @@ namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Connetation\T3wtkBase\Utility\ResponsiveValue;
+use Connetation\T3wtkBase\Utility\CardAlignOptions;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class CardItemsProcessor extends AbstractItemsProcessor
@@ -67,7 +68,7 @@ final class CardItemsProcessor extends AbstractItemsProcessor
             'style'        => $style,
             'accentBar'    => (bool)($raw['accentBar'] ?? true),
             'bodyPosition' => $bodyPosition,
-        ] + FontWeightOptions::resolveCard($raw);
+        ] + FontWeightOptions::resolveCard($raw) + CardAlignOptions::resolveSettings($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -79,7 +80,7 @@ final class CardItemsProcessor extends AbstractItemsProcessor
             'style'        => 'default',
             'accentBar'    => true,
             'bodyPosition' => 'top',
-        ] + FontWeightOptions::CARD_DEFAULTS;
+        ] + FontWeightOptions::CARD_DEFAULTS + CardAlignOptions::DEFAULTS;
     }
 
     // Records saved before the *_align columns existed have '' rather than

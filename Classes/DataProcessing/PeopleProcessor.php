@@ -23,6 +23,7 @@ declare(strict_types=1);
 
 namespace Connetation\T3wtkElements\DataProcessing;
 
+use Connetation\T3wtkBase\Utility\CardAlignOptions;
 use Connetation\T3wtkBase\Utility\RadiusOptions;
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Connetation\T3wtkElements\Service\ButtonStyleItemsProcFunc;
@@ -158,7 +159,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'bannerButtonOutline' => str_contains((string)($raw['bannerButtonStyle'] ?? ''), 'btn-outline-'),
             'bannerButtonBg'    => $this->sanitizeColor((string)($raw['bannerButtonBg'] ?? ''), ''),
             'bannerButtonTextColor' => $this->sanitizeColor((string)($raw['bannerButtonTextColor'] ?? ''), ''),
-        ];
+        ] + CardAlignOptions::resolveSettings($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -203,7 +204,7 @@ final class PeopleProcessor extends AbstractItemsProcessor
             'bannerButtonOutline' => false,
             'bannerButtonBg'    => '',
             'bannerButtonTextColor' => '',
-        ];
+        ] + CardAlignOptions::DEFAULTS;
     }
 
     // ─────────────────────────────────────────────────────────────

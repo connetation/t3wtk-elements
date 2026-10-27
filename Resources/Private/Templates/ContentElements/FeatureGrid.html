@@ -17,6 +17,7 @@
 <section class="conn-feature-grid conn-feature-grid--{settings.variant} conn-feature-grid--icon-{settings.iconStyle}{f:if(condition: settings.accentBar, then: ' conn-feature-grid--accent-bar')}{f:if(condition: settings.columnsTablet, then: ' has-cols-tablet')}{f:if(condition: settings.columnsMobile, then: ' has-cols-mobile')}"
          id="conn-feature-grid-{data.uid}"
          data-columns="{settings.columns}"
+         data-card-align="{settings.cardAlign}"
          style="--conn-fg-cols-tablet: {settings.columnsTablet}; --conn-fg-cols-mobile: {settings.columnsMobile};">
 
         <f:if condition="{features}">

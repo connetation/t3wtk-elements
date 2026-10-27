@@ -34,6 +34,7 @@
 
     // Per-device columns (settings.columns = "desktop,tablet,mobile")
     @include device-columns('.conn-pricing__grid', --conn-pricing-cols);
+    @include card-align('.conn-pricing__grid', --conn-pricing-cols, 3);
 
     // ── Grid ──────────────────────────────────
     &__grid {

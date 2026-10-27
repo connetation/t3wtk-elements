@@ -11,7 +11,7 @@
 <f:if condition="{settings.bannerButtonBg}"><f:variable name="bannerButtonClass" value="{bannerButtonClass} conn-people__banner-btn--custom-bg" /></f:if>
 <f:if condition="{settings.bannerButtonTextColor}"><f:variable name="bannerButtonClass" value="{bannerButtonClass} conn-people__banner-btn--custom-text" /></f:if>
 
-<div class="row g-4 {settings.rowColsClass}">
+<div class="row g-4 {settings.rowColsClass} justify-content-{settings.cardAlign}">
     <f:for each="{people}" as="person">
         <f:variable name="bannerLink" value="{settings.bannerButtonLink}" />
         <f:if condition="!{bannerLink} && {person.link}"><f:variable name="bannerLink" value="{person.link}" /></f:if>

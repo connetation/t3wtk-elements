@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Utility\CardAlignOptions;
 use Connetation\T3wtkBase\Utility\ResponsiveValue;
 
 final class TestimonialItemsProcessor extends AbstractItemsProcessor
@@ -73,7 +74,7 @@ final class TestimonialItemsProcessor extends AbstractItemsProcessor
             'autoplayDelay' => max(1000, (int)($raw['autoplayDelay'] ?? 4000)),
             'showRating'    => (bool)($raw['showRating'] ?? true),
             'accentBar'     => (bool)($raw['accentBar'] ?? true),
-        ];
+        ] + CardAlignOptions::resolveSettings($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -88,6 +89,6 @@ final class TestimonialItemsProcessor extends AbstractItemsProcessor
             'autoplayDelay' => 4000,
             'showRating'    => true,
             'accentBar'     => true,
-        ];
+        ] + CardAlignOptions::DEFAULTS;
     }
 }

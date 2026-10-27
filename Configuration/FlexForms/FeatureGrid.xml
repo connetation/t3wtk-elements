@@ -20,6 +20,17 @@
                             <default>3</default>
                         </config>
                     </settings.columns>
+                    <settings.cardAlign>
+                        <label>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_align</label>
+                        <description>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_align.description</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items type="array"></items>
+                            <itemsProcFunc>Connetation\T3wtkBase\Utility\CardAlignOptions->addItems</itemsProcFunc>
+                            <default>start</default>
+                        </config>
+                    </settings.cardAlign>
                     <settings.variant>
                         <label>Variant</label>
                         <config>

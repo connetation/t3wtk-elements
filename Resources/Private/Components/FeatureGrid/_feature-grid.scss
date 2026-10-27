@@ -34,6 +34,7 @@
 
     // Per-device columns (settings.columns = "desktop,tablet,mobile")
     @include device-columns('.conn-feature-grid__grid', --conn-fg-cols);
+    @include card-align('.conn-feature-grid__grid', --conn-fg-cols, 3);
 
     // ── Grid ──────────────────────────────────
     &__grid {
