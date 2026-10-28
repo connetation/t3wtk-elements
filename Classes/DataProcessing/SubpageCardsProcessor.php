@@ -25,7 +25,9 @@ namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\Utility\RadiusOptions;
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc;
 use Connetation\T3wtkBase\Utility\CardAlignOptions;
+use Connetation\T3wtkBase\Utility\CardDesignOptions;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Context\Context;
@@ -166,7 +168,8 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             'orderBy'           => $this->allow($raw['orderBy'] ?? null, array_keys(self::ORDER_BY), 'sorting'),
             'maxItems'          => max(0, (int)($raw['maxItems'] ?? 0)),
             'includeNavHide'    => (bool)($raw['includeNavHide'] ?? false),
-        ] + FontWeightOptions::resolveCard($raw) + CardAlignOptions::resolveSettings($raw);
+        ] + FontWeightOptions::resolveCard($raw) + CardAlignOptions::resolveSettings($raw)
+            + CardDesignOptions::resolveSettings($raw) + ButtonStyleItemsProcFunc::resolveSettings($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -196,7 +199,8 @@ final class SubpageCardsProcessor extends AbstractItemsProcessor
             'orderBy'           => 'sorting',
             'maxItems'          => 0,
             'includeNavHide'    => false,
-        ] + FontWeightOptions::CARD_DEFAULTS + CardAlignOptions::DEFAULTS;
+        ] + FontWeightOptions::CARD_DEFAULTS + CardAlignOptions::DEFAULTS
+            + CardDesignOptions::DEFAULTS + ['linkStyle' => ''];
     }
 
     // ─────────────────────────────────────────────────────────────

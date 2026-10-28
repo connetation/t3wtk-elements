@@ -23,57 +23,10 @@ declare(strict_types=1);
 
 namespace Connetation\T3wtkElements\Service;
 
-use TYPO3\CMS\Core\Configuration\Richtext;
-use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
+use Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc as BaseButtonStyleItemsProcFunc;
 
 /**
- * Button style choices taken from the page's RTE preset — the same `btn …`
- * class strings the editor offers in the RTE style dropdown and link browser,
- * so site packages that add their own buttons there get them here too.
+ * Kept for existing itemsProcFunc references (People, site packages); the
+ * implementation lives in connetation/t3wtk-base.
  */
-final class ButtonStyleItemsProcFunc
-{
-    public const DEFAULT = 'btn btn-primary';
-
-    public function __construct(
-        private readonly Richtext $richtext,
-        private readonly LanguageServiceFactory $languageServiceFactory,
-    ) {}
-
-    /** itemsProcFunc: Connetation\T3wtkElements\Service\ButtonStyleItemsProcFunc->addItems */
-    public function addItems(array &$parameters): void
-    {
-        $pid = (int)($parameters['effectivePid'] ?? $parameters['flexParentDatabaseRow']['pid'] ?? 0);
-        $bodytextConfig = array_replace(
-            $GLOBALS['TCA']['tt_content']['columns']['bodytext']['config'] ?? [],
-            $GLOBALS['TCA']['tt_content']['types']['text']['columnsOverrides']['bodytext']['config'] ?? []
-        );
-        $rte = $this->richtext->getConfiguration('tt_content', 'bodytext', max($pid, 0), 'text', $bodytextConfig);
-
-        $classes = $rte['buttons']['link']['properties']['class']['allowedClasses'] ?? [];
-        $names = $rte['classes'] ?? [];
-        $languageService = $this->languageServiceFactory->createFromUserPreferences($GLOBALS['BE_USER'] ?? null);
-
-        $seen = [];
-        foreach ($classes as $class) {
-            $class = trim((string)$class);
-            if (!self::isButtonClass($class) || isset($seen[$class])) {
-                continue;
-            }
-            $seen[$class] = true;
-            $label = (string)($names[$class]['name'] ?? $class);
-            $parameters['items'][] = ['label' => $languageService->sL($label) ?: $label, 'value' => $class];
-        }
-
-        if ($seen === []) {
-            $parameters['items'][] = ['label' => 'Button primary', 'value' => self::DEFAULT];
-        }
-    }
-
-    /** A class string that is safe to output and contains the `btn` class. */
-    public static function isButtonClass(string $value): bool
-    {
-        return preg_match('/^[A-Za-z0-9_\- ]+$/', $value) === 1
-            && in_array('btn', preg_split('/\s+/', trim($value)) ?: [], true);
-    }
-}
+final class ButtonStyleItemsProcFunc extends BaseButtonStyleItemsProcFunc {}

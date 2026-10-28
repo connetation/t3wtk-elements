@@ -31,6 +31,17 @@
                             <default>start</default>
                         </config>
                     </settings.cardAlign>
+                    <settings.linkStyle>
+                        <label>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:link_style</label>
+                        <description>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:link_style.description</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items type="array"></items>
+                            <itemsProcFunc>Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc->addItemsWithDefault</itemsProcFunc>
+                            <default></default>
+                        </config>
+                    </settings.linkStyle>
                     <settings.ratio>
                         <label>Card shape</label>
                         <config>

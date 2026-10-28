@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc;
 use Connetation\T3wtkBase\Utility\CardAlignOptions;
 use Connetation\T3wtkBase\Utility\ResponsiveValue;
 
@@ -91,7 +92,8 @@ final class PricingTierProcessor extends AbstractItemsProcessor
             'colClass'  => $colMap[$columns] ?? $colMap[3],
             'style'     => $style,
             'accentBar' => (bool)($raw['accentBar'] ?? true),
-        ] + CardAlignOptions::resolveSettings($raw);
+        ] + CardAlignOptions::resolveSettings($raw)
+            + ButtonStyleItemsProcFunc::resolveSettings($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -103,6 +105,6 @@ final class PricingTierProcessor extends AbstractItemsProcessor
             'colClass'  => 'col-sm-6 col-lg-4',
             'style'     => 'default',
             'accentBar' => true,
-        ] + CardAlignOptions::DEFAULTS;
+        ] + CardAlignOptions::DEFAULTS + ['linkStyle' => ''];
     }
 }

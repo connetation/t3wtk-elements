@@ -3,14 +3,14 @@
       data-namespace-typo3-fluid="true">
 
 <div class="{settings.colClass} conn-card-group__item">
-    <article class="card h-100 conn-card-group__card conn-subpage-cards__card">
+    <article class="card h-100 conn-card-group__card conn-subpage-cards__card conn-card-design__card">
 
         <f:if condition="{settings.showImage}">
             <f:if condition="{card.imageFile}">
                 <f:then>
                     <f:variable name="cardImgAlt" value="{card.title}" />
                     <f:if condition="{card.imageFile.alternative}"><f:variable name="cardImgAlt" value="{card.imageFile.alternative}" /></f:if>
-                    <div class="ratio ratio-16x9 overflow-hidden">
+                    <div class="ratio ratio-16x9 overflow-hidden conn-card-design__media">
                         <conn:responsiveImage image="{card.imageFile}"
                                             class="object-fit-cover w-100 h-100"
                                             alt="{cardImgAlt}"
@@ -21,7 +21,7 @@
                     </div>
                 </f:then>
                 <f:else if="{settings.showPlaceholder}">
-                    <div class="ratio ratio-16x9 conn-card-group__placeholder">
+                    <div class="ratio ratio-16x9 conn-card-group__placeholder conn-card-design__placeholder">
                         <div class="d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="opacity-25" viewBox="0 0 16 16" aria-hidden="true">
                                 <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -63,7 +63,9 @@
 
         <f:if condition="{settings.showLink}">
             <div class="card-footer bg-transparent border-top-0 pb-3 px-3 pt-0 text-{settings.linkAlign}">
-                <f:link.typolink parameter="{card.link}" class="btn btn-sm btn-outline-primary conn-card-group__visit-link" additionalAttributes="{tabindex: '-1', 'aria-hidden': 'true'}">
+                <f:variable name="linkClass">btn btn-sm btn-outline-primary</f:variable>
+                <f:if condition="{settings.linkStyle}"><f:variable name="linkClass">{settings.linkStyle} btn-sm</f:variable></f:if>
+                <f:link.typolink parameter="{card.link}" class="{linkClass} conn-card-group__visit-link" additionalAttributes="{tabindex: '-1', 'aria-hidden': 'true'}">
                     <f:if condition="{settings.linkLabel}">
                         <f:then>{settings.linkLabel}</f:then>
                         <f:else><f:translate key="subpage_cards.more" extensionName="conn_t3wtk_elements" default="More" /></f:else>

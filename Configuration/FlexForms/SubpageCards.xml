@@ -258,6 +258,7 @@
                 </el>
             </ROOT>
         </sPages>
+        <cardDesign>FILE:EXT:conn_t3wtk_elements/Configuration/FlexForms/Shared/CardDesign.xml</cardDesign>
         <typography>FILE:EXT:conn_t3wtk_elements/Configuration/FlexForms/Shared/CardTypography.xml</typography>
     </sheets>
 </T3DataStructure>

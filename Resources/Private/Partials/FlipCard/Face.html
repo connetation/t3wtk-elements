@@ -33,7 +33,9 @@
         </f:if>
         <f:if condition="{link}">
             <div class="conn-flip-card__footer text-{linkAlign}">
-                <f:link.typolink parameter="{link}" class="btn btn-sm {f:if(condition: image, then: 'btn-outline-light', else: 'btn-outline-primary')} conn-flip-card__link">
+                <f:variable name="linkClass">btn btn-sm {f:if(condition: image, then: 'btn-outline-light', else: 'btn-outline-primary')}</f:variable>
+                <f:if condition="{settings.linkStyle}"><f:variable name="linkClass">{settings.linkStyle} btn-sm</f:variable></f:if>
+                <f:link.typolink parameter="{link}" class="{linkClass} conn-flip-card__link">
                     <f:if condition="{linkLabel}">
                         <f:then>{linkLabel}</f:then>
                         <f:else>More</f:else>

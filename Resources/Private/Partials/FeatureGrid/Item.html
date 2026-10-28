@@ -2,7 +2,7 @@
       xmlns:conn="http://typo3.org/ns/Connetation/T3wtkBase/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<div class="conn-feature-grid__item">
+<div class="conn-feature-grid__item conn-card-design__card">
 
     <f:if condition="{feature.icon || feature.imageFile}">
         <div class="conn-feature-grid__icon">
@@ -52,7 +52,9 @@
             <div class="conn-feature-grid__body {settings.textWeight}">{feature.body -> f:format.html()}</div>
         </f:if>
         <f:if condition="{feature.link}">
-            <f:link.typolink parameter="{feature.link}" class="conn-feature-grid__link">
+            <f:variable name="linkClass">conn-feature-grid__link</f:variable>
+            <f:if condition="{settings.linkStyle}"><f:variable name="linkClass">{settings.linkStyle} btn-sm align-self-start</f:variable></f:if>
+            <f:link.typolink parameter="{feature.link}" class="{linkClass}">
                 <f:if condition="{feature.link_label}">
                     <f:then>{feature.link_label}</f:then>
                     <f:else>Learn more</f:else>

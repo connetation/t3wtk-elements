@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+    Shared "Card design" sheet for card elements, referenced from each card
+    FlexForm as <sheets><cardDesign>FILE:EXT:…/Shared/CardDesign.xml</cardDesign>.
+    Options come from Connetation\T3wtkBase\Utility\CardDesignOptions and
+    Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc; the processors
+    validate with CardDesignOptions::resolveSettings() and
+    ButtonStyleItemsProcFunc::resolveSettings().
+-->
+<T3DataStructure>
+    <ROOT>
+        <sheetTitle>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_design</sheetTitle>
+        <type>array</type>
+        <el>
+            <settings.cardDesign>
+                <label>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_design</label>
+                <onChange>reload</onChange>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array"></items>
+                    <itemsProcFunc>Connetation\T3wtkBase\Utility\CardDesignOptions->addItems</itemsProcFunc>
+                    <default>standard</default>
+                </config>
+            </settings.cardDesign>
+            <settings.cardBackgroundColor>
+                <label>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_design.background_color</label>
+                <description>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_design.background_color.description</description>
+                <displayCond>FIELD:settings.cardDesign:IN:image,color</displayCond>
+                <config>
+                    <type>color</type>
+                    <opacity>1</opacity>
+                    <default></default>
+                </config>
+            </settings.cardBackgroundColor>
+            <settings.cardOverlayColor>
+                <label>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_design.overlay_color</label>
+                <description>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_design.overlay_color.description</description>
+                <displayCond>FIELD:settings.cardDesign:=:image</displayCond>
+                <config>
+                    <type>color</type>
+                    <opacity>1</opacity>
+                    <default></default>
+                </config>
+            </settings.cardOverlayColor>
+            <settings.cardTextColor>
+                <label>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:card_design.text_color</label>
+                <displayCond>FIELD:settings.cardDesign:IN:image,color</displayCond>
+                <config>
+                    <type>color</type>
+                    <opacity>1</opacity>
+                    <default></default>
+                </config>
+            </settings.cardTextColor>
+            <settings.linkStyle>
+                <label>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:link_style</label>
+                <description>LLL:EXT:conn_t3wtk_base/Resources/Private/Language/locallang_be.xlf:link_style.description</description>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array"></items>
+                    <itemsProcFunc>Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc->addItemsWithDefault</itemsProcFunc>
+                    <default></default>
+                </config>
+            </settings.linkStyle>
+        </el>
+    </ROOT>
+</T3DataStructure>

@@ -42,8 +42,10 @@
 
         <f:if condition="{tier.cta_link}">
             <div class="conn-pricing__cta">
+                <f:variable name="linkClass">btn {f:if(condition: tier.featured, then: 'btn-primary', else: 'btn-outline-primary')}</f:variable>
+                <f:if condition="{linkStyle}"><f:variable name="linkClass">{linkStyle}</f:variable></f:if>
                 <f:link.typolink parameter="{tier.cta_link}"
-                    class="btn {f:if(condition: tier.featured, then: 'btn-primary', else: 'btn-outline-primary')} w-100 conn-pricing__cta-btn">
+                    class="{linkClass} w-100 conn-pricing__cta-btn">
                     <f:if condition="{tier.cta_label}">
                         <f:then>{tier.cta_label}</f:then>
                         <f:else>Get started</f:else>

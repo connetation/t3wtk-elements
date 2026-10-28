@@ -25,6 +25,7 @@ namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Connetation\T3wtkBase\Utility\ResponsiveValue;
+use Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc;
 use Connetation\T3wtkBase\Utility\CardAlignOptions;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
@@ -71,7 +72,8 @@ final class FlipCardItemsProcessor extends AbstractItemsProcessor
             'direction' => $this->resolveChoice($raw['direction'] ?? null, ['horizontal', 'vertical']),
             'trigger'   => $this->resolveChoice($raw['trigger'] ?? null, ['hover', 'click']),
             'style'     => $this->resolveChoice($raw['style'] ?? null, ['default', 'shadow', 'flat']),
-        ] + FontWeightOptions::resolveCard($raw) + CardAlignOptions::resolveSettings($raw);
+        ] + FontWeightOptions::resolveCard($raw) + CardAlignOptions::resolveSettings($raw)
+            + ButtonStyleItemsProcFunc::resolveSettings($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -85,7 +87,7 @@ final class FlipCardItemsProcessor extends AbstractItemsProcessor
             'direction' => 'horizontal',
             'trigger'   => 'hover',
             'style'     => 'default',
-        ] + FontWeightOptions::CARD_DEFAULTS + CardAlignOptions::DEFAULTS;
+        ] + FontWeightOptions::CARD_DEFAULTS + CardAlignOptions::DEFAULTS + ['linkStyle' => ''];
     }
 
     // Front and back share the same field set (the back one "back_"-prefixed,

@@ -16,9 +16,9 @@
         type="module"
         priority="false" />
 
-    <section class="conn-card-group conn-card-group--{settings.style}{f:if(condition: settings.accentBar, then: ' conn-card-group--accent-bar')} conn-subpage-cards"
+    <section class="conn-card-group conn-card-group--{settings.style}{f:if(condition: settings.accentBar, then: ' conn-card-group--accent-bar')} conn-subpage-cards {settings.cardDesignClass}"
              id="conn-subpage-cards-{data.uid}"
-             style="{settings.styleVars}"
+             style="{settings.styleVars} {settings.cardDesignStyle}"
              data-radius="{settings.cardBorderRadius}">
         <div class="row g-4 {settings.rowColsClass} justify-content-{settings.cardAlign}">
             <f:for each="{cards}" as="card">

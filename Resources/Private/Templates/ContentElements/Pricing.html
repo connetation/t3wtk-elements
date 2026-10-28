@@ -24,7 +24,8 @@
                     <f:for each="{tiers}" as="tier">
                         <f:render partial="Pricing/Tier" arguments="{
                             tier:  tier,
-                            style: settings.style
+                            style: settings.style,
+                            linkStyle: settings.linkStyle
                         }" />
                     </f:for>
                 </div>

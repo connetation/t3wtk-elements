@@ -25,7 +25,9 @@ namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
 use Connetation\T3wtkBase\Utility\ResponsiveValue;
+use Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc;
 use Connetation\T3wtkBase\Utility\CardAlignOptions;
+use Connetation\T3wtkBase\Utility\CardDesignOptions;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 
 final class FeatureItemsProcessor extends AbstractItemsProcessor
@@ -76,7 +78,8 @@ final class FeatureItemsProcessor extends AbstractItemsProcessor
             'variant'   => $variant,
             'iconStyle' => $iconStyle,
             'accentBar' => (bool)($raw['accentBar'] ?? true),
-        ] + FontWeightOptions::resolveCard($raw) + CardAlignOptions::resolveSettings($raw);
+        ] + FontWeightOptions::resolveCard($raw) + CardAlignOptions::resolveSettings($raw)
+            + CardDesignOptions::resolveSettings($raw) + ButtonStyleItemsProcFunc::resolveSettings($raw);
     }
 
     protected function defaultSettings(string $settingsField): array
@@ -89,6 +92,7 @@ final class FeatureItemsProcessor extends AbstractItemsProcessor
             'variant'   => 'default',
             'iconStyle' => 'soft',
             'accentBar' => true,
-        ] + FontWeightOptions::CARD_DEFAULTS + CardAlignOptions::DEFAULTS;
+        ] + FontWeightOptions::CARD_DEFAULTS + CardAlignOptions::DEFAULTS
+            + CardDesignOptions::DEFAULTS + ['linkStyle' => ''];
     }
 }

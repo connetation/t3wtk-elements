@@ -68,6 +68,7 @@
                 </el>
             </ROOT>
         </sDEF>
+        <cardDesign>FILE:EXT:conn_t3wtk_elements/Configuration/FlexForms/Shared/CardDesignColor.xml</cardDesign>
         <typography>FILE:EXT:conn_t3wtk_elements/Configuration/FlexForms/Shared/CardTypographyNoSubtitle.xml</typography>
     </sheets>
 </T3DataStructure>

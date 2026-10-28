@@ -24,6 +24,8 @@ declare(strict_types=1);
 namespace Connetation\T3wtkElements\DataProcessing;
 
 use Connetation\T3wtkBase\DataProcessing\AbstractItemsProcessor;
+use Connetation\T3wtkBase\Service\ButtonStyleItemsProcFunc;
+use Connetation\T3wtkBase\Utility\CardDesignOptions;
 use Connetation\T3wtkBase\Utility\FontWeightOptions;
 use Connetation\T3wtkBase\Utility\RadiusOptions;
 use Connetation\T3wtkElements\Utility\HeroHeight;
@@ -138,7 +140,8 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             'hide_navigation_mobile' => (bool)($raw['hide_navigation_mobile'] ?? false),
             'show_pagination' => (bool)($raw['show_pagination'] ?? true),
             'hide_pagination_mobile' => (bool)($raw['hide_pagination_mobile'] ?? false),
-        ] + FontWeightOptions::resolveCard($raw);
+        ] + FontWeightOptions::resolveCard($raw)
+            + CardDesignOptions::resolveSettings($raw) + ButtonStyleItemsProcFunc::resolveSettings($raw);
     }
 
 
@@ -196,7 +199,8 @@ final class SlideItemsProcessor extends AbstractItemsProcessor
             'hide_navigation_mobile' => false,
             'show_pagination' => true,
             'hide_pagination_mobile' => false,
-        ] + FontWeightOptions::CARD_DEFAULTS;
+        ] + FontWeightOptions::CARD_DEFAULTS
+            + CardDesignOptions::DEFAULTS + ['linkStyle' => ''];
     }
 
     protected function postProcessRows(array $rows, array $settings): array
