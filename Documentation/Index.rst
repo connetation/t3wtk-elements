@@ -36,6 +36,13 @@ Connetation Elements
    `t3wtk-quickstart-shell <https://github.com/connetation/t3wtk-quickstart-shell>`__ — a ready-to-use DDEV project
    template. Clone it and run ``ddev setup-project``.
 
+.. tip::
+
+   **Want to explore first?** Visit the live demo at
+   https://demosite.connetation.at or install
+   ``connetation/t3wtk-demosite``, which creates a complete demo page tree
+   with sample content and six color themes.
+
 Connetation Elements is a TYPO3 v14 content elements package built on top
 of `connetation/t3wtk-base <https://packagist.org/packages/connetation/t3wtk-base>`__ and
 `b13/container <https://packagist.org/packages/b13/container>`__. It
