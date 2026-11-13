@@ -47,9 +47,30 @@ class TextAnimation {
     private static readonly ANIM_REVEAL     = 'reveal';
     private static readonly ANIM_FUZZY      = 'fuzzy';
 
+    // Card lists (connetation/t3wtk-base news/event plugins) reveal their items
+    // themselves: the list gets .is-visible, then each item fades in after
+    // --i × REVEAL_STAGGER_MS. Text inside them follows that reveal instead of
+    // its own ScrollTrigger so both animations run in sync.
+    private static readonly REVEAL_GROUP_SEL  = '.conn-news-cards, .conn-event-cards';
+    private static readonly REVEAL_VISIBLE    = 'is-visible';
+    private static readonly REVEAL_STAGGER_MS = 70;
+
+    // Elements whose markup must not be rebuilt by SplitText.revert():
+    // re-creating images restarts loading and CSS entrance animations (blink).
+    private static readonly NO_SPLIT_SEL = 'img, picture, video, iframe, .list-group-item';
+
     private static getBodyElements(frame: HTMLElement): HTMLElement[] {
         return [...frame.querySelectorAll<HTMLElement>('p:not(.ce-subheader), li')]
             .filter(el => !el.closest('header') && el.closest('.frame') === frame);
+    }
+
+    // Drops containers of other targets (a card <li> holding its own h3/p) so
+    // no text is split twice and no container gets its whole subtree rebuilt.
+    private static onlyLeafTargets(elements: HTMLElement[]): HTMLElement[] {
+        return elements.filter(el =>
+            !el.matches(TextAnimation.NO_SPLIT_SEL)
+            && !el.querySelector(TextAnimation.NO_SPLIT_SEL)
+            && !elements.some(other => other !== el && el.contains(other)));
     }
 
     private static scrollTriggerConfig(el: HTMLElement): ScrollTriggerConfig {
@@ -57,7 +78,29 @@ class TextAnimation {
     }
 
     private static whenVisible(el: HTMLElement, fn: () => void): void {
+        const group = el.closest<HTMLElement>(TextAnimation.REVEAL_GROUP_SEL);
+        if (group) {
+            TextAnimation.whenGroupRevealed(el, group, fn);
+            return;
+        }
         ScrollTrigger.create({ ...TextAnimation.scrollTriggerConfig(el), onEnter: fn });
+    }
+
+    private static whenGroupRevealed(el: HTMLElement, group: HTMLElement, fn: () => void): void {
+        const index = parseFloat(getComputedStyle(el).getPropertyValue('--i')) || 0;
+        const start = () => window.setTimeout(fn, index * TextAnimation.REVEAL_STAGGER_MS);
+
+        if (group.classList.contains(TextAnimation.REVEAL_VISIBLE)) {
+            start();
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (!group.classList.contains(TextAnimation.REVEAL_VISIBLE)) return;
+            observer.disconnect();
+            start();
+        });
+        observer.observe(group, { attributes: true, attributeFilter: ['class'] });
     }
 
     // ── Words Fade In ─────────────────────────────────────────────────
@@ -202,7 +245,9 @@ class TextAnimation {
         const body     = TextAnimation.getBodyElements(frame);
 
         // Swiper slides have their own CSS entrance animations — skip them.
-        const all = [...headings, ...body].filter(el => !el.closest(TextAnimation.EXCLUDE_SEL));
+        const all = TextAnimation.onlyLeafTargets(
+            [...headings, ...body].filter(el => !el.closest(TextAnimation.EXCLUDE_SEL)),
+        );
         if (!all.length) return;
 
         switch (type) {
